@@ -7,7 +7,7 @@ import { FieldContainer, MessageView } from '../ui'
 import {
   CustomListboxButton,
   CustomOption,
-  type ICustomOption,
+  type ISelectOption,
   type TCustomListboxButtonClasses,
   type TCustomOptionClasses
 } from './ui'
@@ -22,14 +22,14 @@ type ISelectControlClasses = TCustomOptionClasses &
 
 export type TCommonSelectProps = {
   intent?: 'filled' | 'clear' | null
-  multiple: boolean // !!! ONLY FOR FILLED INTENT !!!
+  multiple?: boolean // !!! ONLY FOR FILLED INTENT !!!
   disabled?: boolean
   error?: string
 }
 
 export interface ISelectControlProps<T extends FieldValues> extends TControlledInputProps<T>, TCommonSelectProps {
   classes?: Partial<ISelectControlClasses>
-  optionsList: ICustomOption[]
+  optionsList: ISelectOption[]
   anchorConfig?: {
     gap?: number | string
     offset?: number | string
@@ -57,7 +57,7 @@ export const SelectControl = <T extends FieldValues>({
       control={control}
       name={props.name}
       render={({ field: { onChange, name, value: controlledValue }, fieldState: { error } }) => {
-        const selectedValues: ICustomOption[] = Array.isArray(controlledValue) ? controlledValue : []
+        const selectedValues: ISelectOption[] = Array.isArray(controlledValue) ? controlledValue : []
 
         return (
           <FieldContainer intent={intent} size={size} classes={classes}>

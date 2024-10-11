@@ -10,13 +10,13 @@ export type TCustomOptionClasses = {
   optionText: string
 }
 
-export interface ICustomOption {
+export interface ISelectOption {
   optionValue: string
   isDisabled?: boolean
   additionalText?: ReactElement | string
 }
 
-export interface ICustomOptionProps extends ICustomOption {
+export interface ICustomOptionProps extends ISelectOption {
   classes?: Partial<TCustomOptionClasses>
 }
 

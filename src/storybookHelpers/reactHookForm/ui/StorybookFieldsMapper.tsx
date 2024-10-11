@@ -43,7 +43,7 @@ const renderFields = <T extends FieldValues>(fieldConfig: TStorybookFieldConfig<
       return <TextareaControl control={control} {...fieldConfig} />
     case EnumFieldType.CALENDAR:
       return <CalendarControl control={control} {...fieldConfig} />
-    case EnumFieldType.CREDIT:
+    case EnumFieldType.SLIDER:
       return <InputSliderControl control={control} {...fieldConfig} />
     default:
       return null
