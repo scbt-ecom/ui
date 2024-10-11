@@ -57,3 +57,25 @@ export const mockBannerBaseFullImage: IBannerProps = {
   },
   bannerVariant: 'fullImg'
 }
+
+export const mockBannerBaseFullImageWithAdvantages: IBannerProps = {
+  headTitle: 'Кредит на любые цели',
+  subtitle: 'до 5 млн рублей',
+  buttonsConfig: {
+    primary: {
+      onClick: () => toast.success('@click on primary btn'),
+      children: 'Primary'
+    },
+    secondary: {
+      onClick: () => toast.success('@click on secondary btn'),
+      children: 'Secondary'
+    }
+  },
+  bannerVariant: 'fullImg',
+  advantagesList: [
+    { title: 'До 5 млн ₽', description: 'сумма кредита' },
+    { title: 'До 5 лет', description: 'срок кредита' },
+    { title: 'От 5 минут', description: 'быстрое одобрение' },
+    { title: 'От 20 минут', description: 'сумма одобрения' }
+  ]
+}

@@ -12,24 +12,35 @@ export const BannerWithSeparateImg = ({
   classes
 }: Omit<IBannerProps, 'bannerVariant'>) => {
   return (
-    <section className={cn('desktop:h-[456px] bg-banner-skyblue-300 relative', classes?.section)}>
-      <ResponsiveContainer className={cn(classes?.container)}>
-        <div className={cn('grid grid-mob-apply desktop:grid-desk-apply', classes?.wrapper)}>
-          <div className={cn('grid-text-apply gap-4 pt-6 desktop:pt-20 desktop:pb-10 flex flex-col', classes?.textBlock)}>
-            <Heading as='h1' className={cn('text-color-dark', classes?.title)}>
+    <section data-id='banner-section' className={cn('desktop:h-[456px] bg-banner-skyblue-300 pb-6 relative', classes?.section)}>
+      <ResponsiveContainer data-id='banner-container' className={cn(classes?.container)}>
+        <div
+          data-id='banner-grid'
+          className={cn('grid mobile:justify-center grid-mob-apply desktop:grid-desk-apply', classes?.wrapper)}
+        >
+          <div
+            data-id='banner-text-block'
+            className={cn('grid-text-apply gap-4 pt-6 desktop:pt-20 desktop:pb-10 flex flex-col', classes?.textBlock)}
+          >
+            <Heading data-id='banner-title' as='h1' className={cn('text-color-dark', classes?.title)}>
               {headTitle}
             </Heading>
-            <p className={cn('desk-body-regular-l text-color-dark', classes?.subtitle)}>{subtitle}</p>
+            <p data-id='banner-subtitle' className={cn('desk-body-regular-l text-color-dark', classes?.subtitle)}>
+              {subtitle}
+            </p>
           </div>
 
           <BannerButtonsGroup buttonsConfig={buttonsConfig} classes={classes} />
 
-          <div className={cn('w-full h-[410px] grid-image-apply desktop:w-[550px] desktop:h-full', classes?.imageContainer)}>
-            <img src={money} alt='money' className={cn('w-full h-full object-contain', classes?.image)} />
+          <div
+            data-id='banner-image-wrapper'
+            className={cn('w-full h-[410px] grid-image-apply desktop:w-[550px] desktop:h-full', classes?.imageContainer)}
+          >
+            <img data-id='banner-image' src={money} alt='money' className={cn('w-full h-full object-contain', classes?.image)} />
           </div>
         </div>
 
-        <div className={cn('absolute bottom-[-400px] desktop:bottom-[-50px]', classes?.advantages)}>
+        <div data-id='banner-advantages' className={cn('absolute bottom-[-400px] desktop:bottom-[-50px]', classes?.advantages)}>
           {advantagesList && advantagesList?.length > 0 && <Advantages advantagesList={advantagesList} />}
         </div>
       </ResponsiveContainer>
