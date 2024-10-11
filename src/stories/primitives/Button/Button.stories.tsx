@@ -92,21 +92,21 @@ export const AllVariantsButtons: Story = {
       </div>
 
       <div className='flex flex-col gap-3'>
-        <strong className='text-color-tetriary'># Red</strong>
+        <strong className='text-color-tetriary'># Negative</strong>
         <div className='flex items-center gap-5'>
-          <Button intent='red' size='lg'>
+          <Button intent='negative' size='lg'>
             Button
           </Button>
-          <Button intent='red' size='md'>
+          <Button intent='negative' size='md'>
             Button
           </Button>
-          <Button intent='red' size='sm'>
+          <Button intent='negative' size='sm'>
             Button
           </Button>
-          <Button intent='red' size='sm' disabled>
+          <Button intent='negative' size='sm' disabled>
             Button
           </Button>
-          <Button intent='red' size='sm' isLoading>
+          <Button intent='negative' size='sm' isLoading>
             Button
           </Button>
         </div>

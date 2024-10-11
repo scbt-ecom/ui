@@ -56,5 +56,7 @@ export {
   TextareaControl,
   type ITextareaControlProps,
   CalendarControl,
-  type ICalendarControlProps
+  type ICalendarControlProps,
+  ComboboxControl,
+  type IComboboxControlProps
 } from './formControlElements'

@@ -5,7 +5,7 @@ import type { TAdditionalInputClassesWithAttachment, TControlledInputProps } fro
 import { FieldAttachment, FieldContainer, FieldWrapper, MessageView } from '../ui'
 import { getStepByVariant } from './helpers'
 import { useSlider } from './hooks/useSlider'
-import { type TInputSliderProps } from './model/types'
+import type { TInputSliderProps } from './model/types'
 import { SliderControl } from './ui'
 import { cn } from '$/shared/utils'
 

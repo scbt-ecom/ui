@@ -30,6 +30,8 @@ export const InputControlMask = <T extends FieldValues>({
   badge,
   icon,
   swapPosition,
+  onClickIcon,
+  onKeyDownIcon,
   ...props
 }: InputControlMaskProps<T>) => {
   const inputId = React.useId()
@@ -65,7 +67,15 @@ export const InputControlMask = <T extends FieldValues>({
                 }}
                 {...props}
               />
-              <FieldAttachment badge={badge} icon={icon} error={!!error?.message} classes={classes} swapPosition={swapPosition} />
+              <FieldAttachment
+                onClickIcon={onClickIcon}
+                onKeyDownIcon={onKeyDownIcon}
+                badge={badge}
+                icon={icon}
+                error={!!error?.message}
+                classes={classes}
+                swapPosition={swapPosition}
+              />
             </>
           </FieldWrapper>
           <MessageView

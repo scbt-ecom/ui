@@ -2,7 +2,7 @@ export interface SpritesMap {
   arrows: 'arrowCircle' | 'arrowLink' | 'arrowRight'
   brandLogos: 'logoBlack' | 'logoBusiness' | 'logoGray' | 'logoInsurance' | 'logoMain' | 'logoWhite'
   files: 'documentFilled' | 'documentOutline'
-  general: 'calendar' | 'check' | 'close' | 'edit'
+  general: 'calendar' | 'check' | 'close' | 'edit' | 'hiddenEye' | 'showEye'
   info: 'warningCircle'
 }
 export const SPRITES_META: {
@@ -110,6 +110,16 @@ export const SPRITES_META: {
         viewBox: '0 0 19 19',
         width: 19,
         height: 19
+      },
+      hiddenEye: {
+        viewBox: '0 0 20 18',
+        width: 20,
+        height: 18
+      },
+      showEye: {
+        viewBox: '0 0 20 14',
+        width: 20,
+        height: 14
       }
     }
   },
