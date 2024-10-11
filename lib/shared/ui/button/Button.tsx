@@ -22,6 +22,9 @@ const buttonConfig = cva(
         md: 'h-12',
         lg: 'h-14'
       },
+      isFull: {
+        true: 'w-full'
+      },
       textFormat: {
         capitalize: 'capitalize',
         uppercase: 'uppercase',
@@ -58,6 +61,7 @@ const buttonConfig = cva(
     defaultVariants: {
       intent: 'primary',
       size: 'md',
+      isFull: false,
       textFormat: 'initial'
     }
   }
@@ -76,6 +80,7 @@ export const Button = forwardRef<HTMLButtonElement, IButtonProps>(
     {
       intent,
       size,
+      isFull = false,
       className,
       children,
       type = 'button',
@@ -93,7 +98,7 @@ export const Button = forwardRef<HTMLButtonElement, IButtonProps>(
         ref={ref}
         type={type}
         disabled={disabled || isLoading}
-        className={cn(buttonConfig({ intent, size, textFormat, isLoading }), className)}
+        className={cn(buttonConfig({ intent, size, isFull, textFormat, isLoading }), className)}
         {...props}
       >
         {isLoading ? (

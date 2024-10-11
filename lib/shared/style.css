@@ -47,6 +47,46 @@
   .rdp-vhidden {
     @apply hidden;
   }
+
+  .grid-desk-apply {
+    grid-template-areas:
+      'text image'
+      'buttons image'
+      '. image';
+  }
+
+  .grid-mob-apply {
+    grid-template-areas:
+      'text'
+      'image'
+      'buttons';
+  }
+
+  .grid-desk-full-img-apply {
+    grid-template-areas:
+      'text .'
+      'buttons .'
+      '. .';
+  }
+
+  .grid-mob-full-img-apply {
+    grid-template-areas:
+      'text'
+      '.'
+      'buttons';
+  }
+
+  .grid-text-apply {
+    grid-area: text;
+  }
+
+  .grid-buttons-apply {
+    grid-area: buttons;
+  }
+
+  .grid-image-apply {
+    grid-area: image;
+  }
 }
 
 * {

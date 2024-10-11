@@ -16,12 +16,23 @@ export const BannerButtonsGroup = ({ buttonsConfig, classes }: IBannerButtonsGro
   const withSecondaryBtn = buttonsConfig?.secondary && buttonsConfig.secondary.children
 
   return (
-    <div className={cn('w-max mobile:absolute bottom-0', { 'flex items-center gap-4': withSecondaryBtn }, classes?.group)}>
-      <Button intent='primary' {...buttonsConfig.primary} className={cn(classes?.primary)}>
+    <div
+      className={cn(
+        'w-full flex flex-col desktop:flex-row grid-buttons-apply',
+        { 'flex items-center gap-4': withSecondaryBtn },
+        classes?.group
+      )}
+    >
+      <Button intent='primary' {...buttonsConfig.primary} isFull className={cn('desktop:max-w-[216px]', classes?.primary)}>
         {buttonsConfig.primary.children}
       </Button>
       {withSecondaryBtn && (
-        <Button intent='secondary' {...buttonsConfig?.secondary} className={cn(classes?.secondary)}>
+        <Button
+          intent='secondary'
+          {...buttonsConfig?.secondary}
+          isFull
+          className={cn('desktop:max-w-[216px]', classes?.secondary)}
+        >
           {buttonsConfig?.secondary?.children}
         </Button>
       )}

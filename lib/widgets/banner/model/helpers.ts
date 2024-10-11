@@ -42,3 +42,18 @@ export const mockWithAdvantages: IBannerProps = {
     { title: 'От 20 минут', description: 'сумма одобрения' }
   ]
 }
+export const mockBannerBaseFullImage: IBannerProps = {
+  headTitle: 'Кредит на любые цели',
+  subtitle: 'до 5 млн рублей',
+  buttonsConfig: {
+    primary: {
+      onClick: () => toast.success('@click on primary btn'),
+      children: 'Primary'
+    },
+    secondary: {
+      onClick: () => toast.success('@click on secondary btn'),
+      children: 'Secondary'
+    }
+  },
+  bannerVariant: 'fullImg'
+}
