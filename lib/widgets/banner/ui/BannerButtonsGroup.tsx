@@ -10,17 +10,20 @@ export interface IBannerButtonsGroupClasses {
 interface IBannerButtonsGroupProps {
   buttonsConfig: TButtonsConfig
   classes?: Partial<IBannerButtonsGroupClasses>
+  className?: string
 }
 
-export const BannerButtonsGroup = ({ buttonsConfig, classes }: IBannerButtonsGroupProps) => {
+export const BannerButtonsGroup = ({ buttonsConfig, classes, className }: IBannerButtonsGroupProps) => {
   const withSecondaryBtn = buttonsConfig?.secondary && buttonsConfig.secondary.children
 
   return (
     <div
+      data-id='banner-buttons-group'
       className={cn(
-        'w-full flex flex-col desktop:flex-row grid-buttons-apply',
+        'w-full flex flex-col mobile:justify-self-center mobile:max-w-[328px] desktop:flex-row grid-buttons-apply',
         { 'flex items-center gap-4': withSecondaryBtn },
-        classes?.group
+        classes?.group,
+        className
       )}
     >
       <Button intent='primary' {...buttonsConfig.primary} isFull className={cn('desktop:max-w-[216px]', classes?.primary)}>
