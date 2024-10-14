@@ -29,8 +29,9 @@ export type TFieldContainerConfig = VariantProps<typeof fieldContainerConfig>
 interface IFieldContainerProps extends TFieldContainerConfig {
   classes?: Partial<TFieldContainerClasses>
   children: React.ReactNode
+  intent?: 'clear' | 'filled' | null
 }
 
-export const FieldContainer = ({ size, intent, classes, children }: IFieldContainerProps) => {
+export const FieldContainer = ({ size, intent = 'filled', classes, children }: IFieldContainerProps) => {
   return <div className={cn(fieldContainerConfig({ size, intent }), classes?.container)}>{children}</div>
 }

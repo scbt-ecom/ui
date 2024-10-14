@@ -26,6 +26,8 @@ export const TextareaControl = <T extends FieldValues>({
   swapPosition,
   disabled,
   placeholder,
+  onClickIcon,
+  onKeyDownIcon,
   ...props
 }: ITextareaControlProps<T>) => {
   const inputId = React.useId()
@@ -51,6 +53,8 @@ export const TextareaControl = <T extends FieldValues>({
                 {label}
               </label>
               <FieldAttachment
+                onClickIcon={onClickIcon}
+                onKeyDownIcon={onKeyDownIcon}
                 badge={badge}
                 icon={icon}
                 error={!!error?.message}

@@ -20,6 +20,7 @@ export const mockSchema = z.object({
   months: z.string().or(z.array(z.string())),
   description: z.string().min(3, `${VALIDATION_MESSAGES.MIN_LENGTH} 3`),
   birthday: zodCalendarValidate,
+  slider: z.number().or(z.string()),
   creditSum: z.number().or(z.string()),
   files: z
     .array(z.instanceof(File))
@@ -38,6 +39,7 @@ export const mockDefaultValues: TMockSchema = {
   months: '',
   description: '',
   birthday: '',
+  slider: 100_000,
   creditSum: 100_000,
   files: []
 }
@@ -76,14 +78,6 @@ export const mockFields: TStorybookFieldConfig<TMockSchema>[] = [
     fieldType: EnumFieldType.CALENDAR
   },
   {
-    name: 'creditSum',
-    label: 'Сумма кредита',
-    fieldType: EnumFieldType.SLIDER,
-    max: 300_000,
-    min: 40_000,
-    variant: 'credit'
-  },
-  {
     name: 'files',
     label: 'Файлы',
     fieldType: EnumFieldType.UPLOADER,
@@ -97,5 +91,18 @@ export const mockFields: TStorybookFieldConfig<TMockSchema>[] = [
         'application/pdf': []
       }
     }
+  },
+  {
+    name: 'birthday',
+    label: 'Дата рождения',
+    fieldType: EnumFieldType.CALENDAR
+  },
+  {
+    name: 'slider',
+    label: 'Сумма кредита',
+    fieldType: EnumFieldType.SLIDER,
+    max: 300_000,
+    min: 40_000,
+    variant: 'credit'
   }
 ]

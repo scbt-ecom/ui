@@ -8,7 +8,7 @@ export type TSliderVariants = 'years' | 'credit'
 export interface ISliderControl {
   min: number
   max: number
-  variant?: TSliderVariants
+  variant: TSliderVariants
   step?: number
 }
 

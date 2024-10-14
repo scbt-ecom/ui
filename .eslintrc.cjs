@@ -87,6 +87,7 @@ module.exports = {
     'react/button-has-type': 'off',
     '@typescript-eslint/semi': 'off',
     'linebreak-style': 'off',
+    'function-paren-newline': 'off',
     'object-curly-newline': 'off',
     'prefer-arrow-callback': 'off',
     'no-case-declarations': 'off',

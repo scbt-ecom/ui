@@ -1,6 +1,6 @@
 {
   "name": "@scbt-ecom/ui",
-  "version": "0.0.38",
+  "version": "0.0.41",
   "type": "module",
   "exports": {
     "./style.css": "./dist/style.css",
@@ -46,10 +46,10 @@
     "@hookform/resolvers": "^3.9.0",
     "@neodx/svg": "^0.7.1",
     "@radix-ui/react-accordion": "^1.2.0",
-    "@radix-ui/react-slider": "^1.2.0",
     "@radix-ui/react-checkbox": "^1.1.1",
     "@radix-ui/react-popover": "^1.1.1",
     "@radix-ui/react-radio-group": "^1.2.0",
+    "@radix-ui/react-slider": "^1.2.1",
     "@radix-ui/react-switch": "^1.1.0",
     "@radix-ui/react-tabs": "^1.1.0",
     "@radix-ui/react-tooltip": "^1.1.2",
@@ -101,6 +101,7 @@
     "husky": "^9.1.4",
     "jsdom": "^24.1.1",
     "postcss": "^8.4.40",
+    "prettier": "^3.3.3",
     "prettier-plugin-tailwindcss": "^0.6.8",
     "react": "^18.3.1",
     "react-day-picker": "^9.1.1",

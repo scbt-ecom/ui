@@ -1,5 +1,5 @@
 import { getInputSliderSuffix } from '../helpers'
-import { type TSliderVariants } from '../model/types'
+import { type TSliderVariants } from '../ui/SliderControl'
 
 export const useSlider = () => {
   const getSuffixText = (value: number, variant: TSliderVariants) => {

@@ -7,7 +7,7 @@ export const setButtonLoaderIntent = (intent: TButtonIntents) => {
       return 'secondary'
 
     case 'primary':
-    case 'red':
+    case 'negative':
       return 'primary'
 
     default:

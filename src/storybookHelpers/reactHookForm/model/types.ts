@@ -1,9 +1,9 @@
 import type { FieldValues } from 'react-hook-form'
-import { type ICalendarControlProps } from '$/shared/ui'
+import { type IInputControlUploaderProps } from '$/shared/ui'
 import type {
+  ICalendarControlProps,
   ICheckboxControlProps,
   IDadataInputControlProps,
-  IInputControlUploaderProps,
   InputControlMaskProps,
   InputControlProps,
   InputSliderControlProps,

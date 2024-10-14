@@ -1,5 +1,5 @@
 import { getYearEnding } from './dates'
-import { type TSliderVariants } from '$/shared/ui/formControlElements/model'
+import { type TSliderVariants } from '$/shared/ui/formControlElements/inputSliderControl/ui/SliderControl'
 
 export const getInputSliderSuffix = (variant: TSliderVariants, value: number) => {
   const variants = {

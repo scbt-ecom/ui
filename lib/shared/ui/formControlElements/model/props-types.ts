@@ -17,6 +17,8 @@ export type TFieldAttachment = {
   badge?: string
   icon?: React.ReactElement
   swapPosition?: boolean
+  onClickIcon?: (...args: unknown[]) => unknown
+  onKeyDownIcon?: (event: React.KeyboardEvent) => unknown
 }
 
 // # Required props on controlled INPUTS - [maskInput, baseInput, dadata]
