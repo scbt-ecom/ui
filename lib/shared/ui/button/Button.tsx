@@ -23,9 +23,6 @@ const buttonConfig = cva(
         md: 'h-12',
         lg: 'h-14'
       },
-      isFull: {
-        true: 'w-full'
-      },
       textFormat: {
         capitalize: 'capitalize',
         uppercase: 'uppercase',

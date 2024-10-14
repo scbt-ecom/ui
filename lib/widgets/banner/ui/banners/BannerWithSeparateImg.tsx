@@ -34,13 +34,16 @@ export const BannerWithSeparateImg = ({
 
           <div
             data-id='banner-image-wrapper'
-            className={cn('w-full h-[410px] grid-image-apply desktop:w-[550px] desktop:h-full', classes?.imageContainer)}
+            className={cn('w-full h-[362px] grid-image-apply desktop:w-[550px] desktop:h-full', classes?.imageContainer)}
           >
             <img data-id='banner-image' src={money} alt='money' className={cn('w-full h-full object-contain', classes?.image)} />
           </div>
         </div>
 
-        <div data-id='banner-advantages' className={cn('absolute bottom-[-400px] desktop:bottom-[-50px]', classes?.advantages)}>
+        <div
+          data-id='banner-advantages'
+          className={cn('absolute bottom-[-400px] translate-x-1/2 right-1/2 desktop:bottom-[-50px]', classes?.advantages)}
+        >
           {advantagesList && advantagesList?.length > 0 && <Advantages advantagesList={advantagesList} />}
         </div>
       </ResponsiveContainer>
