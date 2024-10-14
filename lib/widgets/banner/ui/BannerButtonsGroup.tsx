@@ -16,7 +16,7 @@ export const BannerButtonsGroup = ({ buttonsConfig, classes }: IBannerButtonsGro
   const withSecondaryBtn = buttonsConfig?.secondary && buttonsConfig.secondary.children
 
   return (
-    <div className={cn('w-max mobile:absolute bottom-0', { 'flex items-center gap-4': withSecondaryBtn }, classes?.group)}>
+    <div className={cn('bottom-0 w-max mobile:absolute', { 'flex items-center gap-4': withSecondaryBtn }, classes?.group)}>
       <Button intent='primary' {...buttonsConfig.primary} className={cn(classes?.primary)}>
         {buttonsConfig.primary.children}
       </Button>

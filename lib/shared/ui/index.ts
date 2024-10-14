@@ -55,8 +55,10 @@ export {
   type ISelectOption,
   TextareaControl,
   type ITextareaControlProps,
-  CalendarControl,
   type ICalendarControlProps,
   ComboboxControl,
-  type IComboboxControlProps
+  type IComboboxControlProps,
+  type IInputControlUploaderProps,
+  InputControlUploader,
+  CalendarControl
 } from './formControlElements'

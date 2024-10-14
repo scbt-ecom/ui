@@ -77,14 +77,14 @@ export const CalendarControl = <T extends FieldValues>({
                 <motion.div
                   {...calendarAnimation}
                   className={cn(
-                    'absolute z-30 bottom-[-370px] right-0 invisible w-[312px] h-[368px] shadow-md p-4 rounded-sm bg-color-white',
-                    { 'visible ': isCalendarOpen },
+                    'invisible absolute bottom-[-370px] right-0 z-30 h-[368px] w-[312px] rounded-sm bg-color-white p-4 shadow-md',
+                    { visible: isCalendarOpen },
                     classes?.calendarWrapper
                   )}
                 >
                   <div
                     className={cn(
-                      'flex items-center justify-between pb-2 border-b border-solid border-blue-grey-500',
+                      'flex items-center justify-between border-b border-solid border-blue-grey-500 pb-2',
                       classes?.calendarHeader
                     )}
                   >
@@ -134,7 +134,7 @@ export const CalendarControl = <T extends FieldValues>({
                     allowEmptyFormatting={allowEmptyFormatting}
                     mask={mask}
                     className={cn(
-                      'w-full h-[56px] desk-body-regular-l text-color-dark transition-all bg-color-transparent outline-none pt-5 px-4 rounded-md',
+                      'desk-body-regular-l h-[56px] w-full rounded-md bg-color-transparent px-4 pt-5 text-color-dark outline-none transition-all',
                       classes?.input
                     )}
                     onFocus={() => calendarSetter(true)}

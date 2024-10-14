@@ -60,7 +60,7 @@ export const DadataInputControl = <T extends FieldValues>({
                 <>
                   <ComboboxInput
                     className={cn(
-                      'w-full h-[56px] desk-body-regular-l text-color-dark transition-all bg-color-transparent outline-none pt-5 px-4 rounded-md z-10',
+                      'desk-body-regular-l z-10 h-[56px] w-full rounded-md bg-color-transparent px-4 pt-5 text-color-dark outline-none transition-all',
                       classes?.input
                     )}
                     ref={ref}
@@ -100,10 +100,10 @@ export const DadataInputControl = <T extends FieldValues>({
               <ComboboxOptions
                 transition
                 className={cn(
-                  'absolute top-14 w-full  data-[closed]:scale-95 data-[closed]:opacity-0 transition-all scrollHidden p-2 rounded-md bg-color-white border-solid border border-blue-grey-700 mt-2 flex flex-col z-10 empty:invisible'
+                  'scrollHidden absolute top-14 z-10 mt-2 flex w-full flex-col rounded-md border border-solid border-blue-grey-700 bg-color-white p-2 transition-all empty:invisible data-[closed]:scale-95 data-[closed]:opacity-0'
                 )}
               >
-                <div className='p-2 customScrollbar-y overflow-x-hidden !max-h-[246px]'>
+                <div className='customScrollbar-y !max-h-[246px] overflow-x-hidden p-2'>
                   {suggestionsOptions && suggestionsOptions?.length > 0 ? (
                     <>
                       {suggestionsOptions?.map(({ value: suggestionValue, additionalText, isDisabled }) => (
@@ -111,7 +111,7 @@ export const DadataInputControl = <T extends FieldValues>({
                           disabled={isDisabled}
                           key={suggestionValue}
                           value={suggestionValue ?? ''}
-                          className='cursor-pointer px-3 py-3 flex items-center justify-between gap-2 hover:bg-color-blue-grey-200 rounded-sm data-[focus]:bg-color-blue-grey-200 data-[disabled]:bg-color-blue-grey-100 data-[disabled]:text-color-disabled data-[disabled]:pointer-events-none'
+                          className='flex cursor-pointer items-center justify-between gap-2 rounded-sm px-3 py-3 hover:bg-color-blue-grey-200 data-[disabled]:pointer-events-none data-[disabled]:bg-color-blue-grey-100 data-[focus]:bg-color-blue-grey-200 data-[disabled]:text-color-disabled'
                         >
                           <div className='flex flex-col gap-1'>
                             <p className='desk-body-regular-l'>{suggestionValue}</p>
@@ -122,7 +122,7 @@ export const DadataInputControl = <T extends FieldValues>({
                       ))}
                     </>
                   ) : (
-                    <ComboboxOption value='' className='text-color-tetriary desk-body-regular-m'>
+                    <ComboboxOption value='' className='desk-body-regular-m text-color-tetriary'>
                       Ничего не найдено
                     </ComboboxOption>
                   )}

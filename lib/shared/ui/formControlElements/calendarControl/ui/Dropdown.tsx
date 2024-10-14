@@ -23,14 +23,14 @@ export const Dropdown = <Value extends string | number>({
   classes
 }: IDropdownProps<Value>) => {
   return (
-    <div className={cn('w-full z-20', classes?.dropdownWrapper)}>
+    <div className={cn('z-20 w-full', classes?.dropdownWrapper)}>
       <div
         role='button'
         tabIndex={0}
         onKeyDown={onClickTrigger}
         onClick={onClickTrigger}
         className={cn(
-          'py-2 px-2 rounded-sm text-color-tetriary desk-body-medium-l flex items-center gap-[2px] transition-colors hover:bg-color-primary-tr-hover',
+          'desk-body-medium-l flex items-center gap-[2px] rounded-sm px-2 py-2 text-color-tetriary transition-colors hover:bg-color-primary-tr-hover',
           { 'text-color-primary-default': isActive },
           classes?.dropdownTrigger
         )}
@@ -44,8 +44,8 @@ export const Dropdown = <Value extends string | number>({
 
       <div
         className={cn(
-          'flex flex-col absolute w-full h-[280px] transition-all  bottom-3 left-1/2 overflow-hidden -translate-x-1/2 px-4 z-10 opacity-0 invisible',
-          { 'opacity-100 visible': isActive },
+          'invisible absolute bottom-3 left-1/2 z-10 flex h-[280px] w-full -translate-x-1/2 flex-col overflow-hidden px-4 opacity-0 transition-all',
+          { 'visible opacity-100': isActive },
           classes?.dropdownOverlay
         )}
       >

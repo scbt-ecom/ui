@@ -59,7 +59,7 @@ export const RadioControl = <T extends FieldValues>({
       control={control}
       render={({ field: { onChange, value: controlledValue, ref, name }, fieldState: { error } }) => {
         return (
-          <div className={cn('max-w-max flex flex-col gap-4', classes?.container)}>
+          <div className={cn('flex max-w-max flex-col gap-4', classes?.container)}>
             {groupName && <span className={cn('desk-body-regular-l text-color-dark', classes?.groupName)}>{groupName}</span>}
             <div className={cn('flex flex-col', classes?.field)}>
               <Root
@@ -71,10 +71,10 @@ export const RadioControl = <T extends FieldValues>({
                 defaultValue={controlledValue}
               >
                 {radioItemsGroup.map(({ label, value, isDisabled }) => (
-                  <div key={value} className={cn('flex gap-2 items-center', classes?.radioOption)}>
+                  <div key={value} className={cn('flex items-center gap-2', classes?.radioOption)}>
                     <div
                       className={cn(
-                        'size-10 flex items-center justify-center rounded-full transition-all hover:bg-color-primary-tr-hover focus-within:bg-color-primary-tr-focus',
+                        'flex size-10 items-center justify-center rounded-full transition-all focus-within:bg-color-primary-tr-focus hover:bg-color-primary-tr-hover',
                         classes?.field,
                         { '!bg-color-transparent': isDisabled }
                       )}
@@ -82,9 +82,9 @@ export const RadioControl = <T extends FieldValues>({
                       <Item
                         disabled={isDisabled}
                         className={cn(
-                          'relative size-6 bg-color-transparent rounded-full border-2 border-solid data-[state=unchecked]:border-blue-grey-700 data-[state=checked]:border-primary-default outline-none cursor-pointer transition-all',
+                          'relative size-6 cursor-pointer rounded-full border-2 border-solid bg-color-transparent outline-none transition-all data-[state=checked]:border-primary-default data-[state=unchecked]:border-blue-grey-700',
                           {
-                            'data-[state=checked]:!border-primary-disabled data-[state=unchecked]:bg-color-blue-grey-300 data-[state=unchecked]:border-transparent':
+                            'data-[state=checked]:!border-primary-disabled data-[state=unchecked]:border-transparent data-[state=unchecked]:bg-color-blue-grey-300':
                               isDisabled
                           },
                           { '!border-negative': !!error?.message },
@@ -95,7 +95,7 @@ export const RadioControl = <T extends FieldValues>({
                       >
                         <Indicator
                           className={cn(
-                            'flex items-center justify-center w-full h-full relative after:content-[" "] after:block after:size-3  after:rounded-full after:bg-color-primary-default',
+                            'after:content-[" "] relative flex h-full w-full items-center justify-center after:block after:size-3 after:rounded-full after:bg-color-primary-default',
                             { 'after:bg-color-primary-disabled': isDisabled },
                             classes?.indicator
                           )}
@@ -104,7 +104,7 @@ export const RadioControl = <T extends FieldValues>({
                     </div>
                     <label
                       className={cn(
-                        'cursor-pointer desk-body-regular-l text-color-dark',
+                        'desk-body-regular-l cursor-pointer text-color-dark',
                         { 'text-color-disabled': isDisabled },
                         classes?.label
                       )}

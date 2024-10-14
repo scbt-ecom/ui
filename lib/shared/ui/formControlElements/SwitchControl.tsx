@@ -45,7 +45,7 @@ export const SwitchControl = <T extends FieldValues>({
             checked={controlledValue}
             name={name}
             className={cn(
-              'w-10 h-6 bg-color-blue-grey-300 data-[state=checked]:bg-color-primary-default hover:data-[state=checked]:bg-color-primary-hover rounded-full p-[2px] outline-2 outline-offset-4 outline-transparent focus:outline-primary-focus',
+              'h-6 w-10 rounded-full bg-color-blue-grey-300 p-[2px] outline-2 outline-offset-4 outline-transparent focus:outline-primary-focus data-[state=checked]:bg-color-primary-default hover:data-[state=checked]:bg-color-primary-hover',
               { 'data-[state=checked]:!bg-color-primary-disabled data-[state=unchecked]:!bg-color-blue-grey-200': disabled },
               classes?.input
             )}
@@ -53,14 +53,14 @@ export const SwitchControl = <T extends FieldValues>({
             <SwitchPrimitive.Thumb
               id={inputId}
               className={cn(
-                'bg-color-white rounded-full size-5 block will-change-transform duration-200 transition-all data-[state=checked]:translate-x-4',
+                'block size-5 rounded-full bg-color-white transition-all duration-200 will-change-transform data-[state=checked]:translate-x-4',
                 classes?.thumb
               )}
             />
           </SwitchPrimitive.Root>
           <div className={cn('flex flex-col', classes?.textBlock)}>
             <label
-              className={cn('text-color-dark desk-body-regular-l', { 'text-color-disabled': disabled }, classes?.label)}
+              className={cn('desk-body-regular-l text-color-dark', { 'text-color-disabled': disabled }, classes?.label)}
               htmlFor={inputId}
             >
               {label}

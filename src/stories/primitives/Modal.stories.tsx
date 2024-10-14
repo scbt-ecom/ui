@@ -48,7 +48,7 @@ export const Base: Story = {
   render: () => {
     const [isModalOpen, setterModal] = useBoolean(false)
     return (
-      <div className='flex items-center justify-center h-screen w-screen'>
+      <div className='flex h-screen w-screen items-center justify-center'>
         <Button onClick={() => setterModal(true)}>Получить кредит</Button>
         <Modal title='Подписка на рассылку' modalIsOpen={isModalOpen} closeModal={() => setterModal(false)}>
           <p>Укажите ваш адрес электронной почты, чтобы узнавать обо всех новостях и изменения вовремя</p>
@@ -77,12 +77,12 @@ export const ModalWithForm: Story = {
     }
 
     return (
-      <div className='flex items-center justify-center h-screen w-screen'>
+      <div className='flex h-screen w-screen items-center justify-center'>
         <Button onClick={() => setterModal(true)}>Получить кредит</Button>
         <Modal title='Подписка на рассылку' modalIsOpen={isModalOpen} closeModal={() => setterModal(false)}>
           <form onSubmit={handleSubmit(onSubmit)}>
             <p>Укажите ваш адрес электронной почты, чтобы узнавать обо всех новостях и изменения вовремя</p>
-            <div className='flex flex-col gap-2 my-4'>
+            <div className='my-4 flex flex-col gap-2'>
               <InputControl name='email' label='Электронная почта' control={control} />
               <p>Присылать новости на тему:</p>
               <div className='flex flex-col gap-2'>

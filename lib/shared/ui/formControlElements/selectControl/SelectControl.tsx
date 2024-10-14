@@ -85,13 +85,13 @@ export const SelectControl = <T extends FieldValues>({
               />
               <ListboxOptions
                 className={cn(
-                  'bg-color-white items-start justify-start shadow-sm w-select-trigger outline-transparent scrollHidden p-2 data-[closed]:opacity-0 transition-opacity duration-200',
+                  'scrollHidden w-select-trigger items-start justify-start bg-color-white p-2 shadow-sm outline-transparent transition-opacity duration-200 data-[closed]:opacity-0',
                   classes?.optionsList
                 )}
                 transition
                 anchor={anchorConfig}
               >
-                <div className={cn('p-2 customScrollbar-y overflow-x-hidden !max-h-[246px]', classes?.scrollArea)}>
+                <div className={cn('customScrollbar-y !max-h-[246px] overflow-x-hidden p-2', classes?.scrollArea)}>
                   {optionsList?.map((option) => <CustomOption key={option.optionValue} classes={classes} {...option} />)}
                 </div>
               </ListboxOptions>

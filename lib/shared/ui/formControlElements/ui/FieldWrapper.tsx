@@ -28,7 +28,7 @@ export const FieldWrapper = <V,>({
   return (
     <div
       className={cn(
-        'relative border-solid transition-colors rounded-sm border border-transparent bg-color-blue-grey-100 group-focus-within:border-blue-grey-800  focus:outline-blue-grey-800 hover:bg-color-blue-grey-200 active:bg-color-blue-grey-100 flex items-center justify-between',
+        'relative flex items-center justify-between rounded-sm border border-solid border-transparent bg-color-blue-grey-100 transition-colors hover:bg-color-blue-grey-200 focus:outline-blue-grey-800 active:bg-color-blue-grey-100 group-focus-within:border-blue-grey-800',
         { '!border-negative': error },
         { '!bg-color-blue-grey-100': disabled },
         classes?.field
@@ -37,13 +37,13 @@ export const FieldWrapper = <V,>({
       <label
         htmlFor={fieldId}
         className={cn(
-          'absolute top-2/4 -translate-y-1/2 left-4 desk-body-regular-l text-color-tetriary pointer-events-none transition-all duration-15 ',
-          { 'top-2 bg-color-transparent translate-y-0 desk-body-regular-s': value && !isTextarea },
+          'desk-body-regular-l pointer-events-none absolute left-4 top-2/4 -translate-y-1/2 text-color-tetriary transition-all duration-15',
+          { 'desk-body-regular-s top-2 translate-y-0 bg-color-transparent': value && !isTextarea },
           {
-            'group-focus-within:top-2 group-focus-within:bg-color-transparent group-focus-within:translate-y-0 group-focus-within:desk-body-regular-s':
+            'group-focus-within:desk-body-regular-s group-focus-within:top-2 group-focus-within:translate-y-0 group-focus-within:bg-color-transparent':
               !isTextarea
           },
-          { 'top-2 desk-body-regular-s translate-y-0': isTextarea },
+          { 'desk-body-regular-s top-2 translate-y-0': isTextarea },
           classes?.label
         )}
       >

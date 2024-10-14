@@ -5,14 +5,14 @@ import type { TAdditionalInputClassesWithAttachment, TControlledInputProps } fro
 import { FieldAttachment, FieldContainer, FieldWrapper, MessageView } from '../ui'
 import { getStepByVariant } from './helpers'
 import { useSlider } from './hooks/useSlider'
-import type { TInputSliderProps } from './model/types'
 import { SliderControl } from './ui'
+import { type ISliderControl } from './ui/SliderControl'
 import { cn } from '$/shared/utils'
 
-export interface InputSliderControlProps<T extends FieldValues>
-  extends Omit<TControlledInputProps<T>, 'max' | 'min' | 'step'>,
-    TInputSliderProps {
+export interface InputSliderControlProps<T extends FieldValues> extends TControlledInputProps<T>, ISliderControl {
   classes?: Partial<TAdditionalInputClassesWithAttachment>
+  disabled?: boolean
+  onInputChange?: (value?: number) => void
 }
 
 export const InputSliderControl = <T extends FieldValues>({
@@ -60,7 +60,7 @@ export const InputSliderControl = <T extends FieldValues>({
                 <NumericFormat
                   aria-invalid={error?.message ? 'true' : 'false'}
                   className={cn(
-                    'w-full h-[56px] desk-title-bold-s  text-color-dark transition-all bg-color-transparent outline-none pt-5 px-4 rounded-md group/slider',
+                    'group/slider desk-title-bold-s h-[56px] w-full rounded-md bg-color-transparent px-4 pt-5 text-color-dark outline-none transition-all',
                     classes?.input
                   )}
                   id={inputId}

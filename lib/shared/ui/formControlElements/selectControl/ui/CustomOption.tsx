@@ -26,12 +26,12 @@ export const CustomOption = ({ optionValue, additionalText, isDisabled, classes 
       value={optionValue}
       disabled={isDisabled}
       className={cn(
-        'desk-body-regular-l text-color-dark p-2 rounded-sm cursor-pointer transition-all hover:bg-color-primary-tr-hover hover:text-color-primary-hover data-[focus]:text-color-primary-hover data-[focus]:bg-color-primary-tr-hover data-[disabled]:pointer-events-none data-[disabled]:text-color-disabled',
+        'desk-body-regular-l cursor-pointer rounded-sm p-2 text-color-dark transition-all hover:bg-color-primary-tr-hover hover:text-color-primary-hover data-[disabled]:pointer-events-none data-[focus]:bg-color-primary-tr-hover data-[disabled]:text-color-disabled data-[focus]:text-color-primary-hover',
         classes?.option
       )}
     >
       {({ selected }) => (
-        <div className={cn('flex justify-between items-center gap-2', classes?.optionWrapper)}>
+        <div className={cn('flex items-center justify-between gap-2', classes?.optionWrapper)}>
           <div className='flex flex-col gap-1'>
             <div className={cn('', classes?.optionValue)}>{optionValue}</div>
             {additionalText && (

@@ -25,16 +25,16 @@ export type ICustomToastProps = INotificationProps & TContainerConfig & Toast
 export const CustomToast = ({ intent, text, customIcon, closure = true, content, id }: ICustomToastProps) => {
   return (
     <div className={cn(toastContainerConfig({ intent }))}>
-      <div className='flex gap-2 items-start'>
+      <div className='flex items-start gap-2'>
         <span className='size-6'>{customIcon}</span>
         <div className='desk-body-regular-m text-color-white'>{text}</div>
       </div>
 
-      <div className='flex gap-6 items-center'>
+      <div className='flex items-center gap-6'>
         {content}
 
         {closure && (
-          <Icon onClick={() => toast.dismiss(id)} name='general/close' className='size-5 text-icon-white cursor-pointer' />
+          <Icon onClick={() => toast.dismiss(id)} name='general/close' className='size-5 cursor-pointer text-icon-white' />
         )}
       </div>
     </div>

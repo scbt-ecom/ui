@@ -1,6 +1,7 @@
 import type { FieldValues } from 'react-hook-form'
-import { type ICalendarControlProps } from '$/shared/ui'
+import { type IInputControlUploaderProps } from '$/shared/ui'
 import type {
+  ICalendarControlProps,
   ICheckboxControlProps,
   IDadataInputControlProps,
   InputControlMaskProps,
@@ -22,7 +23,8 @@ export enum EnumFieldType {
   SELECT = 'select',
   TEXTAREA = 'textarea',
   CALENDAR = 'calendar',
-  SLIDER = 'slider'
+  SLIDER = 'slider',
+  UPLOADER = 'uploader'
 }
 
 type TControlledInput<T extends FieldValues> = Omit<InputControlProps<T>, 'control'> & { fieldType: EnumFieldType.INPUT }
@@ -56,6 +58,11 @@ type TControlledInputTextarea<T extends FieldValues> = Omit<ITextareaControlProp
 type TControlledInputCalendar<T extends FieldValues> = Omit<ICalendarControlProps<T>, 'control'> & {
   fieldType: EnumFieldType.CALENDAR
 }
+
+type TControlledInputUploader<T extends FieldValues> = Omit<IInputControlUploaderProps<T>, 'control'> & {
+  fieldType: EnumFieldType.UPLOADER
+}
+
 export type TStorybookFieldConfig<T extends FieldValues> =
   | TControlledInputMask<T>
   | TControlledInput<T>
@@ -67,3 +74,4 @@ export type TStorybookFieldConfig<T extends FieldValues> =
   | TControlledInputSlider<T>
   | TControlledInputTextarea<T>
   | TControlledInputCalendar<T>
+  | TControlledInputUploader<T>

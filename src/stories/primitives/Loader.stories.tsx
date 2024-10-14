@@ -10,7 +10,7 @@ const meta = {
   tags: ['autodocs'],
   decorators: [
     (Story) => (
-      <div className='bg-color-blue-grey-500 rounded-md size-28 flex items-center justify-center'>
+      <div className='flex size-28 items-center justify-center rounded-md bg-color-blue-grey-500'>
         <Story />
       </div>
     )

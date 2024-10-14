@@ -33,11 +33,11 @@ export const CheckboxControl = <T extends FieldValues>({
       control={control}
       render={({ field: { onChange, value, ref, name }, fieldState: { error } }) => {
         return (
-          <div className={cn('flex flex-col max-w-[450px]', classes?.container)}>
+          <div className={cn('flex max-w-[450px] flex-col', classes?.container)}>
             <div className={cn('flex items-center gap-4', classes?.wrapper)}>
               <div
                 className={cn(
-                  'size-10 flex items-center justify-center rounded-full transition-all hover:bg-color-primary-tr-hover focus-within:bg-color-primary-tr-focus ',
+                  'flex size-10 items-center justify-center rounded-full transition-all focus-within:bg-color-primary-tr-focus hover:bg-color-primary-tr-hover',
                   classes?.field,
                   { '!bg-color-transparent': disabled }
                 )}
@@ -50,7 +50,7 @@ export const CheckboxControl = <T extends FieldValues>({
                     onChange(e)
                   }}
                   className={cn(
-                    'size-6 rounded-sm cursor-pointer outline-none border border-solid border-blue-grey-700 flex items-center justify-center  data-[state=checked]:bg-color-primary-default active:bg-color-primary-tr-pressed data-[state=unchecked]:disabled:bg-color-blue-grey-300 disabled:border-transparent data-[state=checked]:disabled:bg-color-primary-disabled',
+                    'flex size-6 cursor-pointer items-center justify-center rounded-sm border border-solid border-blue-grey-700 outline-none active:bg-color-primary-tr-pressed disabled:border-transparent data-[state=checked]:bg-color-primary-default data-[state=checked]:disabled:bg-color-primary-disabled data-[state=unchecked]:disabled:bg-color-blue-grey-300',
                     { '!border-negative': !!error?.message },
                     classes?.input
                   )}
@@ -69,7 +69,7 @@ export const CheckboxControl = <T extends FieldValues>({
 
               <label
                 className={cn(
-                  'desk-body-regular-m text-color-dark cursor-pointer flex-1',
+                  'desk-body-regular-m flex-1 cursor-pointer text-color-dark',
                   { 'text-color-disabled': disabled },
                   classes?.label
                 )}

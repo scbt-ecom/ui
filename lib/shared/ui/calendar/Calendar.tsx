@@ -117,11 +117,7 @@ export const Calendar = <T extends FieldValues>(props: ICalendarProps<T>) => {
             <AnimatePresence>
               {isCalendarOpen && (
                 <motion.div
-                  className={cn(
-                    'absolute z-30 bottom-[-350px] right-0 invisible',
-                    { 'visible ': isCalendarOpen },
-                    classes?.wrapper
-                  )}
+                  className={cn('invisible absolute bottom-[-350px] right-0 z-30', { visible: isCalendarOpen }, classes?.wrapper)}
                   {...calendarAnimation}
                 >
                   {isSingleMode(props) ? (
@@ -135,7 +131,7 @@ export const Calendar = <T extends FieldValues>(props: ICalendarProps<T>) => {
                         showOutsideDays={showOutsideDays}
                         // disabled={{ dayOfWeek: [0, 6] }}
                         // disabled={{ before: new Date() }}
-                        className={cn('w-[312px] h-[368px] p-4 shadow-sm relative bg-color-white', classes?.calendar)}
+                        className={cn('relative h-[368px] w-[312px] bg-color-white p-4 shadow-sm', classes?.calendar)}
                         classNames={dayPickerClasses()}
                         components={{
                           Weekdays: WeekComponent,
@@ -156,7 +152,7 @@ export const Calendar = <T extends FieldValues>(props: ICalendarProps<T>) => {
                         showOutsideDays={showOutsideDays}
                         // disabled={{ dayOfWeek: [0, 6] }}
                         // disabled={{ before: new Date() }}
-                        className={cn('w-[312px] h-[368px] p-4 shadow-sm relative bg-color-white', classes?.calendar)}
+                        className={cn('relative h-[368px] w-[312px] bg-color-white p-4 shadow-sm', classes?.calendar)}
                         classNames={dayPickerClasses(true)}
                         components={{
                           Weekdays: WeekComponent,
@@ -188,7 +184,7 @@ export const Calendar = <T extends FieldValues>(props: ICalendarProps<T>) => {
                     allowEmptyFormatting={allowEmptyFormatting}
                     mask={mask}
                     className={cn(
-                      'w-full h-[56px] desk-body-regular-l text-color-dark transition-all bg-color-transparent outline-none pt-5 px-4 rounded-md',
+                      'desk-body-regular-l h-[56px] w-full rounded-md bg-color-transparent px-4 pt-5 text-color-dark outline-none transition-all',
                       classes?.input
                     )}
                     onFocus={() => calendarSetter(true)}

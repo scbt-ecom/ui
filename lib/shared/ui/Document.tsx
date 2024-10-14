@@ -36,12 +36,12 @@ export const Document = ({ text, size, sizeType, href, intent = 'outline' }: IDo
       rel='noreferrer'
       tabIndex={0}
       className={cn(
-        'flex items-center gap-2 cursor-pointer group outline outline-2 outline-transparent transition-colors focus-within:outline-primary-focus rounded-sm p-1 max-w-[288px] desktop:max-w-[592px]'
+        'group flex max-w-[288px] cursor-pointer items-center gap-2 rounded-sm p-1 outline outline-2 outline-transparent transition-colors focus-within:outline-primary-focus desktop:max-w-[592px]'
       )}
     >
       <Icon name={iconVariant[intent!]} className={cn(iconConfig({ intent }))} />
-      <div className={cn('flex flex-col flex-1')}>
-        <p className={cn('desk-body-medium-l text-color-dark ')}>{text}</p>
+      <div className={cn('flex flex-1 flex-col')}>
+        <p className={cn('desk-body-medium-l text-color-dark')}>{text}</p>
         <div className={cn('desk-body-regular-m text-color-disabled')}>
           {size} {sizeType}
         </div>

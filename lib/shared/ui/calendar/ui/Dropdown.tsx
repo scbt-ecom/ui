@@ -19,14 +19,14 @@ export const Dropdown = <Value extends string | number>({
   variant = 'months'
 }: IDropdownProps<Value>) => {
   return (
-    <div className='w-full z-20'>
+    <div className='z-20 w-full'>
       <div
         role='button'
         tabIndex={0}
         onKeyDown={onClickTrigger}
         onClick={onClickTrigger}
         className={cn(
-          'py-2 px-2 rounded-sm text-color-tetriary desk-body-medium-l flex items-center gap-[2px] transition-colors hover:bg-color-primary-tr-hover',
+          'desk-body-medium-l flex items-center gap-[2px] rounded-sm px-2 py-2 text-color-tetriary transition-colors hover:bg-color-primary-tr-hover',
           { 'text-color-primary-default': isActive }
         )}
       >
@@ -39,14 +39,14 @@ export const Dropdown = <Value extends string | number>({
 
       <div
         className={cn(
-          'flex flex-col absolute w-full h-[280px] transition-all  bottom-3 left-1/2 overflow-hidden -translate-x-1/2 px-4 z-10 opacity-0 invisible',
+          'invisible absolute bottom-3 left-1/2 z-10 flex h-[280px] w-full -translate-x-1/2 flex-col overflow-hidden px-4 opacity-0 transition-all',
           {
-            'opacity-100 visible': isActive
+            'visible opacity-100': isActive
           }
         )}
       >
         <div
-          className='customScrollbar-y overflow-y-auto px-2 bg-color-white overflow-x-hidden'
+          className='customScrollbar-y overflow-y-auto overflow-x-hidden bg-color-white px-2'
           role='listbox'
           aria-expanded={isActive ? 'true' : 'false'}
           aria-label={variant === 'months' ? 'Выбор месяца' : 'Выбор года'}
@@ -60,7 +60,7 @@ export const Dropdown = <Value extends string | number>({
                 onClick={() => onClickOption(variant === 'months' ? index : (option as number))}
                 onKeyDown={() => onClickOption(variant === 'months' ? index : (option as number))}
                 className={cn(
-                  'transition-colors px-2 py-[10px] rounded-sm bg-color-white text-color-dark cursor-pointer mob-body-regular-m hover:bg-color-primary-tr-hover  hover:text-color-primary-hover',
+                  'mob-body-regular-m cursor-pointer rounded-sm bg-color-white px-2 py-[10px] text-color-dark transition-colors hover:bg-color-primary-tr-hover hover:text-color-primary-hover',
                   { '!bg-color-primary-default !text-color-white': selectedDate === option }
                 )}
               >

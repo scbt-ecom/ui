@@ -27,7 +27,7 @@ export const Base: Story = {
     name: 'calendar',
     label: 'Дата рождения',
     helperText: 'Укажите дату рождения',
-    icon: <Icon name='general/calendar' className='text-icon-blue-grey-700 size-5 cursor-pointer' />,
+    icon: <Icon name='general/calendar' className='size-5 cursor-pointer text-icon-blue-grey-700' />,
     size: 'md',
     badge: '+25%',
     swapPosition: true,

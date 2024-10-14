@@ -16,13 +16,13 @@ export interface IModalHeaderProps {
 export const ModalHeader = ({ title, closeModal, classes }: IModalHeaderProps) => {
   return (
     <div className={cn('flex items-start justify-between gap-4', classes?.header)}>
-      <Heading as='h3' className={cn('text-color-dark flex-1', classes?.title)}>
+      <Heading as='h3' className={cn('flex-1 text-color-dark', classes?.title)}>
         {title}
       </Heading>
       <Icon
         onClick={closeModal}
         name='general/close'
-        className={cn('size-8 text-icon-dark-hover cursor-pointer', classes?.icon)}
+        className={cn('size-8 cursor-pointer text-icon-dark-hover', classes?.icon)}
       />
     </div>
   )

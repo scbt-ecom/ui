@@ -20,7 +20,12 @@ export const mockSchema = z.object({
   months: z.string().or(z.array(z.string())),
   description: z.string().min(3, `${VALIDATION_MESSAGES.MIN_LENGTH} 3`),
   birthday: zodCalendarValidate,
-  slider: z.number().or(z.string())
+  slider: z.number().or(z.string()),
+  creditSum: z.number().or(z.string()),
+  files: z
+    .array(z.instanceof(File))
+    .min(1, { message: 'Поле обязательно для заполнения' })
+    .max(3, { message: 'Можно отправить не больше трех файлов. Чтобы добавить файлы удалите выбранные' })
 })
 
 export type TMockSchema = z.infer<typeof mockSchema>
@@ -34,7 +39,9 @@ export const mockDefaultValues: TMockSchema = {
   months: '',
   description: '',
   birthday: '',
-  slider: 100_000
+  slider: 100_000,
+  creditSum: 100_000,
+  files: []
 }
 
 export const mockFields: TStorybookFieldConfig<TMockSchema>[] = [
@@ -64,6 +71,26 @@ export const mockFields: TStorybookFieldConfig<TMockSchema>[] = [
     name: 'description',
     label: 'Описание к блоку',
     fieldType: EnumFieldType.TEXTAREA
+  },
+  {
+    name: 'birthday',
+    label: 'Дата рождения',
+    fieldType: EnumFieldType.CALENDAR
+  },
+  {
+    name: 'files',
+    label: 'Файлы',
+    fieldType: EnumFieldType.UPLOADER,
+    dropzoneOptions: {
+      maxFiles: 5,
+      maxSize: 1024 * 1024 * 4,
+      multiple: true,
+      accept: {
+        'image/jpeg': [],
+        'image/png': [],
+        'application/pdf': []
+      }
+    }
   },
   {
     name: 'birthday',
