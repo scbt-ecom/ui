@@ -1,3 +1,5 @@
+'use client'
+
 import { type DropzoneOptions } from 'react-dropzone'
 import { Controller, type FieldValues } from 'react-hook-form'
 import { type TControlledInputProps } from '../model'

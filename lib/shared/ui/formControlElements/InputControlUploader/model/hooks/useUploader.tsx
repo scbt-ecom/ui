@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { type DropzoneOptions, type FileRejection, useDropzone } from 'react-dropzone'
-import toast from 'react-hot-toast'
 import { FilesErrorCode } from '../helpers'
+import { Notification } from '$/shared/ui/'
 
 export type TUseUploader = {
   controlledFiles: File[]
@@ -31,13 +31,22 @@ export const useUploader = ({ dropzoneOptions, controlledFiles, onValueChange }:
 
     switch (rejectedFiles[0]?.errors[0]?.code) {
       case FilesErrorCode.FileInvalidType:
-        toast.error('Неверный формат файла. Загрузите в формате jpg/png/pdf')
+        Notification({
+          intent: 'error',
+          text: 'Неверный формат файла. Загрузите в формате jpg/png/pdf'
+        })
         break
       case FilesErrorCode.FileTooLarge:
-        toast.error(`Файл слишком большой. Максимальный размер ${dropzoneOptions.maxSize} МБ`)
+        Notification({
+          intent: 'error',
+          text: `Файл слишком большой. Максимальный размер ${dropzoneOptions.maxSize} МБ`
+        })
         break
       case FilesErrorCode.TooManyFiles:
-        toast.error(`Вы загрузили слишком много файлов. Максимальное количество ${dropzoneOptions.maxFiles}`)
+        Notification({
+          intent: 'error',
+          text: `Вы загрузили слишком много файлов. Максимальное количество ${dropzoneOptions.maxFiles}`
+        })
         break
       default:
         break
