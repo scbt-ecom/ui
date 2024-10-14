@@ -15,7 +15,8 @@ const buttonConfig = cva(
           'bg-transparent text-color-primary-default border border-solid border-primary-default hover:bg-color-primary-tr-hover active:bg-color-primary-tr-pressed active:border-primary-hover  focus:outline-primary-focus  focus:bg-color-primary-tr-focus disabled:bg-color-blue-grey-200 disabled:text-color-primary-disabled disabled:border-transparent',
         ghost:
           'bg-transparent text-color-primary-default hover:bg-color-primary-tr-hover hover:text-color-primary-hover focus:bg-color-primary-tr-focus focus:outline-primary-focus active:bg-color-primary-tr-pressed active:text-color-primary-hover disabled:text-color-primary-disabled disabled:bg-transparent',
-        red: 'bg-color-secondary-default text-color-white outline-offset-[3px] hover:bg-color-secondary-hover disabled:bg-color-secondary-disabled active:bg-color-secondary-hover focus:bg-color-secondary-default focus:outline-primary-focus'
+        negative:
+          'bg-color-secondary-default text-color-white outline-offset-[3px] hover:bg-color-secondary-hover disabled:bg-color-secondary-disabled active:bg-color-secondary-hover focus:bg-color-secondary-default focus:outline-primary-focus'
       },
       size: {
         sm: 'h-10',
@@ -30,6 +31,9 @@ const buttonConfig = cva(
         uppercase: 'uppercase',
         lowercase: 'lowercase',
         initial: 'initial'
+      },
+      isFull: {
+        true: 'w-full px-4'
       },
       isLoading: {
         true: '',
@@ -53,7 +57,7 @@ const buttonConfig = cva(
         class: '!bg-color-blue-grey-200'
       },
       {
-        intent: 'red',
+        intent: 'negative',
         isLoading: true,
         class: '!bg-color-secondary-default'
       }
@@ -61,14 +65,14 @@ const buttonConfig = cva(
     defaultVariants: {
       intent: 'primary',
       size: 'md',
-      isFull: false,
-      textFormat: 'initial'
+      textFormat: 'initial',
+      isFull: false
     }
   }
 )
 
 type TButtonConfig = VariantProps<typeof buttonConfig>
-export type TButtonIntents = 'primary' | 'secondary' | 'ghost' | 'red'
+export type TButtonIntents = 'primary' | 'secondary' | 'ghost' | 'negative'
 export interface IButtonProps extends ComponentProps<'button'>, TButtonConfig {
   iconLeft?: ReactElement
   iconRight?: ReactElement
@@ -80,7 +84,6 @@ export const Button = forwardRef<HTMLButtonElement, IButtonProps>(
     {
       intent,
       size,
-      isFull = false,
       className,
       children,
       type = 'button',
@@ -88,6 +91,7 @@ export const Button = forwardRef<HTMLButtonElement, IButtonProps>(
       iconRight,
       disabled = false,
       isLoading = false,
+      isFull = false,
       textFormat,
       ...props
     },
@@ -98,7 +102,7 @@ export const Button = forwardRef<HTMLButtonElement, IButtonProps>(
         ref={ref}
         type={type}
         disabled={disabled || isLoading}
-        className={cn(buttonConfig({ intent, size, isFull, textFormat, isLoading }), className)}
+        className={cn(buttonConfig({ intent, size, textFormat, isLoading, isFull }), className)}
         {...props}
       >
         {isLoading ? (

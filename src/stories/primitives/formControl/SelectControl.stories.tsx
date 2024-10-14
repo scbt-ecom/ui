@@ -22,8 +22,8 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 const DISABLED_SELECT_OPTIONS: ISelectOption[] = [
-  { id: '1', optionValue: 'Январь', isDisabled: true },
-  { id: '2', optionValue: 'Февраль', isDisabled: true },
+  { optionValue: 'Январь', isDisabled: true },
+  { optionValue: 'Февраль', isDisabled: true },
   ...MOCK_SELECT_OPTIONS.slice(2, 12)
 ]
 
@@ -61,19 +61,6 @@ export const FilledMultiple: Story = {
     optionsList: MOCK_SELECT_OPTIONS,
     multiple: true,
     intent: 'filled'
-  }
-}
-
-export const ClearMultiple: Story = {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  args: {
-    name: 'months',
-    label: 'Выберите месяца',
-    size: 'md',
-    optionsList: MOCK_SELECT_OPTIONS,
-    multiple: true,
-    intent: 'clear'
   }
 }
 

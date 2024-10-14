@@ -32,6 +32,9 @@ export const DadataInputControl = <T extends FieldValues>({
   badge,
   icon,
   swapPosition,
+  onClickIcon,
+  onKeyDownIcon,
+
   ...props
 }: IDadataInputControlProps<T>) => {
   const { setQuery, suggestionsOptions } = useDadata(dadataType, dadataBaseUrl)
@@ -78,6 +81,8 @@ export const DadataInputControl = <T extends FieldValues>({
                     </span>
                   )} */}
                   <FieldAttachment
+                    onClickIcon={onClickIcon}
+                    onKeyDownIcon={onKeyDownIcon}
                     badge={badge}
                     icon={icon}
                     error={!!error?.message}
