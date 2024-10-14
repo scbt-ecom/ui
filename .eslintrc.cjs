@@ -102,6 +102,7 @@ module.exports = {
     'implicit-arrow-linebreak': 'off',
     'react/jsx-one-expression-per-line': 'off',
     '@typescript-eslint/indent': 'off',
+    'operator-linebreak': 'off',
     'prettier/prettier': [
       'error',
       {

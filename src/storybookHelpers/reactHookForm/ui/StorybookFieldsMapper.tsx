@@ -8,6 +8,7 @@ import {
   DadataInputControl,
   InputControl,
   InputControlMask,
+  InputControlUploader,
   InputSliderControl,
   RadioControl,
   SelectControl,
@@ -45,6 +46,8 @@ const renderFields = <T extends FieldValues>(fieldConfig: TStorybookFieldConfig<
       return <CalendarControl control={control} {...fieldConfig} />
     case EnumFieldType.SLIDER:
       return <InputSliderControl control={control} {...fieldConfig} />
+    case EnumFieldType.UPLOADER:
+      return <InputControlUploader control={control} {...fieldConfig} />
     default:
       return null
   }

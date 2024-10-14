@@ -1,7 +1,7 @@
 export interface SpritesMap {
   arrows: 'arrowCircle' | 'arrowLink' | 'arrowRight'
   brandLogos: 'logoBlack' | 'logoBusiness' | 'logoGray' | 'logoInsurance' | 'logoMain' | 'logoWhite'
-  files: 'documentFilled' | 'documentOutline'
+  files: 'border' | 'borderError' | 'documentFilled' | 'documentOutline' | 'upload'
   general: 'calendar' | 'check' | 'close' | 'edit' | 'hiddenEye' | 'showEye'
   info: 'warningCircle'
 }
@@ -76,6 +76,16 @@ export const SPRITES_META: {
   files: {
     filePath: 'files.svg',
     items: {
+      border: {
+        viewBox: '0 0 476 64',
+        width: 476,
+        height: 64
+      },
+      borderError: {
+        viewBox: '0 0 476 64',
+        width: 476,
+        height: 64
+      },
       documentFilled: {
         viewBox: '0 0 22 28',
         width: 22,
@@ -85,6 +95,11 @@ export const SPRITES_META: {
         viewBox: '0 0 22 28',
         width: 22,
         height: 28
+      },
+      upload: {
+        viewBox: '0 0 23 20',
+        width: 23,
+        height: 20
       }
     }
   },

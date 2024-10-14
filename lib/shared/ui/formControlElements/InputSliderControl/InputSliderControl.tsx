@@ -5,14 +5,14 @@ import type { TAdditionalInputClassesWithAttachment, TControlledInputProps } fro
 import { FieldAttachment, FieldContainer, FieldWrapper, MessageView } from '../ui'
 import { getStepByVariant } from './helpers'
 import { useSlider } from './hooks/useSlider'
-import type { TInputSliderProps } from './model/types'
 import { SliderControl } from './ui'
+import { type ISliderControl } from './ui/SliderControl'
 import { cn } from '$/shared/utils'
 
-export interface InputSliderControlProps<T extends FieldValues>
-  extends Omit<TControlledInputProps<T>, 'max' | 'min' | 'step'>,
-    TInputSliderProps {
+export interface InputSliderControlProps<T extends FieldValues> extends TControlledInputProps<T>, ISliderControl {
   classes?: Partial<TAdditionalInputClassesWithAttachment>
+  disabled?: boolean
+  onInputChange?: (value?: number) => void
 }
 
 export const InputSliderControl = <T extends FieldValues>({
