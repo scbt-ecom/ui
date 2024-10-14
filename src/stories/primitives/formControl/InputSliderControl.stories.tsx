@@ -53,7 +53,7 @@ export const WithIconSlider: Story = {
   args: {
     name: 'term',
     label: 'Город',
-    icon: <Icon name='general/edit' className='text-icon-blue-grey-600 size-[19px] focus:text-icon-blue-grey-800' />,
+    icon: <Icon name='general/edit' className='size-[19px] text-icon-blue-grey-600 focus:text-icon-blue-grey-800' />,
     size: 'md',
     min: 1,
     max: 12,

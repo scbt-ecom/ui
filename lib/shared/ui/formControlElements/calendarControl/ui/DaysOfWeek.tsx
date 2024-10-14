@@ -14,7 +14,7 @@ export const DaysOfWeek = ({ classes }: IDaysOfWeekProps) => {
           <span
             key={day}
             className={cn(
-              'mob-body-medium-m size-10 flex items-center justify-center',
+              'mob-body-medium-m flex size-10 items-center justify-center',
               { 'text-color-negative': isWeekend },
               classes?.weekDay
             )}

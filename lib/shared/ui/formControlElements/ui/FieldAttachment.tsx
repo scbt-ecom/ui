@@ -38,13 +38,13 @@ export const FieldAttachment = ({
   return (
     <>
       {error ? (
-        <Icon name='info/warningCircle' className={cn('text-icon-secondary-default size-6 mr-4', { 'm-0 size-5': isTextarea })} />
+        <Icon name='info/warningCircle' className={cn('mr-4 size-6 text-icon-secondary-default', { 'm-0 size-5': isTextarea })} />
       ) : (
         <>
           {(badge || icon) && (
             <div
               className={cn(
-                'flex items-center gap-4 mr-4',
+                'mr-4 flex items-center gap-4',
                 { 'm-0': isTextarea },
                 { 'flex-row-reverse': swapPosition },
                 classes?.attachmentWrapper
@@ -54,7 +54,7 @@ export const FieldAttachment = ({
                 <span
                   {...interactiveIconAttr}
                   className={cn(
-                    'size-6 flex justify-center items-center',
+                    'flex size-6 items-center justify-center',
                     { 'size-5': isTextarea },
                     { 'group-focus-within:[&_svg]:text-icon-blue-grey-800': isSlider },
                     classes?.icon

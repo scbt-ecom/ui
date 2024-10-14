@@ -35,14 +35,14 @@ export const PageHeader = (props: TPageHeaderProps) => {
   const { logoPath = '/', logoType = 'main' } = props
 
   return (
-    <header className='bg-color-blue-grey-200 flex items-center justify-center h-[72px] '>
+    <header className='flex h-[72px] items-center justify-center bg-color-blue-grey-200'>
       <ResponsiveContainer>
-        <div className='flex items-center justify-between gap-5 '>
+        <div className='flex items-center justify-between gap-5'>
           <a
             href={logoPath}
             target='_blank'
             rel='noreferrer'
-            className='[&_svg]:w-[192px] [&_svg]:h-[32px] flex items-center justify-center'
+            className='flex items-center justify-center [&_svg]:h-[32px] [&_svg]:w-[192px]'
           >
             {brandLogos[logoType]}
           </a>

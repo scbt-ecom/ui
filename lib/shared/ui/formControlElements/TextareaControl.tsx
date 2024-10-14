@@ -39,7 +39,7 @@ export const TextareaControl = <T extends FieldValues>({
         <FieldContainer size={size} classes={classes}>
           <div
             className={cn(
-              'flex flex-col h-[120px] transition-colors relative border-solid rounded-sm border border-transparent bg-color-blue-grey-100 group-focus-within:border-blue-grey-800  focus:outline-blue-grey-800 hover:bg-color-blue-grey-200 active:bg-color-blue-grey-100',
+              'relative flex h-[120px] flex-col rounded-sm border border-solid border-transparent bg-color-blue-grey-100 transition-colors hover:bg-color-blue-grey-200 focus:outline-blue-grey-800 active:bg-color-blue-grey-100 group-focus-within:border-blue-grey-800',
               { '!border-negative': error },
               { '!bg-color-blue-grey-100': disabled },
               classes?.field
@@ -47,7 +47,7 @@ export const TextareaControl = <T extends FieldValues>({
           >
             <div className={cn('flex items-center justify-between px-4 pt-2', classes?.head)}>
               <label
-                className={cn('text-color-tetriary desk-body-regular-s', { 'text-color-disabled': disabled }, classes?.label)}
+                className={cn('desk-body-regular-s text-color-tetriary', { 'text-color-disabled': disabled }, classes?.label)}
                 htmlFor={inputId}
               >
                 {label}
@@ -64,12 +64,12 @@ export const TextareaControl = <T extends FieldValues>({
               />
             </div>
 
-            <div className={cn('w-full flex items-start px-4 py-2', classes?.scrollArea)}>
+            <div className={cn('flex w-full items-start px-4 py-2', classes?.scrollArea)}>
               <textarea
                 aria-invalid={error?.message ? 'true' : 'false'}
                 ref={ref}
                 className={cn(
-                  'w-full h-[78px] desk-body-regular-l flex-1 customScrollbar-y text-color-dark placeholder:text-color-blue-grey-600 transition-all bg-color-transparent outline-none  rounded-md resize-none',
+                  'customScrollbar-y desk-body-regular-l h-[78px] w-full flex-1 resize-none rounded-md bg-color-transparent text-color-dark outline-none transition-all placeholder:text-color-blue-grey-600',
                   { 'placeholder:text-color-disabled': disabled },
                   classes?.input
                 )}

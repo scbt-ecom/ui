@@ -14,7 +14,7 @@ export const OptionsList = <Value extends string | number>({
   const modeMonth = variant === 'months'
   return (
     <div
-      className={cn('customScrollbar-y overflow-y-auto px-2 bg-color-white overflow-x-hidden', classes?.dropdownOptions)}
+      className={cn('customScrollbar-y overflow-y-auto overflow-x-hidden bg-color-white px-2', classes?.dropdownOptions)}
       role='listbox'
       aria-expanded={isActive ? 'true' : 'false'}
       aria-label={variant === 'months' ? 'Выбор месяца' : 'Выбор года'}
@@ -28,7 +28,7 @@ export const OptionsList = <Value extends string | number>({
             onClick={() => onClickOption(modeMonth ? index : (option as number))}
             onKeyDown={() => onClickOption(modeMonth ? index : (option as number))}
             className={cn(
-              'transition-colors px-2 py-[10px] rounded-sm bg-color-white text-color-dark cursor-pointer mob-body-regular-m hover:bg-color-primary-tr-hover  hover:text-color-primary-hover',
+              'mob-body-regular-m cursor-pointer rounded-sm bg-color-white px-2 py-[10px] text-color-dark transition-colors hover:bg-color-primary-tr-hover hover:text-color-primary-hover',
               {
                 '!bg-color-primary-default !text-color-white': modeMonth ? selectedValue === option : +selectedValue === option
               },

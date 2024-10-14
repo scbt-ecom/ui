@@ -25,7 +25,7 @@ export const Modal = ({ title, children, modalIsOpen = false, closeModal, classe
           tabIndex={-1}
           onClick={closeModal}
           className={cn(
-            'bg-color-overlay inset-0 fixed w-screen h-screen flex items-center justify-center z-[100] invisible opacity-0 transition-all',
+            'bg-color-overlay invisible fixed inset-0 z-[100] flex h-screen w-screen items-center justify-center opacity-0 transition-all',
             { 'opacity-1 visible': modalIsOpen },
             classes?.overlay
           )}
@@ -38,8 +38,8 @@ export const Modal = ({ title, children, modalIsOpen = false, closeModal, classe
           <div
             onClick={(event) => event.stopPropagation()}
             className={cn(
-              'w-full max-w-[600px] bg-color-white rounded-md px-4 py-6 desktop:px-6 desktop:py-8 shadow-sm opacity-0 scale-0 transition-all',
-              { 'opacity-100 scale-100': modalIsOpen },
+              'w-full max-w-[600px] scale-0 rounded-md bg-color-white px-4 py-6 opacity-0 shadow-sm transition-all desktop:px-6 desktop:py-8',
+              { 'scale-100 opacity-100': modalIsOpen },
               classes?.modal
             )}
           >

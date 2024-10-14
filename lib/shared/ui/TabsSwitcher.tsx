@@ -50,7 +50,7 @@ export const TabsSwitcher = ({ renderContent, defaultActiveTabId = '1', classes 
             key={id}
             value={id}
             className={cn(
-              'bg-color-blue-grey-100 outline outline-2 outline-offset-2 outline-transparent text-color-secondary py-2 px-4 desk-body-regular-l rounded-sm cursor-pointer hover:bg-color-blue-grey-200 hover:text-color-secondary data-[state="active"]:bg-color-primary-default data-[state="active"]:text-color-white transition-colors',
+              'desk-body-regular-l cursor-pointer rounded-sm bg-color-blue-grey-100 px-4 py-2 text-color-secondary outline outline-2 outline-offset-2 outline-transparent transition-colors hover:bg-color-blue-grey-200 hover:text-color-secondary data-[state="active"]:bg-color-primary-default data-[state="active"]:text-color-white',
               classes?.trigger
             )}
           >

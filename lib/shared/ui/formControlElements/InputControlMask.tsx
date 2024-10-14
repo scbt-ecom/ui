@@ -53,7 +53,7 @@ export const InputControlMask = <T extends FieldValues>({
               <PatternFormat
                 value={value?.toString()}
                 className={cn(
-                  'w-full h-[56px] desk-body-regular-l  text-color-dark transition-all bg-color-transparent outline-none pt-5 px-4 rounded-md',
+                  'desk-body-regular-l h-[56px] w-full rounded-md bg-color-transparent px-4 pt-5 text-color-dark outline-none transition-all',
                   classes?.input
                 )}
                 format={format}

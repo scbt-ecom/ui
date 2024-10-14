@@ -60,7 +60,7 @@ export const InputSliderControl = <T extends FieldValues>({
                 <NumericFormat
                   aria-invalid={error?.message ? 'true' : 'false'}
                   className={cn(
-                    'w-full h-[56px] desk-title-bold-s  text-color-dark transition-all bg-color-transparent outline-none pt-5 px-4 rounded-md group/slider',
+                    'group/slider desk-title-bold-s h-[56px] w-full rounded-md bg-color-transparent px-4 pt-5 text-color-dark outline-none transition-all',
                     classes?.input
                   )}
                   id={inputId}

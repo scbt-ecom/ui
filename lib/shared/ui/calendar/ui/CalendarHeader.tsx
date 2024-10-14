@@ -28,7 +28,7 @@ export const CalendarHeader = ({
   toggleYearDropdown
 }: ICalendarHeaderProps) => {
   return (
-    <div className='w-full flex items-center justify-between pb-2 border-b border-solid border-blue-grey-500'>
+    <div className='flex w-full items-center justify-between border-b border-solid border-blue-grey-500 pb-2'>
       <div className='flex items-center'>
         <Dropdown
           options={MONTHS_OPTIONS}

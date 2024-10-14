@@ -15,5 +15,6 @@
   "tabWidth": 2,
   "rangeStart": 0,
   "endOfLine": "auto",
-  "semi": false
+  "semi": false,
+  "plugins": ["prettier-plugin-tailwindcss"]
 }

@@ -20,8 +20,8 @@ const renderSelectedValue = ({ multiple, controlledValue, label, intent, disable
   const labelElement = (
     <div
       className={cn(
-        'text-color-blue-grey-600 desk-body-regular-l transition-colors',
-        { 'group-data-[hover]:!text-color-primary-hover ': intent === 'clear' },
+        'desk-body-regular-l text-color-blue-grey-600 transition-colors',
+        { 'group-data-[hover]:!text-color-primary-hover': intent === 'clear' },
         { '!text-color-disabled': disabled },
         classes?.label
       )}
@@ -33,12 +33,12 @@ const renderSelectedValue = ({ multiple, controlledValue, label, intent, disable
   if (multiple && intent === 'filled') {
     if (Array.isArray(controlledValue) && controlledValue.length > 0) {
       return (
-        <div className='flex items-center gap-2 flex-wrap flex-1'>
+        <div className='flex flex-1 flex-wrap items-center gap-2'>
           {controlledValue.map((value) => (
             <div
               title={value}
               className={cn(
-                'text-color-dark w-max bg-color-blue-grey-300 rounded-sm py-1 px-2 truncate max-w-[240px]',
+                'w-max max-w-[240px] truncate rounded-sm bg-color-blue-grey-300 px-2 py-1 text-color-dark',
                 classes?.value
               )}
             >
@@ -52,7 +52,7 @@ const renderSelectedValue = ({ multiple, controlledValue, label, intent, disable
   }
 
   if (controlledValue) {
-    return <div className={cn('text-color-dark flex-1', classes?.value)}>{controlledValue}</div>
+    return <div className={cn('flex-1 text-color-dark', classes?.value)}>{controlledValue}</div>
   }
   return labelElement
 }
@@ -69,12 +69,12 @@ export const CustomListboxButton = ({
   return (
     <ListboxButton
       className={cn(
-        'h-[56px] outline outline-1 outline-transparent bg-color-blue-grey-100 p-4 rounded-sm flex items-center justify-between data-[hover]:bg-color-blue-grey-200 data-[active]:outline-blue-grey-800 focus:outline-blue-grey-800 group text-left transition-all',
+        'group flex h-[56px] items-center justify-between rounded-sm bg-color-blue-grey-100 p-4 text-left outline outline-1 outline-transparent transition-all focus:outline-blue-grey-800 data-[hover]:bg-color-blue-grey-200 data-[active]:outline-blue-grey-800',
         {
-          'min-h-[56px] px-4 py-2 h-auto': intent === 'filled' && multiple,
-          '!bg-color-transparent data-[hover]:bg-color-transparent h-full px-2 py-1 data-[active]:outline-primary-focus focus:outline-primary-focus':
+          'h-auto min-h-[56px] px-4 py-2': intent === 'filled' && multiple,
+          'h-full !bg-color-transparent px-2 py-1 focus:outline-primary-focus data-[hover]:bg-color-transparent data-[active]:outline-primary-focus':
             intent === 'clear',
-          '!bg-color-blue-grey-100 pointer-events-none ': disabled,
+          'pointer-events-none !bg-color-blue-grey-100': disabled,
           '!outline-secondary-default': !!error
         },
         classes?.trigger
@@ -85,7 +85,7 @@ export const CustomListboxButton = ({
       <Icon
         name='arrows/arrowRight'
         className={cn(
-          'size-6 rotate-90  text-icon-blue-grey-600 group-data-[open]:-rotate-90 transition-all',
+          'size-6 rotate-90 text-icon-blue-grey-600 transition-all group-data-[open]:-rotate-90',
           { 'text-icon-blue-grey-700 group-data-[hover]:text-icon-primary-hover': intent === 'clear' },
           { 'text-icon-disabled': disabled },
           { 'text-icon-secondary-default': !!error },

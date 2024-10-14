@@ -108,7 +108,7 @@ export const Table = <C extends TTableColumnCount>({
   return (
     <ResponsiveContainer>
       <div className={cn('flex flex-col', classes?.tableRootWrapper)}>
-        <Heading as='h3' className={cn('mob-title-bold-m desktop:desk-title-bold-s pb-6', classes?.tableHeading)}>
+        <Heading as='h3' className={cn('mob-title-bold-m pb-6 desktop:desk-title-bold-s', classes?.tableHeading)}>
           {headTitle}
         </Heading>
         <div className={cn(tableOverflowConfig({ columnCount }), classes?.tableBody)}>
@@ -117,7 +117,7 @@ export const Table = <C extends TTableColumnCount>({
               <li
                 key={title}
                 className={cn(
-                  'border-b border-warm-grey-200 mob-body-regular-l desktop:desk-body-regular-l py-4',
+                  'mob-body-regular-l border-b border-warm-grey-200 py-4 desktop:desk-body-regular-l',
                   classes?.tableTitleRow
                 )}
               >

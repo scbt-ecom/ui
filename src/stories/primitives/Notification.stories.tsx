@@ -14,7 +14,7 @@ type Story = StoryObj<typeof Notification>
 export const Info: Story = {
   render: () => {
     return (
-      <div className='flex justify-center items-center h-screen w-screen'>
+      <div className='flex h-screen w-screen items-center justify-center'>
         <Button
           onClick={() =>
             Notification({
@@ -33,7 +33,7 @@ export const Info: Story = {
 export const Error: Story = {
   render: () => {
     return (
-      <div className='flex justify-center items-center h-screen w-screen'>
+      <div className='flex h-screen w-screen items-center justify-center'>
         <Button
           onClick={() =>
             Notification({
@@ -52,7 +52,7 @@ export const Error: Story = {
 export const InfoWithLink: Story = {
   render: () => {
     return (
-      <div className='flex justify-center items-center h-screen w-screen'>
+      <div className='flex h-screen w-screen items-center justify-center'>
         <Button
           onClick={() =>
             Notification({
@@ -83,7 +83,7 @@ export const InfoWithLink: Story = {
 export const WithIcon: Story = {
   render: () => {
     return (
-      <div className='flex justify-center items-center h-screen w-screen'>
+      <div className='flex h-screen w-screen items-center justify-center'>
         <Button
           onClick={() =>
             Notification({

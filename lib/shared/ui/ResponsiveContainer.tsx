@@ -8,7 +8,7 @@ export interface IResponsiveContainerProps extends HTMLAttributes<HTMLDivElement
 
 export const ResponsiveContainer = ({ children, className, ...props }: IResponsiveContainerProps) => {
   return (
-    <div className={cn('w-full px-4 m-auto desktop:max-w-[1188px]', className)} {...props}>
+    <div className={cn('m-auto w-full px-4 desktop:max-w-[1188px]', className)} {...props}>
       {children}
     </div>
   )

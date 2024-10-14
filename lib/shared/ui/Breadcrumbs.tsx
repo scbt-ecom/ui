@@ -19,14 +19,14 @@ export interface IBreadcrumbsProps {
 
 export const Breadcrumbs = ({ linksList }: IBreadcrumbsProps) => {
   return (
-    <div aria-label='Breadcrumb' className='max-w-[840px] flex items-center gap-2'>
+    <div aria-label='Breadcrumb' className='flex max-w-[840px] items-center gap-2'>
       {linksList.map((link) => (
         <>
           {'path' in link ? (
             <div
               className={cn(
-                'flex items-center gap-1 px-1 border-2 border-solid border-transparent rounded-sm focus-within:border-primary-focus',
-                { '!border-transparent pointer-events-none': link?.isDisabled }
+                'flex items-center gap-1 rounded-sm border-2 border-solid border-transparent px-1 focus-within:border-primary-focus',
+                { 'pointer-events-none !border-transparent': link?.isDisabled }
               )}
             >
               <a
@@ -34,7 +34,7 @@ export const Breadcrumbs = ({ linksList }: IBreadcrumbsProps) => {
                 target='_blank'
                 rel='noreferrer'
                 className={cn(
-                  'desk-body-regular-m text-color-primary-default hover:text-color-primary-hover outline-none focus:text-color-primary-default',
+                  'desk-body-regular-m text-color-primary-default outline-none hover:text-color-primary-hover focus:text-color-primary-default',
                   { '!text-color-disabled': link?.isDisabled }
                 )}
               >
@@ -42,11 +42,11 @@ export const Breadcrumbs = ({ linksList }: IBreadcrumbsProps) => {
               </a>
               <Icon
                 name='arrows/arrowRight'
-                className={cn('text-icon-primary-default size-4', { '!text-icon-disabled': link?.isDisabled })}
+                className={cn('size-4 text-icon-primary-default', { '!text-icon-disabled': link?.isDisabled })}
               />
             </div>
           ) : (
-            <div aria-current='page' className='text-color-blue-grey-600 desk-body-regular-m'>
+            <div aria-current='page' className='desk-body-regular-m text-color-blue-grey-600'>
               {link.label}
             </div>
           )}

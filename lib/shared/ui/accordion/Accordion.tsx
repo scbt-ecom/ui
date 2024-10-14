@@ -19,12 +19,12 @@ export interface IAccordionProps {
 
 export const Accordion = ({ children, label, classes, defaultOpen }: IAccordionProps) => {
   return (
-    <AccordionPrimitive.Root className={cn('flex gap-5 flex-col', classes?.accordion)} type='multiple' defaultValue={defaultOpen}>
+    <AccordionPrimitive.Root className={cn('flex flex-col gap-5', classes?.accordion)} type='multiple' defaultValue={defaultOpen}>
       <AccordionPrimitive.Item className={cn('w-full disabled:text-color-dark', classes?.item)} value={label.toString()}>
         <AccordionHeader classes={classes}>{label}</AccordionHeader>
         <AccordionPrimitive.Content
           className={cn(
-            'desk-body-regular-l text-color-dark overflow-hidden transition-all data-[state=closed]:animate-slideUp data-[state=open]:animate-slideDown bg-color-transparent',
+            'desk-body-regular-l overflow-hidden bg-color-transparent text-color-dark transition-all data-[state=closed]:animate-slideUp data-[state=open]:animate-slideDown',
             classes?.content
           )}
         >

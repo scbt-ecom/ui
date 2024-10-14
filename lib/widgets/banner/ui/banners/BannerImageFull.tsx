@@ -12,10 +12,10 @@ export const BannerImageFull = ({
   classes
 }: Omit<IBannerProps, 'bannerVariant'>) => {
   return (
-    <section data-id='banner-section' className={cn('desktop:h-[456px] h-[552px] relative', classes?.section)}>
+    <section data-id='banner-section' className={cn('relative h-[552px] desktop:h-[456px]', classes?.section)}>
       <div
         data-id='banner-img-wrapper'
-        className='max-w-[1920px] mx-auto top-0 bottom-0 right-0 left-0 h-full desktop:h-[456px] absolute z-[-1]'
+        className='absolute bottom-0 left-0 right-0 top-0 z-[-1] mx-auto h-full max-w-[1920px] desktop:h-[456px]'
       >
         <picture>
           <source
@@ -32,7 +32,7 @@ export const BannerImageFull = ({
             data-id='banner-image'
             src={saif}
             alt=' '
-            className={cn('w-full h-full object-cover object-center', classes?.image)}
+            className={cn('h-full w-full object-cover object-center', classes?.image)}
           />
         </picture>
       </div>
@@ -40,13 +40,16 @@ export const BannerImageFull = ({
         <div
           data-id='banner-grid'
           className={cn(
-            'grid mobile:justify-center h-full grid-rows-[repeat(2,_min-content)] grid-mob-full-img-apply desktop:grid-desk-full-img-apply',
+            'grid-mob-full-img-apply desktop:grid-desk-full-img-apply grid h-full grid-rows-[repeat(2,_min-content)]',
             classes?.wrapper
           )}
         >
           <div
             data-id='banner-text-block'
-            className={cn('grid-text-apply gap-4 pt-6 desktop:pt-20 desktop:pb-10 flex flex-col', classes?.textBlock)}
+            className={cn(
+              'grid-text-apply flex flex-col gap-4 pt-6 mobile:w-[328px] desktop:pb-10 desktop:pt-20',
+              classes?.textBlock
+            )}
           >
             <Heading data-id='banner-title' as='h1' className={cn('text-color-white', classes?.title)}>
               {headTitle}
@@ -66,7 +69,7 @@ export const BannerImageFull = ({
 
         <div
           data-id='banner-advantages'
-          className={cn('absolute translate-x-1/2 right-1/2 bottom-[-400px] desktop:bottom-[-50px]', classes?.advantages)}
+          className={cn('absolute bottom-[-400px] right-1/2 translate-x-1/2 desktop:bottom-[-50px]', classes?.advantages)}
         >
           {advantagesList && advantagesList?.length > 0 && (
             <Advantages data-id='banner-advantages-list' advantagesList={advantagesList} />

@@ -22,7 +22,7 @@ export const Advantages = ({ advantagesList, classes }: IAdvantagesProps) => {
   return (
     <div
       className={cn(
-        'flex flex-col gap-8 w-[328px] desktop:w-full desktop:flex-row desktop:items-start desktop:gap-0 mobile:p-6 desktop:py-6 bg-color-white rounded-md shadow-sm',
+        'flex w-[328px] flex-col gap-8 rounded-md bg-color-white shadow-sm mobile:p-6 desktop:w-full desktop:flex-row desktop:items-start desktop:gap-0 desktop:py-6',
         classes?.wrapper
       )}
     >
@@ -30,7 +30,7 @@ export const Advantages = ({ advantagesList, classes }: IAdvantagesProps) => {
         <div
           key={title}
           className={cn(
-            'relative w-[285px] h-full flex flex-col gap-2 after:w-[280px] after:h-[1px] mobile:after:left-1/2 mobile:after:-bottom-4 mobile:after:-translate-x-1/2 desktop:px-8 desktop:after:right-0 desktop:after:top-1/2 desktop:after:-translate-y-1/2 desktop:after:h-10 desktop:after:w-[1px] after:content-[" "] after:absolute after:bg-color-blue-grey-300 last:after:hidden',
+            'after:content-[" "] relative flex h-full w-[285px] flex-col gap-2 after:absolute after:h-[1px] after:w-[280px] after:bg-color-blue-grey-300 last:after:hidden mobile:after:-bottom-4 mobile:after:left-1/2 mobile:after:-translate-x-1/2 desktop:px-8 desktop:after:right-0 desktop:after:top-1/2 desktop:after:h-10 desktop:after:w-[1px] desktop:after:-translate-y-1/2',
             classes?.advantage
           )}
         >

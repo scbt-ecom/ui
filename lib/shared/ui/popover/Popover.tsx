@@ -43,7 +43,7 @@ export const Popover = ({
   return (
     <div className=''>
       <PopoverPrimitive.Root defaultOpen={defaultOpen}>
-        <div className='flex items-center gap-2 w-max'>
+        <div className='flex w-max items-center gap-2'>
           <h3 className='text-[24px] font-bold'>{headLine}</h3>
           <PopoverPrimitive.Trigger className={cn('cursor-pointer', classes?.trigger)} asChild>
             {triggerElement}
@@ -53,7 +53,7 @@ export const Popover = ({
         <PopoverPrimitive.Portal>
           <PopoverPrimitive.Content
             className={cn(
-              'p-4 w-64 desk-body-regular-m flex items-start gap-2 shadow-sm rounded-sm bg-color-white',
+              'desk-body-regular-m flex w-64 items-start gap-2 rounded-sm bg-color-white p-4 shadow-sm',
               classes?.content
             )}
             sideOffset={sideOffset}
@@ -65,8 +65,8 @@ export const Popover = ({
             {...contentProps}
           >
             {children}
-            <PopoverPrimitive.Close aria-label='Close' className='size-4 outline-transparent outline-0'>
-              <Icon name='general/close' className='size-4 text-icon-blue-grey-600 cursor-pointer ' />
+            <PopoverPrimitive.Close aria-label='Close' className='size-4 outline-0 outline-transparent'>
+              <Icon name='general/close' className='size-4 cursor-pointer text-icon-blue-grey-600' />
             </PopoverPrimitive.Close>
             <PopoverPrimitive.Arrow width={12} height={6} className={cn('fill-secondary-default', classes?.arrow)} />
           </PopoverPrimitive.Content>

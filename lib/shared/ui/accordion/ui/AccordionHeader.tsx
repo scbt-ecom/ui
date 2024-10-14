@@ -17,7 +17,7 @@ export const AccordionHeader = React.forwardRef<HTMLButtonElement, IAccordionHea
       <Trigger
         ref={forwardedRef}
         className={cn(
-          'outline-0 bg-color-transparent flex items-center justify-between gap-5 w-full cursor-pointer py-5 px-6 border border-transparent border-solid rounded-sm focus:border-primary-default group',
+          'group flex w-full cursor-pointer items-center justify-between gap-5 rounded-sm border border-solid border-transparent bg-color-transparent px-6 py-5 outline-0 focus:border-primary-default',
           classes?.trigger
         )}
         {...props}
@@ -25,7 +25,7 @@ export const AccordionHeader = React.forwardRef<HTMLButtonElement, IAccordionHea
         <div className={cn('desk-body-medium-l text-color-dark', classes?.inner)}>{children}</div>
         <Icon
           name='arrows/arrowCircle'
-          className={cn('group-data-[state=open]:rotate-180 transition-all text-icon-blue-grey-800 size-8', classes?.icon)}
+          className={cn('size-8 text-icon-blue-grey-800 transition-all group-data-[state=open]:rotate-180', classes?.icon)}
         />
       </Trigger>
     </Header>

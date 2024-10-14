@@ -106,9 +106,9 @@ export const Button = forwardRef<HTMLButtonElement, IButtonProps>(
           <Loader size='sm' intent={setButtonLoaderIntent(intent!)} />
         ) : (
           <>
-            {iconLeft && <span className='size-5 flex items-center justify-center'>{iconLeft}</span>}
+            {iconLeft && <span className='flex size-5 items-center justify-center'>{iconLeft}</span>}
             {children}
-            {iconRight && <span className='size-5 flex items-center justify-center'>{iconRight}</span>}
+            {iconRight && <span className='flex size-5 items-center justify-center'>{iconRight}</span>}
           </>
         )}
       </button>
