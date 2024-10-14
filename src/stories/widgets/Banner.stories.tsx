@@ -3,6 +3,7 @@ import { Banner, PageHeader } from '$/widgets'
 import {
   mockBannerBase,
   mockBannerBaseFullImage,
+  mockBannerBaseFullImageWithAdvantages,
   mockBannerOnlyPrimaryButton,
   mockWithAdvantages
 } from '$/widgets/banner/model/helpers'
@@ -49,6 +50,15 @@ export const BaseFullImage: Story = {
     <>
       <PageHeader variant='withButton' />
       <Banner {...mockBannerBaseFullImage} />
+    </>
+  )
+}
+
+export const BaseFullImageWithAdvantages: Story = {
+  render: () => (
+    <>
+      <PageHeader variant='withButton' />
+      <Banner {...mockBannerBaseFullImageWithAdvantages} />
     </>
   )
 }
