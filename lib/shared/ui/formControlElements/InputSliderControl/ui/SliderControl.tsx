@@ -6,6 +6,8 @@ import { cn } from '$/shared/utils'
 
 export interface ISliderControllProps extends IInputSliderCommonProps {
   classes?: TSliderControlClasses
+  onValueChange?: (value: number[]) => void
+  value: number[]
 }
 
 export type TSliderControlClasses = {
