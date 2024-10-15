@@ -1,4 +1,4 @@
-import { type TSliderVariants } from '$/shared/ui/formControlElements/InputSliderControl/model/types'
+import { type TSliderVariants } from '../types'
 
 const getStepCredit = (value: number) => {
   const step = 1000
