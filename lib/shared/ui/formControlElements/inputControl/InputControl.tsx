@@ -35,7 +35,7 @@ export const InputControl = <T extends FieldValues>({
     <Controller
       control={control}
       name={props.name}
-      render={({ field: { onChange, ref, value }, fieldState: { error } }) => (
+      render={({ field: { onChange, ref: controlledRef, value }, fieldState: { error } }) => (
         <FieldContainer size={size} classes={classes}>
           <FieldWrapper
             fieldId={inputId}
@@ -47,9 +47,9 @@ export const InputControl = <T extends FieldValues>({
           >
             <>
               <input
-                type={isPassport && !passportIsVisible ? 'password' : 'text'}
                 aria-invalid={error?.message ? 'true' : 'false'}
-                ref={ref}
+                ref={controlledRef}
+                type={isPassport && !passportIsVisible ? 'password' : 'text'}
                 className={cn(
                   'desk-body-regular-l h-[56px] w-full rounded-md bg-color-transparent px-4 pt-5 text-color-dark outline-none transition-all',
                   classes?.input

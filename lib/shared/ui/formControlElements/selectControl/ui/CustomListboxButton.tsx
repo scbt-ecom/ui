@@ -36,6 +36,7 @@ const renderSelectedValue = ({ multiple, controlledValue, label, intent, disable
         <div className='flex flex-1 flex-wrap items-center gap-2'>
           {controlledValue.map((value) => (
             <div
+              key={value}
               title={value}
               className={cn(
                 'w-max max-w-[240px] truncate rounded-sm bg-color-blue-grey-300 px-2 py-1 text-color-dark',

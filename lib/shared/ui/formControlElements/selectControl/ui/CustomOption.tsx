@@ -12,6 +12,7 @@ export type TCustomOptionClasses = {
 
 export interface ISelectOption {
   optionValue: string
+  optionLabel: string
   isDisabled?: boolean
   additionalText?: ReactElement | string
 }
@@ -20,7 +21,7 @@ export interface ICustomOptionProps extends ISelectOption {
   classes?: Partial<TCustomOptionClasses>
 }
 
-export const CustomOption = ({ optionValue, additionalText, isDisabled, classes }: ICustomOptionProps) => {
+export const CustomOption = ({ optionValue, optionLabel, additionalText, isDisabled, classes }: ICustomOptionProps) => {
   return (
     <ListboxOption
       value={optionValue}
@@ -33,7 +34,7 @@ export const CustomOption = ({ optionValue, additionalText, isDisabled, classes 
       {({ selected }) => (
         <div className={cn('flex items-center justify-between gap-2', classes?.optionWrapper)}>
           <div className='flex flex-col gap-1'>
-            <div className={cn('', classes?.optionValue)}>{optionValue}</div>
+            <div className={cn('', classes?.optionValue)}>{optionLabel}</div>
             {additionalText && (
               <span className={cn('desk-body-regular-s text-color-tetriary', classes?.optionText)}>{additionalText}</span>
             )}

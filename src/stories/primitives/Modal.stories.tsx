@@ -47,10 +47,11 @@ const toastMessage = (values: TModalFormFields) => (
 export const Base: Story = {
   render: () => {
     const [isModalOpen, setterModal] = useBoolean(false)
+
     return (
       <div className='flex h-screen w-screen items-center justify-center'>
         <Button onClick={() => setterModal(true)}>Получить кредит</Button>
-        <Modal title='Подписка на рассылку' modalIsOpen={isModalOpen} closeModal={() => setterModal(false)}>
+        <Modal title='Подписка на рассылку' isModalOpen={isModalOpen} closeModal={() => setterModal(false)}>
           <p>Укажите ваш адрес электронной почты, чтобы узнавать обо всех новостях и изменения вовремя</p>
         </Modal>
       </div>
@@ -79,7 +80,7 @@ export const ModalWithForm: Story = {
     return (
       <div className='flex h-screen w-screen items-center justify-center'>
         <Button onClick={() => setterModal(true)}>Получить кредит</Button>
-        <Modal title='Подписка на рассылку' modalIsOpen={isModalOpen} closeModal={() => setterModal(false)}>
+        <Modal title='Подписка на рассылку' isModalOpen={isModalOpen} closeModal={() => setterModal(false)}>
           <form onSubmit={handleSubmit(onSubmit)}>
             <p>Укажите ваш адрес электронной почты, чтобы узнавать обо всех новостях и изменения вовремя</p>
             <div className='my-4 flex flex-col gap-2'>

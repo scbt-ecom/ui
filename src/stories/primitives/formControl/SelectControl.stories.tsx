@@ -22,8 +22,8 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 const DISABLED_SELECT_OPTIONS: ISelectOption[] = [
-  { optionValue: 'Январь', isDisabled: true },
-  { optionValue: 'Февраль', isDisabled: true },
+  { optionValue: 'Январь', optionLabel: 'Январь', isDisabled: true },
+  { optionValue: 'Февраль', optionLabel: 'Февраль', isDisabled: true },
   ...MOCK_SELECT_OPTIONS.slice(2, 12)
 ]
 
