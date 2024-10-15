@@ -1,4 +1,4 @@
-import { type TSliderVariants } from '../ui/SliderControl'
+import { type TSliderVariants } from '../types'
 import { getYearEnding } from './dates'
 
 export const getInputSliderSuffix = (variant: TSliderVariants, value: number) => {
