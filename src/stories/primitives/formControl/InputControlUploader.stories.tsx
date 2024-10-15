@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { mockDefaultValues, mockSchema, StorybookFormProvider } from '@/storybookHelpers'
-import { InputControlUploader } from '$/shared/ui/formControlElements/InputControlUploader/InputControlUploader'
+import { InputControlUploader } from '$/shared/ui/formControlElements/inputControlUploader/InputControlUploader'
 
 const meta = {
   title: 'CONTROLLED FORM UI/InputControlUploader',

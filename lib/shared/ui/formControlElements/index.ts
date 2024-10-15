@@ -10,4 +10,4 @@ export { InputSliderControl, type InputSliderControlProps } from './inputSliderC
 export { TextareaControl, type ITextareaControlProps } from './TextareaControl'
 export { CalendarControl, type ICalendarControlProps } from './calendarControl'
 export { ComboboxControl, type IComboboxControlProps } from './comboboxControl'
-export { InputControlUploader, type IInputControlUploaderProps } from './InputControlUploader'
+export { InputControlUploader, type IInputControlUploaderProps } from './inputControlUploader'

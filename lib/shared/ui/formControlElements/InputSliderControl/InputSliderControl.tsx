@@ -3,13 +3,20 @@ import { Controller, type FieldValues } from 'react-hook-form'
 import { NumericFormat } from 'react-number-format'
 import type { TAdditionalInputClassesWithAttachment, TControlledInputProps } from '../model'
 import { FieldAttachment, FieldContainer, FieldWrapper, MessageView } from '../ui'
-import { getStepByVariant } from './helpers'
-import { useSlider } from './hooks/useSlider'
-import { SliderControl } from './ui'
-import { type ISliderControl } from './ui/SliderControl'
+import { getStepByVariant } from './model/helpers'
+import { type TSliderVariants } from './model/types'
+import { useSlider } from './model/useSlider'
+import { SliderControl } from './ui/SliderControl'
 import { cn } from '$/shared/utils'
 
-export interface InputSliderControlProps<T extends FieldValues> extends TControlledInputProps<T>, ISliderControl {
+export interface IInputSliderCommonProps {
+  min: number
+  max: number
+  variant: TSliderVariants
+  step?: number
+}
+
+export interface InputSliderControlProps<T extends FieldValues> extends TControlledInputProps<T>, IInputSliderCommonProps {
   classes?: Partial<TAdditionalInputClassesWithAttachment>
   disabled?: boolean
   onInputChange?: (value?: number) => void
