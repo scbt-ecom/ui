@@ -5,12 +5,12 @@ import { setButtonLoaderIntent } from './model/helpers'
 import { cn } from '$/shared/utils'
 
 const buttonConfig = cva(
-  'relative flex items-center justify-center gap-4 cursor-pointer rounded-sm w-[216px] outline-offset-4 outline-transparent outline-2 desk-body-regular-l transition duration-12 active:scale-[0.97] disabled:pointer-events-none',
+  'relative flex items-center justify-center gap-4 cursor-pointer rounded-sm w-max px-4 outline-offset-4 outline-transparent outline-2 desk-body-regular-l transition duration-12 active:scale-[0.97] disabled:pointer-events-none',
   {
     variants: {
       intent: {
         primary:
-          'bg-color-primary-default text-color-white outline-offset-[3px]  hover:bg-color-primary-hover  active:bg-color-primary-hover  focus:bg-color-primary-default focus:outline-primary-focus  disabled:bg-color-primary-disabled',
+          'bg-color-primary-default text-color-white outline-offset-[3px] hover:bg-color-primary-hover  active:bg-color-primary-hover  focus:bg-color-primary-default focus:outline-primary-focus  disabled:bg-color-primary-disabled',
         secondary:
           'bg-transparent text-color-primary-default border border-solid border-primary-default hover:bg-color-primary-tr-hover active:bg-color-primary-tr-pressed active:border-primary-hover  focus:outline-primary-focus  focus:bg-color-primary-tr-focus disabled:bg-color-blue-grey-200 disabled:text-color-primary-disabled disabled:border-transparent',
         ghost:

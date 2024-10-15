@@ -8,7 +8,7 @@ export type TModalHeaderClasses = {
 }
 
 export interface IModalHeaderProps {
-  title: string | React.ReactElement
+  title?: string | React.ReactElement
   closeModal: () => void
   classes?: Partial<TModalHeaderClasses>
 }
@@ -16,9 +16,11 @@ export interface IModalHeaderProps {
 export const ModalHeader = ({ title, closeModal, classes }: IModalHeaderProps) => {
   return (
     <div className={cn('flex items-start justify-between gap-4', classes?.header)}>
-      <Heading as='h3' className={cn('flex-1 text-color-dark', classes?.title)}>
-        {title}
-      </Heading>
+      {title && (
+        <Heading as='h3' className={cn('flex-1 text-color-dark', classes?.title)}>
+          {title}
+        </Heading>
+      )}
       <Icon
         onClick={closeModal}
         name='general/close'
