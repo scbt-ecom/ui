@@ -14,14 +14,16 @@ export const Option = <ValueType,>({ isSelected, ...props }: OptionProps<ValueTy
 
   return (
     <div className='relative flex cursor-pointer items-center'>
-      <span
-        className={cn('absolute flex size-6 items-center justify-center rounded-sm border-2 border-blue-grey-700', {
-          'border-none bg-color-primary-default': isSelected
-        })}
-        onClick={handleClick}
-      >
-        <Icon name='general/check' className={cn('size-5 text-icon-white', { invisible: !isSelected })} />
-      </span>
+      {props.isMulti && (
+        <span
+          className={cn('absolute flex size-6 items-center justify-center rounded-sm border-2 border-blue-grey-700', {
+            'border-none bg-color-primary-default': isSelected
+          })}
+          onClick={handleClick}
+        >
+          <Icon name='general/check' className={cn('size-5 text-icon-white', { invisible: !isSelected })} />
+        </span>
+      )}
       <components.Option isSelected={isSelected} {...props} />
     </div>
   )
