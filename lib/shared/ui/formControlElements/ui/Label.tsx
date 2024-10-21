@@ -7,9 +7,10 @@ interface ILabelProps<V> {
   value: V
   classes?: Partial<TFieldWrapperClasses>
   isTextarea?: boolean
+  disabled?: boolean
 }
 
-export const Label = <V,>({ fieldId, label, value, classes, isTextarea = false }: ILabelProps<V>) => {
+export const Label = <V,>({ disabled, fieldId, label, value, classes, isTextarea = false }: ILabelProps<V>) => {
   return (
     <label
       htmlFor={fieldId}
@@ -21,6 +22,7 @@ export const Label = <V,>({ fieldId, label, value, classes, isTextarea = false }
             !isTextarea
         },
         { 'desk-body-regular-s top-2 translate-y-0': isTextarea },
+        { 'text-color-disabled': disabled },
         classes?.label
       )}
     >

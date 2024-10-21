@@ -1,8 +1,12 @@
 import { type MenuProps } from 'react-select'
 import { type TComboboxControlReactSelectPropsClasses } from './types'
-import { cn } from '$/hybrid'
+import { cn } from '$/shared/utils'
 
-export const selectClassNames = <State>(isMulti: boolean, classes?: Partial<TComboboxControlReactSelectPropsClasses>) => ({
+export const selectClassNames = <State>(
+  isMulti: boolean,
+  disabled?: boolean,
+  classes?: Partial<TComboboxControlReactSelectPropsClasses>
+) => ({
   dropdownIndicator: () => cn('!hidden', classes?.dropdownIndicator),
   indicatorsContainer: () => cn('!hidden', classes?.indicatorsContainer),
   input: () =>
@@ -42,5 +46,7 @@ export const selectClassNames = <State>(isMulti: boolean, classes?: Partial<TCom
   singleValue: () => cn('!m-0', classes?.singleValue),
   multiValue: () => cn('!bg-color-blue-grey-300 truncate max-w-[220px] !rounded-sm px-[8px] !m-0 py-[5px]', classes?.multiValue),
   multiValueLabel: () => cn('[&&]:desk-body-regular-l !p-0 pl-[6px] !text-color-secondary', classes?.multiValueLabel),
-  multiValueRemove: () => cn('hover:!bg-color-transparent', classes?.multiValueRemove)
+  multiValueRemove: () => cn('hover:!bg-color-transparent', classes?.multiValueRemove),
+  placeholder: () =>
+    cn('!text-icon-blue-grey-600 !desk-body-regular-l', { '!text-color-disabled': disabled }, classes?.placeholder)
 })

@@ -1,6 +1,7 @@
 import { ListboxButton } from '@headlessui/react'
 import { type TCommonSelectProps } from '../SelectControl'
-import { cn, Icon } from '$/hybrid'
+import { Icon } from '$/shared/ui/icon'
+import { cn } from '$/shared/utils'
 
 export type TCustomListboxButtonClasses = {
   label: string

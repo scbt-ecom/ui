@@ -22,4 +22,5 @@ export interface TComboboxControlReactSelectPropsClasses
   multiValue?: string
   multiValueLabel?: string
   multiValueRemove?: string
+  placeholder?: string
 }

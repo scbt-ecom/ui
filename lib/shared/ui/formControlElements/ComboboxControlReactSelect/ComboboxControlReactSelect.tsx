@@ -1,4 +1,6 @@
-import { useId } from 'react'
+'use client'
+
+import * as React from 'react'
 import { type Control, Controller, type FieldValues, type Path } from 'react-hook-form'
 import Select from 'react-select'
 import { type TControlledInputProps } from '../model'
@@ -60,7 +62,7 @@ export const ComboboxControlReactSelect = <T extends FieldValues, ValueType>({
   isSearchable,
   ...props
 }: ComboboxControlReactSelectProps<T, ValueType>) => {
-  const selectId = useId()
+  const selectId = React.useId()
   return (
     <div>
       <Controller
@@ -76,7 +78,7 @@ export const ComboboxControlReactSelect = <T extends FieldValues, ValueType>({
                   { '!bg-color-blue-grey-100': disabled }
                 )}
               >
-                {!isMulti && <Label classes={classes} fieldId={selectId} label={label} value={value} />}
+                {!isMulti && <Label disabled={disabled} classes={classes} fieldId={selectId} label={label} value={value} />}
                 <Select
                   inputId={selectId}
                   placeholder={isMulti ? placeholder : ''}
@@ -85,9 +87,10 @@ export const ComboboxControlReactSelect = <T extends FieldValues, ValueType>({
                   hideSelectedOptions={false}
                   closeMenuOnSelect={!isMulti}
                   components={{ Option, MultiValueRemove }}
-                  classNames={selectClassNames<ValueType>(isMulti, classes)}
+                  classNames={selectClassNames<ValueType>(isMulti, disabled, classes)}
                   isSearchable={isSearchable}
                   ref={ref}
+                  isDisabled={disabled}
                   styles={{
                     option: (baseStyles, state) => ({
                       ...baseStyles,
@@ -114,6 +117,7 @@ export const ComboboxControlReactSelect = <T extends FieldValues, ValueType>({
                   }}
                   {...props}
                 />
+                {/* TODO: анимировать иконку */}
                 <FieldAttachment
                   onClickIcon={onClickIcon}
                   onKeyDownIcon={onKeyDownIcon}
