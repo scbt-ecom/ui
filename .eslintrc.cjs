@@ -21,7 +21,8 @@ module.exports = {
     'vitest.config.mjs',
     'tailwind.config.ts',
     'postcss.config.mjs',
-    'storybook-static'
+    'storybook-static',
+    'lib/hybrid.ts'
   ],
   parser: '@typescript-eslint/parser',
   overrides: [
