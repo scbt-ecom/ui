@@ -21,7 +21,8 @@ module.exports = {
     'vitest.config.mjs',
     'tailwind.config.ts',
     'postcss.config.mjs',
-    'storybook-static'
+    'storybook-static',
+    'lib/hybrid.ts'
   ],
   parser: '@typescript-eslint/parser',
   overrides: [
@@ -65,6 +66,7 @@ module.exports = {
   rules: {
     'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
     'react/react-in-jsx-scope': 'off',
+    'no-restricted-imports': ['error', { paths: [{ name: '$/hybrid', message: 'Импорт из $/hybrid запрещен.' }] }],
     'react/display-name': 'off',
     '@typescript-eslint/no-explicit-any': 'warn',
     'promise/prefer-await-to-then': 'error',

@@ -1,5 +1,6 @@
 import { ComboboxOption } from '@headlessui/react'
-import { cn, Icon } from '$/hybrid'
+import { Icon } from '$/shared/ui'
+import { cn } from '$/shared/utils'
 
 export interface IComboboxOption {
   optionValue: string
