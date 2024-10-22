@@ -28,6 +28,6 @@
     }
   },
   "include": ["vite-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src", "lib"],
-  "exclude": ["node_modules", "**/*.stories.{tsx,js,jsx,ts}", "vitest.config.mjs"],
+  "exclude": ["node_modules", "**/*.stories.{tsx,js,jsx,ts}", "vitest.config.mjs", "lib/hybrid.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
