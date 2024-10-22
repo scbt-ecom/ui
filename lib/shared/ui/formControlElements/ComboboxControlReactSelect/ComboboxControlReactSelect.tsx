@@ -2,7 +2,7 @@
 
 import * as React from 'react'
 import { type Control, Controller, type FieldValues, type Path } from 'react-hook-form'
-import Select from 'react-select'
+import Select, { type GroupBase } from 'react-select'
 import { type TControlledInputProps } from '../model'
 import { FieldAttachment, FieldContainer, MessageView } from '../ui'
 import { Label } from '../ui/Label'
@@ -22,7 +22,7 @@ export interface SelectOption<ValueType> {
 interface ComboboxControlReactSelectProps<T extends FieldValues, ValueType> extends TControlledInputProps<T> {
   name: Path<T>
   control: Control<T>
-  options: SelectOption<ValueType>[]
+  options: readonly (ValueType | GroupBase<ValueType>)[]
   label: string
   size?: 'sm' | 'md' | 'lg' | 'full'
   helperText?: string
@@ -87,7 +87,7 @@ export const ComboboxControlReactSelect = <T extends FieldValues, ValueType>({
                   hideSelectedOptions={false}
                   closeMenuOnSelect={!isMulti}
                   components={{ Option, MultiValueRemove }}
-                  classNames={selectClassNames<ValueType>(isMulti, disabled, classes)}
+                  classNames={selectClassNames<ValueType | GroupBase<ValueType>>(isMulti, disabled, classes)}
                   isSearchable={isSearchable}
                   ref={ref}
                   isDisabled={disabled}
@@ -102,17 +102,13 @@ export const ComboboxControlReactSelect = <T extends FieldValues, ValueType>({
                   defaultValue={defaultValue}
                   isClearable={isClearable}
                   noOptionsMessage={() => noOptionsMessage}
-                  // @ts-expect-error options
                   options={options}
-                  // @ts-expect-error value
-                  value={options.find((option) => option.value === value)}
+                  value={options.find((option) => (option as SelectOption<ValueType>).value === value)}
                   onChange={(option) => {
                     if (isMulti) {
-                      // @ts-expect-error value
-                      onChange(option?.map((c) => c.value))
+                      onChange((option as SelectOption<ValueType>[])?.map((c) => c.value))
                     } else {
-                      // @ts-expect-error value
-                      onChange(option?.value)
+                      onChange((option as SelectOption<ValueType>)?.value)
                     }
                   }}
                   {...props}

@@ -1,5 +1,7 @@
 import * as React from 'react'
-import { cn, Heading, Icon } from '$/hybrid'
+import { Heading } from '../../Heading'
+import { Icon } from '../../icon'
+import { cn } from '$/shared/utils'
 
 export type TModalHeaderClasses = {
   header: string

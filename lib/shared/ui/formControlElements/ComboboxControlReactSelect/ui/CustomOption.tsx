@@ -1,5 +1,6 @@
 import { components, type OptionProps } from 'react-select'
-import { cn, Icon } from '$/hybrid'
+import { Icon } from '$/shared/ui/icon'
+import { cn } from '$/shared/utils'
 
 export type TCustomOption = {
   additionalText?: string

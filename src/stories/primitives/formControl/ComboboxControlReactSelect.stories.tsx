@@ -1,6 +1,6 @@
 import { type Meta, type StoryObj } from '@storybook/react'
 import { mockDefaultValues, mockSchema, StorybookFormProvider } from '@/storybookHelpers'
-import { Icon } from '$/hybrid'
+import { Icon } from '$/shared/ui'
 import { ComboboxControlReactSelect } from '$/shared/ui/formControlElements/ComboboxControlReactSelect'
 
 const meta = {
