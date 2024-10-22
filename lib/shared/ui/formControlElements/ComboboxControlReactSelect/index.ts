@@ -1,1 +1,1 @@
-export { ComboboxControlReactSelect } from './ComboboxControlReactSelect'
+export { ComboboxControlReactSelect, type IComboboxControlReactSelectProps } from './ComboboxControlReactSelect'

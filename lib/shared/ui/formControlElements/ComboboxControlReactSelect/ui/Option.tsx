@@ -2,11 +2,7 @@ import { components, type OptionProps } from 'react-select'
 import { Icon } from '$/shared/ui/icon'
 import { cn } from '$/shared/utils'
 
-export type TCustomOption = {
-  additionalText?: string
-}
-
-export const Option = <ValueType,>({ isSelected, ...props }: OptionProps<ValueType>) => {
+export const Option = <Option,>({ isSelected, ...props }: OptionProps<Option>) => {
   const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
     if (props.innerProps.onClick) {
       props.innerProps.onClick(event)

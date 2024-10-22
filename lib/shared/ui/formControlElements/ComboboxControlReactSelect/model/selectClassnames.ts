@@ -7,8 +7,8 @@ export const selectClassNames = <State>(
   disabled?: boolean,
   classes?: Partial<TComboboxControlReactSelectPropsClasses>
 ) => ({
-  dropdownIndicator: () => cn('!hidden', classes?.dropdownIndicator),
-  indicatorsContainer: () => cn('!hidden', classes?.indicatorsContainer),
+  dropdownIndicator: () => cn('absolute top-1/2 right-4 !p-0 -translate-y-1/2', classes?.dropdownIndicator),
+  indicatorsContainer: () => cn('', classes?.indicatorsContainer),
   input: () =>
     cn(
       'desk-body-regular-l !p-0 !m-0 z-10 rounded-md bg-color-transparent text-color-dark outline-none transition-all',
@@ -29,9 +29,9 @@ export const selectClassNames = <State>(
   },
   menu: (state: MenuProps<State>) => {
     return cn(
-      'absolute top-14 z-10 mt-2 flex w-full flex-col rounded-md border border-solid border-blue-grey-700 bg-color-white p-2 transition-all empty:invisible  !shadow-[0px_0px_0px_0px_rgba(0,0,0,0)]',
-      { 'scale-100 opacity-100': state.selectProps.menuIsOpen },
-      { 'scale-95 opacity-0': !state.selectProps.menuIsOpen },
+      'absolute top-14 transition-all z-10 mt-2 flex w-full flex-col rounded-md border border-solid border-blue-grey-700 bg-color-white p-2 transition-all empty:invisible  !shadow-[0px_0px_0px_0px_rgba(0,0,0,0)]',
+      { 'scale-100 visible opacity-100': state.selectProps.menuIsOpen },
+      { 'scale-95 invisible opacity-0': !state.selectProps.menuIsOpen },
       classes?.menu
     )
   },
@@ -42,11 +42,12 @@ export const selectClassNames = <State>(
       { '!pl-2': !isMulti },
       classes?.option
     ),
-  noOptionsMessage: () => cn('desk-body-regular-m text-color-tetriary', classes?.noOptionsMessage),
+  noOptionsMessage: () => cn('!desk-body-regular-m !text-color-tetriary', classes?.noOptionsMessage),
   singleValue: () => cn('!m-0', classes?.singleValue),
   multiValue: () => cn('!bg-color-blue-grey-300 truncate max-w-[220px] !rounded-sm px-[8px] !m-0 py-[5px]', classes?.multiValue),
   multiValueLabel: () => cn('[&&]:desk-body-regular-l !p-0 pl-[6px] !text-color-secondary', classes?.multiValueLabel),
   multiValueRemove: () => cn('hover:!bg-color-transparent', classes?.multiValueRemove),
   placeholder: () =>
-    cn('!text-icon-blue-grey-600 !desk-body-regular-l', { '!text-color-disabled': disabled }, classes?.placeholder)
+    cn('!text-icon-blue-grey-600 !desk-body-regular-l', { '!text-color-disabled': disabled }, classes?.placeholder),
+  indicatorSeparator: () => cn('!hidden')
 })

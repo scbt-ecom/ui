@@ -4,12 +4,11 @@ import * as React from 'react'
 import { type Control, Controller, type FieldValues, type Path } from 'react-hook-form'
 import Select, { type GroupBase } from 'react-select'
 import { type TControlledInputProps } from '../model'
-import { FieldAttachment, FieldContainer, MessageView } from '../ui'
+import { FieldContainer, MessageView } from '../ui'
 import { Label } from '../ui/Label'
 import { selectClassNames } from './model/selectClassnames'
 import { type TComboboxControlReactSelectPropsClasses } from './model/types'
-import { Option } from './ui/CustomOption'
-import { MultiValueRemove } from './ui/MultiValueRemove'
+import { DropdownIndicator, MultiValueRemove, Option } from './ui'
 import { cn } from '$/shared/utils'
 
 type TSelectVariant = 'primary' | 'secondary'
@@ -19,7 +18,7 @@ export interface SelectOption<ValueType> {
   label: string
 }
 
-interface ComboboxControlReactSelectProps<T extends FieldValues, ValueType> extends TControlledInputProps<T> {
+export interface IComboboxControlReactSelectProps<T extends FieldValues, ValueType> extends TControlledInputProps<T> {
   name: Path<T>
   control: Control<T>
   options: readonly (ValueType | GroupBase<ValueType>)[]
@@ -53,15 +52,10 @@ export const ComboboxControlReactSelect = <T extends FieldValues, ValueType>({
   noOptionsMessage = 'Нет результатов поиска',
   size = 'full',
   classes,
-  badge,
-  icon,
   isMulti = false,
-  onClickIcon,
-  onKeyDownIcon,
-  swapPosition,
   isSearchable,
   ...props
-}: ComboboxControlReactSelectProps<T, ValueType>) => {
+}: IComboboxControlReactSelectProps<T, ValueType>) => {
   const selectId = React.useId()
   return (
     <div>
@@ -86,7 +80,7 @@ export const ComboboxControlReactSelect = <T extends FieldValues, ValueType>({
                   instanceId={name}
                   hideSelectedOptions={false}
                   closeMenuOnSelect={!isMulti}
-                  components={{ Option, MultiValueRemove }}
+                  components={{ Option, MultiValueRemove, DropdownIndicator }}
                   classNames={selectClassNames<ValueType | GroupBase<ValueType>>(isMulti, disabled, classes)}
                   isSearchable={isSearchable}
                   ref={ref}
@@ -112,16 +106,6 @@ export const ComboboxControlReactSelect = <T extends FieldValues, ValueType>({
                     }
                   }}
                   {...props}
-                />
-                {/* TODO: анимировать иконку */}
-                <FieldAttachment
-                  onClickIcon={onClickIcon}
-                  onKeyDownIcon={onKeyDownIcon}
-                  badge={badge}
-                  icon={icon}
-                  error={!!error?.message}
-                  classes={classes}
-                  swapPosition={swapPosition}
                 />
               </div>
               <MessageView
