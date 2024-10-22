@@ -1,5 +1,5 @@
 import { components, type MultiValueRemoveProps } from 'react-select'
-import { Icon } from '$/shared/ui/icon'
+import { Icon } from '$/shared/ui'
 
 export const MultiValueRemove = (props: MultiValueRemoveProps) => {
   return (

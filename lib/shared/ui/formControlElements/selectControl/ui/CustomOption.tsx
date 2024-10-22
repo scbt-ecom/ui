@@ -1,6 +1,6 @@
 import { type ReactElement } from 'react'
 import { ListboxOption } from '@headlessui/react'
-import { Icon } from '$/shared/ui/icon'
+import { Icon } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
 export type TCustomOptionClasses = {

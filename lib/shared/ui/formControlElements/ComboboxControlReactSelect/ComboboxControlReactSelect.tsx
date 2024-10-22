@@ -3,7 +3,6 @@
 import * as React from 'react'
 import { type Control, Controller, type FieldValues, type Path } from 'react-hook-form'
 import Select, { type GroupBase } from 'react-select'
-import { type TControlledInputProps } from '../model'
 import { FieldContainer, MessageView } from '../ui'
 import { Label } from '../ui/Label'
 import { selectClassNames } from './model/selectClassnames'
@@ -18,7 +17,7 @@ export interface SelectOption<ValueType> {
   label: string
 }
 
-export interface IComboboxControlReactSelectProps<T extends FieldValues, ValueType> extends TControlledInputProps<T> {
+export interface IComboboxControlReactSelectProps<T extends FieldValues, ValueType> {
   name: Path<T>
   control: Control<T>
   options: readonly (ValueType | GroupBase<ValueType>)[]
