@@ -1,5 +1,5 @@
 import { type Meta, type StoryObj } from '@storybook/react'
-import { mockDefaultValues, mockSchema, StorybookFormProvider } from '@/storybookHelpers'
+import { MOCK_SELECT_OPTIONS_REACT_SELECT, mockDefaultValues, mockSchema, StorybookFormProvider } from '@/storybookHelpers'
 import { ComboboxControlReactSelect } from '$/shared/ui/formControlElements'
 
 const meta = {
@@ -28,18 +28,7 @@ export const Base: Story = {
     name: 'credit',
     label: 'Выберите кредит',
     size: 'md',
-    options: [
-      { label: 'Кредит наличными', value: 'cash-credit' },
-      { label: 'Автокредит', value: 'avto-credit' },
-      { label: 'Депозит', value: 'depozit' },
-      { label: 'Кредит на недвижимость', value: 'realty-credit' },
-      { label: 'Кредит на обучение', value: 'education-credit' },
-      { label: 'Кредит на бизнес', value: 'business-credit' },
-      { label: 'Кредит на автомобиль', value: 'car-credit' },
-      { label: 'Кредит на путешествие', value: 'travel-credit' },
-      { label: 'Кредит на покупку земли', value: 'land-credit' },
-      { label: 'Кредит на покупку квартиры', value: 'flat-credit' }
-    ]
+    options: [...MOCK_SELECT_OPTIONS_REACT_SELECT]
   }
 }
 
@@ -50,18 +39,7 @@ export const WithIcon: Story = {
     name: 'credit',
     label: 'Выберите кредит',
     size: 'md',
-    options: [
-      { label: 'Кредит наличными', value: 'cash-credit' },
-      { label: 'Автокредит', value: 'avto-credit' },
-      { label: 'Депозит', value: 'depozit' },
-      { label: 'Кредит на недвижимость', value: 'realty-credit' },
-      { label: 'Кредит на обучение', value: 'education-credit' },
-      { label: 'Кредит на бизнес', value: 'business-credit' },
-      { label: 'Кредит на автомобиль', value: 'car-credit' },
-      { label: 'Кредит на путешествие', value: 'travel-credit' },
-      { label: 'Кредит на покупку земли', value: 'land-credit' },
-      { label: 'Кредит на покупку квартиры', value: 'flat-credit' }
-    ]
+    options: [...MOCK_SELECT_OPTIONS_REACT_SELECT]
   }
 }
 
@@ -73,18 +51,7 @@ export const Disabled: Story = {
     label: 'Выберите кредит',
     size: 'md',
     disabled: true,
-    options: [
-      { label: 'Кредит наличными', value: 'cash-credit' },
-      { label: 'Автокредит', value: 'avto-credit' },
-      { label: 'Депозит', value: 'depozit' },
-      { label: 'Кредит на недвижимость', value: 'realty-credit' },
-      { label: 'Кредит на обучение', value: 'education-credit' },
-      { label: 'Кредит на бизнес', value: 'business-credit' },
-      { label: 'Кредит на автомобиль', value: 'car-credit' },
-      { label: 'Кредит на путешествие', value: 'travel-credit' },
-      { label: 'Кредит на покупку земли', value: 'land-credit' },
-      { label: 'Кредит на покупку квартиры', value: 'flat-credit' }
-    ]
+    options: [...MOCK_SELECT_OPTIONS_REACT_SELECT]
   }
 }
 
@@ -95,18 +62,7 @@ export const IsNotSearchable: Story = {
     name: 'credit',
     label: 'Выберите кредит',
     size: 'md',
-    options: [
-      { label: 'Кредит наличными', value: 'cash-credit' },
-      { label: 'Автокредит', value: 'avto-credit' },
-      { label: 'Депозит', value: 'depozit' },
-      { label: 'Кредит на недвижимость', value: 'realty-credit' },
-      { label: 'Кредит на обучение', value: 'education-credit' },
-      { label: 'Кредит на бизнес', value: 'business-credit' },
-      { label: 'Кредит на автомобиль', value: 'car-credit' },
-      { label: 'Кредит на путешествие', value: 'travel-credit' },
-      { label: 'Кредит на покупку земли', value: 'land-credit' },
-      { label: 'Кредит на покупку квартиры', value: 'flat-credit' }
-    ],
+    options: [...MOCK_SELECT_OPTIONS_REACT_SELECT],
     isSearchable: false
   }
 }
@@ -119,17 +75,6 @@ export const Multi: Story = {
     label: 'Выберите кредит',
     size: 'md',
     isMulti: true,
-    options: [
-      { label: 'Кредит наличными', value: 'cash-credit' },
-      { label: 'Автокредит', value: 'avto-credit' },
-      { label: 'Депозит', value: 'depozit' },
-      { label: 'Кредит на недвижимость', value: 'realty-credit' },
-      { label: 'Кредит на обучение', value: 'education-credit' },
-      { label: 'Кредит на бизнес', value: 'business-credit' },
-      { label: 'Кредит на автомобиль', value: 'car-credit' },
-      { label: 'Кредит на путешествие', value: 'travel-credit' },
-      { label: 'Кредит на покупку земли', value: 'land-credit' },
-      { label: 'Кредит на покупку квартиры', value: 'flat-credit' }
-    ]
+    options: [...MOCK_SELECT_OPTIONS_REACT_SELECT]
   }
 }
