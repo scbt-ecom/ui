@@ -10,18 +10,32 @@ export interface IBannerButtonsGroupClasses {
 interface IBannerButtonsGroupProps {
   buttonsConfig: TButtonsConfig
   classes?: Partial<IBannerButtonsGroupClasses>
+  className?: string
 }
 
-export const BannerButtonsGroup = ({ buttonsConfig, classes }: IBannerButtonsGroupProps) => {
+export const BannerButtonsGroup = ({ buttonsConfig, classes, className }: IBannerButtonsGroupProps) => {
   const withSecondaryBtn = buttonsConfig?.secondary && buttonsConfig.secondary.children
 
   return (
-    <div className={cn('bottom-0 w-max mobile:absolute', { 'flex items-center gap-4': withSecondaryBtn }, classes?.group)}>
-      <Button intent='primary' {...buttonsConfig.primary} className={cn(classes?.primary)}>
+    <div
+      data-id='banner-buttons-group'
+      className={cn(
+        'grid-buttons-apply absolute bottom-6 flex w-full flex-col mobile:max-w-[328px] mobile:justify-self-center desktop:static desktop:flex-row',
+        { 'flex items-center gap-4': withSecondaryBtn },
+        classes?.group,
+        className
+      )}
+    >
+      <Button intent='primary' {...buttonsConfig.primary} isFull className={cn('desktop:max-w-[216px]', classes?.primary)}>
         {buttonsConfig.primary.children}
       </Button>
       {withSecondaryBtn && (
-        <Button intent='secondary' {...buttonsConfig?.secondary} className={cn(classes?.secondary)}>
+        <Button
+          intent='secondary'
+          {...buttonsConfig?.secondary}
+          isFull
+          className={cn('desktop:max-w-[216px]', classes?.secondary)}
+        >
           {buttonsConfig?.secondary?.children}
         </Button>
       )}
