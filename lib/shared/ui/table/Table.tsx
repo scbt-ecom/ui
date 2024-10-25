@@ -104,7 +104,6 @@ export const Table = <C extends TTableColumnCount>({
   classes
 }: ITable<C>) => {
   const titlesExist = tableHead && tableHead.length > 0 ? 'exist' : 'notExist'
-
   return (
     <ResponsiveContainer>
       <div className={cn('flex flex-col', classes?.tableRootWrapper)}>
@@ -127,10 +126,12 @@ export const Table = <C extends TTableColumnCount>({
           </ul>
 
           <ul className={cn('mb-4 flex flex-col', classes?.tableBodyContainer)}>
-            {tableRows.map((row) => (
-              <li className={cn(itemTableConfig({ columnCount, titlesExist }), classes?.tableBodyRow)}>
-                {row.map((ceil) => (
-                  <p className={cn(textTableConfig({ titlesExist, columnCount }), classes?.tableBodyCeil)}>{ceil.text}</p>
+            {tableRows.map((row, index) => (
+              <li key={index} className={cn(itemTableConfig({ columnCount, titlesExist }), classes?.tableBodyRow)}>
+                {row.map((ceil, index) => (
+                  <p key={index} className={cn(textTableConfig({ titlesExist, columnCount }), classes?.tableBodyCeil)}>
+                    {ceil.text}
+                  </p>
                 ))}
               </li>
             ))}
