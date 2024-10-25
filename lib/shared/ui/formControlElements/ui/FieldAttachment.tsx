@@ -15,6 +15,7 @@ interface IFieldAttachmentProps extends TFieldAttachment {
   onClickIcon?: (...args: unknown[]) => unknown
   onKeyDownIcon?: (event: React.KeyboardEvent) => unknown
   isSlider?: boolean
+  absolute?: boolean
 }
 
 export const FieldAttachment = ({
@@ -26,7 +27,8 @@ export const FieldAttachment = ({
   classes,
   swapPosition,
   onClickIcon,
-  onKeyDownIcon
+  onKeyDownIcon,
+  absolute = false
 }: IFieldAttachmentProps) => {
   const interactiveIconAttr = (onClickIcon || onKeyDownIcon) && {
     role: 'button',
@@ -47,6 +49,7 @@ export const FieldAttachment = ({
                 'mr-4 flex items-center gap-4',
                 { 'm-0': isTextarea },
                 { 'flex-row-reverse': swapPosition },
+                { 'absolute right-0 top-1/2 ml-1 -translate-y-1/2': absolute },
                 classes?.attachmentWrapper
               )}
             >

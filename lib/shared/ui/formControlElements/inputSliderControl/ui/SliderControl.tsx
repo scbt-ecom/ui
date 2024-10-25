@@ -1,7 +1,6 @@
 import * as React from 'react'
 import * as SliderPrimitive from '@radix-ui/react-slider'
 import { type IInputSliderCommonProps } from '../InputSliderControl'
-import { formatNumber, getMinMaxTextSlider } from '../model/helpers'
 import { cn } from '$/shared/utils'
 
 export interface ISliderControllProps extends IInputSliderCommonProps {
@@ -21,9 +20,7 @@ export type TSliderControlClasses = {
 }
 
 export const SliderControl = React.forwardRef<React.ElementRef<typeof SliderPrimitive.Root>, ISliderControllProps>(
-  ({ min, max, variant, classes, ...props }, ref) => {
-    const [start, end] = getMinMaxTextSlider(variant, min, max)
-
+  ({ min, max, classes, ...props }, ref) => {
     return (
       <div className={cn('absolute bottom-[-7px] w-full px-4', classes?.sliderWrapper)}>
         <SliderPrimitive.Root
@@ -33,12 +30,6 @@ export const SliderControl = React.forwardRef<React.ElementRef<typeof SliderPrim
           max={max}
           {...props}
         >
-          <span
-            className={cn('desk-body-regular-m absolute bottom-[-30px] left-[-10px] text-color-tetriary', classes?.spanLeft)}
-          >{`${formatNumber(min)} ${start}`}</span>
-          <span
-            className={cn('desk-body-regular-m absolute bottom-[-30px] right-[-10px] text-color-tetriary', classes?.spanRight)}
-          >{`${formatNumber(max)} ${end}`}</span>
           <SliderPrimitive.Track
             className={cn(
               'relative h-[2px] w-full grow overflow-hidden rounded-full bg-color-blue-grey-500',
