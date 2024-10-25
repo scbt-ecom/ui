@@ -1,9 +1,10 @@
+// Тут через алиасы конвиги тайлвинда не импортируй, иначе не будет работать
+import { extendsPreset, primaryPreset } from './lib/configs'
 import type { Config } from 'tailwindcss'
-import { tailwindConfigBase } from './lib/configs'
 
 const tailwindConfig: Config = {
   content: ['/index.html', './src/**/*.{js,ts,jsx,tsx,mdx}', './lib/**/*.{js,ts,jsx,tsx,mdx}'],
-  presets: [tailwindConfigBase]
+  presets: [extendsPreset, primaryPreset]
 }
 
 export default tailwindConfig
