@@ -20,7 +20,7 @@ export const BannerButtonsGroup = ({ buttonsConfig, classes, className }: IBanne
     <div
       data-id='banner-buttons-group'
       className={cn(
-        'grid-buttons-apply flex w-full flex-col mobile:max-w-[328px] mobile:justify-self-center desktop:flex-row',
+        'grid-buttons-apply absolute bottom-6 flex w-full flex-col mobile:max-w-[328px] mobile:justify-self-center desktop:static desktop:flex-row',
         { 'flex items-center gap-4': withSecondaryBtn },
         classes?.group,
         className
@@ -30,7 +30,12 @@ export const BannerButtonsGroup = ({ buttonsConfig, classes, className }: IBanne
         {buttonsConfig.primary.children}
       </Button>
       {withSecondaryBtn && (
-        <Button intent='secondary' {...buttonsConfig?.secondary} className={cn(classes?.secondary)}>
+        <Button
+          intent='secondary'
+          {...buttonsConfig?.secondary}
+          isFull
+          className={cn('desktop:max-w-[216px]', classes?.secondary)}
+        >
           {buttonsConfig?.secondary?.children}
         </Button>
       )}

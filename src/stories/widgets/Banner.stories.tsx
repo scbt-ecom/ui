@@ -3,7 +3,10 @@ import { Banner, PageHeader } from '$/widgets'
 import {
   mockBannerBase,
   mockBannerBaseFullImage,
-  mockBannerBaseFullImageWithAdvantages,
+  mockBannerBaseGradient,
+  mockBannerBaseGradientAdvantages,
+  mockBannerFullImageOnlyPrimaryButton,
+  mockBannerFullImageWithAdvantages,
   mockBannerOnlyPrimaryButton,
   mockWithAdvantages
 } from '$/widgets/banner/model/helpers'
@@ -54,11 +57,38 @@ export const BaseFullImage: Story = {
   )
 }
 
+export const FullImageOnlyPrimaryButton: Story = {
+  render: () => (
+    <>
+      <PageHeader variant='withButton' />
+      <Banner {...mockBannerFullImageOnlyPrimaryButton} />
+    </>
+  )
+}
+
 export const BaseFullImageWithAdvantages: Story = {
   render: () => (
     <>
       <PageHeader variant='withButton' />
-      <Banner {...mockBannerBaseFullImageWithAdvantages} />
+      <Banner {...mockBannerFullImageWithAdvantages} />
+    </>
+  )
+}
+
+export const BaseGradient: Story = {
+  render: () => (
+    <>
+      <PageHeader variant='withButton' />
+      <Banner {...mockBannerBaseGradient} />
+    </>
+  )
+}
+
+export const BaseGradientWithAdvantages: Story = {
+  render: () => (
+    <>
+      <PageHeader variant='withButton' />
+      <Banner {...mockBannerBaseGradientAdvantages} />
     </>
   )
 }
