@@ -49,7 +49,7 @@ export const Popover = ({
             {triggerElement}
           </PopoverPrimitive.Trigger>
         </div>
-        <PopoverPrimitive.Anchor />
+        {/* <PopoverPrimitive.Anchor /> */}
         <PopoverPrimitive.Portal>
           <PopoverPrimitive.Content
             className={cn(
@@ -68,7 +68,7 @@ export const Popover = ({
             <PopoverPrimitive.Close aria-label='Close' className='size-4 outline-0 outline-transparent'>
               <Icon name='general/close' className='size-4 cursor-pointer text-icon-blue-grey-600' />
             </PopoverPrimitive.Close>
-            <PopoverPrimitive.Arrow width={12} height={6} className={cn('fill-secondary-default', classes?.arrow)} />
+            <PopoverPrimitive.Arrow width={12} height={6} className={cn('!visible fill-secondary-default', classes?.arrow)} />
           </PopoverPrimitive.Content>
         </PopoverPrimitive.Portal>
       </PopoverPrimitive.Root>

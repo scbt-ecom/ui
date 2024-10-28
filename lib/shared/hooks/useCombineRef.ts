@@ -1,18 +1,17 @@
-import { type RefObject, useCallback } from 'react'
+import { type Ref, useCallback } from 'react'
+import { type RefCallBack } from 'react-hook-form'
 
-type TCombineRef<Target> = (element: Target) => void
+type TCombineRef<HTML> = (element: HTML) => void
 
-export const useCombineRef = <Target>(...refs: RefObject<HTMLElement>[]) => {
-  const combinedRef: TCombineRef<Target> = useCallback(
+export const useCombineRef = <HTML extends HTMLElement>(...refs: Array<Ref<HTML> | RefCallBack>) => {
+  const combinedRef: TCombineRef<HTML> = useCallback(
     (element) => {
       refs.forEach((ref) => {
         if (!ref) return
         if (typeof ref === 'function') {
-          // @ts-expect-error ts(2322)
           ref(element)
         } else {
-          // @ts-expect-error ts(2322)
-          // eslint-disable-next-line no-param-reassign
+          // @ts-expect-error Mutable ref?
           ref.current = element
         }
       })
