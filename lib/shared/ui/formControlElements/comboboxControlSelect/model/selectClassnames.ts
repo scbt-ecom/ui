@@ -1,11 +1,11 @@
-import { type MenuProps } from 'react-select'
-import { type TComboboxControlReactSelectPropsClasses } from './types'
+import { type MenuProps, type OptionProps } from 'react-select'
+import { type TComboboxControlReactSelectClasses } from './types'
 import { cn } from '$/shared/utils'
 
 export const selectClassNames = <State>(
   isMulti: boolean,
   disabled?: boolean,
-  classes?: Partial<TComboboxControlReactSelectPropsClasses>
+  classes?: Partial<TComboboxControlReactSelectClasses>
 ) => ({
   dropdownIndicator: () => cn('absolute top-1/2 right-4 !p-0 -translate-y-1/2', classes?.dropdownIndicator),
   indicatorsContainer: () => cn('', classes?.indicatorsContainer),
@@ -25,26 +25,28 @@ export const selectClassNames = <State>(
     ),
   container: () => cn('w-full !static', classes?.container),
   menuList: () => {
-    return cn('scrollHidden !customScrollbar-y !max-h-[246px] overflow-x-hidden p-2', { 'p-0': !isMulti }, classes?.menuList)
+    return cn('scrollHidden !customScrollbar-y !max-h-[246px] flex flex-col gap-[2px] overflow-x-hidden p-2', classes?.menuList)
   },
   menu: (state: MenuProps<State>) => {
     return cn(
-      'absolute top-14 transition-all z-10 mt-2 flex w-full flex-col rounded-md border border-solid border-blue-grey-700 bg-color-white p-2 transition-all empty:invisible  !shadow-[0px_0px_0px_0px_rgba(0,0,0,0)]',
+      'absolute !p-0 top-14 transition-all z-10 mt-2 flex w-full flex-col rounded-md border border-solid border-blue-grey-700 bg-color-white p-2 transition-all empty:invisible  !shadow-[0px_0px_0px_0px_rgba(0,0,0,0)]',
       { 'scale-100 visible opacity-100': state.selectProps.menuIsOpen },
       { 'scale-95 invisible opacity-0': !state.selectProps.menuIsOpen },
       classes?.menu
     )
   },
   group: () => cn('bg-color-positive z-100', classes?.group),
-  option: () =>
+  option: (state: OptionProps<State>) =>
     cn(
-      'flex !pl-9 cursor-pointer bg-color-initial text-color-initial items-center justify-between gap-2 active:!bg-color-blue-grey-200 rounded-sm px-3 py-3 hover:!bg-color-blue-grey-200 data-[disabled]:pointer-events-none data-[disabled]:!bg-color-blue-grey-100 data-[selected=true]:!bg-color-negative data-[disabled]:!text-color-disabled focus:!bg-color-blue-grey-200  active:!bg-color-blue-grey-200 hover:text-color-primary-hover',
+      'flex !pl-10 cursor-pointer bg-color-initial text-color-initial items-center justify-between gap-2 active:!bg-color-blue-grey-200 rounded-sm px-3 py-3 hover:!bg-color-blue-grey-200 data-[disabled]:pointer-events-none data-[disabled]:!bg-color-blue-grey-100 data-[selected=true]:!bg-color-negative data-[disabled]:!text-color-disabled focus:!bg-color-blue-grey-200  active:!bg-color-blue-grey-200 hover:text-color-primary-hover',
       { '!pl-2': !isMulti },
+      { '!bg-color-primary-tr-focus !text-color-primary-hover': state.isSelected },
+      { '!bg-color-primary-tr-focus !text-color-primary-hover': state.isFocused },
       classes?.option
     ),
   noOptionsMessage: () => cn('!desk-body-regular-m !text-color-tetriary', classes?.noOptionsMessage),
   singleValue: () => cn('!m-0', classes?.singleValue),
-  multiValue: () => cn('!bg-color-blue-grey-300 truncate max-w-[220px] !rounded-sm px-[8px] !m-0 py-[5px]', classes?.multiValue),
+  multiValue: () => cn('!bg-color-blue-grey-300 truncate max-w-[300px] !rounded-sm px-[8px] !m-0 py-[5px]', classes?.multiValue),
   multiValueLabel: () => cn('[&&]:desk-body-regular-l !p-0 pl-[6px] !text-color-secondary', classes?.multiValueLabel),
   multiValueRemove: () => cn('hover:!bg-color-transparent', classes?.multiValueRemove),
   placeholder: () =>

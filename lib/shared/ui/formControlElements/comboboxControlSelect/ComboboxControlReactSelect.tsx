@@ -6,7 +6,7 @@ import Select, { type GroupBase } from 'react-select'
 import { FieldContainer, MessageView } from '../ui'
 import { Label } from '../ui/Label'
 import { selectClassNames } from './model/selectClassnames'
-import { type TComboboxControlReactSelectPropsClasses } from './model/types'
+import { type TComboboxControlReactSelectClasses } from './model/types'
 import { DropdownIndicator, MultiValueRemove, Option } from './ui'
 import { cn } from '$/shared/utils'
 
@@ -29,7 +29,7 @@ export interface IComboboxControlReactSelectProps<T extends FieldValues, ValueTy
   isClearable?: boolean
   defaultValue?: ValueType
   noOptionsMessage?: string
-  classes?: Partial<TComboboxControlReactSelectPropsClasses>
+  classes?: Partial<TComboboxControlReactSelectClasses>
   disabled?: boolean
   isMulti?: boolean
   placeholder?: string
@@ -84,13 +84,6 @@ export const ComboboxControlReactSelect = <T extends FieldValues, ValueType>({
                   isSearchable={isSearchable}
                   ref={ref}
                   isDisabled={disabled}
-                  styles={{
-                    option: (baseStyles, state) => ({
-                      ...baseStyles,
-                      backgroundColor: state.isSelected ? 'bg-color-transparent' : 'bg-color-transparent',
-                      color: state.isSelected ? 'text-color-dark' : 'text-color-dark'
-                    })
-                  }}
                   isMulti={isMulti}
                   defaultValue={defaultValue}
                   isClearable={isClearable}

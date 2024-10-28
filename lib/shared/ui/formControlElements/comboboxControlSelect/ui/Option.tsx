@@ -13,7 +13,7 @@ export const Option = <Option,>({ isSelected, ...props }: OptionProps<Option>) =
     <div className='relative flex cursor-pointer items-center'>
       {props.isMulti && (
         <span
-          className={cn('absolute flex size-6 items-center justify-center rounded-sm border-2 border-blue-grey-700', {
+          className={cn('absolute left-1 flex size-6 items-center justify-center rounded-sm border-2 border-blue-grey-700', {
             'border-none bg-color-primary-default': isSelected
           })}
           onClick={handleClick}

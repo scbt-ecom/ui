@@ -1,7 +1,8 @@
 import { type IBannerProps } from '../../Banner'
 import money from '../../money.png'
 import { BannerButtonsGroup } from '../BannerButtonsGroup'
-import { cn, Heading, ResponsiveContainer } from '$/hybrid'
+import { Heading, ResponsiveContainer } from '$/shared/ui'
+import { cn } from '$/shared/utils'
 import { Advantages } from '$/widgets/Advantages'
 
 export const BannerWithSeparateImg = ({
