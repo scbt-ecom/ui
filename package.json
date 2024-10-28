@@ -20,6 +20,7 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint . --quiet",
+    "prettier": "prettier --write .",
     "test": "vitest",
     "preview": "vite preview",
     "start:sb": "storybook dev -p 6006 --no-open",

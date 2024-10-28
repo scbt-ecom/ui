@@ -1,6 +1,15 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { Banner, PageHeader } from '$/widgets'
-import { mockBannerBase, mockBannerOnlyPrimaryButton, mockWithAdvantages } from '$/widgets/banner/model/helpers'
+import {
+  mockBannerBase,
+  mockBannerBaseFullImage,
+  mockBannerBaseGradient,
+  mockBannerBaseGradientAdvantages,
+  mockBannerFullImageOnlyPrimaryButton,
+  mockBannerFullImageWithAdvantages,
+  mockBannerOnlyPrimaryButton,
+  mockWithAdvantages
+} from '$/widgets/banner/model/helpers'
 
 const meta = {
   title: 'WIDGETS/Banner',
@@ -35,6 +44,51 @@ export const WithAdvantages: Story = {
     <>
       <PageHeader variant='withButton' />
       <Banner {...mockWithAdvantages} />
+    </>
+  )
+}
+
+export const BaseFullImage: Story = {
+  render: () => (
+    <>
+      <PageHeader variant='withButton' />
+      <Banner {...mockBannerBaseFullImage} />
+    </>
+  )
+}
+
+export const FullImageOnlyPrimaryButton: Story = {
+  render: () => (
+    <>
+      <PageHeader variant='withButton' />
+      <Banner {...mockBannerFullImageOnlyPrimaryButton} />
+    </>
+  )
+}
+
+export const BaseFullImageWithAdvantages: Story = {
+  render: () => (
+    <>
+      <PageHeader variant='withButton' />
+      <Banner {...mockBannerFullImageWithAdvantages} />
+    </>
+  )
+}
+
+export const BaseGradient: Story = {
+  render: () => (
+    <>
+      <PageHeader variant='withButton' />
+      <Banner {...mockBannerBaseGradient} />
+    </>
+  )
+}
+
+export const BaseGradientWithAdvantages: Story = {
+  render: () => (
+    <>
+      <PageHeader variant='withButton' />
+      <Banner {...mockBannerBaseGradientAdvantages} />
     </>
   )
 }

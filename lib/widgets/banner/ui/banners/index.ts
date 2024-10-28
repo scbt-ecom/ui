@@ -1,0 +1,1 @@
+export { BannerWithSeparateImg } from './BannerWithSeparateImg'
