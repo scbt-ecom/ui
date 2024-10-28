@@ -15,7 +15,7 @@ import {
   allowedTextStyles
 } from '../../shared/constants'
 
-export const primaryPreset: Omit<Config, 'content'> = {
+export const resetPreset: Omit<Config, 'content'> = {
   theme: {
     screens: {
       mobile: { max: '1187px' },

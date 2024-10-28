@@ -1,2 +1,2 @@
 export { tailwindConfigBase } from './tailwindConfigBase'
-export { primaryPreset, extendsPreset } from './tailwindPresets'
+export { resetPreset, extendsPreset } from './tailwindPresets'

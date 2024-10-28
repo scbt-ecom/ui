@@ -1,2 +1,2 @@
 export { extendsPreset } from './extendsPreset'
-export { primaryPreset } from './resetPreset'
+export { resetPreset } from './resetPreset'
