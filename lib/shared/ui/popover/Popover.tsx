@@ -29,12 +29,12 @@ export interface IPopoverProps extends IPopoverContentProps {
 export const Popover = ({
   triggerElement,
   classes,
-  sideOffset,
+  sideOffset = 4,
   alignOffset,
   align,
   side,
   defaultOpen = false,
-  avoidCollisions = false,
+  avoidCollisions = true,
   headLine,
   children,
   arrowPadding,
@@ -49,7 +49,6 @@ export const Popover = ({
             {triggerElement}
           </PopoverPrimitive.Trigger>
         </div>
-        {/* <PopoverPrimitive.Anchor /> */}
         <PopoverPrimitive.Portal>
           <PopoverPrimitive.Content
             className={cn(

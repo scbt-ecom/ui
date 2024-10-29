@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { Popover } from '$/shared/ui'
 
 const meta = {
-  title: 'PROBLEMS/Popover',
+  title: 'INTERACTIVE/Popover',
   component: Popover,
   parameters: {
     layout: 'centered'
@@ -14,7 +14,6 @@ export default meta
 
 type Story = StoryObj<typeof meta>
 
-// eslint-disable-next-line operator-linebreak
 const popoverContent =
   'Полная стоимость кредита - это сумма, которую вы заплатите за кредит вместе с процентами и другими комиссиями.'
 
