@@ -5,7 +5,6 @@ import { Controller, type FieldValues } from 'react-hook-form'
 import type { TAdditionalInputClassesWithAttachment, TControlledInputProps, TInputCommonProps } from '../model'
 import { FieldAttachment, FieldContainer, FieldWrapper, MessageView } from '../ui'
 import { useInputPassword } from './model/hooks'
-import { useCombineRef } from '$/client'
 import { cn } from '$/shared/utils'
 
 export interface InputControlProps<T extends FieldValues> extends TControlledInputProps<T>, TInputCommonProps {
@@ -13,24 +12,21 @@ export interface InputControlProps<T extends FieldValues> extends TControlledInp
   variant?: 'base' | 'password'
 }
 
-export const InputControl = React.forwardRef(function InputControl<T extends FieldValues>(
-  {
-    label,
-    size = 'full',
-    helperText,
-    control,
-    classes,
-    badge,
-    icon,
-    swapPosition,
-    disabled,
-    variant,
-    onClickIcon,
-    onKeyDownIcon,
-    ...props
-  }: InputControlProps<T>,
-  ref: React.Ref<HTMLInputElement>
-) {
+export const InputControl = <T extends FieldValues>({
+  label,
+  size = 'full',
+  helperText,
+  control,
+  classes,
+  badge,
+  icon,
+  swapPosition,
+  disabled,
+  variant,
+  onClickIcon,
+  onKeyDownIcon,
+  ...props
+}: InputControlProps<T>) => {
   const inputId = React.useId()
   const isPassport = variant === 'password'
   const { displayPasswordIcon, passportIsVisible, handleShowPassword } = useInputPassword(onClickIcon)
@@ -40,9 +36,6 @@ export const InputControl = React.forwardRef(function InputControl<T extends Fie
       control={control}
       name={props.name}
       render={({ field: { onChange, ref: controlledRef, value }, fieldState: { error } }) => {
-        // eslint-disable-next-line react-hooks/rules-of-hooks
-        const combinedRef = useCombineRef(controlledRef, ref)
-
         return (
           <FieldContainer size={size} classes={classes}>
             <FieldWrapper
@@ -55,7 +48,7 @@ export const InputControl = React.forwardRef(function InputControl<T extends Fie
             >
               <>
                 <input
-                  ref={combinedRef}
+                  ref={controlledRef}
                   aria-invalid={error?.message ? 'true' : 'false'}
                   type={isPassport && !passportIsVisible ? 'password' : 'text'}
                   className={cn(
@@ -91,4 +84,4 @@ export const InputControl = React.forwardRef(function InputControl<T extends Fie
       }}
     />
   )
-})
+}
