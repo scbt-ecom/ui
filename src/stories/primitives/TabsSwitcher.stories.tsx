@@ -1,5 +1,6 @@
+import { useState } from 'react'
 import { type Meta, type StoryObj } from '@storybook/react'
-import { type ITabRenderContent, TabsSwitcher } from '$/shared/ui'
+import { Button, type ITabRenderContent, TabsSwitcher } from '$/shared/ui'
 
 const meta = {
   title: 'Base/TabsSwitcher',
@@ -12,7 +13,7 @@ const meta = {
 
 export default meta
 
-type Story = StoryObj<typeof meta>
+type Story = StoryObj<typeof TabsSwitcher>
 
 const TABS_MOCKS: ITabRenderContent = {
   triggers: [
@@ -28,7 +29,17 @@ const TABS_MOCKS: ITabRenderContent = {
 }
 
 export const Base: Story = {
-  args: {
-    renderContent: TABS_MOCKS
+  render: () => {
+    const [activeTab, setTab] = useState('2')
+    const changeTab = (tab: string) => setTab(tab)
+
+    return (
+      <div className='flex flex-col gap-6'>
+        <Button size='sm' onClick={() => changeTab('3')}>
+          Активный таб 3
+        </Button>
+        <TabsSwitcher value={activeTab} onChangeTab={changeTab} renderContent={TABS_MOCKS} />
+      </div>
+    )
   }
 }

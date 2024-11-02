@@ -1,5 +1,5 @@
 import { type Meta, type StoryObj } from '@storybook/react'
-import { mockDefaultValues, mockSchema, StorybookFormProvider } from '@/storybookHelpers'
+import { MOCK_SELECT_OPTIONS_REACT_SELECT, mockDefaultValues, mockSchema, StorybookFormProvider } from '@/storybookHelpers'
 import { ComboboxControl } from '$/shared/ui'
 
 const meta = {
@@ -27,17 +27,54 @@ export const Base: Story = {
   args: {
     name: 'credit',
     label: 'Выберите кредит',
-    size: 'lg',
-    badge: '+25%'
+    size: 'md',
+    options: [...MOCK_SELECT_OPTIONS_REACT_SELECT]
   }
 }
 
-// const selectedValues: IOptions[] = Array.isArray(controlledValue) ? controlledValue : []
-// const displayValues = multiple ? selectedValues : controlledValue
+export const WithIcon: Story = {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  args: {
+    name: 'credit',
+    label: 'Выберите кредит',
+    size: 'md',
+    options: [...MOCK_SELECT_OPTIONS_REACT_SELECT]
+  }
+}
 
-// const filteredPeople =
-//   controlledValue === ''
-//     ? suggestionsOptions
-//     : suggestionsOptions.filter(({ value }) => {
-//         return value?.toLowerCase().includes(displayValues?.toLowerCase())
-//       })
+export const Disabled: Story = {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  args: {
+    name: 'credit',
+    label: 'Выберите кредит',
+    size: 'md',
+    disabled: true,
+    options: [...MOCK_SELECT_OPTIONS_REACT_SELECT]
+  }
+}
+
+export const IsNotSearchable: Story = {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  args: {
+    name: 'credit',
+    label: 'Выберите кредит',
+    size: 'md',
+    options: [...MOCK_SELECT_OPTIONS_REACT_SELECT],
+    isSearchable: false
+  }
+}
+
+export const Multi: Story = {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  args: {
+    name: 'credit',
+    label: 'Выберите кредит',
+    size: 'md',
+    isMulti: true,
+    options: [...MOCK_SELECT_OPTIONS_REACT_SELECT]
+  }
+}

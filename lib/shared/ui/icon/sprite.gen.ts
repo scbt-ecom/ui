@@ -2,8 +2,9 @@ export interface SpritesMap {
   arrows: 'arrowCircle' | 'arrowLink' | 'arrowRight'
   brandLogos: 'logoBlack' | 'logoBusiness' | 'logoGray' | 'logoInsurance' | 'logoMain' | 'logoWhite'
   files: 'border' | 'borderError' | 'documentFilled' | 'documentOutline' | 'upload'
-  general: 'calendar' | 'check' | 'close' | 'edit' | 'hiddenEye' | 'showEye'
+  general: 'calendar' | 'check' | 'close' | 'edit' | 'hiddenEye' | 'plus' | 'showEye'
   info: 'warningCircle'
+  social: 'classmates' | 'telegram' | 'vk'
 }
 export const SPRITES_META: {
   [Key in keyof SpritesMap]: {
@@ -131,6 +132,11 @@ export const SPRITES_META: {
         width: 20,
         height: 18
       },
+      plus: {
+        viewBox: '0 0 16 16',
+        width: 16,
+        height: 16
+      },
       showEye: {
         viewBox: '0 0 20 14',
         width: 20,
@@ -145,6 +151,26 @@ export const SPRITES_META: {
         viewBox: '0 0 20 20',
         width: 20,
         height: 20
+      }
+    }
+  },
+  social: {
+    filePath: 'social.svg',
+    items: {
+      classmates: {
+        viewBox: '0 0 9 15',
+        width: 9,
+        height: 15
+      },
+      telegram: {
+        viewBox: '0 0 15 13',
+        width: 15,
+        height: 13
+      },
+      vk: {
+        viewBox: '0 0 16 9',
+        width: 16,
+        height: 9
       }
     }
   }

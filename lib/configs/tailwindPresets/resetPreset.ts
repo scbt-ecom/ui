@@ -12,7 +12,8 @@ import {
   allowedLineHeight,
   allowedStrokeColors,
   allowedTextColors,
-  allowedTextStyles
+  allowedTextStyles,
+  allowedZIndex
 } from '../../shared/constants'
 
 export const resetPreset: Omit<Config, 'content'> = {
@@ -44,12 +45,12 @@ export const resetPreset: Omit<Config, 'content'> = {
       md: '0 12px 20px 0 rgba(0, 33, 87, 0.10)',
       lg: '0 16px 24px 0 rgba(0, 33, 87, 0.16)'
     },
+    zIndex: allowedZIndex,
     extend: {
       bgGradientDeg: allowedBackgroundDeg
     }
   },
   plugins: [
-    // eslint-disable-next-line global-require
     tailwindAnimation,
     plugin(({ addComponents }) => {
       addComponents(allowedTextStyles)

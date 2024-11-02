@@ -14,6 +14,7 @@ export * from './shared/ui/PhoneView'
 export * from './shared/ui/Loader'
 export * from './shared/ui/ProgressBar'
 export * from './shared/ui/Skeleton'
+export * from './shared/ui/notification'
 
 // Utils
 export * from './shared/utils'

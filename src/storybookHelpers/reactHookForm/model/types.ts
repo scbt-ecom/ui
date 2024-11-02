@@ -8,7 +8,6 @@ import type {
   InputControlProps,
   InputSliderControlProps,
   IRadioControlProps,
-  ISelectControlProps,
   ISwitchControlProps,
   ITextareaControlProps
 } from '$/shared/ui/formControlElements'
@@ -20,48 +19,50 @@ export enum EnumFieldType {
   CHECKBOX = 'checkbox',
   RADIO = 'radio',
   SWITCH = 'switch',
-  SELECT = 'select',
   TEXTAREA = 'textarea',
   CALENDAR = 'calendar',
   SLIDER = 'slider',
   UPLOADER = 'uploader'
+  // EDITOR = 'editor'
 }
 
-type TControlledInput<T extends FieldValues> = Omit<InputControlProps<T>, 'control'> & { fieldType: EnumFieldType.INPUT }
-type TControlledInputMask<T extends FieldValues> = Omit<InputControlMaskProps<T>, 'control'> & { fieldType: EnumFieldType.MASK }
-type TControlledInputDadata<T extends FieldValues> = Omit<IDadataInputControlProps<T>, 'control'> & {
+export type TControlledInput<T extends FieldValues> = Omit<InputControlProps<T>, 'control'> & { fieldType: EnumFieldType.INPUT }
+export type TControlledInputMask<T extends FieldValues> = Omit<InputControlMaskProps<T>, 'control'> & {
+  fieldType: EnumFieldType.MASK
+}
+export type TControlledInputDadata<T extends FieldValues> = Omit<IDadataInputControlProps<T>, 'control'> & {
   fieldType: EnumFieldType.DADATA
 }
-type TControlledInputCheckbox<T extends FieldValues> = Omit<ICheckboxControlProps<T>, 'control'> & {
+export type TControlledInputCheckbox<T extends FieldValues> = Omit<ICheckboxControlProps<T>, 'control'> & {
   fieldType: EnumFieldType.CHECKBOX
 }
-type TControlledInputRadio<T extends FieldValues> = Omit<IRadioControlProps<T>, 'control'> & {
+export type TControlledInputRadio<T extends FieldValues> = Omit<IRadioControlProps<T>, 'control'> & {
   fieldType: EnumFieldType.RADIO
 }
 
-type TControlledInputSwitch<T extends FieldValues> = Omit<ISwitchControlProps<T>, 'control'> & {
+export type TControlledInputSwitch<T extends FieldValues> = Omit<ISwitchControlProps<T>, 'control'> & {
   fieldType: EnumFieldType.SWITCH
 }
 
-type TControlledInputSelect<T extends FieldValues> = Omit<ISelectControlProps<T>, 'control'> & {
-  fieldType: EnumFieldType.SELECT
-}
-
-type TControlledInputSlider<T extends FieldValues> = Omit<InputSliderControlProps<T>, 'control'> & {
+export type TControlledInputSlider<T extends FieldValues> = Omit<InputSliderControlProps<T>, 'control'> & {
   fieldType: EnumFieldType.SLIDER
 }
 
-type TControlledInputTextarea<T extends FieldValues> = Omit<ITextareaControlProps<T>, 'control'> & {
+export type TControlledInputTextarea<T extends FieldValues> = Omit<ITextareaControlProps<T>, 'control'> & {
   fieldType: EnumFieldType.TEXTAREA
 }
 
-type TControlledInputCalendar<T extends FieldValues> = Omit<ICalendarControlProps<T>, 'control'> & {
+export type TControlledInputCalendar<T extends FieldValues> = Omit<ICalendarControlProps<T>, 'control' | 'setValue' | 'watch'> & {
   fieldType: EnumFieldType.CALENDAR
 }
 
-type TControlledInputUploader<T extends FieldValues> = Omit<IInputControlUploaderProps<T>, 'control'> & {
+export type TControlledInputUploader<T extends FieldValues> = Omit<IInputControlUploaderProps<T>, 'control'> & {
   fieldType: EnumFieldType.UPLOADER
 }
+
+// type TControlledInputEditor<T extends FieldValues> = Omit<IEditorControlProps<T>, 'control'> & {
+//   fieldType: EnumFieldType.EDITOR
+// }
 
 export type TStorybookFieldConfig<T extends FieldValues> =
   | TControlledInputMask<T>
@@ -70,8 +71,8 @@ export type TStorybookFieldConfig<T extends FieldValues> =
   | TControlledInputCheckbox<T>
   | TControlledInputRadio<T>
   | TControlledInputSwitch<T>
-  | TControlledInputSelect<T>
   | TControlledInputSlider<T>
   | TControlledInputTextarea<T>
   | TControlledInputCalendar<T>
   | TControlledInputUploader<T>
+// | TControlledInputEditor<T>

@@ -1,128 +1,131 @@
 'use client'
 
 import * as React from 'react'
-import { Controller, type FieldValues } from 'react-hook-form'
-import { Combobox, ComboboxInput, ComboboxOption, ComboboxOptions } from '@headlessui/react'
-import { type TControlledInputProps, type TInputCommonProps } from '../model'
-import { FieldAttachment, FieldContainer, FieldWrapper, MessageView } from '../ui'
-import { CustomOption, type IComboboxOption } from './ui/CustomOption'
+import { type Control, Controller, type FieldValues, type Path } from 'react-hook-form'
+import Select, { type DropdownIndicatorProps, type GroupBase, type MultiValueRemoveProps, type OptionProps } from 'react-select'
+import { FieldContainer, MessageView } from '../ui'
+import { Label } from '../ui/Label'
+import { selectClassNames } from './model/selectClassnames'
+import {
+  type TComboboxControlClasses,
+  type TComboboxOptionClasses,
+  type TDropdownIndicatorClasses,
+  type TMultiValueRemoveClasses
+} from './model/types'
+import { ComboboxOption, DropdownIndicator, MultiValueRemove } from './ui'
 import { cn } from '$/shared/utils'
 
-export interface IComboboxControlProps<T extends FieldValues> extends TControlledInputProps<T>, TInputCommonProps {
-  classes: any
+type TSelectVariant = 'primary' | 'secondary'
+
+export interface SelectOption<ValueType> {
+  value: ValueType
+  label: string
 }
 
-const suggestionsOptions: IComboboxOption[] = [
-  { optionValue: 'Кредит наличными' },
-  { optionValue: 'Кредит под залог недвижимости' },
-  { optionValue: 'Кредит под залог авто' },
-  { optionValue: 'Кредит на карту' },
-  { optionValue: 'Кредит на авто' }
-]
+export interface IComboboxControlProps<T extends FieldValues, ValueType> {
+  name: Path<T>
+  control: Control<T>
+  options: readonly (ValueType | GroupBase<ValueType>)[]
+  label: string
+  size?: 'sm' | 'md' | 'lg' | 'full'
+  helperText?: string
+  marker?: boolean
+  variant?: TSelectVariant
+  isClearable?: boolean
+  defaultValue?: ValueType
+  noOptionsMessage?: string
+  disabled?: boolean
+  isMulti?: boolean
+  placeholder?: string
+  onClickIcon?: (...args: unknown[]) => unknown
+  onKeyDownIcon?: (event: React.KeyboardEvent) => unknown
+  isSearchable?: boolean
+  classes?: Partial<TComboboxControlClasses>
+}
 
-const filteredOptions = (controlledValue: string) =>
-  suggestionsOptions?.filter(({ optionValue }) => optionValue?.toLowerCase().includes(controlledValue?.toLowerCase()))
-
-export const ComboboxControl = <T extends FieldValues>({
+export const ComboboxControl = <T extends FieldValues, ValueType>({
+  options,
   control,
-  helperText,
-  size = 'full',
+  defaultValue,
+  variant = 'primary',
+  isClearable = false,
   label,
   disabled,
-  badge,
-  icon,
-  swapPosition,
-  onClickIcon,
-  onKeyDownIcon,
+  placeholder = 'Выберите несколько значений',
+  helperText,
+  noOptionsMessage = 'Нет результатов поиска',
+  size = 'full',
   classes,
-  multiple = false,
+  isMulti = false,
+  isSearchable,
   ...props
-}: IComboboxControlProps<T>) => {
-  const inputId = React.useId()
-
+}: IComboboxControlProps<T, ValueType>) => {
+  const selectId = React.useId()
   return (
-    <Controller
-      control={control}
-      name={props.name}
-      render={({ field: { onChange, ref, name, value: controlledValue }, fieldState: { error } }) => {
-        // const selectedValues: IComboboxOption[] = Array.isArray(controlledValue) ? controlledValue : []
-        // const displayValues = multiple ? selectedValues : controlledValue
-
-        return (
-          <FieldContainer size={size} classes={classes}>
-            <Combobox multiple={multiple} value={controlledValue} onChange={onChange}>
-              <FieldWrapper
-                fieldId={inputId}
-                label={label}
-                classes={classes}
-                disabled={disabled}
-                value={controlledValue}
-                error={!!error?.message}
+    <div>
+      <Controller
+        control={control}
+        name={props.name}
+        render={({ field: { onChange, ref, name, value }, fieldState: { error } }) => {
+          return (
+            <FieldContainer classes={classes} size={size}>
+              <div
+                className={cn(
+                  'relative flex rounded-sm border border-solid border-transparent bg-color-blue-grey-100 transition-colors hover:bg-color-blue-grey-200 focus:outline-blue-grey-800 active:bg-color-blue-grey-100 group-focus-within:border-blue-grey-800',
+                  { '!border-negative': error },
+                  { '!bg-color-blue-grey-100': disabled }
+                )}
               >
-                <>
-                  {/* {selectedValues.length > 0 && (
-                    <div className='flex-1'>
-                      <ul className='flex items-center gap-2 flex-wrap'>
-                        {selectedValues.map((optionValue) => (
-                          <li
-                            className='text-color-secondary desk-body-regular-l bg-color-blue-grey-300 px-2 py-2 text-nowrap rounded-sm'
-                            key={optionValue}
-                          >
-                            {optionValue}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )} */}
-                  <ComboboxInput
-                    className={cn(
-                      'desk-body-regular-l z-10 h-[56px] w-full rounded-md bg-color-transparent px-4 pt-5 text-color-dark outline-none transition-all',
-                      classes?.input
-                    )}
-                    ref={ref}
-                    name={name}
-                    displayValue={(optionSelectedValue: string) => optionSelectedValue}
-                    onChange={(event) => onChange(event.target.value)}
-                  />
-                  <FieldAttachment
-                    onClickIcon={onClickIcon}
-                    onKeyDownIcon={onKeyDownIcon}
-                    badge={badge}
-                    icon={icon}
-                    error={!!error?.message}
-                    classes={classes}
-                    swapPosition={swapPosition}
-                  />
-                </>
-              </FieldWrapper>
+                {!isMulti && <Label disabled={disabled} classes={classes} fieldId={selectId} label={label} value={value} />}
+                <Select
+                  inputId={selectId}
+                  placeholder={isMulti ? placeholder : ''}
+                  classNamePrefix={variant}
+                  instanceId={name}
+                  hideSelectedOptions={false}
+                  closeMenuOnSelect={!isMulti}
+                  components={{
+                    Option: (props: OptionProps) => (
+                      <ComboboxOption {...props} classes={classes as Partial<TComboboxOptionClasses>} />
+                    ),
+                    MultiValueRemove: (props: MultiValueRemoveProps) => (
+                      <MultiValueRemove {...props} classes={classes as Partial<TMultiValueRemoveClasses>} />
+                    ),
+                    DropdownIndicator: (props: DropdownIndicatorProps) => (
+                      <DropdownIndicator {...props} classes={classes as Partial<TDropdownIndicatorClasses>} />
+                    )
+                  }}
+                  //TODO: FIX CLASSNAMES FOR ALL ValueType | GroupBase<ValueType
+                  classNames={selectClassNames<any>(isMulti, disabled, classes)}
+                  isSearchable={isSearchable}
+                  ref={ref}
+                  isDisabled={disabled}
+                  isMulti={isMulti}
+                  defaultValue={defaultValue}
+                  isClearable={isClearable}
+                  noOptionsMessage={() => noOptionsMessage}
+                  options={options}
+                  value={options.find((option) => (option as SelectOption<ValueType>).value === value)}
+                  onChange={(option) => {
+                    if (isMulti) {
+                      onChange((option as SelectOption<ValueType>[])?.map((c) => c.value))
+                    } else {
+                      onChange((option as SelectOption<ValueType>)?.value)
+                    }
+                  }}
+                  {...props}
+                />
+              </div>
               <MessageView
                 className={cn(classes?.message)}
                 intent={error?.message ? 'error' : 'simple'}
                 text={error?.message || helperText}
                 disabled={disabled}
               />
-              <ComboboxOptions
-                transition
-                className={cn(
-                  'scrollHidden absolute top-14 z-10 mt-2 flex w-full flex-col rounded-md border border-solid border-blue-grey-700 bg-color-white p-2 transition-all empty:invisible data-[closed]:scale-95 data-[closed]:opacity-0'
-                )}
-              >
-                <div className='customScrollbar-y !max-h-[246px] overflow-x-hidden p-2'>
-                  {filteredOptions(controlledValue)?.length > 0 ? (
-                    <>
-                      {filteredOptions(controlledValue)?.map((option) => <CustomOption key={option.optionValue} {...option} />)}
-                    </>
-                  ) : (
-                    <ComboboxOption value='' className='desk-body-regular-m text-color-tetriary'>
-                      Ничего не найдено
-                    </ComboboxOption>
-                  )}
-                </div>
-              </ComboboxOptions>
-            </Combobox>
-          </FieldContainer>
-        )
-      }}
-    />
+            </FieldContainer>
+          )
+        }}
+      />
+    </div>
   )
 }

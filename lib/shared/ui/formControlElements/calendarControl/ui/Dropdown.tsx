@@ -23,7 +23,7 @@ export const Dropdown = <Value extends string | number>({
   classes
 }: IDropdownProps<Value>) => {
   return (
-    <div className={cn('z-20 w-full', classes?.dropdownWrapper)}>
+    <div className={cn('z-10 w-full', classes?.dropdownWrapper)}>
       <div
         role='button'
         tabIndex={0}

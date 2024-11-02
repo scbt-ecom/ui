@@ -1,4 +1,4 @@
-import { type ReactElement } from 'react'
+import * as React from 'react'
 import { cn } from '../utils'
 
 type IProgressBarClasses = {
@@ -11,8 +11,8 @@ type IProgressBarClasses = {
 }
 
 export interface IProgressBarProps {
-  topContent?: ReactElement
-  bottomContent?: ReactElement
+  topContent?: React.ReactElement
+  bottomContent?: React.ReactElement
   progress: number
   maxPercent?: number
   classes?: Partial<IProgressBarClasses>
@@ -26,12 +26,12 @@ export const ProgressBar = ({ topContent, bottomContent, progress, maxPercent = 
       <div className={cn('relative h-2 w-[328xp] rounded-md bg-color-blue-grey-100 desktop:w-[524px]', classes?.progressBar)}>
         <div
           style={{ width: `${progress}%` }}
-          className={cn('relative z-[4] h-2 rounded-md bg-color-positive transition-all', classes?.progress)}
+          className={cn('relative z-10 h-2 rounded-md bg-color-positive transition-all', classes?.progress)}
         ></div>
         <span
           style={{ maxWidth: `${maxPercent}%` }}
           className={cn(
-            'progressBar-apply absolute top-1/2 z-[2] h-full w-full -translate-y-1/2 animate-progress-loader rounded-md',
+            'progressBar-apply absolute top-1/2 z-1 h-full w-full -translate-y-1/2 animate-progress-loader rounded-md',
             classes?.loader
           )}
         ></span>

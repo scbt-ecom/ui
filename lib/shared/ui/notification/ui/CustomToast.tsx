@@ -5,7 +5,7 @@ import { Icon } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
 const toastContainerConfig = cva(
-  'flex justify-between items-start gap-4 shadow-sm p-4 rounded-sm max-w-[328px] desktop:max-w-[576px]',
+  'flex justify-between items-center gap-4 shadow-sm p-4 rounded-sm max-w-[328px] desktop:max-w-[576px]',
   {
     variants: {
       intent: {
@@ -25,7 +25,7 @@ export type ICustomToastProps = INotificationProps & TContainerConfig & Toast
 export const CustomToast = ({ intent, text, customIcon, closure = true, content, id }: ICustomToastProps) => {
   return (
     <div className={cn(toastContainerConfig({ intent }))}>
-      <div className='flex items-start gap-2'>
+      <div className='flex items-center gap-2'>
         <span className='size-6'>{customIcon}</span>
         <div className='desk-body-regular-m text-color-white'>{text}</div>
       </div>

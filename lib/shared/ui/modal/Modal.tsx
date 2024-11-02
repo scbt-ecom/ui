@@ -29,7 +29,7 @@ export const Modal = ({ title, children, isModalOpen, closeModal, classes }: IMo
               tabIndex={-1}
               onClick={closeModal}
               className={cn(
-                'fixed inset-0 z-[200] flex h-screen w-screen items-center justify-center bg-color-overlay',
+                'fixed inset-0 z-1000 flex h-screen w-screen items-center justify-center bg-color-overlay',
                 classes?.overlay
               )}
               onKeyDown={(event) => {
