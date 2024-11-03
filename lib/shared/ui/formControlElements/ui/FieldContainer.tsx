@@ -5,7 +5,7 @@ import { cva, type VariantProps } from 'class-variance-authority'
 import type { TFieldContainerClasses } from '../model/classes-types'
 import { cn } from '$/shared/utils'
 
-const fieldContainerConfig = cva('relative flex flex-col group', {
+const fieldContainerConfig = cva('relative min-w-[360px] flex flex-col group', {
   variants: {
     intent: {
       clear: '!w-full min-w-[140px]',

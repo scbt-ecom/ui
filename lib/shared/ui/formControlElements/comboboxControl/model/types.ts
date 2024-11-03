@@ -1,29 +1,30 @@
-import type { TFieldWrapperClasses } from '../../model'
+import { type TAdditionalInputPrimitiveClasses } from '../../model'
 
 export type TComboboxControlClasses = Partial<TComboboxControlClassesCommon> &
-  Partial<TFieldWrapperClasses> &
+  Partial<TAdditionalInputPrimitiveClasses> &
   Partial<TComboboxChildClasses> & {}
 
 export type TComboboxControlClassesCommon = {
-  message: string
+  messageCombobox: string
   selectWrapper: string
   dropdownIndicator: string
   indicatorsContainer: string
-  input: string
+  inputCombobox: string
   valueContainer: string
-  control: string
-  container: string
+  controlCombobox: string
+  containerCombobox: string
   menuList: string
-  menu: string
-  group: string
+  menuCombobox: string
+  groupCombobox: string
   menuPortal: string
-  option: string
+  optionCombobox: string
   noOptionsMessage: string
   singleValue: string
   multiValue: string
   multiValueLabel: string
   multiValueRemove: string
-  placeholder: string
+  placeholderCombobox: string
+  indicatorSeparator?: string
 }
 
 export type TComboboxChildClasses = TMultiValueRemoveClasses | TComboboxOptionClasses | TDropdownIndicatorClasses
