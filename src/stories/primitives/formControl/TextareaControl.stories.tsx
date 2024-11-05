@@ -1,3 +1,4 @@
+import { useFormContext } from 'react-hook-form'
 import type { Meta, StoryObj } from '@storybook/react'
 import { mockDefaultValues, mockSchema, StorybookFormProvider } from '@/storybookHelpers'
 import { TextareaControl } from '$/shared/ui'
@@ -15,15 +16,18 @@ const meta = {
       </StorybookFormProvider>
     )
   ],
+  render: ({ ...args }) => {
+    const { control } = useFormContext()
+    const methods = { control }
+    return <TextareaControl {...args} {...methods} />
+  },
   tags: ['autodocs']
 } satisfies Meta<typeof TextareaControl>
 
 export default meta
-type Story = StoryObj<typeof meta>
+type Story = StoryObj<typeof TextareaControl>
 
 export const Base: Story = {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   args: {
     name: 'description',
     label: 'Описание к блоку',
@@ -32,8 +36,6 @@ export const Base: Story = {
 }
 
 export const WithPlaceholder: Story = {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   args: {
     name: 'description',
     label: 'Описание к блоку',
@@ -43,8 +45,6 @@ export const WithPlaceholder: Story = {
 }
 
 export const Disabled: Story = {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   args: {
     name: 'description',
     label: 'Описание к блоку',

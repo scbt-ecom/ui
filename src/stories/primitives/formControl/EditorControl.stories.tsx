@@ -1,3 +1,4 @@
+import { useFormContext } from 'react-hook-form'
 import { type Meta, type StoryObj } from '@storybook/react'
 import { mockDefaultValues, mockSchema, StorybookFormProvider } from '@/storybookHelpers'
 import { EditorControl } from '$/shared/ui'
@@ -15,13 +16,16 @@ const meta = {
         <Story />
       </StorybookFormProvider>
     )
-  ]
+  ],
+  render: ({ ...args }) => {
+    const { control } = useFormContext()
+    const methods = { control }
+    return <EditorControl {...args} {...methods} />
+  }
 } satisfies Meta<typeof EditorControl>
 
 export default meta
-type Story = StoryObj<typeof meta>
+type Story = StoryObj<typeof EditorControl>
 export const Base: Story = {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   args: {}
 }

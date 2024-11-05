@@ -8,8 +8,6 @@ export const setButtonLoaderIntent = (intent: TButtonIntents) => {
 
     case 'primary':
     case 'negative':
-    case 'admin-accent':
-    case 'admin-primary':
       return 'primary'
 
     default:

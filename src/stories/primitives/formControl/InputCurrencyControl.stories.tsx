@@ -1,3 +1,4 @@
+import { useFormContext } from 'react-hook-form'
 import { type Meta, type StoryObj } from '@storybook/react'
 import { mockDefaultValues, mockSchema, StorybookFormProvider } from '@/storybookHelpers'
 import { InputCurrencyControl } from '$/shared/ui'
@@ -15,15 +16,18 @@ const meta = {
       </StorybookFormProvider>
     )
   ],
+  render: ({ ...args }) => {
+    const { control } = useFormContext()
+    const methods = { control }
+    return <InputCurrencyControl {...args} {...methods} />
+  },
   tags: ['autodocs']
 } satisfies Meta<typeof InputCurrencyControl>
 
 export default meta
-type Story = StoryObj<typeof meta>
+type Story = StoryObj<typeof InputCurrencyControl>
 
 export const Rubles: Story = {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   args: {
     name: 'currency',
     label: 'Выберите валюту',
@@ -33,8 +37,6 @@ export const Rubles: Story = {
 }
 
 export const Dollars: Story = {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   args: {
     name: 'currency',
     label: 'Выберите валюту',
@@ -44,8 +46,6 @@ export const Dollars: Story = {
 }
 
 export const Euro: Story = {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   args: {
     name: 'currency',
     label: 'Выберите валюту',
@@ -55,8 +55,6 @@ export const Euro: Story = {
 }
 
 export const Dirhams: Story = {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   args: {
     name: 'currency',
     label: 'Выберите валюту',
@@ -66,8 +64,6 @@ export const Dirhams: Story = {
 }
 
 export const Yuan: Story = {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   args: {
     name: 'currency',
     label: 'Выберите валюту',

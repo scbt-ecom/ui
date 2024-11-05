@@ -1,4 +1,5 @@
-import type { FieldValues } from 'react-hook-form'
+import type { DefaultValues, FieldValues } from 'react-hook-form'
+import type { Schema, TypeOf } from 'zod'
 import { type IInputControlUploaderProps } from '$/shared/ui'
 import type {
   ICalendarControlProps,
@@ -12,7 +13,14 @@ import type {
   ITextareaControlProps
 } from '$/shared/ui/formControlElements'
 
-export enum EnumFieldType {
+export type TStorybookFieldsMapperProps<T extends FieldValues> = {
+  fields: TStorybookFieldConfig<T>[]
+  defaultValues?: DefaultValues<TypeOf<Schema>>
+  btnSubmit?: string
+  btnReset?: string
+}
+
+export const enum EnumFieldType {
   INPUT = 'input',
   MASK = 'mask',
   DADATA = 'dadata',

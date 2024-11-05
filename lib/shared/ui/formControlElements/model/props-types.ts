@@ -2,8 +2,11 @@ import type * as React from 'react'
 import type { Control, FieldValues, Path } from 'react-hook-form'
 import type { TFieldContainerConfig } from '../ui/FieldContainer'
 
-export type TInputCommonProps = Omit<React.ComponentProps<'input'>, 'name' | 'placeholder' | 'size' | 'type' | 'defaultValue'>
-export type TTextareaCommonProps = Omit<React.ComponentProps<'textarea'>, 'name' | 'size' | 'type' | 'defaultValue'>
+export type TInputCommonProps = Omit<
+  React.ComponentProps<'input'>,
+  'name' | 'placeholder' | 'size' | 'type' | 'defaultValue' | 'className'
+>
+export type TTextareaCommonProps = Omit<React.ComponentProps<'textarea'>, 'name' | 'size' | 'type' | 'defaultValue' | 'className'>
 
 type TFieldControlledProps<T extends FieldValues> = {
   name: Path<T>

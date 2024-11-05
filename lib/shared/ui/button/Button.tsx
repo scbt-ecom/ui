@@ -16,10 +16,7 @@ const buttonConfig = cva(
         ghost:
           'bg-transparent text-color-primary-default hover:bg-color-primary-tr-hover hover:text-color-primary-hover focus:bg-color-primary-tr-focus focus:outline-primary-focus active:bg-color-primary-tr-pressed active:text-color-primary-hover disabled:text-color-primary-disabled disabled:bg-transparent',
         negative:
-          'bg-color-secondary-default text-color-white outline-offset-[3px] hover:bg-color-secondary-hover disabled:bg-color-secondary-disabled active:bg-color-secondary-hover focus:bg-color-secondary-default focus:outline-primary-focus',
-        'admin-accent': 'bg-color-purple text-color-white hover:bg-color-purple-hover hover:shadow-md',
-        'admin-primary':
-          'transition-none bg-color-dark text-color-white hover:bg-color-transparent border-transparent border hover:border-dark hover:text-color-dark hover:shadow-md'
+          'bg-color-secondary-default text-color-white outline-offset-[3px] hover:bg-color-secondary-hover disabled:bg-color-secondary-disabled active:bg-color-secondary-hover focus:bg-color-secondary-default focus:outline-primary-focus'
       },
       size: {
         sm: 'h-10',
@@ -72,7 +69,7 @@ const buttonConfig = cva(
 )
 
 type TButtonConfig = VariantProps<typeof buttonConfig>
-export type TButtonIntents = 'primary' | 'secondary' | 'ghost' | 'negative' | 'admin-accent' | 'admin-primary'
+export type TButtonIntents = 'primary' | 'secondary' | 'ghost' | 'negative'
 export interface IButtonProps extends ComponentProps<'button'>, TButtonConfig {
   iconLeft?: ReactElement
   iconRight?: ReactElement

@@ -1,3 +1,4 @@
+import { useFormContext } from 'react-hook-form'
 import { type Meta, type StoryObj } from '@storybook/react'
 import { mockDefaultValues, mockSchema, StorybookFormProvider } from '@/storybookHelpers'
 import { SwitchControl } from '$/shared/ui'
@@ -15,15 +16,18 @@ const meta = {
         <Story />
       </StorybookFormProvider>
     )
-  ]
+  ],
+  render: ({ ...args }) => {
+    const { control } = useFormContext()
+    const methods = { control }
+    return <SwitchControl {...args} {...methods} />
+  }
 } satisfies Meta<typeof SwitchControl>
 
 export default meta
-type Story = StoryObj<typeof meta>
+type Story = StoryObj<typeof SwitchControl>
 
 export const Base: Story = {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   args: {
     name: 'percent',
     label: 'Увеличенный процент'
@@ -31,8 +35,6 @@ export const Base: Story = {
 }
 
 export const Disabled: Story = {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   args: {
     name: 'percent',
     label: 'Увеличенный процент',
@@ -41,8 +43,6 @@ export const Disabled: Story = {
 }
 
 export const WithHelperText: Story = {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   args: {
     name: 'percent',
     label: 'Увеличенный процент',

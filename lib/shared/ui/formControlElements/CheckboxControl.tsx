@@ -34,7 +34,7 @@ export const CheckboxControl = <T extends FieldValues>({
       render={({ field: { onChange, value, ref, name }, fieldState: { error } }) => {
         return (
           <div className={cn('flex max-w-[450px] flex-col', classes?.container)}>
-            <div className={cn('flex items-center gap-4', classes?.wrapper)}>
+            <div className={cn('flex items-center gap-2', classes?.wrapper)}>
               <div
                 className={cn(
                   'flex size-10 items-center justify-center rounded-full transition-all focus-within:bg-color-primary-tr-focus hover:bg-color-primary-tr-hover',

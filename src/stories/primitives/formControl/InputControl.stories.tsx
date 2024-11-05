@@ -1,3 +1,4 @@
+import { useFormContext } from 'react-hook-form'
 import type { Meta, StoryObj } from '@storybook/react'
 import { mockDefaultValues, mockSchema, StorybookFormProvider } from '@/storybookHelpers'
 import { Icon, InputControl } from '$/shared/ui'
@@ -15,6 +16,12 @@ const meta = {
       </StorybookFormProvider>
     )
   ],
+  render: (args) => {
+    const { control } = useFormContext()
+    const methods = { control }
+
+    return <InputControl {...args} {...methods} />
+  },
   tags: ['autodocs']
 } satisfies Meta<typeof InputControl>
 

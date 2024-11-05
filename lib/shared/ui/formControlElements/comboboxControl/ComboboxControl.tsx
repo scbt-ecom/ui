@@ -42,6 +42,7 @@ export interface IComboboxControlProps<T extends FieldValues, ValueType> {
   isSearchable?: boolean
   classes?: Partial<TComboboxControlClasses>
   customChange?: (...args: unknown[]) => void
+  testProps: any
 }
 
 export const ComboboxControl = <T extends FieldValues, ValueType>({
@@ -60,9 +61,12 @@ export const ComboboxControl = <T extends FieldValues, ValueType>({
   isMulti = false,
   isSearchable,
   customChange,
+  testProps,
   ...props
 }: IComboboxControlProps<T, ValueType>) => {
   const selectId = React.useId()
+
+  if (testProps) console.warn('@testProps')
 
   return (
     <Controller

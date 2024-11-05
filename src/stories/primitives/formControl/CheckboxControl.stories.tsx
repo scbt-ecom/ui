@@ -1,3 +1,4 @@
+import { useFormContext } from 'react-hook-form'
 import type { Meta, StoryObj } from '@storybook/react'
 import { mockDefaultValues, mockSchema, StorybookFormProvider } from '@/storybookHelpers'
 import { CheckboxControl } from '$/shared/ui'
@@ -9,6 +10,11 @@ const meta = {
     layout: 'centered'
   },
   tags: ['autodocs'],
+  render: ({ ...args }) => {
+    const { control } = useFormContext()
+    const methods = { control }
+    return <CheckboxControl {...args} {...methods} />
+  },
   decorators: [
     (Story) => (
       <StorybookFormProvider validationSchema={mockSchema} defaultValues={mockDefaultValues}>
@@ -19,7 +25,7 @@ const meta = {
 } satisfies Meta<typeof CheckboxControl>
 
 export default meta
-type Story = StoryObj<typeof meta>
+type Story = StoryObj<typeof CheckboxControl>
 
 const checkboxLabel = (
   <>
@@ -35,8 +41,6 @@ const checkboxLabel = (
 )
 
 export const Base: Story = {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   args: {
     label: checkboxLabel,
     name: 'condition'
@@ -44,8 +48,6 @@ export const Base: Story = {
 }
 
 export const WithHelperText: Story = {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   args: {
     label: checkboxLabel,
     name: 'condition',
@@ -54,8 +56,6 @@ export const WithHelperText: Story = {
 }
 
 export const Disabled: Story = {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   args: {
     label: checkboxLabel,
     name: 'condition',

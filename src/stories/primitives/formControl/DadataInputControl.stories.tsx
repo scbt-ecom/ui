@@ -1,3 +1,4 @@
+import { useFormContext } from 'react-hook-form'
 import type { Meta, StoryObj } from '@storybook/react'
 import { mockDefaultValues, mockSchema, StorybookFormProvider } from '@/storybookHelpers'
 import { DadataInputControl } from '$/shared/ui'
@@ -15,15 +16,18 @@ const meta = {
       </StorybookFormProvider>
     )
   ],
+  render: ({ ...args }) => {
+    const { control } = useFormContext()
+    const methods = { control }
+    return <DadataInputControl {...args} {...methods} />
+  },
   tags: ['autodocs']
 } satisfies Meta<typeof DadataInputControl>
 
 export default meta
-type Story = StoryObj<typeof meta>
+type Story = StoryObj<typeof DadataInputControl>
 
 export const DadataFio: Story = {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   args: {
     name: 'fio',
     label: 'ФИО',
@@ -34,8 +38,6 @@ export const DadataFio: Story = {
 }
 
 export const DadataAddress: Story = {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   args: {
     name: 'address',
     label: 'Адрес',
@@ -46,8 +48,6 @@ export const DadataAddress: Story = {
 }
 
 export const DadataCountry: Story = {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   args: {
     name: 'country',
     label: 'Страна',
@@ -58,8 +58,6 @@ export const DadataCountry: Story = {
 }
 
 export const DadataAuto: Story = {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   args: {
     name: 'auto',
     label: 'Авто',
@@ -70,8 +68,6 @@ export const DadataAuto: Story = {
 }
 
 export const DadataOrganization: Story = {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   args: {
     name: 'organization',
     label: 'Организация',

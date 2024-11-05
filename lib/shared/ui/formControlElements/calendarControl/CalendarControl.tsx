@@ -74,7 +74,7 @@ export const CalendarControl = <T extends FieldValues>({
       name={props.name}
       render={({ field: { onChange, value }, fieldState: { error } }) => {
         return (
-          <div className={cn('relative', classes?.rootWrapper)} ref={calendarWrapperRef}>
+          <div className={cn('relative w-full', classes?.rootWrapper)} ref={calendarWrapperRef}>
             <AnimatePresence>
               {isCalendarOpen && (
                 <motion.div
