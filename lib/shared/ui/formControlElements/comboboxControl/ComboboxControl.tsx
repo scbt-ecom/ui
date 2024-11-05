@@ -41,6 +41,7 @@ export interface IComboboxControlProps<T extends FieldValues, ValueType> {
   onKeyDownIcon?: (event: React.KeyboardEvent) => unknown
   isSearchable?: boolean
   classes?: Partial<TComboboxControlClasses>
+  customChange?: (...args: unknown[]) => void
 }
 
 export const ComboboxControl = <T extends FieldValues, ValueType>({
@@ -58,9 +59,11 @@ export const ComboboxControl = <T extends FieldValues, ValueType>({
   classes,
   isMulti = false,
   isSearchable,
+  customChange,
   ...props
 }: IComboboxControlProps<T, ValueType>) => {
   const selectId = React.useId()
+
   return (
     <Controller
       control={control}
@@ -105,6 +108,9 @@ export const ComboboxControl = <T extends FieldValues, ValueType>({
                 options={options}
                 value={options.find((option) => (option as SelectOption<ValueType>).value === value)}
                 onChange={(option) => {
+                  if (customChange) {
+                    customChange(option)
+                  }
                   if (isMulti) {
                     onChange((option as SelectOption<ValueType>[])?.map((c) => c.value))
                   } else {
