@@ -52,7 +52,7 @@ const linkArrowConfig = cva('size-6', {
 
 type TCustomLinkConfig = VariantProps<typeof customLinkConfig>
 
-export interface ICustomLinkProps extends TCustomLinkConfig, ComponentProps<'a'> {
+export interface ICustomLinkProps extends TCustomLinkConfig, Omit<ComponentProps<'a'>, 'className'> {
   Component?: 'a'
   icon?: TAllowedIcons
 }

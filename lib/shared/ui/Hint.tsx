@@ -4,6 +4,7 @@ import * as React from 'react'
 import type { TooltipContentProps } from '@radix-ui/react-tooltip'
 import * as TooltipPrimitive from '@radix-ui/react-tooltip'
 import { useClickOutside } from '../hooks'
+import { useDevice } from '../hooks/useMediaQuery'
 import { cn } from '$/shared/utils'
 
 type TAdditionalClasses = {
@@ -39,12 +40,13 @@ export const Hint = ({
 }: IHintProps) => {
   const [open, setOpen] = React.useState(false)
   const contentRef = React.useRef<HTMLDivElement>(null)
+  const { isMobile } = useDevice()
 
   useClickOutside(contentRef, () => setOpen(false))
   return (
     <TooltipPrimitive.Provider>
       <TooltipPrimitive.Root open={open} onOpenChange={setOpen} defaultOpen={defaultOpen} delayDuration={delayDuration}>
-        <div onClick={() => setOpen(true)}>
+        <div onClick={() => setOpen(isMobile ? true : false)}>
           <TooltipPrimitive.Trigger asChild className={cn('cursor-pointer', classes?.trigger)}>
             {triggerElement}
           </TooltipPrimitive.Trigger>
