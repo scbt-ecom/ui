@@ -15,7 +15,7 @@ export const useDevice = () => {
   const isDesktopQuery = '(min-width: 1188px)'
   const subscribeMobile = useCallback(
     (callback: () => void) => {
-      const matchMedia = window.matchMedia(isMobileQuery)
+      const matchMedia = globalThis.matchMedia(isMobileQuery)
       matchMedia.addEventListener('change', callback)
       return () => {
         matchMedia.removeEventListener('change', callback)
@@ -25,7 +25,7 @@ export const useDevice = () => {
   )
   const subscribeDesktop = useCallback(
     (callback: () => void) => {
-      const matchMedia = window.matchMedia(isDesktopQuery)
+      const matchMedia = globalThis.matchMedia(isDesktopQuery)
       matchMedia.addEventListener('change', callback)
       return () => {
         matchMedia.removeEventListener('change', callback)
@@ -33,8 +33,8 @@ export const useDevice = () => {
     },
     [isDesktopQuery]
   )
-  const getSnapshotMobile = () => window.matchMedia(isMobileQuery).matches
-  const getSnapshotDesktop = () => window.matchMedia(isDesktopQuery).matches
+  const getSnapshotMobile = () => globalThis.matchMedia(isMobileQuery).matches
+  const getSnapshotDesktop = () => globalThis.matchMedia(isDesktopQuery).matches
   return {
     isMobile: useSyncExternalStore(subscribeMobile, getSnapshotMobile, getServerSnapshot),
     isDesktop: useSyncExternalStore(subscribeDesktop, getSnapshotDesktop, getServerSnapshot)
