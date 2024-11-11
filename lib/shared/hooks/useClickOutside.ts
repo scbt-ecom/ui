@@ -12,9 +12,9 @@ export const useClickOutside = (ref: React.RefObject<HTMLElement>, callback: () 
 
   React.useEffect(() => {
     if (isClient) {
-      document.addEventListener('mousedown', handleClickOutside)
+      globalThis?.document?.addEventListener('mousedown', handleClickOutside)
       return () => {
-        document.removeEventListener('mousedown', handleClickOutside)
+        globalThis?.document.removeEventListener('mousedown', handleClickOutside)
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

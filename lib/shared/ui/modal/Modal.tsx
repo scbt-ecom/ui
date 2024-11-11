@@ -26,7 +26,7 @@ export const Modal = ({
   children,
   isModalOpen,
   isPortal = true,
-  portalContainer = document?.body,
+  portalContainer = globalThis?.document?.body,
   closeModal,
   classes
 }: IModalProps) => {
