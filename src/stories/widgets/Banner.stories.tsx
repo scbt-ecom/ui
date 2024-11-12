@@ -10,7 +10,7 @@ import {
   mockBannerOnlyPrimaryButton,
   mockWithAdvantages
 } from '$/widgets/banner/model/helpers'
-
+// test commit
 const meta = {
   title: 'WIDGETS/Banner',
   component: Banner,
