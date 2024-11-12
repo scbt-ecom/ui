@@ -1,0 +1,5 @@
+export { SocialLinks, type TSocialLinksClasses } from './SocialLinks'
+export { PhonesBlock, type TPhoneBlockClasses } from './PhonesBlock'
+export { NavLinks, type TNavigationLinksClasses } from './NavLinks'
+export { Ligal, type TLigalClasses } from './Ligal'
+export { Copyright, type TCopyrightClasses } from './Copyright'

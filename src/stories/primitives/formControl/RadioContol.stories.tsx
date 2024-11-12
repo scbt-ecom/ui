@@ -1,3 +1,4 @@
+import { useFormContext } from 'react-hook-form'
 import type { Meta, StoryObj } from '@storybook/react'
 import { MOCK_RADIO_GROUP, mockDefaultValues, mockSchema, StorybookFormProvider } from '@/storybookHelpers'
 import { RadioControl } from '$/shared/ui'
@@ -15,15 +16,18 @@ const meta = {
         <Story />
       </StorybookFormProvider>
     )
-  ]
+  ],
+  render: ({ ...args }) => {
+    const { control } = useFormContext()
+    const methods = { control }
+    return <RadioControl {...args} {...methods} />
+  }
 } satisfies Meta<typeof RadioControl>
 
 export default meta
-type Story = StoryObj<typeof meta>
+type Story = StoryObj<typeof RadioControl>
 
 export const Base: Story = {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   args: {
     name: 'sex',
     radioItemsGroup: MOCK_RADIO_GROUP
@@ -31,8 +35,6 @@ export const Base: Story = {
 }
 
 export const WithGroupName: Story = {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   args: {
     name: 'sex',
     groupName: 'Выбери пол:',
@@ -41,8 +43,6 @@ export const WithGroupName: Story = {
 }
 
 export const WithHelperText: Story = {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   args: {
     name: 'sex',
     helperText: 'Укажите свой пол, как в паспорте ',
@@ -51,8 +51,6 @@ export const WithHelperText: Story = {
 }
 
 export const WithHorizontalOrientation: Story = {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   args: {
     name: 'sex',
     groupName: 'Выберите пол',

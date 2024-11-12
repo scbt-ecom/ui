@@ -35,51 +35,53 @@ export const InputControl = <T extends FieldValues>({
     <Controller
       control={control}
       name={props.name}
-      render={({ field: { onChange, ref: controlledRef, value }, fieldState: { error } }) => (
-        <FieldContainer size={size} classes={classes}>
-          <FieldWrapper
-            fieldId={inputId}
-            label={label}
-            classes={classes}
-            disabled={disabled}
-            value={value}
-            error={!!error?.message}
-          >
-            <>
-              <input
-                aria-invalid={error?.message ? 'true' : 'false'}
-                ref={controlledRef}
-                type={isPassport && !passportIsVisible ? 'password' : 'text'}
-                className={cn(
-                  'desk-body-regular-l h-[56px] w-full rounded-md bg-color-transparent px-4 pt-5 text-color-dark outline-none transition-all',
-                  classes?.input
-                )}
-                id={inputId}
-                value={value}
-                onChange={onChange}
-                disabled={disabled}
-                {...props}
-              />
-              <FieldAttachment
-                onClickIcon={isPassport ? handleShowPassword : onClickIcon}
-                onKeyDownIcon={onKeyDownIcon}
-                badge={badge}
-                icon={isPassport ? displayPasswordIcon() : icon}
-                error={!!error?.message}
-                classes={classes}
-                swapPosition={swapPosition}
-              />
-            </>
-          </FieldWrapper>
+      render={({ field: { onChange, ref: controlledRef, value }, fieldState: { error } }) => {
+        return (
+          <FieldContainer size={size} classes={classes}>
+            <FieldWrapper
+              fieldId={inputId}
+              label={label}
+              classes={classes}
+              disabled={disabled}
+              value={value}
+              error={!!error?.message}
+            >
+              <>
+                <input
+                  ref={controlledRef}
+                  aria-invalid={error?.message ? 'true' : 'false'}
+                  type={isPassport && !passportIsVisible ? 'password' : 'text'}
+                  className={cn(
+                    'desk-body-regular-l h-[56px] w-full rounded-md bg-color-transparent px-4 pt-5 text-color-dark outline-none transition-all',
+                    classes?.input
+                  )}
+                  id={inputId}
+                  value={value}
+                  onChange={onChange}
+                  disabled={disabled}
+                  {...props}
+                />
+                <FieldAttachment
+                  onClickIcon={isPassport ? handleShowPassword : onClickIcon}
+                  onKeyDownIcon={onKeyDownIcon}
+                  badge={badge}
+                  icon={isPassport ? displayPasswordIcon() : icon}
+                  error={!!error?.message}
+                  classes={classes}
+                  swapPosition={swapPosition}
+                />
+              </>
+            </FieldWrapper>
 
-          <MessageView
-            className={cn(classes?.message)}
-            intent={error?.message ? 'error' : 'simple'}
-            text={error?.message || helperText}
-            disabled={disabled}
-          />
-        </FieldContainer>
-      )}
+            <MessageView
+              className={cn(classes?.message)}
+              intent={error?.message ? 'error' : 'simple'}
+              text={error?.message || helperText}
+              disabled={disabled}
+            />
+          </FieldContainer>
+        )
+      }}
     />
   )
 }

@@ -1,6 +1,7 @@
 'use client'
 
 import * as React from 'react'
+import { isClient } from '../utils'
 
 export const useClickOutside = (ref: React.RefObject<HTMLElement>, callback: () => void) => {
   const handleClickOutside = (event: MouseEvent) => {
@@ -10,9 +11,11 @@ export const useClickOutside = (ref: React.RefObject<HTMLElement>, callback: () 
   }
 
   React.useEffect(() => {
-    document.addEventListener('mousedown', handleClickOutside)
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside)
+    if (isClient) {
+      globalThis?.document?.addEventListener('mousedown', handleClickOutside)
+      return () => {
+        globalThis?.document.removeEventListener('mousedown', handleClickOutside)
+      }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ref, callback])

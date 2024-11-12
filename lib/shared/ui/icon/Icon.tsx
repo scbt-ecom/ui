@@ -17,7 +17,7 @@ const getIconMeta = <Key extends keyof SpritesMap>(name: IconName<Key>) => {
       [iconName]: { viewBox, width, height }
     }
   } = SPRITES_META[spriteName]
-  // eslint-disable-next-line no-nested-ternary
+
   const axis = width === height ? 'xy' : width > height ? 'x' : 'y'
 
   return { filePath, iconName, viewBox, axis }
@@ -35,7 +35,7 @@ export const Icon = ({ name, className, ...props }: IconProps) => {
       data-axis={axis}
       {...props}
     >
-      <use href={`sprites/${filePath}#${iconName}`} />
+      <use href={`/sprites/${filePath}#${iconName}`} />
     </svg>
   )
 }

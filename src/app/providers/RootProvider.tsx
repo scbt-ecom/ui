@@ -1,10 +1,10 @@
 import type { IProviderProps } from './model/types'
-import { ToasterProvider } from './ui'
+import { NotificationProvider } from '$/shared/ui'
 
 export const RootProvider = ({ children }: IProviderProps) => {
   return (
     <>
-      <ToasterProvider />
+      <NotificationProvider />
       {children}
     </>
   )

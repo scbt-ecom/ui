@@ -1,5 +1,6 @@
+import { useFormContext } from 'react-hook-form'
 import { type Meta, type StoryObj } from '@storybook/react'
-import { mockDefaultValues, mockSchema, StorybookFormProvider } from '@/storybookHelpers'
+import { MOCK_SELECT_OPTIONS_REACT_SELECT, mockDefaultValues, mockSchema, StorybookFormProvider } from '@/storybookHelpers'
 import { ComboboxControl } from '$/shared/ui'
 
 const meta = {
@@ -15,29 +16,52 @@ const meta = {
       </StorybookFormProvider>
     )
   ],
+  render: ({ ...args }) => {
+    const { control } = useFormContext()
+    const methods = { control }
+    return <ComboboxControl {...args} {...methods} />
+  },
   tags: ['autodocs']
 } satisfies Meta<typeof ComboboxControl>
 
 export default meta
-type Story = StoryObj<typeof meta>
+type Story = StoryObj<typeof ComboboxControl>
 
 export const Base: Story = {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   args: {
     name: 'credit',
     label: 'Выберите кредит',
-    size: 'lg',
-    badge: '+25%'
+    size: 'md',
+    options: MOCK_SELECT_OPTIONS_REACT_SELECT
   }
 }
 
-// const selectedValues: IOptions[] = Array.isArray(controlledValue) ? controlledValue : []
-// const displayValues = multiple ? selectedValues : controlledValue
+export const Disabled: Story = {
+  args: {
+    name: 'credit',
+    label: 'Выберите кредит',
+    size: 'md',
+    disabled: true,
+    options: [...MOCK_SELECT_OPTIONS_REACT_SELECT]
+  }
+}
 
-// const filteredPeople =
-//   controlledValue === ''
-//     ? suggestionsOptions
-//     : suggestionsOptions.filter(({ value }) => {
-//         return value?.toLowerCase().includes(displayValues?.toLowerCase())
-//       })
+export const IsNotSearchable: Story = {
+  args: {
+    name: 'credit',
+    label: 'Выберите кредит',
+    size: 'md',
+    options: [...MOCK_SELECT_OPTIONS_REACT_SELECT],
+    isSearchable: false
+  }
+}
+
+export const Multi: Story = {
+  args: {
+    name: 'credit',
+    label: 'Выберите кредит',
+    size: 'md',
+    isMulti: true,
+    options: [...MOCK_SELECT_OPTIONS_REACT_SELECT]
+  }
+}

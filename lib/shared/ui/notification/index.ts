@@ -1,1 +1,1 @@
-export { Notification } from './Notification'
+export { Notification, type INotificationProps } from './Notification'

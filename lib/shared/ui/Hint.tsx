@@ -3,6 +3,8 @@
 import * as React from 'react'
 import type { TooltipContentProps } from '@radix-ui/react-tooltip'
 import * as TooltipPrimitive from '@radix-ui/react-tooltip'
+import { useClickOutside } from '../hooks'
+import { useDevice } from '../hooks/useMediaQuery'
 import { cn } from '$/shared/utils'
 
 type TAdditionalClasses = {
@@ -36,26 +38,34 @@ export const Hint = ({
   classes,
   ...contentProps
 }: IHintProps) => {
+  const [open, setOpen] = React.useState(false)
+  const contentRef = React.useRef<HTMLDivElement>(null)
+  const { isMobile } = useDevice()
+
+  useClickOutside(contentRef, () => setOpen(false))
   return (
     <TooltipPrimitive.Provider>
-      <TooltipPrimitive.Root defaultOpen={defaultOpen} delayDuration={delayDuration}>
-        <TooltipPrimitive.Trigger asChild className={cn('cursor-pointer', classes?.trigger)}>
-          {triggerElement}
-        </TooltipPrimitive.Trigger>
-        <TooltipPrimitive.Content
-          onPointerDownOutside={(event) => event.preventDefault()}
-          className={cn(
-            'desk-body-regular-m w-48 origin-center animate-scale-in rounded-sm bg-color-white p-4 text-color-dark shadow-sm',
-            classes?.content
-          )}
-          sideOffset={sideOffset}
-          align={align}
-          side={side}
-          {...contentProps}
-        >
-          {children}
-          <TooltipPrimitive.Arrow width={12} height={6} className={cn('fill-white', classes?.arrow)} />
-        </TooltipPrimitive.Content>
+      <TooltipPrimitive.Root open={open} onOpenChange={setOpen} defaultOpen={defaultOpen} delayDuration={delayDuration}>
+        <div onClick={() => setOpen(isMobile ? true : false)}>
+          <TooltipPrimitive.Trigger asChild className={cn('cursor-pointer', classes?.trigger)}>
+            {triggerElement}
+          </TooltipPrimitive.Trigger>
+          <TooltipPrimitive.Content
+            onPointerDownOutside={(event) => event.preventDefault()}
+            className={cn(
+              'desk-body-regular-m w-48 origin-center animate-scale-in rounded-sm bg-color-white p-4 text-color-dark shadow-sm',
+              classes?.content
+            )}
+            sideOffset={sideOffset}
+            align={align}
+            side={side}
+            ref={contentRef}
+            {...contentProps}
+          >
+            {children}
+            <TooltipPrimitive.Arrow width={12} height={6} className={cn('fill-white', classes?.arrow)} />
+          </TooltipPrimitive.Content>
+        </div>
       </TooltipPrimitive.Root>
     </TooltipPrimitive.Provider>
   )

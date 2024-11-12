@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { Popover } from '$/shared/ui'
 
 const meta = {
-  title: 'PROBLEMS/Popover',
+  title: 'INTERACTIVE/Popover',
   component: Popover,
   parameters: {
     layout: 'centered'
@@ -14,9 +14,9 @@ export default meta
 
 type Story = StoryObj<typeof meta>
 
-// eslint-disable-next-line operator-linebreak
-const popoverContent =
-  'Полная стоимость кредита - это сумма, которую вы заплатите за кредит вместе с процентами и другими комиссиями.'
+const popoverContent = (
+  <p>Полная стоимость кредита - это сумма, которую вы заплатите за кредит вместе с процентами и другими комиссиями</p>
+)
 
 const triggerElement = (
   <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>

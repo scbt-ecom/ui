@@ -1,3 +1,4 @@
+import { useFormContext } from 'react-hook-form'
 import { type Meta, type StoryObj } from '@storybook/react'
 import { mockDefaultValues, mockSchema, StorybookFormProvider } from '@/storybookHelpers'
 import { CalendarControl, Icon } from '$/shared/ui'
@@ -15,14 +16,19 @@ const meta = {
         <Story />
       </StorybookFormProvider>
     )
-  ]
-} satisfies Meta<typeof CalendarControl>
+  ],
+  render: (args) => {
+    const { watch, control, setValue } = useFormContext()
+    const methods = { watch, control, setValue }
 
+    return <CalendarControl {...args} {...methods} />
+  }
+} satisfies Meta<typeof CalendarControl>
 export default meta
-type Story = StoryObj<typeof meta>
+
+type Story = StoryObj<typeof CalendarControl>
+
 export const Base: Story = {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   args: {
     name: 'calendar',
     label: 'Дата рождения',

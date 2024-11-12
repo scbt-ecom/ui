@@ -34,7 +34,7 @@ const buttonConfig = cva(
 
 type TButtonProps = VariantProps<typeof buttonConfig>
 
-export interface IButtonIconProps extends ComponentProps<'button'>, TButtonProps {
+export interface IButtonIconProps extends Omit<ComponentProps<'button'>, 'className'>, TButtonProps {
   children: ReactElement
   classes?: Partial<TButtonClasses>
 }

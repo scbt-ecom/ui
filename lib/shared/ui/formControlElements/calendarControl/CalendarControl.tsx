@@ -1,7 +1,7 @@
 'use client'
 
 import * as React from 'react'
-import { Controller, type FieldValues, useFormContext } from 'react-hook-form'
+import { Controller, type FieldValues, type Path, type PathValue, type UseFormSetValue, type UseFormWatch } from 'react-hook-form'
 import { PatternFormat } from 'react-number-format'
 import { format } from 'date-fns'
 import { AnimatePresence, motion } from 'framer-motion'
@@ -22,6 +22,8 @@ export interface ICalendarControlProps<T extends FieldValues> extends TControlle
   disabled?: boolean
   onClickIcon?: (...args: unknown[]) => unknown
   defaultValue?: string
+  setValue: UseFormSetValue<T>
+  watch: UseFormWatch<T>
 }
 
 const today = format(new Date(), 'dd.MM.yyyy')
@@ -41,11 +43,12 @@ export const CalendarControl = <T extends FieldValues>({
   swapPosition,
   onClickIcon,
   defaultValue = today,
+  watch,
+  setValue,
   ...props
 }: ICalendarControlProps<T>) => {
   const inputId = React.useId()
-  const methods = useFormContext()
-  const calendarValue = methods.watch(props.name)
+  const calendarValue = watch(props.name)
 
   const calendarWrapperRef = React.useRef<HTMLDivElement | null>(null)
   const {
@@ -71,7 +74,7 @@ export const CalendarControl = <T extends FieldValues>({
       name={props.name}
       render={({ field: { onChange, value }, fieldState: { error } }) => {
         return (
-          <div className={cn('relative', classes?.rootWrapper)} ref={calendarWrapperRef}>
+          <div className={cn('relative w-full', classes?.rootWrapper)} ref={calendarWrapperRef}>
             <AnimatePresence>
               {isCalendarOpen && (
                 <motion.div
@@ -141,7 +144,7 @@ export const CalendarControl = <T extends FieldValues>({
                     onBlur={(event) => {
                       onBlurInput(event.target.value, onChange)
                       if (!event.target.value) {
-                        methods.setValue(props.name as string, '')
+                        setValue(props.name, '' as PathValue<T, Path<T>>)
                       }
                     }}
                   />

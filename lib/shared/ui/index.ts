@@ -16,20 +16,23 @@ export { Popover } from './popover'
 export { ProgressBar, type IProgressBarProps } from './ProgressBar'
 export { TabsSwitcher, type ITabsSwitcherProps, type ITabRenderContent } from './TabsSwitcher'
 export { Modal } from './modal'
-export { Notification } from './notification'
+export { type INotificationProps, Notification } from './notification'
+
+// # PROVIDERS
+export { NotificationProvider, type INotificationProviderProps } from './providers'
 
 // # TYPOGRAPHY
 export { Heading, type IHeadingProps } from './Heading'
 
 // # ICONS
-export { Icon, type IconProps, type TAllowedIcons } from './icon'
+export { Icon, type IconProps, type TAllowedIcons, type SpritesMap } from './icon'
 export { brandLogos, type TBrandLogoVariant } from './brandLogos'
 
 // # NAVIGATION
 export { Breadcrumbs, type IBreadcrumbsProps } from './Breadcrumbs'
 export { CustomLink, type ICustomLinkProps } from './CustomLink'
 
-// # FILes
+// # FILES
 export { Document, type IDocumentProps } from './Document'
 
 // # CONTROLLED FORM UI
@@ -50,15 +53,16 @@ export {
   type IRadioGroupOption,
   SwitchControl,
   type ISwitchControlProps,
-  SelectControl,
-  type ISelectControlProps,
-  type ISelectOption,
   TextareaControl,
   type ITextareaControlProps,
-  type ICalendarControlProps,
-  ComboboxControl,
-  type IComboboxControlProps,
   type IInputControlUploaderProps,
   InputControlUploader,
-  CalendarControl
+  type ICalendarControlProps,
+  CalendarControl,
+  type IEditorControlProps,
+  EditorControl,
+  InputCurrencyControl,
+  type InputCurrencyControlProps,
+  ComboboxControl,
+  type IComboboxControlProps
 } from './formControlElements'

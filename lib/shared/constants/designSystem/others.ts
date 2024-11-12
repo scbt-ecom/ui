@@ -15,4 +15,16 @@ const allowedBackgroundDeg = {
   180: '180deg'
 }
 
-export { allowedBorderRadius, allowedBackgroundDeg }
+const allowedZIndex = {
+  0: '0',
+  1: '1',
+  10: '10',
+  30: '30',
+  50: '50',
+  100: '100',
+  250: '250',
+  500: '500',
+  1000: '1000'
+}
+
+export { allowedBorderRadius, allowedBackgroundDeg, allowedZIndex }

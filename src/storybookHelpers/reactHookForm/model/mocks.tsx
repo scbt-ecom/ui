@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { MOCK_RADIO_GROUP, MOCK_SELECT_OPTIONS } from './mockData'
+import { MOCK_RADIO_GROUP } from './mockData'
 import { EnumFieldType, type TStorybookFieldConfig } from './types'
 import { VALIDATION_MESSAGES, zodCalendarValidate } from '$/shared/validation'
 
@@ -25,7 +25,8 @@ export const mockSchema = z.object({
   files: z
     .array(z.instanceof(File))
     .min(1, { message: 'Поле обязательно для заполнения' })
-    .max(3, { message: 'Можно отправить не больше трех файлов. Чтобы добавить файлы удалите выбранные' })
+    .max(3, { message: 'Можно отправить не больше трех файлов. Чтобы добавить файлы удалите выбранные' }),
+  html: z.string()
 })
 
 export type TMockSchema = z.infer<typeof mockSchema>
@@ -41,7 +42,8 @@ export const mockDefaultValues: TMockSchema = {
   birthday: '',
   slider: 100_000,
   creditSum: 100_000,
-  files: []
+  files: [],
+  html: ''
 }
 
 export const mockFields: TStorybookFieldConfig<TMockSchema>[] = [
@@ -61,12 +63,7 @@ export const mockFields: TStorybookFieldConfig<TMockSchema>[] = [
     fieldType: EnumFieldType.RADIO
   },
   { name: 'percent', label: 'Увеличенный процент', fieldType: EnumFieldType.SWITCH },
-  {
-    name: 'months',
-    label: 'Выберите месяц',
-    fieldType: EnumFieldType.SELECT,
-    optionsList: MOCK_SELECT_OPTIONS
-  },
+
   {
     name: 'description',
     label: 'Описание к блоку',
@@ -93,11 +90,6 @@ export const mockFields: TStorybookFieldConfig<TMockSchema>[] = [
     }
   },
   {
-    name: 'birthday',
-    label: 'Дата рождения',
-    fieldType: EnumFieldType.CALENDAR
-  },
-  {
     name: 'slider',
     label: 'Сумма кредита',
     fieldType: EnumFieldType.SLIDER,
@@ -105,4 +97,9 @@ export const mockFields: TStorybookFieldConfig<TMockSchema>[] = [
     min: 40_000,
     variant: 'credit'
   }
+  // {
+  //   name: 'html',
+  //   label: 'Введите текст',
+  //   fieldType: EnumFieldType.EDITOR
+  // }
 ]

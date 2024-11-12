@@ -43,7 +43,7 @@ export const Uploader = React.forwardRef(function InputControl<T extends FieldVa
 
   return (
     <>
-      <div className={cn('relative mb-3', classes?.wrapperMainContent)}>
+      <div className={cn('relative mb-3 w-[476px]', classes?.wrapperMainContent)}>
         <Input ref={ref} name={name} classes={classes} error={error} disabled={disabled} dropzoneState={dropzoneState} />
         <MessageView
           className={cn(classes?.message)}

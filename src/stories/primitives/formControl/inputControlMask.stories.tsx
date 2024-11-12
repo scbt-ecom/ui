@@ -1,3 +1,4 @@
+import { useFormContext } from 'react-hook-form'
 import type { Meta, StoryObj } from '@storybook/react'
 import { mockDefaultValues, mockSchema, StorybookFormProvider } from '@/storybookHelpers'
 import { Icon, InputControlMask } from '$/shared/ui'
@@ -15,15 +16,18 @@ const meta = {
       </StorybookFormProvider>
     )
   ],
+  render: ({ ...args }) => {
+    const { control } = useFormContext()
+    const methods = { control }
+    return <InputControlMask {...args} {...methods} />
+  },
   tags: ['autodocs']
 } satisfies Meta<typeof InputControlMask>
 
 export default meta
-type Story = StoryObj<typeof meta>
+type Story = StoryObj<typeof InputControlMask>
 
 export const Base: Story = {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   args: {
     name: 'phone',
     label: 'Номер телефона',
@@ -33,8 +37,6 @@ export const Base: Story = {
 }
 
 export const WithIcon: Story = {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   args: {
     name: 'phone',
     label: 'Номер телефона',
@@ -45,8 +47,6 @@ export const WithIcon: Story = {
 }
 
 export const WithBadge: Story = {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   args: {
     name: 'phone',
     label: 'Номер телефона',
@@ -57,8 +57,6 @@ export const WithBadge: Story = {
 }
 
 export const WithHelperText: Story = {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   args: {
     name: 'phone',
     label: 'Номер телефона',
