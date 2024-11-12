@@ -24,6 +24,9 @@ jobs:
       - name: Setup Node.js ⚙️ - Cache dependencies ⚡ - Install dependencies 🔧
         uses: ./.github/workflows/setup-node
 
+      - name: Lint Code
+        run: npm run lint
+
       - name: Setup Pages ⚙️
         uses: actions/configure-pages@v4
 
@@ -34,6 +37,12 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./storybook-static
+
+      - name: Publish with Semantic Release 🚀
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npx semantic-release
 
   deploy:
     environment:
