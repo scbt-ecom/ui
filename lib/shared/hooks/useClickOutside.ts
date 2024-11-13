@@ -20,3 +20,5 @@ export const useClickOutside = (ref: React.RefObject<HTMLElement>, callback: () 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ref, callback])
 }
+
+//
