@@ -13,9 +13,6 @@
       "require": "./dist/hybrid.js"
     }
   },
-  "files": [
-    "dist"
-  ],
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
