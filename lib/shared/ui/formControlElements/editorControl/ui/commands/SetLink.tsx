@@ -1,8 +1,8 @@
 import { useCallback } from 'react'
-import toast from 'react-hot-toast'
 import { type Editor } from '@tiptap/react'
 import { z } from 'zod'
 import { Icon } from '$/shared/ui'
+import { Notification } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
 interface ISetLinkProps {
@@ -23,10 +23,10 @@ export const SetLink = ({ editor }: ISetLinkProps) => {
     const validateLinkResult = linkSchema.safeParse(url)
 
     if (!validateLinkResult.success) {
-      toast.error('Невалидная ссылка')
+      Notification({ intent: 'error', text: 'Невалидная ссылка' })
       return
     } else {
-      toast.success('Ссылка успешно вставлена ')
+      Notification({ intent: 'info', text: 'Ссылка успешно вставлена' })
     }
 
     if (url === '') {
