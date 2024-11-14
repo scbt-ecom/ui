@@ -26,11 +26,9 @@ const meta = {
 } satisfies Meta<typeof InputControl>
 
 export default meta
-type Story = StoryObj<typeof meta>
+type Story = StoryObj<typeof InputControl>
 
 export const Base: Story = {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   args: {
     name: 'city',
     label: 'Город',
@@ -39,8 +37,6 @@ export const Base: Story = {
 }
 
 export const WithIcon: Story = {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   args: {
     name: 'city',
     label: 'Город',
@@ -50,8 +46,6 @@ export const WithIcon: Story = {
 }
 
 export const WithBadge: Story = {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   args: {
     name: 'city',
     label: 'Город',
@@ -61,8 +55,6 @@ export const WithBadge: Story = {
 }
 
 export const WithHelperText: Story = {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   args: {
     name: 'city',
     label: 'Город',

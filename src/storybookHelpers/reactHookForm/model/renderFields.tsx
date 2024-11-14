@@ -5,6 +5,7 @@ import {
   type TControlledInputCalendar,
   type TControlledInputCheckbox,
   type TControlledInputDadata,
+  type TControlledInputEditor,
   type TControlledInputMask,
   type TControlledInputRadio,
   type TControlledInputSlider,
@@ -17,6 +18,7 @@ import {
   CalendarControl,
   CheckboxControl,
   DadataInputControl,
+  EditorControl,
   InputControl,
   InputControlMask,
   InputControlUploader,
@@ -28,6 +30,7 @@ import {
 
 export const renderFields = <T extends FieldValues>(fieldConfig: TStorybookFieldConfig<T>, formMethods: UseFormReturn<T>) => {
   const { control, setValue, watch } = formMethods
+
   const { fieldType, ...props } = fieldConfig
   switch (fieldType) {
     case EnumFieldType.INPUT:
@@ -50,8 +53,8 @@ export const renderFields = <T extends FieldValues>(fieldConfig: TStorybookField
       return <InputSliderControl control={control} {...(props as TControlledInputSlider<T>)} />
     case EnumFieldType.UPLOADER:
       return <InputControlUploader control={control} {...(props as TControlledInputUploader<T>)} />
-    // case EnumFieldType.EDITOR:
-    //   return <EditorControl control={control} {...props} />
+    case EnumFieldType.EDITOR:
+      return <EditorControl control={control} {...(props as TControlledInputEditor<T>)} />
     default:
       return null
   }

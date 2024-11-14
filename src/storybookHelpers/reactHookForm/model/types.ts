@@ -5,6 +5,7 @@ import type {
   ICalendarControlProps,
   ICheckboxControlProps,
   IDadataInputControlProps,
+  IEditorControlProps,
   InputControlMaskProps,
   InputControlProps,
   InputSliderControlProps,
@@ -30,8 +31,8 @@ export const enum EnumFieldType {
   TEXTAREA = 'textarea',
   CALENDAR = 'calendar',
   SLIDER = 'slider',
-  UPLOADER = 'uploader'
-  // EDITOR = 'editor'
+  UPLOADER = 'uploader',
+  EDITOR = 'editor'
 }
 
 export type TControlledInput<T extends FieldValues> = Omit<InputControlProps<T>, 'control'> & { fieldType: EnumFieldType.INPUT }
@@ -68,9 +69,9 @@ export type TControlledInputUploader<T extends FieldValues> = Omit<IInputControl
   fieldType: EnumFieldType.UPLOADER
 }
 
-// type TControlledInputEditor<T extends FieldValues> = Omit<IEditorControlProps<T>, 'control'> & {
-//   fieldType: EnumFieldType.EDITOR
-// }
+export type TControlledInputEditor<T extends FieldValues> = Omit<IEditorControlProps<T>, 'control'> & {
+  fieldType: EnumFieldType.EDITOR
+}
 
 export type TStorybookFieldConfig<T extends FieldValues> =
   | TControlledInputMask<T>
@@ -83,4 +84,4 @@ export type TStorybookFieldConfig<T extends FieldValues> =
   | TControlledInputTextarea<T>
   | TControlledInputCalendar<T>
   | TControlledInputUploader<T>
-// | TControlledInputEditor<T>
+  | TControlledInputEditor<T>

@@ -24,9 +24,9 @@ export const mockSchema = z.object({
   creditSum: z.number().or(z.string()),
   files: z
     .array(z.instanceof(File))
-    .min(1, { message: 'Поле обязательно для заполнения' })
+    .min(1, { message: VALIDATION_MESSAGES.REQUIRED })
     .max(3, { message: 'Можно отправить не больше трех файлов. Чтобы добавить файлы удалите выбранные' }),
-  html: z.string()
+  html: z.string().min(1, { message: VALIDATION_MESSAGES.REQUIRED })
 })
 
 export type TMockSchema = z.infer<typeof mockSchema>
@@ -39,7 +39,7 @@ export const mockDefaultValues: TMockSchema = {
   percent: true,
   months: '',
   description: '',
-  birthday: '',
+  birthday: '12.11.2024',
   slider: 100_000,
   creditSum: 100_000,
   files: [],
@@ -96,10 +96,11 @@ export const mockFields: TStorybookFieldConfig<TMockSchema>[] = [
     max: 300_000,
     min: 40_000,
     variant: 'credit'
+  },
+  {
+    fieldType: EnumFieldType.EDITOR,
+    name: 'html',
+    label: 'Введите HTML',
+    helperText: 'Текст преобразуется в HTML'
   }
-  // {
-  //   name: 'html',
-  //   label: 'Введите текст',
-  //   fieldType: EnumFieldType.EDITOR
-  // }
 ]

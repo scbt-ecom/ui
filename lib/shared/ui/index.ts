@@ -12,7 +12,7 @@ export { Table } from './table'
 // # INTERACTIVE
 export { Accordion, type IAccordionProps } from './accordion'
 export { Hint, type IHintProps } from './Hint'
-export { Popover } from './popover'
+export { Popover } from './Popover'
 export { ProgressBar, type IProgressBarProps } from './ProgressBar'
 export { TabsSwitcher, type ITabsSwitcherProps, type ITabRenderContent } from './TabsSwitcher'
 export { Modal } from './modal'
@@ -34,6 +34,9 @@ export { CustomLink, type ICustomLinkProps } from './CustomLink'
 
 // # FILES
 export { Document, type IDocumentProps } from './Document'
+
+// # OTHERS
+export { type IKeyboardShortcutsProps, KeyboardShortcuts } from './KeyboardShortcuts'
 
 // # CONTROLLED FORM UI
 export {
@@ -59,10 +62,10 @@ export {
   InputControlUploader,
   type ICalendarControlProps,
   CalendarControl,
-  type IEditorControlProps,
-  EditorControl,
   InputCurrencyControl,
   type InputCurrencyControlProps,
   ComboboxControl,
-  type IComboboxControlProps
+  type IComboboxControlProps,
+  EditorControl,
+  type IEditorControlProps
 } from './formControlElements'

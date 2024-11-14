@@ -1,13 +1,16 @@
 import type { ReactElement, ReactNode } from 'react'
 import type { PopoverContentProps as TPopoverContentPropsBase } from '@radix-ui/react-popover'
 import * as PopoverPrimitive from '@radix-ui/react-popover'
-import { Icon } from '../icon/Icon'
+import { Icon } from './icon/Icon'
 import { cn } from '$/shared/utils'
 
 type TPopoverClasses = {
+  root: string
   content: string
-  arrow: string
   trigger: string
+  arrowIcon: string
+  closeIcon: string
+  closeTrigger: string
 }
 
 interface IPopoverContentProps extends TPopoverContentPropsBase {
@@ -23,7 +26,7 @@ export interface IPopoverProps extends IPopoverContentProps {
   triggerElement: ReactElement
   children: ReactNode
   classes?: Partial<TPopoverClasses>
-  headLine?: string
+  portalContainer?: PopoverPrimitive.PopoverPortalProps['container']
 }
 
 export const Popover = ({
@@ -35,23 +38,20 @@ export const Popover = ({
   side,
   defaultOpen = false,
   avoidCollisions = true,
-  headLine,
   children,
   arrowPadding,
+  portalContainer,
   ...contentProps
 }: IPopoverProps) => {
   return (
     <PopoverPrimitive.Root defaultOpen={defaultOpen}>
-      <div className='flex w-max items-center gap-2'>
-        <h3 className='text-[24px] font-bold'>{headLine}</h3>
-        <PopoverPrimitive.Trigger className={cn('cursor-pointer', classes?.trigger)} asChild>
-          {triggerElement}
-        </PopoverPrimitive.Trigger>
+      <div className={cn('flex w-max items-center gap-2', classes?.root)}>
+        <PopoverPrimitive.Trigger className={cn('cursor-pointer', classes?.trigger)}>{triggerElement}</PopoverPrimitive.Trigger>
       </div>
-      <PopoverPrimitive.Portal>
+      <PopoverPrimitive.Portal container={portalContainer}>
         <PopoverPrimitive.Content
           className={cn(
-            'desk-body-regular-m flex w-64 items-start gap-2 rounded-sm bg-color-white p-4 shadow-sm',
+            'desk-body-regular-m flex w-64 items-start gap-2 rounded-sm bg-color-white p-4 shadow-sm outline-none',
             classes?.content
           )}
           sideOffset={sideOffset}
@@ -63,10 +63,19 @@ export const Popover = ({
           {...contentProps}
         >
           {children}
-          <PopoverPrimitive.Close aria-label='Close' className='size-4 outline-0 outline-transparent'>
-            <Icon name='general/close' className='size-4 cursor-pointer text-icon-blue-grey-600' />
+          <PopoverPrimitive.Close
+            aria-label='Close'
+            className={cn('size-4 outline-0 outline-transparent', classes?.closeTrigger)}
+          >
+            <Icon
+              name='general/close'
+              className={cn(
+                'size-4 cursor-pointer text-icon-blue-grey-600 transition-colors hover:text-icon-blue-grey-800',
+                classes?.closeIcon
+              )}
+            />
           </PopoverPrimitive.Close>
-          <PopoverPrimitive.Arrow width={12} height={6} className={cn('fill-white', classes?.arrow)} />
+          <PopoverPrimitive.Arrow width={12} height={6} className={cn('fill-white', classes?.arrowIcon)} />
         </PopoverPrimitive.Content>
       </PopoverPrimitive.Portal>
     </PopoverPrimitive.Root>

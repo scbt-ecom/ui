@@ -2,8 +2,6 @@
 
 import type { FieldError } from 'react-hook-form'
 import { cva, type VariantProps } from 'class-variance-authority'
-import { motion } from 'framer-motion'
-import { animation } from '../model/message-view-animation'
 import { cn } from '$/shared/utils'
 
 const messageViewConfig = cva('desk-body-regular-m mt-2', {
@@ -31,11 +29,9 @@ export interface IMessageViewProps extends VariantProps<typeof messageViewConfig
 export const MessageView = ({ intent, as: Element = 'p', disabled, text, className, ...props }: IMessageViewProps) => {
   if (!text) return null
 
-  const MotionElement = motion(Element)
-
   return (
-    <MotionElement className={cn(messageViewConfig({ intent, disabled }), className)} {...animation} {...props}>
+    <Element className={cn(messageViewConfig({ intent, disabled }), className)} {...props}>
       {text}
-    </MotionElement>
+    </Element>
   )
 }

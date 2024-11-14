@@ -8,7 +8,7 @@ export type TInputCommonProps = Omit<
 >
 export type TTextareaCommonProps = Omit<React.ComponentProps<'textarea'>, 'name' | 'size' | 'type' | 'defaultValue' | 'className'>
 
-type TFieldControlledProps<T extends FieldValues> = {
+export type TFieldControlledProps<T extends FieldValues> = {
   name: Path<T>
   control: Control<T>
   label: string

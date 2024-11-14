@@ -19,7 +19,6 @@ export const DaysOfMonth = ({ daysList, firstDayOfMonth, selectedDay, onSelectDa
 
         return (
           <div
-            // eslint-disable-next-line react/no-array-index-key
             key={idx}
             role='button'
             tabIndex={0}

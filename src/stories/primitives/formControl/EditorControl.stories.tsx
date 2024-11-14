@@ -1,5 +1,5 @@
 import { useFormContext } from 'react-hook-form'
-import { type Meta, type StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react'
 import { mockDefaultValues, mockSchema, StorybookFormProvider } from '@/storybookHelpers'
 import { EditorControl } from '$/shared/ui'
 
@@ -9,7 +9,6 @@ const meta = {
   parameters: {
     layout: 'centered'
   },
-  tags: ['autodocs'],
   decorators: [
     (Story) => (
       <StorybookFormProvider validationSchema={mockSchema} defaultValues={mockDefaultValues}>
@@ -17,15 +16,22 @@ const meta = {
       </StorybookFormProvider>
     )
   ],
-  render: ({ ...args }) => {
+  render: (args) => {
     const { control } = useFormContext()
     const methods = { control }
+
     return <EditorControl {...args} {...methods} />
-  }
+  },
+  tags: ['autodocs']
 } satisfies Meta<typeof EditorControl>
 
 export default meta
 type Story = StoryObj<typeof EditorControl>
+
 export const Base: Story = {
-  args: {}
+  args: {
+    name: 'html',
+    label: 'Введите HTML',
+    helperText: 'Текст преобразуется в HTML'
+  }
 }
