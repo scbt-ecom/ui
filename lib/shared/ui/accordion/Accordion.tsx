@@ -10,6 +10,7 @@ import { cn } from '$/shared/utils'
  * @param {string[]} defaultOpen - По умолчанию открытые аккордеоны необходимо указать тот же label явно руками.
  * Пример defaultValue={['Заголовок аккордеона 1', 'Заголовок аккордеона 2']}
  */
+//
 export interface IAccordionProps {
   children: React.ReactNode
   label: string | React.ReactElement
