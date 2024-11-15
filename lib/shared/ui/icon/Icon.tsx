@@ -23,6 +23,8 @@ const getIconMeta = <Key extends keyof SpritesMap>(name: IconName<Key>) => {
   return { filePath, iconName, viewBox, axis }
 }
 
+//
+
 export const Icon = ({ name, className, ...props }: IconProps) => {
   const { viewBox, filePath, iconName, axis } = getIconMeta(name)
 
