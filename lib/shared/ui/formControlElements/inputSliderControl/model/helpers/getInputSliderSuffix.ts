@@ -9,12 +9,3 @@ export const getInputSliderSuffix = (variant: TSliderVariants, value: number) =>
 
   return variants[variant]
 }
-
-export const getMinMaxTextSlider = (variant: TSliderVariants, min: number, max: number) => {
-  const variants = {
-    years: [min, max].map(getYearEnding),
-    credit: ['₽', '₽']
-  }
-
-  return variants[variant]
-}

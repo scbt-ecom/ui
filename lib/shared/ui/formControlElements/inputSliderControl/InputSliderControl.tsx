@@ -5,7 +5,7 @@ import { Controller, type FieldValues } from 'react-hook-form'
 import { NumericFormat } from 'react-number-format'
 import type { TAdditionalInputClassesWithAttachment, TControlledInputProps } from '../model'
 import { FieldAttachment, FieldContainer, FieldWrapper, MessageView } from '../ui'
-import { formatNumber, getMinMaxTextSlider, getStepByVariant } from './model/helpers'
+import { getStepByVariant } from './model/helpers'
 import { type TSliderVariants } from './model/types'
 import { useSlider } from './model/useSlider'
 import { SliderControl } from './ui/SliderControl'
@@ -42,6 +42,8 @@ export const InputSliderControl = <T extends FieldValues>({
   min,
   max,
   variant,
+  leftText,
+  rightText,
   ...props
 }: InputSliderControlProps<T>) => {
   const inputId = React.useId()
@@ -60,7 +62,6 @@ export const InputSliderControl = <T extends FieldValues>({
       control={control}
       name={props.name}
       render={({ field: { onChange, value }, fieldState: { error } }) => {
-        const [start, end] = getMinMaxTextSlider(variant, min, max)
         return (
           <div className='flex flex-col gap-1'>
             <FieldContainer size={size} classes={classes}>
@@ -129,12 +130,8 @@ export const InputSliderControl = <T extends FieldValues>({
               />
             </FieldContainer>
             <div className='flex justify-between'>
-              <span
-                className={cn('desk-body-regular-m text-color-tetriary', classes?.spanLeft)}
-              >{`${formatNumber(min)} ${start}`}</span>
-              <span
-                className={cn('desk-body-regular-m text-color-tetriary', classes?.spanRight)}
-              >{`${formatNumber(max)} ${end}`}</span>
+              <span className={cn('desk-body-regular-m text-color-tetriary', classes?.spanLeft)}>{leftText}</span>
+              <span className={cn('desk-body-regular-m text-color-tetriary', classes?.spanRight)}>{rightText}</span>
             </div>
           </div>
         )

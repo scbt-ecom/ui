@@ -5,6 +5,7 @@ const getStepCredit = (value: number) => {
 
   const firstStep = value < 100_000
   const secondStep = value >= 100_000 && value < 500_000
+  const thirdStep = value >= 500_000 && value < 1_000_000
   const max = value >= 1_000_000
 
   switch (true) {
@@ -12,6 +13,8 @@ const getStepCredit = (value: number) => {
       return 1000
     case secondStep:
       return 10_000
+    case thirdStep:
+      return 50_000
     case max:
       return 100_000
     default:

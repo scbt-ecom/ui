@@ -34,7 +34,9 @@ export const Base: Story = {
     size: 'md',
     min: 30_000,
     max: 5_000_000,
-    variant: 'credit'
+    variant: 'credit',
+    leftText: '30 тыс.',
+    rightText: '5 млн.'
   }
 }
 
@@ -45,7 +47,9 @@ export const WithYears: Story = {
     size: 'md',
     min: 1,
     max: 12,
-    variant: 'years'
+    variant: 'years',
+    leftText: '1 год',
+    rightText: '12 лет'
   }
 }
 
@@ -57,6 +61,8 @@ export const WithIconSlider: Story = {
     size: 'md',
     min: 1,
     max: 12,
-    variant: 'years'
+    variant: 'years',
+    leftText: '1 год',
+    rightText: '12 лет'
   }
 }
