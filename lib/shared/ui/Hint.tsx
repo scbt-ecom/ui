@@ -4,7 +4,7 @@ import * as React from 'react'
 import type { TooltipContentProps } from '@radix-ui/react-tooltip'
 import * as TooltipPrimitive from '@radix-ui/react-tooltip'
 import { useClickOutside } from '../hooks'
-import { useDevice } from '../hooks/useMediaQuery'
+import { useDevice } from '../hooks/useDevice'
 import { cn } from '$/shared/utils'
 
 type TAdditionalClasses = {

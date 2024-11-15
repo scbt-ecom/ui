@@ -25,6 +25,12 @@ export type TButtonsConfig = {
 export interface IBannerProps {
   headTitle: string
   subtitle: string
+  img: string
+  imgSets?: {
+    large: string
+    mob: string
+    type: string
+  }
   buttonsConfig: TButtonsConfig
   advantagesList?: IAdvantage[]
   classes?: Partial<IBannerClasses>

@@ -1,14 +1,5 @@
 import { useCallback, useSyncExternalStore } from 'react'
-/**
- * @name useMediaQuery
- * @description - Hook that manages a media query
- * @category Browser
- *
- * @returns {{ isMobile: boolean; isDesktop: boolean }} An object with isMobile and isDesktop properties
- *
- * @example
- * const { isMobile, isDesktop } = useMediaQuery();
- */
+
 const getServerSnapshot = () => false
 export const useDevice = () => {
   const isMobileQuery = '(max-width: 1187px)'

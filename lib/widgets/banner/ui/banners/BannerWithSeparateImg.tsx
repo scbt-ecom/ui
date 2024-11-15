@@ -44,7 +44,12 @@ export const BannerWithSeparateImg = ({
               classes?.imageContainer
             )}
           >
-            <img data-id='banner-image' src={money} alt='money' className={cn('h-full w-full object-contain', classes?.image)} />
+            <img
+              data-id='banner-image'
+              src={money}
+              alt={headTitle}
+              className={cn('h-full w-full object-contain', classes?.image)}
+            />
           </div>
         </div>
 

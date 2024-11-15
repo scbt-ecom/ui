@@ -1,5 +1,4 @@
 import { type IBannerProps } from '../../Banner'
-import saif from '../../saif.jpg'
 import { BannerButtonsGroup } from '../BannerButtonsGroup'
 import { Heading, ResponsiveContainer } from '$/shared/ui'
 import { cn } from '$/shared/utils'
@@ -10,7 +9,9 @@ export const BannerImageFull = ({
   subtitle,
   buttonsConfig,
   advantagesList,
-  classes
+  classes,
+  img,
+  imgSets
 }: Omit<IBannerProps, 'bannerVariant'>) => {
   return (
     <section data-id='banner-section' className={cn('relative h-[552px] desktop:h-[456px]', classes?.section)}>
@@ -19,20 +20,12 @@ export const BannerImageFull = ({
         className='absolute bottom-0 left-0 right-0 top-0 z-[-1] mx-auto h-full max-w-[1920px] desktop:h-[456px]'
       >
         <picture>
-          <source
-            media='(min-width: 1128px)'
-            srcSet='https://sovcombank.ru/apply/credit/static/5a216aa0b1aa395335e71cb69fc3059f/7eb38/large.avif'
-            type='image/avif'
-          />
-          <source
-            media='(max-width: 1127px)'
-            srcSet='https://sovcombank.ru/apply/credit/static/e71c554abd4a3a92ff79f048568de883/73d21/mob.avif'
-            type='image/avif'
-          />
+          <source media='(min-width: 1128px)' srcSet={imgSets?.large} type='image/avif' />
+          <source media='(max-width: 1127px)' srcSet={imgSets?.mob} type={imgSets?.type ?? 'image/avif'} />
           <img
             data-id='banner-image'
-            src={saif}
-            alt=' '
+            src={img}
+            alt={headTitle}
             className={cn('h-full w-full object-cover object-center', classes?.image)}
           />
         </picture>

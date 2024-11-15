@@ -23,3 +23,10 @@ export * from './shared/validation'
 // Constants
 export * from './shared/constants'
 export * from './configs'
+
+// Widgets
+export * from './widgets/banner'
+export * from './widgets/Advantages'
+export * from './widgets/footer'
+export * from './widgets/pageHeader'
+export * from './widgets/stepper'

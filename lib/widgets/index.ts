@@ -1,5 +1,5 @@
 export { PageHeader, type TPageHeaderProps } from './pageHeader'
-export { Banner } from './banner'
+export { Banner, type IBannerProps } from './banner'
 export { Advantages, type IAdvantage, type IAdvantagesProps } from './Advantages'
 export { Footer, type IFooterProps } from './footer'
 export { Stepper, type IStepperProps, type ISingleStep } from './stepper'
