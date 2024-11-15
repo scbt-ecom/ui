@@ -57,7 +57,7 @@ export const BannerWithSeparateImg = ({
           data-id='banner-advantages'
           className={cn('absolute bottom-[-400px] right-1/2 translate-x-1/2 desktop:bottom-[-50px]', classes?.advantages)}
         >
-          {advantagesList && advantagesList?.length > 0 && <Advantages advantagesList={advantagesList} />}
+          {advantagesList && advantagesList?.length > 0 && <Advantages classes={classes} advantagesList={advantagesList} />}
         </div>
       </ResponsiveContainer>
     </section>
