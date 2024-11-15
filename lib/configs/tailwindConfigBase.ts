@@ -17,7 +17,7 @@ import {
 export const tailwindConfigBase: Omit<Config, 'content'> = {
   theme: {
     screens: {
-      mobile: { max: '1187px' },
+      mobile: '1187px',
       desktop: '1188px'
     },
     backgroundColor: {
@@ -89,7 +89,6 @@ export const tailwindConfigBase: Omit<Config, 'content'> = {
     }
   },
   plugins: [
-    // eslint-disable-next-line global-require
     tailwindAnimation,
     plugin(({ addComponents }) => {
       addComponents(allowedTextStyles)
