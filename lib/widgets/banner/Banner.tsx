@@ -25,7 +25,7 @@ export type TButtonsConfig = {
 export interface IBannerProps {
   headTitle: string
   subtitle: string
-  img: string
+  img?: string
   imgSets?: {
     large: string
     mob: string
