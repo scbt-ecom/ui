@@ -1,3 +1,4 @@
+import { type ReactElement } from 'react'
 import { Controller, type FieldValues } from 'react-hook-form'
 import { type TFieldControlledProps } from '../model'
 import { Editor } from './ui/Editor'
@@ -11,8 +12,8 @@ export type TEditorControlClasses = {
 
 export interface ICommonEditorProps {
   editable?: boolean
-  helperText?: string
-  label?: string
+  helperText?: string | ReactElement
+  label?: string | ReactElement
 }
 
 export type IEditorControlProps<T extends FieldValues> = TFieldControlledProps<T> &

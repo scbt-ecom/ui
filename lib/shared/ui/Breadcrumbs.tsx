@@ -1,8 +1,9 @@
+import { type ReactElement } from 'react'
 import { cn } from '../utils'
 import { Icon } from './icon/Icon'
 
 export interface IBreadcrumbLink {
-  label: string
+  label: string | ReactElement
   path: string
   isDisabled?: boolean
 }

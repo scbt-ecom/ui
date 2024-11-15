@@ -1,3 +1,4 @@
+import { type ReactElement } from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { Icon, type TAllowedIcons } from './icon'
 import { cn } from '$/shared/utils'
@@ -22,7 +23,7 @@ const iconVariant: Record<NonNullable<TIconConfig['intent']>, TAllowedIcons> = {
 }
 
 export interface IDocumentProps extends TIconConfig {
-  text: string
+  text: string | ReactElement
   size: number
   sizeType: 'КБ' | 'МБ'
   href: string

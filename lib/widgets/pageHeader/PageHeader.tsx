@@ -1,3 +1,4 @@
+import { type ReactElement } from 'react'
 import { brandLogos, Button, PhoneView, ResponsiveContainer, type TBrandLogoVariant } from '$/shared/ui'
 
 export interface ICommonHeaderProps {
@@ -6,8 +7,8 @@ export interface ICommonHeaderProps {
 }
 interface IHeaderWithPhone extends ICommonHeaderProps {
   variant: 'withPhone'
-  phone: string
-  phoneText: string
+  phone: string | ReactElement
+  phoneText: string | ReactElement
 }
 interface IHeaderWithButton extends ICommonHeaderProps {
   variant: 'withButton'

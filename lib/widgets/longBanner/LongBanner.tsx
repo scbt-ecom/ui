@@ -6,7 +6,7 @@ import { Button, ResponsiveContainer } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
 export interface ILongBannerProps extends TLongBannerConfig {
-  title: string
+  title: string | ReactElement
   buttonConfig?: IButtonConfig
   textContent: ITextContent[]
   imageComponent: ReactElement

@@ -5,7 +5,7 @@ import { CustomToast } from './ui/CustomToast'
 export interface INotificationProps {
   duration?: number
   intent: 'info' | 'error'
-  text: string
+  text: string | ReactElement
   customIcon?: ReactElement
   content?: ReactElement
   closure?: boolean

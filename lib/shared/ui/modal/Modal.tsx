@@ -21,8 +21,6 @@ export interface IModalProps extends IModalHeaderProps {
   portalContainer?: HTMLElement
 }
 
-//
-
 export const Modal = ({
   title,
   children,

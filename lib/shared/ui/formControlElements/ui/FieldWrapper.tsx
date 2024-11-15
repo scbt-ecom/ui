@@ -7,7 +7,7 @@ import { cn } from '$/shared/utils'
 
 interface IFieldWrapperProps<V> {
   children: React.ReactElement
-  label: string
+  label: string | React.ReactElement
   fieldId: string
   value: V
   error?: boolean

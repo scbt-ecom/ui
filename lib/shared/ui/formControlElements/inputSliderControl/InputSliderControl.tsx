@@ -25,8 +25,8 @@ export interface InputSliderControlProps<T extends FieldValues> extends TControl
   }
   disabled?: boolean
   onInputChange?: (value?: number) => void
-  leftText?: string
-  rightText?: string
+  leftText?: string | React.ReactElement
+  rightText?: string | React.ReactElement
 }
 
 export const InputSliderControl = <T extends FieldValues>({

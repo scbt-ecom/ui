@@ -1,5 +1,6 @@
 'use client'
 
+import { type ReactElement } from 'react'
 import type { FieldError } from 'react-hook-form'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '$/shared/utils'
@@ -22,7 +23,7 @@ const messageViewConfig = cva('desk-body-regular-m mt-2', {
 
 export interface IMessageViewProps extends VariantProps<typeof messageViewConfig> {
   as?: 'div' | 'span' | 'p'
-  text?: string | FieldError['message']
+  text?: string | FieldError['message'] | ReactElement
   className?: string
 }
 

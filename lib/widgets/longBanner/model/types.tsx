@@ -1,16 +1,17 @@
+import { type ReactElement } from 'react'
 import { type VariantProps } from 'class-variance-authority'
 import { type itemConfig } from './cva'
 
 export type TLongBannerConfig = VariantProps<typeof itemConfig>
 
 export interface ITextContent {
-  title: string
-  description: string
-  popoverText?: string
+  title: string | ReactElement
+  description: string | ReactElement
+  popoverText?: string | ReactElement
 }
 
 export interface IButtonConfig {
-  text: string
+  text: string | ReactElement
   onClick: () => void
 }
 
@@ -27,8 +28,8 @@ export interface ILongBannerClasses {
 
 export interface ITextItem extends TLongBannerConfig {
   data: {
-    title: string
-    description: string
-    popoverText?: string
+    title: string | ReactElement
+    description: string | ReactElement
+    popoverText?: string | ReactElement
   }
 }

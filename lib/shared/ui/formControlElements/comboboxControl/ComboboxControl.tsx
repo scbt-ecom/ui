@@ -19,24 +19,24 @@ type TSelectVariant = 'primary' | 'secondary'
 
 export interface SelectOption<ValueType> {
   value: ValueType
-  label: string
+  label: string | React.ReactElement
 }
 
 export interface IComboboxControlProps<T extends FieldValues, ValueType> {
   name: Path<T>
   control: Control<T>
   options: SelectOption<ValueType>[]
-  label: string
+  label: string | React.ReactElement
   size?: 'sm' | 'md' | 'lg' | 'full'
-  helperText?: string
+  helperText?: string | React.ReactElement
   marker?: boolean
   variant?: TSelectVariant
   isClearable?: boolean
   defaultValue?: ValueType
-  noOptionsMessage?: string
+  noOptionsMessage?: string | React.ReactElement
   disabled?: boolean
   isMulti?: boolean
-  placeholder?: string
+  placeholder?: string | React.ReactElement
   onClickIcon?: (...args: unknown[]) => unknown
   onKeyDownIcon?: (event: React.KeyboardEvent) => unknown
   isSearchable?: boolean

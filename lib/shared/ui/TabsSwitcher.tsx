@@ -21,7 +21,7 @@ export interface ITabContent {
   id: string
   body: React.ReactElement | string
   accordion?: {
-    title: string
+    title: string | React.ReactElement
   }
 }
 

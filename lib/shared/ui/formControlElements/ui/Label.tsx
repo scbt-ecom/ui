@@ -1,8 +1,9 @@
+import { type ReactElement } from 'react'
 import { type TFieldWrapperClasses } from '../model'
 import { cn } from '$/shared/utils'
 
 interface ILabelProps<V> {
-  label: string
+  label: string | ReactElement
   fieldId: string
   value: V
   classes?: Partial<TFieldWrapperClasses>

@@ -1,3 +1,4 @@
+import { type ReactElement } from 'react'
 import { type IAdvantage } from '../Advantages'
 import { type IBannerButtonsGroupClasses } from './ui/BannerButtonsGroup'
 import { BannerWithSeparateImg } from './ui/banners'
@@ -23,8 +24,8 @@ export type TButtonsConfig = {
 }
 
 export interface IBannerProps {
-  headTitle: string
-  subtitle: string
+  headTitle: string | ReactElement
+  subtitle: string | ReactElement
   img?: string
   imgSets?: {
     large: string

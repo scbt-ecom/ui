@@ -1,3 +1,4 @@
+import { type ReactElement } from 'react'
 import { cn } from '../utils'
 
 interface IPhoneViewClasses {
@@ -7,8 +8,8 @@ interface IPhoneViewClasses {
 }
 
 export interface IPhoneViewProps {
-  phone: string
-  text: string
+  phone: string | ReactElement
+  text: string | ReactElement
   classes?: Partial<IPhoneViewClasses>
 }
 export const PhoneView = ({ phone, text, classes }: IPhoneViewProps) => {
