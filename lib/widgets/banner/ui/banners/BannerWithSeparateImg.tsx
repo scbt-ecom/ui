@@ -1,5 +1,4 @@
 import { type IBannerProps } from '../../Banner'
-import money from '../../money.png'
 import { BannerButtonsGroup } from '../BannerButtonsGroup'
 import { Heading, ResponsiveContainer } from '$/shared/ui'
 import { cn } from '$/shared/utils'
@@ -10,7 +9,8 @@ export const BannerWithSeparateImg = ({
   subtitle,
   buttonsConfig,
   advantagesList,
-  classes
+  classes,
+  img
 }: Omit<IBannerProps, 'bannerVariant'>) => {
   const countButtons = Object.keys(buttonsConfig).reduce((acc, key) => (key ? acc + 1 : acc), 0)
 
@@ -46,7 +46,7 @@ export const BannerWithSeparateImg = ({
           >
             <img
               data-id='banner-image'
-              src={money}
+              src={img}
               alt={headTitle}
               className={cn('h-full w-full object-contain', classes?.image)}
             />

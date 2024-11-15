@@ -1,9 +1,12 @@
 import toast from 'react-hot-toast'
 import { type IBannerProps } from '../Banner'
+import money from '$/widgets/banner/money.png'
+import saif from '$/widgets/banner/saif.jpg'
 
 export const mockBannerBase: IBannerProps = {
   headTitle: 'Кредит на любые цели',
   subtitle: 'до 5 млн рублей',
+  img: money,
   buttonsConfig: {
     primary: {
       onClick: () => toast.success('@click on primary btn'),
@@ -20,6 +23,8 @@ export const mockBannerBase: IBannerProps = {
 export const mockBannerOnlyPrimaryButton: IBannerProps = {
   headTitle: 'Кредит на любые цели',
   subtitle: 'до 5 млн рублей',
+  img: money,
+
   buttonsConfig: {
     primary: {
       onClick: () => toast.success('@click on primary btn'),
@@ -32,6 +37,8 @@ export const mockBannerOnlyPrimaryButton: IBannerProps = {
 export const mockWithAdvantages: IBannerProps = {
   headTitle: 'Кредит на любые цели',
   subtitle: 'до 5 млн рублей',
+  img: money,
+
   buttonsConfig: {
     primary: {
       onClick: () => toast.success('@click on primary btn'),
@@ -49,6 +56,7 @@ export const mockWithAdvantages: IBannerProps = {
 export const mockBannerBaseFullImage: IBannerProps = {
   headTitle: 'Кредит на любые цели',
   subtitle: 'до 5 млн рублей',
+  img: saif,
   buttonsConfig: {
     primary: {
       onClick: () => toast.success('@click on primary btn'),
@@ -71,6 +79,7 @@ export const mockBannerBaseFullImage: IBannerProps = {
 export const mockBannerFullImageOnlyPrimaryButton: IBannerProps = {
   headTitle: 'Кредит на любые цели',
   subtitle: 'до 5 млн рублей',
+  img: saif,
   buttonsConfig: {
     primary: {
       onClick: () => toast.success('@click on primary btn'),
@@ -87,6 +96,7 @@ export const mockBannerFullImageOnlyPrimaryButton: IBannerProps = {
 export const mockBannerFullImageWithAdvantages: IBannerProps = {
   headTitle: 'Кредит на любые цели',
   subtitle: 'до 5 млн рублей',
+  img: saif,
   buttonsConfig: {
     primary: {
       onClick: () => toast.success('@click on primary btn'),
@@ -115,6 +125,7 @@ export const mockBannerFullImageWithAdvantages: IBannerProps = {
 export const mockBannerBaseGradient: IBannerProps = {
   headTitle: 'Кредит на любые цели',
   subtitle: 'до 5 млн рублей',
+  img: money,
   buttonsConfig: {
     primary: {
       onClick: () => toast.success('@click on primary btn'),
@@ -135,6 +146,7 @@ export const mockBannerBaseGradient: IBannerProps = {
 export const mockBannerBaseGradientAdvantages: IBannerProps = {
   headTitle: 'Кредит на любые цели',
   subtitle: 'до 5 млн рублей',
+  img: money,
   buttonsConfig: {
     primary: {
       onClick: () => toast.success('@click on primary btn'),

@@ -1,0 +1,1 @@
+export { LongBanner } from './LongBanner'

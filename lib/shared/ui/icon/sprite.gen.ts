@@ -17,7 +17,7 @@ export interface SpritesMap {
     | 'undo'
   files: 'border' | 'borderError' | 'documentFilled' | 'documentOutline' | 'upload'
   general: 'calendar' | 'check' | 'close' | 'edit' | 'hiddenEye' | 'plus' | 'showEye'
-  info: 'warningCircle'
+  info: 'helpCircle' | 'warningCircle'
   social: 'classmates' | 'telegram' | 'vk'
 }
 export const SPRITES_META: {
@@ -231,6 +231,11 @@ export const SPRITES_META: {
   info: {
     filePath: 'info.svg',
     items: {
+      helpCircle: {
+        viewBox: '0 0 12 12',
+        width: 12,
+        height: 12
+      },
       warningCircle: {
         viewBox: '0 0 20 20',
         width: 20,
