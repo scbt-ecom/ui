@@ -47,7 +47,7 @@ export const BannerWithSeparateImg = ({
             <img
               data-id='banner-image'
               src={img}
-              alt={headTitle}
+              alt='Картинка баннера'
               className={cn('h-full w-full object-contain', classes?.image)}
             />
           </div>
