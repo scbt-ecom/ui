@@ -2,7 +2,7 @@ import { type ReactElement } from 'react'
 import { type IAdvantage } from '../Advantages'
 import { type IBannerButtonsGroupClasses } from './ui/BannerButtonsGroup'
 import { BannerWithSeparateImg } from './ui/banners'
-import { BannerImageFull } from './ui/banners/BannerImageFull'
+import { BannerImageFull } from './ui/banners'
 import { type IButtonProps } from '$/shared/ui'
 
 interface IBannerClasses extends IBannerButtonsGroupClasses {

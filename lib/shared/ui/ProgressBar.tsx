@@ -31,7 +31,7 @@ export const ProgressBar = ({ topContent, bottomContent, progress, maxPercent = 
         <span
           style={{ maxWidth: `${maxPercent}%` }}
           className={cn(
-            'progressBar-apply absolute top-1/2 z-1 h-full w-full -translate-y-1/2 animate-progress-loader rounded-md',
+            'progressBar-apply z-1 absolute top-1/2 h-full w-full -translate-y-1/2 animate-progress-loader rounded-md',
             classes?.loader
           )}
         ></span>

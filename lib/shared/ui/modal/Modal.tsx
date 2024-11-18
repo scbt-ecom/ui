@@ -37,7 +37,7 @@ export const Modal = ({
           tabIndex={-1}
           onClick={closeModal}
           className={cn(
-            'fixed inset-0 z-1000 flex h-screen w-screen items-center justify-center bg-color-overlay',
+            'z-1000 fixed inset-0 flex h-screen w-screen items-center justify-center bg-color-overlay',
             classes?.overlay
           )}
           onKeyDown={(event) => {
