@@ -68,7 +68,7 @@ export const InputSliderControl = <T extends FieldValues>({
               <FieldWrapper
                 fieldId={inputId}
                 label={label}
-                classes={classes}
+                classes={{ field: cn('bg-transparent border-blue-grey-500', classes?.field), ...classes }}
                 disabled={disabled}
                 value={value}
                 error={!!error?.message}
@@ -77,7 +77,7 @@ export const InputSliderControl = <T extends FieldValues>({
                   <NumericFormat
                     aria-invalid={error?.message ? 'true' : 'false'}
                     className={cn(
-                      'group/slider desk-title-bold-s h-[56px] w-full rounded-md bg-color-transparent px-4 pt-5 text-color-dark outline-none transition-all',
+                      'group/slider desk-title-bold-s h-[56px] w-full rounded-md bg-color-white px-4 pt-5 text-color-dark outline-none transition-all',
                       classes?.input
                     )}
                     id={inputId}
