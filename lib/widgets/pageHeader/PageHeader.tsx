@@ -43,7 +43,7 @@ export const PageHeader = (props: TPageHeaderProps) => {
             href={logoPath}
             target='_blank'
             rel='noreferrer'
-            className='flex items-center justify-center [&_svg]:h-[32px] [&_svg]:w-[192px]'
+            className='flex items-center justify-center [&_svg]:w-[114px] desktop:[&_svg]:h-[32px] desktop:[&_svg]:w-[192px]'
           >
             {brandLogos[logoType]}
           </a>

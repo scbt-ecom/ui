@@ -20,7 +20,7 @@ export const BannerButtonsGroup = ({ buttonsConfig, classes, className }: IBanne
     <div
       data-id='banner-buttons-group'
       className={cn(
-        'grid-buttons-apply absolute bottom-6 flex w-full flex-col mobile:max-w-[328px] mobile:justify-self-center desktop:static desktop:flex-row',
+        'grid-buttons-apply absolute bottom-6 flex w-full max-w-[328px] flex-col justify-self-center desktop:static desktop:max-w-full desktop:flex-row desktop:justify-normal',
         { 'flex items-center gap-4': withSecondaryBtn },
         classes?.group,
         className

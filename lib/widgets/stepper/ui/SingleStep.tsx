@@ -19,7 +19,7 @@ export const SingleStep = ({ title, description, index, classes }: ISingleStepPr
   return (
     <div
       className={cn(
-        'mobile:border-color-blue-grey-500 flex w-[328px] max-w-[328px] flex-col gap-6 mobile:rounded-md mobile:border mobile:border-solid mobile:p-4 desktop:w-[348px] desktop:max-w-[348px]',
+        'border-color-blue-grey-500 flex w-[328px] max-w-[328px] flex-col gap-6 rounded-md border border-solid p-4 desktop:w-[348px] desktop:max-w-[348px] desktop:border-none desktop:p-0',
         classes?.singleStep
       )}
     >

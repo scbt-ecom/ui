@@ -13,7 +13,7 @@ export const mockLongBannerBase: ILongBannerProps = {
     {
       title: 'Title',
       description: 'Description',
-      popoverText: 'popoverText popoverText popoverTextpopoverTextpopoverTextpopoverText popoverTextpopoverText'
+      popoverText: 'popoverText popoverText'
     },
     { title: 'Title', description: 'Description' }
   ],
@@ -40,12 +40,12 @@ export const mockLongBannerMulti: ILongBannerProps = {
     {
       title: 'Title',
       description: 'Description',
-      popoverText: 'popoverText popoverText popoverTextpopoverTextpopoverTextpopoverText popoverTextpopoverText'
+      popoverText: 'popoverText popoverText'
     },
     {
       title: 'Title',
       description: 'Description',
-      popoverText: 'popoverText popoverText popoverTextpopoverTextpopoverTextpopoverText popoverTextpopoverText'
+      popoverText: 'popoverText popoverText'
     },
     { title: 'Title', description: 'Description' },
     { title: 'Title', description: 'Description' }

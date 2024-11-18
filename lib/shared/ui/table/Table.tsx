@@ -59,7 +59,7 @@ const tableOverflowConfig = cva('grid', {
   compoundVariants: [
     {
       columnCount: 'threeColumns',
-      class: 'mobile:overflow-x-scroll mobile:max-w-[368px] mb-1'
+      class: 'overflow-x-scroll max-w-[368px] mb-1'
     }
   ]
 })

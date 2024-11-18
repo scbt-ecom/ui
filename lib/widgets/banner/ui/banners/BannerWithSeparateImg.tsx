@@ -19,7 +19,7 @@ export const BannerWithSeparateImg = ({
       <ResponsiveContainer data-id='banner-container' className={cn(classes?.container)}>
         <div
           data-id='banner-grid'
-          className={cn('grid-mob-apply desktop:grid-desk-apply grid mobile:justify-center', classes?.wrapper)}
+          className={cn('grid-mob-apply desktop:grid-desk-apply grid justify-center desktop:justify-normal', classes?.wrapper)}
         >
           <div
             data-id='banner-text-block'

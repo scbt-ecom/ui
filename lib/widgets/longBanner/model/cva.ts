@@ -1,16 +1,16 @@
 import { cva } from 'class-variance-authority'
 
-export const titleConfig = cva('', {
+export const titleConfig = cva('desktop:block', {
   variants: {
     intent: {
       twoItems: 'mob-headline-bold-s mb-6 desktop:desk-headline-bold-m desktop:mb-12',
-      fourItems: 'mob-title-bold-l desktop:desk-title-bold-l  mb-8'
+      fourItems: 'mob-title-bold-l desktop:desk-title-bold-l mb-8'
     },
     desktopHidden: {
       true: 'desktop:hidden'
     },
     mobileHidden: {
-      true: 'mobile:hidden'
+      true: 'hidden'
     }
   },
   defaultVariants: {
@@ -52,12 +52,12 @@ export const listItemConfig = cva('', {
   ]
 })
 
-export const itemConfig = cva('border-blue-grey-500 pb-6 mobile:mb-6 mobile:border-b mobile:last:pb-0 mobile:last:mb-0', {
+export const itemConfig = cva('border-blue-grey-500 pb-6 mb-6 border-b last:pb-0 last:mb-0', {
   variants: {
     intent: {
       twoItems:
-        ' last:border-none  desktop:ml-8  desktop:border-r desktop:pr-8 desktop:first:ml-0 desktop:last:pr-0 desktop:pb-3 desktop:first:w-[292px]',
-      fourItems: ' mobile:last:border-none desktop:w-[264px] desktop:odd:border-b desktop:pb-0 desktop:odd:pb-3'
+        'last:border-none desktop:border-b-0 desktop:ml-8 desktop:border-r desktop:pr-8 desktop:first:ml-0 desktop:last:pr-0 desktop:pb-3 desktop:first:w-[292px]',
+      fourItems: 'last:border-none desktop:w-[264px] desktop:odd:border-b desktop:pb-0 desktop:odd:pb-3'
     }
   },
   defaultVariants: {
@@ -65,7 +65,7 @@ export const itemConfig = cva('border-blue-grey-500 pb-6 mobile:mb-6 mobile:bord
   }
 })
 
-export const containerImgConfig = cva('mobile:mx-auto mobile:mb-8, h-[172px] w-[280px] ', {
+export const containerImgConfig = cva('mx-auto desktop:m-0 mb-8 h-[172px] w-[280px]', {
   variants: {
     intent: {
       twoItems: 'desktop:h-[232px] desktop:w-[500px]',

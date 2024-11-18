@@ -19,7 +19,6 @@ import {
 export const resetPreset: Omit<Config, 'content'> = {
   theme: {
     screens: {
-      mobile: '1187px',
       desktop: '1188px'
     },
     backgroundColor: {

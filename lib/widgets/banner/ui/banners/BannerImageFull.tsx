@@ -41,7 +41,7 @@ export const BannerImageFull = ({
           <div
             data-id='banner-text-block'
             className={cn(
-              'grid-text-apply flex flex-col gap-4 pt-6 mobile:w-[328px] desktop:pb-10 desktop:pt-20',
+              'grid-text-apply flex w-[328px] flex-col gap-4 pt-6 desktop:w-full desktop:pb-10 desktop:pt-20',
               classes?.textBlock
             )}
           >
@@ -54,7 +54,7 @@ export const BannerImageFull = ({
           </div>
 
           <BannerButtonsGroup
-            className='mobile:self-end'
+            className='self-end desktop:self-center'
             data-id='banner-buttons-group'
             buttonsConfig={buttonsConfig}
             classes={classes}
