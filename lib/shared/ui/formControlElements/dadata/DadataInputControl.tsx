@@ -65,7 +65,7 @@ export const DadataInputControl = <T extends FieldValues>({
                     )}
                     ref={ref}
                     name={name}
-                    value={value} // TODO: capitalize
+                    value={value}
                     displayValue={(currentValue: string) => {
                       return currentValue
                     }}
@@ -74,12 +74,7 @@ export const DadataInputControl = <T extends FieldValues>({
                       setQuery(event.target.value)
                     }}
                   />
-                  {/* //TODO: Пока проблемы с реализацией на других полях  */}
-                  {/* {suggestionsOptions && debounceQuery && (
-                    <span className='absolute desk-body-regular-l text-color-blue-grey-600 left-[16px] top-[28px] capitalize group-focus-within:visible'>
-                      {suggestionsOptions[0]?.value}
-                    </span>
-                  )} */}
+
                   <FieldAttachment
                     onClickIcon={onClickIcon}
                     onKeyDownIcon={onKeyDownIcon}

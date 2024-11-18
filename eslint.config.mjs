@@ -177,8 +177,13 @@ export default tseslint.config(
             {
               name: '$/hybrid',
               message: 'Импорт из $/hybrid запрещен.'
+            },
+            {
+              name: 'dist',
+              message: 'Импорт из $/dist запрещен.'
             }
-          ]
+          ],
+          patterns: ['dist/*', 'hybrid/*', 'client/*']
         }
       ]
     }
