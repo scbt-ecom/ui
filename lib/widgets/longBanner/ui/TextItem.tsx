@@ -7,7 +7,7 @@ export const TextItem = ({ data, intent }: ITextItem) => {
   const { title, description, popoverText } = data
   return (
     <li className={cn(itemConfig({ intent }))}>
-      <div>
+      <div className='desktop:max-w-[264px]'>
         <div className={cn('mb-2 flex items-center gap-2')}>
           <h4 className={cn('mob-title-bold-m text-color-dark')}>{title}</h4>
           {popoverText && (
