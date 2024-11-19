@@ -14,7 +14,7 @@ const getStepCredit = (value: number) => {
     case secondStep:
       return 10_000
     case thirdStep:
-      return 50_000
+      return 10_000
     case max:
       return 100_000
     default:

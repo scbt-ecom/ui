@@ -17,6 +17,7 @@ import {
 export const tailwindConfigBase: Omit<Config, 'content'> = {
   theme: {
     screens: {
+      mobile: { max: '1187px' },
       desktop: '1188px'
     },
     backgroundColor: {
