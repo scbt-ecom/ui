@@ -11,11 +11,15 @@ export const mockLongBannerBase: ILongBannerProps = {
   },
   textContent: [
     {
-      title: 'Title',
-      description: 'Description',
-      popoverText: 'popoverText popoverText popoverTextpopoverTextpopoverTextpopoverText popoverTextpopoverText'
+      title: 'На карту «Халва»',
+      description: <>Снимайте в любом банкомате&nbsp;или переводите на карту любого банка через СБП</>,
+      popoverText:
+        'Получите бесплатную карту «Халва», на которую будут перечислены кредитные средства: ее доставит курьер в удобное время'
     },
-    { title: 'Title', description: 'Description' }
+    {
+      title: 'Наличными в офисе банка»',
+      description: <>Выберите офис Совкомбанка и получите деньги в кассе</>
+    }
   ],
   imageComponent: <img data-id='banner-image' src={money} alt='money' className={cn('h-full w-full object-contain')} />
 }
@@ -23,8 +27,16 @@ export const mockLongBannerBase: ILongBannerProps = {
 export const mockLongBannerWithoutButton: ILongBannerProps = {
   title: 'Main Title',
   textContent: [
-    { title: 'Title', description: 'Description' },
-    { title: 'Title', description: 'Description' }
+    {
+      title: 'На карту «Халва»',
+      description: <>Снимайте в любом банкомате&nbsp;или переводите на карту любого банка через СБП</>,
+      popoverText:
+        'Получите бесплатную карту «Халва», на которую будут перечислены кредитные средства: ее доставит курьер в удобное время'
+    },
+    {
+      title: 'Наличными в офисе банка»',
+      description: <>Выберите офис Совкомбанка и получите деньги в кассе</>
+    }
   ],
   imageComponent: <img data-id='banner-image' src={money} alt='money' className={cn('h-full w-full object-contain')} />
 }
@@ -38,17 +50,25 @@ export const mockLongBannerMulti: ILongBannerProps = {
   },
   textContent: [
     {
-      title: 'Title',
-      description: 'Description',
-      popoverText: 'popoverText popoverText popoverTextpopoverTextpopoverTextpopoverText popoverTextpopoverText'
+      title: 'На карту «Халва»',
+      description: <>Снимайте в любом банкомате&nbsp;или переводите на карту любого банка через СБП</>,
+      popoverText:
+        'Получите бесплатную карту «Халва», на которую будут перечислены кредитные средства: ее доставит курьер в удобное время'
     },
     {
-      title: 'Title',
-      description: 'Description',
-      popoverText: 'popoverText popoverText popoverTextpopoverTextpopoverTextpopoverText popoverTextpopoverText'
+      title: 'Наличными в офисе банка»',
+      description: <>Выберите офис Совкомбанка и получите деньги в кассе</>
     },
-    { title: 'Title', description: 'Description' },
-    { title: 'Title', description: 'Description' }
+    {
+      title: 'На карту «Халва»',
+      description: <>Снимайте в любом банкомате&nbsp;или переводите на карту любого банка через СБП</>,
+      popoverText:
+        'Получите бесплатную карту «Халва», на которую будут перечислены кредитные средства: ее доставит курьер в удобное время'
+    },
+    {
+      title: 'Наличными в офисе банка»',
+      description: <>Выберите офис Совкомбанка и получите деньги в кассе</>
+    }
   ],
   imageComponent: <img data-id='banner-image' src={money} alt='money' className={cn('h-full w-full object-contain')} />
 }
@@ -57,10 +77,26 @@ export const mockLongBannerMultiWithoutButton: ILongBannerProps = {
   intent: 'fourItems',
   title: 'Main Title',
   textContent: [
-    { title: 'Title1', description: 'Description' },
-    { title: 'Title2', description: 'Description' },
-    { title: 'Title3', description: 'Description' },
-    { title: 'Title4', description: 'Description' }
+    {
+      title: 'На карту «Халва»',
+      description: <>Снимайте в любом банкомате&nbsp;или переводите на карту любого банка через СБП</>,
+      popoverText:
+        'Получите бесплатную карту «Халва», на которую будут перечислены кредитные средства: ее доставит курьер в удобное время'
+    },
+    {
+      title: 'Наличными в офисе банка»',
+      description: <>Выберите офис Совкомбанка и получите деньги в кассе</>
+    },
+    {
+      title: 'На карту «Халва»',
+      description: <>Снимайте в любом банкомате&nbsp;или переводите на карту любого банка через СБП</>,
+      popoverText:
+        'Получите бесплатную карту «Халва», на которую будут перечислены кредитные средства: ее доставит курьер в удобное время'
+    },
+    {
+      title: 'Наличными в офисе банка»',
+      description: <>Выберите офис Совкомбанка и получите деньги в кассе</>
+    }
   ],
   imageComponent: <img data-id='banner-image' src={money} alt='money' className={cn('h-full w-full object-contain')} />
 }

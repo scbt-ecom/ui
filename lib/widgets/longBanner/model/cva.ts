@@ -18,7 +18,7 @@ export const titleConfig = cva('', {
   }
 })
 
-export const listItemConfig = cva('', {
+export const listItemConfig = cva('desktop:max-h-[98px]', {
   variants: {
     intent: {
       twoItems: '',
