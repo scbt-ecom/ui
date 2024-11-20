@@ -55,7 +55,8 @@ export const listItemConfig = cva('desktop:max-h-[98px]', {
 export const itemConfig = cva('border-blue-grey-500 pb-6 mobile:mb-6 mobile:border-b mobile:last:pb-0 mobile:last:mb-0', {
   variants: {
     intent: {
-      twoItems: 'last:border-none  desktop:ml-8  desktop:border-r desktop:pr-8 desktop:first:ml-0 desktop:last:pr-0 desktop:pb-3',
+      twoItems:
+        'last:border-none relative desktop:first:after:top-1/2 desktop:first:after:-translate-y-1/2 desktop:first:after:right-0 desktop:first:after:content-[""] desktop:first:after:block desktop:first:after:absolute desktop:first:after:w-[1px] desktop:first:after:h-[64px] desktop:first:after:bg-color-blue-grey-500  desktop:ml-8 desktop:pr-8 desktop:first:ml-0 desktop:last:pr-0 desktop:pb-3',
       fourItems: ' mobile:last:border-none desktop:w-[264px] desktop:odd:border-b desktop:pb-0 desktop:odd:pb-3'
     }
   },
