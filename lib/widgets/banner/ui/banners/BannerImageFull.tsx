@@ -19,7 +19,7 @@ export const BannerImageFull = ({
     <div
       data-id='banner-advantages'
       className={cn(
-        'mt-4 flex items-center justify-center desktop:absolute desktop:bottom-[-50px] desktop:right-1/2 desktop:mt-0 desktop:translate-x-1/2',
+        'flex items-center justify-center pt-4 desktop:absolute desktop:bottom-[-50px] desktop:right-1/2 desktop:translate-x-1/2 desktop:pt-0',
         classes?.advantageContainer
       )}
     >
