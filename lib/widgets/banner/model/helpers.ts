@@ -47,9 +47,7 @@ export const mockWithAdvantages: IBannerProps = {
       size: 'lg'
     }
   },
-  classes: {
-    advantage: 'bg-color-negative'
-  },
+
   advantagesList: [
     { title: 'До 5 млн ₽', description: 'сумма кредита' },
     { title: 'До 5 лет', description: 'срок кредита' },
