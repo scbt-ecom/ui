@@ -7,6 +7,7 @@ export const mockBannerBase: IBannerProps = {
   headTitle: 'Кредит на любые цели',
   subtitle: 'до 5 млн рублей',
   img: bezrykov,
+
   buttonsConfig: {
     primary: {
       onClick: () => toast.success('@click on primary btn'),
@@ -45,6 +46,9 @@ export const mockWithAdvantages: IBannerProps = {
       children: 'Primary',
       size: 'lg'
     }
+  },
+  classes: {
+    advantage: 'bg-color-negative'
   },
   advantagesList: [
     { title: 'До 5 млн ₽', description: 'сумма кредита' },

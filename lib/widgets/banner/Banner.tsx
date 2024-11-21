@@ -15,7 +15,7 @@ interface IBannerClasses extends IBannerButtonsGroupClasses {
   subtitle: string
   imageContainer: string
   image: string
-  advantages: string
+  advantage: string
 }
 
 export type TButtonsConfig = {

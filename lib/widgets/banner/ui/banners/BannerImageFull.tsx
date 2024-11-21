@@ -55,10 +55,10 @@ export const BannerImageFull = ({
 
         <div
           data-id='banner-advantages'
-          className={cn('absolute bottom-[-400px] right-1/2 translate-x-1/2 desktop:bottom-[-50px]', classes?.advantages)}
+          className={cn('absolute bottom-[-400px] right-1/2 translate-x-1/2 desktop:bottom-[-50px]', classes?.advantage)}
         >
           {advantagesList && advantagesList?.length > 0 && (
-            <Advantages data-id='banner-advantages-list' advantagesList={advantagesList} />
+            <Advantages data-id='banner-advantages-list' classes={classes} advantagesList={advantagesList} />
           )}
         </div>
       </ResponsiveContainer>

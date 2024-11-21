@@ -13,13 +13,12 @@ export const BannerWithSeparateImg = ({
   img
 }: Omit<IBannerProps, 'bannerVariant'>) => {
   // const countButtons = Object.keys(buttonsConfig).reduce((acc, key) => (key ? acc + 1 : acc), 0)
-
   return (
     <section data-id='banner-section' className={cn('relative bg-banner-skyblue-300 desktop:h-[456px]', classes?.section)}>
       <ResponsiveContainer data-id='banner-container' className={cn(classes?.container)}>
         <div data-id='banner' className={cn('flex flex-col desktop:flex-row desktop:justify-between', classes?.wrapper)}>
           <div className='flex flex-col desktop:gap-10 desktop:pt-20'>
-            <div data-id='banner-text-block' className={cn('mb-2 flex flex-col gap-4 pt-6 desktop:pt-0', classes?.textBlock)}>
+            <div data-id='banner-text-block' className={cn('flex flex-col gap-4 pt-6 desktop:pt-0', classes?.textBlock)}>
               <Heading data-id='banner-title' as='h1' className={cn('text-color-dark', classes?.title)}>
                 {headTitle}
               </Heading>
@@ -41,7 +40,7 @@ export const BannerWithSeparateImg = ({
 
         <div
           data-id='banner-advantages'
-          className={cn('absolute bottom-[-400px] right-1/2 translate-x-1/2 desktop:bottom-[-50px]', classes?.advantages)}
+          className={cn('absolute bottom-[-400px] right-1/2 translate-x-1/2 desktop:bottom-[-50px]', classes?.advantage)}
         >
           {advantagesList && advantagesList?.length > 0 && <Advantages classes={classes} advantagesList={advantagesList} />}
         </div>
