@@ -30,35 +30,27 @@ export const BannerImageFull = ({
           />
         </picture>
       </div>
-      <ResponsiveContainer data-id='banner-container' className={cn('h-full pb-6', classes?.container)}>
-        <div
-          data-id='banner-grid'
-          className={cn(
-            'grid-mob-full-img-apply desktop:grid-desk-full-img-apply grid h-full grid-rows-[repeat(2,_min-content)]',
-            classes?.wrapper
-          )}
-        >
+      <ResponsiveContainer data-id='banner-container' className={cn('h-full', classes?.container)}>
+        <div data-id='banner' className={cn('flex h-full', classes?.wrapper)}>
           <div
             data-id='banner-text-block'
-            className={cn(
-              'grid-text-apply flex w-[328px] flex-col gap-4 pt-6 desktop:w-full desktop:pb-10 desktop:pt-20',
-              classes?.textBlock
-            )}
+            className={cn('flex w-[328px] flex-col gap-10 pt-6 desktop:w-full desktop:pt-20', classes?.textBlock)}
           >
-            <Heading data-id='banner-title' as='h1' className={cn('text-color-white', classes?.title)}>
-              {headTitle}
-            </Heading>
-            <p data-id='banner-subtitle' className={cn('desk-body-regular-l text-color-white', classes?.subtitle)}>
-              {subtitle}
-            </p>
+            <div className='flex flex-col gap-4'>
+              <Heading data-id='banner-title' as='h1' className={cn('text-color-white', classes?.title)}>
+                {headTitle}
+              </Heading>
+              <p data-id='banner-subtitle' className={cn('desk-body-regular-l text-color-white', classes?.subtitle)}>
+                {subtitle}
+              </p>
+            </div>
+            <BannerButtonsGroup
+              className='self-end desktop:self-center'
+              data-id='banner-buttons-group'
+              buttonsConfig={buttonsConfig}
+              classes={classes}
+            />
           </div>
-
-          <BannerButtonsGroup
-            className='self-end desktop:self-center'
-            data-id='banner-buttons-group'
-            buttonsConfig={buttonsConfig}
-            classes={classes}
-          />
         </div>
 
         <div
