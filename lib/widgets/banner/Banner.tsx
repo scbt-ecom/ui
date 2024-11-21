@@ -1,5 +1,5 @@
 import { type ReactElement } from 'react'
-import { type IAdvantage } from '../Advantages'
+import { type IAdvantage, type IAdvantageClasses } from '../Advantages'
 import { type IBannerButtonsGroupClasses } from './ui/BannerButtonsGroup'
 import { BannerWithSeparateImg } from './ui/banners'
 import { BannerImageFull } from './ui/banners'
@@ -15,7 +15,7 @@ interface IBannerClasses extends IBannerButtonsGroupClasses {
   subtitle: string
   imageContainer: string
   image: string
-  advantage: string
+  advantageContainer: string
 }
 
 export type TButtonsConfig = {
@@ -34,7 +34,7 @@ export interface IBannerProps {
   }
   buttonsConfig: TButtonsConfig
   advantagesList?: IAdvantage[]
-  classes?: Partial<IBannerClasses>
+  classes?: Partial<IBannerClasses> & Partial<IAdvantageClasses>
   bannerVariant?: 'sepatateImg' | 'fullImg'
 }
 

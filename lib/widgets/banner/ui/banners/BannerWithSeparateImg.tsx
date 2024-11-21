@@ -13,18 +13,18 @@ export const BannerWithSeparateImg = ({
   classes,
   img
 }: Omit<IBannerProps, 'bannerVariant'>) => {
+  const { isDesktop, isMobile } = useDevice()
   const adventage = (
     <div
       data-id='banner-advantages'
       className={cn(
         'mt-4 flex items-center justify-center desktop:absolute desktop:bottom-[-50px] desktop:right-1/2 desktop:mt-0 desktop:translate-x-1/2',
-        classes?.advantage
+        classes?.advantageContainer
       )}
     >
       {advantagesList && advantagesList?.length > 0 && <Advantages classes={classes} advantagesList={advantagesList} />}
     </div>
   )
-  const { isDesktop, isMobile } = useDevice()
   return (
     <>
       <section data-id='banner-section' className={cn('relative bg-banner-skyblue-300 desktop:h-[456px]', classes?.section)}>
