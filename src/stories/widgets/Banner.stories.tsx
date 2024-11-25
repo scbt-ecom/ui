@@ -14,7 +14,14 @@ import {
 const meta = {
   title: 'WIDGETS/Banner',
   component: Banner,
-  tags: ['autodocs']
+  tags: ['autodocs'],
+  decorators: [
+    (Story) => (
+      <div className='h-screen bg-color-blue-grey-100'>
+        <Story />
+      </div>
+    )
+  ]
 } satisfies Meta<typeof Banner>
 
 export default meta

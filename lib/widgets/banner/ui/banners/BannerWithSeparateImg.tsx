@@ -18,7 +18,7 @@ export const BannerWithSeparateImg = ({
     <div
       data-id='banner-advantages'
       className={cn(
-        'flex items-center justify-center pt-4 desktop:absolute desktop:bottom-[-50px] desktop:right-1/2 desktop:translate-x-1/2 desktop:pt-0',
+        'flex items-center justify-center p-4 desktop:absolute desktop:bottom-[-50px] desktop:right-1/2 desktop:translate-x-1/2 desktop:pt-0',
         classes?.advantageContainer
       )}
     >
@@ -27,8 +27,8 @@ export const BannerWithSeparateImg = ({
   )
   return (
     <>
-      <section data-id='banner-section' className={cn('relative bg-banner-skyblue-300 desktop:h-[456px]', classes?.section)}>
-        <ResponsiveContainer data-id='banner-container' className={cn(classes?.container)}>
+      <section data-id='banner-section' className={cn('bg-banner-skyblue-300 desktop:h-[456px]', classes?.section)}>
+        <ResponsiveContainer data-id='banner-container' className={cn('relative', classes?.container)}>
           <div data-id='banner' className={cn('flex flex-col desktop:flex-row desktop:justify-between', classes?.wrapper)}>
             <div className='flex flex-col desktop:gap-10 desktop:pt-20'>
               <div data-id='banner-text-block' className={cn('flex flex-col gap-4 pt-6 desktop:pt-0', classes?.textBlock)}>
