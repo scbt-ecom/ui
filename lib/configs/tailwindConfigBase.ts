@@ -16,10 +16,6 @@ import {
 
 export const tailwindConfigBase: Omit<Config, 'content'> = {
   theme: {
-    screens: {
-      mobile: { max: '1187px' },
-      desktop: '1188px'
-    },
     backgroundColor: {
       color: allowedBackgroundColors,
       banner: allowedBannersBackgroundColors,
@@ -29,7 +25,6 @@ export const tailwindConfigBase: Omit<Config, 'content'> = {
       icon: allowedIconsColors,
       color: allowedTextColors
     },
-
     fill: allowedIconsColors,
     stroke: allowedIconsColors,
     borderColor: allowedStrokeColors,
