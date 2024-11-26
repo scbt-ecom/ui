@@ -18,7 +18,7 @@ export const BannerWithSeparateImg = ({
     <div
       data-id='banner-advantages'
       className={cn(
-        'flex items-center justify-center bg-color-transparent p-4 desktop:absolute desktop:bottom-[-50px] desktop:right-1/2 desktop:translate-x-1/2 desktop:p-0',
+        'flex items-center justify-center rounded-md bg-color-blue-grey-100 p-4 desktop:absolute desktop:bottom-[-50px] desktop:right-1/2 desktop:translate-x-1/2 desktop:p-0',
         classes?.advantageContainer
       )}
     >

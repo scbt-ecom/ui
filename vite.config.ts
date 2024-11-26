@@ -15,7 +15,7 @@ export default defineConfig({
     svg({
       root: 'static',
       group: true,
-      output: './lib/shared/assets/sprites',
+      output: '/public/sprites',
       resetColors: {
         exclude: [/^brandLogos/],
         replaceUnknown: 'currentColor'

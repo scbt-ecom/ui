@@ -35,7 +35,7 @@ export const Icon = ({ name, className, ...props }: IconProps) => {
       data-axis={axis}
       {...props}
     >
-      <use href={`/lib/shared/assets/sprites/${filePath}#${iconName}`} />
+      <use href={`/public/sprites/${filePath}#${iconName}`} />
     </svg>
   )
 }
