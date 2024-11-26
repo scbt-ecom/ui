@@ -24,7 +24,6 @@ const config: StorybookConfig = {
       strictMode: true
     }
   },
-  // staticDirs: ['../public'],
   docs: {
     autodocs: 'tag'
   },
