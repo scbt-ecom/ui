@@ -1,0 +1,50 @@
+@layer components {
+  /* # Custom scroll */
+  .customScrollbar-y::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+  .customScrollbar-y::-webkit-scrollbar-track {
+    border-radius: 8px;
+    background: #d4dbe2;
+  }
+  .customScrollbar-y::-webkit-scrollbar-thumb {
+    background: #a9b6c5;
+    border-radius: 8px;
+  }
+  .scrollHidden::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+
+  .progressBar-apply {
+    background-image: repeating-linear-gradient(-33deg, #d4dbe2, #d4dbe2 5px, #f3f4f7 0, #f3f4f7 14px);
+    background-size: 2000% 2000%;
+  }
+
+  .skeleton-apply {
+    background: linear-gradient(80deg, #ececec 8%, #f5f5f5 18%, #ececec 33%);
+    background-size: 200% 100%;
+    animation: 1.5s shine linear infinite;
+  }
+
+  .rdp-vhidden {
+    @apply hidden;
+  }
+
+  .gradient-apply {
+    background: linear-gradient(97.94deg, #dae4f2 -14.21%, #afcffc 47.44%, #79aef8 107.86%);
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@keyframes shine {
+  to {
+    background-position-x: -200%;
+  }
+}

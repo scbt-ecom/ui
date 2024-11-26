@@ -3,6 +3,7 @@
   "version": "0.7.18",
   "type": "module",
   "exports": {
+    "./utils-tailwind.css": "./dist/utils-tailwind.css",
     "./style.css": "./dist/style.css",
     "./client": {
       "import": "./dist/client.js",

@@ -1,5 +1,6 @@
 // Styles
 import './shared/style.css'
+import './shared/utils-tailwind.css'
 // Components
 export * from './shared/ui/accordion'
 export * from './shared/ui/formControlElements'
