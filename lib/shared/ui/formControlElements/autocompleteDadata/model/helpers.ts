@@ -6,23 +6,10 @@ import type {
   IDadataConstantsCountrySuggestion,
   IDadataCountryOption,
   IDadataOrganizationOption,
-  TDadataBaseUrl,
   TDadataReturn,
   TDadataSuggestionType,
   TDadataType
 } from './types'
-import { DADATA_BASE_CACHE_URL, DADATA_BASE_CONSTANTS_URL } from '$/shared/constants'
-
-export const getDadataBaseUrl = (baseUrl: TDadataBaseUrl) => {
-  switch (baseUrl) {
-    case 'cache':
-      return DADATA_BASE_CACHE_URL || baseUrl
-    case 'constants':
-      return DADATA_BASE_CONSTANTS_URL
-    default:
-      return DADATA_BASE_CACHE_URL
-  }
-}
 
 export const getDataByDadataType = <T>(dadataType: TDadataType, data: TDadataReturn<T>) => {
   switch (dadataType) {

@@ -2,11 +2,12 @@
 
 import * as React from 'react'
 import { Controller, type FieldValues } from 'react-hook-form'
-import { Combobox, ComboboxInput, ComboboxOption, ComboboxOptions } from '@headlessui/react'
+import { Combobox, ComboboxInput } from '@headlessui/react'
 import type { TAdditionalInputClassesWithAttachment, TControlledInputProps, TInputCommonProps } from '../model'
 import { FieldAttachment, FieldContainer, FieldWrapper, MessageView } from '../ui'
-import type { TDadataBaseUrl, TDadataType } from './model/types'
+import type { TDadataType } from './model/types'
 import { useDadata } from './model/useDadata'
+import { ComboboxOptionsCustom } from './ui/ComboboxOptionsCustom'
 import { cn } from '$/shared/utils'
 
 type TDadataClasses = Partial<TAdditionalInputClassesWithAttachment> & {
@@ -14,31 +15,30 @@ type TDadataClasses = Partial<TAdditionalInputClassesWithAttachment> & {
   indentMargin?: string
 }
 
-export interface IDadataInputControlProps<T extends FieldValues> extends TControlledInputProps<T>, TInputCommonProps {
+export interface IAutocompleteDadataProps<T extends FieldValues> extends TControlledInputProps<T>, TInputCommonProps {
   classes?: TDadataClasses
-  dadataType?: TDadataType
-  dadataBaseUrl?: TDadataBaseUrl
+  dadataType: TDadataType
+  dadataBaseUrl: string
 }
 
-export const DadataInputControl = <T extends FieldValues>({
+export const AutocompleteDadata = <T extends FieldValues>({
   control,
   helperText,
   classes,
   size = 'full',
   label,
   disabled,
-  dadataType = 'fio',
-  dadataBaseUrl = 'cache',
+  dadataType,
+  dadataBaseUrl,
   badge,
   icon,
   swapPosition,
   onClickIcon,
   onKeyDownIcon,
   ...props
-}: IDadataInputControlProps<T>) => {
+}: IAutocompleteDadataProps<T>) => {
   const { setQuery, suggestionsOptions } = useDadata(dadataType, dadataBaseUrl)
   const inputId = React.useId()
-  // TODO: Пофиксить при нажатие на enter очищается инпут, если нет опшенов
 
   return (
     <Controller
@@ -91,37 +91,7 @@ export const DadataInputControl = <T extends FieldValues>({
                 text={error?.message || helperText}
                 disabled={disabled}
               />
-              <ComboboxOptions
-                transition
-                className={cn(
-                  'scrollHidden absolute top-14 z-10 mt-2 flex w-full flex-col rounded-md border border-solid border-blue-grey-700 bg-color-white p-2 transition-all empty:invisible data-[closed]:scale-95 data-[closed]:opacity-0'
-                )}
-              >
-                <div className='customScrollbar-y !max-h-[246px] overflow-x-hidden p-2'>
-                  {suggestionsOptions && suggestionsOptions?.length > 0 ? (
-                    <>
-                      {suggestionsOptions?.map(({ value: suggestionValue, additionalText, isDisabled }) => (
-                        <ComboboxOption
-                          key={suggestionValue}
-                          disabled={isDisabled}
-                          value={suggestionValue ?? ''}
-                          className='flex cursor-pointer items-center justify-between gap-2 rounded-sm px-3 py-3 hover:bg-color-blue-grey-200 data-[disabled]:pointer-events-none data-[disabled]:bg-color-blue-grey-100 data-[focus]:bg-color-blue-grey-200 data-[disabled]:text-color-disabled'
-                        >
-                          <div className='flex flex-col gap-1'>
-                            <p className='desk-body-regular-l'>{suggestionValue}</p>
-
-                            {additionalText && <span className='desk-body-regular-s text-color-tetriary'>{additionalText}</span>}
-                          </div>
-                        </ComboboxOption>
-                      ))}
-                    </>
-                  ) : (
-                    <ComboboxOption value='' className='desk-body-regular-m text-color-tetriary'>
-                      Ничего не найдено
-                    </ComboboxOption>
-                  )}
-                </div>
-              </ComboboxOptions>
+              <ComboboxOptionsCustom suggestionsOptions={suggestionsOptions} />
             </Combobox>
           </FieldContainer>
         )

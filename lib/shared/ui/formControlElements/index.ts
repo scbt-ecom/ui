@@ -12,3 +12,4 @@ export { InputControlUploader, type IInputControlUploaderProps } from './inputCo
 export { ComboboxControl, type IComboboxControlProps } from './comboboxControl'
 export { InputCurrencyControl, type InputCurrencyControlProps } from './inputCurrencyControl'
 export { EditorControl, type IEditorControlProps } from './editorControl'
+export * from './dadataControl'

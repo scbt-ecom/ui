@@ -30,7 +30,7 @@ export const InputControl = <T extends FieldValues>({
   const inputId = React.useId()
   const isPassport = variant === 'password'
   const { displayPasswordIcon, passportIsVisible, handleShowPassword } = useInputPassword(onClickIcon)
-
+  //TODO: переписать и реализовать возможность при валидных инпутах проставлять иконку и проверку на undefined
   return (
     <Controller
       control={control}

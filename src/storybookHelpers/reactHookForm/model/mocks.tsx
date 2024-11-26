@@ -1,7 +1,7 @@
 import { z } from 'zod'
 import { MOCK_RADIO_GROUP } from './mockData'
 import { EnumFieldType, type TStorybookFieldConfig } from './types'
-import { VALIDATION_MESSAGES, zodCalendarValidate } from '$/shared/validation'
+import { VALIDATION_MESSAGES, zodCalendarValidate, zodDadataFioValidate } from '$/shared/validation'
 
 export const mockToastMessage = (values: string) => (
   <div className='flex flex-col'>
@@ -13,7 +13,7 @@ export const mockToastMessage = (values: string) => (
 export const mockSchema = z.object({
   city: z.string({ required_error: VALIDATION_MESSAGES.REQUIRED }).min(3, `${VALIDATION_MESSAGES.MIN_LENGTH} 3`),
   phone: z.string({ required_error: VALIDATION_MESSAGES.REQUIRED }).min(7, `${VALIDATION_MESSAGES.MIN_LENGTH} 7`),
-  fio: z.string({ required_error: VALIDATION_MESSAGES.REQUIRED }),
+  fio: zodDadataFioValidate,
   condition: z.literal<boolean>(true, { errorMap: () => ({ message: VALIDATION_MESSAGES.REQUIRED }) }),
   sex: z.string().min(2, VALIDATION_MESSAGES.REQUIRED),
   percent: z.literal<boolean>(true, { errorMap: () => ({ message: VALIDATION_MESSAGES.REQUIRED }) }),

@@ -46,12 +46,7 @@ export default defineConfig({
   build: {
     sourcemap: true,
     copyPublicDir: true,
-    // lib: {
-    //   entry: resolve(__dirname, './lib/index.ts'),
-    //   name: 'ui',
-    //   formats: ['es', 'umd'],
-    //   fileName: (format) => `ui.${format}.js`
-    // },
+
     lib: {
       entry: [resolve(__dirname, './lib/hybrid.ts'), resolve(__dirname, './lib/client.ts')],
       formats: ['es'],

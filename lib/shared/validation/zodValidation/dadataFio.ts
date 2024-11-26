@@ -1,6 +1,5 @@
 import { z } from 'zod'
 import { RgxCheckForHyphen, RgxPatronymic, RgxUnicode } from '../regExp'
-import { capitalize } from '$/shared/utils'
 
 const formattedFio = (value: string) => {
   const parts = value.trim().replace(/\s+/g, ' ').split(' ')
@@ -56,12 +55,19 @@ export const zodDadataFioValidate = z
       }
     }
   })
-  .transform((value) => {
-    const { surname, name, patronymic } = formattedFio(value)
 
-    return {
-      surname: capitalize(surname),
-      name: capitalize(name),
-      patronymic: patronymic ? capitalize(patronymic) : undefined
-    }
-  })
+// .transform((value) => {
+//   const { surname, name, patronymic } = formattedFio(value)
+
+//   return {
+//     surname: capitalize(surname),
+//     name: capitalize(name),
+//     patronymic: patronymic ? capitalize(patronymic) : undefined
+//   }
+// })
+
+// Тестов Имя
+// Тестов Имя Отчество
+// Тестов-тестов Имя Отчество
+// Тестов-тестов Имя Отчество углы-ули
+// Тестов-тестов Имя Отчество углы-ули Отчество-Отчество

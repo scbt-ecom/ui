@@ -39,33 +39,4 @@ export { Document, type IDocumentProps } from './Document'
 export { type IKeyboardShortcutsProps, KeyboardShortcuts } from './KeyboardShortcuts'
 
 // # CONTROLLED FORM UI
-export {
-  InputControl,
-  type InputControlProps,
-  InputControlMask,
-  type InputControlMaskProps,
-  InputSliderControl,
-  type InputSliderControlProps,
-  FormControl,
-  DadataInputControl,
-  type IDadataInputControlProps,
-  CheckboxControl,
-  type ICheckboxControlProps,
-  RadioControl,
-  type IRadioControlProps,
-  type IRadioGroupOption,
-  SwitchControl,
-  type ISwitchControlProps,
-  TextareaControl,
-  type ITextareaControlProps,
-  type IInputControlUploaderProps,
-  InputControlUploader,
-  type ICalendarControlProps,
-  CalendarControl,
-  InputCurrencyControl,
-  type InputCurrencyControlProps,
-  ComboboxControl,
-  type IComboboxControlProps,
-  EditorControl,
-  type IEditorControlProps
-} from './formControlElements'
+export * from './formControlElements'
