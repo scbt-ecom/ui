@@ -4,7 +4,6 @@ import { type IInputControlUploaderProps } from '$/shared/ui'
 import type {
   ICalendarControlProps,
   ICheckboxControlProps,
-  IDadataInputControlProps,
   IEditorControlProps,
   InputControlMaskProps,
   InputControlProps,
@@ -24,7 +23,6 @@ export type TStorybookFieldsMapperProps<T extends FieldValues> = {
 export const enum EnumFieldType {
   INPUT = 'input',
   MASK = 'mask',
-  DADATA = 'dadata',
   CHECKBOX = 'checkbox',
   RADIO = 'radio',
   SWITCH = 'switch',
@@ -39,9 +37,7 @@ export type TControlledInput<T extends FieldValues> = Omit<InputControlProps<T>,
 export type TControlledInputMask<T extends FieldValues> = Omit<InputControlMaskProps<T>, 'control'> & {
   fieldType: EnumFieldType.MASK
 }
-export type TControlledInputDadata<T extends FieldValues> = Omit<IDadataInputControlProps<T>, 'control'> & {
-  fieldType: EnumFieldType.DADATA
-}
+
 export type TControlledInputCheckbox<T extends FieldValues> = Omit<ICheckboxControlProps<T>, 'control'> & {
   fieldType: EnumFieldType.CHECKBOX
 }
@@ -76,7 +72,6 @@ export type TControlledInputEditor<T extends FieldValues> = Omit<IEditorControlP
 export type TStorybookFieldConfig<T extends FieldValues> =
   | TControlledInputMask<T>
   | TControlledInput<T>
-  | TControlledInputDadata<T>
   | TControlledInputCheckbox<T>
   | TControlledInputRadio<T>
   | TControlledInputSwitch<T>

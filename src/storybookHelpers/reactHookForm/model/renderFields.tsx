@@ -4,7 +4,6 @@ import {
   type TControlledInput,
   type TControlledInputCalendar,
   type TControlledInputCheckbox,
-  type TControlledInputDadata,
   type TControlledInputEditor,
   type TControlledInputMask,
   type TControlledInputRadio,
@@ -17,7 +16,6 @@ import {
 import {
   CalendarControl,
   CheckboxControl,
-  DadataInputControl,
   EditorControl,
   InputControl,
   InputControlMask,
@@ -37,8 +35,6 @@ export const renderFields = <T extends FieldValues>(fieldConfig: TStorybookField
       return <InputControl control={control} {...(props as TControlledInput<T>)} />
     case EnumFieldType.MASK:
       return <InputControlMask control={control} {...(props as TControlledInputMask<T>)} />
-    case EnumFieldType.DADATA:
-      return <DadataInputControl control={control} {...(props as TControlledInputDadata<T>)} />
     case EnumFieldType.CHECKBOX:
       return <CheckboxControl control={control} {...(props as TControlledInputCheckbox<T>)} />
     case EnumFieldType.RADIO:
