@@ -1,7 +1,7 @@
 'use client'
 
 import * as React from 'react'
-import { Controller, type FieldValues, useFormContext } from 'react-hook-form'
+import { Controller, type FieldValues, type Path, type PathValue, type UseFormSetValue, type UseFormWatch } from 'react-hook-form'
 import { PatternFormat } from 'react-number-format'
 import { format } from 'date-fns'
 import { AnimatePresence, motion } from 'framer-motion'
@@ -22,6 +22,8 @@ export interface ICalendarControlProps<T extends FieldValues> extends TControlle
   disabled?: boolean
   onClickIcon?: (...args: unknown[]) => unknown
   defaultValue?: string
+  setValue: UseFormSetValue<T>
+  watch: UseFormWatch<T>
 }
 
 const today = format(new Date(), 'dd.MM.yyyy')
@@ -41,10 +43,10 @@ export const CalendarControl = <T extends FieldValues>({
   swapPosition,
   onClickIcon,
   defaultValue = today,
+  watch,
+  setValue,
   ...props
 }: ICalendarControlProps<T>) => {
-  const { watch, setValue } = useFormContext() ?? {}
-
   const inputId = React.useId()
   const calendarValue = watch(props.name)
 
@@ -142,7 +144,7 @@ export const CalendarControl = <T extends FieldValues>({
                     onBlur={(event) => {
                       onBlurInput(event.target.value, onChange)
                       if (!event.target.value) {
-                        setValue(props.name, '' as any)
+                        setValue(props.name, '' as PathValue<T, Path<T>>)
                       }
                     }}
                   />

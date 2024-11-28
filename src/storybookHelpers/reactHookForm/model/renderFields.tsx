@@ -27,7 +27,7 @@ import {
 } from '$/shared/ui'
 
 export const renderFields = <T extends FieldValues>(fieldConfig: TStorybookFieldConfig<T>, formMethods: UseFormReturn<T>) => {
-  const { control } = formMethods
+  const { control, setValue, watch } = formMethods
 
   const { fieldType, ...props } = fieldConfig
   switch (fieldType) {
@@ -44,7 +44,7 @@ export const renderFields = <T extends FieldValues>(fieldConfig: TStorybookField
     case EnumFieldType.TEXTAREA:
       return <TextareaControl control={control} {...(props as TControlledInputTextarea<T>)} />
     case EnumFieldType.CALENDAR:
-      return <CalendarControl control={control} {...(props as TControlledInputCalendar<T>)} />
+      return <CalendarControl control={control} setValue={setValue} watch={watch} {...(props as TControlledInputCalendar<T>)} />
     case EnumFieldType.SLIDER:
       return <InputSliderControl control={control} {...(props as TControlledInputSlider<T>)} />
     case EnumFieldType.UPLOADER:
