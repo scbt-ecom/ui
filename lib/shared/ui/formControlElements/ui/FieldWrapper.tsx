@@ -26,7 +26,7 @@ export const FieldWrapper = <V,>({ children, error, disabled, classes, ...props 
         classes?.field
       )}
     >
-      <Label {...props} />
+      <Label classes={classes} {...props} />
       {children}
     </div>
   )

@@ -56,7 +56,6 @@ export const InputSliderControl = <T extends FieldValues>({
   }
 
   const { handleBlur, handleChange, getSuffixText } = useSlider()
-
   return (
     <Controller
       control={control}
@@ -73,6 +72,7 @@ export const InputSliderControl = <T extends FieldValues>({
                     'bg-color-white hover:bg-color-blue-grey-200 focus-within:bg-color-blue-grey-200 focus:bg-color-blue-grey-200 border-blue-grey-500',
                     classes?.field
                   ),
+                  label: cn('text-color-dark desk-body-regular-m', classes?.label),
                   ...classes
                 }}
                 disabled={disabled}

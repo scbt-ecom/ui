@@ -25,7 +25,10 @@ export const AccordionHeader = React.forwardRef<HTMLButtonElement, IAccordionHea
         <div className={cn('desk-body-medium-l text-color-dark', classes?.inner)}>{children}</div>
         <Icon
           name='arrows/arrowCircle'
-          className={cn('size-8 text-icon-blue-grey-800 transition-all group-data-[state=open]:rotate-180', classes?.icon)}
+          className={cn(
+            'size-8 rotate-180 text-icon-blue-grey-800 transition-all group-data-[state=open]:rotate-0',
+            classes?.icon
+          )}
         />
       </Trigger>
     </Header>

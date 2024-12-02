@@ -37,7 +37,7 @@ export const Advantages = ({ advantagesList, classes }: IAdvantagesProps) => {
           <Heading as='h4' className={cn('text-color-dark', classes?.advantageTitle)}>
             {title}
           </Heading>
-          <p className={cn('desk-body-regular-l text-color-tetriary', classes?.advantageDescription)}>{description}</p>
+          <p className={cn('desk-body-regular-l text-color-secondary', classes?.advantageDescription)}>{description}</p>
         </div>
       ))}
     </div>
