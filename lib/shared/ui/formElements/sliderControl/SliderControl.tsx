@@ -47,7 +47,7 @@ export interface ISliderControlProps<T extends FieldValues>
   classes?: TSliderControlClasses
   disabled?: boolean
   size?: TFieldContainerConfig['size']
-  onInputChange?: (value?: number) => void
+  onInputChange?: (value?: number, ...args: unknown[]) => void
   leftText?: string | React.ReactElement
   rightText?: string | React.ReactElement
 }
