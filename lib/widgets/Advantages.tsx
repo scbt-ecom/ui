@@ -22,7 +22,7 @@ export const Advantages = ({ advantagesList, classes }: IAdvantagesProps) => {
   return (
     <div
       className={cn(
-        'flex w-full flex-col gap-8 rounded-md bg-color-white p-6 shadow-sm desktop:w-full desktop:flex-row desktop:items-start desktop:gap-0 desktop:p-0 desktop:py-6',
+        'flex w-full max-w-[636px] flex-col gap-8 rounded-md bg-color-white p-6 shadow-sm desktop:w-full desktop:max-w-full desktop:flex-row desktop:items-start desktop:gap-0 desktop:p-0 desktop:py-6',
         classes?.advantageWrapper
       )}
     >
@@ -37,7 +37,7 @@ export const Advantages = ({ advantagesList, classes }: IAdvantagesProps) => {
           <Heading as='h4' className={cn('text-color-dark', classes?.advantageTitle)}>
             {title}
           </Heading>
-          <p className={cn('desk-body-regular-l text-color-tetriary', classes?.advantageDescription)}>{description}</p>
+          <p className={cn('desk-body-regular-l text-color-secondary', classes?.advantageDescription)}>{description}</p>
         </div>
       ))}
     </div>

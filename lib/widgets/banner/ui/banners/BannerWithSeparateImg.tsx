@@ -11,10 +11,11 @@ export const BannerWithSeparateImg = ({
   buttonsConfig,
   advantagesList,
   classes,
-  img
+  img,
+  imgSets
 }: Omit<IBannerProps, 'bannerVariant'>) => {
   const { isDesktop, isMobile } = useDevice()
-  const adventage = (
+  const advantage = (
     <div
       data-id='banner-advantages'
       className={cn(
@@ -47,19 +48,23 @@ export const BannerWithSeparateImg = ({
               data-id='banner-image-wrapper'
               className={cn('flex h-[356px] justify-center desktop:h-[456px] desktop:w-[550px]', classes?.imageContainer)}
             >
-              <img
-                data-id='banner-image'
-                src={img}
-                alt='Картинка баннера'
-                className={cn('h-full object-cover', classes?.image)}
-              />
+              <picture>
+                <source media='(min-width: 1128px)' srcSet={imgSets?.large} />
+                <source media='(max-width: 1127px)' srcSet={imgSets?.mob} />
+                <img
+                  data-id='banner-image'
+                  src={img}
+                  alt='Картинка баннера'
+                  className={cn('h-full object-cover', classes?.image)}
+                />
+              </picture>
             </div>
           </div>
 
-          {isDesktop && adventage}
+          {isDesktop && advantage}
         </ResponsiveContainer>
       </section>
-      {isMobile && adventage}
+      {isMobile && advantage}
     </>
   )
 }

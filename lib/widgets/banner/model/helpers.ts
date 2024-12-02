@@ -1,13 +1,17 @@
 import toast from 'react-hot-toast'
 import { type IBannerProps } from '../Banner'
-import bezrykov from './bezrukov.png'
+import bezrykovDesk from './bezrukov_desk.png'
+import bezrykovMob from './bezrukov_mob.png'
 import saif from '$/widgets/banner/saif.jpg'
 
 export const mockBannerBase: IBannerProps = {
   headTitle: 'Кредит на любые цели',
   subtitle: 'до 5 млн рублей',
-  img: bezrykov,
-
+  img: bezrykovMob,
+  imgSets: {
+    mob: bezrykovMob,
+    large: bezrykovDesk
+  },
   buttonsConfig: {
     primary: {
       onClick: () => toast.success('@click on primary btn'),
@@ -24,8 +28,7 @@ export const mockBannerBase: IBannerProps = {
 export const mockBannerOnlyPrimaryButton: IBannerProps = {
   headTitle: 'Кредит на любые цели',
   subtitle: 'до 5 млн рублей',
-  img: bezrykov,
-
+  img: bezrykovMob,
   buttonsConfig: {
     primary: {
       onClick: () => toast.success('@click on primary btn'),
@@ -38,7 +41,7 @@ export const mockBannerOnlyPrimaryButton: IBannerProps = {
 export const mockWithAdvantages: IBannerProps = {
   headTitle: 'Кредит на любые цели',
   subtitle: 'до 5 млн рублей',
-  img: bezrykov,
+  img: bezrykovMob,
 
   buttonsConfig: {
     primary: {
@@ -52,7 +55,7 @@ export const mockWithAdvantages: IBannerProps = {
     { title: 'До 5 млн ₽', description: 'сумма кредита' },
     { title: 'До 5 лет', description: 'срок кредита' },
     { title: 'От 5 минут', description: 'быстрое одобрение' },
-    { title: 'От 20 минут', description: 'сумма одобрения' }
+    { title: 'Бесплатная', description: 'доставка кредита' }
   ]
 }
 export const mockBannerBaseFullImage: IBannerProps = {
@@ -120,14 +123,14 @@ export const mockBannerFullImageWithAdvantages: IBannerProps = {
     { title: 'До 5 млн ₽', description: 'сумма кредита' },
     { title: 'До 5 лет', description: 'срок кредита' },
     { title: 'От 5 минут', description: 'быстрое одобрение' },
-    { title: 'От 20 минут', description: 'сумма одобрения' }
+    { title: 'Бесплатная', description: 'доставка кредита' }
   ]
 }
 
 export const mockBannerBaseGradient: IBannerProps = {
   headTitle: 'Кредит на любые цели',
   subtitle: 'до 5 млн рублей',
-  img: bezrykov,
+  img: bezrykovMob,
   buttonsConfig: {
     primary: {
       onClick: () => toast.success('@click on primary btn'),
@@ -148,7 +151,7 @@ export const mockBannerBaseGradient: IBannerProps = {
 export const mockBannerBaseGradientAdvantages: IBannerProps = {
   headTitle: 'Кредит на любые цели',
   subtitle: 'до 5 млн рублей',
-  img: bezrykov,
+  img: bezrykovMob,
   buttonsConfig: {
     primary: {
       onClick: () => toast.success('@click on primary btn'),
@@ -168,6 +171,6 @@ export const mockBannerBaseGradientAdvantages: IBannerProps = {
     { title: 'До 5 млн ₽', description: 'сумма кредита' },
     { title: 'До 5 лет', description: 'срок кредита' },
     { title: 'От 5 минут', description: 'быстрое одобрение' },
-    { title: 'От 20 минут', description: 'сумма одобрения' }
+    { title: 'Бесплатная', description: 'доставка кредита' }
   ]
 }
