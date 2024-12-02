@@ -2,7 +2,7 @@ import { type ReactNode, useEffect } from 'react'
 import { type DefaultValues, type FieldValues, FormProvider } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import type { TypeOf, ZodTypeAny } from 'zod'
-import { mockToastMessage } from '../model/mocks'
+import { mockToastMessage } from '../model/mockData'
 import { useControlledForm } from '$/shared/hooks'
 
 interface IStorybookFormProviderProps<S extends ZodTypeAny> {
