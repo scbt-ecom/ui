@@ -1,7 +1,7 @@
 import { forwardRef, type Ref } from 'react'
 import { type DropzoneRootProps } from 'react-dropzone'
 import { type FieldError, type FieldValues, type Path } from 'react-hook-form'
-import { type TClassesUploader } from '../model/types'
+import { type TUploaderClasses } from '../model/types'
 import { Icon } from '$/shared/ui/icon'
 import { cn } from '$/shared/utils'
 
@@ -9,7 +9,7 @@ export interface IFileInputProps<T extends FieldValues> {
   dropzoneState: DropzoneRootProps
   disabled?: boolean
   error?: FieldError
-  classes?: Partial<TClassesUploader>
+  classes?: TUploaderClasses
   name?: Path<T>
 }
 

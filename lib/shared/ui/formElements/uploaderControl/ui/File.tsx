@@ -1,7 +1,6 @@
 import { type TUploaderClasses } from '../model/types'
 import { Filename } from './Filename'
-import { Icon } from '$/shared/ui/icon'
-import { Loader } from '$/shared/ui/Loader'
+import { Icon, Loader } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
 interface IFileProps {

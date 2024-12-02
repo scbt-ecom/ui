@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState } from 'react'
-import { type TClassesUploader } from '../model/types'
+import { type TUploaderClasses } from '../model/types'
 import { Hint } from '$/shared/ui/Hint'
 import { cn } from '$/shared/utils'
 
 interface IFileNameProps {
   file: File
-  classes?: TClassesUploader
+  classes?: TUploaderClasses
 }
 
 export const Filename = ({ file, classes }: IFileNameProps) => {
