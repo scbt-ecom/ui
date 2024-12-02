@@ -1,0 +1,1 @@
+export { weekdays } from './utils'
