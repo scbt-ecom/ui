@@ -17,7 +17,7 @@ export const StorybookFieldsMapper = <T extends FieldValues>({
   }
 
   return (
-    <div className='flex w-[600px] flex-col gap-3'>
+    <div className='flex w-full flex-col gap-3'>
       {fields?.map((field) => <div key={field.name}>{renderFields(field, formMethods)}</div>)}
       <div className='flex items-center gap-6'>
         {btnSubmit && <Button type='submit'>{btnSubmit}</Button>}
