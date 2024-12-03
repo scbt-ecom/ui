@@ -22,7 +22,14 @@ export const MOCK_SELECT_OPTIONS_REACT_SELECT = [
 
 export const mockFields: TStorybookFieldConfig<TMockSchema>[] = [
   { name: 'city', label: 'Город', fieldType: EnumFieldType.INPUT },
-  { name: 'phone', label: 'Номер телефона', fieldType: EnumFieldType.MASK, format: '# (###) ###-##-##' },
+  {
+    name: 'phone',
+    label: 'Номер телефона',
+    fieldType: EnumFieldType.MASK,
+    format: '+7 (###) ###-##-##',
+    mask: '_',
+    allowEmptyFormatting: true
+  },
   {
     name: 'condition',
     label:

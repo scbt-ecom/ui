@@ -35,7 +35,7 @@ export const StorybookFormProvider = <S extends ZodTypeAny>({
 
   return (
     <FormProvider {...formMethods}>
-      <form className='flex flex-col gap-5' onSubmit={formMethods.handleSubmit(onSubmit)}>
+      <form className='flex w-full flex-col gap-5' onSubmit={formMethods.handleSubmit(onSubmit)}>
         {children}
       </form>
     </FormProvider>
