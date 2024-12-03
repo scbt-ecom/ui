@@ -32,7 +32,7 @@ const InnerComponent = <T extends FieldValues>({
     shouldUnregister
   })
 
-  const { value, onChange, ref, ...restField } = field
+  const { value, onChange, ...restField } = field
 
   let selected: Date | DateRange | undefined = undefined
 

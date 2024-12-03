@@ -8,11 +8,42 @@ import { cn } from '$/shared/utils'
  * @param {string} locale
  * @returns Форматированная строка
  */
-export const formatDateToLocaleString = (date: Date, locale?: string): string => {
-  const formatter = new Intl.DateTimeFormat(locale || 'ru-RU', {
+export const formatDateToLocaleString = (date: Date, locale: string = 'ru-RU'): string => {
+  const formatter = new Intl.DateTimeFormat(locale, {
     day: '2-digit',
     month: '2-digit',
     year: 'numeric'
+  })
+
+  return formatter.format(date)
+}
+
+/**
+ * Форматирование объекта даты в читаемую строку года
+ * @example
+ * new Date() -> '2024'
+ * @param {Date} date
+ * @param {string} locale
+ * @returns Форматированная строка
+ */
+export const formatDateToYearString = (date: Date, locale: string = 'ru-RU') => {
+  const formatter = new Intl.DateTimeFormat(locale, {
+    year: 'numeric'
+  })
+
+  return formatter.format(date)
+}
+
+/**
+ * Форматирование объекта даты в читаемую строку месяца
+ * @example
+ * new Date() -> 'декабрь'
+ * @param date
+ * @param locale
+ */
+export const formatDateToMonthString = (date: Date, locale: string = 'ru-RU') => {
+  const formatter = new Intl.DateTimeFormat(locale, {
+    month: 'long'
   })
 
   return formatter.format(date)

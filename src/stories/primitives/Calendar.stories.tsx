@@ -31,7 +31,13 @@ const DayPickerWithState = () => {
       {/*    'Выбери день'*/}
       {/*  )}*/}
       {/*</p>*/}
-      <Calendar mode='range' selected={date} onSelect={setDate} renderFooter={() => <Button size='sm'>Применить</Button>} />
+      <Calendar
+        mode='range'
+        selected={date}
+        onSelect={setDate}
+        selectOptions={{ year: { order: 'asc', startFrom: 2000 } }}
+        renderFooter={() => <Button size='sm'>Применить</Button>}
+      />
     </>
   )
 }

@@ -3,15 +3,23 @@ import { type ClassNames, DayPicker, type DayPickerProps } from 'react-day-picke
 import { ru } from 'date-fns/locale'
 import 'react-day-picker/style.css'
 import { defaultClassNames } from './model'
-import { Day, DayButton, Footer, Navigation, Weekday } from './ui'
+import { Day, DayButton, Footer, MonthCaption, type SelectOptions, Weekday } from './ui'
 import { cn } from '$/shared/utils'
 
 type CalendarProps = DayPickerProps & {
   navigation?: boolean
   renderFooter?: (props: DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>) => JSX.Element | string
+  selectOptions?: SelectOptions
 }
 
-export const Calendar = ({ classNames, showOutsideDays = true, navigation = true, renderFooter, ...props }: CalendarProps) => {
+export const Calendar = ({
+  classNames,
+  showOutsideDays = true,
+  navigation = true,
+  renderFooter,
+  selectOptions,
+  ...props
+}: CalendarProps) => {
   const cls = useMemo<Partial<ClassNames>>(
     () => ({
       today: cn(defaultClassNames.today, classNames?.today),
@@ -20,15 +28,17 @@ export const Calendar = ({ classNames, showOutsideDays = true, navigation = true
       range_start: cn(defaultClassNames.range_outer, classNames?.range_start),
       range_middle: cn(defaultClassNames.range_middle, classNames?.range_middle),
       range_end: cn(defaultClassNames.range_outer, classNames?.range_end),
+      month_grid: 'h-[280px]',
       ...classNames
     }),
     [classNames]
   )
 
   return (
-    <div className='flex flex-col gap-y-2 rounded-sm border-[1px] border-warm-grey-200 p-4 shadow-[0_16px_24px_0px_rgba(0,33,87,0.16)]'>
+    <div className='relative flex flex-col gap-y-1 rounded-sm border-[1px] border-warm-grey-200 p-4 shadow-[0_16px_24px_0px_rgba(0,33,87,0.16)]'>
       <DayPicker
         {...props}
+        fixedWeeks
         captionLayout='dropdown'
         showOutsideDays={showOutsideDays}
         locale={ru}
@@ -37,8 +47,8 @@ export const Calendar = ({ classNames, showOutsideDays = true, navigation = true
           Day: (props) => <Day className='' {...props} />,
           DayButton: (props) => <DayButton {...props} />,
           Weekday: (props) => <Weekday {...props} />,
-          Nav: (props) => (navigation ? <Navigation {...props} /> : <></>)
-          // MonthCaption: () => (navigation ? <></> : <></>)
+          Nav: () => <></>,
+          MonthCaption: (props) => (navigation ? <MonthCaption {...props} selectOptions={selectOptions} /> : <></>)
         }}
       />
       {renderFooter && <Footer render={renderFooter} />}
