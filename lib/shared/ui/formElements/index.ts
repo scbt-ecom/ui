@@ -1,5 +1,5 @@
 export * from './InputControl'
-export * from './InputControlMask'
+export * from './inputControlMask'
 export * from './CheckboxControl'
 export * from './SwitchControl'
 export * from './TextareaControl'

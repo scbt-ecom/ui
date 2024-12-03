@@ -2,8 +2,8 @@
 
 import * as React from 'react'
 import { Controller, type FieldValues } from 'react-hook-form'
-import { PatternFormat } from 'react-number-format'
-import type { TCommonFieldProps } from './model/types'
+import { type NumberFormatValues, PatternFormat, type SourceInfo } from 'react-number-format'
+import type { TCommonFieldProps } from '../model/types'
 import {
   FieldAttachment,
   FieldContainer,
@@ -13,7 +13,8 @@ import {
   type TFieldAttachmentClasses,
   type TFieldContainerConfig,
   type TFieldWrapperClasses
-} from './ui'
+} from '../ui'
+import { useInputControlMask } from './model/useInputControlMask'
 import { cn } from '$/shared/utils'
 
 type TInputControlMaskClasses = TFieldAttachmentClasses &
@@ -23,16 +24,26 @@ type TInputControlMaskClasses = TFieldAttachmentClasses &
     inputContainer?: string
   }
 
+export type TInputMode = 'phone' | undefined
+
+export type TActions = {
+  customInputChange?: (value: NumberFormatValues, source: SourceInfo) => void
+  customPaste?: (event: React.ClipboardEvent<HTMLInputElement>) => void
+  customFocus?: (event: React.FocusEvent<HTMLInputElement>) => void
+  customBlur?: (event: React.FocusEvent<HTMLInputElement>) => void
+}
+
 export interface InputControlMaskProps<T extends FieldValues>
   extends TCommonFieldProps<T>,
     Omit<IFieldAttachmentProps, 'invalid' | 'isTouched'> {
   format: string
   mask?: string | string[]
   allowEmptyFormatting?: boolean
-  onInputChange?: (arg?: string) => void
   classes?: TInputControlMaskClasses
   size?: TFieldContainerConfig['size']
   disabled?: boolean
+  mode?: TInputMode
+  actions?: TActions
 }
 
 export const InputControlMask = <T extends FieldValues>({
@@ -40,7 +51,7 @@ export const InputControlMask = <T extends FieldValues>({
   allowEmptyFormatting = false,
   mask,
   control,
-  onInputChange,
+  actions,
   size = 'full',
   label,
   helperText,
@@ -51,17 +62,20 @@ export const InputControlMask = <T extends FieldValues>({
   icon,
   onClickIcon,
   onKeyDownIcon,
+  mode,
   ...props
 }: InputControlMaskProps<T>) => {
   const inputId = React.useId()
   const [showMask, setShowMask] = React.useState(false)
   const maskIsVisible = allowEmptyFormatting && showMask && Boolean(mask)
 
+  const { onValueChange, onPaste, onFocus, onBlur } = useInputControlMask(actions, mode)
+
   return (
     <Controller
       control={control}
       name={props.name}
-      render={({ field: { onChange, value, onBlur, ref }, fieldState: { error, invalid, isTouched } }) => {
+      render={({ field: { onChange, value, onBlur: hookFormBlur, ref }, fieldState: { error, invalid, isTouched } }) => {
         return (
           <FieldContainer size={size} className={classes?.inputContainer}>
             <FieldWrapper
@@ -80,23 +94,15 @@ export const InputControlMask = <T extends FieldValues>({
                   format={format}
                   allowEmptyFormatting={maskIsVisible}
                   mask={mask}
+                  onValueChange={(inputValue, source) => onValueChange({ inputValue, source, onChange })}
+                  onPaste={(event: React.ClipboardEvent<HTMLInputElement>) => onPaste({ event, onChange })}
+                  onFocus={(event) => onFocus({ event, setShowMask })}
+                  onBlur={(event) => onBlur({ event, setShowMask, hookFormBlur })}
+                  getInputRef={ref}
                   className={cn(
                     'desk-body-regular-l h-[56px] w-full rounded-md bg-color-transparent px-4 pt-5 text-color-dark outline-none transition-all',
                     classes?.input
                   )}
-                  onValueChange={(inputValue) => {
-                    const { value } = inputValue || {}
-                    onChange(value ?? '')
-                    if (onInputChange) {
-                      onInputChange(value ?? '')
-                    }
-                  }}
-                  onFocus={() => setShowMask(true)}
-                  onBlur={() => {
-                    onBlur()
-                    setShowMask(false)
-                  }}
-                  getInputRef={ref}
                   {...props}
                 />
                 <FieldAttachment

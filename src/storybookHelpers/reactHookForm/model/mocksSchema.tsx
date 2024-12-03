@@ -1,9 +1,25 @@
 import { z } from 'zod'
 import { VALIDATION_MESSAGES, zodCalendarValidate } from '$/shared/validation'
 
+const phoneSchema = z.string().superRefine((value, ctx) => {
+  const operatorCode = value.charAt(0)
+  if (!['3', '4', '5', '6', '9'].includes(operatorCode)) {
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      message: 'Код города/оператора должен начинаться с цифры 3, 4, 5, 6 или 9'
+    })
+  }
+  if (value.length !== 10) {
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      message: 'Введите номер телефона полностью'
+    })
+  }
+})
+
 export const mockSchema = z.object({
+  phone: phoneSchema,
   city: z.string({ required_error: VALIDATION_MESSAGES.REQUIRED }).min(3, `${VALIDATION_MESSAGES.MIN_LENGTH} 3`),
-  phone: z.string({ required_error: VALIDATION_MESSAGES.REQUIRED }).min(7, `${VALIDATION_MESSAGES.MIN_LENGTH} 7`),
   condition: z.literal<boolean>(true, { errorMap: () => ({ message: VALIDATION_MESSAGES.REQUIRED }) }),
   sex: z.string().min(2, VALIDATION_MESSAGES.REQUIRED),
   percent: z.literal<boolean>(true, { errorMap: () => ({ message: VALIDATION_MESSAGES.REQUIRED }) }),
@@ -21,8 +37,8 @@ export const mockSchema = z.object({
 
 export type TMockSchema = z.infer<typeof mockSchema>
 export const mockDefaultValues: TMockSchema = {
-  city: '',
   phone: '',
+  city: '',
   condition: true,
   sex: '',
   percent: true,

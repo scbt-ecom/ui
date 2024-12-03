@@ -21,7 +21,6 @@ export const MOCK_SELECT_OPTIONS_REACT_SELECT = [
 ]
 
 export const mockFields: TStorybookFieldConfig<TMockSchema>[] = [
-  { name: 'city', label: 'Город', fieldType: EnumFieldType.INPUT },
   {
     name: 'phone',
     label: 'Номер телефона',
@@ -30,6 +29,7 @@ export const mockFields: TStorybookFieldConfig<TMockSchema>[] = [
     mask: '_',
     allowEmptyFormatting: true
   },
+  { name: 'city', label: 'Город', fieldType: EnumFieldType.INPUT },
   {
     name: 'condition',
     label:

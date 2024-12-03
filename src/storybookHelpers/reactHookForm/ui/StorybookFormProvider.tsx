@@ -17,7 +17,7 @@ export const StorybookFormProvider = <S extends ZodTypeAny>({
   defaultValues
 }: IStorybookFormProviderProps<S>) => {
   const formMethods = useControlledForm({
-    mode: 'all',
+    mode: 'onBlur',
     schema: validationSchema,
     defaultValues
   })
