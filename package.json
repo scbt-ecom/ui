@@ -1,6 +1,6 @@
 {
   "name": "@scbt-ecom/ui",
-  "version": "0.10.0",
+  "version": "0.10.1",
   "type": "module",
   "exports": {
     "./utils-tailwind.css": "./dist/utils-tailwind.css",
