@@ -1,25 +1,25 @@
 'use client'
 
 import * as React from 'react'
+import { keepPreviousData, queryOptions, useQuery } from '@tanstack/react-query'
 import { fetchSuggestions } from './api'
 import { getOptionsByDadataType } from './helpers'
-import type { TDadataOption, TDadataType } from './types'
+import type { TDadataType } from './types'
 import { useDebounceValue } from '$/shared/hooks'
 
-export const useDadata = (dadataType: TDadataType, dadataBaseUrl: string) => {
+export const useDadata = <T>(dadataType: TDadataType, dadataBaseUrl: string) => {
   const [query, setQuery] = React.useState('')
-  const [suggestionsOptions, setSuggestionsOptions] = React.useState<TDadataOption[] | null>(null)
-  const debounceQuery = useDebounceValue(query, 300)
+  const debounceQuery = useDebounceValue(query, 100)
 
-  React.useEffect(() => {
-    if (debounceQuery) {
-      const handleSearch = async () => {
-        const suggestions = await fetchSuggestions(debounceQuery, dadataType, dadataBaseUrl)
-        setSuggestionsOptions(getOptionsByDadataType(dadataType, suggestions))
-      }
-      handleSearch()
-    }
-  }, [debounceQuery, dadataType, dadataBaseUrl])
+  const options = queryOptions({
+    queryKey: ['dadata', dadataType, debounceQuery],
+    queryFn: ({ signal }) => fetchSuggestions<T>(debounceQuery, dadataType, dadataBaseUrl, signal),
+    enabled: !!debounceQuery,
+    placeholderData: keepPreviousData,
+    select: (suggestions) => getOptionsByDadataType(dadataType, suggestions)
+  })
 
-  return { setQuery, suggestionsOptions, debounceQuery }
+  const { data: suggestionsOptions = [], ...rest } = useQuery(options)
+
+  return { setQuery, suggestionsOptions, debounceQuery, ...rest }
 }
