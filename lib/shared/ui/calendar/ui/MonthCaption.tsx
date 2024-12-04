@@ -1,4 +1,4 @@
-import { type ClassAttributes, type HTMLAttributes } from 'react'
+import { type ClassAttributes, type HTMLAttributes, useState } from 'react'
 import { type CalendarMonth, useDayPicker } from 'react-day-picker'
 import { defaultSelectOptions, getMonthsFrom, getYearsFrom } from './model'
 import { Navigation } from './Navigation'
@@ -38,10 +38,29 @@ export const MonthCaption = ({
   selectOptions,
   ...props
 }: MonthCaptionProps) => {
+  const [isOpen, setIsOpen] = useState<Record<'month' | 'year', boolean>>({
+    year: false,
+    month: false
+  })
+  const onOpenChange = (key: 'month' | 'year') => {
+    setIsOpen((prev) =>
+      Object.entries(prev).reduce(
+        (acc, [currentKey, value]) => ({
+          ...acc,
+          [currentKey]: value ? !value : currentKey === key
+        }),
+        {} as Record<'month' | 'year', boolean>
+      )
+    )
+  }
+
   const { goToMonth } = useDayPicker()
 
-  const month = selectOptions ? selectOptions.month : defaultSelectOptions.month
-  const year = selectOptions ? selectOptions.year : defaultSelectOptions.year
+  const month = {
+    ...defaultSelectOptions.month,
+    ...(selectOptions && selectOptions.month ? selectOptions.month : {})
+  }
+  const year = selectOptions && selectOptions.year ? selectOptions.year : defaultSelectOptions.year
 
   return (
     <div
@@ -51,20 +70,24 @@ export const MonthCaption = ({
       <div className='flex content-center justify-center'>
         {month && (
           <SelectDate
-            dates={getMonthsFrom({ startFrom: month.startFrom, order: month.order })}
+            dates={getMonthsFrom(month.startFrom, month.order)}
             currentMonth={calendarMonth}
             onMonthChange={goToMonth}
             mode='month'
             disabled={month?.disabled}
+            open={isOpen['month']}
+            onOpenChange={() => onOpenChange('month')}
           />
         )}
         {year && (
           <SelectDate
-            dates={getYearsFrom({ startFrom: year.startFrom, order: year.order })}
+            dates={getYearsFrom(year.startFrom, year.order)}
             currentMonth={calendarMonth}
             onMonthChange={goToMonth}
             mode='year'
             disabled={year?.disabled}
+            open={isOpen['year']}
+            onOpenChange={() => onOpenChange('year')}
           />
         )}
       </div>

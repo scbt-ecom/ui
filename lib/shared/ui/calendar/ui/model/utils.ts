@@ -10,12 +10,7 @@ export const weekdays = {
   вс: true
 }
 
-type GetFromProps = {
-  startFrom?: number
-  order?: 'asc' | 'desc'
-}
-
-export const getYearsFrom = ({ startFrom = 1950, order = 'desc' }: GetFromProps): number[] => {
+export const getYearsFrom = (startFrom = 2000, order = 'desc'): number[] => {
   const dates: number[] = []
 
   const today = new Date()
@@ -36,22 +31,18 @@ export const getYearsFrom = ({ startFrom = 1950, order = 'desc' }: GetFromProps)
   return dates
 }
 
-export const getMonthsFrom = ({ startFrom = 0, order = 'desc' }: GetFromProps): number[] => {
+export const getMonthsFrom = (startFrom = 0, order = 'desc'): number[] => {
   const dates: number[] = []
-
-  // for (let i = 12; i >= startFrom; i -= 1) {
-  //   dates.push(new Date(currentYear, i, currentDay))
-  // }
 
   switch (order) {
     case 'asc':
-      for (let i = startFrom; i <= 12; i += 1) {
+      for (let i = startFrom; i <= 11; i += 1) {
         dates.push(i)
       }
       break
     case 'desc':
     default:
-      for (let i = 12; i >= startFrom; i -= 1) {
+      for (let i = 11; i >= startFrom; i -= 1) {
         dates.push(i)
       }
   }
@@ -67,7 +58,7 @@ export const defaultSelectOptions: SelectOptions = {
   },
   month: {
     order: 'asc',
-    startFrom: 1,
+    startFrom: 0,
     disabled: false
   }
 }

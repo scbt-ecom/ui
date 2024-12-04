@@ -35,7 +35,7 @@ const DayPickerWithState = () => {
         mode='range'
         selected={date}
         onSelect={setDate}
-        selectOptions={{ year: { order: 'asc', startFrom: 2000 } }}
+        selectOptions={{ year: { order: 'desc', startFrom: 1950 }, month: false }}
         renderFooter={() => <Button size='sm'>Применить</Button>}
       />
     </>
