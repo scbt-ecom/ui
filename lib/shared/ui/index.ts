@@ -7,7 +7,6 @@ export { PhoneView } from './PhoneView'
 export { Badge, type IBadgeProps } from './Badge'
 export { Loader, type ILoaderProps } from './Loader'
 export { Skeleton, type ISkeletonProps } from './Skeleton'
-export { Table } from './table'
 
 // # INTERACTIVE
 export { Accordion, type IAccordionProps } from './accordion'
