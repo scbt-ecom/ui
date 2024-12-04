@@ -55,8 +55,3 @@ export const ComboboxOptionsCustom = ({ suggestionsOptions, classes }: ICombobox
     </ComboboxOptions>
   )
 }
-// : (
-//   <ComboboxOption value='' className={cn('desk-body-regular-m text-color-tetriary', classes?.optionEmptySuggestionValue)}>
-//     Ничего не найдено
-//   </ComboboxOption>
-// )

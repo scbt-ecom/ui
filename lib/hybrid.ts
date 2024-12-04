@@ -18,11 +18,16 @@ export * from './shared/ui/notification'
 
 // Utils
 export * from './shared/utils'
+
 // Validation
 export * from './shared/validation'
+
 // Constants
 export * from './shared/constants'
 export * from './configs'
+
+// Api
+export * from './shared/api'
 
 // Widgets
 export * from './widgets/banner'
