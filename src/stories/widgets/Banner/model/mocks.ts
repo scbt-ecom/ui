@@ -1,8 +1,9 @@
 import toast from 'react-hot-toast'
-import { type IBannerProps } from '../Banner'
-import bezrykovDesk from './bezrukov_desk.png'
-import bezrykovMob from './bezrukov_mob.png'
-import saif from '$/widgets/banner/saif.jpg'
+import bezrykovDesk from './assets/bezrukov_desk.png'
+import bezrykovMob from './assets/bezrukov_mob.png'
+import saif from './assets/saif.jpg'
+import saifMob from './assets/saifMob.jpg'
+import { type IBannerProps } from '$/widgets/banner/Banner.tsx'
 
 export const mockBannerBase: IBannerProps = {
   headTitle: 'Кредит на любые цели',
@@ -62,6 +63,10 @@ export const mockBannerBaseFullImage: IBannerProps = {
   headTitle: 'Кредит на любые цели',
   subtitle: 'до 5 млн рублей',
   img: saif,
+  imgSets: {
+    mob: saifMob,
+    large: saif
+  },
   buttonsConfig: {
     primary: {
       onClick: () => toast.success('@click on primary btn'),
