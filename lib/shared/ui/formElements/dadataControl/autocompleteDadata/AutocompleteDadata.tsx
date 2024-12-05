@@ -108,6 +108,7 @@ export const AutocompleteDadata = <T extends FieldValues>({
                     'desk-body-regular-l z-10 h-[56px] w-full rounded-md bg-color-transparent px-4 pt-5 text-color-dark outline-none transition-all',
                     classes?.input
                   )}
+                  id={inputId}
                   {...field}
                   {...props}
                 />

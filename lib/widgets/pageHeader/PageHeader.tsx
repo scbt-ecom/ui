@@ -63,6 +63,7 @@ export const PageHeader = (props: TPageHeaderProps) => {
         <div className={cn('flex items-center justify-between gap-5', classes?.wrapper)}>
           <a
             href={logoPath}
+            aria-label='logo'
             target='_blank'
             rel='noreferrer'
             className={cn(

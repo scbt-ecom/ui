@@ -21,6 +21,7 @@ export const SocialLinks = ({ socialsLinks, classes }: ISocialLinksProps) => {
           className={cn('flex size-8 items-center justify-center rounded-full bg-[#52576a] p-2', classes?.socialLink)}
           href={href}
           key={href}
+          aria-label={iconName.replace('social/', '')}
         >
           <Icon name={iconName} className={cn('h-full w-full text-icon-white', classes?.socialIcon)} />
         </a>
