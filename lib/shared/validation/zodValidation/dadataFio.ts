@@ -1,7 +1,7 @@
 import { z } from 'zod'
 import { RgxCheckForHyphen, RgxPatronymic, RgxUnicode } from '../regExp'
 
-const formattedFio = (value: string) => {
+export const formattedDadataFio = (value: string) => {
   const parts = value.trim().replace(/\s+/g, ' ').split(' ')
   const [surname, name, ...patronymicArr] = parts
   const patronymic = patronymicArr?.join(' ')
@@ -13,7 +13,7 @@ const formattedFio = (value: string) => {
   }
 }
 
-export const zodDadataFioValidate = z
+export const zodDadataFioSchema = z
   .string({ invalid_type_error: 'Обязательно к заполнению', required_error: 'Обязательно к заполнению' })
   .superRefine((value, ctx) => {
     if (!RgxUnicode.test(value)) {
@@ -23,7 +23,7 @@ export const zodDadataFioValidate = z
       })
     }
 
-    const { surname, name, patronymic } = formattedFio(value)
+    const { surname, name, patronymic } = formattedDadataFio(value)
 
     if (!surname || !name) {
       ctx.addIssue({
@@ -55,19 +55,3 @@ export const zodDadataFioValidate = z
       }
     }
   })
-
-// .transform((value) => {
-//   const { surname, name, patronymic } = formattedFio(value)
-
-//   return {
-//     surname: capitalize(surname),
-//     name: capitalize(name),
-//     patronymic: patronymic ? capitalize(patronymic) : undefined
-//   }
-// })
-
-// Тестов Имя
-// Тестов Имя Отчество
-// Тестов-тестов Имя Отчество
-// Тестов-тестов Имя Отчество углы-ули
-// Тестов-тестов Имя Отчество углы-ули Отчество-Отчество

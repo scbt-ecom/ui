@@ -18,6 +18,7 @@ storybook-static
 env
 tsconfig.tsbuildinfo
 tsconfig.node.tsbuildinfo
+*.timestamp*
 
 # Editor directories and files
 .vscode/*

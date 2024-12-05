@@ -1,8 +1,11 @@
 import toast from 'react-hot-toast'
 import { type Meta, type StoryObj } from '@storybook/react'
 import { z } from 'zod'
+import { Modal } from '$/client'
 import { useBoolean, useControlledForm } from '$/shared/hooks'
-import { Button, CheckboxControl, InputControl, Modal } from '$/shared/ui'
+import { Button } from '$/shared/ui'
+import { CheckboxControl, InputControl } from '$/shared/ui/formElements'
+// import { Button, CheckboxControl, InputControl, Modal } from '$/shared/ui'
 import { VALIDATION_MESSAGES } from '$/shared/validation'
 
 const meta = {

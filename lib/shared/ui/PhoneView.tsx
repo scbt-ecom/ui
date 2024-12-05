@@ -15,7 +15,10 @@ export interface IPhoneViewProps {
 export const PhoneView = ({ phone, text, classes }: IPhoneViewProps) => {
   return (
     <div className={cn('flex w-max flex-col', classes?.wrapper)}>
-      <a href={`tel:${phone}`} className={cn('desk-body-medium-l ml-auto text-color-dark', classes?.link)}>
+      <a
+        href={`tel:${phone}`}
+        className={cn('mob-body-medium-l ml-auto text-color-dark desktop:desk-body-medium-l', classes?.link)}
+      >
         {phone}
       </a>
       <p className={cn('desk-body-regular-l text-color-tetriary', classes?.text)}>{text}</p>

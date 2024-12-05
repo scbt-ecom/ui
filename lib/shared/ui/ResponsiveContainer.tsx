@@ -4,11 +4,12 @@ import { cn } from '$/shared/utils'
 export interface IResponsiveContainerProps extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode
   className?: string
+  offset?: boolean
 }
 
-export const ResponsiveContainer = ({ children, className, ...props }: IResponsiveContainerProps) => {
+export const ResponsiveContainer = ({ children, offset = true, className, ...props }: IResponsiveContainerProps) => {
   return (
-    <div className={cn('m-auto w-full max-w-[636px] mobile:px-4 desktop:max-w-[1140px]', className)} {...props}>
+    <div className={cn('m-auto w-full max-w-[636px] desktop:max-w-[1140px]', { 'mobile:px-4': offset }, className)} {...props}>
       {children}
     </div>
   )

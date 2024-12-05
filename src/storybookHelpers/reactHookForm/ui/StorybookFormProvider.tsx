@@ -2,7 +2,7 @@ import { type ReactNode, useEffect } from 'react'
 import { type DefaultValues, type FieldValues, FormProvider } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import type { TypeOf, ZodTypeAny } from 'zod'
-import { mockToastMessage } from '../model/mocks'
+import { mockToastMessage } from '../model/mockData'
 import { useControlledForm } from '$/shared/hooks'
 
 interface IStorybookFormProviderProps<S extends ZodTypeAny> {
@@ -17,7 +17,7 @@ export const StorybookFormProvider = <S extends ZodTypeAny>({
   defaultValues
 }: IStorybookFormProviderProps<S>) => {
   const formMethods = useControlledForm({
-    mode: 'all',
+    mode: 'onBlur',
     schema: validationSchema,
     defaultValues
   })
@@ -35,7 +35,7 @@ export const StorybookFormProvider = <S extends ZodTypeAny>({
 
   return (
     <FormProvider {...formMethods}>
-      <form className='flex flex-col gap-5' onSubmit={formMethods.handleSubmit(onSubmit)}>
+      <form className='flex w-full flex-col gap-5' onSubmit={formMethods.handleSubmit(onSubmit)}>
         {children}
       </form>
     </FormProvider>

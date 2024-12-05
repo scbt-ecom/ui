@@ -15,7 +15,7 @@ export const BannerImageFull = ({
   imgSets
 }: Omit<IBannerProps, 'bannerVariant'>) => {
   const { isDesktop, isMobile } = useDevice()
-  const adventage = (
+  const advantage = (
     <div
       data-id='banner-advantages'
       className={cn(
@@ -35,8 +35,8 @@ export const BannerImageFull = ({
           className='absolute bottom-0 left-0 right-0 top-0 z-[-1] mx-auto h-full max-w-[1920px] desktop:h-[456px]'
         >
           <picture>
-            <source media='(min-width: 1128px)' srcSet={imgSets?.large} type='image/avif' />
-            <source media='(max-width: 1127px)' srcSet={imgSets?.mob} type={imgSets?.type ?? 'image/avif'} />
+            <source media='(min-width: 1128px)' srcSet={imgSets?.large} />
+            <source media='(max-width: 1127px)' srcSet={imgSets?.mob} />
             <img
               data-id='banner-image'
               src={img}
@@ -68,10 +68,10 @@ export const BannerImageFull = ({
             </div>
           </div>
 
-          {isDesktop && adventage}
+          {isDesktop && advantage}
         </ResponsiveContainer>
       </section>
-      {isMobile && adventage}
+      {isMobile && advantage}
     </>
   )
 }

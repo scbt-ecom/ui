@@ -30,17 +30,17 @@ export interface IBannerProps {
   imgSets?: {
     large: string
     mob: string
-    type: string
+    type?: string
   }
   buttonsConfig: TButtonsConfig
   advantagesList?: IAdvantage[]
   classes?: Partial<IBannerClasses> & Partial<IAdvantageClasses>
-  bannerVariant?: 'sepatateImg' | 'fullImg'
+  bannerVariant?: 'separateImg' | 'fullImg'
 }
 
 export const Banner = ({ bannerVariant, ...props }: IBannerProps) => {
   switch (bannerVariant) {
-    case 'sepatateImg':
+    case 'separateImg':
       return <BannerWithSeparateImg {...props} />
     case 'fullImg':
       return <BannerImageFull {...props} />
