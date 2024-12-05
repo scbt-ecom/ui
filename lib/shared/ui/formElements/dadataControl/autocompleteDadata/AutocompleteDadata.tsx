@@ -43,6 +43,7 @@ export interface IAutocompleteDadataProps<T extends FieldValues>
   disabled?: boolean
   customChangeInput?: (...args: unknown[]) => void
   customChangeOption?: (...args: unknown[]) => void
+  // TODO: ACTIONS OBJECT
 }
 
 export const AutocompleteDadata = <T extends FieldValues>({
@@ -127,7 +128,7 @@ export const AutocompleteDadata = <T extends FieldValues>({
                 text={error?.message || helperText}
                 disabled={disabled}
               />
-              <ComboboxOptionsCustom suggestionsOptions={suggestionsOptions} />
+              <ComboboxOptionsCustom suggestionsOptions={suggestionsOptions} classes={classes} />
             </Combobox>
           </FieldContainer>
         )
