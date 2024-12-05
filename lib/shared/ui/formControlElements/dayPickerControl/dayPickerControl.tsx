@@ -1,7 +1,10 @@
+'use client'
+
 import { memo } from 'react'
 import { type DateRange } from 'react-day-picker'
 import { type Control, type FieldPath, type FieldValues, useController, type UseControllerProps } from 'react-hook-form'
 import { Calendar } from '../../calendar'
+import type { TControlledInputProps } from '../model'
 
 type CalendarProps = React.ComponentPropsWithoutRef<typeof Calendar>
 
@@ -9,18 +12,19 @@ type DayPickerControlProps<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
 > = UseControllerProps<TFieldValues, TName> &
+  TControlledInputProps<TFieldValues> &
   Omit<CalendarProps, 'selected' | 'onSelect'> & {
     control: Control<TFieldValues>
   }
 
-const InnerComponent = <T extends FieldValues>({
+const InnerComponent = <T extends FieldValues = FieldValues>({
   control,
   name,
-  defaultValue,
   disabled,
   rules,
-  shouldUnregister,
   mode,
+  shouldUnregister,
+  defaultValue,
   ...props
 }: DayPickerControlProps<T>) => {
   const { field } = useController({
@@ -64,9 +68,18 @@ const InnerComponent = <T extends FieldValues>({
     }
   }
 
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-expect-error
-  return <Calendar {...restField} {...props} mode={mode} selected={selected} onSelect={onSelect} />
+  return (
+    <Calendar
+      {...restField}
+      {...props}
+      className='absolute right-0 top-full'
+      mode={mode}
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-expect-error
+      selected={selected}
+      onSelect={onSelect}
+    />
+  )
 }
 
 export const DayPickerControl = memo(InnerComponent) as typeof InnerComponent

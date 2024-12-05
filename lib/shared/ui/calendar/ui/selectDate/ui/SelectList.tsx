@@ -35,7 +35,7 @@ export const SelectList = ({ dates, selected, onSelect, className, mode, ...prop
         const label = mode === 'year' ? formatDateToYearString(d) : formatDateToMonthString(d)
 
         return (
-          <motion.li key={index} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: index / 25 }}>
+          <motion.li key={index} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: index / 22 }}>
             <button
               type='button'
               onClick={() => {
@@ -51,7 +51,7 @@ export const SelectList = ({ dates, selected, onSelect, className, mode, ...prop
               }}
               className={cn(
                 'desk-body-regular-l h-10 w-full rounded-sm bg-color-white px-2 text-start',
-                'hover:bg-color-primary-tr-hover hover:text-color-primary-default',
+                'capitalize hover:bg-color-primary-tr-hover hover:text-color-primary-default',
                 {
                   'bg-color-primary-tr-hover text-color-primary-default':
                     mode === 'month' ? selected.getMonth() === date : selected.getFullYear() === date

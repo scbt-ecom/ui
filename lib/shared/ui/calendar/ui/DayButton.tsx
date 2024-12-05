@@ -11,6 +11,12 @@ type DayButtonProps = ClassAttributes<HTMLButtonElement> &
 export const DayButton = ({ className, ...props }: DayButtonProps) => (
   <button
     {...props}
-    className={cn('unset-all-apply block h-10 w-10 cursor-pointer text-14 disabled:text-color-disabled', className)}
+    className={cn(
+      'mob-body-medium-m h-full w-full',
+      'unset-all-apply z-10 block h-10 w-10 cursor-pointer rounded-sm text-14',
+      'hover:bg-color-primary-tr-hover hover:text-color-primary-default',
+      'hover:shadow-[0px_0px_0px_1px_rgba(0,55,144,1)] disabled:text-color-disabled',
+      className
+    )}
   />
 )

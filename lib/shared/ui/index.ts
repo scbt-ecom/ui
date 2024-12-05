@@ -8,7 +8,7 @@ export { Badge, type IBadgeProps } from './Badge'
 export { Loader, type ILoaderProps } from './Loader'
 export { Skeleton, type ISkeletonProps } from './Skeleton'
 export { Table } from './table'
-export { Calendar } from './calendar'
+export { Calendar, DATE_VISIBLE_PATTERN } from './calendar'
 
 // # INTERACTIVE
 export { Accordion, type IAccordionProps } from './accordion'

@@ -10,6 +10,7 @@ type CalendarProps = DayPickerProps & {
   navigation?: boolean
   renderFooter?: (props: DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>) => JSX.Element | string
   selectOptions?: SelectOptions
+  disabledAfterToday?: boolean
 }
 
 export const Calendar = ({
@@ -18,6 +19,8 @@ export const Calendar = ({
   navigation = true,
   renderFooter,
   selectOptions,
+  className,
+  disabledAfterToday,
   ...props
 }: CalendarProps) => {
   const cls = useMemo<Partial<ClassNames>>(
@@ -35,7 +38,12 @@ export const Calendar = ({
   )
 
   return (
-    <div className='relative flex flex-col gap-y-1 rounded-sm border-[1px] border-warm-grey-200 p-4 shadow-[0_16px_24px_0px_rgba(0,33,87,0.16)]'>
+    <div
+      className={cn(
+        'relative flex flex-col gap-y-1 rounded-sm border-[1px] border-warm-grey-200 p-4 shadow-[0_16px_24px_0px_rgba(0,33,87,0.16)]',
+        className
+      )}
+    >
       <DayPicker
         {...props}
         fixedWeeks
@@ -44,7 +52,7 @@ export const Calendar = ({
         locale={ru}
         classNames={cls}
         components={{
-          Day: (props) => <Day className='' {...props} />,
+          Day: (props) => <Day {...props} disabledAfterToday={disabledAfterToday} />,
           DayButton: (props) => <DayButton {...props} />,
           Weekday: (props) => <Weekday {...props} />,
           Nav: () => <></>,
