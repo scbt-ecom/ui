@@ -17,6 +17,7 @@ import {
   EditorControl,
   InputControl,
   InputControlMask,
+  InputOtpControl,
   RadioControl,
   SliderControl,
   SwitchControl,
@@ -47,6 +48,8 @@ export const renderFields = <T extends FieldValues>(fieldConfig: TStorybookField
       return <UploaderControl control={control} {...(props as TControlledInputUploader<T>)} />
     case EnumFieldType.EDITOR:
       return <EditorControl control={control} {...(props as TControlledInputEditor<T>)} />
+    case EnumFieldType.OTP:
+      return <InputOtpControl control={control} {...(props as TControlledInputEditor<T>)} />
     default:
       return null
   }

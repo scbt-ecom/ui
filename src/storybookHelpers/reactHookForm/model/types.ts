@@ -4,6 +4,7 @@ import type {
   ICheckboxControlProps,
   IEditorControlProps,
   IInputControlProps,
+  IInputOtpControlProps,
   InputControlMaskProps,
   IRadioControlProps,
   ISliderControlProps,
@@ -28,7 +29,8 @@ export const enum EnumFieldType {
   TEXTAREA = 'textarea',
   SLIDER = 'slider',
   UPLOADER = 'uploader',
-  EDITOR = 'editor'
+  EDITOR = 'editor',
+  OTP = 'otp'
 }
 
 export type TControlledInput<T extends FieldValues> = Omit<IInputControlProps<T>, 'control'> & { fieldType: EnumFieldType.INPUT }
@@ -63,6 +65,10 @@ export type TControlledInputEditor<T extends FieldValues> = Omit<IEditorControlP
   fieldType: EnumFieldType.EDITOR
 }
 
+export type TControlledOtpInput<T extends FieldValues> = Omit<IInputOtpControlProps<T>, 'control'> & {
+  fieldType: EnumFieldType.OTP
+}
+
 export type TStorybookFieldConfig<T extends FieldValues> =
   | TControlledInputMask<T>
   | TControlledInput<T>
@@ -73,3 +79,4 @@ export type TStorybookFieldConfig<T extends FieldValues> =
   | TControlledInputTextarea<T>
   | TControlledInputUploader<T>
   | TControlledInputEditor<T>
+  | TControlledOtpInput<T>

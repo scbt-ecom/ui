@@ -109,6 +109,7 @@
     "globals": "^15.11.0",
     "html-react-parser": "^5.1.18",
     "husky": "^9.1.4",
+    "input-otp": "^1.4.1",
     "jsdom": "^24.1.1",
     "postcss": "^8.4.40",
     "prettier": "^3.3.3",

@@ -1,30 +1,6 @@
-import { type ReactElement } from 'react'
-import { brandLogos, Button, PhoneView, ResponsiveContainer, type TBrandLogoVariant } from '$/shared/ui'
+import { type IHeaderWithButton, type IHeaderWithPhone } from './types'
+import { brandLogos, Button, PhoneView, ResponsiveContainer } from '$/shared/ui'
 import { cn } from '$/shared/utils'
-
-type TPageHeaderClasses = {
-  header: string
-  container: string
-  wrapper: string
-  logo: string
-  button: string
-  phoneWrapper: string
-  phoneLink: string
-  phoneText: string
-}
-export interface ICommonHeaderProps {
-  logoPath?: string
-  logoType?: TBrandLogoVariant
-  classes?: Partial<TPageHeaderClasses>
-}
-interface IHeaderWithPhone extends ICommonHeaderProps {
-  variant: 'withPhone'
-  phone: string | ReactElement
-  phoneText: string | ReactElement
-}
-interface IHeaderWithButton extends ICommonHeaderProps {
-  variant: 'withButton'
-}
 
 export type TPageHeaderProps = IHeaderWithButton | IHeaderWithPhone
 
@@ -32,23 +8,13 @@ const renderContentVariant = (props: TPageHeaderProps) => {
   switch (props.variant) {
     case 'withButton':
       return (
-        <Button intent='secondary' size='sm' className={props.classes?.button}>
+        <Button intent='secondary' size='sm' {...props.buttonProps}>
           Оформить заявку
         </Button>
       )
     case 'withPhone':
-      const { phone, phoneText } = props as IHeaderWithPhone
-      return (
-        <PhoneView
-          phone={phone}
-          text={phoneText}
-          classes={{
-            wrapper: props.classes?.phoneWrapper,
-            text: props.classes?.phoneText,
-            link: props.classes?.phoneLink
-          }}
-        />
-      )
+      const { phone, phoneText } = props
+      return <PhoneView phone={phone} text={phoneText} {...props.phoneProps} />
     default:
       return null
   }
@@ -66,7 +32,7 @@ export const PageHeader = (props: TPageHeaderProps) => {
             target='_blank'
             rel='noreferrer'
             className={cn(
-              'flex items-center justify-center [&_svg]:w-[114px] desktop:[&_svg]:h-[32px] desktop:[&_svg]:w-[192px]',
+              'flex items-center justify-center [&_svg]:w-[132px] desktop:[&_svg]:h-[32px] desktop:[&_svg]:w-[192px]',
               classes?.logo
             )}
           >
