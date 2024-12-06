@@ -16,6 +16,7 @@ export const Trigger = ({ currentDate, mode, className, open, onOpenChange, ...p
   return (
     <button
       {...props}
+      type='button'
       onClick={onOpenChange}
       className={cn(
         'mob-body-medium-m flex h-10 items-center gap-1 rounded-sm px-2',

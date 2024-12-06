@@ -1,11 +1,17 @@
 'use client'
 
-import { memo } from 'react'
-import { type DateRange } from 'react-day-picker'
+import { memo, useRef, useState } from 'react'
 import { type Control, type FieldPath, type FieldValues, useController, type UseControllerProps } from 'react-hook-form'
-import { Calendar } from '../../calendar'
+import { format, isValid, parse } from 'date-fns'
+import { AnimatePresence } from 'framer-motion'
+import { useClickOutside } from '$/shared/hooks'
+import { Calendar, DATE_VISIBLE_PATTERN, formatDateToLocaleString, Icon, MaskInput, type MaskInputProps } from '$/shared/ui'
+import { MessageView } from '$/shared/ui/formElements/ui'
 
 type CalendarProps = React.ComponentPropsWithoutRef<typeof Calendar>
+type DayPickerControlClasses = MaskInputProps['classes'] & {
+  message?: string
+}
 
 type DayPickerControlProps<
   TFieldValues extends FieldValues = FieldValues,
@@ -13,6 +19,9 @@ type DayPickerControlProps<
 > = UseControllerProps<TFieldValues, TName> &
   Omit<CalendarProps, 'selected' | 'onSelect'> & {
     control: Control<TFieldValues>
+    inputProps: MaskInputProps
+    textHint?: string
+    classes?: DayPickerControlClasses
   }
 
 const InnerComponent = <T extends FieldValues = FieldValues>({
@@ -20,12 +29,24 @@ const InnerComponent = <T extends FieldValues = FieldValues>({
   name,
   disabled,
   rules,
-  mode,
+  // mode,
   shouldUnregister,
   defaultValue,
+  inputProps,
+  textHint,
+  classes,
   ...props
 }: DayPickerControlProps<T>) => {
-  const { field } = useController({
+  const containerRef = useRef<HTMLDivElement>(null)
+
+  const [calendarOpen, setCalendarOpen] = useState<boolean>(false)
+  const onCalendarOpenChange = () => {
+    setCalendarOpen((prev) => !prev)
+  }
+
+  useClickOutside(containerRef, () => setCalendarOpen(false))
+
+  const { field, fieldState } = useController({
     control,
     name,
     defaultValue,
@@ -35,48 +56,81 @@ const InnerComponent = <T extends FieldValues = FieldValues>({
   })
 
   const { value, onChange, ...restField } = field
+  const { error, invalid } = fieldState
+  const { message, ...restClasses } = classes || {}
 
-  let selected: Date | DateRange | undefined = undefined
+  const [month, setMonth] = useState<Date>(new Date())
+  const date = value ? new Date(value) : new Date()
 
-  switch (true) {
-    case mode === 'single' && typeof value === 'string':
-      selected = new Date(value)
-      break
-    case mode === 'range' && typeof value === 'object' && 'from' in value:
-      const { from, to } = value
+  const [visibleValue, setVisibleValue] = useState<string>(value ? formatDateToLocaleString(date) : '')
 
-      selected = {
-        from: new Date(from),
-        to: to ? new Date(to) : undefined
-      }
-  }
+  const onVisibleValueChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = event.target
 
-  const onSelect = (date?: Date | DateRange) => {
-    if (date) {
-      if (date instanceof Date) {
-        onChange(date.toISOString())
-      } else if (typeof date === 'object' && 'from' in date) {
-        const data = {
-          from: date.from?.toISOString(),
-          to: date.to?.toISOString()
-        }
+    setVisibleValue(value)
 
-        onChange(data)
-      }
+    const dateRegex = /^(\d{2})\.(\d{2})\.(\d{4})$/
+
+    if (!dateRegex.test(value)) {
+      return
+    }
+
+    const parsedDate = parse(value, DATE_VISIBLE_PATTERN, new Date())
+
+    if (isValid(parsedDate)) {
+      onChange(parsedDate.toISOString())
+      setMonth(parsedDate)
     }
   }
 
+  const onDateChange = (newDate: Date) => {
+    setMonth(newDate)
+    onChange(newDate.toISOString())
+    setVisibleValue(format(newDate, DATE_VISIBLE_PATTERN))
+    setCalendarOpen(false)
+  }
+
   return (
-    <Calendar
-      {...restField}
-      {...props}
-      className='absolute right-0 top-full'
-      mode={mode}
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-expect-error
-      selected={selected}
-      onSelect={onSelect}
-    />
+    <div ref={containerRef} className='relative w-[600px]'>
+      <AnimatePresence mode='sync'>
+        <MaskInput
+          invalid={invalid}
+          classes={restClasses}
+          value={visibleValue}
+          onChange={onVisibleValueChange}
+          onFocus={() => setCalendarOpen(true)}
+          onKeyDown={(event) => {
+            if (event.key === 'Enter') {
+              onCalendarOpenChange()
+            }
+          }}
+          {...restField}
+          {...inputProps}
+          attachmentProps={{
+            icon: <Icon name='general/calendar' className='text-icon-blue-grey-600' />,
+            onClickIcon: onCalendarOpenChange
+          }}
+        />
+        <MessageView
+          text={error?.message || textHint}
+          className={message}
+          intent={error ? 'error' : 'simple'}
+          disabled={disabled}
+        />
+        {calendarOpen && (
+          <Calendar
+            {...props}
+            required
+            mode='single'
+            month={month}
+            onMonthChange={setMonth}
+            selected={date}
+            onSelect={onDateChange}
+            className='absolute right-0 top-full'
+          />
+        )}
+      </AnimatePresence>
+    </div>
   )
 }
 
