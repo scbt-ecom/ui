@@ -9,10 +9,10 @@ type DayProps = ClassAttributes<HTMLTableCellElement> &
     disabledAfterToday?: boolean
   }
 
-export const Day = ({ className, day, children, disabledAfterToday, ...props }: DayProps) => {
+export const Day = ({ className, day, children, disabledAfterToday = true, ...props }: DayProps) => {
   const today = new Date()
   const isToday = day.isEqualTo(new CalendarDay(today, today))
-  const isAfterToday = day.date.getTime() > today.getTime()
+  const isNextYear = day.date.getFullYear() > today.getFullYear()
 
   return (
     <td
@@ -20,7 +20,7 @@ export const Day = ({ className, day, children, disabledAfterToday, ...props }: 
       className={cn(
         'relative h-10 w-10 rounded-sm hover:z-10',
         'hover:bg-color-primary-tr-hover hover:text-color-primary-default',
-        { 'pointer-events-none text-color-tetriary': disabledAfterToday && isAfterToday },
+        { 'pointer-events-none': disabledAfterToday && isNextYear },
         className
       )}
     >
