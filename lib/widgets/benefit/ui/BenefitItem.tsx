@@ -1,6 +1,6 @@
 import { type ReactElement } from 'react'
-import { useDevice } from '@scbt-ecom/ui/client'
 import { Button, cn, Heading } from '@scbt-ecom/ui/hybrid'
+import { useDevice } from '$/shared/hooks'
 import { scrollToElement } from '$/shared/utils'
 
 interface IBenefitItemProps {

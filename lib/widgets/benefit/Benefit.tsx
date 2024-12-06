@@ -1,7 +1,7 @@
 import { type ReactElement } from 'react'
-import { Heading, ResponsiveContainer } from '@scbt-ecom/ui/hybrid'
 import { type Content } from './model/types'
 import { BenefitItem } from './ui/BenefitItem'
+import { Heading, ResponsiveContainer } from '$/shared/ui'
 
 export interface IBenefitProps {
   heading: string | ReactElement
