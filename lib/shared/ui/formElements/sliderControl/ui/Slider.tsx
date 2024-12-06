@@ -39,6 +39,7 @@ export const Slider = React.forwardRef<React.ElementRef<typeof SliderPrimitive.R
             <SliderPrimitive.Range className={cn('absolute h-full bg-color-primary-default', classes?.sliderRange)} />
           </SliderPrimitive.Track>
           <SliderPrimitive.Thumb
+            aria-label='slider-thumb'
             className={cn(
               'ring-offset-background block h-4 w-4 cursor-pointer rounded-full bg-color-primary-default transition-colors hover:before:absolute hover:before:left-1/2 hover:before:top-1/2 hover:before:h-8 hover:before:w-8 hover:before:-translate-x-1/2 hover:before:-translate-y-1/2 hover:before:rounded-full hover:before:bg-color-primary-tr-hover hover:before:content-[""] focus:outline-none focus:before:bg-color-primary-tr-pressed disabled:pointer-events-none disabled:opacity-50',
               classes?.sliderThumb

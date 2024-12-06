@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { Banner, PageHeader } from '$/widgets'
 import {
   mockBannerBase,
   mockBannerBaseFullImage,
@@ -9,15 +8,16 @@ import {
   mockBannerFullImageWithAdvantages,
   mockBannerOnlyPrimaryButton,
   mockWithAdvantages
-} from '$/widgets/banner/model/helpers'
-// test commit
+} from './model/mocks.ts'
+import { Banner, PageHeader } from '$/widgets'
+
 const meta = {
   title: 'WIDGETS/Banner',
   component: Banner,
   tags: ['autodocs'],
   decorators: [
     (Story) => (
-      <div className='h-screen bg-color-blue-grey-100'>
+      <div className='h-screen'>
         <Story />
       </div>
     )

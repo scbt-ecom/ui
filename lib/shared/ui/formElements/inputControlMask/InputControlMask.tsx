@@ -91,6 +91,7 @@ export const InputControlMask = <T extends FieldValues>({
                   id={inputId}
                   aria-invalid={error?.message ? 'true' : 'false'}
                   value={value ?? ''}
+                  autoComplete={mode === 'phone' ? 'off' : 'on'}
                   format={format}
                   allowEmptyFormatting={maskIsVisible}
                   mask={mask}

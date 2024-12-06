@@ -46,7 +46,9 @@ export const Popover = ({
   return (
     <PopoverPrimitive.Root defaultOpen={defaultOpen}>
       <div className={cn('flex w-max items-center gap-2', classes?.root)}>
-        <PopoverPrimitive.Trigger className={cn('cursor-pointer', classes?.trigger)}>{triggerElement}</PopoverPrimitive.Trigger>
+        <PopoverPrimitive.Trigger aria-label='tooltip' className={cn('cursor-pointer', classes?.trigger)}>
+          {triggerElement}
+        </PopoverPrimitive.Trigger>
       </div>
       <PopoverPrimitive.Portal container={portalContainer}>
         <PopoverPrimitive.Content

@@ -65,7 +65,7 @@ export const Footer = ({
         <div className={cn('bg-color-footer px-4 py-8 desktop:px-6 desktop:py-10', classes?.footerRoot)}>
           <div className={cn('mb-8 flex items-center justify-between gap-6', classes?.footerHead)}>
             <div className={cn(classes?.footerSocialBlock)}>
-              <a href='/' className={cn(classes?.footerLogo)}>
+              <a aria-label='logo' href='/' className={cn(classes?.footerLogo)}>
                 <Icon name='brandLogos/logoWhite' className='h-[32px] w-[194px]' />
               </a>
               {withSocial && <SocialLinks socialsLinks={socialsLinks} classes={classes} />}
@@ -81,6 +81,7 @@ export const Footer = ({
               <a
                 href='https://sovcombank.ru/site-map'
                 target='_blank'
+                aria-label='site-map'
                 rel='noreferrer'
                 className='desk-body-regular-m text-color-white'
               >

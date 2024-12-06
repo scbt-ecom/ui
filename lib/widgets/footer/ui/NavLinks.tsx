@@ -29,6 +29,7 @@ export const NavLinks = ({ navigationLinks, classes }: INavLinksProps) => {
                   'desk-body-regular-m cursor-pointer text-color-white transition-colors hover:text-color-footer',
                   classes?.navLink
                 )}
+                aria-label={text}
               >
                 {text}
               </a>
