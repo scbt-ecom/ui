@@ -29,7 +29,7 @@ const allowedBackgroundColors = {
   white: '#ffffff',
   'primary-disabled': '#809bc7',
   'secondary-disabled': '#FFB7BF',
-  dark: '#000000',
+  dark: '#292929',
   purple: '#5f40bd',
   'purple-hover': '#52399d',
   overlay: '#0000004d',

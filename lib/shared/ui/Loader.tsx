@@ -43,7 +43,7 @@ export interface ILoaderProps
   extends VariantProps<typeof loaderConfig>,
     VariantProps<typeof wrapperConfig>,
     Omit<HTMLAttributes<HTMLDivElement>, 'className'> {
-  intent?: 'primary' | 'secondary'
+  intent?: 'primary' | 'secondary' | null
   text?: ReactElement | string
   classes?: Partial<ILoaderClasses>
 }

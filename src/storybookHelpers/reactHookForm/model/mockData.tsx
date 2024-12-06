@@ -77,6 +77,12 @@ export const mockFields: TStorybookFieldConfig<TMockSchema>[] = [
     name: 'html',
     label: 'Введите HTML',
     helperText: 'Текст преобразуется в HTML'
+  },
+  {
+    fieldType: EnumFieldType.OTP,
+    name: 'code',
+    label: 'Введите код',
+    helperText: 'Текст преобразуется в HTML'
   }
 ]
 

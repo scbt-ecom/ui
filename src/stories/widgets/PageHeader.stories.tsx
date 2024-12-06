@@ -9,7 +9,7 @@ const meta = {
 
 export default meta
 
-type Story = StoryObj<typeof meta>
+type Story = StoryObj<typeof PageHeader>
 
 export const WithPhone: Story = {
   args: {

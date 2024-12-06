@@ -1,5 +1,5 @@
 import { type ReactNode, useEffect } from 'react'
-import { type DefaultValues, type FieldValues, FormProvider } from 'react-hook-form'
+import { type DefaultValues, type FieldErrors, type FieldValues, FormProvider } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import type { TypeOf, ZodTypeAny } from 'zod'
 import { mockToastMessage } from '../model/mockData'
@@ -29,13 +29,17 @@ export const StorybookFormProvider = <S extends ZodTypeAny>({
     })
   }
 
+  const onError = <T extends FieldValues>(errors: FieldErrors<T>) => {
+    console.error(errors, '@errors')
+  }
+
   useEffect(() => {
     formMethods.reset(defaultValues)
   }, [defaultValues, formMethods])
 
   return (
     <FormProvider {...formMethods}>
-      <form className='flex w-full flex-col gap-5' onSubmit={formMethods.handleSubmit(onSubmit)}>
+      <form className='flex w-full flex-col gap-5' onSubmit={formMethods.handleSubmit(onSubmit, onError)}>
         {children}
       </form>
     </FormProvider>

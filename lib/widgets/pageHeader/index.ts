@@ -1,1 +1,1 @@
-export { PageHeader, type TPageHeaderProps } from './PageHeader'
+export * from './PageHeader'

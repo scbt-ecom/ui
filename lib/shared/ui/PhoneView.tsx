@@ -1,20 +1,21 @@
-import { type ReactElement } from 'react'
+import { type HTMLAttributes, type ReactElement } from 'react'
 import { cn } from '../utils'
 
 interface IPhoneViewClasses {
-  wrapper: string
-  link: string
-  text: string
+  wrapper?: string
+  link?: string
+  text?: string
 }
 
-export interface IPhoneViewProps {
+export interface IPhoneViewProps extends HTMLAttributes<HTMLDivElement> {
   phone: string | ReactElement
   text: string | ReactElement
-  classes?: Partial<IPhoneViewClasses>
+  classes?: IPhoneViewClasses
 }
-export const PhoneView = ({ phone, text, classes }: IPhoneViewProps) => {
+
+export const PhoneView = ({ phone, text, classes, ...props }: IPhoneViewProps) => {
   return (
-    <div className={cn('flex w-max flex-col', classes?.wrapper)}>
+    <div className={cn('flex w-max flex-col', classes?.wrapper)} {...props}>
       <a
         href={`tel:${phone}`}
         className={cn('mob-body-medium-l ml-auto text-color-dark desktop:desk-body-medium-l', classes?.link)}
