@@ -10,7 +10,7 @@ concurrency:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     permissions: 
       contents: write # to be able to publish a GitHub release
       issues: write # to be able to comment on released issues
@@ -31,6 +31,8 @@ jobs:
 
       - name: Build 🏗️
         run: npm run build-storybook
+        env:
+          DEBUG: 'storybook:*'
 
       - name: Build dist 🏗️
         run: npm run build
@@ -55,7 +57,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
 
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     needs: build
 
     steps:

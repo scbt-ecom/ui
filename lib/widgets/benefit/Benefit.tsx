@@ -1,0 +1,27 @@
+import { type ReactElement } from 'react'
+import { Heading, ResponsiveContainer } from '@scbt-ecom/ui/hybrid'
+import { type Content } from './model/types'
+import { BenefitItem } from './ui/BenefitItem'
+
+export interface IBenefitProps {
+  heading: string | ReactElement
+  content: Content[]
+  classes?: {
+    item?: string
+  }
+}
+
+export const Benefit = ({ heading, content, classes }: IBenefitProps) => {
+  return (
+    <section className='pb-20'>
+      <ResponsiveContainer>
+        <Heading className='mb-8' as='h2'>
+          {heading}
+        </Heading>
+        <ul className='grid grid-cols-1 gap-4 desktop:grid-cols-2'>
+          {content?.map((item, index) => <BenefitItem key={item.img} index={index} classes={classes} {...item} />)}
+        </ul>
+      </ResponsiveContainer>
+    </section>
+  )
+}
