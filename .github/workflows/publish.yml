@@ -29,13 +29,8 @@ jobs:
       - name: Setup Pages ⚙️
         uses: actions/configure-pages@v4
 
-#      - name: Build 🏗️
-#        run: npm run build-storybook
-#        env:
-#          DEBUG: 'storybook:*'
-
-      - name: Build dist 🏗️
-        run: npm run build
+      - name: Build 🏗️
+        run: npm run build-storybook && npm run build
 
       - name: Upload artifact 📡
         uses: actions/upload-pages-artifact@v3
