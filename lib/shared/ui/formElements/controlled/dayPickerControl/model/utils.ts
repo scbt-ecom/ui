@@ -6,6 +6,11 @@ type IsoDateRange = {
   to?: string
 }
 
+/**
+ * Функция для получения инит состояния поля ввода
+ * @param mode режим календаря (single | range)
+ * @param value текущее состояние поля
+ */
 export function getInitialValue(mode: 'single', value?: string): string
 export function getInitialValue(mode: 'range', value?: IsoDateRange): string
 export function getInitialValue(mode: 'multiple', value?: IsoDateRange): string
@@ -23,6 +28,14 @@ export function getInitialValue(mode: 'single' | 'multiple' | 'range', value?: I
   }
 }
 
+/**
+ * Функция для получения объекта даты по текущему состоянию
+ * @param mode режим календаря (single | range)
+ * @param value текущее состояние поля
+ *
+ * @returns Date если mode 'single'
+ * @returns DateRange если mode 'range'
+ */
 export function getCurrentDate(mode: 'single', value?: string): Date
 export function getCurrentDate(mode: 'range', value?: IsoDateRange): DateRange
 export function getCurrentDate(mode: 'multiple', value?: IsoDateRange): Date
