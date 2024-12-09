@@ -1,7 +1,6 @@
 import { type IHeaderWithButton, type IHeaderWithPhone } from './types'
 import { brandLogos, Button, PhoneView, ResponsiveContainer } from '$/shared/ui'
 import { cn } from '$/shared/utils'
-
 export type TPageHeaderProps = IHeaderWithButton | IHeaderWithPhone
 
 const renderContentVariant = (props: TPageHeaderProps) => {

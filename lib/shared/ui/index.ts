@@ -7,6 +7,7 @@ export * from './PhoneView'
 export { Badge, type IBadgeProps } from './Badge'
 export { Loader, type ILoaderProps } from './Loader'
 export { Skeleton, type ISkeletonProps } from './Skeleton'
+export * from './FloatButton'
 
 // # INTERACTIVE
 export { Accordion, type IAccordionProps } from './accordion'
@@ -38,5 +39,4 @@ export { Document, type IDocumentProps } from './Document'
 export { type IKeyboardShortcutsProps, KeyboardShortcuts } from './KeyboardShortcuts'
 
 // # CONTROLLED FORM UI
-// export * from './formControlElements'
 export * from './formElements'

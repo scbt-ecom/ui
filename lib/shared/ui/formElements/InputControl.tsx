@@ -1,5 +1,5 @@
 import { useId } from 'react'
-import { Controller, type FieldValues, useFormContext } from 'react-hook-form'
+import { Controller, type FieldValues } from 'react-hook-form'
 import { type TCommonFieldProps } from './model/types'
 import {
   FieldAttachment,
@@ -43,7 +43,6 @@ export const InputControl = <T extends FieldValues>({
   ...props
 }: IInputControlProps<T>) => {
   const inputId = useId()
-  const { clearErrors } = useFormContext()
 
   return (
     <Controller
@@ -68,7 +67,6 @@ export const InputControl = <T extends FieldValues>({
                 value={value ?? ''}
                 onChange={(e) => {
                   onChange(e)
-                  clearErrors(props.name)
                 }}
                 className={cn(
                   'desk-body-regular-l h-[56px] w-full rounded-md bg-color-transparent px-4 pt-5 text-color-dark outline-none transition-all',
