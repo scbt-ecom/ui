@@ -25,7 +25,7 @@
     "test": "vitest",
     "preview": "vite preview",
     "start:sb": "storybook dev -p 6006 --no-open",
-    "build-storybook": "storybook build",
+    "build-storybook": "storybook build --quiet",
     "start": "npm run start:sb",
     "test-storybook": "test-storybook",
     "prepare": "husky",
