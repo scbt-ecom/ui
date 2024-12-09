@@ -56,11 +56,8 @@ export const MonthCaption = ({
 
   const { goToMonth } = useDayPicker()
 
-  const month = {
-    ...defaultSelectOptions.month,
-    ...(selectOptions && selectOptions.month ? selectOptions.month : {})
-  }
-  const year = selectOptions && selectOptions.year ? selectOptions.year : defaultSelectOptions.year
+  const month = selectOptions && selectOptions.month !== undefined ? selectOptions.month : defaultSelectOptions.month
+  const year = selectOptions && selectOptions.year !== undefined ? selectOptions.year : defaultSelectOptions.year
 
   return (
     <div
