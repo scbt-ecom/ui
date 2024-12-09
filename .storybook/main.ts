@@ -16,7 +16,8 @@ const config: StorybookConfig = {
     '@storybook/addon-viewport'
   ],
   core: {
-    builder: '@storybook/builder-vite'
+    builder: '@storybook/builder-vite',
+    disableTelemetry: true
   },
   framework: {
     name: '@storybook/react-vite',

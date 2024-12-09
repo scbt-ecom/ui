@@ -1,3 +1,4 @@
+export { Benefit, type IBenefitProps } from '$/widgets/benefit'
 export { PageHeader, type TPageHeaderProps } from './pageHeader'
 export { Banner, type IBannerProps } from './banner'
 export { Advantages, type IAdvantage, type IAdvantagesProps } from './Advantages'

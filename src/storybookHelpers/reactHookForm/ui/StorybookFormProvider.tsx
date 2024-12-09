@@ -1,4 +1,4 @@
-import { type ReactNode, useEffect } from 'react'
+import { type ReactNode } from 'react'
 import { type DefaultValues, type FieldErrors, type FieldValues, FormProvider } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import type { TypeOf, ZodTypeAny } from 'zod'
@@ -32,10 +32,6 @@ export const StorybookFormProvider = <S extends ZodTypeAny>({
   const onError = <T extends FieldValues>(errors: FieldErrors<T>) => {
     console.error(errors, '@errors')
   }
-
-  useEffect(() => {
-    formMethods.reset(defaultValues)
-  }, [defaultValues, formMethods])
 
   return (
     <FormProvider {...formMethods}>
