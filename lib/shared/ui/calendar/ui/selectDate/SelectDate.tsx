@@ -1,6 +1,5 @@
 import { type HTMLAttributes } from 'react'
 import { type CalendarMonth } from 'react-day-picker'
-import { AnimatePresence } from 'framer-motion'
 import { SelectList, Trigger } from './ui'
 import { cn } from '$/shared/utils'
 
@@ -33,9 +32,7 @@ export const SelectDate = ({
   return (
     <div {...props} className={cn('', className)}>
       <Trigger currentDate={currentMonth.date} mode={mode} open={open} onOpenChange={onOpenChange} disabled={disabled} />
-      <AnimatePresence mode='sync'>
-        {open && <SelectList dates={dates} selected={currentMonth.date} mode={mode} onSelect={onItemSelect} />}
-      </AnimatePresence>
+      {open && <SelectList dates={dates} selected={currentMonth.date} mode={mode} onSelect={onItemSelect} />}
     </div>
   )
 }

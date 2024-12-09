@@ -2,7 +2,6 @@
 
 import { memo, useState } from 'react'
 import { type Control, type FieldPath, type FieldValues, useController, type UseControllerProps } from 'react-hook-form'
-import { AnimatePresence } from 'framer-motion'
 import { SingleDayPicker } from './single'
 import { type Calendar, type MaskInputProps } from '$/shared/ui'
 import { MessageView } from '$/shared/ui/formElements/ui'
@@ -51,7 +50,7 @@ const InnerComponent = <T extends FieldValues = FieldValues>({
   const [month, setMonth] = useState<Date>(new Date())
 
   return (
-    <AnimatePresence mode='sync'>
+    <>
       <SingleDayPicker
         {...props}
         value={value ?? ''}
@@ -71,7 +70,7 @@ const InnerComponent = <T extends FieldValues = FieldValues>({
         intent={error ? 'error' : 'simple'}
         disabled={disabled}
       />
-    </AnimatePresence>
+    </>
   )
 }
 
