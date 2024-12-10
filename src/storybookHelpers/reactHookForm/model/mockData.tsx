@@ -68,7 +68,7 @@ export const mockFields: TStorybookFieldConfig<TMockSchema>[] = [
     name: 'slider',
     label: 'Сумма кредита',
     fieldType: EnumFieldType.SLIDER,
-    max: 300_000,
+    max: 5_000_000,
     min: 40_000,
     variant: 'credit'
   },

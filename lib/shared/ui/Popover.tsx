@@ -46,7 +46,10 @@ export const Popover = ({
   return (
     <PopoverPrimitive.Root defaultOpen={defaultOpen}>
       <div className={cn('flex w-max items-center gap-2', classes?.root)}>
-        <PopoverPrimitive.Trigger aria-label='tooltip' className={cn('cursor-pointer', classes?.trigger)}>
+        <PopoverPrimitive.Trigger
+          aria-label='tooltip'
+          className={cn('flex cursor-pointer items-center justify-center', classes?.trigger)}
+        >
           {triggerElement}
         </PopoverPrimitive.Trigger>
       </div>
@@ -67,12 +70,12 @@ export const Popover = ({
           {children}
           <PopoverPrimitive.Close
             aria-label='Close'
-            className={cn('size-4 outline-0 outline-transparent', classes?.closeTrigger)}
+            className={cn('flex size-5 items-center justify-center outline-0 outline-transparent', classes?.closeTrigger)}
           >
             <Icon
               name='general/close'
               className={cn(
-                'size-4 cursor-pointer text-icon-blue-grey-600 transition-colors hover:text-icon-blue-grey-800',
+                'size-5 cursor-pointer text-icon-blue-grey-600 transition-colors hover:text-icon-blue-grey-800',
                 classes?.closeIcon
               )}
             />

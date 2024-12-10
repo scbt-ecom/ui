@@ -92,7 +92,7 @@ export const SliderControl = <T extends FieldValues>({
     }
   }
 
-  const { handleBlur, handleChange, getSuffixText } = useSlider()
+  const { handleBlur, handleChange, getSuffixText } = useSlider(min, max, 0)
   return (
     <Controller
       control={control}
@@ -120,7 +120,7 @@ export const SliderControl = <T extends FieldValues>({
                     id={inputId}
                     aria-invalid={error?.message ? 'true' : 'false'}
                     onBlur={() => {
-                      handleBlur(value, min, max, onChange)
+                      handleBlur(value, onChange)
                       onBlur()
                     }}
                     value={value}
