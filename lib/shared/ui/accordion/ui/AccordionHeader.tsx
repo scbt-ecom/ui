@@ -2,7 +2,7 @@
 
 import * as React from 'react'
 import { Header, Trigger } from '@radix-ui/react-accordion'
-import { Icon } from '../../icon/Icon'
+import { Icon } from '../../icon'
 import type { TAccordionHeaderClasses } from '../model/types'
 import { cn } from '$/shared/utils'
 
@@ -17,7 +17,7 @@ export const AccordionHeader = React.forwardRef<HTMLButtonElement, IAccordionHea
       <Trigger
         ref={forwardedRef}
         className={cn(
-          'group flex w-full cursor-pointer items-center justify-between gap-5 rounded-sm border border-solid border-transparent bg-color-transparent px-6 py-5 outline-0 focus:border-primary-default',
+          'group flex w-full cursor-pointer items-center justify-between gap-5 rounded-sm border border-solid border-transparent bg-color-transparent px-6 py-5 outline-0 focus-visible:border-primary-default',
           classes?.trigger
         )}
         {...props}
