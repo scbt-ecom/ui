@@ -3,7 +3,7 @@ import { type TSliderVariants } from './types'
 import { useLogarithmic } from './useLogarithmic'
 
 export const useSlider = (min: number, max: number, defaultValue: number) => {
-  const logarithmicRange = useLogarithmic({ min, max, defaultSum: defaultValue })
+  const { fromSlider, toSlider, round } = useLogarithmic({ min, max, defaultSum: defaultValue })
 
   const getSuffixText = (value: number, variant: TSliderVariants) => {
     return getInputSliderSuffix(variant, value)
@@ -22,16 +22,8 @@ export const useSlider = (min: number, max: number, defaultValue: number) => {
     if (val === undefined) {
       return
     }
-    onChange(logarithmicRange.round(val))
+    onChange(round(val))
   }
 
-  const toSliderValue = (value: number) => {
-    return logarithmicRange.toSlider(value)
-  }
-
-  const fromSliderValue = (value: number) => {
-    return logarithmicRange.fromSlider(value)
-  }
-
-  return { getSuffixText, handleBlur, handleChange, toSliderValue, fromSliderValue }
+  return { getSuffixText, handleBlur, handleChange, toSlider, fromSlider }
 }

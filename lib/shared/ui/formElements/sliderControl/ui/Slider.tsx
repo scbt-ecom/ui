@@ -38,9 +38,13 @@ export const Slider = React.forwardRef<React.ElementRef<typeof SliderPrimitive.R
           <SliderPrimitive.Thumb
             aria-label='slider-thumb'
             className={cn(
-              'ring-offset-background block h-4 w-4 cursor-pointer rounded-full bg-color-primary-default transition-colors disabled:pointer-events-none disabled:opacity-50',
-              'hover:before:absolute hover:before:left-1/2 hover:before:top-1/2 hover:before:h-8 hover:before:w-8 hover:before:-translate-x-1/2 hover:before:-translate-y-1/2 hover:before:rounded-full hover:before:bg-color-primary-tr-hover hover:before:content-[""]',
-              'focus:outline-none focus:before:absolute focus:before:left-1/2 focus:before:top-1/2 focus:before:h-8 focus:before:w-8 focus:before:-translate-x-1/2 focus:before:-translate-y-1/2 focus:before:rounded-full focus:before:bg-color-primary-tr-pressed focus:before:content-[""]',
+              'ring-offset-background block h-4 w-4 cursor-pointer rounded-full bg-color-primary-default transition-colors focus:outline-none disabled:pointer-events-none disabled:opacity-50',
+
+              'before:absolute before:left-1/2 before:top-1/2 before:size-8 before:-translate-x-1/2 before:-translate-y-1/2 before:rounded-full before:bg-color-transparent before:content-[""]',
+
+              'hover:before:bg-color-primary-tr-hover',
+
+              'focus:before:bg-color-primary-tr-pressed',
               classes?.sliderThumb
             )}
           />

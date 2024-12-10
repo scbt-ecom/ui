@@ -14,7 +14,6 @@ import {
   type TFieldContainerConfig,
   type TFieldWrapperClasses
 } from '../ui'
-import { getStepByVariant } from './model/helpers'
 import { type TSliderVariants } from './model/types'
 import { useSlider } from './model/useSlider'
 import { Slider, type TSliderClasses } from './ui'
@@ -92,12 +91,13 @@ export const SliderControl = <T extends FieldValues>({
     }
   }
 
-  const { handleBlur, handleChange, getSuffixText } = useSlider(min, max, 0)
+  const { handleBlur, getSuffixText, fromSlider, toSlider } = useSlider(min, max, 30_000)
   return (
     <Controller
       control={control}
       name={props.name}
       render={({ field: { onChange, value, onBlur }, fieldState: { error } }) => {
+        const sliderValue = toSlider(value)
         return (
           <div className={cn('flex flex-col gap-1', classes?.sliderRoot)}>
             <FieldContainer size={size} className={classes?.sliderContainer}>
@@ -131,7 +131,7 @@ export const SliderControl = <T extends FieldValues>({
                     allowNegative={false}
                     getInputRef={ref}
                     onValueChange={({ floatValue }) => {
-                      handleChange(onChange, floatValue)
+                      onChange(floatValue)
                       if (onInputChange) {
                         onInputChange(floatValue)
                       }
@@ -143,11 +143,14 @@ export const SliderControl = <T extends FieldValues>({
                     {...props}
                   />
                   <Slider
-                    onValueChange={(inputValue) => onChange(inputValue[0])}
-                    value={[value]}
-                    min={min}
-                    max={max}
-                    step={getStepByVariant(value, variant)}
+                    onValueChange={(inputValue) => {
+                      const newValue = fromSlider(inputValue[0])
+                      onChange(newValue)
+                    }}
+                    value={[sliderValue]}
+                    min={toSlider(min)}
+                    max={toSlider(max)}
+                    step={0.01}
                     variant={variant}
                   />
 
