@@ -1,10 +1,11 @@
 import { forwardRef } from 'react'
 import { useInputMask } from 'use-mask-input'
 import { InputBase, type InputBaseProps } from './Input'
+import { defaultDefinitions } from './model/mask'
 
 type Validator = (char: string) => boolean
 type Casing = 'upper' | 'lower' | 'title'
-type Definition = {
+export type Definition = {
   validator: string | Validator
   casing?: Casing
   cardinality?: number
@@ -56,15 +57,7 @@ export const MaskInput = forwardRef<HTMLInputElement, MaskInputProps>(({ mask, e
     options: {
       jitMasking: false,
       definitions: {
-        '#': {
-          validator: (char) => /\d/g.test(char)
-        },
-        A: {
-          validator: (char) => /[A-Za-zА-Яа-я]/g.test(char)
-        },
-        C: {
-          validator: (char) => /([АВЕКМНОРСТУХавекмнорстух])/.test(char)
-        },
+        ...defaultDefinitions,
         ...externalMaskDefinitions
       }
     }
