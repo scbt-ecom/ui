@@ -1,26 +1,9 @@
 import { type ClassAttributes, type HTMLAttributes, useState } from 'react'
 import { type CalendarMonth, useDayPicker } from 'react-day-picker'
-import { defaultSelectOptions, getMonthsFrom, getYearsFrom } from './model'
+import { defaultSelectOptions, getMonthsFrom, getYearsFrom, type SelectOptions } from './model'
 import { Navigation } from './Navigation'
 import { SelectDate } from './selectDate'
 import { cn } from '$/shared/utils'
-
-export type SelectOptions = {
-  year?:
-    | {
-        disabled?: boolean
-        startFrom?: number
-        order?: 'asc' | 'desc'
-      }
-    | false
-  month?:
-    | {
-        disabled?: boolean
-        startFrom?: number
-        order?: 'asc' | 'desc'
-      }
-    | false
-}
 
 type MonthCaptionProps = ClassAttributes<HTMLDivElement> &
   HTMLAttributes<HTMLDivElement> & {
