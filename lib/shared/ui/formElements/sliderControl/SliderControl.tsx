@@ -147,7 +147,7 @@ export const SliderControl = <T extends FieldValues>({
                     value={[value]}
                     min={min}
                     max={max}
-                    step={getStepByVariant(variant)}
+                    step={getStepByVariant(value, variant)}
                     variant={variant}
                   />
 
