@@ -1,6 +1,6 @@
 {
   "name": "@scbt-ecom/ui",
-  "version": "0.12.0",
+  "version": "0.12.1",
   "type": "module",
   "exports": {
     "./utils-tailwind.css": "./dist/utils-tailwind.css",
@@ -25,7 +25,7 @@
     "test": "vitest",
     "preview": "vite preview",
     "start:sb": "storybook dev -p 6006 --no-open",
-    "build-storybook": "storybook build",
+    "build-storybook": "storybook build --quiet",
     "start": "npm run start:sb",
     "test-storybook": "test-storybook",
     "prepare": "husky",
