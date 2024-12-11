@@ -1,5 +1,11 @@
 import { z } from 'zod'
-import { VALIDATION_MESSAGES, zodCalendarValidate, zodOtpCodeSchema, zodPhoneSchema } from '$/shared/validation'
+import {
+  VALIDATION_MESSAGES,
+  zodCalendarValidate,
+  zodDadataFioSchema,
+  zodOtpCodeSchema,
+  zodPhoneSchema
+} from '$/shared/validation'
 
 export const mockSchema = z.object({
   phone: zodPhoneSchema,
@@ -17,7 +23,8 @@ export const mockSchema = z.object({
     .min(1, { message: VALIDATION_MESSAGES.REQUIRED })
     .max(3, { message: 'Можно отправить не больше трех файлов. Чтобы добавить файлы удалите выбранные' }),
   html: z.string().min(1, { message: VALIDATION_MESSAGES.REQUIRED }),
-  code: zodOtpCodeSchema
+  code: zodOtpCodeSchema,
+  fio: zodDadataFioSchema
 })
 
 export type TMockSchema = z.infer<typeof mockSchema>
@@ -34,5 +41,6 @@ export const mockDefaultValues: TMockSchema = {
   creditSum: 100_000,
   files: [],
   html: '',
-  code: null
+  code: null,
+  fio: ''
 }

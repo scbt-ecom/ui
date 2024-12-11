@@ -2,6 +2,7 @@ import type { DefaultValues, FieldValues } from 'react-hook-form'
 import type { Schema, TypeOf } from 'zod'
 import type {
   ICheckboxControlProps,
+  IDadataProps,
   IEditorControlProps,
   IInputControlProps,
   IInputOtpControlProps,
@@ -30,7 +31,8 @@ export const enum EnumFieldType {
   SLIDER = 'slider',
   UPLOADER = 'uploader',
   EDITOR = 'editor',
-  OTP = 'otp'
+  OTP = 'otp',
+  FIO = 'fio'
 }
 
 export type TControlledInput<T extends FieldValues> = Omit<IInputControlProps<T>, 'control'> & { fieldType: EnumFieldType.INPUT }
@@ -69,6 +71,10 @@ export type TControlledOtpInput<T extends FieldValues> = Omit<IInputOtpControlPr
   fieldType: EnumFieldType.OTP
 }
 
+export type TControlledDadataFio<T extends FieldValues> = Omit<IDadataProps<T>, 'control'> & {
+  fieldType: EnumFieldType.FIO
+}
+
 export type TStorybookFieldConfig<T extends FieldValues> =
   | TControlledInputMask<T>
   | TControlledInput<T>
@@ -80,3 +86,4 @@ export type TStorybookFieldConfig<T extends FieldValues> =
   | TControlledInputUploader<T>
   | TControlledInputEditor<T>
   | TControlledOtpInput<T>
+  | TControlledDadataFio<T>

@@ -16,6 +16,13 @@ export const formattedDadataFio = (value: string) => {
 export const zodDadataFioSchema = z
   .string({ invalid_type_error: 'Обязательно к заполнению', required_error: 'Обязательно к заполнению' })
   .superRefine((value, ctx) => {
+    if (value === '') {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: 'Введите имя и фамилию'
+      })
+    }
+
     if (!RgxUnicode.test(value)) {
       ctx.addIssue({
         code: z.ZodIssueCode.custom,

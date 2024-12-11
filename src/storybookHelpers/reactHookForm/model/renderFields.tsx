@@ -1,6 +1,7 @@
 import { type FieldValues, type UseFormReturn } from 'react-hook-form'
 import {
   EnumFieldType,
+  type TControlledDadataFio,
   type TControlledInput,
   type TControlledInputCheckbox,
   type TControlledInputEditor,
@@ -14,6 +15,7 @@ import {
 } from './types'
 import {
   CheckboxControl,
+  DadataFio,
   EditorControl,
   InputControl,
   InputControlMask,
@@ -50,6 +52,8 @@ export const renderFields = <T extends FieldValues>(fieldConfig: TStorybookField
       return <EditorControl control={control} {...(props as TControlledInputEditor<T>)} />
     case EnumFieldType.OTP:
       return <InputOtpControl control={control} {...(props as TControlledInputEditor<T>)} />
+    case EnumFieldType.FIO:
+      return <DadataFio control={control} {...(props as TControlledDadataFio<T>)} />
     default:
       return null
   }

@@ -2,6 +2,8 @@ import { type TMockSchema } from './mocksSchema'
 import { EnumFieldType, type TStorybookFieldConfig } from './types'
 import type { IRadioGroupOption } from '$/shared/ui'
 
+const DADATA_URL = import.meta.env.DADATA_URL
+
 export const MOCK_RADIO_GROUP: IRadioGroupOption[] = [
   { label: 'Мужской', value: 'male' },
   { label: 'Женский', value: 'female' }
@@ -29,6 +31,7 @@ export const mockFields: TStorybookFieldConfig<TMockSchema>[] = [
     mask: '_',
     allowEmptyFormatting: true
   },
+  { fieldType: EnumFieldType.FIO, name: 'fio', label: 'Введите ФИО', dadataBaseUrl: DADATA_URL },
   { name: 'city', label: 'Город', fieldType: EnumFieldType.INPUT },
   {
     name: 'condition',
