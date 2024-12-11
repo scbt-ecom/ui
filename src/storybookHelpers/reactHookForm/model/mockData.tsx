@@ -1,6 +1,6 @@
 import { type TMockSchema } from './mocksSchema'
 import { EnumFieldType, type TStorybookFieldConfig } from './types'
-import type { IRadioGroupOption } from '$/shared/ui'
+import { Icon, type IRadioGroupOption } from '$/shared/ui'
 
 const DADATA_URL = import.meta.env.DADATA_URL
 
@@ -10,7 +10,11 @@ export const MOCK_RADIO_GROUP: IRadioGroupOption[] = [
 ]
 
 export const MOCK_SELECT_OPTIONS_REACT_SELECT = [
-  { label: 'Кредит наличными', value: 'cash-credit' },
+  {
+    label: 'Кредит наличными',
+    value: 'cash-credit',
+    rightContentOption: <Icon name='general/check' className='size-4' />
+  },
   { label: 'Автокредит', value: 'avto-credit' },
   { label: 'Депозит', value: 'depozit' },
   { label: 'Кредит на недвижимость', value: 'realty-credit' },
