@@ -91,7 +91,7 @@ export const SliderControl = <T extends FieldValues>({
     }
   }
 
-  const { handleBlur, getSuffixText, fromSlider, toSlider } = useSlider(min, max, 30_000)
+  const { handleBlur, getSuffixText, fromSlider, toSlider } = useSlider(min, max, 0)
   return (
     <Controller
       control={control}
@@ -131,9 +131,11 @@ export const SliderControl = <T extends FieldValues>({
                     allowNegative={false}
                     getInputRef={ref}
                     onValueChange={({ floatValue }) => {
-                      onChange(floatValue)
-                      if (onInputChange) {
-                        onInputChange(floatValue)
+                      if (floatValue) {
+                        onChange(floatValue)
+                        if (onInputChange) {
+                          onInputChange(floatValue)
+                        }
                       }
                     }}
                     className={cn(
