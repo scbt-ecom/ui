@@ -30,7 +30,7 @@ jobs:
         uses: actions/configure-pages@v4
 
       - name: Build 🏗️
-        run: npm run build-storybook
+        run: npm run build-storybook -- --ci
         continue-on-error: true
 
       - name: Build dist 🏗️
