@@ -29,7 +29,6 @@ export * from './configs'
 export * from './shared/api'
 
 // Widgets
-export * from './widgets/Advantages'
 export * from './widgets/footer'
 export * from './widgets/pageHeader'
 export * from './widgets/stepper'

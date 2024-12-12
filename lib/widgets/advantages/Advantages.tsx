@@ -8,6 +8,7 @@ export interface IAdvantageClasses {
   advantageTitle: string
   advantageDescription: string
 }
+
 export interface IAdvantage {
   title: string
   description: string | React.ReactElement

@@ -1,5 +1,5 @@
 import { type ReactElement } from 'react'
-import { type IAdvantage, type IAdvantageClasses } from '../Advantages'
+import { type IAdvantage, type IAdvantageClasses } from '../advantages/Advantages.tsx'
 import { type IBannerButtonsGroupClasses } from './ui/BannerButtonsGroup'
 import { BannerWithSeparateImg } from './ui/banners'
 import { BannerImageFull } from './ui/banners'

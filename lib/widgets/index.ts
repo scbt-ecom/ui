@@ -1,7 +1,7 @@
 export { Benefit, type IBenefitProps } from '$/widgets/benefit'
 export { PageHeader, type TPageHeaderProps } from './pageHeader'
 export { Banner, type IBannerProps } from './banner'
-export { Advantages, type IAdvantage, type IAdvantagesProps } from './Advantages'
+export { Advantages, type IAdvantagesProps } from './advantages'
 export { Footer, type IFooterProps } from './footer'
 export { Stepper, type IStepperProps, type ISingleStep } from './stepper'
 export { LongBanner, type ILongBannerProps } from './longBanner'
