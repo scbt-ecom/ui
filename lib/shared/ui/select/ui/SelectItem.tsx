@@ -1,6 +1,8 @@
+import { Fragment } from 'react'
 import { components, type OptionProps } from 'react-select'
+import { CheckboxBase } from '../../checkbox'
 import type { DeepPartial } from '$/shared/types'
-import type { FieldAttachment } from '$/shared/ui/formElements/ui'
+import { FieldAttachment } from '$/shared/ui/formElements/ui'
 import { cn } from '$/shared/utils'
 
 type FieldAttachmentProps = React.ComponentPropsWithoutRef<typeof FieldAttachment>
@@ -35,11 +37,15 @@ export const SelectItem = ({
   selectProps,
   isFocused,
   classes,
+  isMulti,
   ...props
 }: SelectItemProps) => {
+  const ContentWrapper = isMulti || data.attachment ? 'div' : Fragment
+
   return (
     <components.Option
       {...props}
+      isMulti={isMulti}
       isFocused={isFocused}
       selectProps={selectProps}
       data={data}
@@ -47,15 +53,15 @@ export const SelectItem = ({
       label={label}
       isSelected={isSelected}
       innerProps={innerProps}
-      isDisabled={Boolean(data.disabled)}
       cx={(_, classNames) =>
         cn(
           'unset-all-apply desk-body-regular-l cursor-pointer rounded-sm px-2 py-4 bg-color-white',
           'text-color-dark hover:bg-color-primary-tr-hover hover:text-color-primary-hover',
-          '[&:not(:last-child)]:mb-1 [&>p]:hover:text-color-secondary',
+          '[&:not(:last-child)]:mb-1 [&>p]:hover:text-color-secondary [&:not(:disabled)]:cursor-pointer',
           {
-            'pointer-events-none !bg-color-primary-tr-hover !text-color-primary-hover': isSelected || (isSelected && isFocused),
-            'pointer-events-none text-color-disabled': data.disabled
+            '!bg-color-primary-tr-hover !text-color-primary-hover': isSelected || isFocused,
+            'pointer-events-none !text-color-disabled': data.disabled,
+            '!flex items-center gap-x-4': isMulti || (data.attachment && data.attachment.left)
           },
           classNames,
           classes?.container,
@@ -63,10 +69,18 @@ export const SelectItem = ({
         )
       }
     >
-      {label}
-      {data.additionalText && (
-        <p className={cn('desk-body-regular-s text-color-tetriary', classes?.additionalText)}>{data.additionalText}</p>
+      {isMulti ? (
+        <CheckboxBase checked={isSelected} disabled={data.disabled} />
+      ) : (
+        data.attachment && data.attachment.left && <FieldAttachment {...data.attachment.left} />
       )}
+      {}
+      <ContentWrapper>
+        {label}
+        {data.additionalText && (
+          <p className={cn('desk-body-regular-s text-color-tetriary', classes?.additionalText)}>{data.additionalText}</p>
+        )}
+      </ContentWrapper>
     </components.Option>
   )
 }

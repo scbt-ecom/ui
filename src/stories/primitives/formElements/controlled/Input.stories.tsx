@@ -36,7 +36,7 @@ const Form = () => {
 }
 
 const meta = {
-  title: 'CONTROLLED FORM UI/Input',
+  title: 'CONTROLLED/Input',
   component: Controlled.InputControl,
   parameters: {
     layout: 'centered'

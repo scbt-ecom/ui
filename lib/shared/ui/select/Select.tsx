@@ -19,7 +19,10 @@ type SelectClasses = {
   list?: SelectListClasses
 }
 
-export type SelectProps<IsMulti extends boolean = boolean> = Omit<Props<SelectItemOption, IsMulti>, 'placeholder'> &
+export type SelectBaseProps<IsMulti extends boolean = boolean> = Omit<
+  Props<SelectItemOption, IsMulti>,
+  'placeholder' | 'options' | 'defaultValue'
+> &
   Pick<InputBaseProps, 'attachmentProps'> & {
     label: string
     invalid?: boolean
@@ -27,10 +30,11 @@ export type SelectProps<IsMulti extends boolean = boolean> = Omit<Props<SelectIt
     returnValue?: (option: SelectItemOption) => string
     displayValue?: (option: SelectItemOption) => string
     classes?: SelectClasses
+    options: SelectItemOption[]
   }
 type SelectRef = React.ElementRef<typeof SelectPrimitive<SelectItemOption, boolean>>
 
-export const SelectBase = forwardRef<SelectRef, SelectProps>(
+export const SelectBase = forwardRef<SelectRef, SelectBaseProps>(
   (
     {
       isSearchable,
@@ -43,6 +47,7 @@ export const SelectBase = forwardRef<SelectRef, SelectProps>(
       onMenuClose,
       classes,
       className,
+      invalid,
       ...props
     },
     ref
@@ -53,6 +58,7 @@ export const SelectBase = forwardRef<SelectRef, SelectProps>(
       <SelectPrimitive
         ref={ref}
         {...props}
+        closeMenuOnSelect={!isMulti}
         isMulti={isMulti}
         filterOption={isFilterDisabled}
         onMenuClose={onMenuClose}
@@ -64,6 +70,7 @@ export const SelectBase = forwardRef<SelectRef, SelectProps>(
           Control: (props) => (
             <Control
               {...props}
+              invalid={invalid}
               displayValue={displayValue}
               isSearchable={isSearchable}
               label={label}

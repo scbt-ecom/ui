@@ -1,13 +1,21 @@
 import { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
-import { SelectBase, type SelectItemOption } from '$/shared/ui'
+import { Icon, SelectBase, type SelectItemOption } from '$/shared/ui'
 
 const options: SelectItemOption[] = [
   {
     id: 0,
     value: 'value_1',
     label: 'Nexus говно',
-    additionalText: 'Nexus'
+    additionalText: 'Nexus',
+    attachment: {
+      left: {
+        icon: <Icon name='general/check' className='size-4' />,
+        classes: {
+          fieldAttachmentRoot: 'm-0'
+        }
+      }
+    }
   },
   {
     id: 1,
@@ -17,7 +25,8 @@ const options: SelectItemOption[] = [
   {
     id: 2,
     value: 'value_3',
-    label: 'Nexus параша'
+    label: 'Nexus параша',
+    additionalText: 'Nexus'
   },
   {
     id: 3,
@@ -63,9 +72,7 @@ const meta = {
   tags: ['autodocs'],
   args: {
     label: 'Test selector',
-    options,
-    isSearchable: true,
-    isMulti: true
+    options
   }
 } satisfies Meta<typeof SelectBase>
 
@@ -87,5 +94,19 @@ export const Base: Story = {
 
 export const WithState: Story = {
   args: {},
+  render: (props) => <SelectWithState {...props} />
+}
+
+export const WithMulti: Story = {
+  args: {
+    isMulti: true
+  },
+  render: (props) => <SelectWithState {...props} />
+}
+
+export const WithSearchable: Story = {
+  args: {
+    isSearchable: true
+  },
   render: (props) => <SelectWithState {...props} />
 }

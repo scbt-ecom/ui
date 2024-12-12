@@ -1,6 +1,6 @@
 import { useMemo, useRef } from 'react'
 import { type ControlProps as ControlPrimitiveProps, type MultiValue } from 'react-select'
-import type { SelectProps } from '../../Select'
+import type { SelectBaseProps } from '../../Select'
 import { useClickOutside } from '$/shared/hooks'
 import { Icon, InputBase, type InputBaseProps, type SelectItemOption } from '$/shared/ui'
 import { cn } from '$/shared/utils'
@@ -13,8 +13,8 @@ export type ControlClasses = {
 }
 
 type ControlProps = ControlBaseProps &
-  Pick<SelectProps, 'isSearchable' | 'label' | 'returnValue' | 'displayValue'> &
-  Pick<InputBaseProps, 'attachmentProps'> & {
+  Pick<SelectBaseProps, 'isSearchable' | 'label' | 'returnValue' | 'displayValue'> &
+  Pick<InputBaseProps, 'attachmentProps' | 'invalid'> & {
     classes?: ControlClasses & InputBaseProps['classes']
   }
 
@@ -24,7 +24,16 @@ function isSingleValue(value: SelectValue): value is SelectItemOption {
   return value !== null && !Array.isArray(value)
 }
 
-export const Control = ({ isSearchable, label, attachmentProps, displayValue, isMulti, classes, ...props }: ControlProps) => {
+export const Control = ({
+  isSearchable,
+  label,
+  attachmentProps,
+  displayValue,
+  isMulti,
+  invalid,
+  classes,
+  ...props
+}: ControlProps) => {
   const { selectProps } = props
   const { onMenuOpen, onMenuClose, menuIsOpen, inputValue, onInputChange, value, onChange } = selectProps
 
@@ -86,6 +95,7 @@ export const Control = ({ isSearchable, label, attachmentProps, displayValue, is
           'cursor-pointer': !isSearchable
         })
       }}
+      invalid={invalid}
       readOnly={!isSearchable}
       value={isMulti && isSearchable ? selectDisplayValue : isSearchable ? inputValue : selectDisplayValue}
       onChange={isSearchable ? onInputValueChange : undefined}
@@ -99,7 +109,7 @@ export const Control = ({ isSearchable, label, attachmentProps, displayValue, is
                   <div
                     key={item.id}
                     className={cn(
-                      'mob-body-regular-m flex w-fit items-center gap-x-1 whitespace-nowrap',
+                      'mob-body-regular-l flex w-fit items-center gap-x-1 whitespace-nowrap',
                       'rounded-sm bg-color-primary-tr-hover px-1 text-color-primary-default',
                       classes?.chip
                     )}

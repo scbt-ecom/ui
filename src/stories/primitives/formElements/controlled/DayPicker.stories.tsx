@@ -38,7 +38,7 @@ const Form = () => {
 }
 
 const meta = {
-  title: 'CONTROLLED FORM UI/DayPickerControl',
+  title: 'CONTROLLED/DayPickerControl',
   component: Controlled.DayPickerControl,
   parameters: {
     layout: 'centered'
