@@ -75,9 +75,7 @@ export const mockBenefitDataThreeCards: IBenefitProps = {
       title: 'Минимум документов',
       description: <>Понадобится только паспорт, если сумма кредита до&nbsp;1&nbsp;млн&nbsp;₽</>,
       img: clock,
-      mobileImg: false,
-      withButton: true,
-      buttonText: 'Оформить заявку'
+      mobileImg: false
     }
   ]
 }

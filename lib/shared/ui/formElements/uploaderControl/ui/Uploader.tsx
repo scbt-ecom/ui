@@ -52,7 +52,7 @@ export const Uploader = React.forwardRef(function InputControl<T extends FieldVa
           disabled={disabled}
         />
       </div>
-      <Files filesStatus={filesStatus} removeFile={removeFile} controlledFiles={controlledFiles} />
+      <Files classes={classes} filesStatus={filesStatus} removeFile={removeFile} controlledFiles={controlledFiles} />
     </>
   )
 })
