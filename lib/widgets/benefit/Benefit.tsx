@@ -1,3 +1,5 @@
+'use client'
+
 import { type ReactElement } from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { BenefitItem, type IBenefitItemClasses, type IBenefitItemProps } from './ui/BenefitItem'

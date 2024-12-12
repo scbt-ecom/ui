@@ -1,3 +1,5 @@
+'use client'
+
 import { type ReactElement } from 'react'
 import { type IAdvantage, type IAdvantageClasses } from '../advantages/Advantages.tsx'
 import { type IBannerButtonsGroupClasses } from './ui/BannerButtonsGroup'

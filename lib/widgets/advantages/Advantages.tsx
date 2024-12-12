@@ -1,3 +1,5 @@
+'use client'
+
 import * as React from 'react'
 import { Heading } from '$/shared/ui'
 import { cn } from '$/shared/utils'
