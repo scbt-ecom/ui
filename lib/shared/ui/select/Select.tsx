@@ -31,6 +31,7 @@ export type SelectBaseProps<IsMulti extends boolean = boolean> = Omit<
     displayValue?: (option: SelectItemOption) => string
     classes?: SelectClasses
     options: SelectItemOption[]
+    filterOptionDisabled?: boolean
   }
 type SelectRef = React.ElementRef<typeof SelectPrimitive<SelectItemOption, boolean>>
 
@@ -48,11 +49,12 @@ export const SelectBase = forwardRef<SelectRef, SelectBaseProps>(
       classes,
       className,
       invalid,
+      filterOptionDisabled,
       ...props
     },
     ref
   ) => {
-    const isFilterDisabled = !isSearchable && !isMulti ? null : undefined
+    const isFilterDisabled = filterOptionDisabled || (!isSearchable && !isMulti) ? null : undefined
 
     return (
       <SelectPrimitive
