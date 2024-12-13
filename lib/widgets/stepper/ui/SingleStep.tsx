@@ -1,25 +1,25 @@
-import type { ISingleStep } from '../Stepper'
+import { type ISingleStep } from '../Stepper'
 import { Heading } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
-export type TSingleStepClasses = {
-  singleStep: string
-  numeric: string
-  textBlock: string
-  title: string
-  description: string
-}
-
 interface ISingleStepProps extends ISingleStep {
   index: number
-  classes?: Partial<TSingleStepClasses>
+  classes?: ISingleStepClasses
+}
+
+export type ISingleStepClasses = {
+  singleStep?: string
+  numeric?: string
+  textBlock?: string
+  title?: string
+  description?: string
 }
 
 export const SingleStep = ({ title, description, index, classes }: ISingleStepProps) => {
   return (
     <div
       className={cn(
-        'border-color-blue-grey-500 flex w-[328px] max-w-[328px] flex-col gap-6 rounded-md border border-solid p-4 desktop:w-[348px] desktop:max-w-[348px] desktop:border-none desktop:p-0',
+        'flex w-[328px] max-w-[328px] flex-col gap-6 rounded-md border border-solid border-blue-grey-500 p-4 desktop:w-[348px] desktop:max-w-[348px] desktop:border-none desktop:p-0',
         classes?.singleStep
       )}
     >

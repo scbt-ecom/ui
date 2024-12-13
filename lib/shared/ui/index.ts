@@ -3,7 +3,7 @@ export { Section, type ISectionProps } from './Section'
 export { ResponsiveContainer, type IResponsiveContainerProps } from './ResponsiveContainer'
 export { Button, type IButtonProps } from './button'
 export { ButtonIcon, type IButtonIconProps } from './ButtonIcon'
-export { PhoneView } from './PhoneView'
+export * from './PhoneView'
 export { Badge, type IBadgeProps } from './Badge'
 export { Loader, type ILoaderProps } from './Loader'
 export { Skeleton, type ISkeletonProps } from './Skeleton'
@@ -11,6 +11,7 @@ export * from './calendar'
 export * from './input'
 export * from './select'
 export * from './checkbox'
+export * from './FloatButton'
 
 // # INTERACTIVE
 export { Accordion, type IAccordionProps } from './accordion'
@@ -42,5 +43,4 @@ export { Document, type IDocumentProps } from './Document'
 export { type IKeyboardShortcutsProps, KeyboardShortcuts } from './KeyboardShortcuts'
 
 // # CONTROLLED FORM UI
-// export * from './formControlElements'
 export * from './formElements'

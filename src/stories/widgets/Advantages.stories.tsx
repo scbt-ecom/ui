@@ -1,5 +1,6 @@
 import { type Meta, type StoryObj } from '@storybook/react'
-import { Advantages, type IAdvantage } from '$/widgets/Advantages'
+import { Advantages } from '$/widgets/advantages'
+import { type IAdvantage } from '$/widgets/advantages/Advantages.tsx'
 
 const meta = {
   title: 'WIDGETS/Advantages',

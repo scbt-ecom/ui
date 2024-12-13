@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState } from 'react'
-import { type TUploaderClasses } from '../model/types'
+import { type TUploaderFileNameClasses } from '../model/types'
 import { Hint } from '$/shared/ui/Hint'
 import { cn } from '$/shared/utils'
 
 interface IFileNameProps {
   file: File
-  classes?: TUploaderClasses
+  classes?: TUploaderFileNameClasses
 }
 
 export const Filename = ({ file, classes }: IFileNameProps) => {
@@ -23,7 +23,7 @@ export const Filename = ({ file, classes }: IFileNameProps) => {
       {isOverflow ? (
         <Hint
           triggerElement={
-            <p ref={fileRef} className={cn('desk-body-regular-m max-w-[300px] truncate text-color-dark')}>
+            <p ref={fileRef} className={cn('desk-body-regular-m max-w-[300px] truncate text-color-dark', classes?.fileText)}>
               {file.name}
             </p>
           }

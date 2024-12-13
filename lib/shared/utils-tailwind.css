@@ -3,14 +3,17 @@
   width: 4px;
   height: 4px;
 }
+
 .customScrollbar-y::-webkit-scrollbar-track {
   border-radius: 8px;
   background: #d4dbe2;
 }
+
 .customScrollbar-y::-webkit-scrollbar-thumb {
   background: #a9b6c5;
   border-radius: 8px;
 }
+
 .scrollHidden::-webkit-scrollbar {
   width: 0;
   height: 0;
@@ -31,9 +34,6 @@
   animation: 1.5s shine linear infinite;
 }
 
-.rdp-vhidden {
-  @apply hidden;
-}
 
 .gradient-apply {
   background: linear-gradient(97.94deg, #dae4f2 -14.21%, #afcffc 47.44%, #79aef8 107.86%);

@@ -11,12 +11,18 @@ export type TUploaderMainClasses = {
 
 export type TUploaderFilesClasses = {
   filesWrapperContent?: string
+}
+
+export type TUploaderFileClasses = {
   fileWrapperContent?: string
   fileContent?: string
   fileDeleteIcon?: string
-  fileText?: string
   fileButtonDeleteWrapper?: string
   fileButtonDelete?: string
 }
 
-export type TUploaderClasses = TUploaderFilesClasses & TUploaderMainClasses
+export type TUploaderFileNameClasses = {
+  fileText?: string
+}
+
+export type TUploaderClasses = TUploaderFilesClasses & TUploaderMainClasses & TUploaderFileClasses & TUploaderFileNameClasses

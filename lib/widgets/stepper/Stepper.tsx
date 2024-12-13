@@ -1,12 +1,13 @@
 import * as React from 'react'
-import { SingleStep, type TSingleStepClasses } from './ui/SingleStep'
+import { type HTMLAttributes } from 'react'
+import { type ISingleStepClasses, SingleStep } from './ui/SingleStep'
 import { Heading, ResponsiveContainer, Section } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
-type TStepperClasses = TSingleStepClasses & {
-  root: string
-  headline: string
-  stepsWrapper: string
+export type TStepperClasses = ISingleStepClasses & {
+  root?: string
+  headline?: string
+  stepsWrapper?: string
 }
 
 export interface ISingleStep {
@@ -14,23 +15,23 @@ export interface ISingleStep {
   description: string | React.ReactElement
 }
 
-export interface IStepperProps {
+export interface IStepperProps extends HTMLAttributes<HTMLDivElement> {
   heading: string
   stepsList: ISingleStep[]
-  classes?: Partial<TStepperClasses>
+  classes?: TStepperClasses
 }
 
 export const Stepper = ({ heading, stepsList, classes }: IStepperProps) => {
   return (
     <Section>
       <ResponsiveContainer>
-        <div className={cn('flex flex-col gap-12', classes?.root)}>
+        <div className={cn('flex flex-col gap-12 desktop:items-start', classes?.root)}>
           <Heading as='h2' className={cn('text-color-dark', classes?.headline)}>
             {heading}
           </Heading>
           <div
             className={cn(
-              'flex flex-col items-start gap-6 desktop:flex-row desktop:items-center desktop:gap-12',
+              'flex w-full flex-col items-start gap-6 desktop:flex-row desktop:items-center desktop:gap-12',
               classes?.stepsWrapper
             )}
           >

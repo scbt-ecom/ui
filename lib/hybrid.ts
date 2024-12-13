@@ -13,6 +13,7 @@ export * from './shared/ui/PhoneView'
 export * from './shared/ui/Loader'
 export * from './shared/ui/ProgressBar'
 export * from './shared/ui/Skeleton'
+export * from './shared/ui/FloatButton'
 
 // Utils //IsClient под вопросом на ломание в серверных компонентах
 export * from './shared/utils'
@@ -28,7 +29,6 @@ export * from './configs'
 export * from './shared/api'
 
 // Widgets
-export * from './widgets/Advantages'
 export * from './widgets/footer'
 export * from './widgets/pageHeader'
 export * from './widgets/stepper'
