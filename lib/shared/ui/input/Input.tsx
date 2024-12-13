@@ -16,14 +16,16 @@ export type InputBaseProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, '
   label: string
   invalid?: boolean
   attachmentProps?: DeepPartial<FieldAttachmentProps>
+  renderValues?: () => React.JSX.Element | null
 }
 
 export const InputBase = forwardRef<HTMLInputElement, InputBaseProps>(
-  ({ label, value, invalid, disabled, classes, attachmentProps, ...props }, ref) => {
+  ({ label, value, invalid, disabled, classes, renderValues, attachmentProps, ...props }, ref) => {
     const id = useId()
 
     return (
       <div
+        ref={renderValues ? ref : undefined}
         className={cn(
           'relative flex w-full gap-x-4 rounded-sm bg-color-blue-grey-100',
           '[&_label]:focus-within:top-[9px] [&_label]:focus-within:translate-y-0',
@@ -37,20 +39,34 @@ export const InputBase = forwardRef<HTMLInputElement, InputBaseProps>(
           classes?.container
         )}
       >
-        <input
-          {...props}
-          disabled={disabled}
-          value={value}
-          placeholder={label}
-          aria-placeholder={label}
-          ref={ref}
-          id={id}
-          className={cn(
-            'peer desk-body-regular-l w-full bg-color-transparent px-4 pb-[9px] pt-[25px]',
-            'text-color-dark outline-none placeholder:text-color-transparent',
-            classes?.input
-          )}
-        />
+        {renderValues ? (
+          <div
+            onClick={props.onClick}
+            onBlur={props.onBlur}
+            className={cn(
+              'peer desk-body-regular-l min-h-[54px] w-full bg-color-transparent px-4 pb-[6px] pt-[28px]',
+              'text-color-dark outline-none placeholder:text-color-transparent',
+              'flex flex-row flex-wrap gap-2'
+            )}
+          >
+            {renderValues()}
+          </div>
+        ) : (
+          <input
+            {...props}
+            disabled={disabled}
+            value={value}
+            placeholder={label}
+            aria-placeholder={label}
+            ref={ref}
+            id={id}
+            className={cn(
+              'peer desk-body-regular-l w-full bg-color-transparent px-4 pb-[9px] pt-[25px]',
+              'text-color-dark outline-none placeholder:text-color-transparent',
+              classes?.input
+            )}
+          />
+        )}
         <label
           htmlFor={id}
           className={cn(

@@ -9,6 +9,8 @@ export { Loader, type ILoaderProps } from './Loader'
 export { Skeleton, type ISkeletonProps } from './Skeleton'
 export * from './calendar'
 export * from './input'
+export * from './select'
+export * from './checkbox'
 
 // # INTERACTIVE
 export { Accordion, type IAccordionProps } from './accordion'

@@ -36,7 +36,7 @@ const Form = () => {
 }
 
 const meta = {
-  title: 'CONTROLLED FORM UI/MaskInput',
+  title: 'CONTROLLED/MaskInput',
   component: Controlled.MaskInputControl,
   parameters: {
     layout: 'centered'

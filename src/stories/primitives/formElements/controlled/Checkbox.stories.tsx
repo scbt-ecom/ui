@@ -6,7 +6,7 @@ import z from 'zod'
 import { Controlled } from '$/shared/ui'
 
 const schema = z.object({
-  test: z.string().min(3, 'Name error')
+  test: z.boolean().refine(Boolean)
 })
 
 type Schema = z.TypeOf<typeof schema>
@@ -15,7 +15,7 @@ const Form = () => {
   const { control, handleSubmit } = useForm<Schema>({
     resolver: zodResolver(schema),
     defaultValues: {
-      test: ''
+      test: false
     }
   })
 
@@ -29,27 +29,29 @@ const Form = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit, onError)}>
-      <Controlled.InputControl control={control} name='test' label='Input' />
+      <Controlled.CheckboxControl control={control} name='test'>
+        Input
+      </Controlled.CheckboxControl>
       <button>Submit</button>
     </form>
   )
 }
 
 const meta = {
-  title: 'CONTROLLED/Input',
-  component: Controlled.InputControl,
+  title: 'CONTROLLED/Checkbox',
+  component: Controlled.CheckboxControl,
   parameters: {
     layout: 'centered'
   },
   tags: ['autodocs'],
   args: {
-    label: 'Input'
+    children: 'Input'
   }
-} satisfies Meta<typeof Controlled.InputControl>
+} satisfies Meta<typeof Controlled.CheckboxControl>
 
 export default meta
 
-type Story = StoryObj<typeof Controlled.InputControl>
+type Story = StoryObj<typeof Controlled.CheckboxControl>
 
 export const Base: Story = {
   render: () => <Form />
