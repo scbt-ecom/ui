@@ -1,6 +1,8 @@
-import { useMemo, useRef } from 'react'
-import { type ControlProps as ControlPrimitiveProps, type MultiValue } from 'react-select'
+import { useRef } from 'react'
+import { type ControlProps as ControlPrimitiveProps } from 'react-select'
 import type { SelectBaseProps } from '../../Select'
+import { useSelectController } from './hooks'
+import { ChipList } from './ui'
 import { useClickOutside } from '$/shared/hooks'
 import { Icon, InputBase, type InputBaseProps, type SelectItemOption } from '$/shared/ui'
 import { cn } from '$/shared/utils'
@@ -18,12 +20,6 @@ type ControlProps = ControlBaseProps &
     classes?: ControlClasses & InputBaseProps['classes']
   }
 
-type SelectValue = SelectItemOption | MultiValue<SelectItemOption> | null
-
-function isSingleValue(value: SelectValue): value is SelectItemOption {
-  return value !== null && !Array.isArray(value)
-}
-
 export const Control = ({
   isSearchable,
   label,
@@ -37,54 +33,20 @@ export const Control = ({
   const { selectProps } = props
   const { onMenuOpen, onMenuClose, menuIsOpen, inputValue, onInputChange, value, onChange } = selectProps
 
+  const { onMenuOpenToggle, onInputValueChange, selectDisplayValue, onDeleteItem } = useSelectController({
+    value,
+    onValueChange: onChange,
+    menuIsOpen,
+    inputValue,
+    onInputChange,
+    displayValue,
+    onMenuOpen,
+    onMenuClose
+  })
+
   const containerRef = useRef<HTMLInputElement>(null)
 
   useClickOutside(containerRef, () => onMenuClose && onMenuClose())
-
-  const onInputValueChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    onInputChange(event.target.value, {
-      prevInputValue: inputValue,
-      action: 'input-change'
-    })
-  }
-
-  const onMenuOpenToggle = () => {
-    if (menuIsOpen) {
-      onMenuClose()
-    } else {
-      onMenuOpen()
-    }
-  }
-
-  const selectDisplayValue = useMemo(() => {
-    if (value) {
-      if (Array.isArray(value)) {
-        return value.map((item) => (displayValue ? displayValue(item) : item.label)).join(' | ')
-      }
-      if (isSingleValue(value)) {
-        const updatedValue = displayValue ? displayValue(value) : value.label
-
-        onInputChange(updatedValue, {
-          prevInputValue: inputValue,
-          action: 'set-value'
-        })
-        return updatedValue
-      }
-    } else {
-      return ''
-    }
-  }, [value, displayValue])
-
-  const onDeleteItem = (option: SelectItemOption) => {
-    if (value && Array.isArray(value)) {
-      const updatedValue = value.filter((item) => item.id !== option.id)
-
-      onChange(updatedValue, {
-        option,
-        action: 'deselect-option'
-      })
-    }
-  }
 
   return (
     <InputBase
@@ -100,42 +62,16 @@ export const Control = ({
       value={isMulti && isSearchable ? selectDisplayValue : isSearchable ? inputValue : selectDisplayValue}
       onChange={isSearchable ? onInputValueChange : undefined}
       renderValues={
-        (isMulti &&
-          (() => (
-            <>
-              {Array.isArray(value) &&
-                value.length > 0 &&
-                value.map((item) => (
-                  <div
-                    key={item.id}
-                    className={cn(
-                      'mob-body-regular-l flex w-fit items-center gap-x-1 whitespace-nowrap',
-                      'rounded-sm bg-color-primary-tr-hover px-1 text-color-primary-default',
-                      classes?.chip
-                    )}
-                  >
-                    {displayValue ? displayValue(item) : item.label}
-                    <Icon
-                      name='general/close'
-                      className='size-3.5 cursor-pointer'
-                      onClick={(event) => {
-                        event.stopPropagation()
-                        event.nativeEvent.stopPropagation()
-
-                        onDeleteItem(item)
-                      }}
-                    />
-                  </div>
-                ))}
-              <input
-                type='text'
-                className='unset-all-apply desk-body-regular-l flex-grow bg-color-transparent'
-                value={inputValue}
-                onChange={onInputValueChange}
+        isMulti
+          ? () => (
+              <ChipList
+                values={value}
+                inputValue={inputValue}
+                onInputValueChange={onInputValueChange}
+                onDeleteItem={onDeleteItem}
               />
-            </>
-          ))) ||
-        undefined
+            )
+          : undefined
       }
       label={label}
       onClick={onMenuOpen}

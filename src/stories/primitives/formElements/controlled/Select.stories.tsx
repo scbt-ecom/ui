@@ -3,7 +3,7 @@ import toast from 'react-hot-toast'
 import { zodResolver } from '@hookform/resolvers/zod'
 import type { Meta, StoryObj } from '@storybook/react'
 import z from 'zod'
-import { Controlled, type SelectBaseProps, type SelectItemOption } from '$/shared/ui'
+import { Controlled, type SelectItemOption } from '$/shared/ui'
 
 const options: SelectItemOption[] = [
   {
@@ -57,12 +57,18 @@ const schema = z.object({
 
 type Schema = z.TypeOf<typeof schema>
 
-const Form = (props: SelectBaseProps) => {
-  const { control, handleSubmit } = useForm<Schema>({
+type SelectControlProps = React.ComponentPropsWithoutRef<typeof Controlled.SelectControl<Schema>>
+
+type FormProps = Omit<SelectControlProps, 'control'> & {
+  schema: z.ZodSchema
+  defaultValues: Schema
+  renderComponent: (props: SelectControlProps) => React.JSX.Element
+}
+
+const Form = ({ schema, defaultValues, renderComponent, ...props }: FormProps) => {
+  const { control, handleSubmit } = useForm<z.TypeOf<typeof schema>>({
     resolver: zodResolver(schema),
-    defaultValues: {
-      test: null
-    }
+    defaultValues
   })
 
   const onSubmit = (values: Schema) => {
@@ -75,7 +81,7 @@ const Form = (props: SelectBaseProps) => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit, onError)}>
-      <Controlled.SelectControl {...props} options={options} control={control} name='test' />
+      {renderComponent({ ...props, control })}
       <button>Submit</button>
     </form>
   )
@@ -83,20 +89,60 @@ const Form = (props: SelectBaseProps) => {
 
 const meta = {
   title: 'CONTROLLED/Select',
-  component: Controlled.SelectControl,
+  component: Controlled.SelectControl<Schema>,
   parameters: {
     layout: 'centered'
   },
   tags: ['autodocs'],
   args: {
-    label: 'Input'
+    label: 'Input',
+    options,
+    name: 'test'
   }
-} satisfies Meta<typeof Controlled.SelectControl>
+} satisfies Meta<typeof Controlled.SelectControl<Schema>>
 
 export default meta
 
-type Story = StoryObj<typeof Controlled.SelectControl>
+type Story = StoryObj<typeof Controlled.SelectControl<Schema>>
 
 export const Base: Story = {
-  render: (props) => <Form {...props} />
+  render: (props) => (
+    <Form
+      {...props}
+      schema={schema}
+      defaultValues={{ test: null }}
+      renderComponent={(componentProps) => <Controlled.SelectControl<Schema> {...componentProps} />}
+    />
+  )
+}
+
+const multiSchema = z.object({
+  test: z.array(z.string().nullable().refine(Boolean))
+})
+export const WithMulti: Story = {
+  args: {
+    isMulti: true
+  },
+  render: (props) => (
+    <Form
+      {...props}
+      schema={multiSchema}
+      defaultValues={{ test: null }}
+      renderComponent={(componentProps) => <Controlled.SelectControl<Schema> {...componentProps} />}
+    />
+  )
+}
+
+export const WithSearchable: Story = {
+  args: {
+    isSearchable: true
+  },
+  render: (props) => (
+    <Form
+      {...props}
+      schema={schema}
+      defaultValues={{ test: null }}
+      renderComponent={(componentProps) => <Controlled.SelectControl<Schema> {...componentProps} />}
+    />
+  )
 }
