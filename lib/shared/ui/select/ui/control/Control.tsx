@@ -14,10 +14,15 @@ export type ControlClasses = {
   chip?: string
 }
 
+export type ControlActions = {
+  onInputChange?: (value: string) => void
+}
+
 type ControlProps = ControlBaseProps &
   Pick<SelectBaseProps, 'isSearchable' | 'label' | 'returnValue' | 'displayValue'> &
   Pick<InputBaseProps, 'attachmentProps' | 'invalid'> & {
     classes?: ControlClasses & InputBaseProps['classes']
+    externalActions?: ControlActions
   }
 
 export const Control = ({
@@ -28,6 +33,7 @@ export const Control = ({
   isMulti,
   invalid,
   classes,
+  externalActions,
   ...props
 }: ControlProps) => {
   const { selectProps } = props
@@ -41,7 +47,8 @@ export const Control = ({
     onInputChange,
     displayValue,
     onMenuOpen,
-    onMenuClose
+    onMenuClose,
+    externalActions
   })
 
   const containerRef = useRef<HTMLInputElement>(null)

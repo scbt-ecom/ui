@@ -1,5 +1,6 @@
 import { useCallback, useMemo } from 'react'
 import type { ActionMeta, InputActionMeta, OnChangeValue, PropsValue } from 'react-select'
+import { type ControlActions } from '../Control'
 import { type SelectItemOption } from '$/shared/ui'
 
 type InputChangeHandler = (value: string, action: InputActionMeta) => void
@@ -13,6 +14,7 @@ type UseSelectControllerProps<Option> = {
   displayValue?: (option: Option) => string
   value: PropsValue<Option>
   onValueChange: (value: OnChangeValue<Option, boolean>, action: ActionMeta<Option>) => void
+  externalActions?: ControlActions
 }
 
 function isSingleValue<Option extends SelectItemOption>(value: PropsValue<Option>): value is Option {
@@ -27,17 +29,22 @@ export const useSelectController = <Option extends SelectItemOption>({
   onMenuOpen,
   displayValue,
   value,
-  onValueChange
+  onValueChange,
+  externalActions
 }: UseSelectControllerProps<Option>) => {
-  const onInputValueChange = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      onInputChange(event.target.value, {
-        prevInputValue: inputValue,
-        action: 'input-change'
-      })
-    },
-    [inputValue]
-  )
+  const onInputValueChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    event.preventDefault()
+    event.nativeEvent.preventDefault()
+
+    onInputChange(event.target.value, {
+      prevInputValue: inputValue,
+      action: 'input-change'
+    })
+
+    if (externalActions?.onInputChange) {
+      externalActions.onInputChange(event.target.value)
+    }
+  }
 
   const onMenuOpenToggle = useCallback(() => {
     if (menuIsOpen) {

@@ -12,6 +12,7 @@ export * from './input'
 export * from './select'
 export * from './checkbox'
 export * from './FloatButton'
+export * from './autocomplete'
 
 // # INTERACTIVE
 export { Accordion, type IAccordionProps } from './accordion'

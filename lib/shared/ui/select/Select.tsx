@@ -9,6 +9,7 @@ import {
   SelectList,
   type SelectListClasses
 } from './ui'
+import { type ControlActions } from './ui/control/Control'
 import { type InputBaseProps } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
@@ -17,6 +18,10 @@ type SelectClasses = {
   control?: ControlClasses
   option?: SelectItemClasses
   list?: SelectListClasses
+}
+
+type SelectActions = {
+  control?: ControlActions
 }
 
 export type SelectBaseProps<IsMulti extends boolean = boolean> = Omit<
@@ -32,6 +37,7 @@ export type SelectBaseProps<IsMulti extends boolean = boolean> = Omit<
     classes?: SelectClasses
     options: SelectItemOption[]
     filterOptionDisabled?: boolean
+    externalActions?: SelectActions
   }
 type SelectRef = React.ElementRef<typeof SelectPrimitive<SelectItemOption, boolean>>
 
@@ -50,6 +56,7 @@ export const SelectBase = forwardRef<SelectRef, SelectBaseProps>(
       className,
       invalid,
       filterOptionDisabled,
+      externalActions,
       ...props
     },
     ref
@@ -78,6 +85,7 @@ export const SelectBase = forwardRef<SelectRef, SelectBaseProps>(
               label={label}
               attachmentProps={attachmentProps}
               classes={classes?.control}
+              externalActions={externalActions?.control}
             />
           ),
           Option: (props) => <SelectItem {...props} classes={classes?.option} />,
