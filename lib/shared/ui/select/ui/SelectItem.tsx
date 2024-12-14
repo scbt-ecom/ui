@@ -74,7 +74,6 @@ export const SelectItem = ({
       ) : (
         data.attachment && data.attachment.left && <FieldAttachment {...data.attachment.left} />
       )}
-      {}
       <ContentWrapper>
         {label}
         {data.additionalText && (
