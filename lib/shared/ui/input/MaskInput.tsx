@@ -2,6 +2,7 @@ import { forwardRef } from 'react'
 import { useInputMask } from 'use-mask-input'
 import { InputBase, type InputBaseProps } from './Input'
 import { defaultDefinitions } from './model/mask'
+import { mergeRefs } from '$/shared/utils'
 
 type Validator = (char: string) => boolean
 type Casing = 'upper' | 'lower' | 'title'
@@ -24,32 +25,12 @@ export type MaskInputProps = InputBaseProps & {
   externalMaskDefinitions?: Record<string, Definition>
 }
 
-function mergeRefs<T>(...inputRefs: (React.Ref<T> | undefined)[]): React.Ref<T> | React.RefCallback<T> {
-  const filteredInputRefs = inputRefs.filter(Boolean)
-
-  if (filteredInputRefs.length <= 1) {
-    const firstRef = filteredInputRefs[0]
-
-    return firstRef || null
-  }
-
-  return function mergedRefs(ref) {
-    filteredInputRefs.forEach((inputRef) => {
-      if (typeof inputRef === 'function') {
-        inputRef(ref)
-      } else if (inputRef) {
-        ;(inputRef as React.MutableRefObject<T | null>).current = ref
-      }
-    })
-  }
-}
-
 /**
  * Компонент маски очень умный, умеет обрабатывать специальные символы
  * в том порядке, который определён маской
- * @typeParam '\#' позволяет вводить только числа (regexp: /\d/g)
- * @typeParam 'A' позволяет вводить любые буквы русского и английского алфавита (regexp: /[A-Za-zА-Яа-я]/g)
- * @typeParam 'C' позволяет вводить любые буквы, которые определены для использования в гос номерах автомобилей (regexp: /([АВЕКМНОРСТУХавекмнорстух])/)
+ * @typeParam `#` позволяет вводить только числа (regexp: `/\d/g`)
+ * @typeParam `A` позволяет вводить любые буквы русского и английского алфавита (regexp: `/[A-Za-zА-Яа-я]/g`)
+ * @typeParam `C` позволяет вводить любые буквы, которые определены для использования в гос номерах автомобилей (regexp: `/([АВЕКМНОРСТУХавекмнорстух])/`)
  */
 export const MaskInput = forwardRef<HTMLInputElement, MaskInputProps>(({ mask, externalMaskDefinitions, ...props }, ref) => {
   const maskedRef = useInputMask({
