@@ -1,8 +1,8 @@
-import { useForm } from 'react-hook-form'
+import { type FieldErrors } from 'react-hook-form'
 import toast from 'react-hot-toast'
-import { zodResolver } from '@hookform/resolvers/zod'
 import type { Meta, StoryObj } from '@storybook/react'
 import z from 'zod'
+import { useControlledForm } from '$/shared/hooks'
 import { Controlled } from '$/shared/ui'
 
 const schema = z.object({
@@ -12,8 +12,8 @@ const schema = z.object({
 type Schema = z.TypeOf<typeof schema>
 
 const Form = () => {
-  const { control, handleSubmit } = useForm<Schema>({
-    resolver: zodResolver(schema),
+  const { control, handleSubmit } = useControlledForm({
+    schema,
     defaultValues: {
       test: ''
     }
@@ -23,7 +23,7 @@ const Form = () => {
     toast.success(JSON.stringify(values))
   }
 
-  const onError = (errors: any) => {
+  const onError = (errors: FieldErrors<Schema>) => {
     toast.error(JSON.stringify(errors))
   }
 

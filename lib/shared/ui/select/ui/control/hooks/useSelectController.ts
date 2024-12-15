@@ -5,13 +5,37 @@ import { type SelectItemOption } from '$/shared/ui'
 type InputChangeHandler = (value: string, action: InputActionMeta) => void
 
 type UseSelectControllerProps<Option> = {
+  /**
+   * значение поля ввода
+   */
   inputValue: string
+  /**
+   * функция для изменения поля ввода
+   */
   onInputChange: InputChangeHandler
+  /**
+   * функция для открытия списка
+   */
   onMenuOpen: () => void
+  /**
+   * функция для закрытия списка
+   */
   onMenuClose: () => void
+  /**
+   * состояние отображения списка
+   */
   menuIsOpen: boolean
+  /**
+   * функция, которая управляет отображаемым полем
+   */
   displayValue?: (option: Option) => string
+  /**
+   * выбранные значения компонента
+   */
   value: PropsValue<Option>
+  /**
+   * функция изменения выбранных значений
+   */
   onValueChange: (value: OnChangeValue<Option, boolean>, action: ActionMeta<Option>) => void
 }
 
@@ -19,6 +43,14 @@ function isSingleValue<Option extends SelectItemOption>(value: PropsValue<Option
   return value !== null && !Array.isArray(value)
 }
 
+/**
+ * Хук для управления компонентом Select
+ *
+ * @returns `onInputValueChange`,
+ *     `onMenuOpenToggle`,
+ *     `selectDisplayValue`,
+ *     `onDeleteItem`
+ */
 export const useSelectController = <Option extends SelectItemOption>({
   inputValue,
   onInputChange,

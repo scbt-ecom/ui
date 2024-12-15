@@ -12,10 +12,25 @@ type InputBaseClasses = {
 type FieldAttachmentProps = React.ComponentPropsWithoutRef<typeof FieldAttachment>
 
 export type InputBaseProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'placeholder'> & {
+  /**
+   * Дополнительные стили внутренних компонентов
+   */
   classes?: InputBaseClasses
+  /**
+   * Отображаемый placeholder
+   */
   label: string
+  /**
+   * Отображение не валидного поля
+   */
   invalid?: boolean
+  /**
+   * Свойства дополнительной иконки
+   */
   attachmentProps?: DeepPartial<FieldAttachmentProps>
+  /**
+   * Рендер дополнительных значений вместо базового ввода
+   */
   renderValues?: () => React.JSX.Element | null
 }
 

@@ -9,7 +9,13 @@ type CheckboxBaseClasses = {
 }
 
 export type CheckboxBaseProps = CheckboxPrimitiveProps & {
+  /**
+   * Дополнительные стили внутренних компонентов
+   */
   classes?: CheckboxBaseClasses
+  /**
+   * Свойство для отображения не валидного поля
+   */
   invalid?: boolean
 }
 

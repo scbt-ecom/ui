@@ -1,53 +1,52 @@
-import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
-import { zodResolver } from '@hookform/resolvers/zod'
 import type { Meta, StoryObj } from '@storybook/react'
 import z from 'zod'
+import { useControlledForm } from '$/shared/hooks'
 import { Controlled, type SelectItemOption } from '$/shared/ui'
 
 const options: SelectItemOption[] = [
   {
     id: 0,
     value: 'value_1',
-    label: 'Nexus говно',
+    label: 'Value 1',
     additionalText: 'Nexus'
   },
   {
     id: 1,
     value: 'value_2',
-    label: 'Nexus шляпа'
+    label: 'Value 2'
   },
   {
     id: 2,
     value: 'value_3',
-    label: 'Nexus параша',
+    label: 'Value 3',
     additionalText: 'Nexus'
   },
   {
     id: 3,
     value: 'value_4',
-    label: 'NPM очко'
+    label: 'Value 4'
   },
   {
     id: 4,
     value: 'value_5',
-    label: 'NPM параша',
+    label: 'Value 5',
     disabled: true
   },
   {
     id: 5,
     value: 'value_6',
-    label: 'Nexus параша'
+    label: 'Value 6'
   },
   {
     id: 6,
     value: 'value_7',
-    label: 'NPM очко'
+    label: 'Value 7'
   },
   {
     id: 7,
     value: 'value_8',
-    label: 'NPM параша'
+    label: 'Value 8'
   }
 ]
 
@@ -66,8 +65,8 @@ type FormProps = Omit<SelectControlProps, 'control'> & {
 }
 
 const Form = ({ schema, defaultValues, renderComponent, ...props }: FormProps) => {
-  const { control, handleSubmit } = useForm<z.TypeOf<typeof schema>>({
-    resolver: zodResolver(schema),
+  const { control, handleSubmit } = useControlledForm({
+    schema,
     defaultValues
   })
 
