@@ -1,0 +1,11 @@
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  prebuild:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Build 🏗️
+        run: npm run build-storybook -- --quiet
