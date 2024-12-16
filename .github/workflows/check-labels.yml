@@ -10,27 +10,24 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: Check for disallowed labels
-        run: |
-          echo "This pull request has the following disallowed label and cannot be merged"
-          exit 1
-#        uses: actions/github-script@v6
-#        with:
-#          github-token: ${{ secrets.GITHUB_TOKEN }}
-#          script: |
-#            const disallowedLabels = ['Draft', 'Duplicated', 'Do not merge'];
-#
-#            const { data: labels } = await github.rest.issues.listLabelsOnIssue({
-#              owner: context.repo.owner,
-#              repo: context.repo.repo,
-#              issue_number: context.issue.number
-#            });
-#
-#            console.log(labels);
-#
-#            const foundDisallowedLabels = labels
-#              .filter((label) => disallowedLabels.includes(label.name))
-#              .map((label) => label.name)
-#
-#            if (foundDisallowedLabels.length > 0) {
-#              core.setFailed(`This pull request has the following disallowed label and cannot be merged: ${foundDisallowedLabels.join(', ')}`)
-#            }
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const disallowedLabels = ['Draft', 'Duplicated', 'Do not merge'];
+
+            const { data: labels } = await github.rest.issues.listLabelsOnIssue({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number
+            });
+
+            console.log(labels);
+
+            const foundDisallowedLabels = labels
+              .filter((label) => disallowedLabels.includes(label.name))
+              .map((label) => label.name)
+
+            if (foundDisallowedLabels.length > 0) {
+              core.setFailed(`This pull request has the following disallowed label and cannot be merged: ${foundDisallowedLabels.join(', ')}`)
+            }
