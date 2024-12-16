@@ -2,7 +2,7 @@
 
 import { memo } from 'react'
 import { type Control, type FieldValues, type Path, useController, type UseControllerProps } from 'react-hook-form'
-import { InputBase, type InputBaseProps } from '../../../input'
+import { type InputBaseProps, Uncontrolled } from '../../uncontrolled'
 import { MessageView } from '$/shared/ui/formElements/ui'
 
 type InputControlClasses = InputBaseProps['classes'] & {
@@ -45,7 +45,7 @@ const InnerComponent = <TFieldValues extends FieldValues = FieldValues>({
 
   return (
     <div className={className}>
-      <InputBase {...props} {...field} classes={restClasses} invalid={invalid} />
+      <Uncontrolled.InputBase {...props} {...field} classes={restClasses} invalid={invalid} />
       <MessageView
         text={error?.message || textHint}
         className={message}

@@ -1,19 +1,19 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { CheckboxBase } from '$/shared/ui'
+import { Uncontrolled } from '$/shared/ui'
 
 const meta = {
   title: 'BASE/CheckboxBase',
-  component: CheckboxBase,
+  component: Uncontrolled.CheckboxBase,
   parameters: {
     layout: 'centered'
   },
   tags: ['autodocs'],
   args: {}
-} satisfies Meta<typeof CheckboxBase>
+} satisfies Meta<typeof Uncontrolled.CheckboxBase>
 
 export default meta
 
-type Story = StoryObj<typeof CheckboxBase>
+type Story = StoryObj<typeof Uncontrolled.CheckboxBase>
 
 export const Base: Story = {
   args: {

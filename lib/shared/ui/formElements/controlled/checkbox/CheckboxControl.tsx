@@ -2,7 +2,7 @@
 
 import { memo, useId } from 'react'
 import { type Control, type FieldPath, type FieldValues, useController, type UseControllerProps } from 'react-hook-form'
-import { CheckboxBase, type CheckboxBaseProps } from '$/shared/ui'
+import { type CheckboxBaseProps, Uncontrolled } from '../../uncontrolled'
 import { cn } from '$/shared/utils'
 
 type CheckboxControlClasses = CheckboxBaseProps['classes'] & {
@@ -51,7 +51,7 @@ const InnerComponent = <TFieldValues extends FieldValues = FieldValues>({
   return (
     <div className={cn('flex flex-col gap-y-2', className)}>
       <div className={cn('flex items-center justify-items-start gap-x-3', container)}>
-        <CheckboxBase
+        <Uncontrolled.CheckboxBase
           id={id}
           checked={value}
           onCheckedChange={onChange}

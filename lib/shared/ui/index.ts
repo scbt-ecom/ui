@@ -8,9 +8,6 @@ export { Badge, type IBadgeProps } from './Badge'
 export { Loader, type ILoaderProps } from './Loader'
 export { Skeleton, type ISkeletonProps } from './Skeleton'
 export * from './calendar'
-export * from './input'
-export * from './select'
-export * from './checkbox'
 export * from './FloatButton'
 
 // # INTERACTIVE

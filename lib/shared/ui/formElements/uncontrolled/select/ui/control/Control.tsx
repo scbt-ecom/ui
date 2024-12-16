@@ -4,7 +4,7 @@ import type { SelectBaseProps } from '../../Select'
 import { useSelectController } from './hooks'
 import { ChipList } from './ui'
 import { useClickOutside } from '$/shared/hooks'
-import { Icon, InputBase, type InputBaseProps, type SelectItemOption } from '$/shared/ui'
+import { Icon, type InputBaseProps, type SelectItemOption, Uncontrolled } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
 type ControlBaseProps = ControlPrimitiveProps<SelectItemOption, boolean>
@@ -69,7 +69,7 @@ export const Control = ({
   }
 
   return (
-    <InputBase
+    <Uncontrolled.InputBase
       ref={containerRef}
       classes={{
         ...classes,
