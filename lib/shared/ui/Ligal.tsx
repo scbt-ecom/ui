@@ -1,20 +1,20 @@
 'use client'
 
 import * as React from 'react'
-import { cn } from '$/shared//utils'
+import { cn } from '$/shared/utils'
 
-export type TLigalClasses = {
+type TLigalClasses = {
   ligalRoot?: string
   ligalText?: string
   ligalButton?: string
 }
 
-interface ILigalProps {
-  ligal: string | React.ReactElement
+export interface ILigalProps {
+  text: string | React.ReactElement
   classes?: TLigalClasses
 }
 
-export const Ligal = ({ ligal, classes }: ILigalProps) => {
+export const Ligal = ({ text, classes }: ILigalProps) => {
   const [isExpanded, setIsExpanded] = React.useState(false)
   const [isClamped, setIsClamped] = React.useState(false)
   const ligalRef = React.useRef<HTMLParagraphElement | null>(null)
@@ -32,7 +32,7 @@ export const Ligal = ({ ligal, classes }: ILigalProps) => {
         ref={ligalRef}
         className={cn('desk-body-regular-m text-color-footer', { 'line-clamp-3': !isExpanded }, classes?.ligalText)}
       >
-        {ligal}
+        {text}
       </p>
 
       {isClamped && (

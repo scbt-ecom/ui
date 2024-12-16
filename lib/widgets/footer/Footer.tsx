@@ -1,17 +1,15 @@
 import * as React from 'react'
-import { defaultCopyright, defaultLigal, defaultNavigationLinks, defaultPhones, defaultSocialsLinks } from './model/defaultValues'
+import { defaultCopyright, defaultNavigationLinks, defaultPhones, defaultSocialsLinks } from './model/defaultValues'
 import type { IFooterNavLinks, IFooterPhones, IFooterSocialLinks } from './model/types'
 import {
   Copyright,
   FooterLogo,
-  Ligal,
   NavLinks,
   PhonesBlock,
   SiteMap,
   SocialLinks,
   type TCopyrightClasses,
   type TFooterLogoClasses,
-  type TLigalClasses,
   type TNavigationLinksClasses,
   type TPhoneBlockClasses,
   type TSiteMapClasses,
@@ -24,14 +22,12 @@ type TFooterRenderBlocks = {
   withSocial?: boolean
   withPhones?: boolean
   withNavLinks?: boolean
-  withLigal?: boolean
   withCopyright?: boolean
   withSiteMap?: boolean
 }
 
 type TFooterClasses = TSiteMapClasses &
   TFooterLogoClasses &
-  TLigalClasses &
   TNavigationLinksClasses &
   TPhoneBlockClasses &
   TSocialLinksClasses &
@@ -48,24 +44,17 @@ export interface IFooterProps {
   renderBlocks?: TFooterRenderBlocks
   socialsLinks?: IFooterSocialLinks[]
   phones?: IFooterPhones[]
-  navigationLinks: IFooterNavLinks[]
-  ligal: string | React.ReactElement
+  navigationLinks?: IFooterNavLinks[]
+  ligal?: string | React.ReactElement
   copyright?: string | React.ReactElement
 }
 
 export const Footer = ({
-  renderBlocks: {
-    withSocial = true,
-    withPhones = true,
-    withNavLinks = true,
-    withLigal = true,
-    withCopyright = true,
-    withSiteMap = true
-  } = {},
+  renderBlocks: { withSocial = true, withPhones = true, withNavLinks = true, withCopyright = true, withSiteMap = true } = {},
   socialsLinks = defaultSocialsLinks,
   phones = defaultPhones,
   navigationLinks = defaultNavigationLinks,
-  ligal = defaultLigal,
+  ligal,
   copyright = defaultCopyright,
   classes
 }: IFooterProps) => {
@@ -88,7 +77,7 @@ export const Footer = ({
           </div>
 
           {withNavLinks && <NavLinks navigationLinks={navigationLinks} classes={classes} />}
-          {withLigal && <Ligal ligal={ligal} classes={classes} />}
+          {ligal && ligal}
 
           <div className='flex flex-col-reverse items-start justify-between gap-4 desktop:flex-row desktop:gap-6'>
             {withCopyright && <Copyright text={copyright} classes={classes} withSiteMap={withSiteMap} />}
