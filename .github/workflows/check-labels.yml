@@ -21,6 +21,8 @@ jobs:
               issue_number: context.issue.number
             });
             
+            console.log(labels);
+            
             const foundDisallowedLabels = labels
               .filter((label) => disallowedLabels.includes(label.name))
               .map((label) => label.name)
