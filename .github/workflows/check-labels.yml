@@ -6,7 +6,6 @@ on:
 
 jobs:
   check-disallowed-labels:
-    if: contains(github.event.pull_request.labels.*.name, 'draft')
     runs-on: ubuntu-22.04
     steps:
       - name: Check for disallowed labels
