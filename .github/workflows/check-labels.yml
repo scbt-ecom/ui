@@ -27,6 +27,6 @@ jobs:
               .filter((label) => disallowedLabels.includes(label.name))
               .map((label) => label.name)
             
-            if (foundDisallowedLabels > 0) {
+            if (foundDisallowedLabels.length > 0) {
               core.setFailed(`This pull request has the following disallowed label and cannot be merged: ${foundDisallowedLabels.join(', ')}`)
             }
