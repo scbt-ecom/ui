@@ -1,3 +1,5 @@
+'use client'
+
 import { type ReactElement } from 'react'
 import toast, { type Toast } from 'react-hot-toast'
 import { CustomToast } from './ui/CustomToast'

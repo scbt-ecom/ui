@@ -18,3 +18,4 @@ export * from './shared/hooks'
 // Widgets
 export * from './widgets/banner'
 export * from './widgets/benefit'
+export * from './widgets/advantages'

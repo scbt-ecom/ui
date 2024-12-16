@@ -1,3 +1,5 @@
+'use client'
+
 import * as React from 'react'
 import { Heading } from '$/shared/ui'
 import { cn } from '$/shared/utils'
@@ -8,6 +10,7 @@ export interface IAdvantageClasses {
   advantageTitle: string
   advantageDescription: string
 }
+
 export interface IAdvantage {
   title: string
   description: string | React.ReactElement

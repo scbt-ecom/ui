@@ -3,7 +3,7 @@ import { BannerButtonsGroup } from '../BannerButtonsGroup'
 import { useDevice } from '$/client'
 import { Heading, ResponsiveContainer } from '$/shared/ui'
 import { cn } from '$/shared/utils'
-import { Advantages } from '$/widgets/Advantages'
+import { Advantages } from '$/widgets/advantages/Advantages.tsx'
 
 export const BannerWithSeparateImg = ({
   headTitle,

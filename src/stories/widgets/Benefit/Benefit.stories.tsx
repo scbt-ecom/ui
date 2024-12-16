@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { mockBenefitData } from './model/mocks.tsx'
+import { mockBenefitDataFourCards, mockBenefitDataThreeCards, mockBenefitDataTwoCards } from './model/mocks.tsx'
 import { Benefit } from '$/widgets'
 
 const meta = {
@@ -22,7 +22,23 @@ type Story = StoryObj<typeof Benefit>
 export const Base: Story = {
   render: () => (
     <>
-      <Benefit {...mockBenefitData} />
+      <Benefit {...mockBenefitDataThreeCards} />
+    </>
+  )
+}
+
+export const FourCards: Story = {
+  render: () => (
+    <>
+      <Benefit {...mockBenefitDataFourCards} />
+    </>
+  )
+}
+
+export const TwoCards: Story = {
+  render: () => (
+    <>
+      <Benefit {...mockBenefitDataTwoCards} />
     </>
   )
 }

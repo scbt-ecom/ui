@@ -1,5 +1,5 @@
 import { type HTMLAttributes } from 'react'
-import { type TUploaderClasses } from '../model/types'
+import { type TUploaderFilesClasses } from '../model/types'
 import { File } from './File'
 import { cn } from '$/shared/utils'
 
@@ -9,7 +9,7 @@ interface IUploaderContentProps extends HTMLAttributes<HTMLDivElement> {
     [key: string]: 'loading' | 'success' | 'error'
   }
   removeFile: (index: number) => void
-  classes?: TUploaderClasses
+  classes?: TUploaderFilesClasses
 }
 
 export const Files = ({ controlledFiles, filesStatus, classes, removeFile }: IUploaderContentProps) => {
