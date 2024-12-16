@@ -13,11 +13,13 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+
 }
 
 body,
 html {
   font-family: var(--ff-roboto);
+  color: #292929;
 }
 
 input:-webkit-autofill,

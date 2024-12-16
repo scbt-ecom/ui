@@ -18,6 +18,8 @@ export interface IBreadcrumbsProps {
   linksList: TLinksList
 }
 
+//TODO: Его должны переработать не использовать! DEPRECATED
+
 export const Breadcrumbs = ({ linksList }: IBreadcrumbsProps) => {
   return (
     <div aria-label='Breadcrumb' className='flex max-w-[840px] items-center gap-2'>

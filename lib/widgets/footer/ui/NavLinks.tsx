@@ -1,38 +1,46 @@
 import type { IFooterNavLinks } from '../model/types'
+import { CustomLink } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
 export type TNavigationLinksClasses = {
-  navRoot: string
-  navGroup: string
-  navLabel: string
-  navWrapper: string
-  navLink: string
+  navRoot?: string
+  navGroup?: string
+  navLabel?: string
+  navLinks?: string
+  navLink?: string
+  navLinkIcon?: string
 }
 
 interface INavLinksProps {
   navigationLinks: IFooterNavLinks[]
-  classes?: Partial<TNavigationLinksClasses>
+  classes?: TNavigationLinksClasses
 }
 
 export const NavLinks = ({ navigationLinks, classes }: INavLinksProps) => {
   return (
-    <div className={cn('grid grid-cols-4 gap-10 border-y border-blue-grey-500 py-8 pt-8', classes?.navRoot)}>
+    <div
+      className={cn(
+        'mt-6 grid grid-cols-1 gap-6 border-b border-blue-grey-500 pb-6 desktop:my-8 desktop:grid-cols-4 desktop:gap-10 desktop:pb-8',
+        classes?.navRoot
+      )}
+    >
       {navigationLinks?.map(({ groupLabel, links }) => (
         <div key={groupLabel} className={cn('flex flex-col gap-4', classes?.navGroup)}>
-          <div className={cn('desk-body-regular-m font-medium text-color-white', classes?.navLabel)}>{groupLabel}</div>
-          <div className={cn('flex flex-col gap-2', classes?.navWrapper)}>
+          <div className={cn('desk-body-medium-l text-color-white', classes?.navLabel)}>{groupLabel}</div>
+          <div className={cn('flex flex-col gap-1', classes?.navLinks)}>
             {links?.map(({ text, href }) => (
-              <a
+              <CustomLink
                 key={text}
                 href={href}
-                className={cn(
-                  'desk-body-regular-m cursor-pointer text-color-white transition-colors hover:text-color-footer',
-                  classes?.navLink
-                )}
                 aria-label={text}
+                intent='white'
+                classes={{
+                  link: classes?.navLink,
+                  icon: classes?.navLinkIcon
+                }}
               >
                 {text}
-              </a>
+              </CustomLink>
             ))}
           </div>
         </div>

@@ -22,7 +22,7 @@ export const PhoneView = ({ phone, text, classes, ...props }: IPhoneViewProps) =
       >
         {phone}
       </a>
-      <p className={cn('desk-body-regular-l text-color-tetriary', classes?.text)}>{text}</p>
+      <p className={cn('desk-body-regular-s text-color-tetriary', classes?.text)}>{text}</p>
     </div>
   )
 }

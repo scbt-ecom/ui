@@ -4,14 +4,14 @@ import * as React from 'react'
 import { cn } from '$/shared//utils'
 
 export type TLigalClasses = {
-  ligalRoot: string
-  ligal: string
-  ligalButton: string
+  ligalRoot?: string
+  ligalText?: string
+  ligalButton?: string
 }
 
 interface ILigalProps {
   ligal: string | React.ReactElement
-  classes?: Partial<TLigalClasses>
+  classes?: TLigalClasses
 }
 
 export const Ligal = ({ ligal, classes }: ILigalProps) => {
@@ -28,7 +28,10 @@ export const Ligal = ({ ligal, classes }: ILigalProps) => {
 
   return (
     <div className={cn('mt-8 flex flex-col gap-4', classes?.ligalRoot)}>
-      <p ref={ligalRef} className={cn('desk-body-regular-m text-color-footer', { 'line-clamp-3': !isExpanded }, classes?.ligal)}>
+      <p
+        ref={ligalRef}
+        className={cn('desk-body-regular-m text-color-footer', { 'line-clamp-3': !isExpanded }, classes?.ligalText)}
+      >
         {ligal}
       </p>
 

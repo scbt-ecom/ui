@@ -17,7 +17,7 @@ export default defineConfig({
       group: true,
       output: './public/sprites',
       resetColors: {
-        exclude: [/^brandLogos/],
+        exclude: [/^brandLogos/, /^logos/],
         replaceUnknown: 'currentColor'
       },
       metadata: {

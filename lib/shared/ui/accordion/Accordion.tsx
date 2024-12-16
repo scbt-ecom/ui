@@ -25,7 +25,7 @@ export const Accordion = ({ children, label, classes, defaultOpen }: IAccordionP
         <AccordionHeader classes={classes}>{label}</AccordionHeader>
         <AccordionPrimitive.Content
           className={cn(
-            'desk-body-regular-l overflow-hidden bg-color-transparent text-color-dark transition-all data-[state=closed]:animate-slideUp data-[state=open]:animate-slideDown',
+            'desk-body-regular-l max-w-[680px] overflow-hidden bg-color-transparent text-color-dark transition-all data-[state=closed]:animate-slideUp data-[state=open]:animate-slideDown',
             classes?.content
           )}
         >

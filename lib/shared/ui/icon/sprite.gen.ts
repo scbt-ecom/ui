@@ -18,6 +18,7 @@ export interface SpritesMap {
   files: 'border' | 'borderError' | 'documentFilled' | 'documentOutline' | 'upload'
   general: 'calendar' | 'check' | 'close' | 'edit' | 'hiddenEye' | 'plus' | 'showEye'
   info: 'helpCircle' | 'warningCircle'
+  logos: 'beeline' | 'megafon' | 'mts'
   social: 'classmates' | 'telegram' | 'vk'
 }
 export const SPRITES_META: {
@@ -240,6 +241,26 @@ export const SPRITES_META: {
         viewBox: '0 0 20 20',
         width: 20,
         height: 20
+      }
+    }
+  },
+  logos: {
+    filePath: 'logos.svg',
+    items: {
+      beeline: {
+        viewBox: '0 0 32 32',
+        width: 32,
+        height: 32
+      },
+      megafon: {
+        viewBox: '0 0 32 32',
+        width: 32,
+        height: 32
+      },
+      mts: {
+        viewBox: '0 0 32 32',
+        width: 32,
+        height: 32
       }
     }
   },

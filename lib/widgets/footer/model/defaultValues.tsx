@@ -2,7 +2,8 @@ import type { IFooterNavLinks, IFooterPhones, IFooterSocialLinks } from './types
 
 export const defaultCopyright = (
   <>
-    © 2004-2024, ПАО «Совкомбанк». Все права защищены. <br /> Генеральная лицензия Банка России №963 от 5 декабря 2014 г.
+    © 2004-2024, ПАО «Совкомбанк». Все права защищены. <br className='mobile:hidden' /> Генеральная лицензия Банка России №963 от
+    5 декабря 2014 г.
   </>
 )
 
@@ -20,9 +21,9 @@ export const defaultPhones: IFooterPhones[] = [
 ]
 
 export const defaultSocialsLinks: IFooterSocialLinks[] = [
-  { iconName: 'social/vk', href: '/vk' },
-  { iconName: 'social/telegram', href: '/tg' },
-  { iconName: 'social/classmates', href: '/cl' }
+  { iconName: 'social/vk', href: 'https://vk.com/sovcombank' },
+  { iconName: 'social/telegram', href: 'https://t.me/sovcombankofficial' },
+  { iconName: 'social/classmates', href: 'https://ok.ru/paosovcombank' }
 ]
 
 export const defaultNavigationLinks: IFooterNavLinks[] = [
