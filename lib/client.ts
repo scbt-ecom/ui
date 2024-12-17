@@ -11,6 +11,7 @@ export * from './shared/ui/modal'
 export * from './shared/ui/providers'
 export * from './shared/ui/Popover'
 export * from './shared/ui/notification'
+export * from './shared/ui/Ligal'
 
 // Hooks
 export * from './shared/hooks'

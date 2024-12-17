@@ -14,7 +14,6 @@ export * from './shared/ui/Loader'
 export * from './shared/ui/ProgressBar'
 export * from './shared/ui/Skeleton'
 export * from './shared/ui/FloatButton'
-export * from './shared/ui/Ligal'
 
 // Utils //IsClient под вопросом на ломание в серверных компонентах
 export * from './shared/utils'
