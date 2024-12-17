@@ -30,10 +30,10 @@ jobs:
         uses: actions/configure-pages@v4
 
       - name: Build 🏗️
-        run:  npm run build-storybook -- --quiet
-
-      - name: Build dist 🏗️
         run: npm run build
+
+      - name: Build storybook 🏗️
+        run:  npm run build-storybook
 
       - name: Upload artifact 📡
         uses: actions/upload-pages-artifact@v3
