@@ -3,15 +3,32 @@
   "version": "0.16.2",
   "type": "module",
   "exports": {
+    ".": {
+      "import": "./dist/ui.js",
+      "require": "./dist/ui.js"
+    },
     "./utils-tailwind.css": "./dist/utils-tailwind.css",
     "./style.css": "./dist/style.css",
-    "./client": {
-      "import": "./dist/client.js",
-      "require": "./dist/client.js"
+    "./hooks": {
+      "import": "./dist/hooks.js"
     },
-    "./hybrid": {
-      "import": "./dist/hybrid.js",
-      "require": "./dist/hybrid.js"
+    "./utils": {
+      "import": "./dist/utils.js"
+    },
+    "./validation": {
+      "import": "./dist/validation.js"
+    },
+    "./constants": {
+      "import": "./dist/constants.js"
+    },
+    "./widgets": {
+      "import": "./dist/widgets.js"
+    },
+    "./types": {
+      "import": "./dist/types.ts"
+    },
+    "./api": {
+      "import": "./dist/api.ts"
     }
   },
   "files": [
