@@ -25,6 +25,7 @@ export interface InputCurrencyControlProps<T extends FieldValues>
   size?: TFieldContainerConfig['size']
 }
 
+// TODO: переписать как бог велел
 export const InputCurrencyControl = <T extends FieldValues>({
   label,
   size = 'full',

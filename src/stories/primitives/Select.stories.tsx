@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
-import { Icon, SelectBase, type SelectItemOption } from '$/shared/ui'
+import { Icon, type SelectItemOption, Uncontrolled } from '$/shared/ui'
 
 const options: SelectItemOption[] = [
   {
@@ -58,7 +58,7 @@ const options: SelectItemOption[] = [
 
 const meta = {
   title: 'BASE/SelectBase',
-  component: SelectBase,
+  component: Uncontrolled.SelectBase,
   parameters: {
     layout: 'centered'
   },
@@ -74,18 +74,18 @@ const meta = {
     label: 'Test selector',
     options
   }
-} satisfies Meta<typeof SelectBase>
+} satisfies Meta<typeof Uncontrolled.SelectBase>
 
 export default meta
 
-type Story = StoryObj<typeof SelectBase>
+type Story = StoryObj<typeof Uncontrolled.SelectBase>
 
-const SelectWithState = (props: React.ComponentPropsWithoutRef<typeof SelectBase>) => {
+const SelectWithState = (props: React.ComponentPropsWithoutRef<typeof Uncontrolled.SelectBase>) => {
   const [value, setValue] = useState<SelectItemOption | null>(null)
 
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-expect-error
-  return <SelectBase {...props} value={value} onChange={setValue} />
+  return <Uncontrolled.SelectBase {...props} value={value} onChange={setValue} />
 }
 
 export const Base: Story = {

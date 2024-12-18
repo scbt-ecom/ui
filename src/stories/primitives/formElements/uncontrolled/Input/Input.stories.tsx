@@ -1,3 +1,5 @@
+'use docs'
+
 import { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import { fn } from '@storybook/test'
@@ -16,7 +18,7 @@ const meta = {
       </div>
     )
   ],
-  tags: ['autodocs'],
+  // tags: ['autodocs'],
   args: {
     label: 'Input'
   }
@@ -26,10 +28,16 @@ export default meta
 
 type Story = StoryObj<typeof Uncontrolled.InputBase>
 
+/**
+ * Базовое использование кнопки
+ */
 export const Base: Story = {
   args: {}
 }
 
+/**
+ * Если нужно пометить кнопку как не валидную
+ */
 export const Invalid: Story = {
   args: {
     ...Base.args,
