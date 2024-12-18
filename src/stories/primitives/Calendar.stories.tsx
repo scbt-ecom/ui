@@ -4,7 +4,7 @@ import { format, isValid, parse } from 'date-fns'
 import { AnimatePresence } from 'framer-motion'
 import { useInputMask } from 'use-mask-input'
 import { useClickOutside } from '$/shared/hooks'
-import { Calendar, DATE_VISIBLE_PATTERN, Icon, InputBase } from '$/shared/ui'
+import { Calendar, DATE_VISIBLE_PATTERN, Icon, Uncontrolled } from '$/shared/ui'
 
 const meta = {
   title: 'BASE/Calendar',
@@ -17,6 +17,7 @@ export default meta
 
 type Story = StoryObj<typeof Calendar>
 
+// TODO: Вынести в примитив
 const DayPickerWithState = () => {
   const containerRef = useRef<HTMLDivElement>(null)
 
@@ -64,7 +65,7 @@ const DayPickerWithState = () => {
   return (
     <div ref={containerRef} className='relative w-[600px]'>
       <AnimatePresence mode='sync'>
-        <InputBase
+        <Uncontrolled.InputBase
           ref={inputRef}
           label='Дата рождения'
           value={value}

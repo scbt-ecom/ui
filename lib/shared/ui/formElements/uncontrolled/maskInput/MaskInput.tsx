@@ -1,6 +1,6 @@
 import { forwardRef } from 'react'
 import { useInputMask } from 'use-mask-input'
-import { InputBase, type InputBaseProps } from './Input'
+import { InputBase, type InputBaseProps } from '../input'
 import { defaultDefinitions } from './model/mask'
 
 type Validator = (char: string) => boolean

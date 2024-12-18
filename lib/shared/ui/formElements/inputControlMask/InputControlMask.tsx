@@ -46,6 +46,9 @@ export interface InputControlMaskProps<T extends FieldValues>
   actions?: TActions
 }
 
+/**
+ * @deprecated For better performance use `Controlled.MaskInput` instead.
+ */
 export const InputControlMask = <T extends FieldValues>({
   format,
   allowEmptyFormatting = false,

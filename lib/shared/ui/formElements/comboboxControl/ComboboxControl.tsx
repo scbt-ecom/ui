@@ -38,6 +38,9 @@ export interface IComboboxControlProps<T extends FieldValues, ValueType> extends
   customChange?: (...args: unknown[]) => void
 }
 
+/**
+ * @deprecated For better performance use `Controlled.SelectControl` instead.
+ */
 export const ComboboxControl = <T extends FieldValues, ValueType>({
   options,
   control,

@@ -1,11 +1,11 @@
 import { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import { fn } from '@storybook/test'
-import { Icon, InputBase, type InputBaseProps } from '$/shared/ui'
+import { Icon, type InputBaseProps, Uncontrolled } from '$/shared/ui'
 
 const meta = {
   title: 'BASE/InputBase',
-  component: InputBase,
+  component: Uncontrolled.InputBase,
   parameters: {
     layout: 'centered'
   },
@@ -20,11 +20,11 @@ const meta = {
   args: {
     label: 'Input'
   }
-} satisfies Meta<typeof InputBase>
+} satisfies Meta<typeof Uncontrolled.InputBase>
 
 export default meta
 
-type Story = StoryObj<typeof InputBase>
+type Story = StoryObj<typeof Uncontrolled.InputBase>
 
 export const Base: Story = {
   args: {}
@@ -47,7 +47,7 @@ export const WithValue: Story = {
 const InputWithState = (props: InputBaseProps) => {
   const [value, setValue] = useState<string>('')
 
-  return <InputBase {...props} value={value} onChange={(e) => setValue(e.target.value)} />
+  return <Uncontrolled.InputBase {...props} value={value} onChange={(e) => setValue(e.target.value)} />
 }
 
 export const Controlled: Story = {

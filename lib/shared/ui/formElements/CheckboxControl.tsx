@@ -25,6 +25,9 @@ export interface ICheckboxControlProps<T extends FieldValues> extends Omit<TComm
   disabled?: boolean
 }
 
+/**
+ * @deprecated For better performance use `Controlled.CheckboxControl` instead.
+ */
 export const CheckboxControl = <T extends FieldValues>({
   control,
   label,

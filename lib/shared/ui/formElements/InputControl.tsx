@@ -28,6 +28,9 @@ export interface IInputControlProps<T extends FieldValues>
   classes?: TInputControlClasses
 }
 
+/**
+ * @deprecated For better performance use `Controlled.InputControl` instead.
+ */
 export const InputControl = <T extends FieldValues>({
   label,
   helperText,

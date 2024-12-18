@@ -1,11 +1,11 @@
 import { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import { fn } from '@storybook/test'
-import { Icon, MaskInput, type MaskInputProps } from '$/shared/ui'
+import { Icon, type MaskInputProps, Uncontrolled } from '$/shared/ui'
 
 const meta = {
   title: 'BASE/MaskInput',
-  component: MaskInput,
+  component: Uncontrolled.MaskInput,
   parameters: {
     layout: 'centered'
   },
@@ -20,11 +20,11 @@ const meta = {
   args: {
     label: 'Input'
   }
-} satisfies Meta<typeof MaskInput>
+} satisfies Meta<typeof Uncontrolled.MaskInput>
 
 export default meta
 
-type Story = StoryObj<typeof MaskInput>
+type Story = StoryObj<typeof Uncontrolled.MaskInput>
 
 export const Base: Story = {
   args: {
@@ -49,7 +49,7 @@ export const WithValue: Story = {
 const InputWithState = (props: MaskInputProps) => {
   const [value, setValue] = useState<string>('')
 
-  return <MaskInput {...props} value={value} onChange={(e) => setValue(e.target.value)} />
+  return <Uncontrolled.MaskInput {...props} value={value} onChange={(e) => setValue(e.target.value)} />
 }
 
 export const Controlled: Story = {

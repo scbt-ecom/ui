@@ -3,7 +3,7 @@
 import { memo, useMemo } from 'react'
 import { type Control, type FieldPath, type FieldValues, useController, type UseControllerProps } from 'react-hook-form'
 import type { OnChangeValue } from 'react-select'
-import { SelectBase, type SelectBaseProps, type SelectItemOption } from '$/shared/ui'
+import { type SelectBaseProps, type SelectItemOption, Uncontrolled } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
 type SelectControlClasses = SelectBaseProps['classes'] & {
@@ -70,7 +70,7 @@ const InnerComponent = <TFieldValues extends FieldValues = FieldValues>({
 
   return (
     <div className={cn('flex w-full flex-col items-start gap-y-2', container, className)}>
-      <SelectBase
+      <Uncontrolled.SelectBase
         {...props}
         {...restField}
         {...restClasses}
