@@ -22,8 +22,7 @@
       "import": "./dist/constants.js"
     },
     "./widgets": {
-      "import": "./dist/widgets.js",
-      "types": "./dist/widgets.d.ts"
+      "import": "./dist/widget.js"
     },
     "./types": {
       "import": "./dist/types.js"

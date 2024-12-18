@@ -52,7 +52,7 @@ export default defineConfig({
         resolve(__dirname, './lib/exports/validation.ts'),
         resolve(__dirname, './lib/exports/utils.ts'),
         resolve(__dirname, './lib/exports/hooks.ts'),
-        resolve(__dirname, './lib/exports/widgets.ts'),
+        resolve(__dirname, './lib/exports/widget.ts'),
         resolve(__dirname, './lib/exports/ui.ts'),
         resolve(__dirname, './lib/exports/types.ts'),
         resolve(__dirname, './lib/exports/api.ts'),
