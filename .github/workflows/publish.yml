@@ -33,8 +33,11 @@ jobs:
         run: npm run build
 
       - name: Build storybook 🏗️
-        run:  npm run build-storybook
-        timeout-minutes: 3
+        uses: nick-fields/retry@v3
+        with:
+          timeout_minutes: 3
+          max_attempts: 3
+          command: npm run build-storybook
           
       - name: Upload artifact 📡
         uses: actions/upload-pages-artifact@v3
