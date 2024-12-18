@@ -3,20 +3,20 @@ import { PhoneView } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
 export type TPhoneBlockClasses = {
-  phonesRoot: string
-  phoneWrapper: string
-  phoneText: string
-  phoneLink: string
+  phonesRoot?: string
+  phoneWrapper?: string
+  phoneText?: string
+  phoneLink?: string
 }
 
 interface IPhonesBlockProps {
   phones: IFooterPhones[]
-  classes?: Partial<TPhoneBlockClasses>
+  classes?: TPhoneBlockClasses
 }
 
 export const PhonesBlock = ({ phones, classes }: IPhonesBlockProps) => {
   return (
-    <div className={cn('flex flex-col items-end gap-4', classes?.phonesRoot)}>
+    <div className={cn('flex flex-col gap-4 desktop:items-end', classes?.phonesRoot)}>
       {phones?.map(({ phone, text }) => (
         <PhoneView
           key={phone}
@@ -25,7 +25,7 @@ export const PhonesBlock = ({ phones, classes }: IPhonesBlockProps) => {
           classes={{
             wrapper: cn(classes?.phoneWrapper),
             text: cn('text-color-footer', classes?.phoneText),
-            link: cn('text-color-white', classes?.phoneLink)
+            link: cn('text-color-white mobile:m-0', classes?.phoneLink)
           }}
         />
       ))}

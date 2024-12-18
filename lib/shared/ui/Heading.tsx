@@ -7,7 +7,7 @@ const headingConfig = cva('', {
     as: {
       h1: 'mob-headline-bold-m desktop:desk-headline-bold-l',
       h2: 'mob-headline-bold-s desktop:desk-headline-bold-m',
-      h3: 'mob-title-bold-l  desktop:desk-title-bold-l',
+      h3: 'mob-title-bold-l desktop:desk-title-bold-l',
       h4: 'mob-title-bold-m desktop:desk-title-bold-s'
       // # add h5 and h6 if need
     }

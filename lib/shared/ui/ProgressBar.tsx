@@ -20,7 +20,7 @@ export interface IProgressBarProps {
 
 export const ProgressBar = ({ topContent, bottomContent, progress, maxPercent = 100, classes }: IProgressBarProps) => {
   return (
-    <div className={cn('flex flex-col', classes?.wrapper)}>
+    <div className={cn('flex w-full flex-col', classes?.wrapper)}>
       {topContent && <div className={cn('mb-2 flex justify-between gap-5', classes?.topContent)}>{topContent}</div>}
 
       <div className={cn('relative h-2 w-[328xp] rounded-md bg-color-blue-grey-100 desktop:w-[524px]', classes?.progressBar)}>
@@ -31,7 +31,7 @@ export const ProgressBar = ({ topContent, bottomContent, progress, maxPercent = 
         <span
           style={{ maxWidth: `${maxPercent}%` }}
           className={cn(
-            'progressBar-apply absolute top-1/2 z-1 h-full w-full -translate-y-1/2 animate-progress-loader rounded-md',
+            'progressBar-apply z-1 absolute top-1/2 h-full w-full -translate-y-1/2 animate-progress-loader rounded-md',
             classes?.loader
           )}
         ></span>

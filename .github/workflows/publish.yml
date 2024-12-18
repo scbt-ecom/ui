@@ -4,19 +4,18 @@ on:
     branches:
       - master
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
 concurrency:
   group: 'pages'
   cancel-in-progress: false
 
 jobs:
   build:
-    runs-on: ubuntu-latest
-
+    runs-on: ubuntu-22.04
+    permissions: 
+      contents: write # to be able to publish a GitHub release
+      issues: write # to be able to comment on released issues
+      pull-requests: write # to be able to comment on released pull requests
+      id-token: write # to enable use of OIDC for npm provenance
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v4
@@ -24,23 +23,43 @@ jobs:
       - name: Setup Node.js ⚙️ - Cache dependencies ⚡ - Install dependencies 🔧
         uses: ./.github/workflows/setup-node
 
+      - name: Lint Code
+        run: npm run lint
+
       - name: Setup Pages ⚙️
         uses: actions/configure-pages@v4
 
       - name: Build 🏗️
-        run: npm run build-storybook
+        run: npm run build
 
+      - name: Build storybook 🏗️
+        uses: nick-fields/retry@v3
+        with:
+          timeout_seconds: 90
+          max_attempts: 5
+          command: npm run build-storybook
+          
       - name: Upload artifact 📡
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./storybook-static
 
+      - name: Publish with Semantic Release 🚀
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npx semantic-release
+
   deploy:
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
 
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     needs: build
 
     steps:

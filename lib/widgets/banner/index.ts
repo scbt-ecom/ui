@@ -1,1 +1,2 @@
-export { Banner } from './Banner'
+export { BannerWithSeparateImg } from './ui/banners'
+export { Banner, type IBannerProps } from './Banner'

@@ -1,9 +1,24 @@
 export interface SpritesMap {
   arrows: 'arrowCircle' | 'arrowLink' | 'arrowRight'
   brandLogos: 'logoBlack' | 'logoBusiness' | 'logoGray' | 'logoInsurance' | 'logoMain' | 'logoWhite'
+  editor:
+    | 'bold'
+    | 'heading'
+    | 'italic'
+    | 'link'
+    | 'list'
+    | 'palette'
+    | 'redo'
+    | 'removeFormatting'
+    | 'space'
+    | 'strikethrough'
+    | 'typography'
+    | 'underline'
+    | 'undo'
   files: 'border' | 'borderError' | 'documentFilled' | 'documentOutline' | 'upload'
   general: 'calendar' | 'check' | 'close' | 'edit' | 'hiddenEye' | 'plus' | 'showEye'
-  info: 'warningCircle'
+  info: 'helpCircle' | 'warningCircle'
+  logos: 'beeline' | 'megafon' | 'mts'
   social: 'classmates' | 'telegram' | 'vk'
 }
 export const SPRITES_META: {
@@ -71,6 +86,76 @@ export const SPRITES_META: {
         viewBox: '0 0 194 32',
         width: 194,
         height: 32
+      }
+    }
+  },
+  editor: {
+    filePath: 'editor.svg',
+    items: {
+      bold: {
+        viewBox: '0 0 24 24',
+        width: 24,
+        height: 24
+      },
+      heading: {
+        viewBox: '0 0 24 24',
+        width: 24,
+        height: 24
+      },
+      italic: {
+        viewBox: '0 0 24 24',
+        width: 24,
+        height: 24
+      },
+      link: {
+        viewBox: '0 0 24 24',
+        width: 24,
+        height: 24
+      },
+      list: {
+        viewBox: '0 0 24 24',
+        width: 24,
+        height: 24
+      },
+      palette: {
+        viewBox: '0 0 24 24',
+        width: 24,
+        height: 24
+      },
+      redo: {
+        viewBox: '0 0 24 24',
+        width: 24,
+        height: 24
+      },
+      removeFormatting: {
+        viewBox: '0 0 24 24',
+        width: 24,
+        height: 24
+      },
+      space: {
+        viewBox: '0 0 24 24',
+        width: 24,
+        height: 24
+      },
+      strikethrough: {
+        viewBox: '0 0 24 24',
+        width: 24,
+        height: 24
+      },
+      typography: {
+        viewBox: '0 0 24 24',
+        width: 24,
+        height: 24
+      },
+      underline: {
+        viewBox: '0 0 24 24',
+        width: 24,
+        height: 24
+      },
+      undo: {
+        viewBox: '0 0 24 24',
+        width: 24,
+        height: 24
       }
     }
   },
@@ -147,10 +232,35 @@ export const SPRITES_META: {
   info: {
     filePath: 'info.svg',
     items: {
+      helpCircle: {
+        viewBox: '0 0 12 12',
+        width: 12,
+        height: 12
+      },
       warningCircle: {
         viewBox: '0 0 20 20',
         width: 20,
         height: 20
+      }
+    }
+  },
+  logos: {
+    filePath: 'logos.svg',
+    items: {
+      beeline: {
+        viewBox: '0 0 32 32',
+        width: 32,
+        height: 32
+      },
+      megafon: {
+        viewBox: '0 0 32 32',
+        width: 32,
+        height: 32
+      },
+      mts: {
+        viewBox: '0 0 32 32',
+        width: 32,
+        height: 32
       }
     }
   },

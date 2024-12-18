@@ -2,17 +2,10 @@ import type { IFooterNavLinks, IFooterPhones, IFooterSocialLinks } from './types
 
 export const defaultCopyright = (
   <>
-    © 2004-2024, ПАО «Совкомбанк». Все права защищены. <br /> Генеральная лицензия Банка России №963 от 5 декабря 2014 г.
+    © 2004-2024, ПАО «Совкомбанк». Все права защищены. <br className='mobile:hidden' /> Генеральная лицензия Банка России №963 от
+    5 декабря 2014 г.
   </>
 )
-
-export const defaultLigal = `Кредит на бизнес цели, срок 3, 6, 9, 12, 18, 24, 36, 48, 60 мес. Ставка – от 22,9%*. *Точная процентная ставка
-        устанавливается по соглашению сторон и определяется исходя из платёжеспособности и кредитоспособности клиента, а также
-        иных индивидуальных особенностей клиента. Сумма 100 000 – 50 000 000 руб. Кредит выдается на карту “Халва”, открытый в
-        Банке. Банк вправе отказать в предоставлении кредита без объяснения причины, а также запросить дополнительную информацию о
-        клиенте. Предварительное одобрение не влечет обязательств Банка по выдаче кредита. В некоторых случаях срок рассмотрения
-        заявки может составлять до 3 рабочих дней. Полный электронный документооборот при наличии открытого р/с в ПАО «Совкомбанк»
-        и действующей ЭЦП. Условия рекламы действительны на 20.02.2024г.`
 
 export const defaultPhones: IFooterPhones[] = [
   { phone: '8 800 100-00-06', text: 'Звонок по России (бесплатно)' },
@@ -20,9 +13,9 @@ export const defaultPhones: IFooterPhones[] = [
 ]
 
 export const defaultSocialsLinks: IFooterSocialLinks[] = [
-  { iconName: 'social/vk', href: '/vk' },
-  { iconName: 'social/telegram', href: '/tg' },
-  { iconName: 'social/classmates', href: '/cl' }
+  { iconName: 'social/vk', href: 'https://vk.com/sovcombank' },
+  { iconName: 'social/telegram', href: 'https://t.me/sovcombankofficial' },
+  { iconName: 'social/classmates', href: 'https://ok.ru/paosovcombank' }
 ]
 
 export const defaultNavigationLinks: IFooterNavLinks[] = [

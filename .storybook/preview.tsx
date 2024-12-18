@@ -3,7 +3,6 @@ import '../lib/shared/style.css'
 import { STORYBOOK_VIEWPORTS } from '../src/configs/storybook.config'
 import type { Preview } from '@storybook/react'
 import { withConsole } from '@storybook/addon-console'
-import React from 'react'
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport'
 
 const preview: Preview = {

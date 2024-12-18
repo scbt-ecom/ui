@@ -1,3 +1,4 @@
+import { type ReactElement } from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { Icon, type TAllowedIcons } from './icon'
 import { cn } from '$/shared/utils'
@@ -22,7 +23,7 @@ const iconVariant: Record<NonNullable<TIconConfig['intent']>, TAllowedIcons> = {
 }
 
 export interface IDocumentProps extends TIconConfig {
-  text: string
+  text: string | ReactElement
   size: number
   sizeType: 'КБ' | 'МБ'
   href: string
@@ -36,7 +37,7 @@ export const Document = ({ text, size, sizeType, href, intent = 'outline' }: IDo
       rel='noreferrer'
       tabIndex={0}
       className={cn(
-        'group flex max-w-[288px] cursor-pointer items-center gap-2 rounded-sm p-1 outline outline-2 outline-transparent transition-colors focus-within:outline-primary-focus desktop:max-w-[592px]'
+        'group flex cursor-pointer items-center gap-2 rounded-sm p-1 outline outline-2 outline-transparent transition-colors focus-within:outline-primary-focus desktop:max-w-[592px]'
       )}
     >
       <Icon name={iconVariant[intent!]} className={cn(iconConfig({ intent }))} />

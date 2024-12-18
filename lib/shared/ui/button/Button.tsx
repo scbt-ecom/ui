@@ -68,8 +68,7 @@ const buttonConfig = cva(
   }
 )
 
-type TButtonConfig = VariantProps<typeof buttonConfig>
-export type TButtonIntents = 'primary' | 'secondary' | 'ghost' | 'negative'
+export type TButtonConfig = VariantProps<typeof buttonConfig>
 export interface IButtonProps extends ComponentProps<'button'>, TButtonConfig {
   iconLeft?: ReactElement
   iconRight?: ReactElement
@@ -103,7 +102,7 @@ export const Button = forwardRef<HTMLButtonElement, IButtonProps>(
         {...props}
       >
         {isLoading ? (
-          <Loader size='sm' intent={setButtonLoaderIntent(intent!)} />
+          <Loader size='sm' intent={setButtonLoaderIntent(intent)} />
         ) : (
           <>
             {iconLeft && <span className='flex size-5 items-center justify-center'>{iconLeft}</span>}

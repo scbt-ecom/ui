@@ -1,8 +1,9 @@
+import { type ReactElement } from 'react'
 import { cn } from '../utils'
 import { Icon } from './icon/Icon'
 
 export interface IBreadcrumbLink {
-  label: string
+  label: string | ReactElement
   path: string
   isDisabled?: boolean
 }
@@ -16,6 +17,8 @@ export type TLinksList = [...IBreadcrumbLink[], IBreadcrumbLinkWithoutPath]
 export interface IBreadcrumbsProps {
   linksList: TLinksList
 }
+
+//TODO: Его должны переработать не использовать! DEPRECATED
 
 export const Breadcrumbs = ({ linksList }: IBreadcrumbsProps) => {
   return (

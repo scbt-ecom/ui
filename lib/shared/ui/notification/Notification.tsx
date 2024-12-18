@@ -1,3 +1,5 @@
+'use client'
+
 import { type ReactElement } from 'react'
 import toast, { type Toast } from 'react-hot-toast'
 import { CustomToast } from './ui/CustomToast'
@@ -5,7 +7,7 @@ import { CustomToast } from './ui/CustomToast'
 export interface INotificationProps {
   duration?: number
   intent: 'info' | 'error'
-  text: string
+  text: string | ReactElement
   customIcon?: ReactElement
   content?: ReactElement
   closure?: boolean

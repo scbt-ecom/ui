@@ -5,6 +5,7 @@ import { defineConfig } from 'vite'
 import typeChecker from 'vite-plugin-checker'
 import dts from 'vite-plugin-dts'
 import { dependencies } from './package.json'
+import { viteStaticCopy } from 'vite-plugin-static-copy'
 
 export default defineConfig({
   plugins: [
@@ -16,7 +17,7 @@ export default defineConfig({
       group: true,
       output: './public/sprites',
       resetColors: {
-        exclude: [/^brandLogos/],
+        exclude: [/^brandLogos/, /^logos/],
         replaceUnknown: 'currentColor'
       },
       metadata: {
@@ -26,6 +27,14 @@ export default defineConfig({
           viewBox: true
         }
       }
+    }),
+    viteStaticCopy({
+      targets: [
+        {
+          src: 'lib/shared/utils-tailwind.css',
+          dest: '.'
+        }
+      ]
     })
   ],
   resolve: {
@@ -37,12 +46,7 @@ export default defineConfig({
   build: {
     sourcemap: true,
     copyPublicDir: true,
-    // lib: {
-    //   entry: resolve(__dirname, './lib/index.ts'),
-    //   name: 'ui',
-    //   formats: ['es', 'umd'],
-    //   fileName: (format) => `ui.${format}.js`
-    // },
+
     lib: {
       entry: [resolve(__dirname, './lib/hybrid.ts'), resolve(__dirname, './lib/client.ts')],
       formats: ['es'],

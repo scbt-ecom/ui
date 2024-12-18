@@ -16,10 +16,6 @@ import {
 
 export const tailwindConfigBase: Omit<Config, 'content'> = {
   theme: {
-    screens: {
-      mobile: { max: '1187px' },
-      desktop: '1188px'
-    },
     backgroundColor: {
       color: allowedBackgroundColors,
       banner: allowedBannersBackgroundColors,
@@ -29,7 +25,6 @@ export const tailwindConfigBase: Omit<Config, 'content'> = {
       icon: allowedIconsColors,
       color: allowedTextColors
     },
-
     fill: allowedIconsColors,
     stroke: allowedIconsColors,
     borderColor: allowedStrokeColors,
@@ -78,18 +73,27 @@ export const tailwindConfigBase: Omit<Config, 'content'> = {
           '100%': {
             backgroundPosition: '100% 100%'
           }
+        },
+        'caret-blink': {
+          '0%,70%,100%': { opacity: '1' },
+          '20%,50%': { opacity: '0' }
+        },
+        shine: {
+          to: {
+            'background-position-x': '-200%'
+          }
         }
       },
       animation: {
         slideDown: 'slideDown 0.3s cubic-bezier(0.87, 0, 0.13, 1)',
         slideUp: 'slideUp 0.3s cubic-bezier(0.87, 0, 0.13, 1)',
         'scale-in': 'scale-in 0.3s ease-in-out',
-        'progress-loader': 'progress-loader 250s linear infinite'
+        'progress-loader': 'progress-loader 250s linear infinite',
+        'caret-blink': 'caret-blink 1.25s ease-out infinite'
       }
     }
   },
   plugins: [
-    // eslint-disable-next-line global-require
     tailwindAnimation,
     plugin(({ addComponents }) => {
       addComponents(allowedTextStyles)

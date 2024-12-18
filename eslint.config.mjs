@@ -37,7 +37,6 @@ export default tseslint.config(
       react: eslintReact,
       'react-refresh': reactRefresh,
       'react-hooks': eslintReactHooks,
-      'react-refresh': reactRefresh,
       'unused-imports': unusedImports,
       'simple-import-sort': simpleImportSort,
       import: importPlugin,
@@ -177,8 +176,13 @@ export default tseslint.config(
             {
               name: '$/hybrid',
               message: 'Импорт из $/hybrid запрещен.'
+            },
+            {
+              name: 'dist',
+              message: 'Импорт из $/dist запрещен.'
             }
-          ]
+          ],
+          patterns: ['dist/*', 'hybrid/*', 'client/*']
         }
       ]
     }

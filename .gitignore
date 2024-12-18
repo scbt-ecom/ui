@@ -9,6 +9,7 @@ lerna-debug.log*
 build-storybook.log*
 
 node_modules
+package-lock.json
 dist
 dist-ssr
 storybook-static
@@ -18,6 +19,7 @@ storybook-static
 env
 tsconfig.tsbuildinfo
 tsconfig.node.tsbuildinfo
+*.timestamp*
 
 # Editor directories and files
 .vscode/*

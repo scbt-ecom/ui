@@ -1,19 +1,17 @@
 'use client'
 
 import * as React from 'react'
-import type { TooltipContentProps } from '@radix-ui/react-tooltip'
 import * as TooltipPrimitive from '@radix-ui/react-tooltip'
-import { useClickOutside } from '../hooks'
-import { useDevice } from '../hooks/useMediaQuery'
+import { useClickOutside, useDevice } from '$/shared/hooks'
 import { cn } from '$/shared/utils'
 
-type TAdditionalClasses = {
-  content: string
-  arrow: string
-  trigger: string
+type THintClasses = {
+  content?: string
+  arrow?: string
+  trigger?: string
 }
 
-export interface IHintContentProps extends TooltipContentProps {
+export interface IHintContentProps extends TooltipPrimitive.TooltipContentProps {
   delayDuration?: number
   sideOffset?: number
   align?: 'end' | 'center' | 'start'
@@ -24,7 +22,7 @@ export interface IHintContentProps extends TooltipContentProps {
 export interface IHintProps extends IHintContentProps {
   triggerElement: React.ReactElement
   children: React.ReactElement | string
-  classes?: Partial<TAdditionalClasses>
+  classes?: THintClasses
 }
 
 export const Hint = ({
@@ -46,7 +44,7 @@ export const Hint = ({
   return (
     <TooltipPrimitive.Provider>
       <TooltipPrimitive.Root open={open} onOpenChange={setOpen} defaultOpen={defaultOpen} delayDuration={delayDuration}>
-        <div onClick={() => setOpen(isMobile ? true : false)}>
+        <div onClick={() => setOpen(isMobile)}>
           <TooltipPrimitive.Trigger asChild className={cn('cursor-pointer', classes?.trigger)}>
             {triggerElement}
           </TooltipPrimitive.Trigger>

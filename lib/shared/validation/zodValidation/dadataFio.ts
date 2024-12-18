@@ -1,8 +1,7 @@
 import { z } from 'zod'
 import { RgxCheckForHyphen, RgxPatronymic, RgxUnicode } from '../regExp'
-import { capitalize } from '$/shared/utils'
 
-const formattedFio = (value: string) => {
+export const formattedDadataFio = (value: string) => {
   const parts = value.trim().replace(/\s+/g, ' ').split(' ')
   const [surname, name, ...patronymicArr] = parts
   const patronymic = patronymicArr?.join(' ')
@@ -14,9 +13,16 @@ const formattedFio = (value: string) => {
   }
 }
 
-export const zodDadataFioValidate = z
+export const zodDadataFioSchema = z
   .string({ invalid_type_error: 'Обязательно к заполнению', required_error: 'Обязательно к заполнению' })
   .superRefine((value, ctx) => {
+    if (value === '') {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: 'Введите имя и фамилию'
+      })
+    }
+
     if (!RgxUnicode.test(value)) {
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
@@ -24,7 +30,7 @@ export const zodDadataFioValidate = z
       })
     }
 
-    const { surname, name, patronymic } = formattedFio(value)
+    const { surname, name, patronymic } = formattedDadataFio(value)
 
     if (!surname || !name) {
       ctx.addIssue({
@@ -54,14 +60,5 @@ export const zodDadataFioValidate = z
           message: 'Неверно введено отчество'
         })
       }
-    }
-  })
-  .transform((value) => {
-    const { surname, name, patronymic } = formattedFio(value)
-
-    return {
-      surname: capitalize(surname),
-      name: capitalize(name),
-      patronymic: patronymic ? capitalize(patronymic) : undefined
     }
   })

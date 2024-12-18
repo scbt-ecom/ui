@@ -33,7 +33,6 @@ export const Base: Story = {
   args: {
     children: popoverContent,
     triggerElement,
-    headLine: 'Рассчитайте кредит',
     align: 'end',
     side: 'bottom',
     arrowPadding: 20

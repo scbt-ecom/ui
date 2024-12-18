@@ -4,12 +4,16 @@ import { cn } from '../utils'
 import { Icon, type TAllowedIcons } from './icon/Icon'
 
 const customLinkConfig = cva(
-  'group  underline underline-offset-4 outline-none p-[2px] rounded-sm border border-solid border-transparent',
+  'group outline-none transition-colors duration-100 p-[2px] rounded-sm border border-solid border-transparent',
   {
     variants: {
       intent: {
         blue: 'text-color-primary-default hover:text-color-primary-hover focus:text-color-primary-default focus:border-primary-focus',
         white: 'text-color-white hover:text-color-footer focus:text-color-white focus:border-primary-focus'
+      },
+      withUnderline: {
+        true: 'underline underline-offset-4',
+        false: ''
       },
       withIcon: {
         true: 'flex items-center gap-1',
@@ -28,7 +32,8 @@ const customLinkConfig = cva(
       intent: 'blue',
       withIcon: true,
       disabled: false,
-      size: 'sm'
+      size: 'sm',
+      withUnderline: false
     }
   }
 )
@@ -50,27 +55,33 @@ const linkArrowConfig = cva('size-6', {
   }
 })
 
+type TCustomLinkClasses = {
+  link?: string
+  icon?: string
+}
+
 type TCustomLinkConfig = VariantProps<typeof customLinkConfig>
 
 export interface ICustomLinkProps extends TCustomLinkConfig, Omit<ComponentProps<'a'>, 'className'> {
-  Component?: 'a'
   icon?: TAllowedIcons
+  classes?: TCustomLinkClasses
 }
 
 export const CustomLink = ({
-  Component = 'a',
   intent,
   children,
   withIcon,
   disabled,
   size,
   icon = 'arrows/arrowLink',
+  classes,
+  withUnderline,
   ...props
 }: ICustomLinkProps) => {
   return (
-    <Component className={cn(customLinkConfig({ intent, withIcon, disabled, size }))} {...props}>
+    <a className={cn(customLinkConfig({ intent, withIcon, withUnderline, disabled, size }), classes?.link)} {...props}>
       {children}
-      {withIcon && <Icon name={icon} className={cn(linkArrowConfig({ intent, disabled }))} />}
-    </Component>
+      {withIcon && <Icon name={icon} className={cn(linkArrowConfig({ intent, disabled }), classes?.icon)} />}
+    </a>
   )
 }
