@@ -25,10 +25,13 @@
       "import": "./dist/widgets.js"
     },
     "./types": {
-      "import": "./dist/types.ts"
+      "import": "./dist/types.js"
     },
     "./api": {
-      "import": "./dist/api.ts"
+      "import": "./dist/api.js"
+    },
+    "./configs": {
+      "import": "./dist/configs.js"
     }
   },
   "files": [
