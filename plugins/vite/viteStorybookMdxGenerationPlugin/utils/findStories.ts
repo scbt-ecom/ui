@@ -5,7 +5,7 @@ import { join } from 'path'
  * Функция для рекурсивного поиска историй
  *
  * @param dir директория для поиска
- * @param callback
+ * @param callback функция для обработки .stories файла
  */
 export const findStories = (dir: string, callback: (filepath: string) => void) => {
   const files = readdirSync(dir)
