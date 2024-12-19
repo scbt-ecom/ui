@@ -14,8 +14,17 @@ type MaskInputControlProps<
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
 > = UseControllerProps<TFieldValues, TName> &
   Omit<MaskInputProps, 'classes'> & {
+    /**
+     * Контрол объект для управления полем
+     */
     control: Control<TFieldValues>
+    /**
+     * Дополнительные стили компонента
+     */
     classes?: MaskInputClasses
+    /**
+     * Дополнительный текст
+     */
     textHint?: string
   }
 

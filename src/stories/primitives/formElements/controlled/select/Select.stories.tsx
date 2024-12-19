@@ -1,3 +1,5 @@
+'use docs'
+
 import toast from 'react-hot-toast'
 import type { Meta, StoryObj } from '@storybook/react'
 import z from 'zod'
@@ -87,12 +89,11 @@ const Form = ({ schema, defaultValues, renderComponent, ...props }: FormProps) =
 }
 
 const meta = {
-  title: 'CONTROLLED/Select',
+  title: 'CONTROLLED/SelectControl',
   component: Controlled.SelectControl<Schema>,
   parameters: {
     layout: 'centered'
   },
-  tags: ['autodocs'],
   args: {
     label: 'Input',
     options,
@@ -104,6 +105,18 @@ export default meta
 
 type Story = StoryObj<typeof Controlled.SelectControl<Schema>>
 
+/**
+ * \`SelectControl\` компонент, управляемый библиотекой \`react-hook-form\`\n
+ *
+ * | Props        | Description                         | Type                             | Required  |
+ * | ------------ | ----------------------------------- | -------------------------------- | --------- |
+ * | \`control\`  | Контрол объект для управления полем | \`Control\<TFieldValues\>\`      | \`true\`  |
+ * | \`name\`     | Имя поля                            | \`string\`                       | \`true\`  |
+ * | \`classes\`  | Дополнительные стили компонента     | \`SelectControlClasses\`         | \`false\` |
+ * | \`textHint\` | Дополнительный текст                | \`string\`                       | \`false\` |
+ *
+ * Остальные свойства наследуются от [Select](?path=/docs/base-selectbase--docs)\n
+ */
 export const Base: Story = {
   render: (props) => (
     <Form

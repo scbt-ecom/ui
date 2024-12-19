@@ -1,3 +1,5 @@
+'use docs'
+
 import { type FieldErrors } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import type { Meta, StoryObj } from '@storybook/react'
@@ -32,18 +34,18 @@ const Form = () => {
       <Controlled.CheckboxControl control={control} name='test'>
         Input
       </Controlled.CheckboxControl>
+      <br />
       <button>Submit</button>
     </form>
   )
 }
 
 const meta = {
-  title: 'CONTROLLED/Checkbox',
+  title: 'CONTROLLED/CheckboxControl',
   component: Controlled.CheckboxControl,
   parameters: {
     layout: 'centered'
   },
-  tags: ['autodocs'],
   args: {
     children: 'Input'
   }
@@ -53,6 +55,19 @@ export default meta
 
 type Story = StoryObj<typeof Controlled.CheckboxControl>
 
+/**
+ * \`CheckboxControl\` компонент, управляемый библиотекой \`react-hook-form\`\n
+ *
+ * | Props        | Description                         | Type                            | Required  |
+ * | ------------ | ----------------------------------- | ------------------------------- | --------- |
+ * | \`control\`  | Контрол объект для управления полем | \`Control\<TFieldValues\>\`     | \`true\`  |
+ * | \`name\`     | Имя поля                            | \`string\`                      | \`true\`  |
+ * | \`children\` | Отображаемый лейбл                  | \`React.ReactElement | string\` | \`true\`  |
+ * | \`classes\`  | Дополнительные стили компонента     | \`CheckboxControlClasses\`      | \`false\` |
+ * | \`textHint\` | Дополнительный текст                | \`string\`                      | \`false\` |
+ *
+ * Остальные свойства наследуются от [Checkbox](?path=/docs/base-checkboxbase--docs)\n
+ */
 export const Base: Story = {
   render: () => <Form />
 }

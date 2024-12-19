@@ -1,3 +1,5 @@
+'use docs'
+
 import { type FieldErrors } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import type { Meta, StoryObj } from '@storybook/react'
@@ -43,7 +45,6 @@ const meta = {
   parameters: {
     layout: 'centered'
   },
-  tags: ['autodocs'],
   args: {
     inputProps: {
       label: 'Input'
@@ -55,6 +56,18 @@ export default meta
 
 type Story = StoryObj<typeof Controlled.DayPickerControl>
 
+/**
+ * \`DayPickerControl\` компонент, управляемый библиотекой \`react-hook-form\`\n
+ *
+ * | Props        | Description                         | Type                             | Required  |
+ * | ------------ | ----------------------------------- | -------------------------------- | --------- |
+ * | \`control\`  | Контрол объект для управления полем | \`Control\<TFieldValues\>\`      | \`true\`  |
+ * | \`name\`     | Имя поля                            | \`string\`                       | \`true\`  |
+ * | \`classes\`  | Дополнительные стили компонента     | \`DayPickerControlClasses\`      | \`false\` |
+ * | \`textHint\` | Дополнительный текст                | \`string\`                       | \`false\` |
+ *
+ * Остальные свойства наследуются от [DayPicker](?path=/docs/base-daypickerbase--docs)\n
+ */
 export const Base: Story = {
   render: () => <Form />
 }

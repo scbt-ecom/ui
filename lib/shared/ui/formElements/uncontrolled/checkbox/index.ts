@@ -1,1 +1,1 @@
-export { CheckboxBase, type CheckboxBaseProps } from './Checkbox'
+export { CheckboxBase, type CheckboxBaseProps, type CheckedState } from './Checkbox'

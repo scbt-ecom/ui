@@ -14,8 +14,17 @@ type InputControlProps<
   TName extends Path<TFieldValues> = Path<TFieldValues>
 > = UseControllerProps<TFieldValues, TName> &
   Omit<InputBaseProps, 'classes'> & {
+    /**
+     * Контрол объект для управления полем
+     */
     control: Control<TFieldValues>
+    /**
+     * Дополнительный текст
+     */
     textHint?: string
+    /**
+     * Дополнительные стили компонента
+     */
     classes?: InputControlClasses
   }
 

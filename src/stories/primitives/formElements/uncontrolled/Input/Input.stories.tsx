@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import { fn } from '@storybook/test'
-import { Icon, type InputBaseProps, Uncontrolled } from '$/shared/ui'
+import { Icon, Uncontrolled } from '$/shared/ui'
 
 const meta = {
   title: 'BASE/InputBase',
@@ -18,7 +18,6 @@ const meta = {
       </div>
     )
   ],
-  // tags: ['autodocs'],
   args: {
     label: 'Input'
   }
@@ -29,15 +28,22 @@ export default meta
 type Story = StoryObj<typeof Uncontrolled.InputBase>
 
 /**
- * Базовое использование кнопки
+ * \`Input\` компонент для ввода информации\n
+ *
+ * | Props               | Description                                          | Type                                  | Required  |
+ * | ------------------- | ---------------------------------------------------- | ------------------------------------- | --------- |
+ * | \`label\`           | Отображаемый placeholder                             | \`string\`                            | \`true\`  |
+ * | \`invalid\`         | Отображение не валидного поля                        | \`boolean\`                           | \`false\` |
+ * | \`renderValues\`    | Рендер дополнительных значений вместо базового ввода | \`() => React.JSX.Element | null\`    | \`false\` |
+ * | \`attachmentProps\` | Свойства дополнительной иконки                       | \`DeepPartial<FieldAttachmentProps>\` | \`false\` |
+ * | \`classes\`         | Дополнительные стили внутренних компонентов          | \`InputBaseClasses\`                  | \`false\` |
+ *
+ * Остальные свойства наследуются от [HTMLInputElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement)\n
  */
 export const Base: Story = {
   args: {}
 }
 
-/**
- * Если нужно пометить кнопку как не валидную
- */
 export const Invalid: Story = {
   args: {
     ...Base.args,
@@ -52,15 +58,13 @@ export const WithValue: Story = {
   }
 }
 
-const InputWithState = (props: InputBaseProps) => {
-  const [value, setValue] = useState<string>('')
-
-  return <Uncontrolled.InputBase {...props} value={value} onChange={(e) => setValue(e.target.value)} />
-}
-
 export const Controlled: Story = {
   args: Base.args,
-  render: (props) => <InputWithState {...props} />
+  render: (props) => {
+    const [value, setValue] = useState<string>('')
+
+    return <Uncontrolled.InputBase {...props} value={value} onChange={(e) => setValue(e.target.value)} />
+  }
 }
 
 export const WithExternalStyles: Story = {

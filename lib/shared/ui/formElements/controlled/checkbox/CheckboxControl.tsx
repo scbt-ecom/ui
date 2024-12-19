@@ -3,6 +3,7 @@
 import { memo, useId } from 'react'
 import { type Control, type FieldPath, type FieldValues, useController, type UseControllerProps } from 'react-hook-form'
 import { type CheckboxBaseProps, Uncontrolled } from '../../uncontrolled'
+import { MessageView } from '$/shared/ui/formElements/ui'
 import { cn } from '$/shared/utils'
 
 type CheckboxControlClasses = CheckboxBaseProps['classes'] & {
@@ -16,9 +17,22 @@ type CheckboxControlProps<
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
 > = UseControllerProps<TFieldValues, TName> &
   Omit<CheckboxBaseProps, 'classes'> & {
+    /**
+     * Контрол объект для управления полем
+     */
     control: Control<TFieldValues>
+    /**
+     * Отображаемый лейбл
+     */
     children: React.ReactElement | string
+    /**
+     * Дополнительные стили компонента
+     */
     classes?: CheckboxControlClasses
+    /**
+     * Дополнительный текст
+     */
+    textHint?: string
   }
 
 const InnerComponent = <TFieldValues extends FieldValues = FieldValues>({
@@ -31,6 +45,7 @@ const InnerComponent = <TFieldValues extends FieldValues = FieldValues>({
   defaultValue,
   disabled,
   children,
+  textHint,
   ...props
 }: CheckboxControlProps<TFieldValues>) => {
   const { field, fieldState } = useController({
@@ -74,9 +89,12 @@ const InnerComponent = <TFieldValues extends FieldValues = FieldValues>({
           {children}
         </label>
       </div>
-      {error && (
-        <p className={cn('mob-body-regular-s text-color-negative', 'desktop:desk-body-regular-m', message)}>{error.message}</p>
-      )}
+      <MessageView
+        text={error ? error.message : textHint}
+        className={message}
+        intent={error ? 'error' : 'simple'}
+        disabled={disabled}
+      />
     </div>
   )
 }

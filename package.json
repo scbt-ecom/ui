@@ -63,6 +63,7 @@
     "@semantic-release/npm": "^12.0.1",
     "@storybook/addon-console": "^3.0.0",
     "@storybook/addon-coverage": "^1.0.4",
+    "@storybook/addon-docs": "^8.4.7",
     "@storybook/addon-essentials": "^8.2.6",
     "@storybook/addon-interactions": "^8.2.6",
     "@storybook/addon-links": "^8.2.6",

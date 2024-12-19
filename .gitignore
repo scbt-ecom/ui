@@ -31,3 +31,5 @@ tsconfig.node.tsbuildinfo
 *.njsproj
 *.sln
 *.sw?
+
+*.docs.mdx

@@ -1,5 +1,5 @@
 import { forwardRef } from 'react'
-import { type CheckboxProps as CheckboxPrimitiveProps, Indicator, Root } from '@radix-ui/react-checkbox'
+import { type CheckboxProps as CheckboxPrimitiveProps, type CheckedState, Indicator, Root } from '@radix-ui/react-checkbox'
 import { Icon } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
@@ -7,6 +7,8 @@ type CheckboxBaseClasses = {
   root?: string
   indicator?: string
 }
+
+export type { CheckedState }
 
 export type CheckboxBaseProps = CheckboxPrimitiveProps & {
   /**
