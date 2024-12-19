@@ -8,13 +8,8 @@ export type TCopyrightClasses = {
 interface ICopyrightProps {
   text?: string | React.ReactElement
   classes?: TCopyrightClasses
-  withSiteMap?: boolean
 }
 
-export const Copyright = ({ text, classes, withSiteMap }: ICopyrightProps) => {
-  return (
-    <div className={cn('desk-body-regular-m text-color-footer', { 'mt-6 desktop:mt-8': !withSiteMap }, classes?.copyRight)}>
-      {text}
-    </div>
-  )
+export const Copyright = ({ text, classes }: ICopyrightProps) => {
+  return <div className={cn('desk-body-regular-m text-color-footer', classes?.copyRight)}>{text}</div>
 }

@@ -42,7 +42,7 @@ export const Base: Story = {
 
 export const WithDefaultOpen: Story = {
   args: {
-    defaultOpen: ['Заголовок аккордеон'],
+    defaultOpen: true,
     label: 'Заголовок аккордеон',
     children: 'Контент аккордеона'
   }
@@ -52,12 +52,7 @@ export const MappedWithDefaultOpen: Story = {
   render: (...args) => (
     <div className='flex flex-col gap-6'>
       {mock_accordion_list?.map(({ label, content }) => (
-        <Accordion
-          defaultOpen={['Заголовок аккордеон 1', 'Заголовок аккордеон 2']}
-          key={label.toString()}
-          label={label}
-          {...args}
-        >
+        <Accordion key={label.toString()} defaultOpen label={label} {...args}>
           {content}
         </Accordion>
       ))}

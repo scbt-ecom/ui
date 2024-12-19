@@ -1,43 +1,9 @@
 import * as React from 'react'
 import { defaultCopyright, defaultNavigationLinks, defaultPhones, defaultSocialsLinks } from './model/defaultValues'
-import type { IFooterNavLinks, IFooterPhones, IFooterSocialLinks } from './model/types'
-import {
-  Copyright,
-  FooterLogo,
-  NavLinks,
-  PhonesBlock,
-  SiteMap,
-  SocialLinks,
-  type TCopyrightClasses,
-  type TFooterLogoClasses,
-  type TNavigationLinksClasses,
-  type TPhoneBlockClasses,
-  type TSiteMapClasses,
-  type TSocialLinksClasses
-} from './ui'
+import type { IFooterNavLinks, IFooterPhones, IFooterSocialLinks, TFooterClasses, TFooterRenderBlocks } from './model/types'
+import { Copyright, FooterLogo, NavLinks, PhonesBlock, SiteMap, SocialLinks } from './ui'
 import { ResponsiveContainer } from '$/shared/ui'
 import { cn } from '$/shared/utils'
-
-type TFooterRenderBlocks = {
-  withSocial?: boolean
-  withPhones?: boolean
-  withNavLinks?: boolean
-  withCopyright?: boolean
-  withSiteMap?: boolean
-}
-
-type TFooterClasses = TSiteMapClasses &
-  TFooterLogoClasses &
-  TNavigationLinksClasses &
-  TPhoneBlockClasses &
-  TSocialLinksClasses &
-  TCopyrightClasses & {
-    root?: string
-    footerContainer?: string
-    footerWrapper?: string
-    footerHead?: string
-    footerSocialBlock?: string
-  }
 
 export interface IFooterProps {
   classes?: TFooterClasses
@@ -69,19 +35,24 @@ export const Footer = ({
             )}
           >
             <div className={cn(classes?.footerSocialBlock)}>
-              <FooterLogo classes={classes} />
-              {withSocial && <SocialLinks socialsLinks={socialsLinks} classes={classes} />}
+              <FooterLogo classes={classes?.footerLogo} />
+              {withSocial && <SocialLinks socialsLinks={socialsLinks} classes={classes?.socialLinks} />}
             </div>
 
-            {withPhones && <PhonesBlock phones={phones} classes={classes} />}
+            {withPhones && <PhonesBlock phones={phones} classes={classes?.phonesBlock} />}
           </div>
 
-          {withNavLinks && <NavLinks navigationLinks={navigationLinks} classes={classes} />}
+          {withNavLinks && <NavLinks navigationLinks={navigationLinks} classes={classes?.navLinks} />}
           {ligal && ligal}
 
-          <div className='flex flex-col-reverse items-start justify-between gap-4 desktop:flex-row desktop:gap-6'>
-            {withCopyright && <Copyright text={copyright} classes={classes} withSiteMap={withSiteMap} />}
-            {withSiteMap && <SiteMap classes={classes} />}
+          <div
+            className={cn(
+              'mt-6 flex flex-col-reverse items-start justify-between gap-4 desktop:mt-8 desktop:flex-row desktop:gap-6',
+              classes?.footerBottom
+            )}
+          >
+            {withCopyright && <Copyright text={copyright} classes={classes?.copyright} />}
+            {withSiteMap && <SiteMap classes={classes?.siteMap} />}
           </div>
         </div>
       </ResponsiveContainer>
