@@ -48,10 +48,22 @@ export default defineConfig({
     copyPublicDir: true,
 
     lib: {
-      entry: [resolve(__dirname, './lib/hybrid.ts'), resolve(__dirname, './lib/client.ts')],
+      entry: [
+        resolve(__dirname, './lib/exports/validation.ts'),
+        resolve(__dirname, './lib/exports/utils.ts'),
+        resolve(__dirname, './lib/exports/hooks.ts'),
+        resolve(__dirname, './lib/exports/widget.ts'),
+        resolve(__dirname, './lib/exports/ui.ts'),
+        resolve(__dirname, './lib/exports/types.ts'),
+        resolve(__dirname, './lib/exports/api.ts'),
+        resolve(__dirname, './lib/exports/config.ts')
+      ],
       formats: ['es'],
-      fileName: (_, name) => `${name}.js`
+      fileName: (_, name) => {
+        return `${name}.js`
+      }
     },
+    minify: true,
     rollupOptions: {
       external: Object.keys(dependencies),
       onwarn(warning, defaultHandler) {
@@ -67,6 +79,7 @@ export default defineConfig({
           'class-variance-authority': 'classVarianceAuthority'
         }
       }
-    }
+    },
+    chunkSizeWarningLimit: 2000
   }
 })
