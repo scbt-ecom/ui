@@ -56,7 +56,7 @@ export default defineConfig({
         resolve(__dirname, './lib/exports/ui.ts'),
         resolve(__dirname, './lib/exports/types.ts'),
         resolve(__dirname, './lib/exports/api.ts'),
-        resolve(__dirname, './lib/exports/configs.ts')
+        resolve(__dirname, './lib/exports/config.ts')
       ],
       formats: ['es'],
       fileName: (_, name) => {

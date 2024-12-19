@@ -18,9 +18,6 @@
     "./validation": {
       "import": "./dist/validation.js"
     },
-    "./constants": {
-      "import": "./dist/constants.js"
-    },
     "./widgets": {
       "import": "./dist/widget.js"
     },
@@ -31,7 +28,7 @@
       "import": "./dist/api.js"
     },
     "./configs": {
-      "import": "./dist/configs.js"
+      "import": "./dist/config.js"
     }
   },
   "files": [
