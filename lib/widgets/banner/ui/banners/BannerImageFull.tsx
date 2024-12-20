@@ -1,9 +1,10 @@
-import { type IBannerProps } from '../../Banner'
+'use client'
+
 import { BannerButtonsGroup } from '../BannerButtonsGroup'
-import { useDevice } from '$/client'
+import { useDevice } from '$/shared/hooks'
 import { Heading, ResponsiveContainer } from '$/shared/ui'
 import { cn } from '$/shared/utils'
-import { Advantages } from '$/widgets/advantages/Advantages.tsx'
+import { Advantages, type IBannerProps } from '$/widgets'
 
 export const BannerImageFull = ({
   headTitle,

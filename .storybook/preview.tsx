@@ -17,6 +17,7 @@ const preview: Preview = {
 
   parameters: {
     layout: 'fullscreen',
+
     viewport: {
       viewports: {
         ...STORYBOOK_VIEWPORTS,

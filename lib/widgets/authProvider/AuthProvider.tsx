@@ -1,11 +1,11 @@
-import { type ReactElement } from 'react'
+import * as React from 'react'
 import { AUTH_PROVIDER_MODE } from './model/helpers'
 import type { TAuthProviderProps } from './model/types'
 import { Esia, MobileId } from './ui'
 import { Badge } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
-const renderProvider = (props: TAuthProviderProps): ReactElement => {
+const renderProvider = (props: TAuthProviderProps): React.ReactElement => {
   switch (props.mode) {
     case AUTH_PROVIDER_MODE.ESIA:
       return <Esia {...props} />
@@ -15,6 +15,8 @@ const renderProvider = (props: TAuthProviderProps): ReactElement => {
     default:
       const { esiaConfig, mobileIdConfig, subtitle, badge, classes } = props
 
+      const HeadWrapper = !subtitle && !badge ? React.Fragment : 'div'
+
       return (
         <div
           className={cn(
@@ -22,10 +24,10 @@ const renderProvider = (props: TAuthProviderProps): ReactElement => {
             classes?.root
           )}
         >
-          <div className={cn('flex w-full items-center justify-between gap-2', classes?.topContent)}>
-            <span className={cn('', classes?.subtitle)}>{subtitle}</span>
+          <HeadWrapper className={cn('flex w-full items-center justify-between gap-2', classes?.topContent)}>
+            {subtitle && <h5 className={cn('desk-body-regular-l flex flex-1 text-color-dark', classes?.subtitle)}>{subtitle}</h5>}
             {badge && <Badge className={cn('bg-color-positive', classes?.badge)}>{badge}</Badge>}
-          </div>
+          </HeadWrapper>
           <div className={cn('grid w-full grid-cols-2 gap-2 desktop:gap-4', classes?.authWrapper)}>
             <Esia
               {...esiaConfig}

@@ -30,11 +30,15 @@ jobs:
         uses: actions/configure-pages@v4
 
       - name: Build 🏗️
-        run:  npm run build-storybook -- --quiet
-
-      - name: Build dist 🏗️
         run: npm run build
 
+      - name: Build storybook 🏗️
+        uses: nick-fields/retry@v3
+        with:
+          timeout_seconds: 90 # issues -> https://github.com/storybookjs/storybook/issues/15227
+          max_attempts: 5
+          command: npm run build-storybook
+          
       - name: Upload artifact 📡
         uses: actions/upload-pages-artifact@v3
         with:

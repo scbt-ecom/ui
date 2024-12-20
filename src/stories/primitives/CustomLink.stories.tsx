@@ -24,7 +24,6 @@ type Story = StoryObj<typeof meta>
 
 export const Base: Story = {
   args: {
-    Component: 'a',
     href: 'https://sovcombank.ru/',
     children: 'Совкомбанк',
     withIcon: false
@@ -33,7 +32,6 @@ export const Base: Story = {
 
 export const WithIcon: Story = {
   args: {
-    Component: 'a',
     href: 'https://sovcombank.ru/',
     children: 'Совкомбанк',
     withIcon: true,
@@ -43,7 +41,6 @@ export const WithIcon: Story = {
 
 export const WithOtherIcon: Story = {
   args: {
-    Component: 'a',
     href: 'https://sovcombank.ru/',
     children: 'Совкомбанк',
     withIcon: true,
@@ -54,7 +51,6 @@ export const WithOtherIcon: Story = {
 
 export const Disabled: Story = {
   args: {
-    Component: 'a',
     href: 'https://sovcombank.ru/',
     children: 'Совкомбанк',
     withIcon: true,

@@ -1,7 +1,6 @@
 export * from './SocialLinks'
 export * from './PhonesBlock'
 export * from './NavLinks'
-export * from './Ligal'
 export * from './Copyright'
 export * from './FooterLogo'
 export * from './SiteMap'

@@ -119,6 +119,15 @@ export const CombineWithoutBadge: Story = {
   }
 }
 
+export const CombineWithoutBadgeAndSubtitle: Story = {
+  args: {
+    mode: 'combine',
+    ...mockDataCombine,
+    badge: '',
+    subtitle: ''
+  }
+}
+
 export const SingleLoading: Story = {
   args: {
     mode: 'esia',

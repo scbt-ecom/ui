@@ -20,7 +20,7 @@ const meta = {
 
 export default meta
 
-type Story = StoryObj<typeof meta>
+type Story = StoryObj<typeof Advantages>
 
 const mockThreeCards: IAdvantage[] = [
   { title: 'До 5 млн ₽', description: 'сумма кредита' },
