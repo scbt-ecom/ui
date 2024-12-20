@@ -1,3 +1,6 @@
+import { render } from 'ejs'
+import { mdxTemplate } from './templates'
+
 /**
  * Функция для генерации контента .mdx файла
  *
@@ -22,27 +25,5 @@ export const getDocsContent = (component: string, filepath: string, code: string
     }
   }
 
-  const storiesInCanvas = stories
-    .map(({ name, description }) =>
-      `
-## ${component} ${name}
-
-${description}
-
-<Canvas of={${component}Stories.${name}} meta={${component}Stories} />
-<Controls of={${component}Stories.${name}} />
-`.trim()
-    )
-    .join('\n\n')
-
-  return `
-import { Meta, Canvas, Controls } from "@storybook/blocks";
-import * as ${component}Stories from "${filepath}";
-
-# ${component}
-
-<Meta of={${component}Stories} />
-
-${storiesInCanvas}
-`
+  return render(mdxTemplate, { component, filepath, stories })
 }

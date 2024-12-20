@@ -38,7 +38,7 @@ const Form = () => {
 }
 
 const meta = {
-  title: 'CONTROLLED/Input',
+  title: 'CONTROLLED/InputControl',
   component: Controlled.InputControl,
   parameters: {
     layout: 'centered'
@@ -53,7 +53,7 @@ export default meta
 type Story = StoryObj<typeof Controlled.InputControl>
 
 /**
- * \`InputControl\` компонент, контроллируемый библиотекой \`react-hook-form\`\n
+ * \`InputControl\` компонент, контролируемый библиотекой \`react-hook-form\`\n
  *
  * | Props        | Description                         | Type                         | Required  |
  * | ------------ | ----------------------------------- | ---------------------------- | --------- |
