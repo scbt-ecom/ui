@@ -1,10 +1,10 @@
 import type { StorybookConfig } from '@storybook/react-vite'
 import { mergeConfig } from 'vite'
 import { resolve } from 'path'
+import { viteStorybookMdxGenerationPlugin } from '../plugins'
 
 const config: StorybookConfig = {
-  stories: ['../src/**/*.stories.@(js|jsx|mjs|ts|tsx|mdx)'],
-
+  stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
   addons: [
     '@storybook/addon-onboarding',
     '@storybook/addon-links',
@@ -25,18 +25,18 @@ const config: StorybookConfig = {
       strictMode: true
     }
   },
-  docs: {
-    autodocs: 'tag'
-  },
-  viteFinal: (config) =>
-    mergeConfig(config, {
+  viteFinal: (config) => {
+    config.plugins?.push(viteStorybookMdxGenerationPlugin())
+
+    return mergeConfig(config, {
       resolve: {
         alias: {
           '@': resolve(__dirname, '../src'),
           $: resolve(__dirname, '../lib')
         }
       }
-    }),
+    })
+  },
   typescript: {
     reactDocgen: 'react-docgen-typescript'
   }

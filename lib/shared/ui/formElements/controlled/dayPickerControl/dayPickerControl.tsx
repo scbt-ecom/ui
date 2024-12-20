@@ -16,9 +16,21 @@ export type DayPickerControlProps<
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
 > = UseControllerProps<TFieldValues, TName> &
   Omit<CalendarProps, 'selected' | 'onSelect' | 'mode'> & {
+    /**
+     * Контрол объект для управления полем
+     */
     control: Control<TFieldValues>
+    /**
+     * Свойства отображаемого Input поля
+     */
     inputProps: Omit<MaskInputProps, 'mask'>
+    /**
+     * Дополнительный текст
+     */
     textHint?: string
+    /**
+     * Дополнительные стили компонента
+     */
     classes?: DayPickerControlClasses
   }
 
