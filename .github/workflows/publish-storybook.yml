@@ -1,0 +1,49 @@
+name: publish-to-github-pages
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: 'pages'
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js ⚙️ - Cache dependencies ⚡ - Install dependencies 🔧
+        uses: ./.github/workflows/setup-node
+
+      - name: Setup Pages ⚙️
+        uses: actions/configure-pages@v4
+
+      - name: Build storybook 🏗️
+        uses: nick-fields/retry@v3
+        with:
+          timeout_seconds: 90 # issues -> https://github.com/storybookjs/storybook/issues/15227
+          max_attempts: 5
+          command: npm run build-storybook
+
+      - name: Upload artifact 📡
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./storybook-static
+
+  deploy:
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    runs-on: ubuntu-22.04
+    needs: build
+
+    steps:
+      - name: Publish to GitHub Pages 🚀
+        id: deployment
+        uses: actions/deploy-pages@v4
