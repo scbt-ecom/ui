@@ -10,25 +10,32 @@
     "./utils-tailwind.css": "./dist/utils-tailwind.css",
     "./style.css": "./dist/style.css",
     "./hooks": {
-      "import": "./dist/hooks.js"
+      "import": "./dist/hooks.js",
+      "require": "./dist/hooks.js"
     },
     "./utils": {
-      "import": "./dist/utils.js"
+      "import": "./dist/utils.js",
+      "require": "./dist/utils.js"
     },
     "./validation": {
-      "import": "./dist/validation.js"
+      "import": "./dist/validation.js",
+      "require": "./dist/validation.js"
     },
     "./widgets": {
-      "import": "./dist/widget.js"
+      "import": "./dist/widget.js",
+      "require": "./dist/widget.js"
     },
     "./types": {
-      "import": "./dist/types.js"
+      "import": "./dist/types.js",
+      "require": "./dist/types.js"
     },
     "./api": {
-      "import": "./dist/api.js"
+      "import": "./dist/api.js",
+      "require": "./dist/api.js"
     },
     "./configs": {
-      "import": "./dist/config.js"
+      "import": "./dist/config.js",
+      "require": "./dist/config.js"
     }
   },
   "files": [
