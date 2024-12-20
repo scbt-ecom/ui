@@ -1,4 +1,4 @@
-name: publish-to-github-pages
+name: build-publish-to-npm
 on:
   push:
     branches:
@@ -9,7 +9,7 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  build:
+  build-ui:
     runs-on: ubuntu-22.04
     permissions: 
       contents: write # to be able to publish a GitHub release
