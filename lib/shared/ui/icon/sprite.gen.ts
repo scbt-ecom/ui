@@ -1,5 +1,5 @@
 export interface SpritesMap {
-  arrows: 'arrowCircle' | 'arrowLink' | 'arrowRight'
+  arrows: 'arrowCircle' | 'arrowLink' | 'arrowRight' | 'arrowScroll'
   brandLogos: 'logoBlack' | 'logoBusiness' | 'logoGray' | 'logoInsurance' | 'logoMain' | 'logoWhite'
   editor:
     | 'bold'
@@ -18,6 +18,7 @@ export interface SpritesMap {
   files: 'border' | 'borderError' | 'documentFilled' | 'documentOutline' | 'upload'
   general: 'calendar' | 'check' | 'close' | 'edit' | 'hiddenEye' | 'plus' | 'showEye'
   info: 'helpCircle' | 'warningCircle'
+  logos: 'beeline' | 'megafon' | 'mts'
   social: 'classmates' | 'telegram' | 'vk'
 }
 export const SPRITES_META: {
@@ -50,6 +51,11 @@ export const SPRITES_META: {
         viewBox: '0 0 16 17',
         width: 16,
         height: 17
+      },
+      arrowScroll: {
+        viewBox: '0 0 14 16',
+        width: 14,
+        height: 16
       }
     }
   },
@@ -240,6 +246,26 @@ export const SPRITES_META: {
         viewBox: '0 0 20 20',
         width: 20,
         height: 20
+      }
+    }
+  },
+  logos: {
+    filePath: 'logos.svg',
+    items: {
+      beeline: {
+        viewBox: '0 0 32 32',
+        width: 32,
+        height: 32
+      },
+      megafon: {
+        viewBox: '0 0 32 32',
+        width: 32,
+        height: 32
+      },
+      mts: {
+        viewBox: '0 0 32 32',
+        width: 32,
+        height: 32
       }
     }
   },

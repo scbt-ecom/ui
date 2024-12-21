@@ -1,4 +1,4 @@
-type TId = 'personal_form' | 'calculator'
+type TId = 'personal_form' | 'calculator' | 'inter-linking'
 
 export const scrollToElement = (id: TId, behavior: ScrollBehavior = 'smooth') => {
   const element = document.getElementById(id)

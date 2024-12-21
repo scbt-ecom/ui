@@ -37,7 +37,6 @@ export default tseslint.config(
       react: eslintReact,
       'react-refresh': reactRefresh,
       'react-hooks': eslintReactHooks,
-      'react-refresh': reactRefresh,
       'unused-imports': unusedImports,
       'simple-import-sort': simpleImportSort,
       import: importPlugin,

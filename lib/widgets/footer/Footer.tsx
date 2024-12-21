@@ -1,96 +1,61 @@
 import * as React from 'react'
-import { defaultCopyright, defaultLigal, defaultNavigationLinks, defaultPhones, defaultSocialsLinks } from './model/defaultValues'
-import type { IFooterNavLinks, IFooterPhones, IFooterSocialLinks } from './model/types'
-import {
-  Copyright,
-  Ligal,
-  NavLinks,
-  PhonesBlock,
-  SocialLinks,
-  type TCopyrightClasses,
-  type TLigalClasses,
-  type TNavigationLinksClasses,
-  type TPhoneBlockClasses,
-  type TSocialLinksClasses
-} from './ui'
-import { Icon, ResponsiveContainer, Section } from '$/shared/ui'
+import { defaultCopyright, defaultNavigationLinks, defaultPhones, defaultSocialsLinks } from './model/defaultValues'
+import type { IFooterNavLinks, IFooterPhones, IFooterSocialLinks, TFooterClasses, TFooterRenderBlocks } from './model/types'
+import { Copyright, FooterLogo, NavLinks, PhonesBlock, SiteMap, SocialLinks } from './ui'
+import { ResponsiveContainer } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
-type IFooterClasses = TLigalClasses &
-  TNavigationLinksClasses &
-  TPhoneBlockClasses &
-  TSocialLinksClasses &
-  TCopyrightClasses & {
-    section: string
-    container: string
-    footerRoot: string
-    footerHead: string
-    footerSocialBlock: string
-    footerLogo: string
-  }
-
 export interface IFooterProps {
-  classes?: Partial<IFooterClasses>
-  withSocial?: boolean
-  withPhones?: boolean
-  withNavLinks?: boolean
-  withLigal?: boolean
-  withCopyright?: boolean
-  withSiteMap?: boolean
-
+  classes?: TFooterClasses
+  renderBlocks?: TFooterRenderBlocks
   socialsLinks?: IFooterSocialLinks[]
   phones?: IFooterPhones[]
-  navigationLinks: IFooterNavLinks[]
-  ligal: string | React.ReactElement
+  navigationLinks?: IFooterNavLinks[]
+  ligal?: string | React.ReactElement
   copyright?: string | React.ReactElement
 }
 
 export const Footer = ({
-  withSocial = true,
-  withPhones = true,
-  withNavLinks = true,
-  withLigal = true,
-  withCopyright = true,
-  withSiteMap = true,
+  renderBlocks: { withSocial = true, withPhones = true, withNavLinks = true, withCopyright = true, withSiteMap = true } = {},
   socialsLinks = defaultSocialsLinks,
   phones = defaultPhones,
   navigationLinks = defaultNavigationLinks,
-  ligal = defaultLigal,
+  ligal,
   copyright = defaultCopyright,
   classes
 }: IFooterProps) => {
   return (
-    <Section className={cn('w-full', classes?.section)}>
-      <ResponsiveContainer className={cn(classes?.container)}>
-        <div className={cn('bg-color-footer px-4 py-8 desktop:px-6 desktop:py-10', classes?.footerRoot)}>
-          <div className={cn('mb-8 flex items-center justify-between gap-6', classes?.footerHead)}>
+    <footer className={cn('w-full bg-color-footer py-8 desktop:py-10', classes?.root)}>
+      <ResponsiveContainer className={cn(classes?.footerContainer)}>
+        <div className={cn('mobile:pb-[176px]', classes?.footerWrapper)}>
+          <div
+            className={cn(
+              'flex flex-col items-start justify-between gap-4 border-b border-solid border-blue-grey-500 pb-6 desktop:flex-row desktop:gap-6 desktop:pb-8',
+              classes?.footerHead
+            )}
+          >
             <div className={cn(classes?.footerSocialBlock)}>
-              <a aria-label='logo' href='/' className={cn(classes?.footerLogo)}>
-                <Icon name='brandLogos/logoWhite' className='h-[32px] w-[194px]' />
-              </a>
-              {withSocial && <SocialLinks socialsLinks={socialsLinks} classes={classes} />}
+              <FooterLogo classes={classes?.footerLogo} />
+              {withSocial && <SocialLinks socialsLinks={socialsLinks} classes={classes?.socialLinks} />}
             </div>
-            {withPhones && <PhonesBlock phones={phones} classes={classes} />}
+
+            {withPhones && <PhonesBlock phones={phones} classes={classes?.phonesBlock} />}
           </div>
 
-          {withNavLinks && <NavLinks navigationLinks={navigationLinks} classes={classes} />}
-          {withLigal && <Ligal ligal={ligal} classes={classes} />}
-          <div className='mt-6 flex items-start justify-between gap-6'>
-            {withCopyright && <Copyright text={copyright} classes={classes} />}
-            {withSiteMap && (
-              <a
-                href='https://sovcombank.ru/site-map'
-                target='_blank'
-                aria-label='site-map'
-                rel='noreferrer'
-                className='desk-body-regular-m text-color-white'
-              >
-                Карта сайта
-              </a>
+          {withNavLinks && <NavLinks navigationLinks={navigationLinks} classes={classes?.navLinks} />}
+          {ligal && ligal}
+
+          <div
+            className={cn(
+              'mt-6 flex flex-col-reverse items-start justify-between gap-4 desktop:mt-8 desktop:flex-row desktop:gap-6',
+              classes?.footerBottom
             )}
+          >
+            {withCopyright && <Copyright text={copyright} classes={classes?.copyright} />}
+            {withSiteMap && <SiteMap classes={classes?.siteMap} />}
           </div>
         </div>
       </ResponsiveContainer>
-    </Section>
+    </footer>
   )
 }

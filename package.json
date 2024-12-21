@@ -1,17 +1,41 @@
 {
   "name": "@scbt-ecom/ui",
-  "version": "0.14.0",
+  "version": "0.19.2",
   "type": "module",
   "exports": {
+    ".": {
+      "import": "./dist/ui.js",
+      "require": "./dist/ui.js"
+    },
     "./utils-tailwind.css": "./dist/utils-tailwind.css",
     "./style.css": "./dist/style.css",
-    "./client": {
-      "import": "./dist/client.js",
-      "require": "./dist/client.js"
+    "./hooks": {
+      "import": "./dist/hooks.js",
+      "require": "./dist/hooks.js"
     },
-    "./hybrid": {
-      "import": "./dist/hybrid.js",
-      "require": "./dist/hybrid.js"
+    "./utils": {
+      "import": "./dist/utils.js",
+      "require": "./dist/utils.js"
+    },
+    "./validation": {
+      "import": "./dist/validation.js",
+      "require": "./dist/validation.js"
+    },
+    "./widgets": {
+      "import": "./dist/widget.js",
+      "require": "./dist/widget.js"
+    },
+    "./types": {
+      "import": "./dist/types.js",
+      "require": "./dist/types.js"
+    },
+    "./api": {
+      "import": "./dist/api.js",
+      "require": "./dist/api.js"
+    },
+    "./configs": {
+      "import": "./dist/config.js",
+      "require": "./dist/config.js"
     }
   },
   "files": [
@@ -39,8 +63,12 @@
   },
   "dependencies": {
     "@storybook/builder-vite": "^8.2.6",
+    "ejs": "^3.1.10",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
+  },
+  "overrides": {
+    "esbuild": "0.24.0"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^1.6.1",
@@ -63,6 +91,7 @@
     "@semantic-release/npm": "^12.0.1",
     "@storybook/addon-console": "^3.0.0",
     "@storybook/addon-coverage": "^1.0.4",
+    "@storybook/addon-docs": "^8.4.7",
     "@storybook/addon-essentials": "^8.2.6",
     "@storybook/addon-interactions": "^8.2.6",
     "@storybook/addon-links": "^8.2.6",
@@ -84,6 +113,7 @@
     "@tiptap/extension-underline": "^2.9.1",
     "@tiptap/react": "^2.9.1",
     "@tiptap/starter-kit": "^2.9.1",
+    "@types/ejs": "^3.1.5",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@typescript-eslint/eslint-plugin": "^8.11.0",

@@ -48,6 +48,7 @@ export interface IRadioControlProps<T extends FieldValues> extends TRadioOptions
   disabled?: boolean
 }
 
+// TODO: переписать как бог велел
 export const RadioControl = <T extends FieldValues>({
   radioItemsGroup,
   control,
