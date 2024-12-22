@@ -1,8 +1,10 @@
 import { readFileSync, writeFileSync } from 'fs'
 import { join } from 'path'
 import { cwd } from 'process'
+import type { MDXOptions } from '../viteStorybookMdxGenerationPlugin'
 import { findStories } from './findStories'
 import { getDocsContent } from './getDocsContent'
+import { type Logger } from './logger'
 
 /**
  * Функция для генерации файлов документации компонентов
@@ -12,30 +14,34 @@ import { getDocsContent } from './getDocsContent'
  * документацию в формате `.mdx`
  *
  * @param storiesPath корневая директория историй
+ * @param options настройки генерации
+ * @param logger внутренний логгер
  */
-export const generateDocs = (storiesPath: string | string[]) => {
+export const generateDocs = (storiesPath: string | string[], options?: MDXOptions, logger?: Logger) => {
   const storiesBaseDir = Array.isArray(storiesPath) ? storiesPath : [storiesPath]
 
   const storiesDir = join(cwd(), ...storiesBaseDir)
 
   findStories(storiesDir, (filepath) => {
-    if (filepath.includes('.stories')) {
-      const code = readFileSync(filepath).toString()
+    const code = readFileSync(filepath).toString()
 
-      const fileUsedForAutoDocs = code.match(/^(?:[\s\n]*)(["']use docs["'];?)/m)
+    const fileUsedForAutoDocs = code.match(/^(?:[\s\n]*)(["']use docs["'];?)/m)
 
-      if (fileUsedForAutoDocs) {
-        const component = filepath.match(/([^/\\]+)\.stories\.(ts|tsx)$/)?.[1]
+    if (fileUsedForAutoDocs) {
+      const component = filepath.match(/([^/\\]+)\.stories\.(ts|tsx)$/)?.[1]
 
-        if (component) {
-          const componentPath = filepath.split(/[\\/]/).slice(0, -1)
-          const relativeDocFilepath = join(...componentPath, `${component}.docs.mdx`)
+      if (!component) {
+        logger?.error('Cannot find component name. Skip.')
 
-          const docContent = getDocsContent(component, filepath.replace(/\\/g, '/'), code)
-
-          writeFileSync(relativeDocFilepath, docContent.trim(), 'utf-8')
-        }
+        return
       }
+
+      const componentPath = filepath.split(/[\\/]/).slice(0, -1)
+      const docFilepath = join(...componentPath, `${component}.docs.mdx`)
+
+      const docContent = getDocsContent(component, filepath.replace(/\\/g, '/'), code, options)
+
+      writeFileSync(docFilepath, docContent.trim(), 'utf-8')
     }
   })
 }

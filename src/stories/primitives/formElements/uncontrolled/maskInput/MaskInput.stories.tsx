@@ -1,4 +1,4 @@
-// 'use docs'
+'use docs'
 
 import { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'

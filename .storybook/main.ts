@@ -1,7 +1,6 @@
 import type { StorybookConfig } from '@storybook/react-vite'
 import { mergeConfig } from 'vite'
 import { resolve } from 'path'
-import { viteStorybookMdxGenerationPlugin } from '../plugins'
 
 const config: StorybookConfig = {
   stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
@@ -25,18 +24,15 @@ const config: StorybookConfig = {
       strictMode: true
     }
   },
-  viteFinal: (config) => {
-    config.plugins?.push(viteStorybookMdxGenerationPlugin())
-
-    return mergeConfig(config, {
+  viteFinal: (config) =>
+    mergeConfig(config, {
       resolve: {
         alias: {
           '@': resolve(__dirname, '../src'),
           $: resolve(__dirname, '../lib')
         }
       }
-    })
-  },
+    }),
   typescript: {
     reactDocgen: 'react-docgen-typescript'
   }

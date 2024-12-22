@@ -1,13 +1,26 @@
 import type { Plugin } from 'vite'
-import { generateDocs } from './utils'
+import { generateDocs, Logger } from './utils'
+
+export interface MDXOptions {
+  /**
+   * Путь до корневой директории storybook
+   */
+  storiesPath?: string | string[]
+  /**
+   * Указывает, включаем ли jsdoc в генерацию
+   */
+  jsdoc?: boolean
+}
 
 /**
  * Плагин для автоматической генерации документации
  * основанной на историях Storybook
  *
  * Рекурсивно обходит корневую директорию storybook
- * и генерирует рядом с каждым .stories файл с документацией этой истории
+ * и генерирует рядом с каждым `.stories` файл `.docs.mdx` с документацией каждой истории
  * который будет сканироваться Storybook системой
+ *
+ * Как его использовать:
  *
  * @example
  * // Component.stories.ts
@@ -62,21 +75,43 @@ import { generateDocs } from './utils'
  * <Canvas of={ButtonStories.Default} meta={ButtonStories} />
  * <Controls of={ButtonStories.Default} />
  *
- * @param storiesPath путь до корневой директории storybook
+ * @param options настройки генерации
  * @typeParam `storiesPath` - `string | string[]`
+ * @typeParam `jsdoc` - `boolean`
  */
-export const viteStorybookMdxGenerationPlugin = (storiesPath: string | string[] = ['src', 'stories']): Plugin => {
+export const viteStorybookMdxGenerationPlugin = (options?: MDXOptions): Plugin => {
+  const { storiesPath = ['src', 'stories'] } = options || {}
+
+  const logger = new Logger('vite-storybook-mdx-generation-plugin')
+
   return {
     name: 'vite-storybook-mdx-generation-plugin',
     enforce: 'pre',
     configureServer: (server) => {
-      generateDocs(storiesPath)
+      logger.info('Generate MDX started.')
+
+      generateDocs(storiesPath, options, logger)
 
       server.watcher.on('change', (path) => {
         if (path.match(/\.stories\.(ts|tsx)$/)) {
-          generateDocs(storiesPath)
+          logger.info('Story changed. Regenerate MDX.')
+
+          generateDocs(storiesPath, options, logger)
         }
       })
+    },
+    transform: (code, id) => {
+      if (id.match(/\.stories\.(ts|tsx)$/)) {
+        return {
+          code: code.replace(/^(?:[\s\n]*)(["']use docs["'];?)/m, ''),
+          map: null
+        }
+      }
+    },
+    buildStart: () => {
+      logger.info('Generate MDX for build.')
+
+      generateDocs(storiesPath, options, logger)
     }
   }
 }
