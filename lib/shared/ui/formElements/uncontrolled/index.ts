@@ -7,5 +7,7 @@ export type { SelectBaseProps, SelectItemOption } from './select'
 import { CheckboxBase } from './checkbox'
 export type { CheckboxBaseProps, CheckedState } from './checkbox'
 import { DayPickerBase } from './dayPicker'
+import { SwitchBase } from './switch'
+export type { SwitchBaseProps } from './switch'
 
-export const Uncontrolled = { InputBase, MaskInput, SelectBase, CheckboxBase, DayPickerBase }
+export const Uncontrolled = { InputBase, MaskInput, SelectBase, CheckboxBase, DayPickerBase, SwitchBase }
