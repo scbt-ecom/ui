@@ -1,3 +1,5 @@
+'use client'
+
 import { useEffect, useState } from 'react'
 import { type Control, type FieldValues, type Path, useWatch } from 'react-hook-form'
 import { type ZodObject, type ZodRawShape } from 'zod'

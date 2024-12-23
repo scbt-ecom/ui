@@ -1,4 +1,4 @@
-import type { TCombineProps, TEsiaProps } from '$/widgets'
+import { type TCombineProps, type TEsiaProps } from '$/widgets'
 
 export const mockDataEsia: TEsiaProps = {
   isLoading: false,

@@ -51,6 +51,7 @@ export interface ISliderControlProps<T extends FieldValues>
   rightText?: string | React.ReactElement
 }
 
+// TODO: переписать как бог велел
 export const SliderControl = <T extends FieldValues>({
   label,
   size = 'full',

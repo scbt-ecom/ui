@@ -21,20 +21,9 @@ export const MonthCaption = ({
   selectOptions,
   ...props
 }: MonthCaptionProps) => {
-  const [isOpen, setIsOpen] = useState<Record<'month' | 'year', boolean>>({
-    year: false,
-    month: false
-  })
-  const onOpenChange = (key: 'month' | 'year') => {
-    setIsOpen((prev) =>
-      Object.entries(prev).reduce(
-        (acc, [currentKey, value]) => ({
-          ...acc,
-          [currentKey]: value ? !value : currentKey === key
-        }),
-        {} as Record<'month' | 'year', boolean>
-      )
-    )
+  const [selectOpen, setSelectOpen] = useState<'month' | 'year' | null>(null)
+  const onSelectOpenChange = (key: typeof selectOpen) => {
+    setSelectOpen((prev) => (prev === key ? null : key))
   }
 
   const { goToMonth } = useDayPicker()
@@ -55,8 +44,8 @@ export const MonthCaption = ({
             onMonthChange={goToMonth}
             mode='month'
             disabled={month?.disabled}
-            open={isOpen['month']}
-            onOpenChange={() => onOpenChange('month')}
+            open={selectOpen === 'month'}
+            onOpenChange={() => onSelectOpenChange('month')}
           />
         )}
         {year && (
@@ -66,8 +55,8 @@ export const MonthCaption = ({
             onMonthChange={goToMonth}
             mode='year'
             disabled={year?.disabled}
-            open={isOpen['year']}
-            onOpenChange={() => onOpenChange('year')}
+            open={selectOpen === 'year'}
+            onOpenChange={() => onSelectOpenChange('year')}
           />
         )}
       </div>

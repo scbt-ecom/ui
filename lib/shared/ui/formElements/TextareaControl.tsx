@@ -34,6 +34,7 @@ export interface ITextareaControlProps<T extends FieldValues>
   placeholder?: string
 }
 
+// TODO: переписать как бог велел
 export const TextareaControl = <T extends FieldValues>({
   label,
   helperText,

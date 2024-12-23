@@ -1,0 +1,1 @@
+export { viteStorybookMdxGenerationPlugin } from './viteStorybookMdxGenerationPlugin'
