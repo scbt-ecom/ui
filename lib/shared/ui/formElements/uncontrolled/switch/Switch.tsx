@@ -30,7 +30,7 @@ export const SwitchBase = forwardRef<HTMLButtonElement, SwitchBaseProps>(({ clas
     <Thumb
       className={cn(
         'block size-5 rounded-full bg-color-white',
-        'duration-200 will-change-transform',
+        'duration-100 will-change-transform',
         'data-[state=checked]:translate-x-4',
         'group-active:w-full data-[state=checked]:group-active:translate-x-0',
         classes?.thumb
