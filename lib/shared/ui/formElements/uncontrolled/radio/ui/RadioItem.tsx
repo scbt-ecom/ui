@@ -46,14 +46,14 @@ export const RadioItem = memo(
     const id = useId()
 
     return (
-      <Item {...props} asChild disabled={disabled || item?.disabled} value={value} id={id}>
+      <Item {...props} asChild disabled={disabled} value={value} id={id}>
         <li
           className={cn(
             'group flex items-center gap-x-3',
             'w-full min-w-[200px] [&:not(:last-child)]:mb-4',
             '[&:not(:disabled)]:cursor-pointer',
             {
-              'pointer-events-none text-color-disabled': disabled || item?.disabled
+              'pointer-events-none text-color-disabled': disabled
             },
             className,
             classes?.item
@@ -71,7 +71,7 @@ export const RadioItem = memo(
               {
                 'border-negative': invalid,
                 'group-data-[state=unchecked]:border-0 group-data-[state=checked]:border-primary-disabled group-data-[state=unchecked]:bg-color-blue-grey-300':
-                  disabled || item?.disabled
+                  disabled
               }
             )}
           >
@@ -80,7 +80,7 @@ export const RadioItem = memo(
                 'absolute left-1/2 top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-color-primary-default',
                 'group-disabled:group-data-[state=checked]:bg-color-negative',
                 {
-                  'group-data-[state=checked]:bg-color-primary-disabled': disabled || item?.disabled
+                  'group-data-[state=checked]:bg-color-primary-disabled': disabled
                 },
                 classes?.indicator
               )}
@@ -91,7 +91,7 @@ export const RadioItem = memo(
             className={cn(
               'desk-body-regular-l capitalize text-color-dark',
               {
-                'text-color-disabled': disabled || item?.disabled
+                'text-color-disabled': disabled
               },
               classes?.label
             )}
