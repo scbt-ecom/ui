@@ -16,10 +16,25 @@ type RadioItemClasses = {
 }
 
 export type RadioItemProps = Omit<RadioGroupItemProps, 'value'> & {
+  /**
+   * Опция списка
+   */
   item: RadioOption
+  /**
+   * Функция для управления отображаемым значением
+   */
   displayValue?: (option: RadioOption) => string
+  /**
+   * Функция для управления возвращаемым значением
+   */
   returnValue?: (option: RadioOption) => string
+  /**
+   * Дополнительные стили внутренних компонентов
+   */
   classes?: RadioItemClasses
+  /**
+   * Свойство для отображения не валидного поля
+   */
   invalid?: boolean
 }
 

@@ -8,7 +8,7 @@ type RadioGroupClasses = RadioItemProps['classes'] & {
   list?: string
 }
 
-export type RadioGroupBaseProps = RadioGroupPrimitiveProps & {
+export type RadioGroupBaseProps = Omit<RadioGroupPrimitiveProps, 'children'> & {
   /**
    * Список отображаемых опций
    */
