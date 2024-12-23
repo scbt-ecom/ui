@@ -21,7 +21,9 @@ export interface ISwitchControlProps<T extends FieldValues> extends TCommonField
   classes?: TSwitchControlClasses
 }
 
-// TODO: переписать как бог велел
+/**
+ * @deprecated For better performance use `Controlled.SwitchControl` instead.
+ */
 export const SwitchControl = <T extends FieldValues>({
   disabled,
   classes,
