@@ -7,6 +7,7 @@ import { cn } from '$/shared/utils'
 type RadioControlClasses = RadioGroupBaseProps['classes'] & {
   container?: string
   message?: string
+  label?: string
 }
 
 type RadioGroupControlProps<
@@ -14,6 +15,10 @@ type RadioGroupControlProps<
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
 > = UseControllerProps<TFieldValues, TName> &
   Omit<RadioGroupBaseProps, 'classes'> & {
+    /**
+     * Отображаемый лейбл
+     */
+    label: string
     /**
      * Контрол объект для управления полем
      */
@@ -38,6 +43,7 @@ const InnerComponent = <TFieldValues extends FieldValues = FieldValues>({
   disabled,
   defaultValue,
   textHint,
+  label,
   ...props
 }: RadioGroupControlProps<TFieldValues>) => {
   const { field, fieldState } = useController({
@@ -51,10 +57,11 @@ const InnerComponent = <TFieldValues extends FieldValues = FieldValues>({
 
   const { onChange, ...restField } = field
   const { invalid, error } = fieldState
-  const { container, message, ...restClasses } = classes || {}
+  const { container, message, label: labelClass, ...restClasses } = classes || {}
 
   return (
     <div className={cn('', container)}>
+      <p className={cn('desk-body-regular-l w-full pb-4 text-color-dark', labelClass)}>{label}</p>
       <Uncontrolled.RadioGroupBase
         {...props}
         {...restField}

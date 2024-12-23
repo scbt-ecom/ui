@@ -50,7 +50,7 @@ export const RadioItem = memo(
         <li
           className={cn(
             'group flex items-center gap-x-3',
-            '[&:not(:last-child)]:mb-4',
+            'w-full min-w-[200px] [&:not(:last-child)]:mb-4',
             '[&:not(:disabled)]:cursor-pointer',
             {
               'pointer-events-none text-color-disabled': disabled || item?.disabled

@@ -36,8 +36,8 @@ export const RadioGroupBase = forwardRef<HTMLDivElement, RadioGroupBaseProps>(
     const { root, list, ...restClasses } = classes || {}
 
     return (
-      <Root {...props} disabled={disabled} ref={ref} className={cn(className, root)}>
-        <ul className={list}>
+      <Root {...props} disabled={disabled} ref={ref} className={cn('w-full', className, root)}>
+        <ul className={cn('w-full', list)}>
           {options.map((option) => (
             <RadioItem
               key={option.id}

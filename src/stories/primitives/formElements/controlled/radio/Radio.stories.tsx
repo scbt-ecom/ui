@@ -89,6 +89,7 @@ const meta = {
   },
   args: {
     options,
+    label: 'Some label',
     name: 'test'
   }
 } satisfies Meta<typeof Controlled.RadioGroupControl>
@@ -103,6 +104,7 @@ type Story = StoryObj<typeof Controlled.RadioGroupControl>
  * | Props        | Description                         | Type                        | Required  |
  * | ------------ | ----------------------------------- | --------------------------- | --------- |
  * | \`control\`  | Контрол объект для управления полем | \`Control\<TFieldValues\>\` | \`true\`  |
+ * | \`label\`    | Отображаемый лейбл                  | \`Control\<TFieldValues\>\` | \`true\`  |
  * | \`name\`     | Имя поля                            | \`string\`                  | \`true\`  |
  * | \`options\`  | Список отображаемых опций           | \`RadioOption[]\`           | \`true\`  |
  * | \`classes\`  | Дополнительные стили компонента     | \`RadioControlClasses\`     | \`false\` |
