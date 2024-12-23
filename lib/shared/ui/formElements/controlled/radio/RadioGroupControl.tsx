@@ -60,7 +60,7 @@ const InnerComponent = <TFieldValues extends FieldValues = FieldValues>({
   const { container, message, label: labelClass, ...restClasses } = classes || {}
 
   return (
-    <div className={cn('', container)}>
+    <div className={container}>
       <p className={cn('desk-body-regular-l w-full pb-4 text-color-dark', labelClass)}>{label}</p>
       <Uncontrolled.RadioGroupBase
         {...props}
