@@ -1,0 +1,1 @@
+export { mdxTemplate } from './mdx'

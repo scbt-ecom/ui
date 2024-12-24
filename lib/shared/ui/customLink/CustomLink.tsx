@@ -1,3 +1,5 @@
+'use client'
+
 import { type ComponentProps } from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { Icon, type TAllowedIcons } from '$/shared/ui'

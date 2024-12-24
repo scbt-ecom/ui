@@ -3,7 +3,8 @@
 import { memo, useMemo } from 'react'
 import { type Control, type FieldPath, type FieldValues, useController, type UseControllerProps } from 'react-hook-form'
 import type { OnChangeValue } from 'react-select'
-import { SelectBase, type SelectBaseProps, type SelectItemOption } from '$/shared/ui'
+import { type SelectBaseProps, type SelectItemOption, Uncontrolled } from '$/shared/ui'
+import { MessageView } from '$/shared/ui/formElements/ui'
 import { cn } from '$/shared/utils'
 
 type SelectControlClasses = SelectBaseProps['classes'] & {
@@ -16,8 +17,18 @@ type SelectControlProps<
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
 > = UseControllerProps<TFieldValues, TName> &
   SelectBaseProps & {
+    /**
+     * Контрол объект для управления полем
+     */
     control: Control<TFieldValues>
+    /**
+     * Дополнительные стили компонента
+     */
     classes?: SelectControlClasses
+    /**
+     * Дополнительный текст
+     */
+    textHint?: string
   }
 
 function isSingleValue(value: OnChangeValue<SelectItemOption, boolean>): value is SelectItemOption {
@@ -35,6 +46,7 @@ const InnerComponent = <TFieldValues extends FieldValues = FieldValues>({
   defaultValue,
   returnValue,
   options,
+  textHint,
   ...props
 }: SelectControlProps<TFieldValues>) => {
   const { field, fieldState } = useController({
@@ -70,7 +82,7 @@ const InnerComponent = <TFieldValues extends FieldValues = FieldValues>({
 
   return (
     <div className={cn('flex w-full flex-col items-start gap-y-2', container, className)}>
-      <SelectBase
+      <Uncontrolled.SelectBase
         {...props}
         {...restField}
         {...restClasses}
@@ -80,7 +92,12 @@ const InnerComponent = <TFieldValues extends FieldValues = FieldValues>({
         invalid={invalid}
         isDisabled={disabled}
       />
-      {error && <p className={cn('desk-body-regular-m text-color-negative', message)}>{error.message}</p>}
+      <MessageView
+        text={error ? error.message : textHint}
+        className={message}
+        intent={error ? 'error' : 'simple'}
+        disabled={disabled}
+      />
     </div>
   )
 }

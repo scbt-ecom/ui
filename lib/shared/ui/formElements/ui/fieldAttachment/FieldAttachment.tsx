@@ -21,6 +21,7 @@ export interface IFieldAttachmentProps {
   onClickIcon?: (...args: unknown[]) => unknown
   onKeyDownIcon?: (event: React.KeyboardEvent) => unknown
   classes?: TFieldAttachmentClasses
+  disabled?: boolean
 }
 
 export const FieldAttachment = ({
@@ -31,14 +32,17 @@ export const FieldAttachment = ({
   icon,
   onClickIcon,
   onKeyDownIcon,
-  classes
+  classes,
+  disabled
 }: IFieldAttachmentProps) => {
   const isValid = !invalid && isTouched
   const isInvalid = invalid && isTouched
 
   return (
     <div className={cn('mr-4 flex items-center gap-4', classes?.fieldAttachmentRoot)}>
-      {icon && <IconSlot icon={icon} onClickIcon={onClickIcon} onKeyDownIcon={onKeyDownIcon} classes={classes} />}
+      {icon && (
+        <IconSlot disabled={disabled} icon={icon} onClickIcon={onClickIcon} onKeyDownIcon={onKeyDownIcon} classes={classes} />
+      )}
       <ValidateSlot
         badge={badge}
         isInvalid={isInvalid}

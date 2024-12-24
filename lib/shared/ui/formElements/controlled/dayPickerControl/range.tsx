@@ -5,7 +5,7 @@ import { type DateRange } from 'react-day-picker'
 import { format, isValid, parse } from 'date-fns'
 import { getCurrentDate, getInitialValue, RANGE_MASK, SINGLE_VALIDATION_REGEX } from './model'
 import { useClickOutside } from '$/shared/hooks'
-import { Calendar, DATE_VISIBLE_PATTERN, Icon, MaskInput, type MaskInputProps } from '$/shared/ui'
+import { Calendar, DATE_VISIBLE_PATTERN, Icon, type MaskInputProps, Uncontrolled } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
 type CalendarProps = React.ComponentPropsWithoutRef<typeof Calendar>
@@ -96,7 +96,7 @@ export const RangeDayPicker = ({ inputProps, classes, value, onChange, ...props 
 
   return (
     <div ref={containerRef} className='relative w-[600px]'>
-      <MaskInput
+      <Uncontrolled.MaskInput
         mask={RANGE_MASK}
         {...inputProps}
         classes={restClasses}

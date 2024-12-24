@@ -13,6 +13,7 @@ export interface IUploaderControlProps<T extends FieldValues> extends TCommonFie
   classes?: TUploaderClasses
 }
 
+// TODO: переписать как бог велел
 export const UploaderControl = <T extends FieldValues>({
   control,
   disabled,

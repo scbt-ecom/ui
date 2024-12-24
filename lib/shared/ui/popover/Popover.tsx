@@ -58,7 +58,7 @@ export const Popover = ({
       <PopoverPrimitive.Portal container={portalContainer}>
         <PopoverPrimitive.Content
           className={cn(
-            'desk-body-regular-m flex w-64 items-start gap-2 rounded-sm bg-color-white p-4 shadow-sm outline-none',
+            'desk-body-regular-m flex w-fit max-w-64 items-start gap-2 rounded-sm bg-color-white p-4 shadow-sm outline-none',
             classes?.content
           )}
           sideOffset={sideOffset}

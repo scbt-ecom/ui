@@ -3,8 +3,7 @@ import { mergeConfig } from 'vite'
 import { resolve } from 'path'
 
 const config: StorybookConfig = {
-  stories: ['../src/**/*.stories.@(js|jsx|mjs|ts|tsx|mdx)'],
-
+  stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
   addons: [
     '@storybook/addon-onboarding',
     '@storybook/addon-links',
@@ -24,9 +23,6 @@ const config: StorybookConfig = {
     options: {
       strictMode: true
     }
-  },
-  docs: {
-    autodocs: 'tag'
   },
   viteFinal: (config) =>
     mergeConfig(config, {
