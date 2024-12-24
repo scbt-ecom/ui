@@ -33,10 +33,10 @@ const loaderConfig = cva('border-2 border-solid block animate-spin rounded-full'
   }
 })
 
-type ILoaderClasses = {
-  wrapper: string
-  loader: string
-  text: string
+type TLoaderClasses = {
+  wrapper?: string
+  loader?: string
+  text?: string
 }
 
 export interface ILoaderProps
@@ -45,7 +45,7 @@ export interface ILoaderProps
     Omit<HTMLAttributes<HTMLDivElement>, 'className'> {
   intent?: 'primary' | 'secondary' | null
   text?: ReactElement | string
-  classes?: Partial<ILoaderClasses>
+  classes?: TLoaderClasses
 }
 
 export const Loader = ({ size = 'md', classes, intent = 'secondary', position = 'static', text, ...props }: ILoaderProps) => {

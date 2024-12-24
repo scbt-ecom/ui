@@ -1,6 +1,6 @@
 import { type Editor } from '@tiptap/react'
+import { Hint } from '../../../../hint/Hint'
 import { renderEditorPanel } from '../../model/helper'
-import { Hint } from '$/shared/ui/Hint'
 import { cn } from '$/shared/utils'
 
 interface ISetCoreCommandsProps {

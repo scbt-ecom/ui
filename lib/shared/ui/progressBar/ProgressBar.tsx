@@ -1,13 +1,13 @@
 import * as React from 'react'
-import { cn } from '../utils'
+import { cn } from '$/shared/utils'
 
 type IProgressBarClasses = {
-  wrapper: string
-  topContent: string
-  bottomContent: string
-  progressBar: string
-  progress: string
-  loader: string
+  root?: string
+  topContent?: string
+  bottomContent?: string
+  progressBar?: string
+  progress?: string
+  loader?: string
 }
 
 export interface IProgressBarProps {
@@ -15,12 +15,12 @@ export interface IProgressBarProps {
   bottomContent?: React.ReactElement
   progress: number
   maxPercent?: number
-  classes?: Partial<IProgressBarClasses>
+  classes?: IProgressBarClasses
 }
 
 export const ProgressBar = ({ topContent, bottomContent, progress, maxPercent = 100, classes }: IProgressBarProps) => {
   return (
-    <div className={cn('flex w-full flex-col', classes?.wrapper)}>
+    <div className={cn('flex w-full flex-col', classes?.root)}>
       {topContent && <div className={cn('mb-2 flex justify-between gap-5', classes?.topContent)}>{topContent}</div>}
 
       <div className={cn('relative h-2 w-[328xp] rounded-md bg-color-blue-grey-100 desktop:w-[524px]', classes?.progressBar)}>

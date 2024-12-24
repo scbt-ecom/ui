@@ -1,3 +1,4 @@
+import type { TAuthWrapperClasses, TLinksClasses } from '../ui/ui'
 import { type AUTH_PROVIDER_MODE } from './helpers'
 import type { ILoaderProps } from '$/shared/ui'
 
@@ -10,8 +11,7 @@ export type TCombineClasses = {
 }
 
 type TMobileIdClasses = {
-  root?: string
-  wrapper?: string
+  authWrapper?: TAuthWrapperClasses
   innerWrapper?: string
   textContent?: string
   mtsLogo?: string
@@ -19,22 +19,17 @@ type TMobileIdClasses = {
   beelineLogo?: string
   arrowIcon?: string
   badge?: string
-  linksWrapper?: string
-  linksMainLink?: string
-  linksSubLink?: string
+  links?: TLinksClasses
 }
 
 type TEsiaClasses = {
-  root?: string
-  wrapper?: string
+  authWrapper?: TAuthWrapperClasses
   innerWrapper?: string
   textContent?: string
   esiaLogo?: string
   arrowIcon?: string
   badge?: string
-  linksWrapper?: string
-  linksMainLink?: string
-  linksSubLink?: string
+  links?: TLinksClasses
 }
 
 export type TSingleAuthSchema = {

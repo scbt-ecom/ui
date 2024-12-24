@@ -1,6 +1,6 @@
 import { type ReactElement } from 'react'
-import { cn } from '../utils'
-import { Icon } from './icon/Icon'
+import { Icon } from '$/shared/ui'
+import { cn } from '$/shared/utils'
 
 export interface IBreadcrumbLink {
   label: string | ReactElement

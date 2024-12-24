@@ -1,5 +1,5 @@
 import { type HTMLAttributes, type ReactElement } from 'react'
-import { cn } from '../utils'
+import { cn } from '$/shared/utils'
 
 interface IPhoneViewClasses {
   wrapper?: string

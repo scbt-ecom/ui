@@ -1,14 +1,14 @@
-import { cn } from '../utils'
+import { cn } from '$/shared/utils'
 
 type TKeyboardShortcutsClasses = {
-  root: string
-  keys: string
-  key: string
+  root?: string
+  keys?: string
+  key?: string
 }
 
 export interface IKeyboardShortcutsProps {
   keyList: string[]
-  classes?: Partial<TKeyboardShortcutsClasses>
+  classes?: TKeyboardShortcutsClasses
 }
 
 export const KeyboardShortcuts = ({ keyList, classes }: IKeyboardShortcutsProps) => {

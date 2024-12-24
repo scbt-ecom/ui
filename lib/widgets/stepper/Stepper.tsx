@@ -4,10 +4,11 @@ import { type ISingleStepClasses, SingleStep } from './ui/SingleStep'
 import { Heading, ResponsiveContainer, Section } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
-export type TStepperClasses = ISingleStepClasses & {
+export type TStepperClasses = {
   root?: string
   headline?: string
   stepsWrapper?: string
+  step: ISingleStepClasses
 }
 
 export interface ISingleStep {
@@ -35,7 +36,7 @@ export const Stepper = ({ heading, stepsList, classes }: IStepperProps) => {
               classes?.stepsWrapper
             )}
           >
-            {stepsList?.map((step, index) => <SingleStep key={step.title} index={index + 1} {...step} classes={classes} />)}
+            {stepsList?.map((step, index) => <SingleStep key={step.title} index={index + 1} {...step} classes={classes?.step} />)}
           </div>
         </div>
       </ResponsiveContainer>

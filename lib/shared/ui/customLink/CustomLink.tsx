@@ -1,7 +1,7 @@
 import { type ComponentProps } from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
-import { cn } from '../utils'
-import { Icon, type TAllowedIcons } from './icon'
+import { Icon, type TAllowedIcons } from '$/shared/ui'
+import { cn } from '$/shared/utils'
 
 const customLinkConfig = cva(
   'group outline-none transition-all duration-100 p-[2px] rounded-sm border border-solid border-transparent',
