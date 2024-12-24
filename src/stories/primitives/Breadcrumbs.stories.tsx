@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { Breadcrumbs } from '$/shared/ui'
-import type { TLinksList } from '$/shared/ui/Breadcrumbs'
+import type { TLinksList } from '$/shared/ui/breadcrumbs/Breadcrumbs'
 
 const meta = {
   title: 'Navigation/Breadcrumbs',

@@ -3,16 +3,16 @@
 import type { ReactElement, ReactNode } from 'react'
 import type { PopoverContentProps as TPopoverContentPropsBase } from '@radix-ui/react-popover'
 import * as PopoverPrimitive from '@radix-ui/react-popover'
-import { Icon } from './icon/Icon'
+import { Icon } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
 type TPopoverClasses = {
-  root: string
-  content: string
-  trigger: string
-  arrowIcon: string
-  closeIcon: string
-  closeTrigger: string
+  root?: string
+  content?: string
+  trigger?: string
+  arrowIcon?: string
+  closeIcon?: string
+  closeTrigger?: string
 }
 
 interface IPopoverContentProps extends TPopoverContentPropsBase {
@@ -27,7 +27,7 @@ interface IPopoverContentProps extends TPopoverContentPropsBase {
 export interface IPopoverProps extends IPopoverContentProps {
   triggerElement: ReactElement
   children: ReactNode
-  classes?: Partial<TPopoverClasses>
+  classes?: TPopoverClasses
   portalContainer?: PopoverPrimitive.PopoverPortalProps['container']
 }
 

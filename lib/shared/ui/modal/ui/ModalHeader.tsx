@@ -1,18 +1,15 @@
-import * as React from 'react'
-import { Heading } from '../../Heading'
-import { Icon } from '../../icon'
+import type { IModalProps } from '../Modal'
+import { Heading, Icon } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
 export type TModalHeaderClasses = {
-  header: string
-  title: string
-  icon: string
+  header?: string
+  title?: string
+  icon?: string
 }
 
-export interface IModalHeaderProps {
-  title?: string | React.ReactElement
-  closeModal: () => void
-  classes?: Partial<TModalHeaderClasses>
+export interface IModalHeaderProps extends Pick<IModalProps, 'closeModal' | 'title'> {
+  classes?: TModalHeaderClasses
 }
 
 export const ModalHeader = ({ title, closeModal, classes }: IModalHeaderProps) => {

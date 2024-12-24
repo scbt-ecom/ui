@@ -1,6 +1,6 @@
 import { type ReactElement } from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
-import { Icon, type TAllowedIcons } from './icon'
+import { Icon, type TAllowedIcons } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
 const iconConfig = cva('size-8 transition-colors', {

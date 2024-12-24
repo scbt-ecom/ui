@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
+import { Hint } from '../../../hint/Hint'
 import { type TUploaderFileNameClasses } from '../model/types'
-import { Hint } from '$/shared/ui/Hint'
 import { cn } from '$/shared/utils'
 
 interface IFileNameProps {

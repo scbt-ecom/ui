@@ -1,44 +1,37 @@
 // # BASE
-export { Section, type ISectionProps } from './Section'
-export { ResponsiveContainer, type IResponsiveContainerProps } from './ResponsiveContainer'
-export { Button, type IButtonProps } from './button'
-export { ButtonIcon, type IButtonIconProps } from './ButtonIcon'
-export * from './PhoneView'
-export { Badge, type IBadgeProps } from './Badge'
-export { Loader, type ILoaderProps } from './Loader'
-export { Skeleton, type ISkeletonProps } from './Skeleton'
-export * from './calendar'
-export * from './FloatButton'
-export * from './Ligal'
+export * from './section'
+export * from './responsiveContainer'
+export * from './button'
+export * from './buttonIcon'
+export * from './phoneView'
+export * from './badge'
+export * from './loader'
+export * from './skeleton'
+export * from './floatButton'
+export * from './ligal'
 
 // # INTERACTIVE
-export { Accordion, type IAccordionProps } from './accordion'
-export { Hint, type IHintProps } from './Hint'
-export { Popover } from './Popover'
-export { ProgressBar, type IProgressBarProps } from './ProgressBar'
-export { TabsSwitcher, type ITabsSwitcherProps, type ITabRenderContent } from './TabsSwitcher'
-export { Modal } from './modal'
-export { type INotificationProps, Notification } from './notification'
+export * from './accordion'
+export * from './hint'
+export * from './popover'
+export * from './progressBar'
+export * from './tabSwitcher'
+export * from './modal'
+export * from './notification'
 
 // # PROVIDERS
-export { NotificationProvider, type INotificationProviderProps } from './providers'
+export * from './providers'
 
-// # TYPOGRAPHY
-export { Heading, type IHeadingProps } from './Heading'
+export * from './heading'
+export * from './icon'
+export * from './brandLogos'
 
-// # ICONS
-export { Icon, type IconProps, type TAllowedIcons, type SpritesMap } from './icon'
-export { brandLogos, type TBrandLogoVariant } from './brandLogos'
-
-// # NAVIGATION
-export { Breadcrumbs, type IBreadcrumbsProps } from './Breadcrumbs'
-export { CustomLink, type ICustomLinkProps } from './CustomLink'
-
-// # FILES
-export { Document, type IDocumentProps } from './Document'
+export * from './breadcrumbs'
+export * from './customLink'
+export * from './document'
 
 // # OTHERS
-export { type IKeyboardShortcutsProps, KeyboardShortcuts } from './KeyboardShortcuts'
+export * from './keyboardShortcuts'
 
 // # CONTROLLED FORM UI
 export * from './formElements'

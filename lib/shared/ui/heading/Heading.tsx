@@ -2,6 +2,8 @@ import type { ReactNode } from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '$/shared/utils'
 
+// # add h5 and h6 могут использоваться там, где нужно по смыслу и могут быть разного размера на мобилке и декстопе
+
 const headingConfig = cva('', {
   variants: {
     as: {
@@ -9,7 +11,6 @@ const headingConfig = cva('', {
       h2: 'mob-headline-bold-s desktop:desk-headline-bold-m',
       h3: 'mob-title-bold-l desktop:desk-title-bold-l',
       h4: 'mob-title-bold-m desktop:desk-title-bold-s'
-      // # add h5 and h6 if need
     }
   },
   defaultVariants: {
