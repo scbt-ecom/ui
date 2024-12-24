@@ -9,5 +9,7 @@ export type { CheckboxBaseProps, CheckedState } from './checkbox'
 import { DayPickerBase } from './dayPicker'
 import { SwitchBase } from './switch'
 export type { SwitchBaseProps } from './switch'
+import { RadioGroupBase } from './radio'
+export type { RadioGroupBaseProps, RadioOption } from './radio'
 
-export const Uncontrolled = { InputBase, MaskInput, SelectBase, CheckboxBase, DayPickerBase, SwitchBase }
+export const Uncontrolled = { InputBase, MaskInput, SelectBase, CheckboxBase, DayPickerBase, SwitchBase, RadioGroupBase }
