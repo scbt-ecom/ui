@@ -28,7 +28,7 @@ type SelectControlProps<
     /**
      * Дополнительный текст
      */
-    textHint?: string
+    helperText?: string
   }
 
 function isSingleValue(value: OnChangeValue<SelectItemOption, boolean>): value is SelectItemOption {
@@ -46,7 +46,7 @@ const InnerComponent = <TFieldValues extends FieldValues = FieldValues>({
   defaultValue,
   returnValue,
   options,
-  textHint,
+  helperText,
   ...props
 }: SelectControlProps<TFieldValues>) => {
   const { field, fieldState } = useController({
@@ -93,7 +93,7 @@ const InnerComponent = <TFieldValues extends FieldValues = FieldValues>({
         isDisabled={disabled}
       />
       <MessageView
-        text={error ? error.message : textHint}
+        text={error ? error.message : helperText}
         className={message}
         intent={error ? 'error' : 'simple'}
         disabled={disabled}

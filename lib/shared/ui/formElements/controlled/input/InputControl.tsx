@@ -21,7 +21,7 @@ type InputControlProps<
     /**
      * Дополнительный текст
      */
-    textHint?: string
+    helperText?: string
     /**
      * Дополнительные стили компонента
      */
@@ -36,7 +36,7 @@ const InnerComponent = <TFieldValues extends FieldValues = FieldValues>({
   disabled,
   rules,
   shouldUnregister,
-  textHint,
+  helperText,
   classes,
   ...props
 }: InputControlProps<TFieldValues>) => {
@@ -56,7 +56,7 @@ const InnerComponent = <TFieldValues extends FieldValues = FieldValues>({
     <div className={className}>
       <Uncontrolled.InputBase {...props} {...field} classes={restClasses} invalid={invalid} />
       <MessageView
-        text={error?.message || textHint}
+        text={error?.message || helperText}
         className={message}
         intent={error ? 'error' : 'simple'}
         disabled={disabled}

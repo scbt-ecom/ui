@@ -25,7 +25,7 @@ type MaskInputControlProps<
     /**
      * Дополнительный текст
      */
-    textHint?: string
+    helperText?: string
   }
 
 const InnerComponent = <TFieldValues extends FieldValues = FieldValues>({
@@ -37,7 +37,7 @@ const InnerComponent = <TFieldValues extends FieldValues = FieldValues>({
   rules,
   shouldUnregister,
   classes,
-  textHint,
+  helperText,
   ...props
 }: MaskInputControlProps<TFieldValues>) => {
   const { field, fieldState } = useController({
@@ -56,7 +56,7 @@ const InnerComponent = <TFieldValues extends FieldValues = FieldValues>({
     <div className={className}>
       <Uncontrolled.MaskInput {...props} {...field} invalid={invalid} classes={restClasses} />
       <MessageView
-        text={error?.message || textHint}
+        text={error?.message || helperText}
         className={message}
         intent={error ? 'error' : 'simple'}
         disabled={disabled}

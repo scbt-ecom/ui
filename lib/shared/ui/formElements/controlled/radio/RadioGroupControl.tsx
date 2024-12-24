@@ -30,7 +30,7 @@ type RadioGroupControlProps<
     /**
      * Дополнительный текст
      */
-    textHint?: string
+    helperText?: string
   }
 
 const InnerComponent = <TFieldValues extends FieldValues = FieldValues>({
@@ -42,7 +42,7 @@ const InnerComponent = <TFieldValues extends FieldValues = FieldValues>({
   shouldUnregister,
   disabled,
   defaultValue,
-  textHint,
+  helperText,
   label,
   ...props
 }: RadioGroupControlProps<TFieldValues>) => {
@@ -71,7 +71,7 @@ const InnerComponent = <TFieldValues extends FieldValues = FieldValues>({
         classes={restClasses}
       />
       <MessageView
-        text={error?.message || textHint}
+        text={error?.message || helperText}
         className={message}
         intent={error ? 'error' : 'simple'}
         disabled={disabled}
