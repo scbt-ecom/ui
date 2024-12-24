@@ -4,7 +4,7 @@ import { memo, useMemo } from 'react'
 import { type Control, type FieldPath, type FieldValues, useController, type UseControllerProps } from 'react-hook-form'
 import type { OnChangeValue } from 'react-select'
 import { type SelectBaseProps, type SelectItemOption, Uncontrolled } from '$/shared/ui'
-import { MessageView } from '$/shared/ui/formElements/ui'
+import { FieldContainer, MessageView, type TFieldContainerConfig } from '$/shared/ui/formElements/ui'
 import { cn } from '$/shared/utils'
 
 type SelectControlClasses = SelectBaseProps['classes'] & {
@@ -28,7 +28,11 @@ type SelectControlProps<
     /**
      * Дополнительный текст
      */
-    textHint?: string
+    helperText?: string
+    /**
+     * Размер контейнера для поля
+     */
+    size?: TFieldContainerConfig['size']
   }
 
 function isSingleValue(value: OnChangeValue<SelectItemOption, boolean>): value is SelectItemOption {
@@ -38,7 +42,6 @@ function isSingleValue(value: OnChangeValue<SelectItemOption, boolean>): value i
 const InnerComponent = <TFieldValues extends FieldValues = FieldValues>({
   control,
   classes,
-  className,
   name,
   rules,
   shouldUnregister,
@@ -46,7 +49,8 @@ const InnerComponent = <TFieldValues extends FieldValues = FieldValues>({
   defaultValue,
   returnValue,
   options,
-  textHint,
+  helperText,
+  size,
   ...props
 }: SelectControlProps<TFieldValues>) => {
   const { field, fieldState } = useController({
@@ -81,7 +85,7 @@ const InnerComponent = <TFieldValues extends FieldValues = FieldValues>({
   }, [options, returnValue, value])
 
   return (
-    <div className={cn('flex w-full flex-col items-start gap-y-2', container, className)}>
+    <FieldContainer size={size} className={cn('items-start gap-y-2', container)}>
       <Uncontrolled.SelectBase
         {...props}
         {...restField}
@@ -93,12 +97,12 @@ const InnerComponent = <TFieldValues extends FieldValues = FieldValues>({
         isDisabled={disabled}
       />
       <MessageView
-        text={error ? error.message : textHint}
+        text={error ? error.message : helperText}
         className={message}
         intent={error ? 'error' : 'simple'}
         disabled={disabled}
       />
-    </div>
+    </FieldContainer>
   )
 }
 

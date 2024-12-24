@@ -30,7 +30,7 @@ export type SwitchControlProps<
     /**
      * Дополнительный текст
      */
-    textHint?: string
+    helperText?: string
     /**
      * Текст всплывающей подсказки
      */
@@ -51,7 +51,7 @@ const InnerComponent = <TFieldValues extends FieldValues = FieldValues>({
   disabled,
   shouldUnregister,
   children,
-  textHint,
+  helperText,
   tooltip,
   popoverProps,
   ...props
@@ -92,12 +92,12 @@ const InnerComponent = <TFieldValues extends FieldValues = FieldValues>({
       <label
         htmlFor={id}
         className={cn('mob-body-regular-l text-color-dark', {
-          'flex flex-col': Boolean(textHint),
+          'flex flex-col': Boolean(helperText),
           'text-color-disabled': disabled
         })}
       >
         {children}
-        {textHint && (
+        {helperText && (
           <p
             className={cn(
               'mob-body-regular-s text-color-tetriary',
@@ -107,7 +107,7 @@ const InnerComponent = <TFieldValues extends FieldValues = FieldValues>({
               message
             )}
           >
-            {textHint}
+            {helperText}
           </p>
         )}
       </label>

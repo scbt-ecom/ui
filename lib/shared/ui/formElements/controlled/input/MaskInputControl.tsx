@@ -3,7 +3,7 @@
 import { memo } from 'react'
 import { type Control, type FieldPath, type FieldValues, useController, type UseControllerProps } from 'react-hook-form'
 import { type MaskInputProps, Uncontrolled } from '../../uncontrolled'
-import { MessageView } from '$/shared/ui/formElements/ui'
+import { FieldContainer, MessageView, type TFieldContainerConfig } from '$/shared/ui/formElements/ui'
 
 type MaskInputClasses = MaskInputProps['classes'] & {
   message?: string
@@ -25,11 +25,14 @@ type MaskInputControlProps<
     /**
      * Дополнительный текст
      */
-    textHint?: string
+    helperText?: string
+    /**
+     * Размер контейнера для поля
+     */
+    size?: TFieldContainerConfig['size']
   }
 
 const InnerComponent = <TFieldValues extends FieldValues = FieldValues>({
-  className,
   control,
   name,
   defaultValue,
@@ -37,7 +40,8 @@ const InnerComponent = <TFieldValues extends FieldValues = FieldValues>({
   rules,
   shouldUnregister,
   classes,
-  textHint,
+  helperText,
+  size,
   ...props
 }: MaskInputControlProps<TFieldValues>) => {
   const { field, fieldState } = useController({
@@ -50,18 +54,18 @@ const InnerComponent = <TFieldValues extends FieldValues = FieldValues>({
   })
 
   const { error, invalid } = fieldState
-  const { message, ...restClasses } = classes || {}
+  const { message, container, ...restClasses } = classes || {}
 
   return (
-    <div className={className}>
+    <FieldContainer size={size} className={container}>
       <Uncontrolled.MaskInput {...props} {...field} invalid={invalid} classes={restClasses} />
       <MessageView
-        text={error?.message || textHint}
+        text={error?.message || helperText}
         className={message}
         intent={error ? 'error' : 'simple'}
         disabled={disabled}
       />
-    </div>
+    </FieldContainer>
   )
 }
 

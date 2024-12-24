@@ -64,7 +64,7 @@ type Story = StoryObj<typeof Controlled.DayPickerControl>
  * | \`control\`  | Контрол объект для управления полем | \`Control\<TFieldValues\>\`      | \`true\`  |
  * | \`name\`     | Имя поля                            | \`string\`                       | \`true\`  |
  * | \`classes\`  | Дополнительные стили компонента     | \`DayPickerControlClasses\`      | \`false\` |
- * | \`textHint\` | Дополнительный текст                | \`string\`                       | \`false\` |
+ * | \`helperText\` | Дополнительный текст                | \`string\`                       | \`false\` |
  *
  * Остальные свойства наследуются от [DayPicker](?path=/docs/base-daypickerbase--docs)\n
  */

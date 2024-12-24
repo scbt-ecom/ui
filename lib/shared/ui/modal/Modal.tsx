@@ -8,9 +8,9 @@ import { ModalHeader, type TModalHeaderClasses } from './ui/ModalHeader'
 import { cn } from '$/shared/utils'
 
 type IModalClasses = {
-  overlay: string
-  modal: string
-  content: string
+  overlay?: string
+  modal?: string
+  content?: string
   modalHeader?: TModalHeaderClasses
 }
 

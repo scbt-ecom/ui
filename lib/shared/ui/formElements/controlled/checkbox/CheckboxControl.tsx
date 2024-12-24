@@ -32,7 +32,7 @@ type CheckboxControlProps<
     /**
      * Дополнительный текст
      */
-    textHint?: string
+    helperText?: string
   }
 
 const InnerComponent = <TFieldValues extends FieldValues = FieldValues>({
@@ -45,7 +45,7 @@ const InnerComponent = <TFieldValues extends FieldValues = FieldValues>({
   defaultValue,
   disabled,
   children,
-  textHint,
+  helperText,
   ...props
 }: CheckboxControlProps<TFieldValues>) => {
   const { field, fieldState } = useController({
@@ -90,7 +90,7 @@ const InnerComponent = <TFieldValues extends FieldValues = FieldValues>({
         </label>
       </div>
       <MessageView
-        text={error ? error.message : textHint}
+        text={error ? error.message : helperText}
         className={message}
         intent={error ? 'error' : 'simple'}
         disabled={disabled}

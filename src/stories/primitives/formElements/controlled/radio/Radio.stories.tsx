@@ -108,7 +108,7 @@ type Story = StoryObj<typeof Controlled.RadioGroupControl>
  * | \`name\`     | Имя поля                            | \`string\`                  | \`true\`  |
  * | \`options\`  | Список отображаемых опций           | \`RadioOption[]\`           | \`true\`  |
  * | \`classes\`  | Дополнительные стили компонента     | \`RadioControlClasses\`     | \`false\` |
- * | \`textHint\` | Дополнительный текст                | \`string\`                  | \`false\` |
+ * | \`helperText\` | Дополнительный текст                | \`string\`                  | \`false\` |
  *
  * Остальные свойства наследуются от [RadioGroup](?path=/docs/base-radiogroupbase--docs)\n
  */

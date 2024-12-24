@@ -61,7 +61,7 @@ type Story = StoryObj<typeof Controlled.MaskInputControl>
  * | \`control\`  | Контрол объект для управления полем | \`Control\<TFieldValues\>\`  | \`true\`  |
  * | \`name\`     | Имя поля                            | \`string\`                   | \`true\`  |
  * | \`classes\`  | Дополнительные стили компонента     | \`MaskInputClasses\`         | \`false\` |
- * | \`textHint\` | Дополнительный текст                | \`string\`                   | \`false\` |
+ * | \`helperText\` | Дополнительный текст                | \`string\`                   | \`false\` |
  *
  * Остальные свойства наследуются от [MaskInput](?path=/docs/base-maskinput--docs)\n
  */
