@@ -5,7 +5,4 @@ export interface THeadingOptions {
   level: THeadingLevel
 }
 
-export interface TColorsOptions {
-  name: string
-  color: `#${string}`
-}
+export type TColorOption = `#${string}`

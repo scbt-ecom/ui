@@ -1,8 +1,7 @@
 import { useCallback } from 'react'
 import { type Editor } from '@tiptap/react'
 import { z } from 'zod'
-import { Icon } from '$/shared/ui'
-import { Notification } from '$/shared/ui'
+import { Icon, Notification } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
 interface ISetLinkProps {
@@ -42,7 +41,7 @@ export const SetLink = ({ editor }: ISetLinkProps) => {
       title='Обернуть в ссылку'
       onClick={handleCreateLink}
       className={cn(
-        'flex size-8 cursor-pointer items-center justify-center rounded-sm text-color-secondary outline-none transition-colors hover:bg-color-primary-hover hover:text-color-white focus:bg-color-primary-focus focus:text-color-white',
+        'flex size-7 cursor-pointer items-center justify-center rounded-sm text-color-secondary outline-none transition-colors hover:bg-color-primary-hover hover:text-color-white focus:bg-color-primary-focus focus:text-color-white',
         { '!bg-color-primary-hover !text-color-white': editor.isActive('link') }
       )}
     >
