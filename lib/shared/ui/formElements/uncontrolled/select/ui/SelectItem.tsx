@@ -42,6 +42,11 @@ export const SelectItem = ({
 }: SelectItemProps) => {
   const ContentWrapper = isMulti || data.attachment ? 'div' : Fragment
 
+  const onClick = () => {
+    // eslint-disable-next-line no-console
+    console.log('select option clicked')
+  }
+
   return (
     <components.Option
       {...props}
@@ -52,7 +57,10 @@ export const SelectItem = ({
       innerRef={innerRef}
       label={label}
       isSelected={isSelected}
-      innerProps={innerProps}
+      innerProps={{
+        ...innerProps,
+        onClick
+      }}
       cx={(_, classNames) =>
         cn(
           'unset-all-apply desk-body-regular-l cursor-pointer rounded-sm px-2 py-4 bg-color-white',
