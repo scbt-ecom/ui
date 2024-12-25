@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { forwardRef } from 'react'
 import SelectPrimitive, { type Props } from 'react-select'
 import {
@@ -66,6 +67,7 @@ export const SelectBase = forwardRef<SelectRef, SelectBaseProps>(
       className,
       invalid,
       filterOptionDisabled,
+      value,
       ...props
     },
     ref
@@ -84,6 +86,8 @@ export const SelectBase = forwardRef<SelectRef, SelectBaseProps>(
      * - включен режим мульти
      */
     const isFilterDisabled = filterOptionDisabled || (!isSearchable && !isMulti) ? null : undefined
+
+    console.log('SelectBase value: ', value)
 
     return (
       <SelectPrimitive
