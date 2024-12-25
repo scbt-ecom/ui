@@ -11,7 +11,7 @@ type InputBaseClasses = {
 
 type FieldAttachmentProps = React.ComponentPropsWithoutRef<typeof FieldAttachment>
 
-export type InputBaseProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'placeholder'> & {
+export type InputBaseProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'placeholder' | 'size'> & {
   /**
    * Дополнительные стили внутренних компонентов
    */

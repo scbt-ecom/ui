@@ -64,7 +64,7 @@ type Story = StoryObj<typeof Controlled.CheckboxControl>
  * | \`name\`     | Имя поля                            | \`string\`                      | \`true\`  |
  * | \`children\` | Отображаемый лейбл                  | \`React.ReactElement | string\` | \`true\`  |
  * | \`classes\`  | Дополнительные стили компонента     | \`CheckboxControlClasses\`      | \`false\` |
- * | \`textHint\` | Дополнительный текст                | \`string\`                      | \`false\` |
+ * | \`helperText\` | Дополнительный текст                | \`string\`                      | \`false\` |
  *
  * Остальные свойства наследуются от [Checkbox](?path=/docs/base-checkboxbase--docs)\n
  */

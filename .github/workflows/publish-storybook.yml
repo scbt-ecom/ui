@@ -41,7 +41,7 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
 
     runs-on: ubuntu-22.04
-    needs: build
+    needs: build-storybook
 
     steps:
       - name: Publish to GitHub Pages 🚀

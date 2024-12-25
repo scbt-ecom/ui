@@ -41,6 +41,7 @@ export const generateDocs = (storiesPath: string | string[], options?: MDXOption
 
       const docContent = getDocsContent(component, filepath.replace(/\\/g, '/'), code, options)
 
+      logger?.info(`Generate MDX for ${component}`)
       writeFileSync(docFilepath, docContent.trim(), 'utf-8')
     }
   })

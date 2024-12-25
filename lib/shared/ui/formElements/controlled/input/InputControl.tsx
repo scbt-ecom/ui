@@ -3,7 +3,7 @@
 import { memo } from 'react'
 import { type Control, type FieldValues, type Path, useController, type UseControllerProps } from 'react-hook-form'
 import { type InputBaseProps, Uncontrolled } from '../../uncontrolled'
-import { MessageView } from '$/shared/ui/formElements/ui'
+import { FieldContainer, MessageView, type TFieldContainerConfig } from '$/shared/ui/formElements/ui'
 
 type InputControlClasses = InputBaseProps['classes'] & {
   message?: string
@@ -21,23 +21,27 @@ type InputControlProps<
     /**
      * Дополнительный текст
      */
-    textHint?: string
+    helperText?: string
     /**
      * Дополнительные стили компонента
      */
     classes?: InputControlClasses
+    /**
+     * Размер контейнера для поля
+     */
+    size?: TFieldContainerConfig['size']
   }
 
 const InnerComponent = <TFieldValues extends FieldValues = FieldValues>({
-  className,
   control,
   name,
   defaultValue,
   disabled,
   rules,
   shouldUnregister,
-  textHint,
+  helperText,
   classes,
+  size,
   ...props
 }: InputControlProps<TFieldValues>) => {
   const { field, fieldState } = useController({
@@ -50,18 +54,18 @@ const InnerComponent = <TFieldValues extends FieldValues = FieldValues>({
   })
 
   const { error, invalid } = fieldState
-  const { message, ...restClasses } = classes || {}
+  const { message, container, ...restClasses } = classes || {}
 
   return (
-    <div className={className}>
+    <FieldContainer size={size} className={container}>
       <Uncontrolled.InputBase {...props} {...field} classes={restClasses} invalid={invalid} />
       <MessageView
-        text={error?.message || textHint}
+        text={error?.message || helperText}
         className={message}
         intent={error ? 'error' : 'simple'}
         disabled={disabled}
       />
-    </div>
+    </FieldContainer>
   )
 }
 

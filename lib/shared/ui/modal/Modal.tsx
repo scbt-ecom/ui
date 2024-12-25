@@ -4,21 +4,24 @@ import * as React from 'react'
 import { createPortal } from 'react-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import { modalContentAnimation, modalOverlayAnimation } from './model/helpers'
-import { type IModalHeaderProps, ModalHeader, type TModalHeaderClasses } from './ui/ModalHeader'
+import { ModalHeader, type TModalHeaderClasses } from './ui/ModalHeader'
 import { cn } from '$/shared/utils'
 
-type IModalClasses = TModalHeaderClasses & {
-  overlay: string
-  modal: string
-  content: string
+type IModalClasses = {
+  overlay?: string
+  modal?: string
+  content?: string
+  modalHeader?: TModalHeaderClasses
 }
 
-export interface IModalProps extends IModalHeaderProps {
+export interface IModalProps {
   children: React.ReactElement
   isModalOpen: boolean
-  classes?: Partial<IModalClasses>
+  classes?: IModalClasses
   isPortal?: boolean
   portalContainer?: HTMLElement
+  title?: string | React.ReactElement
+  closeModal: () => void
 }
 
 export const Modal = ({
@@ -55,7 +58,7 @@ export const Modal = ({
             )}
             {...modalContentAnimation}
           >
-            <ModalHeader title={title} closeModal={closeModal} classes={classes} />
+            <ModalHeader title={title} closeModal={closeModal} classes={classes?.modalHeader} />
             <div className={cn('mt-4', classes?.content)}>{children}</div>
           </motion.div>
         </motion.div>

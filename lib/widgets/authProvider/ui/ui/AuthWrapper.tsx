@@ -1,12 +1,14 @@
 import { type ILoaderProps, Loader } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
+export type TAuthWrapperClasses = {
+  root?: string
+  wrapper?: string
+}
+
 export interface IAuthWrapper {
   children: React.ReactElement
-  classes?: {
-    root?: string
-    wrapper?: string
-  }
+  classes?: TAuthWrapperClasses
   isLoading?: boolean
   loaderProps?: ILoaderProps
 }

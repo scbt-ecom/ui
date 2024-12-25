@@ -2,13 +2,15 @@ import type { TSingleAuthSchema } from '../../model/types'
 import { CustomLink } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
+export type TLinksClasses = {
+  linksWrapper?: string
+  linksMainLink?: string
+  linksSubLink?: string
+}
+
 interface ILinksProps extends Pick<TSingleAuthSchema, 'subLink' | 'mainLink'> {
   isMobile: boolean
-  classes?: {
-    linksWrapper?: string
-    linksMainLink?: string
-    linksSubLink?: string
-  }
+  classes?: TLinksClasses
 }
 
 export const Links = ({ mainLink, subLink, isMobile, classes }: ILinksProps) => {

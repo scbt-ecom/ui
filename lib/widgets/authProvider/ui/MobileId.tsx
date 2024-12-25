@@ -8,7 +8,7 @@ export const MobileId = ({ mainLink, subLink, isLoading, badge, loaderProps, cla
   const { isMobile } = useDevice()
 
   return (
-    <AuthWrapper isLoading={isLoading} loaderProps={loaderProps} classes={classes}>
+    <AuthWrapper isLoading={isLoading} loaderProps={loaderProps} classes={classes?.authWrapper}>
       <div
         className={cn(
           'flex flex-1 items-center justify-between gap-1',
@@ -22,7 +22,7 @@ export const MobileId = ({ mainLink, subLink, isLoading, badge, loaderProps, cla
             <Icon name='logos/megafon' className={cn('relative z-[8] -ml-4 size-7 desktop:size-8', classes?.megafonLogo)} />
             <Icon name='logos/beeline' className={cn('relative z-[7] -ml-4 size-7 desktop:size-8', classes?.beelineLogo)} />
           </div>
-          <Links mainLink={mainLink} subLink={subLink} isMobile={isMobile} classes={classes} />
+          <Links mainLink={mainLink} subLink={subLink} isMobile={isMobile} classes={classes?.links} />
           <Icon name='arrows/arrowRight' className={cn('mobile:hidden', classes?.arrowIcon)} />
         </div>
         {badge && <Badge className={cn('bg-color-positive', classes?.badge)}>{badge}</Badge>}

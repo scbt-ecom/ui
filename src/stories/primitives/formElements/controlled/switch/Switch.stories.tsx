@@ -69,7 +69,7 @@ type Story = StoryObj<typeof Controlled.SwitchControl>
  * | \`name\`         | Имя поля                                       | \`string\`                      | \`true\`  |
  * | \`children\`     | Отображаемый лейбл                             | \`React.ReactElement | string\` | \`true\`  |
  * | \`classes\`      | Дополнительные стили компонента                | \`SwitchControlClasses\`        | \`false\` |
- * | \`textHint\`     | Дополнительный текст                           | \`string\`                      | \`false\` |
+ * | \`helperText\`     | Дополнительный текст                           | \`string\`                      | \`false\` |
  * | \`tooltip\`      | Текст всплывающей подсказки                    | \`React.ReactElement | string\` | \`false\` |
  * | \`popoverProps\` | Свойства \`Popover\` компонента                | \`PopoverProps\`                | \`false\` |
  *
@@ -81,7 +81,7 @@ export const Base: Story = {
 
 export const WithTextHint: Story = {
   args: {
-    textHint: 'Secondary text'
+    helperText: 'Secondary text'
   },
   render: (props) => <Form schema={schema} {...props} />
 }

@@ -18,7 +18,24 @@ export type MaskInputProps = InputBaseProps & {
   /**
    * маска, по которой будет определяться валидация символов
    */
-  mask: Parameters<typeof useInputMask>[0]['mask']
+  mask:
+    | 'datetime'
+    | 'email'
+    | 'numeric'
+    | 'currency'
+    | 'decimal'
+    | 'integer'
+    | 'percentage'
+    | 'url'
+    | 'ip'
+    | 'mac'
+    | 'ssn'
+    | 'brl-currency'
+    | 'cpf'
+    | 'cnpj'
+    | (string & {})
+    | (string[] & {})
+    | null
   /**
    * дополнительные валидаторы спец символов в маске
    */

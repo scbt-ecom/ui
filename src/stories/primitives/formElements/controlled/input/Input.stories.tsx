@@ -60,7 +60,7 @@ type Story = StoryObj<typeof Controlled.InputControl>
  * | \`control\`  | Контрол объект для управления полем | \`Control\<TFieldValues\>\`  | \`true\`  |
  * | \`name\`     | Имя поля                            | \`string\`                   | \`true\`  |
  * | \`classes\`  | Дополнительные стили компонента     | \`InputControlClasses\`      | \`false\` |
- * | \`textHint\` | Дополнительный текст                | \`string\`                   | \`false\` |
+ * | \`helperText\` | Дополнительный текст                | \`string\`                   | \`false\` |
  *
  * Остальные свойства наследуются от [Input](?path=/docs/base-inputbase--docs)\n
  */
