@@ -1,5 +1,5 @@
 import { type ReactElement } from 'react'
-import { type FieldValues, type Path, useController, type UseControllerProps } from 'react-hook-form'
+import { type FieldValues, useController } from 'react-hook-form'
 import { type TCommonFieldProps } from '../model/types'
 import { Editor } from './ui/Editor'
 
@@ -18,8 +18,7 @@ export interface ICommonEditorProps {
 }
 
 export type IEditorControlProps<T extends FieldValues> = TCommonFieldProps<T> &
-  ICommonEditorProps &
-  UseControllerProps<T, Path<T>> & {
+  ICommonEditorProps & {
     classes?: TEditorControlClasses
   }
 
@@ -30,10 +29,6 @@ export const EditorControl = <T extends FieldValues>({
   editable = true,
   classes,
   name,
-  shouldUnregister,
-  rules,
-  disabled,
-  defaultValue,
   ...props
 }: IEditorControlProps<T>) => {
   const {
@@ -41,11 +36,7 @@ export const EditorControl = <T extends FieldValues>({
     fieldState: { error }
   } = useController({
     control,
-    name,
-    shouldUnregister,
-    rules,
-    disabled,
-    defaultValue
+    name
   })
 
   return (
