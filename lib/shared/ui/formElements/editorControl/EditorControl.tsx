@@ -1,5 +1,5 @@
 import { type ReactElement } from 'react'
-import { Controller, type FieldValues } from 'react-hook-form'
+import { type FieldValues, useController } from 'react-hook-form'
 import { type TCommonFieldProps } from '../model/types'
 import { Editor } from './ui/Editor'
 
@@ -28,24 +28,27 @@ export const EditorControl = <T extends FieldValues>({
   helperText,
   editable = true,
   classes,
+  name,
   ...props
 }: IEditorControlProps<T>) => {
+  const {
+    field: { onChange, value },
+    fieldState: { error }
+  } = useController({
+    control,
+    name
+  })
+
   return (
-    <Controller
-      name={props.name}
-      control={control}
-      render={({ field: { onChange, value }, fieldState: { error } }) => (
-        <Editor
-          onChange={onChange}
-          value={value ?? ''}
-          editable={editable}
-          error={error}
-          helperText={helperText}
-          label={label}
-          classes={classes}
-          {...props}
-        />
-      )}
+    <Editor
+      onChange={onChange}
+      value={value ?? ''}
+      editable={editable}
+      error={error}
+      helperText={helperText}
+      label={label}
+      classes={classes}
+      {...props}
     />
   )
 }

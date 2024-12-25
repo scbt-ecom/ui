@@ -30,7 +30,7 @@ export const Editor = ({ onChange, value, label, error, classes, editable, helpe
         return html.replace(/\xA0/g, ' ')
       },
       attributes: {
-        class: cn('p-4 outline-none min-h-[240px]', classes?.editor)
+        class: cn('p-4 outline-none min-h-[240px] max-h-[500px] customScrollbar-y overflow-y-auto break-keep', classes?.editor)
       }
     },
     ...props
@@ -41,7 +41,7 @@ export const Editor = ({ onChange, value, label, error, classes, editable, helpe
   }
 
   return (
-    <div className={cn('flex flex-col', classes?.root)}>
+    <div className={cn('flex max-w-[528px] flex-col mobile:w-[340px]', classes?.root)}>
       <div className={cn('relative flex w-full flex-col rounded-md border border-solid border-warm-grey-200', classes?.wrapper)}>
         <Toolbar editor={editor} />
         {!value && <p className={cn('absolute left-4 top-16 text-color-disabled', classes?.label)}>{label}</p>}

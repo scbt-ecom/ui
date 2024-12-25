@@ -1,5 +1,5 @@
 import type { Editor } from '@tiptap/react'
-import type { TColorsOptions, THeadingOptions } from './types'
+import type { TColorOption, THeadingOptions } from './types'
 import { Icon } from '$/shared/ui'
 
 export const headingsOptions: THeadingOptions[] = [
@@ -7,8 +7,6 @@ export const headingsOptions: THeadingOptions[] = [
   { shortcuts: ['ctrl', 'alt', '2'], level: 2 },
   { shortcuts: ['ctrl', 'alt', '3'], level: 3 },
   { shortcuts: ['ctrl', 'alt', '4'], level: 4 }
-  // {shortcuts: ['ctrl', 'alt', '5'],level: 5},
-  // {shortcuts: ['ctrl', 'alt', '6'],level: 6}
 ]
 
 export const editorHeadingClasses: Record<number, string> = {
@@ -19,19 +17,19 @@ export const editorHeadingClasses: Record<number, string> = {
   //TODO: Добавить h5/h6 для компонента heading , после добавить сюда
 }
 
-export const editorAllowedColors: TColorsOptions[] = [
-  { name: 'Черный', color: '#292929' },
-  { name: 'Белый', color: '#FFFFFF' },
-  { name: 'Темный-серый', color: '#40465A' },
-  { name: 'Темный-серый альтернативный', color: '#5A6E85' },
-  { name: 'Светло-серый', color: '#A9B6C5' },
-  { name: 'Светло-серый альтернативный', color: '#94A4B7' },
-  { name: 'Синий основной', color: '#003790' },
-  { name: 'Синий альтернативный', color: '#042E73' },
-  { name: 'Голубой', color: '#809BC7' },
-  { name: 'Зеленый', color: '#76BC21' },
-  { name: 'Оранжевый', color: '#F49F00' },
-  { name: 'Красный', color: '#F42500' }
+export const editorAllowedColors: TColorOption[] = [
+  '#292929',
+  '#FFFFFF',
+  '#40465A',
+  '#5A6E85',
+  '#A9B6C5',
+  '#94A4B7',
+  '#003790',
+  '#042E73',
+  '#809BC7',
+  '#76BC21',
+  '#F49F00',
+  '#F42500'
 ]
 
 export const renderEditorPanel = (editor: Editor) => [

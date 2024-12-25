@@ -10,11 +10,11 @@ interface ISetHeadingsProps {
 export const SetHeadings = ({ editor }: ISetHeadingsProps) => {
   return (
     <Popover
-      classes={{ content: 'w-full' }}
+      classes={{ content: 'w-full ' }}
       triggerElement={
         <span
           title='Добавить заголовок'
-          className='flex size-8 cursor-pointer items-center justify-center rounded-sm text-color-secondary outline-none transition-colors hover:bg-color-primary-hover hover:text-color-white'
+          className='flex size-7 cursor-pointer items-center justify-center rounded-sm text-color-secondary outline-none transition-colors hover:bg-color-primary-hover hover:text-color-white'
         >
           <Icon name='editor/heading' className='size-4' />
         </span>
