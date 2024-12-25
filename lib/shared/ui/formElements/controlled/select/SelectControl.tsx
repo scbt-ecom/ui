@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 'use client'
 
 import { memo, useMemo } from 'react'
@@ -83,6 +84,9 @@ const InnerComponent = <TFieldValues extends FieldValues = FieldValues>({
       return options.find((option) => (returnValue ? returnValue(option) : option.value) === value) || null
     }
   }, [options, returnValue, value])
+
+  console.log('SelectControl value: ', value)
+  console.log('SelectControl selected value: ', selected)
 
   return (
     <FieldContainer size={size} className={cn('items-start gap-y-2', container)}>
