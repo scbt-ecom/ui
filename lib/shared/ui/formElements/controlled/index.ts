@@ -1,4 +1,5 @@
 import { CheckboxControl } from './checkbox'
+import { ComboboxControl } from './combobox'
 import { DayPickerControl } from './dayPickerControl'
 import { InputControl, MaskInputControl } from './input'
 import { RadioGroupControl } from './radio'
@@ -12,5 +13,6 @@ export const Controlled = {
   CheckboxControl,
   SelectControl,
   SwitchControl,
-  RadioGroupControl
+  RadioGroupControl,
+  ComboboxControl
 }
