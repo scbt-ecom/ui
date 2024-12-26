@@ -42,9 +42,13 @@ export const SelectItem = ({
 }: SelectItemProps) => {
   const ContentWrapper = isMulti || data.attachment ? 'div' : Fragment
 
-  const onClick = () => {
+  const onClick = (event: React.MouseEvent<HTMLDivElement>) => {
     // eslint-disable-next-line no-console
     console.log('select option clicked')
+
+    if (innerProps.onClick) {
+      innerProps.onClick(event)
+    }
   }
 
   return (
