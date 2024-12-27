@@ -68,6 +68,7 @@ export const SelectBase = forwardRef<SelectRef, SelectBaseProps>(
       invalid,
       filterOptionDisabled,
       value,
+      name,
       ...props
     },
     ref
@@ -93,6 +94,8 @@ export const SelectBase = forwardRef<SelectRef, SelectBaseProps>(
       <SelectPrimitive
         ref={ref}
         {...props}
+        name={name}
+        instanceId={name}
         closeMenuOnSelect={!isMulti}
         isMulti={isMulti}
         filterOption={isFilterDisabled}

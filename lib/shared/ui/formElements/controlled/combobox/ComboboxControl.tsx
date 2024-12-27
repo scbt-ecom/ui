@@ -3,9 +3,9 @@
 import * as React from 'react'
 import { Controller, type FieldValues } from 'react-hook-form'
 import Select, { type DropdownIndicatorProps, type MultiValueRemoveProps, type OptionProps } from 'react-select'
-import { type TCommonFieldProps } from '../model/types'
-import { FieldContainer, MessageView, type TFieldContainerConfig } from '../ui'
-import { FieldLabel } from '../ui/fieldWrapper/ui'
+import { type TCommonFieldProps } from '../../model/types'
+import { FieldContainer, MessageView, type TFieldContainerConfig } from '../../ui'
+import { FieldLabel } from '../../ui/fieldWrapper/ui'
 import { selectClassNames } from './model/selectClassnames'
 import {
   type TComboboxControlClasses,
@@ -38,9 +38,6 @@ export interface IComboboxControlProps<T extends FieldValues, ValueType> extends
   customChange?: (...args: unknown[]) => void
 }
 
-/**
- * @deprecated For better performance use `Controlled.ComboboxControl` instead.
- */
 export const ComboboxControl = <T extends FieldValues, ValueType>({
   options,
   control,
