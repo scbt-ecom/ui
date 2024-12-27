@@ -1,4 +1,3 @@
-import { type ReactElement } from 'react'
 import { type IButtonProps, type IPhoneViewProps, type TBrandLogoVariant } from '$/shared/ui'
 
 type TPageHeaderClasses = {
@@ -14,11 +13,13 @@ interface ICommonHeaderProps {
   classes?: TPageHeaderClasses
 }
 
+export interface IHeaderEmptyProps extends ICommonHeaderProps {
+  variant: 'empty'
+}
+
 export interface IHeaderWithPhone extends ICommonHeaderProps {
   variant: 'withPhone'
-  phone: string | ReactElement
-  phoneText: string | ReactElement
-  phoneProps?: IPhoneViewProps
+  phoneProps: IPhoneViewProps
 }
 
 export interface IHeaderWithButton extends ICommonHeaderProps {

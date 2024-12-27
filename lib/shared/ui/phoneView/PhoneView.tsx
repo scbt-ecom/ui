@@ -1,4 +1,4 @@
-import { type HTMLAttributes, type ReactElement } from 'react'
+import { type HTMLAttributes } from 'react'
 import { cn } from '$/shared/utils'
 
 interface IPhoneViewClasses {
@@ -8,8 +8,8 @@ interface IPhoneViewClasses {
 }
 
 export interface IPhoneViewProps extends HTMLAttributes<HTMLDivElement> {
-  phone: string | ReactElement
-  text: string | ReactElement
+  phone: string
+  text: string
   classes?: IPhoneViewClasses
 }
 

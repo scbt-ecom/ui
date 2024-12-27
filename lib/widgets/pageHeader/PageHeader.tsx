@@ -1,8 +1,8 @@
-import { type IHeaderWithButton, type IHeaderWithPhone } from './types'
+import { type IHeaderEmptyProps, type IHeaderWithButton, type IHeaderWithPhone } from './types'
 import { brandLogos, Button, PhoneView, ResponsiveContainer } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
-export type TPageHeaderProps = IHeaderWithButton | IHeaderWithPhone
+export type TPageHeaderProps = IHeaderWithButton | IHeaderWithPhone | IHeaderEmptyProps
 
 const renderContentVariant = (props: TPageHeaderProps) => {
   switch (props.variant) {
@@ -13,8 +13,7 @@ const renderContentVariant = (props: TPageHeaderProps) => {
         </Button>
       )
     case 'withPhone':
-      const { phone, phoneText } = props
-      return <PhoneView phone={phone} text={phoneText} {...props.phoneProps} />
+      return <PhoneView {...props.phoneProps} />
     default:
       return null
   }
@@ -24,7 +23,7 @@ export const PageHeader = (props: TPageHeaderProps) => {
   const { logoPath = '/', logoType = 'main', classes } = props
 
   return (
-    <header className={cn('flex h-[72px] items-center justify-center bg-color-white', classes?.header)}>
+    <header className={cn('flex h-[64px] items-center justify-center bg-color-white desktop:h-[72px]', classes?.header)}>
       <ResponsiveContainer className={cn(classes?.container)}>
         <div className={cn('flex items-center justify-between gap-5', classes?.wrapper)}>
           <a

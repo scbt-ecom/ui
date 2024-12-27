@@ -14,14 +14,22 @@ type Story = StoryObj<typeof PageHeader>
 export const WithPhone: Story = {
   args: {
     variant: 'withPhone',
-    phone: '8 800 000-00-00',
-    phoneText: 'Бесплатно по России'
+    phoneProps: {
+      phone: '8 800 000-00-00',
+      text: 'Бесплатно по России'
+    }
   }
 }
 
 export const WithButton: Story = {
   args: {
     variant: 'withButton'
+  }
+}
+
+export const Empty: Story = {
+  args: {
+    variant: 'empty'
   }
 }
 
