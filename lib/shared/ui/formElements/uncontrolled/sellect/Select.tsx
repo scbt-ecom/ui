@@ -12,7 +12,7 @@ type SelectClasses = SelectItemProps['classes'] & {
   list?: string
 }
 
-export type SelectBaseProps<Multi extends boolean = false> = Omit<
+export type SelectBaseProps<Multi extends boolean> = Omit<
   ComboboxProps<SelectItemOption, Multi, 'li'>,
   'multiple' | 'onChange'
 > & {
@@ -25,7 +25,7 @@ export type SelectBaseProps<Multi extends boolean = false> = Omit<
   onChange?: (value: SelectItemOption | SelectItemOption[] | null) => void
 }
 
-export const SelectBase = forwardRef<HTMLElement, SelectBaseProps>(
+export const SelectBase = forwardRef<HTMLElement, SelectBaseProps<boolean>>(
   ({ label, isMulti, isSearchable, options: initialOptions, classes, displayValue, onChange, ...props }, ref) => {
     const { root, list, ...innerClasses } = classes || {}
 
@@ -40,6 +40,9 @@ export const SelectBase = forwardRef<HTMLElement, SelectBaseProps>(
     const TriggerWrapper = !isSearchable ? ComboboxButton : Fragment
 
     return (
+      // TODO: think about it
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-expect-error
       <Combobox ref={ref} {...props} onChange={onValueChange} multiple={isMulti} as={Fragment}>
         {({ disabled, open }) => (
           <div className={cn('relative w-full', root)}>

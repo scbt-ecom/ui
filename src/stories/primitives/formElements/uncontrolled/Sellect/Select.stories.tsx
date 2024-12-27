@@ -103,11 +103,11 @@ export const WithState: Story = {
   }
 }
 
-// export const WithMulti: Story = {
-//   args: {
-//     isMulti: true
-//   }
-// }
+export const WithMulti: Story = {
+  args: {
+    isMulti: true
+  }
+}
 
 export const WithSearchable: Story = {
   args: {

@@ -29,7 +29,9 @@ export const useSelectController = ({
       return initialOptions
     }
 
-    return initialOptions.filter((option) => (displayValue ? displayValue(option) : option.label) === inputValue)
+    return initialOptions.filter((option) =>
+      (displayValue ? displayValue(option) : option.label).toLowerCase().includes(inputValue.toLowerCase())
+    )
   }, [initialOptions, isSearchable, displayValue, inputValue])
 
   const onValueChange = (value: SelectItemOption | SelectItemOption[] | null) => {
