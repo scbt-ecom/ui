@@ -9,7 +9,7 @@ const renderContentVariant = (props: TPageHeaderProps) => {
     case 'withButton':
       return (
         <Button intent='secondary' size='sm' {...props.buttonProps}>
-          Оформить заявку
+          {props.buttonProps?.children} || Оформить заявку
         </Button>
       )
     case 'withPhone':

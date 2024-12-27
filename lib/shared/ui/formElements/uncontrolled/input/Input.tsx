@@ -70,7 +70,7 @@ export const InputBase = forwardRef<HTMLInputElement, InputBaseProps>(
           <input
             {...props}
             disabled={disabled}
-            value={value}
+            value={value ?? ''}
             placeholder={label}
             aria-placeholder={label}
             ref={ref}
