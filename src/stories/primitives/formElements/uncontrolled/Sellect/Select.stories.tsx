@@ -109,8 +109,33 @@ export const WithMulti: Story = {
   }
 }
 
+export const MultiWithState: Story = {
+  args: {
+    isMulti: true
+  },
+  render: (props) => {
+    const [value, setValue] = useState<SelectItemOption[]>([])
+
+    return (
+      <>
+        {value ? JSON.stringify(value) : 'Выберите значение'}
+        {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+        {/* @ts-expect-error */}
+        <SelectBase {...props} value={value} onChange={setValue} />
+      </>
+    )
+  }
+}
+
 export const WithSearchable: Story = {
   args: {
     isSearchable: true
   }
+}
+
+export const SearchableWithState: Story = {
+  args: {
+    isSearchable: true
+  },
+  render: WithState.render
 }
