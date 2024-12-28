@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 'use client'
 
 import { memo, useMemo } from 'react'
@@ -8,7 +7,7 @@ import { type SelectBaseProps, type SelectItemOption, Uncontrolled } from '$/sha
 import { FieldContainer, MessageView, type TFieldContainerConfig } from '$/shared/ui/formElements/ui'
 import { cn } from '$/shared/utils'
 
-type SelectControlClasses = SelectBaseProps['classes'] & {
+type SelectControlClasses = SelectBaseProps<boolean>['classes'] & {
   container?: string
   message?: string
 }
@@ -17,7 +16,7 @@ type SelectControlProps<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
 > = UseControllerProps<TFieldValues, TName> &
-  SelectBaseProps & {
+  SelectBaseProps<boolean> & {
     /**
      * Контрол объект для управления полем
      */
@@ -34,6 +33,10 @@ type SelectControlProps<
      * Размер контейнера для поля
      */
     size?: TFieldContainerConfig['size']
+    /**
+     * Функция для управления возвращаемым значением
+     */
+    returnValue?: (option: SelectItemOption) => string
   }
 
 function isSingleValue(value: OnChangeValue<SelectItemOption, boolean>): value is SelectItemOption {
@@ -77,16 +80,13 @@ const InnerComponent = <TFieldValues extends FieldValues = FieldValues>({
     }
   }
 
-  const selected = useMemo<OnChangeValue<SelectItemOption, boolean>>(() => {
+  const selected = useMemo<SelectItemOption | SelectItemOption[] | undefined>(() => {
     if (Array.isArray(value)) {
       return options.filter((option) => value.includes(returnValue ? returnValue(option) : option.value))
     } else {
-      return options.find((option) => (returnValue ? returnValue(option) : option.value) === value) || null
+      return options.find((option) => (returnValue ? returnValue(option) : option.value) === value)
     }
   }, [options, returnValue, value])
-
-  console.log('SelectControl value: ', value)
-  console.log('SelectControl selected value: ', selected)
 
   return (
     <FieldContainer size={size} className={cn('items-start gap-y-2', container)}>
@@ -98,7 +98,7 @@ const InnerComponent = <TFieldValues extends FieldValues = FieldValues>({
         value={selected}
         onChange={onValueChange}
         invalid={invalid}
-        isDisabled={disabled}
+        disabled={disabled}
       />
       <MessageView
         text={error ? error.message : helperText}

@@ -4,49 +4,41 @@ import toast from 'react-hot-toast'
 import type { Meta, StoryObj } from '@storybook/react'
 import z from 'zod'
 import { useControlledForm } from '$/shared/hooks'
-import { Controlled, type SelectItemOption } from '$/shared/ui'
+import { Button, Controlled, type SelectItemOption } from '$/shared/ui'
 
 const options: SelectItemOption[] = [
   {
-    id: 0,
     value: 'value_1',
     label: 'Value 1',
-    additionalText: 'Nexus'
+    helperText: 'Nexus'
   },
   {
-    id: 1,
     value: 'value_2',
     label: 'Value 2'
   },
   {
-    id: 2,
     value: 'value_3',
     label: 'Value 3',
-    additionalText: 'Nexus'
+    helperText: 'Nexus'
   },
   {
-    id: 3,
     value: 'value_4',
     label: 'Value 4'
   },
   {
-    id: 4,
     value: 'value_5',
     label: 'Value 5',
     disabled: true
   },
   {
-    id: 5,
     value: 'value_6',
     label: 'Value 6'
   },
   {
-    id: 6,
     value: 'value_7',
     label: 'Value 7'
   },
   {
-    id: 7,
     value: 'value_8',
     label: 'Value 8'
   }
@@ -83,7 +75,7 @@ const Form = ({ schema, defaultValues, renderComponent, ...props }: FormProps) =
   return (
     <form onSubmit={handleSubmit(onSubmit, onError)}>
       {renderComponent({ ...props, control })}
-      <button>Submit</button>
+      <Button type='submit'>Submit</Button>
     </form>
   )
 }

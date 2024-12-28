@@ -1,4 +1,5 @@
-import { Icon, type SelectItemOption } from '$/shared/ui'
+import type { SelectItemOption } from '../model'
+import { Icon } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
 type ControlChipClasses = {
