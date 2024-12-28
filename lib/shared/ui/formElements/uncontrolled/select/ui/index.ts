@@ -1,3 +1,2 @@
-export * from './control'
-export * from './SelectItem'
-export * from './SelectList'
+export { SelectItem, type SelectItemProps } from './SelectItem'
+export { ChipList } from './ChipList'

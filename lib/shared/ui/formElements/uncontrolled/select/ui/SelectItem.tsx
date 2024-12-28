@@ -1,98 +1,71 @@
 import { Fragment } from 'react'
-import { components, type OptionProps } from 'react-select'
-import { CheckboxBase } from '../../checkbox'
-import type { DeepPartial } from '$/shared/types'
+import { ComboboxOption, type ComboboxOptionProps } from '@headlessui/react'
+import { motion } from 'framer-motion'
+import type { SelectItemOption } from '../model'
+import { Uncontrolled } from '$/shared/ui'
 import { FieldAttachment } from '$/shared/ui/formElements/ui'
 import { cn } from '$/shared/utils'
 
-type FieldAttachmentProps = React.ComponentPropsWithoutRef<typeof FieldAttachment>
-
-export type SelectItemOption = {
-  id: string | number
-  value: string
-  label: string
-  additionalText?: string
-  disabled?: boolean
-  attachment?: {
-    left?: DeepPartial<FieldAttachmentProps>
-    right?: DeepPartial<FieldAttachmentProps>
-  }
+type SelectItemClasses = {
+  item?: string
+  helperText?: string
 }
 
-export type SelectItemClasses = {
-  container?: string
-  additionalText?: string
-}
-
-type SelectItemProps = OptionProps<SelectItemOption> & {
+export type SelectItemProps = Omit<ComboboxOptionProps, 'className' | 'value'> & {
+  option: SelectItemOption
+  isMulti?: boolean
   classes?: SelectItemClasses
+  displayValue?: (option: SelectItemOption) => string
+  motionProps?: React.ComponentPropsWithoutRef<typeof motion.li>
 }
 
-export const SelectItem = ({
-  isSelected,
-  label,
-  data,
-  innerProps,
-  innerRef,
-  selectProps,
-  isFocused,
-  classes,
-  isMulti,
-  ...props
-}: SelectItemProps) => {
-  const { onChange } = selectProps
-  const ContentWrapper = isMulti || data.attachment ? 'div' : Fragment
+export const SelectItem = ({ option, classes, displayValue, isMulti, motionProps, ...props }: SelectItemProps) => {
+  const label = displayValue ? displayValue(option) : option.label
 
-  const onSelect = () => {
-    // eslint-disable-next-line no-console
-    console.log('select option clicked')
+  const { item, helperText } = classes || {}
 
-    onChange(data, {
-      action: 'select-option',
-      option: data
-    })
-  }
+  const ContentWrapper = isMulti || option.attachment || option.helperText ? 'div' : Fragment
 
   return (
-    <button type='button' onClick={onSelect} className='w-full text-start'>
-      <components.Option
-        {...props}
-        isMulti={isMulti}
-        isFocused={isFocused}
-        selectProps={selectProps}
-        data={data}
-        innerRef={innerRef}
-        label={label}
-        isSelected={isSelected}
-        innerProps={innerProps}
-        cx={(_, classNames) =>
-          cn(
-            'unset-all-apply desk-body-regular-l cursor-pointer rounded-sm px-2 py-4 bg-color-white',
-            'text-color-dark hover:bg-color-primary-tr-hover hover:text-color-primary-hover w-full',
-            '[&:not(:last-child)]:mb-1 [&>p]:hover:text-color-secondary [&:not(:disabled)]:cursor-pointer',
+    <ComboboxOption {...props} as={Fragment} disabled={option.disabled} value={option}>
+      {({ disabled, selected, focus }) => (
+        <motion.li
+          {...motionProps}
+          className={cn(
+            'unset-all-apply desk-body-regular-l cursor-pointer rounded-sm bg-color-white px-2',
+            'flex h-12 items-center gap-x-4 text-color-dark hover:bg-color-primary-tr-hover hover:text-color-primary-hover',
+            '[&:not(:disabled)]:cursor-pointer [&:not(:last-child)]:mb-1 [&>p]:hover:text-color-secondary',
             {
-              '!bg-color-primary-tr-hover !text-color-primary-hover': isSelected || isFocused,
-              'pointer-events-none !text-color-disabled': data.disabled,
-              '!flex items-center gap-x-4': isMulti || (data.attachment && data.attachment.left)
+              'bg-color-primary-tr-hover text-color-primary-hover': selected || focus,
+              'pointer-events-none !text-color-disabled': disabled,
+              '!flex items-center gap-x-4': isMulti || (option.attachment && option.attachment.left)
             },
-            classNames,
-            classes?.container,
-            innerProps.className
-          )
-        }
-      >
-        {isMulti ? (
-          <CheckboxBase checked={isSelected} disabled={data.disabled} />
-        ) : (
-          data.attachment && data.attachment.left && <FieldAttachment {...data.attachment.left} />
-        )}
-        <ContentWrapper>
-          {label}
-          {data.additionalText && (
-            <p className={cn('desk-body-regular-s text-color-tetriary', classes?.additionalText)}>{data.additionalText}</p>
+            item
           )}
-        </ContentWrapper>
-      </components.Option>
-    </button>
+        >
+          {isMulti ? (
+            <Uncontrolled.CheckboxBase checked={selected} disabled={disabled} classes={{ root: 'z-10' }} />
+          ) : (
+            option.attachment && option.attachment.left && <FieldAttachment {...option.attachment.left} />
+          )}
+          <ContentWrapper>
+            {label}
+            {option.helperText && (
+              <p
+                className={cn(
+                  'desk-body-regular-s text-color-tetriary',
+                  {
+                    'text-color-disabled': disabled
+                  },
+                  helperText
+                )}
+              >
+                {option.helperText}
+              </p>
+            )}
+          </ContentWrapper>
+        </motion.li>
+      )}
+    </ComboboxOption>
   )
 }
