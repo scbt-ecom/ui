@@ -4,8 +4,12 @@ import { motion } from 'framer-motion'
 import { useSelectController } from './hooks'
 import type { SelectItemOption } from './model'
 import { SelectItem, type SelectItemProps } from './ui'
+import { type DeepPartial } from '$/shared/types'
 import { Icon, Uncontrolled } from '$/shared/ui'
+import type { FieldAttachment } from '$/shared/ui/formElements/ui'
 import { cn } from '$/shared/utils'
+
+type FieldAttachmentProps = React.ComponentPropsWithoutRef<typeof FieldAttachment>
 
 type SelectClasses = SelectItemProps['classes'] & {
   root?: string
@@ -14,20 +18,62 @@ type SelectClasses = SelectItemProps['classes'] & {
 
 export type SelectBaseProps<Multi extends boolean> = Omit<
   ComboboxProps<SelectItemOption, Multi, 'li'>,
-  'multiple' | 'onChange'
+  'multiple' | 'onChange' | 'by' | 'virtual' | 'className'
 > & {
+  /**
+   * Отображаемый лейбл
+   */
   label: string
+  /**
+   * Поддержка множественного выбора
+   */
   isMulti: Multi
+  /**
+   * Пометить поле как не валидное
+   */
   invalid?: boolean
+  /**
+   * Свойство управляющее поиском
+   */
   isSearchable?: boolean
+  /**
+   * Список отображаемых значений
+   */
   options: SelectItemOption[]
+  /**
+   * Дополнительные стили каждого внутреннего элемента
+   */
   classes?: SelectClasses
+  /**
+   * Функция для управления отображаемым значением
+   */
   displayValue?: (option: SelectItemOption) => string
+  /**
+   * Функция для изменения значения
+   */
   onChange?: (value: SelectItemOption | SelectItemOption[] | null) => void
+  /**
+   * Свойства дополнительной иконки
+   */
+  attachmentProps?: DeepPartial<FieldAttachmentProps>
 }
 
 export const SelectBase = forwardRef<HTMLElement, SelectBaseProps<boolean>>(
-  ({ label, invalid, isMulti, isSearchable, options: initialOptions, classes, displayValue, onChange, ...props }, ref) => {
+  (
+    {
+      label,
+      invalid,
+      isMulti,
+      isSearchable,
+      options: initialOptions,
+      classes,
+      displayValue,
+      onChange,
+      attachmentProps,
+      ...props
+    },
+    ref
+  ) => {
     const { root, list, ...innerClasses } = classes || {}
 
     const { options, inputValue, onValueChange, onInputValueChange, selectDisplayValue } = useSelectController({
@@ -41,9 +87,6 @@ export const SelectBase = forwardRef<HTMLElement, SelectBaseProps<boolean>>(
     const TriggerWrapper = !isSearchable ? ComboboxButton : Fragment
 
     return (
-      // TODO: think about it
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-expect-error
       <Combobox ref={ref} {...props} onChange={onValueChange} multiple={isMulti} as={Fragment}>
         {({ disabled, open, value }) => {
           const getDisplayValue = () => {
@@ -94,7 +137,8 @@ export const SelectBase = forwardRef<HTMLElement, SelectBaseProps<boolean>>(
                           })}
                         />
                       </ComboboxButton>
-                    )
+                    ),
+                    ...attachmentProps
                   }}
                 />
               </TriggerWrapper>

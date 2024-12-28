@@ -77,18 +77,19 @@ type Story = StoryObj<typeof Uncontrolled.SelectBase>
 /**
  * \`Select\` компонент для выбора значений из выпадающего списка\n
  *
- * | Props                    | Type                                     | Description                                            | Required  |
- * | ------------------------ | ---------------------------------------- | ------------------------------------------------------ | --------- |
- * | \`isSearchable\`         | \`boolean\`                              | Свойство управляющее поиском                           | \`false\` |
- * | \`isMulti\`              | \`boolean\`                              | Поддержка множественного выбора                        | \`false\` |
- * | \`invalid\`              | \`boolean\`                              | Пометить поле как не валидное                          | \`false\` |
- * | \`returnValue\`          | \`(option: SelectItemOption) => string\` | Функция для управления возвращаемым значением          | \`false\` |
- * | \`displayValue\`         | \`(option: SelectItemOption) => string\` | Функция для управления отображаемым значением          | \`false\` |
- * | \`classes\`              | \`SelectClasses\`                        | Дополнительные стили каждого внутреннего элемента      | \`false\` |
- * | \`options\`              | \`SelectItemOption[]\`                   | Список отображаемых значений                           | \`true\`  |
- * | \`filterOptionDisabled\` | \`boolean\`                              | Свойство для выключения фильтрации элементов по поиску | \`false\` |
+ * | Props                    | Type                                                              | Description                                       | Required  |
+ * | ------------------------ | ----------------------------------------------------------------- | ------------------------------------------------- | --------- |
+ * | \`isSearchable\`         | \`boolean\`                                                       | Свойство управляющее поиском                      | \`false\` |
+ * | \`label\`                | \`string\`                                                        | Отображаемый лейбл                                | \`true\`  |
+ * | \`isMulti\`              | \`boolean\`                                                       | Поддержка множественного выбора                   | \`false\` |
+ * | \`invalid\`              | \`boolean\`                                                       | Пометить поле как не валидное                     | \`false\` |
+ * | \`displayValue\`         | \`(option: SelectItemOption) => string\`                          | Функция для управления отображаемым значением     | \`false\` |
+ * | \`classes\`              | \`SelectClasses\`                                                 | Дополнительные стили каждого внутреннего элемента | \`false\` |
+ * | \`options\`              | \`SelectItemOption[]\`                                            | Список отображаемых значений                      | \`true\`  |
+ * | \`onChange\`             | \`(value: SelectItemOption | SelectItemOption[] | null) => void\` | Функция для изменения значения                    | \`false\` |
+ * | \`attachmentProps\`      | \`DeepPartial<FieldAttachmentProps>\`                             | Свойства дополнительной иконки                    | \`false\` |
  *
- * Остальные свойства наследуются от [React Select](https://react-select.com/props)
+ * Остальные свойства наследуются от [Headless UI](https://headlessui.com/react/combobox#component-api)
  */
 export const Base: Story = {
   args: {}
@@ -119,5 +120,13 @@ export const WithMulti: Story = {
 export const WithSearchable: Story = {
   args: {
     isSearchable: true
+  }
+}
+
+export const WithBadge: Story = {
+  args: {
+    attachmentProps: {
+      badge: '+25%'
+    }
   }
 }
