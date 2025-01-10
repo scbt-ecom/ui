@@ -10,6 +10,11 @@ export * from './skeleton'
 export * from './floatButton'
 export * from './ligal'
 export * from './calendar'
+export * from './input'
+export * from './select'
+export * from './checkbox'
+export * from './FloatButton'
+export * from './autocomplete'
 
 // # INTERACTIVE
 export * from './accordion'
