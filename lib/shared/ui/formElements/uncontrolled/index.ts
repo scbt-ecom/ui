@@ -11,5 +11,16 @@ import { SwitchBase } from './switch'
 export type { SwitchBaseProps } from './switch'
 import { RadioGroupBase } from './radio'
 export type { RadioGroupBaseProps, RadioOption } from './radio'
+import { TextareaBase } from './textarea'
+export type { TextareaBaseProps } from './textarea'
 
-export const Uncontrolled = { InputBase, MaskInput, SelectBase, CheckboxBase, DayPickerBase, SwitchBase, RadioGroupBase }
+export const Uncontrolled = {
+  InputBase,
+  MaskInput,
+  SelectBase,
+  CheckboxBase,
+  DayPickerBase,
+  SwitchBase,
+  RadioGroupBase,
+  TextareaBase
+}
