@@ -11,7 +11,7 @@ type TextareaBaseClasses = {
 
 type FieldAttachmentProps = React.ComponentPropsWithoutRef<typeof FieldAttachment>
 
-export type TextareaBaseProps = Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'size'> & {
+export type TextareaBaseProps = Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'size' | 'className'> & {
   /**
    * Дополнительные стили внутренних компонентов
    */

@@ -1,10 +1,9 @@
 'use docs'
 
-import toast from 'react-hot-toast'
 import type { Meta, StoryObj } from '@storybook/react'
 import z from 'zod'
-import { useControlledForm } from '$/shared/hooks'
-import { Button, Controlled, type SelectItemOption } from '$/shared/ui'
+import { HookForm } from '../utils'
+import { Controlled, type SelectItemOption } from '$/shared/ui'
 
 const options: SelectItemOption[] = [
   {
@@ -52,34 +51,6 @@ type Schema = z.TypeOf<typeof schema>
 
 type SelectControlProps = React.ComponentPropsWithoutRef<typeof Controlled.SelectControl<Schema>>
 
-type FormProps = Omit<SelectControlProps, 'control'> & {
-  schema: z.ZodSchema
-  defaultValues: Schema
-  renderComponent: (props: SelectControlProps) => React.JSX.Element
-}
-
-const Form = ({ schema, defaultValues, renderComponent, ...props }: FormProps) => {
-  const { control, handleSubmit } = useControlledForm({
-    schema,
-    defaultValues
-  })
-
-  const onSubmit = (values: Schema) => {
-    toast.success(JSON.stringify(values))
-  }
-
-  const onError = (errors: any) => {
-    toast.error(JSON.stringify(errors))
-  }
-
-  return (
-    <form onSubmit={handleSubmit(onSubmit, onError)}>
-      {renderComponent({ ...props, control })}
-      <Button type='submit'>Submit</Button>
-    </form>
-  )
-}
-
 const meta = {
   title: 'CONTROLLED/SelectControl',
   component: Controlled.SelectControl<Schema>,
@@ -111,7 +82,7 @@ type Story = StoryObj<typeof Controlled.SelectControl<Schema>>
  */
 export const Base: Story = {
   render: (props) => (
-    <Form
+    <HookForm<SelectControlProps, Schema>
       {...props}
       schema={schema}
       defaultValues={{ test: null }}
@@ -128,7 +99,7 @@ export const WithMulti: Story = {
     isMulti: true
   },
   render: (props) => (
-    <Form
+    <HookForm<SelectControlProps, Schema>
       {...props}
       schema={multiSchema}
       defaultValues={{ test: null }}
@@ -142,7 +113,7 @@ export const WithSearchable: Story = {
     isSearchable: true
   },
   render: (props) => (
-    <Form
+    <HookForm<SelectControlProps, Schema>
       {...props}
       schema={schema}
       defaultValues={{ test: null }}
