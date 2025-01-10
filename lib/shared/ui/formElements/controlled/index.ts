@@ -1,3 +1,4 @@
+import { AutocompleteControl } from './autocomplete'
 import { CheckboxControl } from './checkbox'
 import { ComboboxControl } from './combobox'
 import { DayPickerControl } from './dayPickerControl'
@@ -14,5 +15,6 @@ export const Controlled = {
   SelectControl,
   SwitchControl,
   RadioGroupControl,
-  ComboboxControl
+  ComboboxControl,
+  AutocompleteControl
 }

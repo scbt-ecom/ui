@@ -11,7 +11,7 @@ import { cn } from '$/shared/utils'
 
 type FieldAttachmentProps = React.ComponentPropsWithoutRef<typeof FieldAttachment>
 
-type SelectClasses = SelectItemProps['classes'] & {
+export type SelectClasses = SelectItemProps['classes'] & {
   root?: string
   list?: string
 }
@@ -51,11 +51,23 @@ export type SelectBaseProps<Multi extends boolean> = Omit<
   /**
    * Функция для изменения значения
    */
-  onChange?: (value: SelectItemOption | SelectItemOption[] | null) => void
+  onChange?: (value: (Multi extends true ? SelectItemOption[] : SelectItemOption) | undefined) => void
+  /**
+   * Функция для изменения значения поиска
+   */
+  onInputChange?: (value: string) => void
+  /**
+   * Значение инпута
+   */
+  inputValue?: string
   /**
    * Свойства дополнительной иконки
    */
   attachmentProps?: DeepPartial<FieldAttachmentProps>
+  /**
+   * Свойство для выключении фильтрации по поиску
+   */
+  filterDisabled?: boolean
 }
 
 export const SelectBase = forwardRef<HTMLElement, SelectBaseProps<boolean>>(
@@ -70,6 +82,9 @@ export const SelectBase = forwardRef<HTMLElement, SelectBaseProps<boolean>>(
       displayValue,
       onChange,
       attachmentProps,
+      filterDisabled = false,
+      inputValue: externalInputValue,
+      onInputChange: externalOnInputChange,
       ...props
     },
     ref
@@ -81,13 +96,17 @@ export const SelectBase = forwardRef<HTMLElement, SelectBaseProps<boolean>>(
       isSearchable,
       isMulti,
       displayValue,
-      onChange
+      onChange,
+      filterDisabled,
+      externalInputValue,
+      externalOnInputChange
     })
 
     const TriggerWrapper = !isSearchable ? ComboboxButton : Fragment
+    const TriggerAttachment = isSearchable ? ComboboxButton : Fragment
 
     return (
-      <Combobox ref={ref} {...props} onChange={onValueChange} multiple={isMulti} as={Fragment}>
+      <Combobox ref={ref} {...props} onChange={onValueChange} multiple={isMulti}>
         {({ disabled, open, value }) => {
           const getDisplayValue = () => {
             if (isMulti && isSearchable) {
@@ -101,15 +120,22 @@ export const SelectBase = forwardRef<HTMLElement, SelectBaseProps<boolean>>(
 
           return (
             <div className={cn('relative w-full', root)}>
-              <TriggerWrapper as={Fragment}>
+              <TriggerWrapper>
                 <ComboboxInput
                   as={Uncontrolled.InputBase}
                   label={label}
                   disabled={disabled}
                   readOnly={!isSearchable}
-                  value={getDisplayValue()}
+                  value={externalInputValue || getDisplayValue()}
                   autoComplete='off'
-                  onChange={isSearchable ? onInputValueChange : undefined}
+                  onChange={(event) => {
+                    const { value } = event.target
+
+                    if (isSearchable) {
+                      if (externalOnInputChange) externalOnInputChange(value)
+                      if (onInputValueChange) onInputValueChange(event)
+                    }
+                  }}
                   invalid={invalid}
                   classes={{
                     input: isMulti || !isSearchable ? 'cursor-pointer' : undefined
@@ -129,14 +155,14 @@ export const SelectBase = forwardRef<HTMLElement, SelectBaseProps<boolean>>(
                   // }
                   attachmentProps={{
                     icon: (
-                      <ComboboxButton>
+                      <TriggerAttachment>
                         <Icon
                           name='arrows/arrowRight'
                           className={cn('size-6 rotate-90 text-color-blue-grey-600 duration-100', {
                             '-rotate-90': open
                           })}
                         />
-                      </ComboboxButton>
+                      </TriggerAttachment>
                     ),
                     ...attachmentProps
                   }}
