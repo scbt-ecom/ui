@@ -1,0 +1,1 @@
+export { DadataParty } from './DadataParty'

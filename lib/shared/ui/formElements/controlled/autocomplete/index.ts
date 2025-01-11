@@ -1,1 +1,1 @@
-export { AutocompleteControl } from './Autocomplete'
+export { AutocompleteControl, type AutocompleteControlProps } from './Autocomplete'

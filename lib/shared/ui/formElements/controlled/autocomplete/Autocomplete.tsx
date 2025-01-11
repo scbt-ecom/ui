@@ -4,13 +4,14 @@ import { FieldContainer, MessageView, type TFieldContainerConfig } from '../../u
 import { type AutocompleteBaseProps, Uncontrolled } from '../../uncontrolled'
 import { type SelectClasses } from '../../uncontrolled/select/Select'
 
-type AutocompleteControlProps<
-  TFieldValues extends FieldValues = FieldValues,
-  TData = unknown,
+export type AutocompleteControlProps<
+  TFieldValues extends FieldValues,
+  TData,
   TName extends Path<TFieldValues> = Path<TFieldValues>
 > = UseControllerProps<TFieldValues, TName> &
   Omit<AutocompleteBaseProps<TData>, 'classes'> & {
     control: Control<TFieldValues>
+    dadataBaseUrl: string
     helperText?: string
     size?: TFieldContainerConfig['size']
     classes?: SelectClasses & {
@@ -19,7 +20,7 @@ type AutocompleteControlProps<
     }
   }
 
-export const InnerComponent = <TFieldValues extends FieldValues = FieldValues, TData = unknown>({
+export const InnerComponent = <TFieldValues extends FieldValues, TData>({
   control,
   name,
   defaultValue,

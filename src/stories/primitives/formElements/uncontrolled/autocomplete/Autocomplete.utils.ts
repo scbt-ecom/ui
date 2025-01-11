@@ -1,10 +1,9 @@
 import { useQuery, type UseQueryOptions } from '@tanstack/react-query'
+import { getDataByDadataType } from '$/shared/ui/formElements/dadataControl/autocompleteDadata/model/helpers'
 
-type DadataCacheTypes = 'fio' | 'country' | 'address'
-type DadataConstantsTypes = 'auto' | 'party'
-type DadataTypes = DadataCacheTypes | DadataConstantsTypes
+type DadataTypes = 'fio' | 'country' | 'address' | 'auto' | 'party'
 
-interface FioResponse {
+export interface FioResponse {
   value: string
   unrestricted_value: string
   data: {
@@ -43,3 +42,34 @@ export const useGetFioSuggestQuery = (
     gcTime: 0,
     ...options
   })
+
+interface UseDadataQuery<Data> {
+  query: string
+  options?: Partial<UseQueryOptions<Data[]>>
+  dadataType: DadataTypes
+  dadataBaseUrl: string
+}
+
+export const useDadataQuery = <Data>({ query, options, dadataType = 'fio', dadataBaseUrl }: UseDadataQuery<Data>) => {
+  return useQuery({
+    queryKey: ['fio'],
+    queryFn: async () => {
+      const result = await fetch(dadataBaseUrl + dadataType, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ query })
+      })
+
+      const data = await result.json()
+
+      const formattedData = getDataByDadataType(dadataType, data) as Data[]
+
+      return formattedData
+    },
+    staleTime: 5 * 60 * 1000,
+    gcTime: 0,
+    ...options
+  })
+}
