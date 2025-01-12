@@ -1,36 +1,22 @@
 import { type FieldValues } from 'react-hook-form'
 import { AutocompleteControl, type AutocompleteControlProps } from '../../autocomplete'
 import { useDadataQuery } from '../query'
-import { DADATA_BASE_CACHE_URL } from '@/configs/api'
 import { type SelectItemOption } from '$/exports/ui'
+import type { IDadataOptions } from '$/shared/ui/formElements/dadataControl/autocompleteDadata/model/helpers'
 
-interface FioResponse {
-  value: string
-  unrestricted_value: string
-  data: {
-    surname: string | null
-    name: string | null
-    patronymic: string | null
-    gender: string
-    source: any
-    qc: string
-  }
-}
-
-const fioFormatter = (item: FioResponse): SelectItemOption => ({
+const fioFormatter = <T,>(item: IDadataOptions<T>): SelectItemOption => ({
   value: item.value,
   label: item.value
 })
 
-export const DadataFio = <TFieldValues extends FieldValues>({
+export const DadataFio = <TFieldValues extends FieldValues, T, TData extends IDadataOptions<T>>({
   formatter = fioFormatter,
   ...props
-}: Omit<AutocompleteControlProps<TFieldValues, FioResponse>, 'query'>) => {
-  const queryFn = useDadataQuery
-
+}: Omit<AutocompleteControlProps<TFieldValues, T, TData>, 'query' | 'dadataType'>) => {
   return (
     <AutocompleteControl
-      query={(query, options) => queryFn(query, options, 'fio', DADATA_BASE_CACHE_URL)}
+      {/* eslint-disable-next-line react-hooks/rules-of-hooks */}
+      query={(query, options, dadataBaseUrl) => useDadataQuery(query, 'fio', dadataBaseUrl, options)}
       formatter={formatter}
       {...props}
     />

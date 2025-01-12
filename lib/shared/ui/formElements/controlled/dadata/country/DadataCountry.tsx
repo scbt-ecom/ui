@@ -1,37 +1,23 @@
 import { type FieldValues } from 'react-hook-form'
 import { AutocompleteControl, type AutocompleteControlProps } from '../../autocomplete'
 import { useDadataQuery } from '../query'
-import { DADATA_BASE_CACHE_URL } from '@/configs/api'
 import { type SelectItemOption } from '$/exports/ui'
+import type { IDadataOptions } from '$/shared/ui/formElements/dadataControl/autocompleteDadata/model/helpers'
 
-interface CountryResponse {
-  value: string
-  unrestricted_value: any
-  data: {
-    code: string
-    alfa2: string
-    alfa3: string
-    name_short: string
-    name: any
-  }
-}
+const countryFormatter = <T,>(item: IDadataOptions<T>): SelectItemOption => ({
+  value: item.value,
+  label: item.value
+})
 
-const countryFormatter = (item: CountryResponse): SelectItemOption => {
-  return {
-    value: item.value,
-    label: item.value
-  }
-}
-
-export const DadataCountry = <TFieldValues extends FieldValues>({
+export const DadataCountry = <TFieldValues extends FieldValues, T, TData extends IDadataOptions<T>>({
   formatter = countryFormatter,
   ...props
-}: Omit<AutocompleteControlProps<TFieldValues, CountryResponse>, 'query'>) => {
+}: Omit<AutocompleteControlProps<TFieldValues, T, TData>, 'query' | 'dadataType'>) => {
   const queryFn = useDadataQuery
 
   return (
     <AutocompleteControl
-      query={(query, options) => queryFn(query, options, 'country', DADATA_BASE_CACHE_URL)}
+      query={(query, options, dadataBaseUrl) => queryFn(query, 'country', dadataBaseUrl, options)}
       formatter={formatter}
       {...props}
     />

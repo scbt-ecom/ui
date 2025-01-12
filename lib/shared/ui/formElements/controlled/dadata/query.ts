@@ -1,18 +1,18 @@
 import { useQuery, type UseQueryOptions } from '@tanstack/react-query'
-import { getDataByDadataType } from '$/shared/ui/formElements/dadataControl/autocompleteDadata/model/helpers'
+import { getDataByDadataType, type IDadataOptions } from '$/shared/ui/formElements/dadataControl/autocompleteDadata/model/helpers'
 
 type DadataTypes = 'fio' | 'country' | 'address' | 'auto' | 'party'
 
-export const useDadataQuery = <Data>(
+export const useDadataQuery = <T>(
   query: string,
-  options?: Partial<UseQueryOptions<Data[]>>,
-  dadataType: DadataTypes = 'fio',
-  dadataBaseUrl: string = ''
-) => {
-  return useQuery({
-    queryKey: [dadataType],
+  dadataTypes: DadataTypes,
+  dadataBaseUrl: string,
+  options?: Partial<UseQueryOptions<IDadataOptions<T>[]>>
+) =>
+  useQuery({
+    queryKey: [dadataTypes],
     queryFn: async () => {
-      const result = await fetch(`${dadataBaseUrl}/${dadataType}`, {
+      const result = await fetch(`${dadataBaseUrl}/${dadataTypes}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -22,7 +22,7 @@ export const useDadataQuery = <Data>(
 
       const data = await result.json()
 
-      const formattedData = getDataByDadataType(dadataType, data) as Data[]
+      const formattedData = getDataByDadataType(dadataTypes, data) as unknown as IDadataOptions<T>[]
 
       return formattedData
     },
@@ -30,4 +30,3 @@ export const useDadataQuery = <Data>(
     gcTime: 0,
     ...options
   })
-}

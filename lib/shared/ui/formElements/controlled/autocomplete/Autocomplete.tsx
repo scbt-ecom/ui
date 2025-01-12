@@ -3,13 +3,15 @@ import { type Control, type FieldValues, type Path, useController, type UseContr
 import { FieldContainer, MessageView, type TFieldContainerConfig } from '../../ui'
 import { type AutocompleteBaseProps, Uncontrolled } from '../../uncontrolled'
 import { type SelectClasses } from '../../uncontrolled/select/Select'
+import type { IDadataOptions } from '$/shared/ui/formElements/dadataControl/autocompleteDadata/model/helpers'
 
 export type AutocompleteControlProps<
   TFieldValues extends FieldValues,
-  TData,
+  T,
+  TData extends IDadataOptions<T>,
   TName extends Path<TFieldValues> = Path<TFieldValues>
 > = UseControllerProps<TFieldValues, TName> &
-  Omit<AutocompleteBaseProps<TData>, 'classes'> & {
+  Omit<AutocompleteBaseProps<T, TData>, 'classes'> & {
     control: Control<TFieldValues>
     dadataBaseUrl: string
     helperText?: string
@@ -20,7 +22,7 @@ export type AutocompleteControlProps<
     }
   }
 
-export const InnerComponent = <TFieldValues extends FieldValues, TData>({
+export const InnerComponent = <TFieldValues extends FieldValues, T, TData extends IDadataOptions<T>>({
   control,
   name,
   defaultValue,
@@ -31,7 +33,7 @@ export const InnerComponent = <TFieldValues extends FieldValues, TData>({
   size,
   classes,
   ...props
-}: AutocompleteControlProps<TFieldValues, TData>) => {
+}: AutocompleteControlProps<TFieldValues, T, TData>) => {
   const { field, fieldState } = useController({
     control,
     name,
