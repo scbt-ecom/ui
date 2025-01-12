@@ -1,10 +1,10 @@
 'use docs'
 
-import { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { useGetFioSuggestQuery } from './Autocomplete.utils'
-import { type SelectItemOption, Uncontrolled } from '$/shared/ui'
+import { DADATA_BASE_CACHE_URL } from '@/configs/api'
+import { useDadataQuery } from '@/stories/primitives/formElements/uncontrolled/autocomplete/Autocomplete.utils'
+import { Uncontrolled } from '$/shared/ui'
 
 const queryClient = new QueryClient()
 
@@ -53,24 +53,9 @@ type Story = StoryObj<typeof Uncontrolled.AutocompleteBase>
 export const Base: Story = {
   args: {},
   render: (props) => {
-    const [value, setValue] = useState<SelectItemOption | undefined>()
-
     return (
       <div>
-        {value ? (props.displayValue ? props.displayValue(value) : value.label) : 'Выберите значение'}
-        <Uncontrolled.AutocompleteBase
-          {...props}
-          query={useGetFioSuggestQuery}
-          queryOptions={{
-            placeholderData: (prev) => prev
-          }}
-          formatter={(item) => ({
-            value: item.value || '',
-            label: item.value || ''
-          })}
-          value={value}
-          onChange={setValue as any}
-        />
+        <Uncontrolled.AutocompleteBase {...props} dadataType='fio' query={useDadataQuery} dadataBaseUrl={DADATA_BASE_CACHE_URL} />
       </div>
     )
   }

@@ -1,16 +1,24 @@
 import { useMemo, useState } from 'react'
 import { type SelectBaseProps, type SelectItemOption, Uncontrolled } from '..'
 import { type UseQueryOptions, type UseQueryResult } from '@tanstack/react-query'
+import { type DadataTypes } from '@/stories/primitives/formElements/uncontrolled/autocomplete/Autocomplete.utils'
+import { type IDadataOptions } from '$/shared/ui/formElements/dadataControl/autocompleteDadata/model/helpers'
 
-export interface AutocompleteBaseProps<TData>
+export interface AutocompleteBaseProps<T, TData extends IDadataOptions<T>>
   extends Omit<
     SelectBaseProps<boolean>,
     'options' | 'inputValue' | 'onInputChange' | 'isSearchable' | 'isMulti' | 'value' | 'onChange'
   > {
   formatter?: (item: TData, index: number, array: TData[]) => SelectItemOption
-  query: (value: string, options?: Partial<UseQueryOptions<TData[]>>) => UseQueryResult<TData[]>
+  query: (
+    query: string,
+    dadataType: DadataTypes,
+    dadataBaseUrl: string,
+    options?: Partial<UseQueryOptions<TData[]>>
+  ) => UseQueryResult<TData[]>
   queryOptions?: Partial<UseQueryOptions<TData[]>>
   dadataBaseUrl: string
+  dadataType: DadataTypes
   returnValue?: (value: SelectItemOption) => string
   value?: string
   onChange?: (value: string) => void
@@ -21,19 +29,22 @@ const defaultFormatter = <ItemData,>(item: ItemData): SelectItemOption => ({
   label: (item as { label: string }).label
 })
 
-export const AutocompleteBase = <TData,>({
+export const AutocompleteBase = <T, TData extends IDadataOptions<T>>({
   formatter = defaultFormatter,
   query,
   queryOptions,
   value,
   returnValue,
   onChange,
+  dadataType,
+  dadataBaseUrl,
   ...props
-}: AutocompleteBaseProps<TData>) => {
+}: AutocompleteBaseProps<T, TData>) => {
   const [search, setSearch] = useState<string>('')
 
-  const { data } = query(search, {
+  const { data } = query(search, dadataType, dadataBaseUrl, {
     ...queryOptions,
+    placeholderData: (prev) => prev,
     queryKey: [search]
   })
 

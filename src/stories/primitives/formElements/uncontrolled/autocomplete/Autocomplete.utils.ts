@@ -1,7 +1,7 @@
 import { useQuery, type UseQueryOptions } from '@tanstack/react-query'
-import { getDataByDadataType } from '$/shared/ui/formElements/dadataControl/autocompleteDadata/model/helpers'
+import { getDataByDadataType, type IDadataOptions } from '$/shared/ui/formElements/dadataControl/autocompleteDadata/model/helpers'
 
-type DadataTypes = 'fio' | 'country' | 'address' | 'auto' | 'party'
+export type DadataTypes = 'fio' | 'country' | 'address' | 'auto' | 'party'
 
 export interface FioResponse {
   value: string
@@ -16,45 +16,16 @@ export interface FioResponse {
   }
 }
 
-type DadataResponse = {
-  suggestions: FioResponse[]
-}
-
-export const useGetFioSuggestQuery = (
+export const useDadataQuery = <T>(
   query: string,
-  options?: Partial<UseQueryOptions<FioResponse[]>>,
-  dadataType: DadataTypes = 'fio'
+  dadataTypes: DadataTypes,
+  dadataBaseUrl: string,
+  options?: Partial<UseQueryOptions<IDadataOptions<T>[]>>
 ) =>
   useQuery({
-    queryKey: ['fio', 'rustem', 'gay'],
+    queryKey: [dadataTypes],
     queryFn: async () => {
-      const res = await fetch(import.meta.env.STORYBOOK_DADATA_CACHE_API + dadataType, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ query })
-      })
-
-      return ((await res.json()) as DadataResponse).suggestions
-    },
-    staleTime: 5 * 60 * 1000,
-    gcTime: 0,
-    ...options
-  })
-
-interface UseDadataQuery<Data> {
-  query: string
-  options?: Partial<UseQueryOptions<Data[]>>
-  dadataType: DadataTypes
-  dadataBaseUrl: string
-}
-
-export const useDadataQuery = <Data>({ query, options, dadataType = 'fio', dadataBaseUrl }: UseDadataQuery<Data>) => {
-  return useQuery({
-    queryKey: ['fio'],
-    queryFn: async () => {
-      const result = await fetch(dadataBaseUrl + dadataType, {
+      const result = await fetch(`${dadataBaseUrl}/${dadataTypes}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -64,7 +35,7 @@ export const useDadataQuery = <Data>({ query, options, dadataType = 'fio', dadat
 
       const data = await result.json()
 
-      const formattedData = getDataByDadataType(dadataType, data) as Data[]
+      const formattedData = getDataByDadataType(dadataTypes, data) as unknown as IDadataOptions<T>[]
 
       return formattedData
     },
@@ -72,4 +43,34 @@ export const useDadataQuery = <Data>({ query, options, dadataType = 'fio', dadat
     gcTime: 0,
     ...options
   })
-}
+
+// interface UseDadataQuery<Data> {
+//   query: string
+//   options?: Partial<UseQueryOptions<Data[]>>
+//   dadataType: DadataTypes
+//   dadataBaseUrl: string
+// }
+//
+// export const useDadataQuery = <Data>({ query, options, dadataType = 'fio', dadataBaseUrl }: UseDadataQuery<Data>) => {
+//   return useQuery({
+//     queryKey: [dadataType],
+//     queryFn: async () => {
+//       const result = await fetch(dadataBaseUrl + dadataType, {
+//         method: 'POST',
+//         headers: {
+//           'Content-Type': 'application/json'
+//         },
+//         body: JSON.stringify({ query })
+//       })
+//
+//       const data = await result.json()
+//
+//       const formattedData = getDataByDadataType(dadataType, data) as Data[]
+//
+//       return formattedData
+//     },
+//     staleTime: 5 * 60 * 1000,
+//     gcTime: 0,
+//     ...options
+//   })
+// }
