@@ -2,7 +2,7 @@
 
 import type { Meta, StoryObj } from '@storybook/react'
 import z from 'zod'
-import { HookForm } from '@/stories/primitives/formElements/controlled/utils.tsx'
+import { HookForm } from '../utils'
 import { Controlled } from '$/shared/ui'
 
 const schema = z.object({
