@@ -1,10 +1,8 @@
 'use docs'
 
-import { type FieldErrors } from 'react-hook-form'
-import toast from 'react-hot-toast'
 import type { Meta, StoryObj } from '@storybook/react'
 import z from 'zod'
-import { useControlledForm } from '$/shared/hooks'
+import { HookForm } from '../utils'
 import { Controlled, type RadioOption } from '$/shared/ui'
 
 const schema = z.object({
@@ -52,34 +50,6 @@ const options: RadioOption[] = [
 
 type Schema = z.TypeOf<typeof schema>
 type RadioGroupControlProps = React.ComponentPropsWithoutRef<typeof Controlled.RadioGroupControl>
-type FormProps = Omit<RadioGroupControlProps, 'control'> & {
-  schema: z.Schema
-}
-
-const Form = ({ schema, ...props }: FormProps) => {
-  const { control, handleSubmit } = useControlledForm({
-    schema,
-    defaultValues: {
-      test: null
-    }
-  })
-
-  const onSubmit = (values: Schema) => {
-    toast.success(JSON.stringify(values))
-  }
-
-  const onError = (errors: FieldErrors<Schema>) => {
-    toast.error(JSON.stringify(errors))
-  }
-
-  return (
-    <form onSubmit={handleSubmit(onSubmit, onError)}>
-      <Controlled.RadioGroupControl control={control} {...props} />
-      <br />
-      <button>Submit</button>
-    </form>
-  )
-}
 
 const meta = {
   title: 'CONTROLLED/RadioGroupControl',
@@ -91,7 +61,17 @@ const meta = {
     options,
     label: 'Some label',
     name: 'test'
-  }
+  },
+  render: (props) => (
+    <HookForm<RadioGroupControlProps, Schema>
+      {...props}
+      schema={schema}
+      defaultValues={{
+        test: null
+      }}
+      renderComponent={(componentProps: RadioGroupControlProps) => <Controlled.RadioGroupControl {...componentProps} />}
+    />
+  )
 } satisfies Meta<typeof Controlled.RadioGroupControl>
 
 export default meta
@@ -112,27 +92,22 @@ type Story = StoryObj<typeof Controlled.RadioGroupControl>
  *
  * Остальные свойства наследуются от [RadioGroup](?path=/docs/base-radiogroupbase--docs)\n
  */
-export const Base: Story = {
-  render: (props) => <Form schema={schema} {...props} />
-}
+export const Base: Story = {}
 
 export const Disabled: Story = {
   args: {
     disabled: true
-  },
-  render: Base.render
+  }
 }
 
 export const WithCustomReturnValue: Story = {
   args: {
     returnValue: (option) => option.label
-  },
-  render: Base.render
+  }
 }
 
 export const WithCustomDisplayValue: Story = {
   args: {
     displayValue: (option) => String(option.id)
-  },
-  render: Base.render
+  }
 }

@@ -61,7 +61,15 @@ const meta = {
     label: 'Input',
     options,
     name: 'test'
-  }
+  },
+  render: (props) => (
+    <HookForm<SelectControlProps, Schema>
+      {...props}
+      schema={schema}
+      defaultValues={{ test: null }}
+      renderComponent={(componentProps) => <Controlled.SelectControl<Schema> {...componentProps} />}
+    />
+  )
 } satisfies Meta<typeof Controlled.SelectControl<Schema>>
 
 export default meta
@@ -80,16 +88,7 @@ type Story = StoryObj<typeof Controlled.SelectControl<Schema>>
  *
  * Остальные свойства наследуются от [Select](?path=/docs/base-selectbase--docs)\n
  */
-export const Base: Story = {
-  render: (props) => (
-    <HookForm<SelectControlProps, Schema>
-      {...props}
-      schema={schema}
-      defaultValues={{ test: null }}
-      renderComponent={(componentProps) => <Controlled.SelectControl<Schema> {...componentProps} />}
-    />
-  )
-}
+export const Base: Story = {}
 
 const multiSchema = z.object({
   test: z.array(z.string().nullable().refine(Boolean))
@@ -103,7 +102,7 @@ export const WithMulti: Story = {
       {...props}
       schema={multiSchema}
       defaultValues={{ test: null }}
-      renderComponent={(componentProps) => <Controlled.SelectControl<Schema> {...componentProps} />}
+      renderComponent={(componentProps) => <Controlled.SelectControl {...componentProps} />}
     />
   )
 }
@@ -111,13 +110,5 @@ export const WithMulti: Story = {
 export const WithSearchable: Story = {
   args: {
     isSearchable: true
-  },
-  render: (props) => (
-    <HookForm<SelectControlProps, Schema>
-      {...props}
-      schema={schema}
-      defaultValues={{ test: null }}
-      renderComponent={(componentProps) => <Controlled.SelectControl<Schema> {...componentProps} />}
-    />
-  )
+  }
 }

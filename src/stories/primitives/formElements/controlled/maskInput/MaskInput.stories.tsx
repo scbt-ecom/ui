@@ -1,10 +1,8 @@
 'use docs'
 
-import { type FieldErrors } from 'react-hook-form'
-import toast from 'react-hot-toast'
 import type { Meta, StoryObj } from '@storybook/react'
 import z from 'zod'
-import { useControlledForm } from '$/shared/hooks'
+import { HookForm } from '@/stories/primitives/formElements/controlled/utils.tsx'
 import { Controlled } from '$/shared/ui'
 
 const schema = z.object({
@@ -12,30 +10,7 @@ const schema = z.object({
 })
 
 type Schema = z.TypeOf<typeof schema>
-
-const Form = () => {
-  const { control, handleSubmit } = useControlledForm({
-    schema,
-    defaultValues: {
-      test: ''
-    }
-  })
-
-  const onSubmit = (values: Schema) => {
-    toast.success(JSON.stringify(values))
-  }
-
-  const onError = (errors: FieldErrors<Schema>) => {
-    toast.error(JSON.stringify(errors))
-  }
-
-  return (
-    <form onSubmit={handleSubmit(onSubmit, onError)}>
-      <Controlled.MaskInputControl mask='##.##.####' control={control} name='test' label='Input' />
-      <button>Submit</button>
-    </form>
-  )
-}
+type MaskInputControlProps = React.ComponentPropsWithoutRef<typeof Controlled.MaskInputControl>
 
 const meta = {
   title: 'CONTROLLED/MaskInputControl',
@@ -45,8 +20,19 @@ const meta = {
   },
   args: {
     label: 'Input',
-    mask: '##.##.####'
-  }
+    mask: '##.##.####',
+    name: 'test'
+  },
+  render: (props) => (
+    <HookForm<MaskInputControlProps, Schema>
+      {...props}
+      schema={schema}
+      defaultValues={{
+        test: ''
+      }}
+      renderComponent={(componentProps: MaskInputControlProps) => <Controlled.MaskInputControl {...componentProps} />}
+    />
+  )
 } satisfies Meta<typeof Controlled.MaskInputControl>
 
 export default meta
@@ -65,6 +51,16 @@ type Story = StoryObj<typeof Controlled.MaskInputControl>
  *
  * Остальные свойства наследуются от [MaskInput](?path=/docs/base-maskinput--docs)\n
  */
-export const Base: Story = {
-  render: () => <Form />
+export const Base: Story = {}
+
+export const Disabled: Story = {
+  args: {
+    disabled: true
+  }
+}
+
+export const ReadOnly: Story = {
+  args: {
+    readOnly: true
+  }
 }

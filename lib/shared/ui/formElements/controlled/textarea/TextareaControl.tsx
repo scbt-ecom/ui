@@ -11,7 +11,7 @@ export type TextareaControlProps<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
 > = UseControllerProps<TFieldValues, TName> &
-  Omit<TextareaBaseProps, 'classes' | 'name'> & {
+  Omit<TextareaBaseProps, 'classes'> & {
     /**
      * Контрол объект для управления полем
      */

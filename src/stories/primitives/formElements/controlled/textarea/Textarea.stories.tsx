@@ -1,47 +1,16 @@
 'use docs'
 
-import { type FieldErrors } from 'react-hook-form'
-import toast from 'react-hot-toast'
 import type { Meta, StoryObj } from '@storybook/react'
 import z from 'zod'
 import { HookForm } from '../utils'
-import { useControlledForm } from '$/shared/hooks'
-import { Controlled, type TextareaControlProps } from '$/shared/ui'
+import { Controlled } from '$/shared/ui'
 
 const textareaSchema = z.object({
   test: z.string().min(3, 'Name error')
 })
 
 type Schema = z.TypeOf<typeof textareaSchema>
-
-type FormProps = Omit<TextareaControlProps<Schema>, 'control'> & {
-  schema: z.ZodSchema
-  renderComponent: (props: TextareaControlProps<Schema>) => React.JSX.Element
-}
-
-const Form = ({ renderComponent, schema, ...props }: FormProps) => {
-  const { control, handleSubmit } = useControlledForm({
-    schema,
-    defaultValues: {
-      test: ''
-    }
-  })
-
-  const onSubmit = (values: Schema) => {
-    toast.success(JSON.stringify(values))
-  }
-
-  const onError = (errors: FieldErrors<Schema>) => {
-    toast.error(JSON.stringify(errors))
-  }
-
-  return (
-    <form className='w-full' onSubmit={handleSubmit(onSubmit, onError)}>
-      {renderComponent({ ...props, control })}
-      <button>Submit</button>
-    </form>
-  )
-}
+type TextareaControlProps = React.ComponentPropsWithoutRef<typeof Controlled.TextareaControl>
 
 const meta = {
   title: 'CONTROLLED/TextareaControl',
@@ -53,7 +22,17 @@ const meta = {
     label: 'Some label',
     placeholder: 'Some placeholder',
     name: 'test'
-  }
+  },
+  render: (props) => (
+    <HookForm<any, Schema>
+      {...props}
+      defaultValues={{
+        test: ''
+      }}
+      schema={textareaSchema}
+      renderComponent={(componentProps: TextareaControlProps) => <Controlled.TextareaControl {...componentProps} />}
+    />
+  )
 } satisfies Meta<typeof Controlled.TextareaControl>
 
 export default meta
@@ -72,12 +51,16 @@ type Story = StoryObj<typeof Controlled.TextareaControl>
  *
  * Остальные свойства наследуются от [Textarea](?path=/docs/base-textareabase--docs)\n
  */
-export const Base: Story = {
-  render: (props) => (
-    <HookForm<TextareaControlProps<Schema>, Schema>
-      {...props}
-      schema={textareaSchema}
-      renderComponent={(componentProps) => <Controlled.TextareaControl {...componentProps} />}
-    />
-  )
+export const Base: Story = {}
+
+export const Disabled: Story = {
+  args: {
+    disabled: true
+  }
+}
+
+export const ReadOnly: Story = {
+  args: {
+    readOnly: true
+  }
 }

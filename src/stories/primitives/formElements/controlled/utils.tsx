@@ -5,13 +5,15 @@ import type { ZodSchema } from 'zod'
 import { useControlledForm } from '$/shared/hooks'
 import { Button } from '$/shared/ui'
 
-type FormProps<ComponentProps, Schema extends FieldValues> = ComponentProps & {
+type FormProps<ComponentProps extends {}, Schema extends FieldValues = FieldValues> = ComponentProps & {
   schema: ZodSchema
   defaultValues: Schema
-  renderComponent: (props: ComponentProps & { control: Control<Schema> }) => React.JSX.Element
+  renderComponent: (
+    props: Omit<FormProps<ComponentProps, Schema>, 'schema' | 'defaultValues' | 'renderComponent'> & { control: Control<Schema> }
+  ) => React.JSX.Element
 }
 
-export const HookForm = <ComponentProps, Schema extends FieldValues>({
+export const HookForm = <ComponentProps extends {}, Schema extends FieldValues>({
   schema,
   defaultValues,
   renderComponent,
@@ -31,7 +33,7 @@ export const HookForm = <ComponentProps, Schema extends FieldValues>({
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit, onError)}>
+    <form className='flex w-[500px] flex-col gap-y-2' onSubmit={handleSubmit(onSubmit, onError)}>
       {renderComponent({ control, ...props })}
       <Button type='submit'>Submit</Button>
     </form>
