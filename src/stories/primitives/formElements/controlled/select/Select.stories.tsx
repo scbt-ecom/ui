@@ -150,3 +150,7 @@ export const WithSearchable: Story = {
     />
   )
 }
+
+export const Virtual: Story = {
+  args: {}
+}

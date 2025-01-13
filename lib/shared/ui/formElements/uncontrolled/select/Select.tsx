@@ -1,5 +1,6 @@
-import { forwardRef, Fragment } from 'react'
+import { forwardRef, Fragment, useEffect, useRef } from 'react'
 import { Combobox, ComboboxButton, ComboboxInput, ComboboxOptions, type ComboboxProps } from '@headlessui/react'
+import { useVirtualizer } from '@tanstack/react-virtual'
 import { motion } from 'framer-motion'
 import { useSelectController } from './hooks'
 import type { SelectItemOption } from './model'
@@ -18,7 +19,7 @@ type SelectClasses = SelectItemProps['classes'] & {
 
 export type SelectBaseProps<Multi extends boolean> = Omit<
   ComboboxProps<SelectItemOption, Multi, 'li'>,
-  'multiple' | 'onChange' | 'by' | 'virtual' | 'className'
+  'multiple' | 'onChange' | 'by' | 'className' | 'virtual'
 > & {
   /**
    * Отображаемый лейбл
@@ -56,6 +57,10 @@ export type SelectBaseProps<Multi extends boolean> = Omit<
    * Свойства дополнительной иконки
    */
   attachmentProps?: DeepPartial<FieldAttachmentProps>
+  /**
+   * Включение виртуализации списка
+   */
+  virtual?: boolean
 }
 
 export const SelectBase = forwardRef<HTMLElement, SelectBaseProps<boolean>>(
@@ -70,6 +75,7 @@ export const SelectBase = forwardRef<HTMLElement, SelectBaseProps<boolean>>(
       displayValue,
       onChange,
       attachmentProps,
+      virtual = false,
       ...props
     },
     ref
@@ -83,6 +89,20 @@ export const SelectBase = forwardRef<HTMLElement, SelectBaseProps<boolean>>(
       displayValue,
       onChange
     })
+
+    const parentScrollRef = useRef<HTMLDivElement>(null)
+
+    const virtualizer = useVirtualizer({
+      count: options.length,
+      getScrollElement: () => parentScrollRef.current,
+      estimateSize: () => 48,
+      gap: 4,
+      overscan: 5
+    })
+
+    useEffect(() => {
+      virtualizer.measure()
+    }, [options, virtualizer])
 
     const TriggerWrapper = !isSearchable ? ComboboxButton : Fragment
 
@@ -142,37 +162,78 @@ export const SelectBase = forwardRef<HTMLElement, SelectBaseProps<boolean>>(
                   }}
                 />
               </TriggerWrapper>
-              <ComboboxOptions
-                as={motion.ul}
+              <motion.div
+                ref={parentScrollRef}
                 className={cn(
                   'customScrollbar-y absolute left-0 top-full z-10 mt-1',
                   'max-h-[264px] w-full overflow-y-auto bg-color-white',
-                  'rounded-md p-1 shadow-[0_8px_20px_0px_rgba(41,41,41,0.08)]',
-                  list
+                  'rounded-md p-1 shadow-[0_8px_20px_0px_rgba(41,41,41,0.08)]'
                 )}
                 initial={{ opacity: 0, translateY: 10 }}
                 animate={{ opacity: 1, translateY: 0 }}
                 exit={{ opacity: 0, translateY: 10 }}
               >
-                {options.length ? (
-                  options.map((option, index) => (
-                    <SelectItem
-                      key={option.value}
-                      option={option}
-                      isMulti={isMulti}
-                      classes={innerClasses}
-                      displayValue={displayValue}
-                      motionProps={{
-                        initial: { opacity: 0 },
-                        animate: { opacity: 1 },
-                        transition: { delay: index / 25 }
-                      }}
-                    />
-                  ))
-                ) : (
-                  <p className='py-4 text-center align-middle'>Ничего не найдено</p>
-                )}
-              </ComboboxOptions>
+                <ComboboxOptions
+                  as={motion.ul}
+                  className={cn(
+                    // 'customScrollbar-y absolute left-0 top-full z-10 mt-1',
+                    // 'max-h-[264px] w-full overflow-y-auto bg-color-white',
+                    // 'rounded-md p-1 shadow-[0_8px_20px_0px_rgba(41,41,41,0.08)]',
+                    list
+                  )}
+                  style={{
+                    width: '100%',
+                    height: `${virtualizer.getTotalSize()}px`,
+                    position: 'relative'
+                  }}
+                >
+                  {options.length ? (
+                    virtual ? (
+                      virtualizer.getVirtualItems().map((row) => {
+                        const option = options[row.index]
+
+                        return (
+                          <SelectItem
+                            style={{
+                              position: 'absolute',
+                              top: 0,
+                              left: 0,
+                              height: `${row.size}px`,
+                              width: '100%',
+                              transform: `translateY(${row.start}px)`
+                            }}
+                            key={option.value}
+                            option={option}
+                            isMulti={isMulti}
+                            classes={innerClasses}
+                            displayValue={displayValue}
+                            motionProps={{
+                              transition: { delay: row.index / 25 }
+                            }}
+                          />
+                        )
+                      })
+                    ) : (
+                      options.map((option, index) => (
+                        <SelectItem
+                          key={option.value}
+                          option={option}
+                          isMulti={isMulti}
+                          classes={innerClasses}
+                          displayValue={displayValue}
+                          motionProps={{
+                            initial: { opacity: 0 },
+                            animate: { opacity: 1 },
+                            transition: { delay: index / 25 }
+                          }}
+                        />
+                      ))
+                    )
+                  ) : (
+                    <p className='py-4 text-center align-middle'>Ничего не найдено</p>
+                  )}
+                </ComboboxOptions>
+              </motion.div>
             </div>
           )
         }}
