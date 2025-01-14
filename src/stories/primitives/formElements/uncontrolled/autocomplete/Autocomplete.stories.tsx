@@ -3,8 +3,8 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { DADATA_BASE_CACHE_URL } from '@/configs/api'
-import { useDadataQuery } from '@/stories/primitives/formElements/uncontrolled/autocomplete/Autocomplete.utils'
 import { Uncontrolled } from '$/shared/ui'
+import { useDadataQueryFio } from '$/shared/ui/formElements/controlled/dadata/fio/query.ts'
 
 const queryClient = new QueryClient()
 
@@ -53,18 +53,11 @@ type Story = StoryObj<typeof Uncontrolled.AutocompleteBase>
 export const Base: Story = {
   args: {},
   render: (props) => {
+    const queryFn = useDadataQueryFio
     return (
-      <div>
-        <Uncontrolled.AutocompleteBase {...props} dadataType='fio' query={useDadataQuery} dadataBaseUrl={DADATA_BASE_CACHE_URL} />
+      <div className='flex flex-col gap-4 rounded-lg border border-blue-grey-700 p-5'>
+        <Uncontrolled.AutocompleteBase {...props} query={(query, options) => queryFn(query, DADATA_BASE_CACHE_URL, options)} />
       </div>
     )
-  }
-}
-
-export const WithBadge: Story = {
-  args: {
-    attachmentProps: {
-      badge: '+25%'
-    }
   }
 }

@@ -1,36 +1,25 @@
 import { type FieldValues } from 'react-hook-form'
 import { AutocompleteControl, type AutocompleteControlProps } from '../../autocomplete'
-import { useDadataQuery } from '../query'
-import { DADATA_BASE_CACHE_URL } from '@/configs/api'
+import { useDadataQueryAddress } from './query'
 import { type SelectItemOption } from '$/exports/ui'
 
-interface AddressResponse {
-  value: string
-  unrestricted_value: string
-  data: {
-    surname: string | null
-    name: string | null
-    patronymic: string | null
-    gender: string
-    source: any
-    qc: string
-  }
-}
-
-const fioFormatter = (item: AddressResponse): SelectItemOption => ({
-  value: item.value,
-  label: item.value
+const addressFormatter = (item: { value: string }): SelectItemOption => ({
+  value: item?.value || '',
+  label: item?.value || ''
 })
 
 export const DadataAddress = <TFieldValues extends FieldValues>({
-  formatter = fioFormatter,
+  formatter = addressFormatter,
+  dadataBaseUrl,
   ...props
-}: Omit<AutocompleteControlProps<TFieldValues, AddressResponse>, 'query'>) => {
-  const queryFn = useDadataQuery
+}: Omit<AutocompleteControlProps<TFieldValues>, 'query'> & {
+  dadataBaseUrl: string
+}) => {
+  const queryFn = useDadataQueryAddress
 
   return (
     <AutocompleteControl
-      query={(query, options) => queryFn(query, options, 'address', DADATA_BASE_CACHE_URL)}
+      query={(query, queryOptions) => queryFn(query, dadataBaseUrl, queryOptions)}
       formatter={formatter}
       {...props}
     />

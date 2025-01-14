@@ -80,6 +80,7 @@ export const SelectBase = forwardRef<HTMLElement, SelectBaseProps<boolean>>(
       options: initialOptions,
       classes,
       displayValue,
+      value,
       onChange,
       attachmentProps,
       filterDisabled = false,
@@ -106,7 +107,7 @@ export const SelectBase = forwardRef<HTMLElement, SelectBaseProps<boolean>>(
     const TriggerAttachment = isSearchable ? ComboboxButton : Fragment
 
     return (
-      <Combobox ref={ref} {...props} onChange={onValueChange} multiple={isMulti}>
+      <Combobox ref={ref} {...props} value={value ?? null} onChange={onValueChange} multiple={isMulti}>
         {({ disabled, open, value }) => {
           const getDisplayValue = () => {
             if (isMulti && isSearchable) {
@@ -126,7 +127,7 @@ export const SelectBase = forwardRef<HTMLElement, SelectBaseProps<boolean>>(
                   label={label}
                   disabled={disabled}
                   readOnly={!isSearchable}
-                  value={externalInputValue || getDisplayValue()}
+                  value={(externalInputValue || getDisplayValue()) ?? ''}
                   autoComplete='off'
                   onChange={(event) => {
                     const { value } = event.target

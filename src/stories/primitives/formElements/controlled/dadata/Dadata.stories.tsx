@@ -4,7 +4,7 @@ import { type FieldErrors } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import type { Meta, StoryObj } from '@storybook/react'
 import z from 'zod'
-import { DADATA_BASE_CACHE_URL } from '@/configs/api'
+import { DADATA_BASE_CACHE_URL, DADATA_BASE_CONSTANTS_URL } from '@/configs/api'
 import { useControlledForm } from '$/shared/hooks'
 import { Controlled } from '$/shared/ui'
 
@@ -34,11 +34,18 @@ const Form = () => {
 
   return (
     <form className='flex flex-col gap-4' onSubmit={handleSubmit(onSubmit, onError)}>
-      <Controlled.DadataFio control={control} dadataBaseUrl={DADATA_BASE_CACHE_URL as string} label='fio' name='fio' />
-      <Controlled.DadataCountry
+      <Controlled.DadataFio
+        size='full'
         control={control}
         dadataBaseUrl={DADATA_BASE_CACHE_URL as string}
-        label='country'
+        label='ФИО'
+        name='fio'
+      />
+      <Controlled.DadataCountry
+        size='full'
+        control={control}
+        dadataBaseUrl={DADATA_BASE_CONSTANTS_URL as string}
+        label='Страна'
         name='country'
       />
       <button>Submit</button>

@@ -3,17 +3,13 @@ import { type Control, type FieldValues, type Path, useController, type UseContr
 import { FieldContainer, MessageView, type TFieldContainerConfig } from '../../ui'
 import { type AutocompleteBaseProps, Uncontrolled } from '../../uncontrolled'
 import { type SelectClasses } from '../../uncontrolled/select/Select'
-import type { IDadataOptions } from '$/shared/ui/formElements/dadataControl/autocompleteDadata/model/helpers'
 
 export type AutocompleteControlProps<
   TFieldValues extends FieldValues,
-  T,
-  TData extends IDadataOptions<T>,
   TName extends Path<TFieldValues> = Path<TFieldValues>
 > = UseControllerProps<TFieldValues, TName> &
-  Omit<AutocompleteBaseProps<T, TData>, 'classes'> & {
+  Omit<AutocompleteBaseProps, 'classes'> & {
     control: Control<TFieldValues>
-    dadataBaseUrl: string
     helperText?: string
     size?: TFieldContainerConfig['size']
     classes?: SelectClasses & {
@@ -22,7 +18,7 @@ export type AutocompleteControlProps<
     }
   }
 
-export const InnerComponent = <TFieldValues extends FieldValues, T, TData extends IDadataOptions<T>>({
+export const InnerComponent = <TFieldValues extends FieldValues>({
   control,
   name,
   defaultValue,
@@ -33,7 +29,7 @@ export const InnerComponent = <TFieldValues extends FieldValues, T, TData extend
   size,
   classes,
   ...props
-}: AutocompleteControlProps<TFieldValues, T, TData>) => {
+}: AutocompleteControlProps<TFieldValues>) => {
   const { field, fieldState } = useController({
     control,
     name,
@@ -43,12 +39,14 @@ export const InnerComponent = <TFieldValues extends FieldValues, T, TData extend
     shouldUnregister
   })
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars,unused-imports/no-unused-vars
+  const { ref, ...restField } = field
   const { error, invalid } = fieldState
   const { container, message } = classes || {}
 
   return (
     <FieldContainer className={container} size={size}>
-      <Uncontrolled.AutocompleteBase {...props} {...field} invalid={invalid} />
+      <Uncontrolled.AutocompleteBase {...props} {...restField} invalid={invalid} />
       <MessageView className={message} text={error?.message || helperText} intent={error ? 'error' : 'simple'} />
     </FieldContainer>
   )
