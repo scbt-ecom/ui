@@ -130,3 +130,19 @@ export const WithBadge: Story = {
     }
   }
 }
+
+export const WithSearchState: Story = {
+  args: {
+    ...WithSearchable.args
+  },
+  render: (props) => {
+    const [inputValue, setInputValue] = useState<string>('')
+
+    return (
+      <>
+        <p>Custom value: {inputValue}</p>
+        <Uncontrolled.SelectBase {...props} inputValue={inputValue} onInputChange={setInputValue} />
+      </>
+    )
+  }
+}

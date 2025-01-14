@@ -6,14 +6,20 @@ type UseSelectControllerProps = {
   isMulti?: boolean
   isSearchable?: boolean
   displayValue?: (option: SelectItemOption) => string
-  onChange?: (value: SelectItemOption | SelectItemOption[] | null) => void
+  onChange?: (value: SelectItemOption | SelectItemOption[] | undefined) => void
+  filterDisabled: boolean
+  externalInputValue?: string
+  externalOnInputChange?: (value: string) => void
 }
 
 export const useSelectController = ({
   options: initialOptions,
   displayValue,
   isSearchable = false,
-  onChange
+  onChange,
+  filterDisabled,
+  externalInputValue,
+  externalOnInputChange
 }: UseSelectControllerProps) => {
   const [inputValue, setInputValue] = useState<string>('')
 
@@ -28,12 +34,20 @@ export const useSelectController = ({
   }
 
   const options = useMemo<SelectItemOption[]>(() => {
+    if (filterDisabled) {
+      return initialOptions
+    }
+
     if (!isSearchable) {
       return initialOptions
     }
 
-    return initialOptions.filter((option) => withDisplayValue(option).toLowerCase().includes(inputValue.toLowerCase()))
-  }, [isSearchable, initialOptions, withDisplayValue, inputValue])
+    return initialOptions.filter((option) =>
+      withDisplayValue(option)
+        .toLowerCase()
+        .includes(externalInputValue ? externalInputValue.toLowerCase() : inputValue.toLowerCase())
+    )
+  }, [isSearchable, initialOptions, withDisplayValue, inputValue, externalInputValue, filterDisabled])
 
   const onValueChange = (value: SelectItemOption | SelectItemOption[] | null) => {
     if (!value) {
@@ -43,6 +57,7 @@ export const useSelectController = ({
     if (!Array.isArray(value)) {
       const label = withDisplayValue(value)
       setInputValue(label)
+      if (externalOnInputChange) externalOnInputChange(label)
     }
 
     if (onChange) onChange(value)
