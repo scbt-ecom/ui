@@ -1,8 +1,12 @@
 import { useQuery, type UseQueryOptions } from '@tanstack/react-query'
-import { getDataByDadataType, getOptionsByDadataType } from '../helpers'
-import type { OptionData } from '$/shared/ui/formElements/uncontrolled/autocomplete/Autocomplete'
+import { getDataByDadataType } from '../helpers'
+import { type IDadataAutoOption } from '../types'
 
-export const useDadataQueryAuto = (query: string, dadataBaseUrl: string, options?: Partial<UseQueryOptions<OptionData[]>>) =>
+export const useDadataQueryAuto = (
+  query: string,
+  dadataBaseUrl: string,
+  options?: Partial<UseQueryOptions<IDadataAutoOption[]>>
+) =>
   useQuery({
     queryKey: ['auto', query],
     queryFn: async () => {
@@ -14,10 +18,10 @@ export const useDadataQueryAuto = (query: string, dadataBaseUrl: string, options
         body: JSON.stringify({ query })
       })
       const data = await result.json()
-      const transformedData = getDataByDadataType('auto', data)
-      return getOptionsByDadataType('auto', transformedData)
+      return getDataByDadataType('auto', data) as IDadataAutoOption[]
     },
     staleTime: 5 * 60 * 1000,
     gcTime: 0,
+    placeholderData: (prev) => prev,
     ...options
   })

@@ -1,10 +1,10 @@
 import { type FieldValues } from 'react-hook-form'
 import { type AutocompleteControlProps } from '../../autocomplete'
-import { type IDadataCacheOption } from '../types'
-import { useDadataQueryAddress } from './query'
+import { type IDadataOrganizationOption } from '../types'
+import { useDadataQueryParty } from './query'
 import { Controlled, type SelectItemOption } from '$/shared/ui'
 
-const addressFormatter = (item: IDadataCacheOption<unknown>): SelectItemOption => ({
+const organizationFormatter = (item: IDadataOrganizationOption): SelectItemOption => ({
   value: item?.value || '',
   label: item?.value || ''
 })
@@ -12,15 +12,15 @@ const addressFormatter = (item: IDadataCacheOption<unknown>): SelectItemOption =
 /**
  * DADATA_BASE_CACHE_URL - нужно использовать этот url
  */
-export const DadataAddress = <TFieldValues extends FieldValues>({
-  formatter = addressFormatter,
+export const DadataOrganization = <TFieldValues extends FieldValues>({
+  formatter = organizationFormatter,
   dadataBaseUrl,
   ...props
-}: Omit<AutocompleteControlProps<TFieldValues, IDadataCacheOption<unknown>>, 'query' | 'formatter'> & {
+}: Omit<AutocompleteControlProps<TFieldValues, IDadataOrganizationOption>, 'query' | 'formatter'> & {
   dadataBaseUrl: string
-  formatter?: (item: IDadataCacheOption<unknown>) => SelectItemOption
+  formatter?: (item: IDadataOrganizationOption) => SelectItemOption
 }) => {
-  const queryFn = useDadataQueryAddress
+  const queryFn = useDadataQueryParty
 
   return <Controlled.AutocompleteControl query={(query) => queryFn(query, dadataBaseUrl)} formatter={formatter} {...props} />
 }

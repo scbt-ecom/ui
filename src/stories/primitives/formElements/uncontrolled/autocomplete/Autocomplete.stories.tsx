@@ -1,12 +1,19 @@
 'use docs'
 
 import type { Meta, StoryObj } from '@storybook/react'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { DADATA_BASE_CACHE_URL } from '@/configs/api'
+import { QueryClient, QueryClientProvider, useQuery, type UseQueryOptions } from '@tanstack/react-query'
 import { Uncontrolled } from '$/shared/ui'
-import { useDadataQueryFio } from '$/shared/ui/formElements/controlled/dadata/fio/query.ts'
 
 const queryClient = new QueryClient()
+
+const useQueryFn = (search: string, options?: Partial<UseQueryOptions<string[]>>) =>
+  useQuery<string[]>({
+    queryKey: [search],
+    queryFn: async () => {
+      return ['Some result']
+    },
+    ...options
+  })
 
 const meta = {
   title: 'BASE/AutocompleteBase',
@@ -32,31 +39,33 @@ export default meta
 
 type Story = StoryObj<typeof Uncontrolled.AutocompleteBase>
 
-// TODO: Попробовать сделать авто генерацию таблицы пропсов
 /**
- * \`Select\` компонент для выбора значений из выпадающего списка\n
+ * \`Autocomplete\` компонент для выбора значений из выпадающего списка\n
  *
- * | Props                    | Type                                                              | Description                                       | Required  |
- * | ------------------------ | ----------------------------------------------------------------- | ------------------------------------------------- | --------- |
- * | \`isSearchable\`         | \`boolean\`                                                       | Свойство управляющее поиском                      | \`false\` |
- * | \`label\`                | \`string\`                                                        | Отображаемый лейбл                                | \`true\`  |
- * | \`isMulti\`              | \`boolean\`                                                       | Поддержка множественного выбора                   | \`false\` |
- * | \`invalid\`              | \`boolean\`                                                       | Пометить поле как не валидное                     | \`false\` |
- * | \`displayValue\`         | \`(option: SelectItemOption) => string\`                          | Функция для управления отображаемым значением     | \`false\` |
- * | \`classes\`              | \`SelectClasses\`                                                 | Дополнительные стили каждого внутреннего элемента | \`false\` |
- * | \`options\`              | \`SelectItemOption[]\`                                            | Список отображаемых значений                      | \`true\`  |
- * | \`onChange\`             | \`(value: SelectItemOption | SelectItemOption[] | null) => void\` | Функция для изменения значения                    | \`false\` |
- * | \`attachmentProps\`      | \`DeepPartial<FieldAttachmentProps>\`                             | Свойства дополнительной иконки                    | \`false\` |
- *
- * Остальные свойства наследуются от [Headless UI](https://headlessui.com/react/combobox#component-api)
+ * | Props                    | Type                                                                  | Description                                                       | Required  |
+ * | ------------------------ | --------------------------------------------------------------------- | ----------------------------------------------------------------- | --------- |
+ * | \`query\`                | \`(query: string) => UseQueryResult<TData[]>\`                        | Запрос который должен получать options (пишем на tanstack/query)  | \`true\` |
+ * | \`formatter\`            | \`(item: TData, index: number, array: TData[]) => SelectItemOption\`  | Позволяет форматировать данные                                    | \`true\` |
+ * | \`returnValue\`          | \`(query: string) => UseQueryResult<TData[]>\`                        | Позволяет управлять выходным значением                            | \`false\` |
+ * | \`value\`                | \`string\`                                                            | Значение инпута                                                   | \`false\` |
+ * | \`onChange\`             | \`(value: string) => void\`                                           | Handler инпута                                                    | \`false\` |
+ * Остальные свойства наследуются от [SelectBase](?path=/docs/base-selectbase--docs)
  */
+
 export const Base: Story = {
   args: {},
   render: (props) => {
-    const queryFn = useDadataQueryFio
     return (
       <div className='flex flex-col gap-4 rounded-lg border border-blue-grey-700 p-5'>
-        <Uncontrolled.AutocompleteBase {...props} query={(query, options) => queryFn(query, DADATA_BASE_CACHE_URL, options)} />
+        <Uncontrolled.AutocompleteBase
+          {...props}
+          label='Autocomplete Base'
+          formatter={(item) => ({
+            value: item,
+            label: item
+          })}
+          query={useQueryFn}
+        />
       </div>
     )
   }

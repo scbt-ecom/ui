@@ -10,7 +10,10 @@ import { Controlled } from '$/shared/ui'
 
 const schema = z.object({
   fio: z.string().min(1),
-  country: z.string().min(1)
+  country: z.string().min(1),
+  auto: z.string().min(1),
+  organization: z.string().min(1),
+  address: z.string().min(1)
 })
 
 type Schema = z.TypeOf<typeof schema>
@@ -20,7 +23,10 @@ const Form = () => {
     schema,
     defaultValues: {
       fio: '',
-      country: ''
+      country: '',
+      auto: '',
+      organization: '',
+      address: ''
     }
   })
 
@@ -34,16 +40,31 @@ const Form = () => {
 
   return (
     <form className='flex flex-col gap-4' onSubmit={handleSubmit(onSubmit, onError)}>
-      <Controlled.DadataFio
-        size='full'
+      <Controlled.DadataOrganization
         control={control}
+        size='lg'
         dadataBaseUrl={DADATA_BASE_CACHE_URL as string}
-        label='ФИО'
-        name='fio'
+        label='Organization'
+        name='organization'
       />
-      <Controlled.DadataCountry
-        size='full'
+      <Controlled.DadataAddress
         control={control}
+        size='lg'
+        dadataBaseUrl={DADATA_BASE_CACHE_URL as string}
+        label='Address'
+        name='address'
+      />
+      <Controlled.DadataAuto
+        control={control}
+        size='lg'
+        dadataBaseUrl={DADATA_BASE_CONSTANTS_URL as string}
+        label='Auto'
+        name='auto'
+      />
+      <Controlled.DadataFio control={control} size='lg' dadataBaseUrl={DADATA_BASE_CACHE_URL as string} label='ФИО' name='fio' />
+      <Controlled.DadataCountry
+        control={control}
+        size='lg'
         dadataBaseUrl={DADATA_BASE_CONSTANTS_URL as string}
         label='Страна'
         name='country'

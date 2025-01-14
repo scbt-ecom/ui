@@ -1,43 +1,45 @@
 import { useMemo, useState } from 'react'
 import { type SelectBaseProps, type SelectItemOption, Uncontrolled } from '..'
-import { type UseQueryOptions, type UseQueryResult } from '@tanstack/react-query'
+import { type UseQueryResult } from '@tanstack/react-query'
 
-export type OptionData = { value: string; label: string }
-
-export interface AutocompleteBaseProps
+export interface AutocompleteBaseProps<TData>
   extends Omit<
     SelectBaseProps<boolean>,
     'options' | 'inputValue' | 'onInputChange' | 'isSearchable' | 'isMulti' | 'value' | 'onChange'
   > {
-  formatter?: (item: OptionData, index: number, array: OptionData[]) => SelectItemOption
-  query: (query: string, options?: Partial<UseQueryOptions<OptionData[]>>) => UseQueryResult<OptionData[]>
-  queryOptions?: Partial<UseQueryOptions<OptionData[]>>
+  /**
+   * Запрос который должен получать options (пишем на tanstack/query)
+   */
+  query: (query: string) => UseQueryResult<TData[]>
+  /**
+   * Позволяет форматировать данные
+   */
+  formatter: (item: TData, index: number, array: TData[]) => SelectItemOption
+  /**
+   * Позволяет управлять выходным значением
+   */
   returnValue?: (value: SelectItemOption) => string
+  /**
+   * Значение инпута
+   */
   value?: string
+  /**
+   * Handler инпута
+   */
   onChange?: (value: string) => void
 }
 
-const defaultFormatter = (item: OptionData): SelectItemOption => ({
-  value: item.value,
-  label: item.value
-})
-
-export const AutocompleteBase = ({
-  formatter = defaultFormatter,
+export const AutocompleteBase = <TData,>({
+  formatter,
   query,
-  queryOptions,
   value,
   returnValue,
   onChange,
   ...props
-}: AutocompleteBaseProps) => {
+}: AutocompleteBaseProps<TData>) => {
   const [search, setSearch] = useState<string>('')
 
-  const { data } = query(search, {
-    ...queryOptions,
-    placeholderData: (prev) => prev,
-    queryKey: [search]
-  })
+  const { data } = query(search)
 
   const options = data ? data.map(formatter) : []
 

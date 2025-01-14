@@ -6,9 +6,10 @@ import { type SelectClasses } from '../../uncontrolled/select/Select'
 
 export type AutocompleteControlProps<
   TFieldValues extends FieldValues,
+  T,
   TName extends Path<TFieldValues> = Path<TFieldValues>
 > = UseControllerProps<TFieldValues, TName> &
-  Omit<AutocompleteBaseProps, 'classes'> & {
+  Omit<AutocompleteBaseProps<T>, 'classes'> & {
     control: Control<TFieldValues>
     helperText?: string
     size?: TFieldContainerConfig['size']
@@ -18,7 +19,7 @@ export type AutocompleteControlProps<
     }
   }
 
-export const InnerComponent = <TFieldValues extends FieldValues>({
+export const InnerComponent = <TFieldValues extends FieldValues, T>({
   control,
   name,
   defaultValue,
@@ -29,7 +30,7 @@ export const InnerComponent = <TFieldValues extends FieldValues>({
   size,
   classes,
   ...props
-}: AutocompleteControlProps<TFieldValues>) => {
+}: AutocompleteControlProps<TFieldValues, T>) => {
   const { field, fieldState } = useController({
     control,
     name,

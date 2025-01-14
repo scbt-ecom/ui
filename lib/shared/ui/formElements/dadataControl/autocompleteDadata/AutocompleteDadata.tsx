@@ -45,7 +45,9 @@ export interface IAutocompleteDadataProps<T extends FieldValues>
   customChangeOption?: (...args: unknown[]) => void
   // TODO: ACTIONS OBJECT
 }
-
+/**
+ * @deprecated For better performance use `Controlled.AutocompleteControl` instead.
+ */
 export const AutocompleteDadata = <T extends FieldValues>({
   dadataType,
   dadataBaseUrl,
