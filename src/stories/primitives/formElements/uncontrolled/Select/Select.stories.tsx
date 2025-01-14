@@ -17,11 +17,38 @@ const meta = {
     layout: 'centered'
   },
   decorators: [
-    (Story) => (
-      <div className='w-[800px]'>
-        <Story />
-      </div>
-    )
+    (Story, context) => {
+      const { args } = context
+
+      const [optionsCount, setOptionsCount] = useState<number>(10)
+
+      return (
+        <div className='flex w-[800px] flex-col gap-y-2'>
+          <label>
+            Количество элементов
+            <select
+              className='ml-1 rounded-sm border'
+              value={optionsCount}
+              onChange={({ target }) => setOptionsCount(Number(target.value))}
+            >
+              <option value={10}>10</option>
+              <option value={100}>100</option>
+              <option value={250}>250</option>
+              <option value={500}>500</option>
+              <option value={1000}>1000</option>
+              <option value={10000}>10000</option>
+            </select>
+          </label>
+          <Story
+            {...context}
+            args={{
+              ...args,
+              options: generateOptions(optionsCount)
+            }}
+          />
+        </div>
+      )
+    }
   ],
   args: {
     label: 'Test selector',
@@ -93,8 +120,6 @@ export const WithBadge: Story = {
 
 export const Virtual: Story = {
   args: {
-    virtual: true,
-    options: generateOptions(1000)
-  },
-  render: WithState.render
+    virtual: true
+  }
 }
