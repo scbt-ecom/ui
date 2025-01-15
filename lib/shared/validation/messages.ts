@@ -8,5 +8,6 @@ export const VALIDATION_MESSAGES = {
   FIX_LENGTH_ELEMENTS: 'Количество элементов должно быть равно',
   INVALID_VALUE: 'Поле заполнено некорректно',
   INVALID_DATE: 'Введите корректную дату',
-  FUTURE_DATE_NOT_ALLOWED: 'Нельзя выбрать дату позже текущей'
+  FUTURE_DATE_NOT_ALLOWED: 'Нельзя выбрать дату позже текущей',
+  INVALID_URL: 'Некорректная ссылка'
 } as const
