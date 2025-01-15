@@ -52,6 +52,7 @@
     "build-storybook": "storybook build --quiet",
     "start": "npm run start:sb",
     "test-storybook": "test-storybook",
+    "storybook-remove-mdx": "ts-node plugins/vite/viteStorybookMdxGenerationPlugin/utils/removeMdx.js",
     "prepare": "husky",
     "pre-commit": "npm run lint",
     "chromatic": "npx chromatic --project-token=chpt_9468dafcf1bf3e3 --only-changed --files='src/stories/**/*.stories.@(tsx)'",
