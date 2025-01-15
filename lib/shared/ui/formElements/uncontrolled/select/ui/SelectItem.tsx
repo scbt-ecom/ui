@@ -32,7 +32,7 @@ export const SelectItem = ({ option, classes, displayValue, isMulti, motionProps
         <motion.li
           {...motionProps}
           className={cn(
-            'unset-all-apply desk-body-regular-l cursor-pointer rounded-sm bg-color-white px-2',
+            'unset-all-apply desk-body-regular-l cursor-pointer truncate rounded-sm bg-color-white px-2',
             'flex h-12 items-center gap-x-4 text-color-dark hover:bg-color-primary-tr-hover hover:text-color-primary-hover',
             '[&:not(:disabled)]:cursor-pointer [&:not(:last-child)]:mb-1 [&>p]:hover:text-color-secondary',
             {

@@ -1,0 +1,1 @@
+export { DadataFio } from './DadataFio'

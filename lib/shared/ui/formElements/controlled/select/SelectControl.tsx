@@ -39,8 +39,8 @@ type SelectControlProps<
     returnValue?: (option: SelectItemOption) => string
   }
 
-function isSingleValue(value: OnChangeValue<SelectItemOption, boolean>): value is SelectItemOption {
-  return value !== null && !Array.isArray(value)
+function isSingleValue(value?: OnChangeValue<SelectItemOption, boolean>): value is SelectItemOption {
+  return value !== null && typeof value !== 'undefined' && !Array.isArray(value)
 }
 
 const InnerComponent = <TFieldValues extends FieldValues = FieldValues>({
@@ -71,7 +71,7 @@ const InnerComponent = <TFieldValues extends FieldValues = FieldValues>({
 
   const { value, onChange, ...restField } = field
 
-  const onValueChange = (value: OnChangeValue<SelectItemOption, boolean>) => {
+  const onValueChange = (value?: OnChangeValue<SelectItemOption, boolean>) => {
     if (Array.isArray(value)) {
       const values = value.map((item) => (returnValue ? returnValue(item) : item.value))
       onChange(values)

@@ -11,6 +11,7 @@ export const zodPhoneSchema = z
         message: 'Код города/оператора должен начинаться с цифры 3, 4, 5, 6 или 9'
       })
     }
+
     if (value.length !== 10) {
       ctx.addIssue({
         code: z.ZodIssueCode.custom,

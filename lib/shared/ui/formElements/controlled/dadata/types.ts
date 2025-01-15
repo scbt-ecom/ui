@@ -1,11 +1,5 @@
 export type TDadataType = 'address' | 'fio' | 'country' | 'auto' | 'party'
 
-export type TDadataOption = {
-  value: string
-  additionalText?: string
-  isDisabled?: boolean
-}
-
 // # constants suggestions COUNTRY
 export interface IDadataCountryOption {
   id: number
@@ -36,6 +30,7 @@ export interface IDadataCacheOption<T> {
   unrestricted_value: string
   data: T
 }
+
 export interface IDadataCacheSuggestion<T> {
   suggestions: IDadataCacheOption<T>[]
 }
@@ -50,4 +45,3 @@ export interface IDadataOrganizationOption {
 }
 
 export type TDadataReturn<T> = IDadataConstantsCountrySuggestion | IDadataCacheSuggestion<T> | IDadataConstantsAutoSuggestion
-export type TDadataSuggestionType<T> = IDadataCountryOption[] | IDadataCacheOption<T>[] | IDadataAutoOption[]
