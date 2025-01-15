@@ -26,7 +26,7 @@ export const Base: Story = {
   args: {
     href: 'https://sovcombank.ru/',
     children: 'Совкомбанк',
-    withIcon: false
+    icon: 'arrows/arrowLink'
   }
 }
 
@@ -34,8 +34,8 @@ export const WithIcon: Story = {
   args: {
     href: 'https://sovcombank.ru/',
     children: 'Совкомбанк',
-    withIcon: true,
-    intent: 'white'
+    intent: 'white',
+    icon: 'arrows/arrowLink'
   }
 }
 
@@ -43,8 +43,15 @@ export const WithOtherIcon: Story = {
   args: {
     href: 'https://sovcombank.ru/',
     children: 'Совкомбанк',
-    withIcon: true,
     icon: 'general/close',
+    intent: 'blue'
+  }
+}
+
+export const NoIcon: Story = {
+  args: {
+    href: 'https://sovcombank.ru/',
+    children: 'Совкомбанк',
     intent: 'blue'
   }
 }
@@ -53,7 +60,6 @@ export const Disabled: Story = {
   args: {
     href: 'https://sovcombank.ru/',
     children: 'Совкомбанк',
-    withIcon: true,
     intent: 'blue',
     disabled: true
   }

@@ -23,5 +23,6 @@ export const useDadataQueryParty = (
     staleTime: 5 * 60 * 1000,
     gcTime: 0,
     placeholderData: (prev) => prev,
+    enabled: Boolean(query),
     ...options
   })

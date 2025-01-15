@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import { type SelectBaseProps, type SelectItemOption, Uncontrolled } from '..'
 import { type UseQueryResult } from '@tanstack/react-query'
+import { useDebounceValue } from '../../../../hooks'
 
 export interface AutocompleteBaseProps<TData>
   extends Omit<
@@ -38,8 +39,9 @@ export const AutocompleteBase = <TData,>({
   ...props
 }: AutocompleteBaseProps<TData>) => {
   const [search, setSearch] = useState<string>('')
+  const debounceSearch = useDebounceValue(search, 100)
 
-  const { data } = query(search)
+  const { data } = query(debounceSearch)
 
   const options = data ? data.map(formatter) : []
 
