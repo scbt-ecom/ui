@@ -1,31 +1,29 @@
-'use client'
-
 import { memo } from 'react'
-import { type Control, type FieldValues, type Path, useController, type UseControllerProps } from 'react-hook-form'
-import { type InputBaseProps, Uncontrolled } from '../../uncontrolled'
+import { type Control, type FieldPath, type FieldValues, useController, type UseControllerProps } from 'react-hook-form'
+import { type TextareaBaseProps, Uncontrolled } from '$/shared/ui'
 import { FieldContainer, MessageView, type TFieldContainerConfig } from '$/shared/ui/formElements/ui'
 
-type InputControlClasses = InputBaseProps['classes'] & {
+type TextareaControlClasses = TextareaBaseProps['classes'] & {
   message?: string
 }
 
-type InputControlProps<
+export type TextareaControlProps<
   TFieldValues extends FieldValues = FieldValues,
-  TName extends Path<TFieldValues> = Path<TFieldValues>
+  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
 > = UseControllerProps<TFieldValues, TName> &
-  Omit<InputBaseProps, 'classes'> & {
+  Omit<TextareaBaseProps, 'classes'> & {
     /**
      * Контрол объект для управления полем
      */
     control: Control<TFieldValues>
     /**
+     * Дополнительные стили компонента
+     */
+    classes?: TextareaControlClasses
+    /**
      * Дополнительный текст
      */
     helperText?: string
-    /**
-     * Дополнительные стили компонента
-     */
-    classes?: InputControlClasses
     /**
      * Размер контейнера для поля
      */
@@ -33,23 +31,23 @@ type InputControlProps<
   }
 
 const InnerComponent = <TFieldValues extends FieldValues = FieldValues>({
+  classes,
   control,
   name,
-  defaultValue,
-  disabled,
   rules,
+  disabled,
+  defaultValue,
   shouldUnregister,
   helperText,
-  classes,
   size,
   ...props
-}: InputControlProps<TFieldValues>) => {
+}: TextareaControlProps<TFieldValues>) => {
   const { field, fieldState } = useController({
     control,
     name,
-    defaultValue,
-    disabled,
     rules,
+    disabled,
+    defaultValue,
     shouldUnregister
   })
 
@@ -58,11 +56,11 @@ const InnerComponent = <TFieldValues extends FieldValues = FieldValues>({
 
   return (
     <FieldContainer size={size} className={container}>
-      <Uncontrolled.InputBase
+      <Uncontrolled.TextareaBase
         {...props}
         {...field}
-        classes={restClasses}
         invalid={invalid}
+        classes={restClasses}
         attachmentProps={{
           invalid,
           isTouched,
@@ -80,4 +78,4 @@ const InnerComponent = <TFieldValues extends FieldValues = FieldValues>({
   )
 }
 
-export const InputControl = memo(InnerComponent) as typeof InnerComponent
+export const TextareaControl = memo(InnerComponent) as typeof InnerComponent

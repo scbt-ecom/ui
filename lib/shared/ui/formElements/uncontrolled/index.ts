@@ -13,14 +13,17 @@ import { AutocompleteBase } from './autocomplete'
 import { RadioGroupBase } from './radio'
 export type { AutocompleteBaseProps } from './autocomplete'
 export type { RadioGroupBaseProps, RadioOption } from './radio'
+import { TextareaBase } from './textarea'
+export type { TextareaBaseProps } from './textarea'
 
 export const Uncontrolled = {
   InputBase,
-  AutocompleteBase,
   MaskInput,
   SelectBase,
   CheckboxBase,
   DayPickerBase,
+  AutocompleteBase,
   SwitchBase,
-  RadioGroupBase
+  RadioGroupBase,
+  TextareaBase
 }

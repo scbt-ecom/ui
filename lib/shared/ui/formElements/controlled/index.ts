@@ -7,6 +7,8 @@ import { InputControl, MaskInputControl } from './input'
 import { RadioGroupControl } from './radio'
 import { SelectControl } from './select'
 import { SwitchControl } from './switch'
+import { TextareaControl } from './textarea'
+export type { TextareaControlProps } from './textarea'
 
 export const Controlled = {
   InputControl,
@@ -22,5 +24,7 @@ export const Controlled = {
   DadataAddress,
   DadataCountry,
   DadataAuto,
-  DadataOrganization
+  DadataOrganization,
+  ComboboxControl,
+  TextareaControl
 }

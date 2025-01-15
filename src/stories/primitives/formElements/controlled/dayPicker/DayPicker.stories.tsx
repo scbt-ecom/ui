@@ -1,10 +1,8 @@
 'use docs'
 
-import { type FieldErrors } from 'react-hook-form'
-import toast from 'react-hot-toast'
 import type { Meta, StoryObj } from '@storybook/react'
 import z from 'zod'
-import { useControlledForm } from '$/shared/hooks'
+import { HookForm } from '../utils'
 import { Controlled } from '$/shared/ui'
 
 const schema = z.object({
@@ -13,31 +11,7 @@ const schema = z.object({
 })
 
 type Schema = z.TypeOf<typeof schema>
-
-const Form = () => {
-  const { control, handleSubmit } = useControlledForm({
-    schema,
-    defaultValues: {
-      to: '2024-12-20T08:05:24.003Z'
-    }
-  })
-
-  const onSubmit = (values: Schema) => {
-    toast.success(JSON.stringify(values))
-  }
-
-  const onError = (errors: FieldErrors<Schema>) => {
-    toast.error(JSON.stringify(errors))
-  }
-
-  return (
-    <form onSubmit={handleSubmit(onSubmit, onError)}>
-      <Controlled.DayPickerControl control={control} name='from' inputProps={{ label: 'Pick the date' }} />
-      <Controlled.DayPickerControl control={control} name='to' inputProps={{ label: 'Pick the date' }} />
-      <button>Submit</button>
-    </form>
-  )
-}
+type DayPickerControlProps = React.ComponentPropsWithoutRef<typeof Controlled.DayPickerControl>
 
 const meta = {
   title: 'CONTROLLED/DayPickerControl',
@@ -49,7 +23,22 @@ const meta = {
     inputProps: {
       label: 'Input'
     }
-  }
+  },
+  render: (props) => (
+    <HookForm<DayPickerControlProps, Schema>
+      {...props}
+      schema={schema}
+      defaultValues={{
+        to: '2024-12-20T08:05:24.003Z'
+      }}
+      renderComponent={(componentProps: DayPickerControlProps) => (
+        <>
+          <Controlled.DayPickerControl {...componentProps} name='from' inputProps={{ label: 'Pick the date' }} />
+          <Controlled.DayPickerControl {...componentProps} name='to' inputProps={{ label: 'Pick the date' }} />
+        </>
+      )}
+    />
+  )
 } satisfies Meta<typeof Controlled.DayPickerControl>
 
 export default meta
@@ -68,6 +57,10 @@ type Story = StoryObj<typeof Controlled.DayPickerControl>
  *
  * Остальные свойства наследуются от [DayPicker](?path=/docs/base-daypickerbase--docs)\n
  */
-export const Base: Story = {
-  render: () => <Form />
+export const Base: Story = {}
+
+export const Disabled: Story = {
+  args: {
+    disabled: true
+  }
 }
