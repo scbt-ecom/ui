@@ -25,6 +25,5 @@ export const Controlled = {
   DadataCountry,
   DadataAuto,
   DadataOrganization,
-  ComboboxControl,
   TextareaControl
 }
