@@ -16,6 +16,14 @@ export type SelectClasses = SelectItemProps['classes'] & {
   list?: string
 }
 
+export type ExternalHandlers = {
+  onChange?: (value?: SelectItemOption | SelectItemOption[]) => void
+  onClick?: (event: React.MouseEvent<HTMLElement>) => void
+  onBlur?: (event: React.FocusEvent<HTMLElement>) => void
+  onFocus?: (event: React.FocusEvent<HTMLElement>) => void
+  onInputChange?: (value: string) => void
+}
+
 export type SelectBaseProps<Multi extends boolean> = Omit<
   ComboboxProps<SelectItemOption, Multi, 'li'>,
   'multiple' | 'onChange' | 'by' | 'virtual' | 'className'
@@ -68,6 +76,10 @@ export type SelectBaseProps<Multi extends boolean> = Omit<
    * Свойство для выключении фильтрации по поиску
    */
   filterDisabled?: boolean
+  /**
+   * Внешние handlers которые можно прокинуть из вне
+   */
+  externalHandlers?: ExternalHandlers
 }
 
 export const SelectBase = forwardRef<HTMLElement, SelectBaseProps<boolean>>(
@@ -86,6 +98,7 @@ export const SelectBase = forwardRef<HTMLElement, SelectBaseProps<boolean>>(
       filterDisabled = false,
       inputValue: externalInputValue,
       onInputChange: externalOnInputChange,
+      externalHandlers,
       ...props
     },
     ref
@@ -100,14 +113,24 @@ export const SelectBase = forwardRef<HTMLElement, SelectBaseProps<boolean>>(
       onChange,
       filterDisabled,
       externalInputValue,
-      externalOnInputChange
+      externalOnInputChange,
+      externalHandlers
     })
 
     const TriggerWrapper = !isSearchable ? ComboboxButton : Fragment
     const TriggerAttachment = isSearchable ? ComboboxButton : Fragment
 
     return (
-      <Combobox ref={ref} {...props} value={value ?? null} onChange={onValueChange} multiple={isMulti}>
+      <Combobox
+        ref={ref}
+        {...props}
+        onBlur={externalHandlers?.onBlur}
+        onFocus={externalHandlers?.onFocus}
+        onClick={externalHandlers?.onClick}
+        value={value ?? null}
+        onChange={onValueChange}
+        multiple={isMulti}
+      >
         {({ disabled, open, value }) => {
           const getDisplayValue = () => {
             if (isMulti && isSearchable) {
@@ -134,6 +157,7 @@ export const SelectBase = forwardRef<HTMLElement, SelectBaseProps<boolean>>(
 
                     if (isSearchable) {
                       if (externalOnInputChange) externalOnInputChange(value)
+                      if (externalHandlers?.onInputChange) externalHandlers.onInputChange(value)
                       if (onInputValueChange) onInputValueChange(event)
                     }
                   }}
