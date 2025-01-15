@@ -18,10 +18,6 @@ const customLinkConfig = cva(
         true: 'underline underline-offset-4',
         false: ''
       },
-      // withIcon: {
-      //   true: 'flex items-center gap-1',
-      //   false: ''
-      // },
       disabled: {
         true: '!text-color-primary-disabled pointer-events-none !border-transparent',
         false: ''
@@ -69,16 +65,7 @@ export interface ICustomLinkProps extends TCustomLinkConfig, Omit<ComponentProps
   classes?: TCustomLinkClasses
 }
 
-export const CustomLink = ({
-  intent,
-  children,
-  disabled,
-  size,
-  icon = 'arrows/arrowLink',
-  classes,
-  withUnderline,
-  ...props
-}: ICustomLinkProps) => {
+export const CustomLink = ({ intent, children, disabled, size, icon, classes, withUnderline, ...props }: ICustomLinkProps) => {
   return (
     <a className={cn(customLinkConfig({ intent, withUnderline, disabled, size }), classes?.link)} {...props}>
       {children}
