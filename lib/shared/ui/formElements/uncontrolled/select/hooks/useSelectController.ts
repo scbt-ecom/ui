@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
 import type { SelectItemOption } from '../model'
+import { type ExternalHandlers } from '$/shared/ui/formElements/uncontrolled/select/Select'
 
 type UseSelectControllerProps = {
   options: SelectItemOption[]
@@ -10,6 +11,7 @@ type UseSelectControllerProps = {
   filterDisabled: boolean
   externalInputValue?: string
   externalOnInputChange?: (value: string) => void
+  externalHandlers?: ExternalHandlers
 }
 
 export const useSelectController = ({
@@ -19,7 +21,8 @@ export const useSelectController = ({
   onChange,
   filterDisabled,
   externalInputValue,
-  externalOnInputChange
+  externalOnInputChange,
+  externalHandlers
 }: UseSelectControllerProps) => {
   const [inputValue, setInputValue] = useState<string>('')
 
@@ -58,9 +61,11 @@ export const useSelectController = ({
       const label = withDisplayValue(value)
       setInputValue(label)
       if (externalOnInputChange) externalOnInputChange(label)
+      if (externalHandlers?.onInputChange) externalHandlers?.onInputChange(label)
     }
 
     if (onChange) onChange(value)
+    if (externalHandlers?.onChange) externalHandlers?.onChange(value)
   }
 
   const selectDisplayValue = (value: SelectItemOption | SelectItemOption[] | null) => {

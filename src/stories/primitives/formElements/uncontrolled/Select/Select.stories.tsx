@@ -146,3 +146,27 @@ export const WithSearchState: Story = {
     )
   }
 }
+
+export const WithExternalHandler: Story = {
+  args: {
+    isSearchable: true,
+    externalHandlers: {
+      onFocus: (e) => {
+        console.warn(e, 'event onFocus')
+      },
+      onBlur: (e) => {
+        console.warn(e, 'event onBlur')
+      },
+      onChange: (e) => {
+        console.warn(e, 'event onChange')
+      },
+      onClick: (e) => {
+        console.warn(e, 'event onClick')
+      },
+      onInputChange: (e) => {
+        console.warn(e, 'event onInputChange')
+      }
+    }
+  },
+  render: WithState.render
+}
