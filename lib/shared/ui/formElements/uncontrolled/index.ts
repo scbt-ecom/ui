@@ -11,11 +11,13 @@ import { SwitchBase } from './switch'
 export type { SwitchBaseProps } from './switch'
 import { AutocompleteBase } from './autocomplete'
 import { RadioGroupBase } from './radio'
+import { SliderBase } from './slider'
 export type { AutocompleteBaseProps } from './autocomplete'
 export type { RadioGroupBaseProps, RadioOption } from './radio'
 
 export const Uncontrolled = {
   InputBase,
+  SliderBase,
   AutocompleteBase,
   MaskInput,
   SelectBase,
