@@ -35,7 +35,7 @@ export type SelectBaseProps<Multi extends boolean> = Omit<
   /**
    * Поддержка множественного выбора
    */
-  isMulti: Multi
+  isMulti?: Multi
   /**
    * Пометить поле как не валидное
    */
@@ -77,7 +77,7 @@ export type SelectBaseProps<Multi extends boolean> = Omit<
    */
   virtual?: boolean
   /**
-   * Свойство для выключении фильтрации по поиску
+   * Свойство для выключения фильтрации по поиску
    */
   filterDisabled?: boolean
   /**
@@ -91,7 +91,7 @@ export const SelectBase = forwardRef<HTMLElement, SelectBaseProps<boolean>>(
     {
       label,
       invalid,
-      isMulti,
+      isMulti = false,
       isSearchable,
       options: initialOptions,
       classes,
@@ -122,8 +122,6 @@ export const SelectBase = forwardRef<HTMLElement, SelectBaseProps<boolean>>(
       externalHandlers
     })
 
-    const TriggerWrapper = !isSearchable ? ComboboxButton : Fragment
-
     return (
       <Combobox
         ref={ref}
@@ -141,7 +139,6 @@ export const SelectBase = forwardRef<HTMLElement, SelectBaseProps<boolean>>(
         value={value ?? null}
         onChange={onValueChange}
         multiple={isMulti}
-        as={Fragment}
       >
         {({ disabled, open, value }) => {
           const getDisplayValue = () => {
@@ -156,7 +153,7 @@ export const SelectBase = forwardRef<HTMLElement, SelectBaseProps<boolean>>(
 
           return (
             <div className={cn('relative w-full', root)}>
-              <TriggerWrapper className='w-full'>
+              <ComboboxButton as={Fragment}>
                 <ComboboxInput
                   as={Uncontrolled.InputBase}
                   label={label}
@@ -204,7 +201,7 @@ export const SelectBase = forwardRef<HTMLElement, SelectBaseProps<boolean>>(
                     ...attachmentProps
                   }}
                 />
-              </TriggerWrapper>
+              </ComboboxButton>
               <ComboboxOptions
                 as={motion.ul}
                 className={cn(
