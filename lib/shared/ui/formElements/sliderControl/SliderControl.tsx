@@ -51,7 +51,9 @@ export interface ISliderControlProps<T extends FieldValues>
   rightText?: string | React.ReactElement
 }
 
-// TODO: переписать как бог велел
+/**
+ * @deprecated For better performance use `Controlled.SliderControl` instead.
+ */
 export const SliderControl = <T extends FieldValues>({
   label,
   size = 'full',

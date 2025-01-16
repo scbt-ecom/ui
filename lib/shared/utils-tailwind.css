@@ -7,11 +7,15 @@
 .customScrollbar-y::-webkit-scrollbar-track {
   border-radius: 8px;
   background: #d4dbe2;
+
+  cursor: default;
 }
 
 .customScrollbar-y::-webkit-scrollbar-thumb {
   background: #a9b6c5;
   border-radius: 8px;
+
+  cursor: default;
 }
 
 .scrollHidden::-webkit-scrollbar {

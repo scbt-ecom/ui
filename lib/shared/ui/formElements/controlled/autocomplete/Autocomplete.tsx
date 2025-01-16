@@ -1,8 +1,9 @@
 import { memo } from 'react'
 import { type Control, type FieldValues, type Path, useController, type UseControllerProps } from 'react-hook-form'
-import { FieldContainer, MessageView, type TFieldContainerConfig } from '../../ui'
+import { MessageView } from '../../ui'
 import { type AutocompleteBaseProps, Uncontrolled } from '../../uncontrolled'
 import { type SelectClasses } from '../../uncontrolled/select/Select'
+import { cn } from '$/shared/utils'
 
 export type AutocompleteControlProps<
   TFieldValues extends FieldValues,
@@ -12,7 +13,6 @@ export type AutocompleteControlProps<
   Omit<AutocompleteBaseProps<T>, 'classes'> & {
     control: Control<TFieldValues>
     helperText?: string
-    size?: TFieldContainerConfig['size']
     classes?: SelectClasses & {
       container?: string
       message?: string
@@ -27,7 +27,6 @@ export const InnerComponent = <TFieldValues extends FieldValues, T>({
   helperText,
   rules,
   shouldUnregister,
-  size,
   classes,
   ...props
 }: AutocompleteControlProps<TFieldValues, T>) => {
@@ -46,10 +45,10 @@ export const InnerComponent = <TFieldValues extends FieldValues, T>({
   const { container, message } = classes || {}
 
   return (
-    <FieldContainer className={container} size={size}>
+    <div className={cn('w-full', container)}>
       <Uncontrolled.AutocompleteBase {...props} {...restField} invalid={invalid} />
       <MessageView className={message} text={error?.message || helperText} intent={error ? 'error' : 'simple'} />
-    </FieldContainer>
+    </div>
   )
 }
 

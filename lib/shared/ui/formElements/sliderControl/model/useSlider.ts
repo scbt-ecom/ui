@@ -9,7 +9,7 @@ export const useSlider = (min: number, max: number, defaultValue: number) => {
     return getInputSliderSuffix(variant, value)
   }
 
-  const handleBlur = (value: number, onChange: (...event: unknown[]) => void) => {
+  const handleBlur = (value: number, onChange: (value: number) => void) => {
     if (value > max) {
       onChange(max)
     }

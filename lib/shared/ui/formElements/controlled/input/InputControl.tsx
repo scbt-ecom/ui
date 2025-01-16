@@ -53,12 +53,23 @@ const InnerComponent = <TFieldValues extends FieldValues = FieldValues>({
     shouldUnregister
   })
 
-  const { error, invalid } = fieldState
+  const { error, invalid, isTouched } = fieldState
   const { message, container, ...restClasses } = classes || {}
 
   return (
     <FieldContainer size={size} className={container}>
-      <Uncontrolled.InputBase {...props} {...field} classes={restClasses} invalid={invalid} />
+      <Uncontrolled.InputBase
+        {...props}
+        {...field}
+        classes={restClasses}
+        invalid={invalid}
+        attachmentProps={{
+          invalid,
+          isTouched,
+          withValidateIcons: true,
+          ...props.attachmentProps
+        }}
+      />
       <MessageView
         text={error?.message || helperText}
         className={message}

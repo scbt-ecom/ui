@@ -14,6 +14,9 @@ import { RadioGroupBase } from './radio'
 import { SliderBase } from './slider'
 export type { AutocompleteBaseProps } from './autocomplete'
 export type { RadioGroupBaseProps, RadioOption } from './radio'
+import { TextareaBase } from './textarea'
+export type { TextareaBaseProps } from './textarea'
+export { isSingleOption } from './select'
 
 export const Uncontrolled = {
   InputBase,
@@ -24,5 +27,6 @@ export const Uncontrolled = {
   CheckboxBase,
   DayPickerBase,
   SwitchBase,
-  RadioGroupBase
+  RadioGroupBase,
+  TextareaBase
 }

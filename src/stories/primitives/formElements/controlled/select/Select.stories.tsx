@@ -1,10 +1,9 @@
 'use docs'
 
-import toast from 'react-hot-toast'
 import type { Meta, StoryObj } from '@storybook/react'
 import z from 'zod'
-import { useControlledForm } from '$/shared/hooks'
-import { Button, Controlled, type SelectItemOption } from '$/shared/ui'
+import { HookForm } from '../utils'
+import { Controlled, type SelectItemOption } from '$/shared/ui'
 
 const options: SelectItemOption[] = [
   {
@@ -52,34 +51,6 @@ type Schema = z.TypeOf<typeof schema>
 
 type SelectControlProps = React.ComponentPropsWithoutRef<typeof Controlled.SelectControl<Schema>>
 
-type FormProps = Omit<SelectControlProps, 'control'> & {
-  schema: z.ZodSchema
-  defaultValues: Schema
-  renderComponent: (props: SelectControlProps) => React.JSX.Element
-}
-
-const Form = ({ schema, defaultValues, renderComponent, ...props }: FormProps) => {
-  const { control, handleSubmit } = useControlledForm({
-    schema,
-    defaultValues
-  })
-
-  const onSubmit = (values: Schema) => {
-    toast.success(JSON.stringify(values))
-  }
-
-  const onError = (errors: any) => {
-    toast.error(JSON.stringify(errors))
-  }
-
-  return (
-    <form onSubmit={handleSubmit(onSubmit, onError)}>
-      {renderComponent({ ...props, control })}
-      <Button type='submit'>Submit</Button>
-    </form>
-  )
-}
-
 const meta = {
   title: 'CONTROLLED/SelectControl',
   component: Controlled.SelectControl<Schema>,
@@ -90,7 +61,15 @@ const meta = {
     label: 'Input',
     options,
     name: 'test'
-  }
+  },
+  render: (props) => (
+    <HookForm<SelectControlProps, Schema>
+      {...props}
+      schema={schema}
+      defaultValues={{ test: null }}
+      renderComponent={(componentProps) => <Controlled.SelectControl<Schema> {...componentProps} />}
+    />
+  )
 } satisfies Meta<typeof Controlled.SelectControl<Schema>>
 
 export default meta
@@ -109,16 +88,7 @@ type Story = StoryObj<typeof Controlled.SelectControl<Schema>>
  *
  * Остальные свойства наследуются от [Select](?path=/docs/base-selectbase--docs)\n
  */
-export const Base: Story = {
-  render: (props) => (
-    <Form
-      {...props}
-      schema={schema}
-      defaultValues={{ test: null }}
-      renderComponent={(componentProps) => <Controlled.SelectControl<Schema> {...componentProps} />}
-    />
-  )
-}
+export const Base: Story = {}
 
 const multiSchema = z.object({
   test: z.array(z.string().nullable().refine(Boolean))
@@ -128,11 +98,11 @@ export const WithMulti: Story = {
     isMulti: true
   },
   render: (props) => (
-    <Form
+    <HookForm<SelectControlProps, Schema>
       {...props}
       schema={multiSchema}
       defaultValues={{ test: null }}
-      renderComponent={(componentProps) => <Controlled.SelectControl<Schema> {...componentProps} />}
+      renderComponent={(componentProps) => <Controlled.SelectControl {...componentProps} />}
     />
   )
 }
@@ -140,13 +110,5 @@ export const WithMulti: Story = {
 export const WithSearchable: Story = {
   args: {
     isSearchable: true
-  },
-  render: (props) => (
-    <Form
-      {...props}
-      schema={schema}
-      defaultValues={{ test: null }}
-      renderComponent={(componentProps) => <Controlled.SelectControl<Schema> {...componentProps} />}
-    />
-  )
+  }
 }

@@ -1,12 +1,20 @@
 import * as React from 'react'
 import { forwardRef } from 'react'
 import { NumericFormat } from 'react-number-format'
+import type { TSliderVariants } from './model/types'
+import { useSlider } from './model/useSlider'
 import type { DeepPartial } from '$/shared/types'
-import type { TSliderVariants } from '$/shared/ui/formElements/sliderControl/model/types'
-import { useSlider } from '$/shared/ui/formElements/sliderControl/model/useSlider'
+import { Icon } from '$/shared/ui'
 import { Slider, type TSliderClasses } from '$/shared/ui/formElements/sliderControl/ui'
-import { type FieldAttachment, type TFieldAttachmentClasses } from '$/shared/ui/formElements/ui'
-import { cn } from '$/shared/utils'
+import { FieldAttachment, type TFieldAttachmentClasses } from '$/shared/ui/formElements/ui'
+import { cn, mergeRefs } from '$/shared/utils'
+
+const defaultIcon = (
+  <Icon
+    name='general/edit'
+    className='size-[19px] text-icon-blue-grey-600 transition-[color] group-focus-within/icon:text-icon-blue-grey-800'
+  />
+)
 
 type SliderClasses = TFieldAttachmentClasses &
   TSliderClasses & {
@@ -18,6 +26,7 @@ type SliderClasses = TFieldAttachmentClasses &
     message?: string
     label?: string
     textWrapper?: string
+    container?: string
   }
 
 export type ExternalHandlers = {
@@ -29,24 +38,67 @@ export type ExternalHandlers = {
 
 type FieldAttachmentProps = React.ComponentPropsWithoutRef<typeof FieldAttachment>
 
-interface SliderProps {
+export interface SliderBaseProps {
+  /**
+   * Объект classes с помощью которого можно поменять стили у компонента
+   */
   classes?: SliderClasses
+  /**
+   * Валидно ли поле
+   */
   invalid?: boolean
+  /**
+   * Пропсы иконки
+   */
   attachmentProps?: DeepPartial<FieldAttachmentProps>
+  /**
+   * Включение или выключение слайдера
+   */
   disabled?: boolean
+  /**
+   * Левый текст под слайдером
+   */
   leftText: string | React.ReactElement
+  /**
+   * Правый текст под слайдером
+   */
   rightText: string | React.ReactElement
+  /**
+   * Объект ручек которые можно прокинуть из вне
+   */
   externalHandlers?: ExternalHandlers
+  /**
+   * Значение инпута
+   */
   value: number
+  /**
+   * Сеттер инпута
+   * @param value значение инпута
+   */
   onChange: (value: number | undefined) => void
+  /**
+   * Минимальное значение инпута
+   */
   min: number
+  /**
+   * Максимальное значение инпута
+   */
   max: number
+  /**
+   * Вариант инпута по дефолту credit (если использовать years то префикс поменяется на (лет, год, года в зависимости от склонения value)
+   */
   variant: TSliderVariants
-  step?: number
+  /**
+   * Label инпута
+   */
   label?: string
+  /**
+   * Шаг слайдера (если использовать вариант credit, то step будет проигнорирован)
+   */
+  step?: number
 }
 
-export const SliderBase = forwardRef<HTMLInputElement, SliderProps>(
+export const SliderBase = forwardRef<HTMLInputElement, SliderBaseProps>(
   (
     {
       classes,
@@ -61,25 +113,38 @@ export const SliderBase = forwardRef<HTMLInputElement, SliderProps>(
       max,
       variant,
       label,
+      step,
+      attachmentProps,
       ...props
-    }: SliderProps,
+    }: SliderBaseProps,
     ref
   ) => {
     const inputId = React.useId()
 
-    const { getSuffixText, fromSlider, toSlider } = useSlider(min, max, 0)
-    const sliderValue = toSlider(value)
+    const inputRef = React.useRef<HTMLInputElement>(null)
+
+    const handleIconClick = () => {
+      inputRef?.current?.focus()
+    }
+
+    const { handleBlur, getSuffixText, fromSlider, toSlider, sliderValue } = useSlider({
+      min,
+      max,
+      defaultValue: 0,
+      value,
+      variant
+    })
 
     return (
-      <>
+      <div className='flex flex-col gap-1'>
         <div
           className={cn(
-            'relative flex w-full gap-x-4 rounded-sm bg-color-blue-grey-100',
+            'relative flex w-full gap-x-4 rounded-sm bg-color-white transition-all duration-200',
             '[&_label]:focus-within:top-[9px] [&_label]:focus-within:translate-y-0',
             '[&_label]:focus-within:desk-body-regular-s',
             '[&_label]:focus-within:text-color-tetriary',
-            'hover:bg-color-blue-grey-200',
-            'border-[1px] border-transparent focus-within:border-blue-grey-800',
+            'focus-within:bg-color-blue-grey-200 hover:bg-color-blue-grey-200 focus:bg-color-blue-grey-200',
+            'border-[1px] border-blue-grey-500 focus-within:border-blue-grey-800',
             {
               'border-secondary-default': invalid
             },
@@ -90,14 +155,19 @@ export const SliderBase = forwardRef<HTMLInputElement, SliderProps>(
             <NumericFormat
               id={inputId}
               aria-invalid={invalid ? 'true' : 'false'}
-              onBlur={externalHandlers?.onBlur}
+              onBlur={(e) => {
+                if (externalHandlers?.onBlur) externalHandlers.onBlur(e)
+                handleBlur(value, onChange)
+              }}
+              onClick={externalHandlers?.onClick}
+              onFocus={externalHandlers?.onBlur}
               value={value}
               disabled={disabled}
               suffix={` ${getSuffixText(value, variant)}`}
               thousandsGroupStyle='thousand'
               thousandSeparator={' '}
               allowNegative={false}
-              getInputRef={ref}
+              getInputRef={mergeRefs(inputRef, ref)}
               onValueChange={({ floatValue }) => {
                 if (floatValue) {
                   onChange(floatValue)
@@ -128,22 +198,23 @@ export const SliderBase = forwardRef<HTMLInputElement, SliderProps>(
             </label>
             <Slider
               onValueChange={(inputValue) => {
-                const newValue = fromSlider(inputValue[0])
+                const newValue = variant === 'credit' ? fromSlider(inputValue[0]) : inputValue[0]
                 onChange(newValue)
               }}
               value={[sliderValue]}
-              min={toSlider(min)}
-              max={toSlider(max)}
-              step={0.01}
+              min={variant === 'credit' ? toSlider(min) : min}
+              max={variant === 'credit' ? toSlider(max) : max}
+              step={variant === 'credit' ? 0.01 : step || 1}
               variant={variant}
             />
+            <FieldAttachment {...attachmentProps} onClickIcon={handleIconClick} icon={attachmentProps?.icon || defaultIcon} />
           </>
         </div>
         <div className={cn('flex justify-between', classes?.textWrapper)}>
           <span className={cn('desk-body-regular-m text-color-tetriary', classes?.spanLeft)}>{leftText}</span>
           <span className={cn('desk-body-regular-m text-color-tetriary', classes?.spanRight)}>{rightText}</span>
         </div>
-      </>
+      </div>
     )
   }
 )
