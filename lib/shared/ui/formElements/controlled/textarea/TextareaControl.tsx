@@ -1,7 +1,8 @@
 import { memo } from 'react'
 import { type Control, type FieldPath, type FieldValues, useController, type UseControllerProps } from 'react-hook-form'
 import { type TextareaBaseProps, Uncontrolled } from '$/shared/ui'
-import { FieldContainer, MessageView, type TFieldContainerConfig } from '$/shared/ui/formElements/ui'
+import { MessageView } from '$/shared/ui/formElements/ui'
+import { cn } from '$/shared/utils'
 
 type TextareaControlClasses = TextareaBaseProps['classes'] & {
   message?: string
@@ -24,10 +25,6 @@ export type TextareaControlProps<
      * Дополнительный текст
      */
     helperText?: string
-    /**
-     * Размер контейнера для поля
-     */
-    size?: TFieldContainerConfig['size']
   }
 
 const InnerComponent = <TFieldValues extends FieldValues = FieldValues>({
@@ -39,7 +36,6 @@ const InnerComponent = <TFieldValues extends FieldValues = FieldValues>({
   defaultValue,
   shouldUnregister,
   helperText,
-  size,
   ...props
 }: TextareaControlProps<TFieldValues>) => {
   const { field, fieldState } = useController({
@@ -55,7 +51,7 @@ const InnerComponent = <TFieldValues extends FieldValues = FieldValues>({
   const { message, container, ...restClasses } = classes || {}
 
   return (
-    <FieldContainer size={size} className={container}>
+    <div className={cn('w-full', container)}>
       <Uncontrolled.TextareaBase
         {...props}
         {...field}
@@ -74,7 +70,7 @@ const InnerComponent = <TFieldValues extends FieldValues = FieldValues>({
         intent={error ? 'error' : 'simple'}
         disabled={disabled}
       />
-    </FieldContainer>
+    </div>
   )
 }
 

@@ -4,7 +4,8 @@ import { memo, useState } from 'react'
 import { type Control, type FieldPath, type FieldValues, useController, type UseControllerProps } from 'react-hook-form'
 import { SingleDayPicker } from './single'
 import { type Calendar, type MaskInputProps } from '$/shared/ui'
-import { FieldContainer, MessageView, type TFieldContainerConfig } from '$/shared/ui/formElements/ui'
+import { MessageView } from '$/shared/ui/formElements/ui'
+import { cn } from '$/shared/utils'
 
 type CalendarProps = React.ComponentPropsWithoutRef<typeof Calendar>
 type DayPickerControlClasses = MaskInputProps['classes'] & {
@@ -32,10 +33,6 @@ export type DayPickerControlProps<
      * Дополнительные стили компонента
      */
     classes?: DayPickerControlClasses
-    /**
-     * Размер контейнера для поля
-     */
-    size?: TFieldContainerConfig['size']
   }
 
 const InnerComponent = <T extends FieldValues = FieldValues>({
@@ -48,7 +45,6 @@ const InnerComponent = <T extends FieldValues = FieldValues>({
   inputProps,
   helperText,
   classes,
-  size,
   ...props
 }: DayPickerControlProps<T>) => {
   const { field, fieldState } = useController({
@@ -67,7 +63,7 @@ const InnerComponent = <T extends FieldValues = FieldValues>({
   const [month, setMonth] = useState<Date>(new Date())
 
   return (
-    <FieldContainer className={container} size={size}>
+    <div className={cn('w-full', container)}>
       <SingleDayPicker
         {...props}
         value={value ?? ''}
@@ -87,7 +83,7 @@ const InnerComponent = <T extends FieldValues = FieldValues>({
         intent={error ? 'error' : 'simple'}
         disabled={disabled}
       />
-    </FieldContainer>
+    </div>
   )
 }
 

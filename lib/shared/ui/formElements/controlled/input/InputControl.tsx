@@ -3,7 +3,8 @@
 import { memo } from 'react'
 import { type Control, type FieldValues, type Path, useController, type UseControllerProps } from 'react-hook-form'
 import { type InputBaseProps, Uncontrolled } from '../../uncontrolled'
-import { FieldContainer, MessageView, type TFieldContainerConfig } from '$/shared/ui/formElements/ui'
+import { MessageView } from '$/shared/ui/formElements/ui'
+import { cn } from '$/shared/utils'
 
 type InputControlClasses = InputBaseProps['classes'] & {
   message?: string
@@ -26,10 +27,6 @@ type InputControlProps<
      * Дополнительные стили компонента
      */
     classes?: InputControlClasses
-    /**
-     * Размер контейнера для поля
-     */
-    size?: TFieldContainerConfig['size']
   }
 
 const InnerComponent = <TFieldValues extends FieldValues = FieldValues>({
@@ -41,7 +38,6 @@ const InnerComponent = <TFieldValues extends FieldValues = FieldValues>({
   shouldUnregister,
   helperText,
   classes,
-  size,
   ...props
 }: InputControlProps<TFieldValues>) => {
   const { field, fieldState } = useController({
@@ -57,7 +53,7 @@ const InnerComponent = <TFieldValues extends FieldValues = FieldValues>({
   const { message, container, ...restClasses } = classes || {}
 
   return (
-    <FieldContainer size={size} className={container}>
+    <div className={cn('w-full', container)}>
       <Uncontrolled.InputBase
         {...props}
         {...field}
@@ -76,7 +72,7 @@ const InnerComponent = <TFieldValues extends FieldValues = FieldValues>({
         intent={error ? 'error' : 'simple'}
         disabled={disabled}
       />
-    </FieldContainer>
+    </div>
   )
 }
 

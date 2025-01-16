@@ -4,7 +4,7 @@ import { memo, useMemo } from 'react'
 import { type Control, type FieldPath, type FieldValues, useController, type UseControllerProps } from 'react-hook-form'
 import type { OnChangeValue } from 'react-select'
 import { type SelectBaseProps, type SelectItemOption, Uncontrolled } from '$/shared/ui'
-import { FieldContainer, MessageView, type TFieldContainerConfig } from '$/shared/ui/formElements/ui'
+import { MessageView } from '$/shared/ui/formElements/ui'
 import { cn } from '$/shared/utils'
 
 type SelectControlClasses = SelectBaseProps<boolean>['classes'] & {
@@ -30,10 +30,6 @@ type SelectControlProps<
      */
     helperText?: string
     /**
-     * Размер контейнера для поля
-     */
-    size?: TFieldContainerConfig['size']
-    /**
      * Функция для управления возвращаемым значением
      */
     returnValue?: (option: SelectItemOption) => string
@@ -54,7 +50,6 @@ const InnerComponent = <TFieldValues extends FieldValues = FieldValues>({
   returnValue,
   options,
   helperText,
-  size,
   ...props
 }: SelectControlProps<TFieldValues>) => {
   const { field, fieldState } = useController({
@@ -89,7 +84,7 @@ const InnerComponent = <TFieldValues extends FieldValues = FieldValues>({
   }, [options, returnValue, value])
 
   return (
-    <FieldContainer size={size} className={cn('items-start gap-y-2', container)}>
+    <div className={cn('w-full items-start gap-y-2', container)}>
       <Uncontrolled.SelectBase
         {...props}
         {...restField}
@@ -106,7 +101,7 @@ const InnerComponent = <TFieldValues extends FieldValues = FieldValues>({
         intent={error ? 'error' : 'simple'}
         disabled={disabled}
       />
-    </FieldContainer>
+    </div>
   )
 }
 
