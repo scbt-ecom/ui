@@ -41,18 +41,6 @@ export const Base: Story = {
   args: {}
 }
 
-export const Disabled: Story = {
-  args: {
-    disabled: true
-  }
-}
-
-export const Invalid: Story = {
-  args: {
-    invalid: true
-  }
-}
-
 export const WithState: Story = {
   args: Base.args,
   render: (props) => {
@@ -65,4 +53,31 @@ export const WithState: Story = {
       </>
     )
   }
+}
+
+export const Disabled: Story = {
+  args: {
+    disabled: true
+  },
+  render: WithState.render
+}
+
+export const Invalid: Story = {
+  args: {
+    invalid: true
+  },
+  render: WithState.render
+}
+
+export const WithExternalHandlers: Story = {
+  args: {
+    ...Base.args,
+    externalHandlers: {
+      onChange: (value) => console.warn('handled external onChange', value),
+      onClick: () => console.warn('handled external onClick'),
+      onFocus: () => console.warn('handled external onFocus'),
+      onBlur: () => console.warn('handled external onBlur')
+    }
+  },
+  render: WithState.render
 }

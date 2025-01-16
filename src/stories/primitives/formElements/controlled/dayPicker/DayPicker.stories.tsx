@@ -53,7 +53,7 @@ type Story = StoryObj<typeof Controlled.DayPickerControl>
  * | \`control\`  | Контрол объект для управления полем | \`Control\<TFieldValues\>\`      | \`true\`  |
  * | \`name\`     | Имя поля                            | \`string\`                       | \`true\`  |
  * | \`classes\`  | Дополнительные стили компонента     | \`DayPickerControlClasses\`      | \`false\` |
- * | \`helperText\` | Дополнительный текст                | \`string\`                       | \`false\` |
+ * | \`helperText\` | Дополнительный текст              | \`string\`                       | \`false\` |
  *
  * Остальные свойства наследуются от [DayPicker](?path=/docs/base-daypickerbase--docs)\n
  */
@@ -62,5 +62,17 @@ export const Base: Story = {}
 export const Disabled: Story = {
   args: {
     disabled: true
+  }
+}
+
+export const WithExternalHandlers: Story = {
+  args: {
+    ...Base.args,
+    externalHandlers: {
+      onChange: (value) => console.warn('handled external onChange', value),
+      onClick: () => console.warn('handled external onClick'),
+      onFocus: () => console.warn('handled external onFocus'),
+      onBlur: () => console.warn('handled external onBlur')
+    }
   }
 }
