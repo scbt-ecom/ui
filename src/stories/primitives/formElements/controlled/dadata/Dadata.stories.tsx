@@ -42,29 +42,20 @@ const Form = () => {
     <form className='flex flex-col gap-4' onSubmit={handleSubmit(onSubmit, onError)}>
       <Controlled.DadataOrganization
         control={control}
-        size='lg'
         dadataBaseUrl={DADATA_BASE_CACHE_URL as string}
         label='Organization'
         name='organization'
       />
       <Controlled.DadataAddress
         control={control}
-        size='lg'
         dadataBaseUrl={DADATA_BASE_CACHE_URL as string}
         label='Address'
         name='address'
       />
-      <Controlled.DadataAuto
-        control={control}
-        size='lg'
-        dadataBaseUrl={DADATA_BASE_CONSTANTS_URL as string}
-        label='Auto'
-        name='auto'
-      />
-      <Controlled.DadataFio control={control} size='lg' dadataBaseUrl={DADATA_BASE_CACHE_URL as string} label='ФИО' name='fio' />
+      <Controlled.DadataAuto control={control} dadataBaseUrl={DADATA_BASE_CONSTANTS_URL as string} label='Auto' name='auto' />
+      <Controlled.DadataFio control={control} dadataBaseUrl={DADATA_BASE_CACHE_URL as string} label='ФИО' name='fio' />
       <Controlled.DadataCountry
         control={control}
-        size='lg'
         dadataBaseUrl={DADATA_BASE_CONSTANTS_URL as string}
         label='Страна'
         name='country'
