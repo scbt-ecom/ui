@@ -47,7 +47,7 @@ export const Calendar = ({
       exit={{ opacity: 0 }}
       className={cn(
         'relative flex flex-col gap-y-1 rounded-sm border-[1px] border-warm-grey-200',
-        'ali bg-color-white p-4 shadow-[0_16px_24px_0px_rgba(0,33,87,0.16)]',
+        'bg-color-white p-4 shadow-[0_16px_24px_0px_rgba(0,33,87,0.16)]',
         className
       )}
     >
