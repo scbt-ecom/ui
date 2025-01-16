@@ -1,4 +1,5 @@
 import Color from '@tiptap/extension-color'
+import { HardBreak } from '@tiptap/extension-hard-break'
 import Heading from '@tiptap/extension-heading'
 import Link from '@tiptap/extension-link'
 import TextStyle from '@tiptap/extension-text-style'
@@ -46,9 +47,17 @@ export const editorConfig = [
     }
   }),
   Link.configure({
-    openOnClick: true,
-    HTMLAttributes: {
-      class: 'text-color-primary-default underline underline-offset-4'
+    openOnClick: true
+  }).extend({
+    renderHTML({ HTMLAttributes }) {
+      return ['a', mergeAttributes(HTMLAttributes)]
+    }
+  }),
+  HardBreak.extend({
+    addKeyboardShortcuts() {
+      return {
+        Enter: () => this.editor.commands.setHardBreak()
+      }
     }
   })
 ]

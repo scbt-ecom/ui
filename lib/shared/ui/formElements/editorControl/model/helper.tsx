@@ -3,18 +3,13 @@ import type { TColorOption, THeadingOptions } from './types'
 import { Icon } from '$/shared/ui'
 
 export const headingsOptions: THeadingOptions[] = [
-  { shortcuts: ['ctrl', 'alt', '1'], level: 1 },
-  { shortcuts: ['ctrl', 'alt', '2'], level: 2 },
   { shortcuts: ['ctrl', 'alt', '3'], level: 3 },
   { shortcuts: ['ctrl', 'alt', '4'], level: 4 }
 ]
 
 export const editorHeadingClasses: Record<number, string> = {
-  1: 'mob-headline-bold-m desktop:desk-headline-bold-l',
-  2: 'mob-headline-bold-s desktop:desk-headline-bold-m',
   3: 'mob-title-bold-l desktop:desk-title-bold-l',
   4: 'mob-title-bold-m desktop:desk-title-bold-s'
-  //TODO: Добавить h5/h6 для компонента heading , после добавить сюда
 }
 
 export const editorAllowedColors: TColorOption[] = [

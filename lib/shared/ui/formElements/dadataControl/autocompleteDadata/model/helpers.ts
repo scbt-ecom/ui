@@ -11,6 +11,8 @@ import type {
   TDadataType
 } from './types'
 
+export type IDadataOptions<T> = IDadataCountryOption[] | IDadataAutoOption[] | IDadataCacheOption<T>[]
+
 export const getDataByDadataType = <T>(dadataType: TDadataType, data: TDadataReturn<T>) => {
   switch (dadataType) {
     case 'country':

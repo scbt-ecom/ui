@@ -11,6 +11,7 @@ export interface IDadataCountryOption {
   id: number
   country_name: string
 }
+
 export interface IDadataConstantsCountrySuggestion {
   matches: IDadataCountryOption[]
 }
@@ -24,6 +25,7 @@ export interface IDadataAutoOption {
   year_max: string
   year_min: string
 }
+
 export interface IDadataConstantsAutoSuggestion {
   matches: IDadataAutoOption[]
 }

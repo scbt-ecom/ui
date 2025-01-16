@@ -11,9 +11,17 @@ import { cn } from '$/shared/utils'
 
 type FieldAttachmentProps = React.ComponentPropsWithoutRef<typeof FieldAttachment>
 
-type SelectClasses = SelectItemProps['classes'] & {
+export type SelectClasses = SelectItemProps['classes'] & {
   root?: string
   list?: string
+}
+
+export type ExternalHandlers = {
+  onChange?: (value?: SelectItemOption | SelectItemOption[]) => void
+  onClick?: (event: React.MouseEvent<HTMLElement>) => void
+  onBlur?: (event: React.FocusEvent<HTMLElement>) => void
+  onFocus?: (event: React.FocusEvent<HTMLElement>) => void
+  onInputChange?: (value: string) => void
 }
 
 export type SelectBaseProps<Multi extends boolean> = Omit<
@@ -51,7 +59,15 @@ export type SelectBaseProps<Multi extends boolean> = Omit<
   /**
    * Функция для изменения значения
    */
-  onChange?: (value: SelectItemOption | SelectItemOption[] | null) => void
+  onChange?: (value: (Multi extends true ? SelectItemOption[] : SelectItemOption) | undefined) => void
+  /**
+   * Функция для изменения значения поиска
+   */
+  onInputChange?: (value: string) => void
+  /**
+   * Значение инпута
+   */
+  inputValue?: string
   /**
    * Свойства дополнительной иконки
    */
@@ -60,6 +76,14 @@ export type SelectBaseProps<Multi extends boolean> = Omit<
    * Включение виртуализации списка
    */
   virtual?: boolean
+  /**
+   * Свойство для выключении фильтрации по поиску
+   */
+  filterDisabled?: boolean
+  /**
+   * Внешние handlers которые можно прокинуть из вне
+   */
+  externalHandlers?: ExternalHandlers
 }
 
 export const SelectBase = forwardRef<HTMLElement, SelectBaseProps<boolean>>(
@@ -72,9 +96,14 @@ export const SelectBase = forwardRef<HTMLElement, SelectBaseProps<boolean>>(
       options: initialOptions,
       classes,
       displayValue,
+      value,
       onChange,
       attachmentProps,
       virtual = false,
+      filterDisabled = false,
+      inputValue: externalInputValue,
+      onInputChange: externalOnInputChange,
+      externalHandlers,
       ...props
     },
     ref
@@ -86,7 +115,11 @@ export const SelectBase = forwardRef<HTMLElement, SelectBaseProps<boolean>>(
       isSearchable,
       isMulti,
       displayValue,
-      onChange
+      onChange,
+      filterDisabled,
+      externalInputValue,
+      externalOnInputChange,
+      externalHandlers
     })
 
     const TriggerWrapper = !isSearchable ? ComboboxButton : Fragment
@@ -102,6 +135,10 @@ export const SelectBase = forwardRef<HTMLElement, SelectBaseProps<boolean>>(
               }
             : undefined
         }
+        onBlur={externalHandlers?.onBlur}
+        onFocus={externalHandlers?.onFocus}
+        onClick={externalHandlers?.onClick}
+        value={value ?? null}
         onChange={onValueChange}
         multiple={isMulti}
         as={Fragment}
@@ -125,9 +162,17 @@ export const SelectBase = forwardRef<HTMLElement, SelectBaseProps<boolean>>(
                   label={label}
                   disabled={disabled}
                   readOnly={!isSearchable}
-                  value={getDisplayValue()}
+                  value={(externalInputValue || getDisplayValue()) ?? ''}
                   autoComplete='off'
-                  onChange={isSearchable ? onInputValueChange : undefined}
+                  onChange={(event) => {
+                    const { value } = event.target
+
+                    if (isSearchable) {
+                      if (externalOnInputChange) externalOnInputChange(value)
+                      if (externalHandlers?.onInputChange) externalHandlers.onInputChange(value)
+                      if (onInputValueChange) onInputValueChange(event)
+                    }
+                  }}
                   invalid={invalid}
                   classes={{
                     input: isMulti || !isSearchable ? 'cursor-pointer' : undefined

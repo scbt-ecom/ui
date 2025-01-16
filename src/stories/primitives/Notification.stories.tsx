@@ -61,7 +61,7 @@ export const InfoWithLink: Story = {
               customIcon: <Icon name='general/check' className='size-5 text-icon-white' />,
               content: (
                 <CustomLink
-                  withIcon
+                  icon='arrows/arrowLink'
                   target='_blank'
                   rel='noreferrer'
                   intent='white'

@@ -1,10 +1,8 @@
 'use docs'
 
-import { type FieldErrors } from 'react-hook-form'
-import toast from 'react-hot-toast'
 import type { Meta, StoryObj } from '@storybook/react'
 import z from 'zod'
-import { useControlledForm } from '$/shared/hooks'
+import { HookForm } from '../utils'
 import { Controlled } from '$/shared/ui'
 
 const schema = z.object({
@@ -12,30 +10,7 @@ const schema = z.object({
 })
 
 type Schema = z.TypeOf<typeof schema>
-
-const Form = () => {
-  const { control, handleSubmit } = useControlledForm({
-    schema,
-    defaultValues: {
-      test: ''
-    }
-  })
-
-  const onSubmit = (values: Schema) => {
-    toast.success(JSON.stringify(values))
-  }
-
-  const onError = (errors: FieldErrors<Schema>) => {
-    toast.error(JSON.stringify(errors))
-  }
-
-  return (
-    <form onSubmit={handleSubmit(onSubmit, onError)}>
-      <Controlled.InputControl control={control} name='test' label='Input' />
-      <button>Submit</button>
-    </form>
-  )
-}
+type InputControlProps = React.ComponentPropsWithoutRef<typeof Controlled.InputControl>
 
 const meta = {
   title: 'CONTROLLED/InputControl',
@@ -44,8 +19,19 @@ const meta = {
     layout: 'centered'
   },
   args: {
-    label: 'Input'
-  }
+    label: 'Input',
+    name: 'test'
+  },
+  render: (props) => (
+    <HookForm<InputControlProps, Schema>
+      {...props}
+      schema={schema}
+      defaultValues={{
+        test: ''
+      }}
+      renderComponent={(componentProps: InputControlProps) => <Controlled.InputControl {...componentProps} />}
+    />
+  )
 } satisfies Meta<typeof Controlled.InputControl>
 
 export default meta
@@ -64,6 +50,16 @@ type Story = StoryObj<typeof Controlled.InputControl>
  *
  * Остальные свойства наследуются от [Input](?path=/docs/base-inputbase--docs)\n
  */
-export const Base: Story = {
-  render: () => <Form />
+export const Base: Story = {}
+
+export const Disabled: Story = {
+  args: {
+    disabled: true
+  }
+}
+
+export const ReadOnly: Story = {
+  args: {
+    readOnly: true
+  }
 }
