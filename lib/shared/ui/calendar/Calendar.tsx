@@ -33,6 +33,7 @@ export const Calendar = ({
       range_middle: cn(defaultClassNames.range_middle, classNames?.range_middle),
       range_end: cn(defaultClassNames.range_outer, classNames?.range_end),
       month_grid: 'h-[280px]',
+      day: cn(defaultClassNames.day, classNames?.day),
       ...classNames
     }),
     [classNames]
@@ -46,7 +47,7 @@ export const Calendar = ({
       exit={{ opacity: 0 }}
       className={cn(
         'relative flex flex-col gap-y-1 rounded-sm border-[1px] border-warm-grey-200',
-        'bg-color-white p-4 shadow-[0_16px_24px_0px_rgba(0,33,87,0.16)]',
+        'ali bg-color-white p-4 shadow-[0_16px_24px_0px_rgba(0,33,87,0.16)]',
         className
       )}
     >

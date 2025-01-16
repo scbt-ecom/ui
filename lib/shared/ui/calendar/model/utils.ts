@@ -64,5 +64,6 @@ export const defaultClassNames = {
     'before:w-full before:h-[4px] before:bg-color-white before:z-0',
     'hover:after:bg-color-transparent hover:before:bg-color-transparent',
     'before:pointer-events-none before:pointer-events-none'
-  )
+  ),
+  day: 'text-center'
 }
