@@ -73,7 +73,6 @@ export default meta
 
 type Story = StoryObj<typeof Uncontrolled.SelectBase>
 
-// TODO: Попробовать сделать авто генерацию таблицы пропсов
 /**
  * \`Select\` компонент для выбора значений из выпадающего списка\n
  *
@@ -88,6 +87,7 @@ type Story = StoryObj<typeof Uncontrolled.SelectBase>
  * | \`options\`              | \`SelectItemOption[]\`                                            | Список отображаемых значений                      | \`true\`  |
  * | \`onChange\`             | \`(value: SelectItemOption | SelectItemOption[] | null) => void\` | Функция для изменения значения                    | \`false\` |
  * | \`attachmentProps\`      | \`DeepPartial<FieldAttachmentProps>\`                             | Свойства дополнительной иконки                    | \`false\` |
+ * | \`externalHandlers\`     | \`ExternalHandlers\`                                              | Внешние handlers которые можно прокинуть из вне   | \`false\` |
  *
  * Остальные свойства наследуются от [Headless UI](https://headlessui.com/react/combobox#component-api)
  */
