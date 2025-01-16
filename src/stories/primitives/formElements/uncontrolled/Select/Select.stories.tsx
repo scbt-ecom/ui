@@ -2,53 +2,13 @@
 
 import { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
-import { Icon, type SelectItemOption, Uncontrolled } from '$/shared/ui'
+import { type SelectItemOption, Uncontrolled } from '$/shared/ui'
 
-const options: SelectItemOption[] = [
-  {
-    value: 'value_1',
-    label: 'Value 1',
-    helperText: 'Nexus',
-    attachment: {
-      left: {
-        icon: <Icon name='general/check' className='size-4' />,
-        classes: {
-          fieldAttachmentRoot: 'm-0'
-        }
-      }
-    }
-  },
-  {
-    value: 'value_2',
-    label: 'Value 2'
-  },
-  {
-    value: 'value_3',
-    label: 'Value 3',
-    helperText: 'Nexus'
-  },
-  {
-    value: 'value_4',
-    label: 'Value 4'
-  },
-  {
-    value: 'value_5',
-    label: 'Value 5',
-    disabled: true
-  },
-  {
-    value: 'value_6',
-    label: 'Value 6'
-  },
-  {
-    value: 'value_7',
-    label: 'Value 7'
-  },
-  {
-    value: 'value_8',
-    label: 'Value 8'
-  }
-]
+const generateOptions = (length: number): SelectItemOption[] =>
+  Array.from({ length }).map((_, index) => ({
+    value: `value_${index + 1}`,
+    label: `Value ${index + 1}`
+  }))
 
 const meta = {
   title: 'BASE/SelectBase',
@@ -57,15 +17,42 @@ const meta = {
     layout: 'centered'
   },
   decorators: [
-    (Story) => (
-      <div className='w-[800px]'>
-        <Story />
-      </div>
-    )
+    (Story, context) => {
+      const { args } = context
+
+      const [optionsCount, setOptionsCount] = useState<number>(10)
+
+      return (
+        <div className='flex w-[800px] flex-col gap-y-2'>
+          <label>
+            Количество элементов
+            <select
+              className='ml-1 rounded-sm border'
+              value={optionsCount}
+              onChange={({ target }) => setOptionsCount(Number(target.value))}
+            >
+              <option value={10}>10</option>
+              <option value={100}>100</option>
+              <option value={250}>250</option>
+              <option value={500}>500</option>
+              <option value={1000}>1000</option>
+              <option value={10000}>10000</option>
+            </select>
+          </label>
+          <Story
+            {...context}
+            args={{
+              ...args,
+              options: generateOptions(optionsCount)
+            }}
+          />
+        </div>
+      )
+    }
   ],
   args: {
     label: 'Test selector',
-    options
+    options: generateOptions(10)
   }
 } satisfies Meta<typeof Uncontrolled.SelectBase>
 
@@ -169,4 +156,10 @@ export const WithExternalHandler: Story = {
     }
   },
   render: WithState.render
+}
+
+export const Virtual: Story = {
+  args: {
+    virtual: true
+  }
 }

@@ -26,7 +26,7 @@ export type ExternalHandlers = {
 
 export type SelectBaseProps<Multi extends boolean> = Omit<
   ComboboxProps<SelectItemOption, Multi, 'li'>,
-  'multiple' | 'onChange' | 'by' | 'virtual' | 'className'
+  'multiple' | 'onChange' | 'by' | 'className' | 'virtual'
 > & {
   /**
    * Отображаемый лейбл
@@ -73,7 +73,11 @@ export type SelectBaseProps<Multi extends boolean> = Omit<
    */
   attachmentProps?: DeepPartial<FieldAttachmentProps>
   /**
-   * Свойство для выключении фильтрации по поиску
+   * Включение виртуализации списка
+   */
+  virtual?: boolean
+  /**
+   * Свойство для выключения фильтрации по поиску
    */
   filterDisabled?: boolean
   /**
@@ -95,6 +99,7 @@ export const SelectBase = forwardRef<HTMLElement, SelectBaseProps<boolean>>(
       value,
       onChange,
       attachmentProps,
+      virtual = false,
       filterDisabled = false,
       inputValue: externalInputValue,
       onInputChange: externalOnInputChange,
@@ -121,6 +126,13 @@ export const SelectBase = forwardRef<HTMLElement, SelectBaseProps<boolean>>(
       <Combobox
         ref={ref}
         {...props}
+        virtual={
+          virtual
+            ? {
+                options
+              }
+            : undefined
+        }
         onBlur={externalHandlers?.onBlur}
         onFocus={externalHandlers?.onFocus}
         onClick={externalHandlers?.onClick}
@@ -202,7 +214,24 @@ export const SelectBase = forwardRef<HTMLElement, SelectBaseProps<boolean>>(
                 animate={{ opacity: 1, translateY: 0 }}
                 exit={{ opacity: 0, translateY: 10 }}
               >
-                {options.length ? (
+                {virtual ? (
+                  ({ option }) => (
+                    <SelectItem
+                      key={option.value}
+                      option={option}
+                      isMulti={isMulti}
+                      classes={{
+                        item: 'w-[calc(100%-16px)]',
+                        ...innerClasses
+                      }}
+                      displayValue={displayValue}
+                      motionProps={{
+                        initial: { opacity: 0 },
+                        animate: { opacity: 1 }
+                      }}
+                    />
+                  )
+                ) : options.length > 0 ? (
                   options.map((option, index) => (
                     <SelectItem
                       key={option.value}

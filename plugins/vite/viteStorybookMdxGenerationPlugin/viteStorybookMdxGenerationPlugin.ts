@@ -1,5 +1,5 @@
 import type { Plugin } from 'vite'
-import { generateDocs, Logger } from './utils'
+import { generateDocs, Logger, removeMdx } from './utils'
 
 export interface MDXOptions {
   /**
@@ -89,13 +89,13 @@ export const viteStorybookMdxGenerationPlugin = (options?: MDXOptions): Plugin =
     enforce: 'pre',
     configureServer: (server) => {
       logger.info('Generate MDX started.')
-
+      removeMdx(storiesPath)
       generateDocs(storiesPath, options, logger)
 
       server.watcher.on('change', (path) => {
         if (path.match(/\.stories\.(ts|tsx)$/)) {
           logger.info('Story changed. Regenerate MDX.')
-
+          removeMdx(storiesPath)
           generateDocs(storiesPath, options, logger)
         }
       })
@@ -110,7 +110,7 @@ export const viteStorybookMdxGenerationPlugin = (options?: MDXOptions): Plugin =
     },
     buildStart: () => {
       logger.info('Generate MDX for build.')
-
+      removeMdx(storiesPath)
       generateDocs(storiesPath, options, logger)
     }
   }
