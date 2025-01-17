@@ -47,3 +47,28 @@ export const WithState: Story = {
     )
   }
 }
+
+export const YearsVariant: Story = {
+  render: WithState.render,
+  args: {
+    label: 'Сумма кредита',
+    min: 1,
+    max: 12,
+    variant: 'years',
+    leftText: '1 год.',
+    rightText: '12 лет.'
+  }
+}
+
+export const Disabled: Story = {
+  render: WithState.render,
+  args: {
+    disabled: true,
+    label: 'Сумма кредита',
+    min: 1,
+    max: 12,
+    variant: 'years',
+    leftText: '1 год.',
+    rightText: '12 лет.'
+  }
+}

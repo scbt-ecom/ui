@@ -5,8 +5,8 @@ import type { TSliderVariants } from './model/types'
 import { useSlider } from './model/useSlider'
 import type { DeepPartial } from '$/shared/types'
 import { Icon } from '$/shared/ui'
-import { Slider, type TSliderClasses } from '$/shared/ui/formElements/sliderControl/ui'
-import { FieldAttachment, type TFieldAttachmentClasses } from '$/shared/ui/formElements/ui'
+import { Slider } from '$/shared/ui/formElements/sliderControl/ui'
+import { FieldAttachment } from '$/shared/ui/formElements/ui'
 import { cn, mergeRefs } from '$/shared/utils'
 
 const defaultIcon = (
@@ -16,18 +16,15 @@ const defaultIcon = (
   />
 )
 
-type SliderClasses = TFieldAttachmentClasses &
-  TSliderClasses & {
-    spanLeft?: string
-    spanRight?: string
-    sliderContainer?: string
-    sliderRoot?: string
-    input?: string
-    message?: string
-    label?: string
-    textWrapper?: string
-    container?: string
-  }
+export type SliderBaseClasses = {
+  root?: string
+  textContainer?: string
+  input?: string
+  labelClasses?: string
+  textRight?: string
+  textLeft?: string
+  slider?: SliderBaseClasses
+}
 
 export type ExternalHandlers = {
   onClick?: (event: React.MouseEvent<HTMLElement>) => void
@@ -42,7 +39,7 @@ export interface SliderBaseProps {
   /**
    * Объект classes с помощью которого можно поменять стили у компонента
    */
-  classes?: SliderClasses
+  classes?: SliderBaseClasses
   /**
    * Валидно ли поле
    */
@@ -135,6 +132,8 @@ export const SliderBase = forwardRef<HTMLInputElement, SliderBaseProps>(
       variant
     })
 
+    const { root, slider, labelClasses, textLeft, textRight, textContainer, input } = classes || {}
+
     return (
       <div className='flex flex-col gap-1'>
         <div
@@ -148,7 +147,7 @@ export const SliderBase = forwardRef<HTMLInputElement, SliderBaseProps>(
             {
               'border-secondary-default': invalid
             },
-            classes?.sliderContainer
+            root
           )}
         >
           <>
@@ -178,7 +177,7 @@ export const SliderBase = forwardRef<HTMLInputElement, SliderBaseProps>(
               }}
               className={cn(
                 'group/slider desk-title-bold-s h-[56px] w-full rounded-md bg-color-transparent px-4 pt-5 text-color-dark outline-none transition-all',
-                classes?.input
+                input
               )}
               {...props}
             />
@@ -191,7 +190,7 @@ export const SliderBase = forwardRef<HTMLInputElement, SliderBaseProps>(
                   'desk-body-regular-s top-[9px] translate-y-0 text-color-tetriary': Boolean(value),
                   'text-color-disabled': disabled
                 },
-                classes?.label
+                labelClasses
               )}
             >
               {label}
@@ -202,6 +201,8 @@ export const SliderBase = forwardRef<HTMLInputElement, SliderBaseProps>(
                 onChange(newValue)
               }}
               value={[sliderValue]}
+              classes={slider}
+              disabled={disabled}
               min={variant === 'credit' ? toSlider(min) : min}
               max={variant === 'credit' ? toSlider(max) : max}
               step={variant === 'credit' ? 0.01 : step || 1}
@@ -210,9 +211,9 @@ export const SliderBase = forwardRef<HTMLInputElement, SliderBaseProps>(
             <FieldAttachment {...attachmentProps} onClickIcon={handleIconClick} icon={attachmentProps?.icon || defaultIcon} />
           </>
         </div>
-        <div className={cn('flex justify-between', classes?.textWrapper)}>
-          <span className={cn('desk-body-regular-m text-color-tetriary', classes?.spanLeft)}>{leftText}</span>
-          <span className={cn('desk-body-regular-m text-color-tetriary', classes?.spanRight)}>{rightText}</span>
+        <div className={cn('flex justify-between', textContainer)}>
+          <span className={cn('desk-body-regular-m text-color-tetriary', textLeft)}>{leftText}</span>
+          <span className={cn('desk-body-regular-m text-color-tetriary', textRight)}>{rightText}</span>
         </div>
       </div>
     )

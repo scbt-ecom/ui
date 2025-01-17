@@ -1,9 +1,9 @@
 import { type TSliderVariants } from '../types'
-import { getYearEnding } from './dates'
+import { getYearIntl } from './dates'
 
 export const getInputSliderSuffix = (variant: TSliderVariants, value: number) => {
   const variants = {
-    years: getYearEnding(value),
+    years: getYearIntl(value),
     credit: '₽'
   }
 

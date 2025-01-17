@@ -1,2 +1,2 @@
-export { getEndWordMonth } from './getEndWordMonth'
-export { getYearEnding } from './getYearEnding'
+export { getIntlMonth } from './getIntlMonth'
+export { getYearIntl } from './getYearIntl'

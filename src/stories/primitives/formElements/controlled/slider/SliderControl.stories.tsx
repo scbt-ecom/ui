@@ -23,10 +23,10 @@ const meta = {
     name: 'slider'
   },
   render: (props) => (
-    <HookForm<any, Schema>
+    <HookForm<SliderControlProps, Schema>
       {...props}
       defaultValues={{
-        slider: ''
+        slider: 50_000
       }}
       schema={sliderSchema}
       renderComponent={(componentProps: SliderControlProps) => <Controlled.SliderControl {...componentProps} />}

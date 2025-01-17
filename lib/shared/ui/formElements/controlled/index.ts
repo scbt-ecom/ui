@@ -9,6 +9,7 @@ import { SelectControl } from './select'
 import { SliderControl } from './slider'
 import { SwitchControl } from './switch'
 import { TextareaControl } from './textarea'
+import { UploaderControl } from './uploader'
 export type { TextareaControlProps } from './textarea'
 
 export const Controlled = {
@@ -27,5 +28,6 @@ export const Controlled = {
   DadataAuto,
   DadataOrganization,
   SliderControl,
-  TextareaControl
+  TextareaControl,
+  UploaderControl
 }

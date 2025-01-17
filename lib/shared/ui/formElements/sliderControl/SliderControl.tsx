@@ -152,6 +152,7 @@ export const SliderControl = <T extends FieldValues>({
                       const newValue = fromSlider(inputValue[0])
                       onChange(newValue)
                     }}
+                    disabled={disabled}
                     value={[sliderValue]}
                     min={toSlider(min)}
                     max={toSlider(max)}
