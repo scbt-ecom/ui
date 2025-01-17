@@ -128,7 +128,7 @@ export const SliderBase = forwardRef<HTMLInputElement, SliderBaseProps>(
 
     return (
       <>
-        <div className={cn('relative', root)}>
+        <div className={cn('relative w-full', root)}>
           <Uncontrolled.InputBase
             label={label}
             value={value}
