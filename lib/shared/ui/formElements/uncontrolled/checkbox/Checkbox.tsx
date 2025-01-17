@@ -29,7 +29,7 @@ export const CheckboxBase = forwardRef<HTMLButtonElement, CheckboxBaseProps>(
         disabled={disabled}
         ref={ref}
         className={cn(
-          'flex h-6 max-h-6 w-6 max-w-6 items-center justify-center rounded-full',
+          'flex h-6 max-h-6 min-h-6 w-6 min-w-6 max-w-6 items-center justify-center rounded-full',
           'relative rounded-sm border-2 border-blue-grey-700 outline-none',
           'after:left-1/2 after:top-1/2 after:h-10 after:w-10 after:-translate-x-1/2 after:-translate-y-1/2 after:content-[""]',
           'after:absolute after:rounded-full [&:not(:disabled)]:hover:after:bg-color-primary-tr-hover',
@@ -43,7 +43,12 @@ export const CheckboxBase = forwardRef<HTMLButtonElement, CheckboxBaseProps>(
           className
         )}
       >
-        <Indicator className='h-6 w-6 rounded-sm bg-color-primary-default group-disabled:bg-color-primary-disabled'>
+        <Indicator
+          className={cn(
+            'h-6 w-6 rounded-sm bg-color-primary-default group-disabled:bg-color-primary-disabled',
+            classes?.indicator
+          )}
+        >
           <Icon name='general/check' className='size-6 text-icon-white' />
         </Indicator>
       </Root>

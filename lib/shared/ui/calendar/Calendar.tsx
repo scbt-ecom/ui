@@ -33,6 +33,7 @@ export const Calendar = ({
       range_middle: cn(defaultClassNames.range_middle, classNames?.range_middle),
       range_end: cn(defaultClassNames.range_outer, classNames?.range_end),
       month_grid: 'h-[280px]',
+      day: cn(defaultClassNames.day, classNames?.day),
       ...classNames
     }),
     [classNames]
