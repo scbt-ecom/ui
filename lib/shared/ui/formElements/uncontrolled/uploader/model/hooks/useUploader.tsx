@@ -6,15 +6,15 @@ import { Notification } from '$/shared/ui/'
 export type TUseUploader = {
   controlledFiles: File[]
   dropzoneOptions: DropzoneOptions
-  onValueChange: (f: File[]) => void
+  onChange: (files: File[]) => void
 }
 
-export const useUploader = ({ dropzoneOptions, controlledFiles, onValueChange }: TUseUploader) => {
+export const useUploader = ({ dropzoneOptions, controlledFiles, onChange }: TUseUploader) => {
   const [filesStatus, setFilesStatus] = useState<Record<string, 'loading' | 'success' | 'error'>>({})
 
   const removeFile = (index: number) => {
     const updatedFiles = controlledFiles.filter((_, idx) => idx !== index)
-    onValueChange(updatedFiles)
+    onChange(updatedFiles)
   }
 
   const onDrop = (acceptedFiles: File[], rejectedFiles: FileRejection[]) => {
@@ -39,7 +39,7 @@ export const useUploader = ({ dropzoneOptions, controlledFiles, onValueChange }:
       case FilesErrorCode.FileTooLarge:
         Notification({
           intent: 'error',
-          text: `Файл слишком большой. Максимальный размер ${dropzoneOptions.maxSize} МБ`
+          text: `Файл слишком большой. Максимальный размер ${dropzoneOptions.maxSize ? dropzoneOptions.maxSize / 1024 / 1024 : 0} МБ`
         })
         break
       case FilesErrorCode.TooManyFiles:
@@ -54,7 +54,7 @@ export const useUploader = ({ dropzoneOptions, controlledFiles, onValueChange }:
 
     const updatedFiles = [...controlledFiles, ...acceptedFiles]
 
-    onValueChange(updatedFiles)
+    onChange(updatedFiles)
   }
 
   const dropzoneState = useDropzone({

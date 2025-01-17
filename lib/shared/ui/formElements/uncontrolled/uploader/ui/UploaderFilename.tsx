@@ -1,16 +1,21 @@
 import { useEffect, useRef, useState } from 'react'
-import { Hint } from '../../../hint/Hint'
-import { type TUploaderFileNameClasses } from '../model/types'
+import { Hint } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
-interface IFileNameProps {
-  file: File
-  classes?: TUploaderFileNameClasses
+export type UploaderFileNameClasses = {
+  text?: string
 }
 
-export const Filename = ({ file, classes }: IFileNameProps) => {
+interface UploaderFilenameProps {
+  file: File
+  classes?: UploaderFileNameClasses
+}
+
+export const UploaderFilename = ({ file, classes }: UploaderFilenameProps) => {
   const fileRef = useRef<HTMLParagraphElement>(null)
   const [isOverflow, setIsOverflow] = useState(false)
+
+  const { text } = classes || {}
 
   useEffect(() => {
     if (fileRef.current) {
@@ -23,7 +28,7 @@ export const Filename = ({ file, classes }: IFileNameProps) => {
       {isOverflow ? (
         <Hint
           triggerElement={
-            <p ref={fileRef} className={cn('desk-body-regular-m max-w-[300px] truncate text-color-dark', classes?.fileText)}>
+            <p ref={fileRef} className={cn('desk-body-regular-m max-w-[300px] truncate text-color-dark', text)}>
               {file.name}
             </p>
           }
@@ -31,7 +36,7 @@ export const Filename = ({ file, classes }: IFileNameProps) => {
           {file.name}
         </Hint>
       ) : (
-        <p ref={fileRef} className={cn('desk-body-regular-m text-color-dark', classes?.fileText)}>
+        <p ref={fileRef} className={cn('desk-body-regular-m text-color-dark', text)}>
           {file.name}
         </p>
       )}

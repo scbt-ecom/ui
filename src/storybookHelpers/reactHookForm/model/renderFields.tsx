@@ -10,7 +10,6 @@ import {
   type TControlledInputSlider,
   type TControlledInputSwitch,
   type TControlledInputTextarea,
-  type TControlledInputUploader,
   type TStorybookFieldConfig
 } from './types'
 import {
@@ -23,8 +22,7 @@ import {
   RadioControl,
   SliderControl,
   SwitchControl,
-  TextareaControl,
-  UploaderControl
+  TextareaControl
 } from '$/shared/ui'
 
 export const renderFields = <T extends FieldValues>(fieldConfig: TStorybookFieldConfig<T>, formMethods: UseFormReturn<T>) => {
@@ -46,8 +44,6 @@ export const renderFields = <T extends FieldValues>(fieldConfig: TStorybookField
       return <TextareaControl control={control} {...(props as TControlledInputTextarea<T>)} />
     case EnumFieldType.SLIDER:
       return <SliderControl control={control} {...(props as TControlledInputSlider<T>)} />
-    case EnumFieldType.UPLOADER:
-      return <UploaderControl control={control} {...(props as TControlledInputUploader<T>)} />
     case EnumFieldType.EDITOR:
       return <EditorControl control={control} {...(props as TControlledInputEditor<T>)} />
     case EnumFieldType.OTP:
