@@ -17,11 +17,11 @@ interface UploaderFilesProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export const UploaderFiles = ({ files, filesStatus, classes, removeFile }: UploaderFilesProps) => {
-  const isFilesExist = TypeGuards.isArrayEmpty(files)
+  const filesEmpty = TypeGuards.isArrayEmpty(files)
 
   const { root, file: fileClasses } = classes || {}
 
-  if (isFilesExist) {
+  if (!filesEmpty) {
     return (
       <ul className={cn('flex max-w-[476px] flex-col gap-1 px-1', root)}>
         {files.map((file, index) => (
