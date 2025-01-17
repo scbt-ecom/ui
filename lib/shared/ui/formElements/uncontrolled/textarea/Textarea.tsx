@@ -11,6 +11,13 @@ type TextareaBaseClasses = {
 
 type FieldAttachmentProps = React.ComponentPropsWithoutRef<typeof FieldAttachment>
 
+type ExternalHandlers = {
+  onChange?: (event: React.ChangeEvent<HTMLTextAreaElement>) => void
+  onClick?: (event: React.MouseEvent<HTMLTextAreaElement>) => void
+  onFocus?: (event: React.FocusEvent<HTMLTextAreaElement>) => void
+  onBlur?: (event: React.FocusEvent<HTMLTextAreaElement>) => void
+}
+
 export type TextareaBaseProps = Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'size' | 'className'> & {
   /**
    * Дополнительные стили внутренних компонентов
@@ -28,11 +35,22 @@ export type TextareaBaseProps = Omit<React.TextareaHTMLAttributes<HTMLTextAreaEl
    * Свойства дополнительной иконки
    */
   attachmentProps?: DeepPartial<FieldAttachmentProps>
+  /**
+   * Дополнительные хендлеры
+   */
+  externalHandlers?: ExternalHandlers
 }
 
 export const TextareaBase = forwardRef<HTMLTextAreaElement, TextareaBaseProps>(
-  ({ label, value, invalid, disabled, classes, attachmentProps, rows = 4, ...props }, ref) => {
+  ({ label, value, invalid, disabled, classes, attachmentProps, rows = 4, externalHandlers, onChange, ...props }, ref) => {
     const id = useId()
+
+    const { onChange: externalOnChange, ...restHandlers } = externalHandlers || {}
+
+    const onValueChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+      if (onChange) onChange(event)
+      if (externalOnChange) externalOnChange(event)
+    }
 
     return (
       <div
@@ -63,11 +81,13 @@ export const TextareaBase = forwardRef<HTMLTextAreaElement, TextareaBaseProps>(
           </label>
           <textarea
             {...props}
+            {...restHandlers}
             rows={rows}
             disabled={disabled}
             value={value ?? ''}
             ref={ref}
             id={id}
+            onChange={onValueChange}
             className={cn(
               'customScrollbar-y peer desk-body-regular-l w-full overflow-y-auto bg-color-transparent',
               'resize-none text-color-dark outline-none placeholder:text-color-blue-grey-600',

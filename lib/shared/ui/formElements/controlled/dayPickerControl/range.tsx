@@ -20,9 +20,21 @@ type IsoDateRange = {
 }
 
 type RangeDayPickerProps = Omit<CalendarProps, 'mode'> & {
+  /**
+   * Свойства Input компонента
+   */
   inputProps: Omit<MaskInputProps, 'mask'>
+  /**
+   * Стили внутренних компонентов
+   */
   classes?: RangeDayPickerClasses
+  /**
+   * Управляемое значение
+   */
   value: IsoDateRange
+  /**
+   * Функция для управления значением
+   */
   onChange: (value: IsoDateRange) => void
 }
 

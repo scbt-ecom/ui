@@ -1,6 +1,7 @@
 'use docs'
 
 import { useState } from 'react'
+import toast from 'react-hot-toast'
 import type { Meta, StoryObj } from '@storybook/react'
 import { fn } from '@storybook/test'
 import { Icon, Uncontrolled } from '$/shared/ui'
@@ -165,5 +166,25 @@ export const WithCarSignMask: Story = {
     const [value, setValue] = useState<string>('')
 
     return <Uncontrolled.MaskInput {...props} value={value} onChange={(e) => setValue(e.target.value)} />
+  }
+}
+
+export const WithExternalHandlers: Story = {
+  args: {
+    ...Base.args,
+    externalHandlers: {
+      onClick: fn(() => {
+        toast('handled external onClick')
+      }),
+      onChange: fn(() => {
+        toast('handled external onChange')
+      }),
+      onBlur: fn(() => {
+        toast('handled external onBlur')
+      }),
+      onFocus: fn(() => {
+        toast('handled external onFocus')
+      })
+    }
   }
 }

@@ -1,6 +1,7 @@
 'use docs'
 
 import { useState } from 'react'
+import toast from 'react-hot-toast'
 import type { Meta, StoryObj } from '@storybook/react'
 import { fn } from '@storybook/test'
 import { Icon, Uncontrolled } from '$/shared/ui'
@@ -91,4 +92,25 @@ export const WithAttachmentIcon: Story = {
       onClickIcon: fn()
     }
   }
+}
+
+export const WithExternalHandlers: Story = {
+  args: {
+    ...Base.args,
+    externalHandlers: {
+      onClick: fn(() => {
+        toast('handled external onClick')
+      }),
+      onChange: fn(() => {
+        toast('handled external onChange')
+      }),
+      onBlur: fn(() => {
+        toast('handled external onBlur')
+      }),
+      onFocus: fn(() => {
+        toast('handled external onFocus')
+      })
+    }
+  },
+  render: Controlled.render
 }
