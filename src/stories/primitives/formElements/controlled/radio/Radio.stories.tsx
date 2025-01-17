@@ -1,6 +1,7 @@
 'use docs'
 
 import type { Meta, StoryObj } from '@storybook/react'
+import { fn } from '@storybook/test'
 import z from 'zod'
 import { HookForm } from '../utils'
 import { Controlled, type RadioOption } from '$/shared/ui'
@@ -9,6 +10,7 @@ const schema = z.object({
   test: z.string().nullable().refine(Boolean)
 })
 
+// TODO: заменить на пере используемую функцию
 const options: RadioOption[] = [
   {
     id: 0,
@@ -109,5 +111,25 @@ export const WithCustomReturnValue: Story = {
 export const WithCustomDisplayValue: Story = {
   args: {
     displayValue: (option) => String(option.id)
+  }
+}
+
+export const WithExternalHandlers: Story = {
+  args: {
+    ...Base.args,
+    externalHandlers: {
+      onChange: (value) => {
+        fn(() => console.warn(`handled external onChange ${value}`))
+      },
+      onClick: fn(() => {
+        console.warn('handled external onClick')
+      }),
+      onBlur: fn(() => {
+        console.warn('handled external onBlur')
+      }),
+      onFocus: fn(() => {
+        console.warn('handled external onFocus')
+      })
+    }
   }
 }
