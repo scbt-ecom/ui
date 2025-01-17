@@ -1,6 +1,8 @@
 'use docs'
 
+import toast from 'react-hot-toast'
 import type { Meta, StoryObj } from '@storybook/react'
+import { fn } from '@storybook/test'
 import z from 'zod'
 import { HookForm } from '../utils'
 import { Controlled } from '$/shared/ui'
@@ -62,5 +64,25 @@ export const Disabled: Story = {
 export const ReadOnly: Story = {
   args: {
     readOnly: true
+  }
+}
+
+export const WithExternalHandlers: Story = {
+  args: {
+    ...Base.args,
+    externalHandlers: {
+      onChange: (event) => {
+        fn(() => toast(`handled external onChange ${event}`))
+      },
+      onClick: fn(() => {
+        toast('handled external onClick')
+      }),
+      onBlur: fn(() => {
+        toast('handled external onBlur')
+      }),
+      onFocus: fn(() => {
+        toast('handled external onFocus')
+      })
+    }
   }
 }
