@@ -1,20 +1,20 @@
-import type { IFooterPhones } from '../model/types'
+import type { FooterPhones } from '../model/types'
 import { PhoneView } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
-export type TPhoneBlockClasses = {
+export type PhoneBlockClasses = {
   phonesRoot?: string
   phoneWrapper?: string
   phoneText?: string
   phoneLink?: string
 }
 
-interface IPhonesBlockProps {
-  phones: IFooterPhones[]
-  classes?: TPhoneBlockClasses
+interface PhonesBlockProps {
+  phones: FooterPhones[]
+  classes?: PhoneBlockClasses
 }
 
-export const PhonesBlock = ({ phones, classes }: IPhonesBlockProps) => {
+export const PhonesBlock = ({ phones, classes }: PhonesBlockProps) => {
   return (
     <div className={cn('flex flex-col gap-4 desktop:items-end', classes?.phonesRoot)}>
       {phones?.map(({ phone, text }) => (

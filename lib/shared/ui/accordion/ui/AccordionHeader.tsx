@@ -3,16 +3,22 @@
 import * as React from 'react'
 import { Header, Trigger } from '@radix-ui/react-accordion'
 import { Icon } from '../../icon'
-import type { TAccordionClasses } from '../Accordion'
 import { cn } from '$/shared/utils'
 
-interface IAccordionHeaderProps {
+export type AccordionHeaderClasses = {
+  header?: string
+  trigger?: string
+  label?: string
+  icon?: string
+}
+
+interface AccordionHeaderProps {
   children?: React.ReactElement | string
-  classes?: Pick<TAccordionClasses, 'header' | 'trigger' | 'label' | 'icon'>
+  classes?: AccordionHeaderClasses
   icon?: React.ReactElement
 }
 
-export const AccordionHeader = React.forwardRef<HTMLButtonElement, IAccordionHeaderProps>(
+export const AccordionHeader = React.forwardRef<HTMLButtonElement, AccordionHeaderProps>(
   ({ children, classes, icon, ...props }, forwardedRef) => (
     <Header className={cn('rounded-sm bg-color-primary-light-default', classes?.header)}>
       <Trigger

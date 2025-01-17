@@ -3,9 +3,9 @@ import bezrykovDesk from './assets/bezrukov_desk.png'
 import bezrykovMob from './assets/bezrukov_mob.png'
 import saif from './assets/saif.jpg'
 import saifMob from './assets/saifMob.jpg'
-import { type IBannerProps } from '$/widgets/banner/Banner.tsx'
+import { type BannerProps } from '$/widgets/banner/Banner.tsx'
 
-export const mockBannerBase: IBannerProps = {
+export const mockBannerBase: BannerProps = {
   headTitle: 'Кредит на любые цели',
   subtitle: 'до 5 млн рублей',
   img: bezrykovMob,
@@ -26,7 +26,7 @@ export const mockBannerBase: IBannerProps = {
     }
   }
 }
-export const mockBannerOnlyPrimaryButton: IBannerProps = {
+export const mockBannerOnlyPrimaryButton: BannerProps = {
   headTitle: 'Кредит на любые цели',
   subtitle: 'до 5 млн рублей',
   img: bezrykovMob,
@@ -39,7 +39,7 @@ export const mockBannerOnlyPrimaryButton: IBannerProps = {
   }
 }
 
-export const mockWithAdvantages: IBannerProps = {
+export const mockWithAdvantages: BannerProps = {
   headTitle: 'Кредит на любые цели',
   subtitle: 'до 5 млн рублей',
   img: bezrykovMob,
@@ -59,7 +59,7 @@ export const mockWithAdvantages: IBannerProps = {
     { title: 'Бесплатная', description: 'доставка кредита' }
   ]
 }
-export const mockBannerBaseFullImage: IBannerProps = {
+export const mockBannerBaseFullImage: BannerProps = {
   headTitle: 'Кредит на любые цели',
   subtitle: 'до 5 млн рублей',
   img: saif,
@@ -86,7 +86,7 @@ export const mockBannerBaseFullImage: IBannerProps = {
   bannerVariant: 'fullImg'
 }
 
-export const mockBannerFullImageOnlyPrimaryButton: IBannerProps = {
+export const mockBannerFullImageOnlyPrimaryButton: BannerProps = {
   headTitle: 'Кредит на любые цели',
   subtitle: 'до 5 млн рублей',
   img: saif,
@@ -103,7 +103,7 @@ export const mockBannerFullImageOnlyPrimaryButton: IBannerProps = {
   bannerVariant: 'fullImg'
 }
 
-export const mockBannerFullImageWithAdvantages: IBannerProps = {
+export const mockBannerFullImageWithAdvantages: BannerProps = {
   headTitle: 'Кредит на любые цели',
   subtitle: 'до 5 млн рублей',
   img: saif,
@@ -132,7 +132,7 @@ export const mockBannerFullImageWithAdvantages: IBannerProps = {
   ]
 }
 
-export const mockBannerBaseGradient: IBannerProps = {
+export const mockBannerBaseGradient: BannerProps = {
   headTitle: 'Кредит на любые цели',
   subtitle: 'до 5 млн рублей',
   img: bezrykovMob,
@@ -153,7 +153,7 @@ export const mockBannerBaseGradient: IBannerProps = {
   }
 }
 
-export const mockBannerBaseGradientAdvantages: IBannerProps = {
+export const mockBannerBaseGradientAdvantages: BannerProps = {
   headTitle: 'Кредит на любые цели',
   subtitle: 'до 5 млн рублей',
   img: bezrykovMob,

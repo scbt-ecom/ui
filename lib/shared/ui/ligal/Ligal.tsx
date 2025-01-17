@@ -3,18 +3,18 @@
 import * as React from 'react'
 import { cn } from '$/shared/utils'
 
-type TLigalClasses = {
+type LigalClasses = {
   ligalRoot?: string
   ligalText?: string
   ligalButton?: string
 }
 
-export interface ILigalProps {
+export interface LigalProps {
   text: string | React.ReactElement
-  classes?: TLigalClasses
+  classes?: LigalClasses
 }
 
-export const Ligal = ({ text, classes }: ILigalProps) => {
+export const Ligal = ({ text, classes }: LigalProps) => {
   const [isExpanded, setIsExpanded] = React.useState(false)
   const [isClamped, setIsClamped] = React.useState(false)
   const ligalRef = React.useRef<HTMLParagraphElement | null>(null)

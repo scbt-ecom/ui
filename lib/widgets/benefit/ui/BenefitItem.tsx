@@ -5,7 +5,7 @@ import { Button, Heading } from '$/shared/ui'
 import { cn, scrollToElement } from '$/shared/utils'
 import { type AllowedBannerBackgroundColor } from '$/widgets/benefit/model'
 
-export type IBenefitItemClasses = {
+export type BenefitItemClasses = {
   button?: string
   item?: string
   itemWrapper?: string
@@ -29,12 +29,12 @@ const itemConfig = cva(
   }
 )
 
-export interface IBenefitItemProps extends VariantProps<typeof itemConfig> {
+export interface BenefitItemProps extends VariantProps<typeof itemConfig> {
   title: string
   description: string | ReactElement
   img?: string
   mobileImg?: boolean
-  classes?: IBenefitItemClasses
+  classes?: BenefitItemClasses
   withButton?: boolean
   buttonText?: string
   cardColor?: AllowedBannerBackgroundColor
@@ -50,7 +50,7 @@ export const BenefitItem = ({
   buttonText,
   intent,
   cardColor
-}: IBenefitItemProps) => {
+}: BenefitItemProps) => {
   const { isDesktop } = useDevice()
 
   const button = (

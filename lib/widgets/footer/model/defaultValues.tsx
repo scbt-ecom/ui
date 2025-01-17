@@ -1,4 +1,4 @@
-import type { IFooterNavLinks, IFooterPhones, IFooterSocialLinks } from './types'
+import type { FooterNavLinks, FooterPhones, FooterSocialLinks } from './types'
 
 export const defaultCopyright = (
   <>
@@ -7,18 +7,18 @@ export const defaultCopyright = (
   </>
 )
 
-export const defaultPhones: IFooterPhones[] = [
+export const defaultPhones: FooterPhones[] = [
   { phone: '8 800 100-00-06', text: 'Звонок по России (бесплатно)' },
   { phone: '+7 (495) 988 00 00', text: 'Для звонков из-за рубежа (платно)' }
 ]
 
-export const defaultSocialsLinks: IFooterSocialLinks[] = [
+export const defaultSocialsLinks: FooterSocialLinks[] = [
   { iconName: 'social/vk', href: 'https://vk.com/sovcombank' },
   { iconName: 'social/telegram', href: 'https://t.me/sovcombankofficial' },
   { iconName: 'social/classmates', href: 'https://ok.ru/paosovcombank' }
 ]
 
-export const defaultNavigationLinks: IFooterNavLinks[] = [
+export const defaultNavigationLinks: FooterNavLinks[] = [
   {
     groupLabel: 'Совкомбанк',
     links: [

@@ -1,11 +1,11 @@
 import * as React from 'react'
 import { AUTH_PROVIDER_MODE } from './model/helpers'
-import type { TAuthProviderProps } from './model/types'
+import type { AuthProviderProps } from './model/types'
 import { Esia, MobileId } from './ui'
 import { Badge } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
-const renderProvider = (props: TAuthProviderProps): React.ReactElement => {
+const renderProvider = (props: AuthProviderProps): React.ReactElement => {
   switch (props.mode) {
     case AUTH_PROVIDER_MODE.ESIA:
       return <Esia {...props} />
@@ -51,6 +51,6 @@ const renderProvider = (props: TAuthProviderProps): React.ReactElement => {
   }
 }
 
-export const AuthProvider = (props: TAuthProviderProps) => {
+export const AuthProvider = (props: AuthProviderProps) => {
   return renderProvider(props)
 }

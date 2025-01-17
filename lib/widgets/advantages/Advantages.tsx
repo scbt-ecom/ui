@@ -4,24 +4,24 @@ import * as React from 'react'
 import { Heading } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
-export interface IAdvantageClasses {
+export interface AdvantageClasses {
   advantageWrapper: string
   advantageItem: string
   advantageTitle: string
   advantageDescription: string
 }
 
-export interface IAdvantage {
+export interface Advantage {
   title: string
   description: string | React.ReactElement
 }
 
-export interface IAdvantagesProps {
-  advantagesList: IAdvantage[]
-  classes?: Partial<IAdvantageClasses>
+export interface AdvantagesProps {
+  advantagesList: Advantage[]
+  classes?: Partial<AdvantageClasses>
 }
 
-export const Advantages = ({ advantagesList, classes }: IAdvantagesProps) => {
+export const Advantages = ({ advantagesList, classes }: AdvantagesProps) => {
   return (
     <div
       className={cn(

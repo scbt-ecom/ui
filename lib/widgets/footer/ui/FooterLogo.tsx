@@ -1,16 +1,16 @@
 import { Icon } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
-export type TFooterLogoClasses = {
+export type FooterLogoClasses = {
   footerLogo?: string
   footerLogoIcon?: string
 }
 
-export interface IFooterLogoProps {
-  classes?: TFooterLogoClasses
+export interface FooterLogoProps {
+  classes?: FooterLogoClasses
 }
 
-export const FooterLogo = ({ classes }: IFooterLogoProps) => {
+export const FooterLogo = ({ classes }: FooterLogoProps) => {
   return (
     <a
       aria-label='logo'

@@ -1,12 +1,12 @@
 import type { HTMLAttributes, ReactElement } from 'react'
 import { cn } from '$/shared/utils'
 
-export interface IBadgeProps extends HTMLAttributes<HTMLSpanElement> {
+export interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
   children: ReactElement | string
   className?: string
 }
 
-export const Badge = ({ children, className, ...props }: IBadgeProps) => {
+export const Badge = ({ children, className, ...props }: BadgeProps) => {
   return (
     <span
       className={cn(

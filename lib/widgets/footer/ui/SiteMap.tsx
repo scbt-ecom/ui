@@ -1,16 +1,16 @@
 import { CustomLink } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
-export type TSiteMapClasses = {
+export type SiteMapClasses = {
   siteMapLink?: string
   siteMapLinkIcon?: string
 }
 
-export interface ISiteMapProps {
-  classes?: TSiteMapClasses
+export interface SiteMapProps {
+  classes?: SiteMapClasses
 }
 
-export const SiteMap = ({ classes }: ISiteMapProps) => {
+export const SiteMap = ({ classes }: SiteMapProps) => {
   return (
     <CustomLink
       intent='white'

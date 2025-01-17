@@ -1,5 +1,5 @@
 import { type allowedBannersBackgroundColors } from '$/shared/constants'
 
-export type TColors = keyof typeof allowedBannersBackgroundColors
+export type Colors = keyof typeof allowedBannersBackgroundColors
 
-export type AllowedBannerBackgroundColor = `bg-banner-${TColors}`
+export type AllowedBannerBackgroundColor = `bg-banner-${Colors}`

@@ -1,19 +1,19 @@
-import type { TColumnsLinks } from '../model/types'
+import type { ColumnsLinks } from '../model/types'
 import { CustomLink } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
-export type TLinksListClasses = {
+export type LinksListClasses = {
   linksWrapper?: string
   linkText?: string
   linkIcon?: string
 }
 
-export interface ILinksListProps {
-  links: TColumnsLinks
-  classes?: TLinksListClasses
+export interface LinksListProps {
+  links: ColumnsLinks
+  classes?: LinksListClasses
 }
 
-export const LinksList = ({ links, classes }: ILinksListProps) => {
+export const LinksList = ({ links, classes }: LinksListProps) => {
   return (
     <nav className={cn('flex flex-col gap-1', classes?.linksWrapper)}>
       {links?.map(({ path, label }) => (

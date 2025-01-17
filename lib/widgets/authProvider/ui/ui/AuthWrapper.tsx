@@ -1,19 +1,19 @@
-import { type ILoaderProps, Loader } from '$/shared/ui'
+import { Loader, type LoaderProps } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
-export type TAuthWrapperClasses = {
+export type AuthWrapperClasses = {
   root?: string
   wrapper?: string
 }
 
-export interface IAuthWrapper {
+export interface AuthWrapperProps {
   children: React.ReactElement
-  classes?: TAuthWrapperClasses
+  classes?: AuthWrapperClasses
   isLoading?: boolean
-  loaderProps?: ILoaderProps
+  loaderProps?: LoaderProps
 }
 
-export const AuthWrapper = ({ children, isLoading, classes, loaderProps }: IAuthWrapper) => {
+export const AuthWrapper = ({ children, isLoading, classes, loaderProps }: AuthWrapperProps) => {
   return (
     <div
       tabIndex={0}

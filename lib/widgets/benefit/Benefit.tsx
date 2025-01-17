@@ -2,11 +2,11 @@
 
 import { type ReactElement } from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
-import { BenefitItem, type IBenefitItemClasses, type IBenefitItemProps } from './ui/BenefitItem'
+import { BenefitItem, type BenefitItemClasses, type BenefitItemProps } from './ui/BenefitItem'
 import { Heading, ResponsiveContainer } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
-export type IBenefitClasses = IBenefitItemClasses & {
+export type BenefitClasses = BenefitItemClasses & {
   item?: string
   heading?: string
   grid?: string
@@ -24,13 +24,13 @@ const gridConfig = cva('grid gap-4', {
   }
 })
 
-export interface IBenefitProps extends VariantProps<typeof gridConfig> {
+export interface BenefitProps extends VariantProps<typeof gridConfig> {
   heading: string | ReactElement
-  cards: IBenefitItemProps[]
-  classes?: IBenefitClasses
+  cards: BenefitItemProps[]
+  classes?: BenefitClasses
 }
 
-export const Benefit = ({ heading, cards, classes, intent }: IBenefitProps) => {
+export const Benefit = ({ heading, cards, classes, intent }: BenefitProps) => {
   return (
     <section className={cn('pb-20', classes?.section)}>
       <ResponsiveContainer>

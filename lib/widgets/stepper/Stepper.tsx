@@ -4,7 +4,7 @@ import { type ISingleStepClasses, SingleStep } from './ui/SingleStep'
 import { Heading, ResponsiveContainer, Section } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
-export type TStepperClasses = {
+export type StepperClasses = {
   root?: string
   container?: string
   wrapper?: string
@@ -13,18 +13,18 @@ export type TStepperClasses = {
   step?: ISingleStepClasses
 }
 
-export interface ISingleStep {
+export interface SingleStepProps {
   title: string
   description: string | React.ReactElement
 }
 
-export interface IStepperProps extends HTMLAttributes<HTMLDivElement> {
+export interface StepperProps extends HTMLAttributes<HTMLDivElement> {
   heading: string
-  stepsList: ISingleStep[]
-  classes?: TStepperClasses
+  stepsList: SingleStepProps[]
+  classes?: StepperClasses
 }
 
-export const Stepper = ({ heading, stepsList, classes }: IStepperProps) => {
+export const Stepper = ({ heading, stepsList, classes }: StepperProps) => {
   return (
     <Section className={classes?.root}>
       <ResponsiveContainer className={classes?.container}>

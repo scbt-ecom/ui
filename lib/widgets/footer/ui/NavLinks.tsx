@@ -1,8 +1,8 @@
-import type { IFooterNavLinks } from '../model/types'
+import type { FooterNavLinks } from '../model/types'
 import { CustomLink } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
-export type TNavigationLinksClasses = {
+export type NavigationLinksClasses = {
   navRoot?: string
   navGroup?: string
   navLabel?: string
@@ -11,12 +11,12 @@ export type TNavigationLinksClasses = {
   navLinkIcon?: string
 }
 
-interface INavLinksProps {
-  navigationLinks: IFooterNavLinks[]
-  classes?: TNavigationLinksClasses
+interface NavLinksProps {
+  navigationLinks: FooterNavLinks[]
+  classes?: NavigationLinksClasses
 }
 
-export const NavLinks = ({ navigationLinks, classes }: INavLinksProps) => {
+export const NavLinks = ({ navigationLinks, classes }: NavLinksProps) => {
   return (
     <div
       className={cn(

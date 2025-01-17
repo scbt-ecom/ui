@@ -1,8 +1,8 @@
-import { type ISingleStep } from '../Stepper'
+import { type SingleStepProps } from '../Stepper'
 import { Heading } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
-interface ISingleStepProps extends ISingleStep {
+interface ISingleStepProps extends SingleStepProps {
   index: number
   classes?: ISingleStepClasses
 }

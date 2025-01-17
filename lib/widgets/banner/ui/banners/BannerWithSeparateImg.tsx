@@ -2,7 +2,7 @@ import { BannerButtonsGroup } from '../BannerButtonsGroup'
 import { useDevice } from '$/shared/hooks'
 import { Heading, ResponsiveContainer } from '$/shared/ui'
 import { cn } from '$/shared/utils'
-import { Advantages, type IBannerProps } from '$/widgets'
+import { Advantages, type BannerProps } from '$/widgets'
 
 export const BannerWithSeparateImg = ({
   headTitle,
@@ -12,7 +12,7 @@ export const BannerWithSeparateImg = ({
   classes,
   img,
   imgSets
-}: Omit<IBannerProps, 'bannerVariant'>) => {
+}: Omit<BannerProps, 'bannerVariant'>) => {
   const { isDesktop, isMobile } = useDevice()
   const advantage = (
     <div

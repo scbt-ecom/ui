@@ -4,7 +4,7 @@ import { type ReactElement } from 'react'
 import toast, { type Toast } from 'react-hot-toast'
 import { CustomToast } from './ui/CustomToast'
 
-export interface INotificationProps {
+export interface NotificationProps {
   duration?: number
   intent: 'info' | 'error'
   text: string | ReactElement
@@ -13,7 +13,7 @@ export interface INotificationProps {
   closure?: boolean
 }
 
-const renderToast = (props: INotificationProps) => {
+const renderToast = (props: NotificationProps) => {
   switch (props.intent) {
     case 'info':
       return toast.custom((toastOptions: Toast) => <CustomToast {...toastOptions} {...props} />, {
@@ -28,6 +28,6 @@ const renderToast = (props: INotificationProps) => {
   }
 }
 
-export const Notification = (props: INotificationProps) => {
+export const Notification = (props: NotificationProps) => {
   return renderToast(props)
 }

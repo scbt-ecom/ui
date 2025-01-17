@@ -1,10 +1,10 @@
-import { type IHeaderEmptyProps, type IHeaderWithButton, type IHeaderWithPhone } from './types'
+import { type HeaderEmptyProps, type HeaderWithButton, type HeaderWithPhone } from './types'
 import { brandLogos, Button, PhoneView, ResponsiveContainer } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
-export type TPageHeaderProps = IHeaderWithButton | IHeaderWithPhone | IHeaderEmptyProps
+export type PageHeaderProps = HeaderWithButton | HeaderWithPhone | HeaderEmptyProps
 
-const renderContentVariant = (props: TPageHeaderProps) => {
+const renderContentVariant = (props: PageHeaderProps) => {
   switch (props.variant) {
     case 'withButton':
       return (
@@ -19,7 +19,7 @@ const renderContentVariant = (props: TPageHeaderProps) => {
   }
 }
 
-export const PageHeader = (props: TPageHeaderProps) => {
+export const PageHeader = (props: PageHeaderProps) => {
   const { logoPath = '/', logoType = 'main', classes } = props
 
   return (

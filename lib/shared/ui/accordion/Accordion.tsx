@@ -3,29 +3,26 @@
 import * as React from 'react'
 import { forwardRef } from 'react'
 import * as AccordionPrimitive from '@radix-ui/react-accordion'
-import { AccordionHeader } from './ui/AccordionHeader'
+import { AccordionHeader, type AccordionHeaderClasses } from './ui/AccordionHeader'
 import { cn } from '$/shared/utils'
 
-export type TAccordionClasses = {
+export type AccordionClasses = {
   root?: string
   wrapper?: string
   content?: string
   contentInner?: string
-  header?: string
-  trigger?: string
-  label?: string
-  icon?: string
+  header?: AccordionHeaderClasses
 }
 
-export interface IAccordionProps {
+export interface AccordionProps {
   children: React.ReactNode
   label: string | React.ReactElement
-  classes?: TAccordionClasses
+  classes?: AccordionClasses
   defaultOpen?: boolean
   icon?: React.ReactElement
 }
 
-export const Accordion = forwardRef<HTMLDivElement, IAccordionProps>(
+export const Accordion = forwardRef<HTMLDivElement, AccordionProps>(
   ({ children, label, classes, defaultOpen = false, icon }, ref) => {
     return (
       <AccordionPrimitive.Root
@@ -34,7 +31,7 @@ export const Accordion = forwardRef<HTMLDivElement, IAccordionProps>(
         defaultValue={defaultOpen ? [label.toString()] : undefined}
       >
         <AccordionPrimitive.Item className={cn('w-full disabled:text-color-dark', classes?.wrapper)} value={label.toString()}>
-          <AccordionHeader icon={icon} classes={classes}>
+          <AccordionHeader icon={icon} classes={classes?.header}>
             {label}
           </AccordionHeader>
           <AccordionPrimitive.Content

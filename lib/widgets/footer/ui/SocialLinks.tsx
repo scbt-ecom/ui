@@ -1,16 +1,16 @@
-import type { IFooterSocialLinks } from '../model/types'
+import type { FooterSocialLinks } from '../model/types'
 import { Icon } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
-export type TSocialLinksClasses = {
+export type SocialLinksClasses = {
   socialRoot?: string
   socialLink?: string
   socialIcon?: string
 }
 
 interface ISocialLinksProps {
-  socialsLinks: IFooterSocialLinks[]
-  classes?: TSocialLinksClasses
+  socialsLinks: FooterSocialLinks[]
+  classes?: SocialLinksClasses
 }
 
 export const SocialLinks = ({ socialsLinks, classes }: ISocialLinksProps) => {

@@ -39,7 +39,7 @@ type TLoaderClasses = {
   text?: string
 }
 
-export interface ILoaderProps
+export interface LoaderProps
   extends VariantProps<typeof loaderConfig>,
     VariantProps<typeof wrapperConfig>,
     Omit<HTMLAttributes<HTMLDivElement>, 'className'> {
@@ -48,7 +48,7 @@ export interface ILoaderProps
   classes?: TLoaderClasses
 }
 
-export const Loader = ({ size = 'md', classes, intent = 'secondary', position = 'static', text, ...props }: ILoaderProps) => {
+export const Loader = ({ size = 'md', classes, intent = 'secondary', position = 'static', text, ...props }: LoaderProps) => {
   return (
     <div className={cn(wrapperConfig({ position }), { 'flex flex-col items-center gap-2': text }, classes?.wrapper)}>
       <span data-testid='loader' className={cn(loaderConfig({ size, intent }), classes?.loader)} {...props}></span>

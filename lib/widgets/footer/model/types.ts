@@ -1,19 +1,19 @@
 import type {
-  TCopyrightClasses,
-  TFooterLogoClasses,
-  TNavigationLinksClasses,
-  TPhoneBlockClasses,
-  TSiteMapClasses,
-  TSocialLinksClasses
+  CopyrightClasses,
+  FooterLogoClasses,
+  NavigationLinksClasses,
+  PhoneBlockClasses,
+  SiteMapClasses,
+  SocialLinksClasses
 } from '../ui'
 import { type SpritesMap } from '$/shared/ui'
 
-export interface IFooterSocialLinks {
+export interface FooterSocialLinks {
   iconName: `social/${SpritesMap['social']}`
   href: string
 }
 
-export interface IFooterNavLinks {
+export interface FooterNavLinks {
   groupLabel: string
   links: {
     text: string
@@ -21,12 +21,12 @@ export interface IFooterNavLinks {
   }[]
 }
 
-export interface IFooterPhones {
+export interface FooterPhones {
   phone: string
   text: string
 }
 
-export type TFooterRenderBlocks = {
+export type FooterRenderBlocks = {
   withSocial?: boolean
   withPhones?: boolean
   withNavLinks?: boolean
@@ -34,7 +34,7 @@ export type TFooterRenderBlocks = {
   withSiteMap?: boolean
 }
 
-export type TFooterClasses = {
+export type FooterClasses = {
   root?: string
   footerContainer?: string
   footerWrapper?: string
@@ -42,10 +42,10 @@ export type TFooterClasses = {
   footerSocialBlock?: string
   footerBottom?: string
 
-  footerLogo?: TFooterLogoClasses
-  navLinks?: TNavigationLinksClasses
-  phonesBlock?: TPhoneBlockClasses
-  socialLinks?: TSocialLinksClasses
-  siteMap?: TSiteMapClasses
-  copyright?: TCopyrightClasses
+  footerLogo?: FooterLogoClasses
+  navLinks?: NavigationLinksClasses
+  phonesBlock?: PhoneBlockClasses
+  socialLinks?: SocialLinksClasses
+  siteMap?: SiteMapClasses
+  copyright?: CopyrightClasses
 }

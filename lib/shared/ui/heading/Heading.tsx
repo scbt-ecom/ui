@@ -18,13 +18,13 @@ const headingConfig = cva('', {
   }
 })
 
-export interface IHeadingProps extends VariantProps<typeof headingConfig> {
+export interface HeadingProps extends VariantProps<typeof headingConfig> {
   children: ReactNode
   className?: string
   as?: 'h1' | 'h2' | 'h3' | 'h4'
 }
 
-export const Heading = ({ as = 'h2', children, className, ...props }: IHeadingProps) => {
+export const Heading = ({ as = 'h2', children, className, ...props }: HeadingProps) => {
   const Element = as
   return (
     <Element className={cn(headingConfig({ as }), className)} {...props}>

@@ -5,13 +5,13 @@ import * as TooltipPrimitive from '@radix-ui/react-tooltip'
 import { useClickOutside, useDevice } from '$/shared/hooks'
 import { cn } from '$/shared/utils'
 
-type THintClasses = {
+type HintClasses = {
   content?: string
   arrow?: string
   trigger?: string
 }
 
-export interface IHintContentProps extends TooltipPrimitive.TooltipContentProps {
+export interface HintContentProps extends TooltipPrimitive.TooltipContentProps {
   delayDuration?: number
   sideOffset?: number
   align?: 'end' | 'center' | 'start'
@@ -19,10 +19,10 @@ export interface IHintContentProps extends TooltipPrimitive.TooltipContentProps 
   defaultOpen?: boolean
 }
 
-export interface IHintProps extends IHintContentProps {
+export interface IHintProps extends HintContentProps {
   triggerElement: React.ReactElement
   children: React.ReactElement | string
-  classes?: THintClasses
+  classes?: HintClasses
 }
 
 export const Hint = ({
