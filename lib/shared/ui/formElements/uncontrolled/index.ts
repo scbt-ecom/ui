@@ -14,6 +14,7 @@ import { RadioGroupBase } from './radio'
 export type { AutocompleteBaseProps } from './autocomplete'
 export type { RadioGroupBaseProps, RadioOption } from './radio'
 import { TextareaBase } from './textarea'
+import { UploaderBase } from './uploader'
 export type { TextareaBaseProps } from './textarea'
 
 export const Uncontrolled = {
@@ -25,5 +26,6 @@ export const Uncontrolled = {
   AutocompleteBase,
   SwitchBase,
   RadioGroupBase,
-  TextareaBase
+  TextareaBase,
+  UploaderBase
 }

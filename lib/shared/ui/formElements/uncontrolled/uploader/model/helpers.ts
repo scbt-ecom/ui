@@ -1,7 +1,15 @@
 import { type DropzoneOptions } from 'react-dropzone'
 
+export const bytesToMegabytes = (number: number) => {
+  return number / 1024 / 1024
+}
+
+export const megabytesToBytes = (number: number) => {
+  return number * 1024 * 1024
+}
+
 export const defaultDropzoneOptions: DropzoneOptions = {
-  maxSize: 4 * 1024 * 1024,
+  maxSize: megabytesToBytes(4),
   multiple: true,
   accept: {
     'image/jpeg': [],

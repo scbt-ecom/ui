@@ -8,6 +8,7 @@ import { RadioGroupControl } from './radio'
 import { SelectControl } from './select'
 import { SwitchControl } from './switch'
 import { TextareaControl } from './textarea'
+import { UploaderControl } from './uploader'
 export type { TextareaControlProps } from './textarea'
 
 export const Controlled = {
@@ -25,5 +26,6 @@ export const Controlled = {
   DadataCountry,
   DadataAuto,
   DadataOrganization,
-  TextareaControl
+  TextareaControl,
+  UploaderControl
 }
