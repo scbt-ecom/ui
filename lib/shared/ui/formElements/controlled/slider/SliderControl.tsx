@@ -1,15 +1,20 @@
 import { memo } from 'react'
 import { type Control, type FieldValues, type Path, useController, type UseControllerProps } from 'react-hook-form'
-import { type SliderBaseProps } from '../../uncontrolled/slider/SliderBase'
+import { type SliderBaseClasses, type SliderBaseProps } from '../../uncontrolled/slider/SliderBase'
 import { Uncontrolled } from '$/shared/ui'
 import { cn } from '$/shared/utils'
+
+type SliderControlClasses = SliderBaseClasses & {
+  container?: string
+}
 
 type SliderControlProps<
   TFieldValues extends FieldValues = FieldValues,
   TName extends Path<TFieldValues> = Path<TFieldValues>
-> = Omit<SliderBaseProps, 'value' | 'onChange'> &
+> = Omit<SliderBaseProps, 'value' | 'onChange' | 'classes'> &
   UseControllerProps<TFieldValues, TName> & {
     control: Control<TFieldValues>
+    classes?: SliderControlClasses
   }
 
 export const InnerComponent = ({
@@ -36,7 +41,7 @@ export const InnerComponent = ({
   const { container, ...restClasses } = classes || {}
   return (
     <div className={cn('w-full', container)}>
-      <Uncontrolled.SliderBase classes={restClasses} {...props} {...field} invalid={invalid} />
+      <Uncontrolled.SliderBase {...props} {...field} classes={restClasses} invalid={invalid} />
     </div>
   )
 }

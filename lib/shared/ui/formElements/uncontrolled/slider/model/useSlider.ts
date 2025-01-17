@@ -6,20 +6,24 @@ interface UseSlider {
   min: number
   max: number
   defaultValue: number
-  value: number
+  value: number | undefined
   variant: TSliderVariants
 }
 
 export const useSlider = ({ min, max, defaultValue, value, variant }: UseSlider) => {
   const { fromSlider, toSlider, round } = useLogarithmic({ min, max, defaultSum: defaultValue })
 
-  const getSuffixText = (value: number, variant: TSliderVariants) => {
+  const getSuffixText = (value: number | undefined, variant: TSliderVariants) => {
+    if (!value) return ''
+
     return getInputSliderSuffix(variant, value)
   }
 
-  const sliderValue = variant === 'credit' ? toSlider(value) : value
+  const sliderValue = variant === 'credit' ? toSlider(value) : value || 0
 
-  const handleBlur = (value: number, onChange: (value: number) => void) => {
+  const handleBlur = (value: number | undefined, onChange: (value: number) => void) => {
+    if (!value) return
+
     if (value > max) {
       onChange(max)
     }

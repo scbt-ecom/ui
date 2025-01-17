@@ -3,7 +3,7 @@ import { FieldAttachment } from '../../ui'
 import { type DeepPartial } from '$/shared/types'
 import { cn } from '$/shared/utils'
 
-type InputBaseClasses = {
+export type InputBaseClasses = {
   container?: string
   input?: string
   label?: string
@@ -54,7 +54,7 @@ export const InputBase = forwardRef<HTMLInputElement, InputBaseProps>(
           classes?.container
         )}
       >
-        {renderValues && (
+        {renderValues ? (
           <div
             onClick={props.onClick}
             onBlur={props.onBlur}
@@ -66,24 +66,25 @@ export const InputBase = forwardRef<HTMLInputElement, InputBaseProps>(
           >
             {renderValues()}
           </div>
+        ) : (
+          <input
+            {...props}
+            disabled={disabled}
+            value={value ?? ''}
+            placeholder={label}
+            aria-placeholder={label}
+            ref={ref}
+            id={id}
+            className={cn(
+              'peer desk-body-regular-l w-full bg-color-transparent px-4 pb-[9px] pt-[25px]',
+              'text-color-dark outline-none placeholder:text-color-transparent',
+              {
+                hidden: Boolean(renderValues)
+              },
+              classes?.input
+            )}
+          />
         )}
-        <input
-          {...props}
-          disabled={disabled}
-          value={value ?? ''}
-          placeholder={label}
-          aria-placeholder={label}
-          ref={ref}
-          id={id}
-          className={cn(
-            'peer desk-body-regular-l w-full bg-color-transparent px-4 pb-[9px] pt-[25px]',
-            'text-color-dark outline-none placeholder:text-color-transparent',
-            {
-              hidden: Boolean(renderValues)
-            },
-            classes?.input
-          )}
-        />
         <label
           htmlFor={id}
           className={cn(

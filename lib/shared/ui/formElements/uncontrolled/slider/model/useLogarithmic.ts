@@ -12,7 +12,9 @@ export const useLogarithmic = ({ min, max, defaultSum }: UseLogarithmicProps) =>
     return round(Math.round(Math.pow(10, value)), 2)
   }
 
-  const toSlider = (value: number) => {
+  const toSlider = (value: number | undefined) => {
+    if (!value) return 0
+
     return Math.log(value) / Math.log(10)
   }
 

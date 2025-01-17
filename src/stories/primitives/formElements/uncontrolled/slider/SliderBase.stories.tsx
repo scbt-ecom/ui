@@ -18,7 +18,12 @@ const meta = {
     )
   ],
   args: {
-    label: 'Test selector'
+    label: 'Test selector',
+    min: 30_000,
+    max: 5_000_000,
+    variant: 'credit',
+    leftText: '30 тыс.',
+    rightText: '5 млн.'
   }
 } satisfies Meta<typeof Uncontrolled.SliderBase>
 
@@ -28,20 +33,13 @@ type Story = StoryObj<typeof Uncontrolled.SliderBase>
 
 export const WithState: Story = {
   args: {
-    label: 'Сумма кредита',
-    min: 30_000,
-    max: 5_000_000,
-    variant: 'credit',
-    leftText: '30 тыс.',
-    rightText: '5 млн.'
+    label: 'Сумма кредита'
   },
   render: (props) => {
     const [value, setValue] = useState<number>()
 
     return (
       <>
-        {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
-        {/* @ts-expect-error */}
         <Uncontrolled.SliderBase {...props} value={value} onChange={setValue} />
       </>
     )
