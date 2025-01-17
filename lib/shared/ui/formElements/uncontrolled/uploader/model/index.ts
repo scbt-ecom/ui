@@ -1,1 +1,1 @@
-export { defaultDropzoneOptions, FilesErrorCode } from './helpers'
+export { defaultDropzoneOptions, megabytesToBytes, bytesToMegabytes, FilesErrorCode } from './helpers'

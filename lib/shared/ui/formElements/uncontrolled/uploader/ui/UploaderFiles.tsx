@@ -1,6 +1,6 @@
 import { type HTMLAttributes } from 'react'
 import { UploaderFile, type UploaderFileClasses } from '$/shared/ui/formElements/uncontrolled/uploader/ui/UploaderFile'
-import { cn } from '$/shared/utils'
+import { cn, TypeGuards } from '$/shared/utils'
 
 export type UploaderFilesClasses = {
   root?: string
@@ -17,7 +17,7 @@ interface UploaderFilesProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export const UploaderFiles = ({ files, filesStatus, classes, removeFile }: UploaderFilesProps) => {
-  const isFilesExist = files && files.length > 0
+  const isFilesExist = TypeGuards.isArrayEmpty(files)
 
   const { root, file: fileClasses } = classes || {}
 

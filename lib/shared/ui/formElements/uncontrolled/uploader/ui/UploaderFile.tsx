@@ -1,3 +1,4 @@
+import { bytesToMegabytes } from '../model/helpers'
 import { UploaderFilename, type UploaderFileNameClasses } from './UploaderFilename'
 import { Icon, Loader } from '$/shared/ui'
 import { cn } from '$/shared/utils'
@@ -21,7 +22,7 @@ interface UploaderFileProps {
 }
 
 export const UploaderFile = ({ filesStatus, removeFile, classes, file, index }: UploaderFileProps) => {
-  const fileSizeMb = file.size / 1024 / 1024
+  const fileSizeMb = bytesToMegabytes(file.size)
 
   const { root, deleteIcon, buttonDelete, content, buttonRoot, ...restClasses } = classes || {}
 

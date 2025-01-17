@@ -4,6 +4,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import z from 'zod'
 import { HookForm } from '../utils'
 import { Controlled } from '$/shared/ui'
+import { megabytesToBytes } from '$/shared/ui/formElements/uncontrolled/uploader'
 
 const uploaderSchema = z.object({
   file: z.array(z.instanceof(File)).min(1)
@@ -67,10 +68,7 @@ export const Invalid: Story = {
 export const CustomOptions: Story = {
   args: {
     dropzoneOptions: {
-      /**
-       * 1024 * 1024 МБ
-       */
-      maxSize: 1024 * 1024 * 4,
+      maxSize: megabytesToBytes(4),
       /**
        * Максимальное кол-во файлов которые можно перенести
        */

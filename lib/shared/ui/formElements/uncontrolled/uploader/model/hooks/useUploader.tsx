@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { type DropzoneOptions, type FileRejection, useDropzone } from 'react-dropzone'
-import { FilesErrorCode } from '../helpers'
+import { bytesToMegabytes, FilesErrorCode } from '../helpers'
 import { Notification } from '$/shared/ui/'
 
 export type TUseUploader = {
@@ -39,7 +39,7 @@ export const useUploader = ({ dropzoneOptions, controlledFiles, onChange }: TUse
       case FilesErrorCode.FileTooLarge:
         Notification({
           intent: 'error',
-          text: `Файл слишком большой. Максимальный размер ${dropzoneOptions.maxSize ? dropzoneOptions.maxSize / 1024 / 1024 : 0} МБ`
+          text: `Файл слишком большой. Максимальный размер ${dropzoneOptions.maxSize ? bytesToMegabytes(dropzoneOptions.maxSize) : 0} МБ`
         })
         break
       case FilesErrorCode.TooManyFiles:
