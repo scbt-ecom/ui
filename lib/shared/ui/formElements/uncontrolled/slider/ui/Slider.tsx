@@ -1,5 +1,6 @@
 import * as React from 'react'
 import * as SliderPrimitive from '@radix-ui/react-slider'
+import { type TSliderVariants } from '../model/types'
 import { cn } from '$/shared/utils'
 
 export type SliderClasses = {
@@ -17,10 +18,12 @@ export interface SliderProps {
   disabled?: boolean
   min?: number
   max?: number
+  step?: number
+  variant?: TSliderVariants
 }
 
 export const Slider = React.forwardRef<React.ElementRef<typeof SliderPrimitive.Root>, SliderProps>(
-  ({ min, max, classes, disabled }, ref) => {
+  ({ min, max, classes, disabled, onValueChange, value, step }, ref) => {
     const { root, sliderRoot, sliderTrack, sliderThumb, sliderRange } = classes || {}
 
     return (
@@ -31,6 +34,9 @@ export const Slider = React.forwardRef<React.ElementRef<typeof SliderPrimitive.R
           className={cn('relative flex h-4 w-full touch-none select-none items-center', sliderRoot)}
           min={min}
           max={max}
+          onValueChange={onValueChange}
+          value={value}
+          step={step}
         >
           <SliderPrimitive.Track
             className={cn('relative h-[2px] w-full grow overflow-hidden rounded-full bg-color-transparent', sliderTrack)}
