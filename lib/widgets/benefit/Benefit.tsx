@@ -6,12 +6,12 @@ import { BenefitItem, type BenefitItemClasses, type BenefitItemProps } from './u
 import { Heading, ResponsiveContainer } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
-export type BenefitClasses = BenefitItemClasses & {
-  item?: string
+export type BenefitClasses = {
+  root?: string
+  container?: string
+  item?: BenefitItemClasses
   heading?: string
   grid?: string
-  container?: string
-  section?: string
 }
 
 const gridConfig = cva('grid gap-4', {
@@ -32,13 +32,13 @@ export interface BenefitProps extends VariantProps<typeof gridConfig> {
 
 export const Benefit = ({ heading, cards, classes, intent }: BenefitProps) => {
   return (
-    <section className={cn('pb-20', classes?.section)}>
-      <ResponsiveContainer>
-        <Heading className='mb-8' as='h2'>
+    <section className={cn('pb-20', classes?.root)}>
+      <ResponsiveContainer className={classes?.container}>
+        <Heading className={cn('mb-8', classes?.heading)} as='h2'>
           {heading}
         </Heading>
         <ul className={cn(gridConfig({ intent }), classes?.grid)}>
-          {cards?.map((card) => <BenefitItem intent={intent} key={card.img} classes={classes} {...card} />)}
+          {cards?.map((card) => <BenefitItem intent={intent} key={card.img} classes={classes?.item} {...card} />)}
         </ul>
       </ResponsiveContainer>
     </section>

@@ -1,6 +1,6 @@
 import { type Meta, type StoryObj } from '@storybook/react'
 import { Advantages } from '$/widgets/advantages'
-import { type Advantage } from '$/widgets/advantages/Advantages.tsx'
+import { type AdvantageItem } from '$/widgets/advantages/model'
 
 const meta = {
   title: 'WIDGETS/Advantages',
@@ -22,13 +22,13 @@ export default meta
 
 type Story = StoryObj<typeof Advantages>
 
-const mockThreeCards: Advantage[] = [
+const mockThreeCards: AdvantageItem[] = [
   { title: 'До 5 млн ₽', description: 'сумма кредита' },
   { title: 'До 5 лет', description: 'срок кредита' },
   { title: 'От 5 минут', description: 'быстрое одобрение' }
 ]
 
-const mockFourCards: Advantage[] = [...mockThreeCards, { title: 'От 15 минут', description: 'сумма одобрение' }]
+const mockFourCards: AdvantageItem[] = [...mockThreeCards, { title: 'От 15 минут', description: 'сумма одобрение' }]
 
 export const ThreeCards: Story = {
   args: {

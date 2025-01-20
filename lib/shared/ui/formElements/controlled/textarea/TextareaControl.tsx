@@ -5,6 +5,7 @@ import { MessageView } from '$/shared/ui/formElements/ui'
 import { cn } from '$/shared/utils'
 
 type TextareaControlClasses = TextareaBaseProps['classes'] & {
+  root?: string
   message?: string
 }
 
@@ -48,10 +49,10 @@ const InnerComponent = <TFieldValues extends FieldValues = FieldValues>({
   })
 
   const { error, invalid, isTouched } = fieldState
-  const { message, container, ...restClasses } = classes || {}
+  const { message, root, ...restClasses } = classes || {}
 
   return (
-    <div className={cn('w-full', container)}>
+    <div className={cn('w-full', root)}>
       <Uncontrolled.TextareaBase
         {...props}
         {...field}

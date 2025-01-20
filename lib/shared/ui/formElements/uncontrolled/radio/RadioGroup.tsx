@@ -1,11 +1,13 @@
 import { forwardRef } from 'react'
 import { type RadioGroupProps as RadioGroupPrimitiveProps, Root } from '@radix-ui/react-radio-group'
 import { RadioItem, type RadioItemProps, type RadioOption } from './ui'
+import { type RadioItemClasses } from './ui/RadioItem'
 import { cn } from '$/shared/utils'
 
 type RadioGroupClasses = RadioItemProps['classes'] & {
   root?: string
   list?: string
+  radioItem?: RadioItemClasses
 }
 
 export type RadioGroupBaseProps = Omit<RadioGroupPrimitiveProps, 'children'> & {
@@ -33,7 +35,7 @@ export type RadioGroupBaseProps = Omit<RadioGroupPrimitiveProps, 'children'> & {
 
 export const RadioGroupBase = forwardRef<HTMLDivElement, RadioGroupBaseProps>(
   ({ options, displayValue, returnValue, invalid, className, disabled, classes, ...props }, ref) => {
-    const { root, list, ...restClasses } = classes || {}
+    const { root, list, radioItem } = classes || {}
 
     return (
       <Root {...props} disabled={disabled} ref={ref} className={cn('w-full', className, root)}>
@@ -44,7 +46,7 @@ export const RadioGroupBase = forwardRef<HTMLDivElement, RadioGroupBaseProps>(
               item={option}
               invalid={invalid}
               disabled={disabled || option?.disabled}
-              classes={restClasses}
+              classes={radioItem}
               returnValue={returnValue}
               displayValue={displayValue}
             />

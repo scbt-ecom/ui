@@ -1,11 +1,17 @@
 import { forwardRef, useRef, useState } from 'react'
 import { format, isValid, parse } from 'date-fns'
 import { AnimatePresence } from 'framer-motion'
+import { type InputBaseClasses } from '../input/Input'
 import { useClickOutside } from '$/shared/hooks'
 import { Calendar, DATE_VISIBLE_PATTERN, Icon, type MaskInputProps, Uncontrolled } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
-export type DayPickerProps = Omit<MaskInputProps, 'value' | 'onChange' | 'mask'> & {
+export type DayPickerClasses = {
+  root?: string
+  input?: InputBaseClasses
+}
+
+export type DayPickerProps = Omit<MaskInputProps, 'value' | 'onChange' | 'mask' | 'classes'> & {
   /**
    * Указывает, открыт ли календарь по умолчанию
    */
@@ -18,10 +24,14 @@ export type DayPickerProps = Omit<MaskInputProps, 'value' | 'onChange' | 'mask'>
    * Функция изменения значения
    */
   onChange?: (value: string) => void
+  /**
+   * Внешние классы которыми можно поменять стили
+   */
+  classes?: DayPickerClasses
 }
 
 export const DayPickerBase = forwardRef<HTMLInputElement, DayPickerProps>(
-  ({ defaultOpen = false, value, onChange, disabled, ...props }, ref) => {
+  ({ defaultOpen = false, value, onChange, disabled, classes, ...props }, ref) => {
     const containerRef = useRef<HTMLDivElement>(null)
 
     const [calendarOpen, setCalendarOpen] = useState<boolean>(defaultOpen)
@@ -60,14 +70,17 @@ export const DayPickerBase = forwardRef<HTMLInputElement, DayPickerProps>(
       setCalendarOpen(false)
     }
 
+    const { root, input } = classes || {}
+
     return (
-      <div ref={containerRef} className='relative w-full'>
+      <div ref={containerRef} className={cn('relative w-full', root)}>
         <AnimatePresence mode='sync'>
           <Uncontrolled.MaskInput
             ref={ref}
             {...props}
             disabled={disabled}
             mask='##.##.####'
+            classes={input}
             value={visibleValue}
             onChange={(event) => onValueChange(event.target.value)}
             autoComplete='off'

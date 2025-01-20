@@ -3,7 +3,7 @@ import { FieldAttachment } from '../../ui'
 import { type DeepPartial } from '$/shared/types'
 import { cn } from '$/shared/utils'
 
-type InputBaseClasses = {
+export type InputBaseClasses = {
   container?: string
   input?: string
   label?: string

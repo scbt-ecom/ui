@@ -149,7 +149,7 @@ export const mockBannerBaseGradient: BannerProps = {
     }
   },
   classes: {
-    section: 'bg-color-transparent bg-[linear-gradient(97.94deg,_#dae4f2_-14.21%,_#afcffc_47.44%,_#79aef8_107.86%);]'
+    root: 'bg-color-transparent bg-[linear-gradient(97.94deg,_#dae4f2_-14.21%,_#afcffc_47.44%,_#79aef8_107.86%);]'
   }
 }
 
@@ -170,7 +170,7 @@ export const mockBannerBaseGradientAdvantages: BannerProps = {
     }
   },
   classes: {
-    section: 'bg-color-transparent gradient-apply'
+    root: 'bg-color-transparent gradient-apply'
   },
   advantagesList: [
     { title: 'До 5 млн ₽', description: 'сумма кредита' },

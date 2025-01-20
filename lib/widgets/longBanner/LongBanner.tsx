@@ -10,7 +10,7 @@ export interface LongBannerProps extends LongBannerConfig {
   buttonConfig?: IButtonConfig
   textContent: ITextContent[]
   imageComponent: ReactElement
-  classes?: Partial<ILongBannerClasses>
+  classes?: ILongBannerClasses
 }
 
 export const LongBanner = ({
@@ -26,8 +26,8 @@ export const LongBanner = ({
   const isTwoItems = intent === 'twoItems'
 
   return (
-    <section className={cn(classes?.section)}>
-      <ResponsiveContainer className={cn(classes?.mainContainer)}>
+    <section className={cn(classes?.root)}>
+      <ResponsiveContainer className={cn(classes?.container)}>
         {isTwoItems && <Title intent={intent} title={title} />}
 
         <div

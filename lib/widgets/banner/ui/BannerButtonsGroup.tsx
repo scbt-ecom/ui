@@ -1,11 +1,11 @@
-import { type ButtonsConfig } from '../Banner'
+import { type ButtonsConfig } from '../model'
 import { Button } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
 export interface BannerButtonsGroupClasses {
-  group: string
-  primary: string
-  secondary: string
+  group?: string
+  primary?: string
+  secondary?: string
 }
 interface BannerButtonsGroupProps {
   buttonsConfig: ButtonsConfig

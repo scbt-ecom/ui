@@ -27,16 +27,16 @@ export interface UploaderBaseProps
    */
   helperText?: string
   /**
-   * Сеттер инпута
+   * Сеттер значение
    * @param file - файлы
    */
   onChange: (file: File[]) => void
   /**
-   * Валидный ли инпут
+   * Валидное ли значение
    */
   invalid?: boolean
   /**
-   * Value инпута
+   * Значение
    */
   value: File[]
 }

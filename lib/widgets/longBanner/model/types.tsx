@@ -16,14 +16,14 @@ export interface IButtonConfig {
 }
 
 export interface ILongBannerClasses {
-  section: string
-  mainContainer: string
-  title: string
-  contentContainer: string
-  imgContainer: string
-  textWithBtnContainer: string
-  image: string
-  button: string
+  root?: string
+  container?: string
+  title?: string
+  contentContainer?: string
+  imgContainer?: string
+  textWithBtnContainer?: string
+  image?: string
+  button?: string
 }
 
 export interface TextItemProps extends LongBannerConfig {

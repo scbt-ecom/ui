@@ -1,29 +1,11 @@
 'use client'
 
 import { type ReactElement } from 'react'
-import { type Advantage, type AdvantageClasses } from '../advantages/Advantages.tsx'
-import { type BannerButtonsGroupClasses } from './ui/BannerButtonsGroup'
+import { type AdvantageClasses } from '../advantages/Advantages.tsx'
+import { type AdvantageItem } from '../advantages/model/types.ts'
+import { type BannerClasses, type ButtonsConfig } from './model/types.ts'
 import { BannerWithSeparateImg } from './ui/banners'
 import { BannerImageFull } from './ui/banners'
-import { type ButtonProps } from '$/shared/ui'
-
-interface BannerClasses extends BannerButtonsGroupClasses {
-  section: string
-  container: string
-  wrapper: string
-  content: string
-  textBlock: string
-  title: string
-  subtitle: string
-  imageContainer: string
-  image: string
-  advantageContainer: string
-}
-
-export type ButtonsConfig = {
-  primary: ButtonProps
-  secondary?: ButtonProps
-}
 
 export interface BannerProps {
   headTitle: string | ReactElement
@@ -35,8 +17,10 @@ export interface BannerProps {
     type?: string
   }
   buttonsConfig: ButtonsConfig
-  advantagesList?: Advantage[]
-  classes?: Partial<BannerClasses> & Partial<AdvantageClasses>
+  advantagesList?: AdvantageItem[]
+  classes?: BannerClasses & {
+    advantages?: AdvantageClasses
+  }
   bannerVariant?: 'separateImg' | 'fullImg'
 }
 

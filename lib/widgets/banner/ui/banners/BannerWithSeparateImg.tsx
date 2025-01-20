@@ -22,12 +22,14 @@ export const BannerWithSeparateImg = ({
         classes?.advantageContainer
       )}
     >
-      {advantagesList && advantagesList?.length > 0 && <Advantages classes={classes} advantagesList={advantagesList} />}
+      {advantagesList && advantagesList?.length > 0 && (
+        <Advantages classes={classes?.advantages} advantagesList={advantagesList} />
+      )}
     </div>
   )
   return (
     <>
-      <section data-id='banner-section' className={cn('bg-banner-skyblue-300 desktop:h-[456px]', classes?.section)}>
+      <section data-id='banner-section' className={cn('bg-banner-skyblue-300 desktop:h-[456px]', classes?.root)}>
         <ResponsiveContainer data-id='banner-container' className={cn('relative', classes?.container)}>
           <div data-id='banner' className={cn('flex flex-col desktop:flex-row desktop:justify-between', classes?.wrapper)}>
             <div className='flex flex-col desktop:gap-10 desktop:pt-20'>
