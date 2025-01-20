@@ -93,7 +93,7 @@ export const SingleDayPicker = ({ inputProps, classes, value, onChange, external
   }
 
   return (
-    <div ref={containerRef} className='relative w-[600px]'>
+    <div ref={containerRef} className='relative'>
       <Uncontrolled.MaskInput
         mask={SINGLE_MASK}
         {...inputProps}
