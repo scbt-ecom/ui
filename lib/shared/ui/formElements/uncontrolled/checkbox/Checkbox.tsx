@@ -11,6 +11,13 @@ export type CheckboxBaseClasses = {
 
 export type { CheckedState }
 
+type ExternalHandlers = {
+  onChange?: (value: CheckedState) => void
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void
+  onBlur?: (event: React.FocusEvent<HTMLButtonElement>) => void
+  onFocus?: (event: React.FocusEvent<HTMLButtonElement>) => void
+}
+
 export type CheckboxBaseProps = CheckboxPrimitiveProps & {
   /**
    * Дополнительные стили внутренних компонентов
@@ -20,13 +27,26 @@ export type CheckboxBaseProps = CheckboxPrimitiveProps & {
    * Свойство для отображения не валидного поля
    */
   invalid?: boolean
+  /**
+   * Дополнительные хендлеры
+   */
+  externalHandlers?: ExternalHandlers
 }
 
 export const CheckboxBase = forwardRef<HTMLButtonElement, CheckboxBaseProps>(
-  ({ classes, className, invalid, disabled, ...props }, ref) => {
+  ({ classes, className, invalid, disabled, externalHandlers, ...props }, ref) => {
+    const { onChange, ...restHandlers } = externalHandlers || {}
+
+    const onCheckedChange = (value: CheckedState) => {
+      if (props.onCheckedChange) props.onCheckedChange(value)
+      if (onChange) onChange(value)
+    }
+
     return (
       <Root
         {...props}
+        {...restHandlers}
+        onCheckedChange={onCheckedChange}
         disabled={disabled}
         ref={ref}
         className={cn(

@@ -20,9 +20,21 @@ type IsoDateRange = {
 }
 
 type RangeDayPickerProps = Omit<CalendarProps, 'mode'> & {
+  /**
+   * Свойства Input компонента
+   */
   inputProps: Omit<MaskInputProps, 'mask'>
+  /**
+   * Стили внутренних компонентов
+   */
   classes?: RangeDayPickerClasses
+  /**
+   * Управляемое значение
+   */
   value: IsoDateRange
+  /**
+   * Функция для управления значением
+   */
   onChange: (value: IsoDateRange) => void
 }
 
@@ -95,7 +107,7 @@ export const RangeDayPicker = ({ inputProps, classes, value, onChange, ...props 
   }
 
   return (
-    <div ref={containerRef} className='relative w-[600px]'>
+    <div ref={containerRef} className={cn('relative w-full', classes?.container)}>
       <Uncontrolled.MaskInput
         mask={RANGE_MASK}
         {...inputProps}

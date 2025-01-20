@@ -61,3 +61,15 @@ export const Disabled: Story = {
     disabled: true
   }
 }
+
+export const WithExternalHandlers: Story = {
+  args: {
+    ...Base.args,
+    externalHandlers: {
+      onChange: (value) => console.warn('handled external onChange', value),
+      onClick: () => console.warn('handled external onClick'),
+      onBlur: () => console.warn('handled external onBlur'),
+      onFocus: () => console.warn('handled external onFocus')
+    }
+  }
+}

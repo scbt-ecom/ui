@@ -1,7 +1,9 @@
 'use docs'
 
 import { useState } from 'react'
+import toast from 'react-hot-toast'
 import type { Meta, StoryObj } from '@storybook/react'
+import { fn } from '@storybook/test'
 import { formatDateToLocaleString, Uncontrolled } from '$/shared/ui'
 
 const meta = {
@@ -41,18 +43,6 @@ export const Base: Story = {
   args: {}
 }
 
-export const Disabled: Story = {
-  args: {
-    disabled: true
-  }
-}
-
-export const Invalid: Story = {
-  args: {
-    invalid: true
-  }
-}
-
 export const WithState: Story = {
   args: Base.args,
   render: (props) => {
@@ -65,4 +55,39 @@ export const WithState: Story = {
       </>
     )
   }
+}
+
+export const Disabled: Story = {
+  args: {
+    disabled: true
+  },
+  render: WithState.render
+}
+
+export const Invalid: Story = {
+  args: {
+    invalid: true
+  },
+  render: WithState.render
+}
+
+export const WithExternalHandlers: Story = {
+  args: {
+    ...Base.args,
+    externalHandlers: {
+      onChange: (value) => {
+        fn(() => toast(`handled external onChange ${value}`))
+      },
+      onClick: fn(() => {
+        toast('handled external onClick')
+      }),
+      onBlur: fn(() => {
+        toast('handled external onBlur')
+      }),
+      onFocus: fn(() => {
+        toast('handled external onFocus')
+      })
+    }
+  },
+  render: WithState.render
 }

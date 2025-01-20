@@ -2,6 +2,7 @@
 
 import { useRef, useState } from 'react'
 import { format, isValid, parse } from 'date-fns'
+import { type ExternalHandlers } from './dayPickerControl'
 import { getCurrentDate, getInitialValue, SINGLE_MASK, SINGLE_VALIDATION_REGEX } from './model'
 import { useClickOutside } from '$/shared/hooks'
 import { Calendar, DATE_VISIBLE_PATTERN, Icon, type MaskInputProps, Uncontrolled } from '$/shared/ui'
@@ -14,13 +15,31 @@ type SingleDayPickerClasses = MaskInputProps['classes'] & {
 }
 
 type SingleDayPickerProps = Omit<CalendarProps, 'mode'> & {
+  /**
+   * Свойства Input компонента
+   */
   inputProps: Omit<MaskInputProps, 'mask'>
+  /**
+   * Стили внутренних компонентов
+   */
   classes?: SingleDayPickerClasses
+  /**
+   * Управляемое значение
+   */
   value: string
+  /**
+   * Функция для управления значением
+   */
   onChange: (value: string) => void
+  /**
+   * Дополнительные хендлеры
+   */
+  externalHandlers?: ExternalHandlers
 }
 
-export const SingleDayPicker = ({ inputProps, classes, value, onChange, ...props }: SingleDayPickerProps) => {
+export const SingleDayPicker = ({ inputProps, classes, value, onChange, externalHandlers, ...props }: SingleDayPickerProps) => {
+  const { onChange: externalOnChange, onFocus: externalOnFocus, ...restHandlers } = externalHandlers || {}
+
   const containerRef = useRef<HTMLDivElement>(null)
   const { calendar, ...restClasses } = classes || {}
 
@@ -52,27 +71,40 @@ export const SingleDayPicker = ({ inputProps, classes, value, onChange, ...props
     const date = parse(value, DATE_VISIBLE_PATTERN, new Date())
 
     if (isValid(date)) {
-      onChange(date.toISOString())
+      const isoDate = date.toISOString()
+
+      onChange(isoDate)
       setMonth(date)
+
+      if (externalOnChange) externalOnChange(isoDate)
     }
   }
 
   const onDateChange = (newDate: Date) => {
     setMonth(newDate)
-    onChange(newDate.toISOString())
+
+    const isoDate = newDate.toISOString()
+
+    onChange(isoDate)
     setVisibleValue(format(newDate, DATE_VISIBLE_PATTERN))
     setCalendarOpen(false)
+
+    if (externalOnChange) externalOnChange(isoDate)
   }
 
   return (
-    <div ref={containerRef} className='relative w-[600px]'>
+    <div ref={containerRef} className={cn('relative w-full', classes?.container)}>
       <Uncontrolled.MaskInput
         mask={SINGLE_MASK}
         {...inputProps}
+        {...restHandlers}
         classes={restClasses}
         value={visibleValue}
         onChange={onVisibleValueChange}
-        onFocus={() => setCalendarOpen(true)}
+        onFocus={(event) => {
+          setCalendarOpen(true)
+          if (externalOnFocus) externalOnFocus(event)
+        }}
         onKeyDown={(event) => {
           if (event.key === 'Enter') {
             onCalendarOpenChange()

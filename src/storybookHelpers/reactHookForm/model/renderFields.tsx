@@ -7,7 +7,6 @@ import {
   type TControlledInputEditor,
   type TControlledInputMask,
   type TControlledInputRadio,
-  type TControlledInputSlider,
   type TControlledInputSwitch,
   type TControlledInputTextarea,
   type TStorybookFieldConfig
@@ -20,7 +19,6 @@ import {
   InputControlMask,
   InputOtpControl,
   RadioControl,
-  SliderControl,
   SwitchControl,
   TextareaControl
 } from '$/shared/ui'
@@ -42,8 +40,6 @@ export const renderFields = <T extends FieldValues>(fieldConfig: TStorybookField
       return <SwitchControl control={control} {...(props as TControlledInputSwitch<T>)} />
     case EnumFieldType.TEXTAREA:
       return <TextareaControl control={control} {...(props as TControlledInputTextarea<T>)} />
-    case EnumFieldType.SLIDER:
-      return <SliderControl control={control} {...(props as TControlledInputSlider<T>)} />
     case EnumFieldType.EDITOR:
       return <EditorControl control={control} {...(props as TControlledInputEditor<T>)} />
     case EnumFieldType.OTP:

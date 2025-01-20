@@ -11,6 +11,13 @@ export type InputBaseClasses = {
 
 type FieldAttachmentProps = React.ComponentPropsWithoutRef<typeof FieldAttachment>
 
+type ExternalHandlers = {
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
+  onClick?: (event: React.MouseEvent<HTMLDivElement>) => void
+  onFocus?: (event: React.FocusEvent<HTMLDivElement>) => void
+  onBlur?: (event: React.FocusEvent<HTMLDivElement>) => void
+}
+
 export type InputBaseProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'placeholder' | 'size'> & {
   /**
    * Дополнительные стили внутренних компонентов
@@ -32,11 +39,22 @@ export type InputBaseProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, '
    * Рендер дополнительных значений вместо базового ввода
    */
   renderValues?: () => React.JSX.Element | null
+  /**
+   * Дополнительные хендлеры
+   */
+  externalHandlers?: ExternalHandlers
 }
 
 export const InputBase = forwardRef<HTMLInputElement, InputBaseProps>(
-  ({ label, value, invalid, disabled, classes, renderValues, attachmentProps, ...props }, ref) => {
+  ({ label, value, invalid, disabled, classes, renderValues, attachmentProps, externalHandlers, onChange, ...props }, ref) => {
     const id = useId()
+
+    const { onChange: externalOnChange, ...restHandlers } = externalHandlers || {}
+
+    const onValueChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+      if (onChange) onChange(event)
+      if (externalOnChange) externalOnChange(event)
+    }
 
     return (
       <div
@@ -54,7 +72,7 @@ export const InputBase = forwardRef<HTMLInputElement, InputBaseProps>(
           classes?.container
         )}
       >
-        {renderValues && (
+        {renderValues ? (
           <div
             onClick={props.onClick}
             onBlur={props.onBlur}
@@ -66,24 +84,27 @@ export const InputBase = forwardRef<HTMLInputElement, InputBaseProps>(
           >
             {renderValues()}
           </div>
+        ) : (
+          <input
+            {...props}
+            {...restHandlers}
+            onChange={onValueChange}
+            disabled={disabled}
+            value={value ?? ''}
+            placeholder={label}
+            aria-placeholder={label}
+            ref={ref}
+            id={id}
+            className={cn(
+              'peer desk-body-regular-l w-full bg-color-transparent px-4 pb-[9px] pt-[25px]',
+              'text-color-dark outline-none placeholder:text-color-transparent',
+              {
+                hidden: Boolean(renderValues)
+              },
+              classes?.input
+            )}
+          />
         )}
-        <input
-          {...props}
-          disabled={disabled}
-          value={value ?? ''}
-          placeholder={label}
-          aria-placeholder={label}
-          ref={ref}
-          id={id}
-          className={cn(
-            'peer desk-body-regular-l w-full bg-color-transparent px-4 pb-[9px] pt-[25px]',
-            'text-color-dark outline-none placeholder:text-color-transparent',
-            {
-              hidden: Boolean(renderValues)
-            },
-            classes?.input
-          )}
-        />
         <label
           htmlFor={id}
           className={cn(

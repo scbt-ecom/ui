@@ -6,6 +6,13 @@ import { useClickOutside } from '$/shared/hooks'
 import { Calendar, DATE_VISIBLE_PATTERN, Icon, type MaskInputProps, Uncontrolled } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
+type ExternalHandlers = {
+  onChange?: (value: string) => void
+  onClick?: (event: React.MouseEvent<HTMLInputElement>) => void
+  onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void
+  onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void
+}
+
 export type DayPickerClasses = {
   root?: string
   input?: InputBaseClasses
@@ -28,10 +35,16 @@ export type DayPickerProps = Omit<MaskInputProps, 'value' | 'onChange' | 'mask' 
    * Внешние классы которыми можно поменять стили
    */
   classes?: DayPickerClasses
+  /**
+   * Дополнительные хендлеры
+   */
+  externalHandlers?: ExternalHandlers
 }
 
 export const DayPickerBase = forwardRef<HTMLInputElement, DayPickerProps>(
-  ({ defaultOpen = false, value, onChange, disabled, classes, ...props }, ref) => {
+  ({ defaultOpen = false, value, onChange, disabled, externalHandlers, classes, ...props }, ref) => {
+    const { onChange: externalOnChange, onFocus: externalOnFocus, ...restHandlers } = externalHandlers || {}
+
     const containerRef = useRef<HTMLDivElement>(null)
 
     const [calendarOpen, setCalendarOpen] = useState<boolean>(defaultOpen)
@@ -58,14 +71,22 @@ export const DayPickerBase = forwardRef<HTMLInputElement, DayPickerProps>(
       const parsedDate = parse(value, DATE_VISIBLE_PATTERN, new Date())
 
       if (isValid(parsedDate)) {
-        if (onChange) onChange(parsedDate.toISOString())
+        const isoDate = parsedDate.toISOString()
+
+        if (onChange) onChange(isoDate)
+        if (externalOnChange) externalOnChange(isoDate)
         setMonth(parsedDate)
       }
     }
 
     const onDateChange = (date: Date) => {
       setMonth(date)
-      if (onChange) onChange(date.toISOString())
+
+      const isoDate = date.toISOString()
+
+      if (onChange) onChange(isoDate)
+      if (externalOnChange) externalOnChange(isoDate)
+
       setVisibleValue(format(date, DATE_VISIBLE_PATTERN))
       setCalendarOpen(false)
     }
@@ -78,13 +99,17 @@ export const DayPickerBase = forwardRef<HTMLInputElement, DayPickerProps>(
           <Uncontrolled.MaskInput
             ref={ref}
             {...props}
+            {...restHandlers}
             disabled={disabled}
             mask='##.##.####'
             classes={input}
             value={visibleValue}
             onChange={(event) => onValueChange(event.target.value)}
             autoComplete='off'
-            onFocus={() => setCalendarOpen(true)}
+            onFocus={(event) => {
+              setCalendarOpen(true)
+              if (externalOnFocus) externalOnFocus(event)
+            }}
             onKeyDown={(event) => {
               if (event.key === 'Enter' || event.key === ' ') {
                 onCalendarOpenChange()
