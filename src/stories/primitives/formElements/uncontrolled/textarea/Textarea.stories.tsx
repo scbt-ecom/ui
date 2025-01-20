@@ -1,6 +1,7 @@
 'use docs'
 
 import { useState } from 'react'
+import toast from 'react-hot-toast'
 import type { Meta, StoryObj } from '@storybook/react'
 import { fn } from '@storybook/test'
 import { Icon, Uncontrolled } from '$/shared/ui'
@@ -101,6 +102,27 @@ export const WithBadge: Story = {
     ...Base.args,
     attachmentProps: {
       badge: '+25%'
+    }
+  },
+  render: Controlled.render
+}
+
+export const WithExternalHandlers: Story = {
+  args: {
+    ...Base.args,
+    externalHandlers: {
+      onChange: (event) => {
+        fn(() => toast(`handled external onChange ${event}`))
+      },
+      onClick: fn(() => {
+        toast('handled external onClick')
+      }),
+      onBlur: fn(() => {
+        toast('handled external onBlur')
+      }),
+      onFocus: fn(() => {
+        toast('handled external onFocus')
+      })
     }
   },
   render: Controlled.render

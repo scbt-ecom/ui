@@ -12,6 +12,13 @@ type DayPickerControlClasses = MaskInputProps['classes'] & {
   message?: string
 }
 
+export type ExternalHandlers = {
+  onChange?: (value: string) => void
+  onClick?: (event: React.MouseEvent<HTMLInputElement>) => void
+  onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void
+  onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void
+}
+
 export type DayPickerControlProps<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
@@ -33,6 +40,10 @@ export type DayPickerControlProps<
      * Дополнительные стили компонента
      */
     classes?: DayPickerControlClasses
+    /**
+     * Дополнительные хендлеры
+     */
+    externalHandlers?: ExternalHandlers
   }
 
 const InnerComponent = <T extends FieldValues = FieldValues>({

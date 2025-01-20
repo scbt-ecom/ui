@@ -22,6 +22,7 @@ export type SliderBaseClasses = {
   labelClasses?: string
   textRight?: string
   textLeft?: string
+  field?: string
   slider?: SliderBaseClasses
   inputRoot?: InputBaseClasses
 }
@@ -124,11 +125,11 @@ export const SliderBase = forwardRef<HTMLInputElement, SliderBaseProps>(
       variant
     })
 
-    const { root, slider, textLeft, textRight, inputRoot, textContainer, input } = classes || {}
+    const { root, slider, textLeft, textRight, inputRoot, textContainer, input, field } = classes || {}
 
     return (
-      <>
-        <div className={cn('relative w-full', root)}>
+      <div className={cn('flex w-full flex-col gap-1', root)}>
+        <div className={cn('relative w-full', field)}>
           <Uncontrolled.InputBase
             label={label}
             value={value}
@@ -196,7 +197,7 @@ export const SliderBase = forwardRef<HTMLInputElement, SliderBaseProps>(
           <span className={cn('desk-body-regular-m text-color-tetriary', textLeft)}>{leftText}</span>
           <span className={cn('desk-body-regular-m text-color-tetriary', textRight)}>{rightText}</span>
         </div>
-      </>
+      </div>
     )
   }
 )

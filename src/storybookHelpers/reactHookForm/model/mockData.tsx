@@ -1,7 +1,6 @@
 import { type TMockSchema } from './mocksSchema'
 import { EnumFieldType, type TStorybookFieldConfig } from './types'
 import { Icon, type IRadioGroupOption } from '$/shared/ui'
-import { megabytesToBytes } from '$/shared/ui/formElements/uncontrolled/uploader'
 
 const DADATA_URL = import.meta.env.DADATA_URL
 
@@ -56,29 +55,6 @@ export const mockFields: TStorybookFieldConfig<TMockSchema>[] = [
     name: 'description',
     label: 'Описание к блоку',
     fieldType: EnumFieldType.TEXTAREA
-  },
-  {
-    name: 'files',
-    label: 'Файлы',
-    fieldType: EnumFieldType.UPLOADER,
-    dropzoneOptions: {
-      maxFiles: 5,
-      maxSize: megabytesToBytes(4),
-      multiple: true,
-      accept: {
-        'image/jpeg': [],
-        'image/png': [],
-        'application/pdf': []
-      }
-    }
-  },
-  {
-    name: 'slider',
-    label: 'Сумма кредита',
-    fieldType: EnumFieldType.SLIDER,
-    max: 5_000_000,
-    min: 40_000,
-    variant: 'credit'
   },
   {
     fieldType: EnumFieldType.EDITOR,
