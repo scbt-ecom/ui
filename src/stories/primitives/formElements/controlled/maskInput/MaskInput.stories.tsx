@@ -3,15 +3,11 @@
 import toast from 'react-hot-toast'
 import type { Meta, StoryObj } from '@storybook/react'
 import { fn } from '@storybook/test'
-import z from 'zod'
+import type { TypeOf } from 'zod'
 import { HookForm } from '../utils'
+import { baseSchema, dateSchema, phoneSchema } from './schemas'
 import { Controlled } from '$/shared/ui'
 
-const schema = z.object({
-  test: z.string().min(3, 'Name error')
-})
-
-type Schema = z.TypeOf<typeof schema>
 type MaskInputControlProps = React.ComponentPropsWithoutRef<typeof Controlled.MaskInputControl>
 
 const meta = {
@@ -23,14 +19,14 @@ const meta = {
   args: {
     label: 'Input',
     mask: '##.##.####',
-    name: 'test'
+    name: 'field'
   },
   render: (props) => (
-    <HookForm<MaskInputControlProps, Schema>
+    <HookForm<MaskInputControlProps, TypeOf<typeof baseSchema>>
       {...props}
-      schema={schema}
+      schema={baseSchema}
       defaultValues={{
-        test: ''
+        field: ''
       }}
       renderComponent={(componentProps: MaskInputControlProps) => <Controlled.MaskInputControl {...componentProps} />}
     />
@@ -54,6 +50,40 @@ type Story = StoryObj<typeof Controlled.MaskInputControl>
  * Остальные свойства наследуются от [MaskInput](?path=/docs/base-maskinput--docs)\n
  */
 export const Base: Story = {}
+
+export const WithPhoneMask: Story = {
+  args: {
+    ...Base.args,
+    mask: '+7 (###)-###-##-##'
+  },
+  render: (props) => (
+    <HookForm<MaskInputControlProps, TypeOf<typeof phoneSchema>>
+      {...props}
+      schema={phoneSchema}
+      defaultValues={{
+        field: ''
+      }}
+      renderComponent={(componentProps: MaskInputControlProps) => <Controlled.MaskInputControl {...componentProps} />}
+    />
+  )
+}
+
+export const WithDateMask: Story = {
+  args: {
+    ...Base.args,
+    mask: '##.##.####'
+  },
+  render: (props) => (
+    <HookForm<MaskInputControlProps, TypeOf<typeof dateSchema>>
+      {...props}
+      schema={dateSchema}
+      defaultValues={{
+        field: ''
+      }}
+      renderComponent={(componentProps: MaskInputControlProps) => <Controlled.MaskInputControl {...componentProps} />}
+    />
+  )
+}
 
 export const Disabled: Story = {
   args: {

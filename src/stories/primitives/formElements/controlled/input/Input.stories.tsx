@@ -6,9 +6,10 @@ import { fn } from '@storybook/test'
 import z from 'zod'
 import { HookForm } from '../utils'
 import { Controlled } from '$/shared/ui'
+import { zodValidators } from '$/shared/validation'
 
 const schema = z.object({
-  test: z.string().min(3, 'Name error')
+  field: zodValidators.base.getEmailRequiredValidationSchema()
 })
 
 type Schema = z.TypeOf<typeof schema>
@@ -29,7 +30,7 @@ const meta = {
       {...props}
       schema={schema}
       defaultValues={{
-        test: ''
+        field: ''
       }}
       renderComponent={(componentProps: InputControlProps) => <Controlled.InputControl {...componentProps} />}
     />
