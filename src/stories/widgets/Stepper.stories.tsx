@@ -14,7 +14,7 @@ type Story = StoryObj<typeof Stepper>
 
 export const Base: Story = {
   args: {
-    variant: 'withDescriptionAndTitle',
+    variant: 'withTitleAndDescription',
     headline: 'Как получить кредит',
     stepsList: [
       { title: 'Заполните онлайн-заявку', description: 'Это займет несколько минут' },
@@ -26,7 +26,7 @@ export const Base: Story = {
 
 export const ParsedHTML: Story = {
   args: {
-    variant: 'withDescriptionAndTitle',
+    variant: 'withTitleAndDescription',
     headline: 'Как получить кредит',
     stepsList: [
       {
