@@ -26,7 +26,7 @@ const meta = {
     name: 'test'
   },
   render: (props) => (
-    <HookForm<any, Schema>
+    <HookForm<TextareaControlProps, Schema>
       {...props}
       defaultValues={{
         test: ''

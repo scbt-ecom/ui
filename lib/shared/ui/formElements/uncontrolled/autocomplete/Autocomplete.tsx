@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react'
 import { type SelectBaseProps, type SelectItemOption, Uncontrolled } from '..'
 import { type UseQueryResult } from '@tanstack/react-query'
-import { useDebounceValue } from '../../../../hooks'
+import { useDebounceValue } from '$/shared/hooks'
 
 export interface AutocompleteBaseProps<TData>
   extends Omit<

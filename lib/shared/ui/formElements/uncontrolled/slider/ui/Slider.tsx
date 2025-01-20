@@ -1,39 +1,47 @@
 import * as React from 'react'
 import * as SliderPrimitive from '@radix-ui/react-slider'
-import { type ISliderCommonProps } from '../SliderControl'
+import { type TSliderVariants } from '../model/types'
 import { cn } from '$/shared/utils'
 
-export type TSliderClasses = {
-  sliderWrapper?: string
+export type SliderClasses = {
+  root?: string
   sliderRoot?: string
-  spanLeft?: string
-  spanRight?: string
   sliderTrack?: string
   sliderThumb?: string
   sliderRange?: string
 }
 
-export interface ISliderProps extends ISliderCommonProps {
-  classes?: TSliderClasses
+export interface SliderProps {
+  classes?: SliderClasses
   onValueChange?: (value: number[]) => void
   value: number[]
+  disabled?: boolean
+  min?: number
+  max?: number
+  step?: number
+  variant?: TSliderVariants
 }
 
-export const Slider = React.forwardRef<React.ElementRef<typeof SliderPrimitive.Root>, ISliderProps>(
-  ({ min, max, classes, ...props }, ref) => {
+export const Slider = React.forwardRef<React.ElementRef<typeof SliderPrimitive.Root>, SliderProps>(
+  ({ min, max, classes, disabled, onValueChange, value, step }, ref) => {
+    const { root, sliderRoot, sliderTrack, sliderThumb, sliderRange } = classes || {}
+
     return (
-      <div className={cn('absolute bottom-[-7px] w-full px-4', classes?.sliderWrapper)}>
+      <div className={cn('absolute bottom-[-7px] w-full px-4', root)}>
         <SliderPrimitive.Root
+          disabled={disabled}
           ref={ref}
-          className={cn('relative flex h-4 w-full touch-none select-none items-center', classes?.sliderRoot)}
+          className={cn('relative flex h-4 w-full touch-none select-none items-center', sliderRoot)}
           min={min}
           max={max}
-          {...props}
+          onValueChange={onValueChange}
+          value={value}
+          step={step}
         >
           <SliderPrimitive.Track
-            className={cn('relative h-[2px] w-full grow overflow-hidden rounded-full bg-color-transparent', classes?.sliderTrack)}
+            className={cn('relative h-[2px] w-full grow overflow-hidden rounded-full bg-color-transparent', sliderTrack)}
           >
-            <SliderPrimitive.Range className={cn('absolute h-full bg-color-primary-default', classes?.sliderRange)} />
+            <SliderPrimitive.Range className={cn('absolute h-full bg-color-primary-default', sliderRange)} />
           </SliderPrimitive.Track>
           <SliderPrimitive.Thumb
             aria-label='slider-thumb'
@@ -45,7 +53,7 @@ export const Slider = React.forwardRef<React.ElementRef<typeof SliderPrimitive.R
               'hover:before:bg-color-primary-tr-hover',
 
               'focus:before:bg-color-primary-tr-pressed',
-              classes?.sliderThumb
+              sliderThumb
             )}
           />
         </SliderPrimitive.Root>

@@ -8,7 +8,6 @@ import type {
   IInputOtpControlProps,
   InputControlMaskProps,
   IRadioControlProps,
-  ISliderControlProps,
   ISwitchControlProps,
   ITextareaControlProps
 } from '$/shared/ui/formElements'
@@ -27,7 +26,6 @@ export const enum EnumFieldType {
   RADIO = 'radio',
   SWITCH = 'switch',
   TEXTAREA = 'textarea',
-  SLIDER = 'slider',
   UPLOADER = 'uploader',
   EDITOR = 'editor',
   OTP = 'otp',
@@ -48,10 +46,6 @@ export type TControlledInputRadio<T extends FieldValues> = Omit<IRadioControlPro
 
 export type TControlledInputSwitch<T extends FieldValues> = Omit<ISwitchControlProps<T>, 'control'> & {
   fieldType: EnumFieldType.SWITCH
-}
-
-export type TControlledInputSlider<T extends FieldValues> = Omit<ISliderControlProps<T>, 'control'> & {
-  fieldType: EnumFieldType.SLIDER
 }
 
 export type TControlledInputTextarea<T extends FieldValues> = Omit<ITextareaControlProps<T>, 'control'> & {
@@ -76,7 +70,6 @@ export type TStorybookFieldConfig<T extends FieldValues> =
   | TControlledInputCheckbox<T>
   | TControlledInputRadio<T>
   | TControlledInputSwitch<T>
-  | TControlledInputSlider<T>
   | TControlledInputTextarea<T>
   | TControlledInputEditor<T>
   | TControlledOtpInput<T>
