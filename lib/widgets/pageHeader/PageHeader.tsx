@@ -1,23 +1,7 @@
-import { type IHeaderEmptyProps, type IHeaderWithButton, type IHeaderWithPhone } from './types'
-import { brandLogos, Button, PhoneView, ResponsiveContainer } from '$/shared/ui'
+import { renderContentVariant } from './model/helpers'
+import type { TPageHeaderProps } from './model/types'
+import { brandLogos, ResponsiveContainer } from '$/shared/ui'
 import { cn } from '$/shared/utils'
-
-export type TPageHeaderProps = IHeaderWithButton | IHeaderWithPhone | IHeaderEmptyProps
-
-const renderContentVariant = (props: TPageHeaderProps) => {
-  switch (props.variant) {
-    case 'withButton':
-      return (
-        <Button intent='secondary' size='sm' {...props.buttonProps}>
-          {props.buttonProps?.children || 'Оформить заявку'}
-        </Button>
-      )
-    case 'withPhone':
-      return <PhoneView {...props.phoneProps} />
-    default:
-      return null
-  }
-}
 
 export const PageHeader = (props: TPageHeaderProps) => {
   const { logoPath = '/', logoType = 'main', classes } = props

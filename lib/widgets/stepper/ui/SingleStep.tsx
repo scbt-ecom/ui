@@ -1,13 +1,9 @@
-import { type ISingleStep } from '../Stepper'
+import parse from 'html-react-parser'
+import type { SingleStepProps } from '../model/types'
 import { Heading } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
-interface ISingleStepProps extends ISingleStep {
-  index: number
-  classes?: ISingleStepClasses
-}
-
-export type ISingleStepClasses = {
+export type SingleStepClasses = {
   singleStep?: string
   numeric?: string
   textBlock?: string
@@ -15,11 +11,13 @@ export type ISingleStepClasses = {
   description?: string
 }
 
-export const SingleStep = ({ title, description, index, classes }: ISingleStepProps) => {
+export const SingleStep = ({ classes, index, variant, title, description }: SingleStepProps) => {
+  const withTitles = variant === 'withTitleAndDescription' && title
+
   return (
     <div
       className={cn(
-        'flex w-[328px] max-w-[328px] flex-col gap-6 rounded-md border border-solid border-blue-grey-500 p-4 desktop:w-[348px] desktop:max-w-[348px] desktop:border-none desktop:p-0',
+        'flex w-[328px] max-w-[328px] flex-col gap-4 rounded-md border border-solid border-blue-grey-500 p-4 desktop:w-[348px] desktop:max-w-[348px] desktop:border-none desktop:p-0',
         classes?.singleStep
       )}
     >
@@ -31,11 +29,14 @@ export const SingleStep = ({ title, description, index, classes }: ISingleStepPr
       >
         {index}
       </div>
-      <div className={cn('flex flex-col gap-4', classes?.textBlock)}>
-        <Heading as='h4' className={cn('text-color-dark', classes?.title)}>
-          {title}
-        </Heading>
-        <p className={cn('desk-body-regular-l text-color-tetriary', classes?.description)}>{description}</p>
+
+      <div className={cn('flex flex-col gap-2')}>
+        {withTitles && (
+          <Heading as='h4' className={cn('text-color-dark', classes?.title)}>
+            {title}
+          </Heading>
+        )}
+        <div className={cn('desk-body-regular-l text-color-tetriary', classes?.description)}>{parse(description)}</div>
       </div>
     </div>
   )

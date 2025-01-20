@@ -1,13 +1,12 @@
 import Color from '@tiptap/extension-color'
-import { HardBreak } from '@tiptap/extension-hard-break'
 import Heading from '@tiptap/extension-heading'
 import Link from '@tiptap/extension-link'
 import TextStyle from '@tiptap/extension-text-style'
 import Underline from '@tiptap/extension-underline'
 import { mergeAttributes } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
-import { editorHeadingClasses } from '../model/helper'
-import { type THeadingLevel } from '../model/types'
+import { editorHeadingClasses } from './helper'
+import { type THeadingLevel } from './types'
 
 export const editorConfig = [
   StarterKit.configure({
@@ -32,7 +31,7 @@ export const editorConfig = [
   TextStyle,
   Color,
   Heading.configure({
-    levels: [1, 2, 3, 4, 5, 6]
+    levels: [3, 4]
   }).extend({
     renderHTML({ node, HTMLAttributes }) {
       const hasLevel = this.options.levels.includes(node.attrs.level)
@@ -51,13 +50,6 @@ export const editorConfig = [
   }).extend({
     renderHTML({ HTMLAttributes }) {
       return ['a', mergeAttributes(HTMLAttributes)]
-    }
-  }),
-  HardBreak.extend({
-    addKeyboardShortcuts() {
-      return {
-        Enter: () => this.editor.commands.setHardBreak()
-      }
     }
   })
 ]

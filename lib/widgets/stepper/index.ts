@@ -1,1 +1,1 @@
-export { Stepper, type IStepperProps, type ISingleStep } from './Stepper'
+export { Stepper } from './Stepper'
