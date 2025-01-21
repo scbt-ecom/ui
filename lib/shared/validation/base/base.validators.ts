@@ -4,6 +4,7 @@ import { getNumberOptional, getNumberRequired } from './number.validators'
 import { getPhoneOptional, getPhoneRequired } from './phone.validators'
 import { getSelectOptional, getSelectRequired } from './select.validators'
 import { getStringOptional, getStringRequired } from './string.validators'
+import { getUnionOptional, getUnionRequired } from './union.validators'
 
 export const baseValidationSchemas = {
   getStringRequired,
@@ -17,5 +18,7 @@ export const baseValidationSchemas = {
   getPhoneRequired,
   getPhoneOptional,
   getDateRequired,
-  getDateOptional
+  getDateOptional,
+  getUnionRequired,
+  getUnionOptional
 }

@@ -1,3 +1,5 @@
+import { type Primitive } from 'zod'
+
 export const baseDefaultMessages = {
   NON_EMPTY: () => 'Поле не может быть пустым',
   MIN_LENGTH: (min: number) => `Поле должно содержать минимум символов: ${min}`,
@@ -11,5 +13,6 @@ export const baseDefaultMessages = {
   SELECT_NON_EMPTY: () => 'Выберите один из вариантов',
   SELECT_MULTIPLE_NON_EMPTY: (length: number) => `Выберите не менее ${length} вариантов`,
   DATE_INVALID_FORMAT: () => 'Дата указана некорректно',
-  DATE_NON_EMPTY: () => 'Укажите дату'
+  DATE_NON_EMPTY: () => 'Укажите дату',
+  VALUE_OUT_OF_RANGE: <T extends Primitive>(range: T[]) => `Выберите один из вариантов ${range.join(', ')}`
 }
