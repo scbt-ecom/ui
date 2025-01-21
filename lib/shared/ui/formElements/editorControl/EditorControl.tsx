@@ -32,7 +32,7 @@ export const EditorControl = <T extends FieldValues>({
   ...props
 }: IEditorControlProps<T>) => {
   const {
-    field: { onChange, value },
+    field,
     fieldState: { error }
   } = useController({
     control,
@@ -40,15 +40,6 @@ export const EditorControl = <T extends FieldValues>({
   })
 
   return (
-    <Editor
-      onChange={onChange}
-      value={value ?? ''}
-      editable={editable}
-      error={error}
-      helperText={helperText}
-      label={label}
-      classes={classes}
-      {...props}
-    />
+    <Editor {...field} editable={editable} error={error} helperText={helperText} label={label} classes={classes} {...props} />
   )
 }

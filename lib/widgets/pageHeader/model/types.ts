@@ -26,3 +26,5 @@ export interface HeaderWithButton extends CommonHeaderProps {
   variant: 'withButton'
   buttonProps?: ButtonProps
 }
+
+export type PageHeaderProps = HeaderWithButton | HeaderWithPhone | HeaderEmptyProps
