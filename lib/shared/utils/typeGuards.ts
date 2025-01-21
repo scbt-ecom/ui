@@ -3,7 +3,7 @@ export class TypeGuards {
     return typeof value === 'string'
   }
 
-  static isStringEmpty(value: unknown): boolean {
+  static isStringEmpty(value: unknown): value is string {
     return this.isString(value) && !value.length
   }
 
