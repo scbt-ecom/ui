@@ -9,7 +9,7 @@ import { Controlled } from '$/shared/ui'
 import { zodValidators } from '$/shared/validation'
 
 const schema = z.object({
-  field: zodValidators.base.getEmailRequiredValidationSchema()
+  field: zodValidators.base.getEmailRequired()
 })
 
 type Schema = z.TypeOf<typeof schema>

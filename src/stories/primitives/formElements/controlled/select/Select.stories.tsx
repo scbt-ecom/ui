@@ -14,7 +14,7 @@ const generateOptions = (length: number): SelectItemOption[] =>
   }))
 
 const schema = object({
-  test: zodValidators.base.getSelectRequiredValidationSchema()
+  test: zodValidators.base.getSelectRequired()
 })
 
 type SelectControlProps = React.ComponentPropsWithoutRef<typeof Controlled.SelectControl>
@@ -93,7 +93,7 @@ type Story = StoryObj<typeof Controlled.SelectControl>
 export const Base: Story = {}
 
 const multiSchema = object({
-  test: zodValidators.base.getSelectRequiredValidationSchema({
+  test: zodValidators.base.getSelectRequired({
     multiple: true,
     minLength: 1
   })

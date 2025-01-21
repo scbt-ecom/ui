@@ -31,11 +31,11 @@ type DateValidationOptions = {
  *
  * @example
  * z.object({
- *   field: zodValidators.base.getDateRequiredValidationSchema()
+ *   field: zodValidators.base.getDateRequired()
  * })
  * // will returns z.string()
  */
-export const getDateRequiredValidationSchema = (props?: DateValidationOptions) => {
+export const getDateRequired = (props?: DateValidationOptions) => {
   const { iso = false, pattern = DATE_VISIBLE_PATTERN, message } = props || {}
 
   return z
@@ -88,11 +88,11 @@ export const getDateRequiredValidationSchema = (props?: DateValidationOptions) =
  *
  * @example
  * z.object({
- *   field: zodValidators.base.getDateRequiredValidationSchema()
+ *   field: zodValidators.base.getDateOptional()
  * })
  * // will returns z.string()
  */
-export const getDateOptionalValidationSchema = (props?: DateValidationOptions) => {
+export const getDateOptional = (props?: DateValidationOptions) => {
   const { iso = false, pattern = DATE_VISIBLE_PATTERN, message } = props || {}
 
   return z

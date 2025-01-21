@@ -28,11 +28,11 @@ type PhoneValidationOptions = {
  *
  * @example
  * z.object({
- *   field: zodValidators.base.getPhoneRequiredValidationSchema()
+ *   field: zodValidators.base.getPhoneRequired()
  * })
  * // will returns z.string()
  */
-export const getPhoneRequiredValidationSchema = (props?: PhoneValidationOptions) => {
+export const getPhoneRequired = (props?: PhoneValidationOptions) => {
   const { ignoreMask = true, maskSymbols = /[()+_ -]/g, message } = props || {}
 
   let schema = z.string().superRefine((value, context) => {
@@ -76,11 +76,11 @@ export const getPhoneRequiredValidationSchema = (props?: PhoneValidationOptions)
  *
  * @example
  * z.object({
- *   field: zodValidators.base.getPhoneRequiredValidationSchema()
+ *   field: zodValidators.base.getPhoneOptional()
  * })
  * // will returns z.string()
  */
-export const getPhoneOptionalValidationSchema = (props?: PhoneValidationOptions) => {
+export const getPhoneOptional = (props?: PhoneValidationOptions) => {
   const { ignoreMask = true, maskSymbols = /[()+_ -]/g, message } = props || {}
 
   let schema = z.string().superRefine((value, context) => {

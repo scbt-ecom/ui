@@ -25,11 +25,11 @@ type StringValidationOptions = {
  *
  * @example
  * z.object({
- *   field: zodValidators.base.getStringRequiredValidationSchema({ min: 10, max: 20 })
+ *   field: zodValidators.base.getStringRequired({ min: 10, max: 20 })
  * })
  * // will returns z.string().min(10).max(20)
  */
-export const getStringRequiredValidationSchema = (props?: StringValidationOptions) => {
+export const getStringRequired = (props?: StringValidationOptions) => {
   const { min = 1, max, message } = props || {}
 
   let schema = z.string().min(min, { message: message?.min || baseDefaultMessages.MIN_LENGTH(min) })
@@ -51,11 +51,11 @@ export const getStringRequiredValidationSchema = (props?: StringValidationOption
  *
  * @example
  * z.object({
- *   field: zodValidators.base.getStringOptionalValidationSchema({ min: 10, max: 20 })
+ *   field: zodValidators.base.getStringOptional({ min: 10, max: 20 })
  * })
  * // will returns z.string().min(10).max(20).optional()
  */
-export const getStringOptionalValidationSchema = (props?: StringValidationOptions) => {
+export const getStringOptional = (props?: StringValidationOptions) => {
   const { min, max, message } = props || {}
 
   let schema = z.string()

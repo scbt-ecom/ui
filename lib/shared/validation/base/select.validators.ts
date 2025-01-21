@@ -35,16 +35,16 @@ type SelectValidationOptions<Multi extends boolean> = Multi extends true
  *
  * @example
  * z.object({
- *   field: zodValidators.base.getSelectRequiredValidationSchema({ multiple: false })
+ *   field: zodValidators.base.getSelectRequired({ multiple: false })
  * })
  * // will returns z.string().min(1).nullable().refine(Boolean)
  *
  * z.object({
- *   field: zodValidators.base.getSelectRequiredValidationSchema({ multiple: true, minLength: 3 })
+ *   field: zodValidators.base.getSelectRequired({ multiple: true, minLength: 3 })
  * })
  * // will returns z.array(z.string().min(1).nullable().refine(Boolean))
  */
-export const getSelectRequiredValidationSchema = <Multi extends boolean>(props?: SelectValidationOptions<Multi>) => {
+export const getSelectRequired = <Multi extends boolean>(props?: SelectValidationOptions<Multi>) => {
   const { message } = props || {}
 
   const selectSchema = z
@@ -73,18 +73,16 @@ export const getSelectRequiredValidationSchema = <Multi extends boolean>(props?:
  *
  * @example
  * z.object({
- *   field: zodValidators.base.getSelectOptionalValidationSchema({ multiple: false })
+ *   field: zodValidators.base.getSelectOptional({ multiple: false })
  * })
  * // will returns z.string().nullable()
  *
  * z.object({
- *   field: zodValidators.base.getSelectOptionalValidationSchema({ multiple: true })
+ *   field: zodValidators.base.getSelectOptional({ multiple: true })
  * })
  * // will returns z.array(z.string().nullable())
  */
-export const getSelectOptionalValidationSchema = <Multi extends boolean>(
-  props?: Omit<SelectValidationOptions<Multi>, 'message'>
-) => {
+export const getSelectOptional = <Multi extends boolean>(props?: Omit<SelectValidationOptions<Multi>, 'message'>) => {
   const selectSchema = z.string().nullable().optional()
 
   if (props?.multiple) {

@@ -17,11 +17,11 @@ type NumberValidationOptions = {
  *
  * @example
  * z.object({
- *   field: zodValidators.base.getNumberRequiredValidationSchema({ min: 10, max: 20 })
+ *   field: zodValidators.base.getNumberRequired({ min: 10, max: 20 })
  * })
  * // will returns z.coerce.number().min(10).max(20)
  */
-export const getNumberRequiredValidationSchema = (props?: NumberValidationOptions) => {
+export const getNumberRequired = (props?: NumberValidationOptions) => {
   const { min = 0, max, message } = props || {}
 
   let schema = z.coerce.number().min(min, message?.min || baseDefaultMessages.MIN_VALUE(min))
@@ -43,12 +43,12 @@ export const getNumberRequiredValidationSchema = (props?: NumberValidationOption
  *
  * @example
  * z.object({
- *   field: zodValidators.base.getNumberOptionalValidationSchema({ min: 10, max: 20 })
+ *   field: zodValidators.base.getNumberOptional({ min: 10, max: 20 })
  * })
  * // will returns z.coerce.number().min(10).max(20).optional()
  */
-export const getNumberOptionalValidationSchema = (props?: NumberValidationOptions) => {
-  return getNumberRequiredValidationSchema(props)
+export const getNumberOptional = (props?: NumberValidationOptions) => {
+  return getNumberRequired(props)
     .optional()
     .transform((value) => (!value ? undefined : value))
 }

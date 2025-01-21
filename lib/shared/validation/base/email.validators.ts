@@ -19,11 +19,11 @@ const EMAIL_REGEX = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g
  *
  * @example
  * z.object({
- *   field: zodValidators.base.getEmailRequiredValidationSchema({ message: { min: '' } })
+ *   field: zodValidators.base.getEmailRequired({ message: { min: '' } })
  * })
  * // will returns z.string().min(1).email()
  */
-export const getEmailRequiredValidationSchema = (props?: EmailValidationOptions) => {
+export const getEmailRequired = (props?: EmailValidationOptions) => {
   const { message } = props || {}
 
   return z
@@ -41,11 +41,11 @@ export const getEmailRequiredValidationSchema = (props?: EmailValidationOptions)
  *
  * @example
  * z.object({
- *   field: zodValidators.base.getEmailOptionalValidationSchema({ message: { min: '' } })
+ *   field: zodValidators.base.getEmailOptional({ message: { min: '' } })
  * })
  * // will returns z.string().min(1).email().optional()
  */
-export const getEmailOptionalValidationSchema = (props?: EmailValidationOptions) => {
+export const getEmailOptional = (props?: EmailValidationOptions) => {
   const { message } = props || {}
 
   return z
