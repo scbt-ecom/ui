@@ -1,4 +1,3 @@
-import { memo } from 'react'
 import { type Control, type FieldPath, type FieldValues, useController, type UseControllerProps } from 'react-hook-form'
 import { type TextareaBaseProps, Uncontrolled } from '$/shared/ui'
 import { MessageView } from '$/shared/ui/formElements/ui'
@@ -28,7 +27,7 @@ export type TextareaControlProps<
     helperText?: string
   }
 
-const InnerComponent = <TFieldValues extends FieldValues = FieldValues>({
+export const TextareaControl = <TFieldValues extends FieldValues = FieldValues>({
   classes,
   control,
   name,
@@ -74,5 +73,3 @@ const InnerComponent = <TFieldValues extends FieldValues = FieldValues>({
     </div>
   )
 }
-
-export const TextareaControl = memo(InnerComponent) as typeof InnerComponent

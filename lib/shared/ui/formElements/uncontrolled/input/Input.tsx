@@ -77,7 +77,7 @@ export const InputBase = forwardRef<HTMLInputElement, InputBaseProps>(
             onClick={props.onClick}
             onBlur={props.onBlur}
             className={cn(
-              'peer desk-body-regular-l min-h-[54px] w-full bg-color-transparent px-4 pb-[6px] pt-[28px]',
+              'peer desk-body-regular-l min-h-[54px] w-full bg-color-transparent [&_input]:px-4 [&_input]:pb-[6px] [&_input]:pt-[28px]',
               'text-color-dark outline-none placeholder:text-color-transparent',
               'flex flex-row flex-wrap gap-2'
             )}

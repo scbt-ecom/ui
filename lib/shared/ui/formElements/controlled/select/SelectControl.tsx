@@ -1,6 +1,6 @@
 'use client'
 
-import { memo, useMemo } from 'react'
+import { useMemo } from 'react'
 import { type Control, type FieldPath, type FieldValues, useController, type UseControllerProps } from 'react-hook-form'
 import type { OnChangeValue } from 'react-select'
 import { type SelectBaseProps, type SelectItemOption, Uncontrolled } from '$/shared/ui'
@@ -39,7 +39,7 @@ function isSingleValue(value?: OnChangeValue<SelectItemOption, boolean>): value 
   return value !== null && typeof value !== 'undefined' && !Array.isArray(value)
 }
 
-const InnerComponent = <TFieldValues extends FieldValues = FieldValues>({
+export const SelectControl = <TFieldValues extends FieldValues = FieldValues>({
   control,
   classes,
   name,
@@ -104,5 +104,3 @@ const InnerComponent = <TFieldValues extends FieldValues = FieldValues>({
     </div>
   )
 }
-
-export const SelectControl = memo(InnerComponent) as typeof InnerComponent

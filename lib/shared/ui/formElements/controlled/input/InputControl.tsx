@@ -1,6 +1,5 @@
 'use client'
 
-import { memo } from 'react'
 import { type Control, type FieldValues, type Path, useController, type UseControllerProps } from 'react-hook-form'
 import { type InputBaseProps, Uncontrolled } from '../../uncontrolled'
 import { MessageView } from '$/shared/ui/formElements/ui'
@@ -30,7 +29,7 @@ type InputControlProps<
     classes?: InputControlClasses
   }
 
-const InnerComponent = <TFieldValues extends FieldValues = FieldValues>({
+export const InputControl = <TFieldValues extends FieldValues = FieldValues>({
   control,
   name,
   defaultValue,
@@ -76,5 +75,3 @@ const InnerComponent = <TFieldValues extends FieldValues = FieldValues>({
     </div>
   )
 }
-
-export const InputControl = memo(InnerComponent) as typeof InnerComponent

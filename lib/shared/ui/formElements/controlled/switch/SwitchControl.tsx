@@ -1,4 +1,4 @@
-import { memo, useId } from 'react'
+import { useId } from 'react'
 import { type Control, type FieldPath, type FieldValues, useController, type UseControllerProps } from 'react-hook-form'
 import { Icon, Popover, type SwitchBaseProps, Uncontrolled } from '$/shared/ui'
 import { cn } from '$/shared/utils'
@@ -41,7 +41,7 @@ export type SwitchControlProps<
     popoverProps?: PopoverProps
   }
 
-const InnerComponent = <TFieldValues extends FieldValues = FieldValues>({
+export const SwitchControl = <TFieldValues extends FieldValues = FieldValues>({
   classes,
   className,
   control,
@@ -131,5 +131,3 @@ const InnerComponent = <TFieldValues extends FieldValues = FieldValues>({
     </div>
   )
 }
-
-export const SwitchControl = memo(InnerComponent) as typeof InnerComponent

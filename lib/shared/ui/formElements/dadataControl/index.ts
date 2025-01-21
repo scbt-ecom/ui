@@ -1,6 +1,0 @@
-export * from './DadataFio'
-export * from './DadataAuto'
-export * from './DadataCountry'
-export * from './DadataAddress'
-export * from './DadataOrganization'
-export type * from './types'

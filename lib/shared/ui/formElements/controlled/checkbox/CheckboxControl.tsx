@@ -1,6 +1,6 @@
 'use client'
 
-import { memo, useId } from 'react'
+import { useId } from 'react'
 import { type Control, type FieldPath, type FieldValues, useController, type UseControllerProps } from 'react-hook-form'
 import { type CheckboxBaseProps, Uncontrolled } from '../../uncontrolled'
 import { MessageView } from '$/shared/ui/formElements/ui'
@@ -35,7 +35,7 @@ type CheckboxControlProps<
     helperText?: string
   }
 
-const InnerComponent = <TFieldValues extends FieldValues = FieldValues>({
+export const CheckboxControl = <TFieldValues extends FieldValues = FieldValues>({
   control,
   classes,
   className,
@@ -98,5 +98,3 @@ const InnerComponent = <TFieldValues extends FieldValues = FieldValues>({
     </div>
   )
 }
-
-export const CheckboxControl = memo(InnerComponent) as typeof InnerComponent
