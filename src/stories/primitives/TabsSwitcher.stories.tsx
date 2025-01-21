@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { type Meta, type StoryObj } from '@storybook/react'
-import { Button, type ITabRenderContent, TabsSwitcher } from '$/shared/ui'
+import { Button, type TabRenderContent, TabsSwitcher } from '$/shared/ui'
 
 const meta = {
   title: 'Base/TabsSwitcher',
@@ -15,7 +15,7 @@ export default meta
 
 type Story = StoryObj<typeof TabsSwitcher>
 
-const TABS_MOCKS: ITabRenderContent = {
+const TABS_MOCKS: TabRenderContent = {
   triggers: [
     { id: '1', label: 'Условия' },
     { id: '2', label: 'Вклады' },

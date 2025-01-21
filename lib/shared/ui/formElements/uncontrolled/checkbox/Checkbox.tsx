@@ -3,9 +3,10 @@ import { type CheckboxProps as CheckboxPrimitiveProps, type CheckedState, Indica
 import { Icon } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
-type CheckboxBaseClasses = {
+export type CheckboxBaseClasses = {
   root?: string
   indicator?: string
+  icon?: string
 }
 
 export type { CheckedState }
@@ -69,7 +70,7 @@ export const CheckboxBase = forwardRef<HTMLButtonElement, CheckboxBaseProps>(
             classes?.indicator
           )}
         >
-          <Icon name='general/check' className='size-6 text-icon-white' />
+          <Icon name='general/check' className={cn('size-6 text-icon-white', classes?.icon)} />
         </Indicator>
       </Root>
     )

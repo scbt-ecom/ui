@@ -8,6 +8,7 @@ import { cn } from '$/shared/utils'
 
 type InputControlClasses = InputBaseProps['classes'] & {
   message?: string
+  root?: string
 }
 
 type InputControlProps<
@@ -50,10 +51,10 @@ const InnerComponent = <TFieldValues extends FieldValues = FieldValues>({
   })
 
   const { error, invalid, isTouched } = fieldState
-  const { message, container, ...restClasses } = classes || {}
+  const { message, root, ...restClasses } = classes || {}
 
   return (
-    <div className={cn('w-full', container)}>
+    <div className={cn('w-full', root)}>
       <Uncontrolled.InputBase
         {...props}
         {...field}

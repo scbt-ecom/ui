@@ -3,17 +3,17 @@ import type { ITabContent } from '../model/types'
 import { Accordion } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
-export type TTabContentClasses = {
+export type TabContentClasses = {
   content?: string
   contentsWrapper?: string
 }
 
-export interface ITabContentProps {
+export interface TabContentProps {
   contents: ITabContent[]
-  classes?: TTabContentClasses
+  classes?: TabContentClasses
 }
 
-export const TabContent = ({ classes, contents }: ITabContentProps) => {
+export const TabContent = ({ classes, contents }: TabContentProps) => {
   return (
     <div className={cn('flex flex-col gap-4', classes?.contentsWrapper)}>
       {contents?.map(({ id, body, accordion }) => {

@@ -1,7 +1,7 @@
-import type { TPageHeaderProps } from './types'
+import type { PageHeaderProps } from './types'
 import { Button, PhoneView } from '$/shared/ui'
 
-export const renderContentVariant = (props: TPageHeaderProps) => {
+export const renderContentVariant = (props: PageHeaderProps) => {
   switch (props.variant) {
     case 'withButton':
       return (

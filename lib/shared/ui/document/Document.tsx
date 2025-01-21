@@ -1,6 +1,6 @@
 import { type ReactElement } from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
-import { Icon, type TAllowedIcons } from '$/shared/ui'
+import { type AllowedIcons, Icon } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
 const iconConfig = cva('size-8 transition-colors', {
@@ -15,21 +15,21 @@ const iconConfig = cva('size-8 transition-colors', {
   }
 })
 
-type TIconConfig = VariantProps<typeof iconConfig>
+type IconConfig = VariantProps<typeof iconConfig>
 
-const iconVariant: Record<NonNullable<TIconConfig['intent']>, TAllowedIcons> = {
+const iconVariant: Record<NonNullable<IconConfig['intent']>, AllowedIcons> = {
   filled: 'files/documentFilled',
   outline: 'files/documentOutline'
 }
 
-export interface IDocumentProps extends TIconConfig {
+export interface DocumentProps extends IconConfig {
   text: string | ReactElement
   size: number
   sizeType: 'КБ' | 'МБ'
   href: string
 }
 
-export const Document = ({ text, size, sizeType, href, intent = 'outline' }: IDocumentProps) => {
+export const Document = ({ text, size, sizeType, href, intent = 'outline' }: DocumentProps) => {
   return (
     <a
       href={href}

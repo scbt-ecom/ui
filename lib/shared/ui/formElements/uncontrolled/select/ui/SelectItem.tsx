@@ -1,6 +1,7 @@
 import { forwardRef, Fragment } from 'react'
 import { ComboboxOption, type ComboboxOptionProps } from '@headlessui/react'
 import { motion } from 'framer-motion'
+import { type CheckboxBaseClasses } from '../../checkbox/Checkbox'
 import type { SelectItemOption } from '../model'
 import { Uncontrolled } from '$/shared/ui'
 import { FieldAttachment } from '$/shared/ui/formElements/ui'
@@ -9,6 +10,7 @@ import { cn } from '$/shared/utils'
 type SelectItemClasses = {
   item?: string
   helperText?: string
+  checkbox?: CheckboxBaseClasses
 }
 
 export type SelectItemProps = Omit<ComboboxOptionProps, 'className' | 'value'> & {
@@ -23,7 +25,7 @@ export const SelectItem = forwardRef<HTMLLIElement, SelectItemProps>(
   ({ option, classes, displayValue, isMulti, motionProps, ...props }, ref) => {
     const label = displayValue ? displayValue(option) : option.label
 
-    const { item, helperText } = classes || {}
+    const { item, helperText, checkbox } = classes || {}
 
     const ContentWrapper = isMulti || option.attachment || option.helperText ? 'div' : Fragment
 
@@ -48,7 +50,7 @@ export const SelectItem = forwardRef<HTMLLIElement, SelectItemProps>(
             )}
           >
             {isMulti ? (
-              <Uncontrolled.CheckboxBase checked={selected} disabled={disabled} classes={{ root: 'z-10' }} />
+              <Uncontrolled.CheckboxBase checked={selected} disabled={disabled} classes={{ root: 'z-10', ...checkbox }} />
             ) : (
               option.attachment && option.attachment.left && <FieldAttachment {...option.attachment.left} />
             )}

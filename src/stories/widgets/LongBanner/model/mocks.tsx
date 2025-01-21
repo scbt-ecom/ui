@@ -1,9 +1,9 @@
 import toast from 'react-hot-toast'
 import money from './assets/money.png'
 import { cn } from '$/shared/utils'
-import { type ILongBannerProps } from '$/widgets/longBanner/LongBanner.tsx'
+import { type LongBannerProps } from '$/widgets/longBanner/LongBanner.tsx'
 
-export const mockLongBannerBase: ILongBannerProps = {
+export const mockLongBannerBase: LongBannerProps = {
   title: 'Main Title',
   buttonConfig: {
     text: 'Button',
@@ -24,7 +24,7 @@ export const mockLongBannerBase: ILongBannerProps = {
   imageComponent: <img data-id='banner-image' src={money} alt='money' className={cn('h-full w-full object-contain')} />
 }
 
-export const mockLongBannerWithoutButton: ILongBannerProps = {
+export const mockLongBannerWithoutButton: LongBannerProps = {
   title: 'Main Title',
   textContent: [
     {
@@ -41,7 +41,7 @@ export const mockLongBannerWithoutButton: ILongBannerProps = {
   imageComponent: <img data-id='banner-image' src={money} alt='money' className={cn('h-full w-full object-contain')} />
 }
 
-export const mockLongBannerMulti: ILongBannerProps = {
+export const mockLongBannerMulti: LongBannerProps = {
   intent: 'fourItems',
   title: 'Main Title',
   buttonConfig: {
@@ -73,7 +73,7 @@ export const mockLongBannerMulti: ILongBannerProps = {
   imageComponent: <img data-id='banner-image' src={money} alt='money' className={cn('h-full w-full object-contain')} />
 }
 
-export const mockLongBannerMultiWithoutButton: ILongBannerProps = {
+export const mockLongBannerMultiWithoutButton: LongBannerProps = {
   intent: 'fourItems',
   title: 'Main Title',
   textContent: [

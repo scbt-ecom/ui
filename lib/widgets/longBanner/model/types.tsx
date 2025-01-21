@@ -2,7 +2,7 @@ import { type ReactElement } from 'react'
 import { type VariantProps } from 'class-variance-authority'
 import { type itemConfig } from './cva'
 
-export type TLongBannerConfig = VariantProps<typeof itemConfig>
+export type LongBannerConfig = VariantProps<typeof itemConfig>
 
 export interface ITextContent {
   title: string | ReactElement
@@ -16,17 +16,17 @@ export interface IButtonConfig {
 }
 
 export interface ILongBannerClasses {
-  section: string
-  mainContainer: string
-  title: string
-  contentContainer: string
-  imgContainer: string
-  textWithBtnContainer: string
-  image: string
-  button: string
+  root?: string
+  container?: string
+  title?: string
+  contentContainer?: string
+  imgContainer?: string
+  textWithBtnContainer?: string
+  image?: string
+  button?: string
 }
 
-export interface ITextItem extends TLongBannerConfig {
+export interface TextItemProps extends LongBannerConfig {
   data: {
     title: string | ReactElement
     description: string | ReactElement

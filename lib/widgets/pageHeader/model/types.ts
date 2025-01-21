@@ -1,30 +1,30 @@
-import { type IButtonProps, type IPhoneViewProps, type TBrandLogoVariant } from '../../../shared/ui'
+import { type BrandLogoVariant, type ButtonProps, type PhoneViewProps } from '$/shared/ui'
 
-type TPageHeaderClasses = {
+type PageHeaderClasses = {
   header?: string
   container?: string
   wrapper?: string
   logo?: string
 }
 
-interface ICommonHeaderProps {
+interface CommonHeaderProps {
   logoPath?: string
-  logoType?: TBrandLogoVariant
-  classes?: TPageHeaderClasses
+  logoType?: BrandLogoVariant
+  classes?: PageHeaderClasses
 }
 
-interface IHeaderEmptyProps extends ICommonHeaderProps {
+export interface HeaderEmptyProps extends CommonHeaderProps {
   variant: 'empty'
 }
 
-interface IHeaderWithPhone extends ICommonHeaderProps {
+export interface HeaderWithPhone extends CommonHeaderProps {
   variant: 'withPhone'
-  phoneProps: IPhoneViewProps
+  phoneProps: PhoneViewProps
 }
 
-interface IHeaderWithButton extends ICommonHeaderProps {
+export interface HeaderWithButton extends CommonHeaderProps {
   variant: 'withButton'
-  buttonProps?: IButtonProps
+  buttonProps?: ButtonProps
 }
 
-export type TPageHeaderProps = IHeaderWithButton | IHeaderWithPhone | IHeaderEmptyProps
+export type PageHeaderProps = HeaderWithButton | HeaderWithPhone | HeaderEmptyProps

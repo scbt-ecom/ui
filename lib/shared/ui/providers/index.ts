@@ -1,1 +1,1 @@
-export { NotificationProvider, type INotificationProviderProps } from './NotificationProvider'
+export { NotificationProvider, type NotificationProviderProps } from './NotificationProvider'

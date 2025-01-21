@@ -1,1 +1,1 @@
-export { Stepper } from './Stepper'
+export { Stepper, type StepperProps } from './Stepper'

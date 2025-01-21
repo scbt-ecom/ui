@@ -1,17 +1,17 @@
 import { cn } from '$/shared/utils'
 
-type TKeyboardShortcutsClasses = {
+type KeyboardShortcutsClasses = {
   root?: string
   keys?: string
   key?: string
 }
 
-export interface IKeyboardShortcutsProps {
+export interface KeyboardShortcutsProps {
   keyList: string[]
-  classes?: TKeyboardShortcutsClasses
+  classes?: KeyboardShortcutsClasses
 }
 
-export const KeyboardShortcuts = ({ keyList, classes }: IKeyboardShortcutsProps) => {
+export const KeyboardShortcuts = ({ keyList, classes }: KeyboardShortcutsProps) => {
   return (
     <div className={cn('flex items-center gap-1', classes?.root)}>
       {keyList?.map((key, index) => (

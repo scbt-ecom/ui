@@ -2,7 +2,7 @@
 
 import { type ComponentProps } from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
-import { Icon, type TAllowedIcons } from '$/shared/ui'
+import { type AllowedIcons, Icon } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
 const customLinkConfig = cva(
@@ -53,19 +53,19 @@ const linkArrowConfig = cva('size-6', {
   }
 })
 
-type TCustomLinkClasses = {
+type CustomLinkClasses = {
   link?: string
   icon?: string
 }
 
-type TCustomLinkConfig = VariantProps<typeof customLinkConfig>
+type CustomLinkConfig = VariantProps<typeof customLinkConfig>
 
-export interface ICustomLinkProps extends TCustomLinkConfig, Omit<ComponentProps<'a'>, 'className'> {
-  icon?: TAllowedIcons
-  classes?: TCustomLinkClasses
+export interface CustomLinkProps extends CustomLinkConfig, Omit<ComponentProps<'a'>, 'className'> {
+  icon?: AllowedIcons
+  classes?: CustomLinkClasses
 }
 
-export const CustomLink = ({ intent, children, disabled, size, icon, classes, withUnderline, ...props }: ICustomLinkProps) => {
+export const CustomLink = ({ intent, children, disabled, size, icon, classes, withUnderline, ...props }: CustomLinkProps) => {
   return (
     <a className={cn(customLinkConfig({ intent, withUnderline, disabled, size }), classes?.link)} {...props}>
       {children}

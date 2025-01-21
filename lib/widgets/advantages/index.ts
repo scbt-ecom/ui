@@ -1,1 +1,1 @@
-export { Advantages, type IAdvantagesProps } from './Advantages.tsx'
+export { Advantages, type AdvantagesProps } from './Advantages.tsx'

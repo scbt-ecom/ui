@@ -5,15 +5,15 @@ import { Button, Heading } from '$/shared/ui'
 import { cn, scrollToElement } from '$/shared/utils'
 import { type AllowedBannerBackgroundColor } from '$/widgets/benefit/model'
 
-export type IBenefitItemClasses = {
+export type BenefitItemClasses = {
+  root?: string
   button?: string
-  item?: string
-  itemWrapper?: string
-  itemTextContainer?: string
-  itemDescription?: string
+  wrapper?: string
+  textContainer?: string
+  description?: string
   img?: string
-  imgWrapper?: string
-  headingBenefitItem?: string
+  imgContainer?: string
+  title?: string
 }
 
 const itemConfig = cva(
@@ -29,12 +29,12 @@ const itemConfig = cva(
   }
 )
 
-export interface IBenefitItemProps extends VariantProps<typeof itemConfig> {
+export interface BenefitItemProps extends VariantProps<typeof itemConfig> {
   title: string
   description: string | ReactElement
   img?: string
   mobileImg?: boolean
-  classes?: IBenefitItemClasses
+  classes?: BenefitItemClasses
   withButton?: boolean
   buttonText?: string
   cardColor?: AllowedBannerBackgroundColor
@@ -50,7 +50,7 @@ export const BenefitItem = ({
   buttonText,
   intent,
   cardColor
-}: IBenefitItemProps) => {
+}: BenefitItemProps) => {
   const { isDesktop } = useDevice()
 
   const button = (
@@ -65,17 +65,18 @@ export const BenefitItem = ({
       </Button>
     </>
   )
+
   return (
     <li
       key={img}
-      className={cn(itemConfig({ intent }), { 'pb-0': mobileImg }, { 'pb-12': !mobileImg }, cardColor, classes?.item)}
+      className={cn(itemConfig({ intent }), { 'pb-0': mobileImg }, { 'pb-12': !mobileImg }, cardColor, classes?.root)}
     >
-      <div className={cn('flex flex-col items-start justify-between px-4 desktop:px-8 desktop:py-8', classes?.itemWrapper)}>
-        <div className={cn('flex flex-col gap-4', classes?.itemTextContainer)}>
-          <Heading as='h4' className={cn('desktop:desk-title-bold-s', classes?.headingBenefitItem)}>
+      <div className={cn('flex flex-col items-start justify-between px-4 desktop:px-8 desktop:py-8', classes?.wrapper)}>
+        <div className={cn('flex flex-col gap-4', classes?.textContainer)}>
+          <Heading as='h4' className={cn('desktop:desk-title-bold-s', classes?.title)}>
             {title}
           </Heading>
-          <p className={cn('mob-body-regular-l text-icon-blue-grey-800 desktop:desk-body-regular-l', classes?.itemDescription)}>
+          <p className={cn('mob-body-regular-l text-icon-blue-grey-800 desktop:desk-body-regular-l', classes?.description)}>
             {description}
           </p>
         </div>
@@ -83,7 +84,7 @@ export const BenefitItem = ({
       </div>
 
       {(mobileImg || isDesktop) && img && (
-        <div className={cn('flex w-full justify-end', classes?.imgWrapper)}>
+        <div className={cn('flex w-full justify-end', classes?.imgContainer)}>
           <img className={cn('h-[246px] object-cover', classes?.img)} src={img} alt={title} />
         </div>
       )}

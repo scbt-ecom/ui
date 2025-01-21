@@ -1,9 +1,9 @@
 import { renderContentVariant } from './model/helpers'
-import type { TPageHeaderProps } from './model/types'
+import type { PageHeaderProps } from './model/types'
 import { brandLogos, ResponsiveContainer } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
-export const PageHeader = (props: TPageHeaderProps) => {
+export const PageHeader = (props: PageHeaderProps) => {
   const { logoPath = '/', logoType = 'main', classes } = props
 
   return (

@@ -1,6 +1,6 @@
 import toast, { type Toast } from 'react-hot-toast'
 import { cva, type VariantProps } from 'class-variance-authority'
-import type { INotificationProps } from '../Notification'
+import type { NotificationProps } from '../Notification'
 import { Icon } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
@@ -20,7 +20,7 @@ const toastContainerConfig = cva(
 )
 
 type TContainerConfig = VariantProps<typeof toastContainerConfig>
-export type ICustomToastProps = INotificationProps & TContainerConfig & Toast
+export type ICustomToastProps = NotificationProps & TContainerConfig & Toast
 
 export const CustomToast = ({ intent, text, customIcon, closure = true, content, id }: ICustomToastProps) => {
   return (

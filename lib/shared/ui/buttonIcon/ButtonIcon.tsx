@@ -2,7 +2,7 @@ import { type ComponentProps, forwardRef, type ReactElement } from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '$/shared/utils'
 
-type TButtonClasses = {
+type ButtonClasses = {
   button: string
   icon: string
 }
@@ -32,11 +32,11 @@ const buttonConfig = cva(
   }
 )
 
-type TButtonProps = VariantProps<typeof buttonConfig>
+type ButtonProps = VariantProps<typeof buttonConfig>
 
-export interface IButtonIconProps extends Omit<ComponentProps<'button'>, 'className'>, TButtonProps {
+export interface IButtonIconProps extends Omit<ComponentProps<'button'>, 'className'>, ButtonProps {
   children: ReactElement
-  classes?: Partial<TButtonClasses>
+  classes?: Partial<ButtonClasses>
 }
 
 export const ButtonIcon = forwardRef<HTMLButtonElement, IButtonIconProps>(

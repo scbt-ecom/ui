@@ -1,6 +1,6 @@
-import { type TButtonConfig } from '../Button'
+import { type ButtonConfig } from '../Button'
 
-export const setButtonLoaderIntent = (intent: TButtonConfig['intent']) => {
+export const setButtonLoaderIntent = (intent: ButtonConfig['intent']) => {
   switch (intent) {
     case 'ghost':
     case 'secondary':

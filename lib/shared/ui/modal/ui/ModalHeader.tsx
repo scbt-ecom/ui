@@ -1,4 +1,4 @@
-import type { IModalProps } from '../Modal'
+import type { ModalProps } from '../Modal'
 import { Heading, Icon } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
@@ -8,7 +8,7 @@ export type TModalHeaderClasses = {
   icon?: string
 }
 
-export interface IModalHeaderProps extends Pick<IModalProps, 'closeModal' | 'title'> {
+export interface IModalHeaderProps extends Pick<ModalProps, 'closeModal' | 'title'> {
   classes?: TModalHeaderClasses
 }
 

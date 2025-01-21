@@ -9,7 +9,7 @@ export type RadioOption = {
   disabled?: boolean
 }
 
-type RadioItemClasses = {
+export type RadioItemClasses = {
   item?: string
   indicator?: string
   label?: string

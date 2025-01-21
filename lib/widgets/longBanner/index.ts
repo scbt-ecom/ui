@@ -1,1 +1,1 @@
-export { LongBanner, type ILongBannerProps } from './LongBanner'
+export { LongBanner, type LongBannerProps } from './LongBanner'

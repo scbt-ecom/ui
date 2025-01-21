@@ -1,6 +1,7 @@
 import { forwardRef, useRef, useState } from 'react'
 import { format, isValid, parse } from 'date-fns'
 import { AnimatePresence } from 'framer-motion'
+import { type InputBaseClasses } from '../input/Input'
 import { useClickOutside } from '$/shared/hooks'
 import { Calendar, DATE_VISIBLE_PATTERN, Icon, type MaskInputProps, Uncontrolled } from '$/shared/ui'
 import { cn } from '$/shared/utils'
@@ -12,7 +13,12 @@ type ExternalHandlers = {
   onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void
 }
 
-export type DayPickerProps = Omit<MaskInputProps, 'value' | 'onChange' | 'mask'> & {
+export type DayPickerClasses = {
+  root?: string
+  input?: InputBaseClasses
+}
+
+export type DayPickerProps = Omit<MaskInputProps, 'value' | 'onChange' | 'mask' | 'classes'> & {
   /**
    * Указывает, открыт ли календарь по умолчанию
    */
@@ -26,13 +32,17 @@ export type DayPickerProps = Omit<MaskInputProps, 'value' | 'onChange' | 'mask'>
    */
   onChange?: (value: string) => void
   /**
+   * Внешние классы которыми можно поменять стили
+   */
+  classes?: DayPickerClasses
+  /**
    * Дополнительные хендлеры
    */
   externalHandlers?: ExternalHandlers
 }
 
 export const DayPickerBase = forwardRef<HTMLInputElement, DayPickerProps>(
-  ({ defaultOpen = false, value, onChange, disabled, externalHandlers, ...props }, ref) => {
+  ({ defaultOpen = false, value, onChange, disabled, externalHandlers, classes, ...props }, ref) => {
     const { onChange: externalOnChange, onFocus: externalOnFocus, ...restHandlers } = externalHandlers || {}
 
     const containerRef = useRef<HTMLDivElement>(null)
@@ -81,8 +91,10 @@ export const DayPickerBase = forwardRef<HTMLInputElement, DayPickerProps>(
       setCalendarOpen(false)
     }
 
+    const { root, input } = classes || {}
+
     return (
-      <div ref={containerRef} className='relative w-full'>
+      <div ref={containerRef} className={cn('relative w-full', root)}>
         <AnimatePresence mode='sync'>
           <Uncontrolled.MaskInput
             ref={ref}
@@ -90,6 +102,7 @@ export const DayPickerBase = forwardRef<HTMLInputElement, DayPickerProps>(
             {...restHandlers}
             disabled={disabled}
             mask='##.##.####'
+            classes={input}
             value={visibleValue}
             onChange={(event) => onValueChange(event.target.value)}
             autoComplete='off'

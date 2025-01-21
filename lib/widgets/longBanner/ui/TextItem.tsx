@@ -1,9 +1,9 @@
 import { itemConfig } from '../model/cva'
-import { type ITextItem } from '../model/types'
+import { type TextItemProps } from '../model/types'
 import { Icon, Popover } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
-export const TextItem = ({ data, intent }: ITextItem) => {
+export const TextItem = ({ data, intent }: TextItemProps) => {
   const { title, description, popoverText } = data
   return (
     <li className={cn(itemConfig({ intent }))}>
