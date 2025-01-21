@@ -33,7 +33,7 @@ const meta = {
       const [optionsCount, setOptionsCount] = useState<number>(10)
 
       return (
-        <div className='flex w-[800px] flex-col gap-y-2'>
+        <div className='flex flex-col gap-y-2'>
           <label>
             Количество элементов
             <select
@@ -62,7 +62,6 @@ const meta = {
   ],
   args: {
     label: 'Input',
-    options: generateOptions(10),
     name: 'test'
   },
   render: (props) => (
