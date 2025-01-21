@@ -1,7 +1,7 @@
 import z from 'zod'
 import { baseDefaultMessages } from './base.constants'
 
-type StringValidationOptions = {
+export type StringValidationOptions = {
   /**
    * минимальное количество символов
    * @default 1

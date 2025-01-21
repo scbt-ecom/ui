@@ -1,7 +1,7 @@
 import z from 'zod'
 import { baseDefaultMessages } from './base.constants'
 
-type UnionValidationOptions<T extends z.Primitive> = {
+export type UnionValidationOptions<T extends z.Primitive> = {
   message?: ((values: readonly T[]) => string) | string
   errorMap?: z.ZodErrorMap
   invalid_type_error?: string

@@ -1,1 +1,1 @@
-export { baseValidationSchemas } from './base.validators'
+export * from './base.validators'

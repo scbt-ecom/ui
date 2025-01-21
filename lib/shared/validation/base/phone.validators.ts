@@ -1,7 +1,7 @@
 import z from 'zod'
 import { baseDefaultMessages } from './base.constants'
 
-type PhoneValidationOptions = {
+export type PhoneValidationOptions = {
   /**
    * исключает маску в возвращаемом значении
    * @default false

@@ -2,7 +2,7 @@ import z from 'zod'
 import { baseDefaultMessages } from './base.constants'
 import { TypeGuards } from '$/shared/utils'
 
-type EmailValidationOptions = {
+export type EmailValidationOptions = {
   message?: {
     min?: string
     invalid?: string

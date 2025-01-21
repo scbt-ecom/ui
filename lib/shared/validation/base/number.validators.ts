@@ -1,7 +1,7 @@
 import z from 'zod'
 import { baseDefaultMessages } from './base.constants'
 
-type NumberValidationOptions = {
+export type NumberValidationOptions = {
   min?: number
   max?: number
   message?: Record<keyof Omit<NumberValidationOptions, 'message'>, string>
