@@ -4,7 +4,7 @@ import { baseDefaultMessages } from './base.constants'
 import { DATE_VISIBLE_PATTERN } from '$/shared/ui'
 import { TypeGuards } from '$/shared/utils'
 
-type DateValidationOptions = {
+export type DateValidationOptions = {
   /**
    * парсить строку с учетом ISO формата
    * @default false

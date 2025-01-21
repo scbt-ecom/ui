@@ -1,7 +1,7 @@
 import z from 'zod'
 import { baseDefaultMessages } from './base.constants'
 
-type SelectSingleValidationOptions<Multi extends boolean = false> = {
+export type SelectSingleValidationOptions<Multi extends boolean = false> = {
   /**
    * включает валидацию мульти селекта
    * @default false
