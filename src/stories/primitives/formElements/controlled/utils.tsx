@@ -33,7 +33,7 @@ export const HookForm = <ComponentProps extends {}, Schema extends FieldValues>(
   }
 
   return (
-    <form className='flex w-[500px] flex-col gap-y-2' onSubmit={handleSubmit(onSubmit, onError)}>
+    <form className='flex w-full flex-col gap-y-4' onSubmit={handleSubmit(onSubmit, onError)}>
       {renderComponent({ control, ...props })}
       <Button type='submit'>Submit</Button>
     </form>
