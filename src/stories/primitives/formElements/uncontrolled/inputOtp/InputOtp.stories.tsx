@@ -19,9 +19,7 @@ const meta = {
       )
     }
   ],
-  args: {
-    label: 'Input OTP'
-  }
+  args: {}
 } satisfies Meta<typeof Uncontrolled.InputOtpBase>
 
 export default meta
@@ -30,6 +28,12 @@ type Story = StoryObj<typeof Uncontrolled.InputOtpBase>
 
 export const Base: Story = {
   args: {}
+}
+
+export const Invalid: Story = {
+  args: {
+    invalid: true
+  }
 }
 
 export const WithState: Story = {

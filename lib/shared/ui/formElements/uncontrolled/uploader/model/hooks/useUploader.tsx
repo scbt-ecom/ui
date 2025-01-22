@@ -4,17 +4,17 @@ import { bytesToMegabytes, FilesErrorCode } from '../helpers'
 import { Notification } from '$/shared/ui/'
 
 export type TUseUploader = {
-  controlledFiles: File[]
+  controlledFiles?: File[]
   dropzoneOptions: DropzoneOptions
-  onChange: (files: File[]) => void
+  onChange?: (files: File[]) => void
 }
 
-export const useUploader = ({ dropzoneOptions, controlledFiles, onChange }: TUseUploader) => {
+export const useUploader = ({ dropzoneOptions, controlledFiles = [], onChange }: TUseUploader) => {
   const [filesStatus, setFilesStatus] = useState<Record<string, 'loading' | 'success' | 'error'>>({})
 
   const removeFile = (index: number) => {
-    const updatedFiles = controlledFiles.filter((_, idx) => idx !== index)
-    onChange(updatedFiles)
+    const updatedFiles = controlledFiles?.filter((_, idx) => idx !== index)
+    if (onChange) onChange(updatedFiles)
   }
 
   const onDrop = (acceptedFiles: File[], rejectedFiles: FileRejection[]) => {
@@ -54,7 +54,7 @@ export const useUploader = ({ dropzoneOptions, controlledFiles, onChange }: TUse
 
     const updatedFiles = [...controlledFiles, ...acceptedFiles]
 
-    onChange(updatedFiles)
+    if (onChange) onChange(updatedFiles)
   }
 
   const dropzoneState = useDropzone({

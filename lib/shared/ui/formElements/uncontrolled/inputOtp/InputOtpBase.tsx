@@ -67,7 +67,9 @@ export const InputOtpBase = forwardRef<HTMLInputElement, InputOtpBaseProps>(
         >
           <div className={cn('m-auto flex w-max items-center gap-4', classes?.container)}>
             {maxLength > 0 &&
-              Array.from({ length: maxLength }, (_, inputIndex) => <InputOTPSlot key={inputIndex} index={inputIndex} />)}
+              Array.from({ length: maxLength }, (_, inputIndex) => (
+                <InputOTPSlot key={inputIndex} invalid={invalid} index={inputIndex} />
+              ))}
           </div>
         </OTPInput>
       </>

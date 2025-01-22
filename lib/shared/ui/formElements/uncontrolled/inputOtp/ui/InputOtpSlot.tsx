@@ -12,9 +12,10 @@ export type InputOTPSlotClasses = {
 interface InputOTPSlotProps extends ComponentPropsWithoutRef<'div'> {
   index: number
   classes?: InputOTPSlotClasses
+  invalid?: boolean
 }
 
-export const InputOTPSlot = forwardRef<ElementRef<'div'>, InputOTPSlotProps>(({ index, classes, ...props }, ref) => {
+export const InputOTPSlot = forwardRef<ElementRef<'div'>, InputOTPSlotProps>(({ index, classes, invalid, ...props }, ref) => {
   const inputOTPContext = useContext(OTPInputContext)
   const { char, hasFakeCaret, isActive } = inputOTPContext.slots[index]
 
@@ -34,7 +35,11 @@ export const InputOTPSlot = forwardRef<ElementRef<'div'>, InputOTPSlotProps>(({ 
         </div>
       )}
       <span
-        className={cn('absolute bottom-0 h-px w-8 bg-color-blue-grey-500', { 'bg-color-dark': isActive }, classes?.substrate)}
+        className={cn(
+          'absolute bottom-0 h-px w-8 bg-color-blue-grey-500',
+          { 'bg-color-dark': isActive, 'bg-color-negative': invalid },
+          classes?.substrate
+        )}
       ></span>
     </div>
   )

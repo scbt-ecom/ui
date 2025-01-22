@@ -30,7 +30,7 @@ export interface UploaderBaseProps
    * Сеттер инпута
    * @param file - файлы
    */
-  onChange: (file: File[]) => void
+  onChange?: (file: File[]) => void
   /**
    * Валидный ли инпут
    */
@@ -38,7 +38,7 @@ export interface UploaderBaseProps
   /**
    * Value инпута
    */
-  value: File[]
+  value?: File[]
 }
 
 export const UploaderBase = forwardRef<HTMLInputElement, UploaderBaseProps>(
