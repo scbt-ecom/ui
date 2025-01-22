@@ -44,14 +44,6 @@ const getFioRequired = (props?: Omit<FioValidationOptions<true>, 'required'>) =>
         })
       }
 
-      if (!fioRegex.CHECK_WHITESPACES.test(value)) {
-        context.addIssue({
-          code: z.ZodIssueCode.invalid_string,
-          validation: 'regex',
-          message: fioDefaultMessages.VALUE_NO_WHITESPACE()
-        })
-      }
-
       if (!name || !surname) {
         context.addIssue({
           code: z.ZodIssueCode.invalid_string,
@@ -86,6 +78,7 @@ const getFioRequired = (props?: Omit<FioValidationOptions<true>, 'required'>) =>
         }
       }
     })
+    .transform((value) => value.trimEnd())
     .default('')
 }
 type FioRequiredSchema = ReturnType<typeof getFioRequired>
@@ -96,7 +89,7 @@ type FioRequiredSchema = ReturnType<typeof getFioRequired>
 const getFioOptional = (props?: Omit<FioValidationOptions<false>, 'required'>) => {
   return getFioRequired(props)
     .optional()
-    .transform((value) => (!value ? undefined : value))
+    .transform((value) => (!value?.length ? undefined : value))
 }
 type FioOptionalSchema = ReturnType<typeof getFioOptional>
 

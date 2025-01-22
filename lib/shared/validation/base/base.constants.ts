@@ -4,6 +4,7 @@ export const baseDefaultMessages = {
   NON_EMPTY: () => 'Поле не может быть пустым',
   MIN_LENGTH: (min: number) => `Поле должно содержать минимум символов: ${min}`,
   MAX_LENGTH: (max: number) => `Поле должно содержать максимум символов: ${max}`,
+  FIX_LENGTH: (length: number) => `Поле должно быть фиксированной длины символов: ${length}`,
   MIN_VALUE: (min: number) => `Значение не может быть меньше чем ${min}`,
   MAX_VALUE: (max: number) => `Значение не может быть больше чем ${max}`,
   PHONE_NON_EMPTY: () => 'Номер телефона должен состоять из 11 цифр',

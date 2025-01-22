@@ -13,22 +13,31 @@ export type StringValidationOptions<Required extends boolean> = {
    */
   max?: number
   /**
+   * фиксированная длина символов
+   */
+  length?: number
+  /**
    * указывает что поле обязательное
+   * @default true
    */
   required?: Required
-  message?: Record<keyof Omit<StringValidationOptions<Required>, 'message'>, string>
+  message?: Record<keyof Omit<StringValidationOptions<Required>, 'message'> | 'root', string>
 }
 
 /**
  * Схема валидации обязательного поля строкового типа
  */
 const getStringRequired = (props?: Omit<StringValidationOptions<true>, 'required'>) => {
-  const { min = 1, max, message } = props || {}
+  const { min = 1, max, length, message } = props || {}
 
-  let schema = z.string().min(min, { message: message?.min || baseDefaultMessages.MIN_LENGTH(min) })
+  let schema = z.string({ message: message?.root }).min(min, { message: message?.min || baseDefaultMessages.MIN_LENGTH(min) })
 
   if (max) {
     schema = schema.max(max, { message: message?.max || baseDefaultMessages.MAX_LENGTH(max) })
+  }
+
+  if (length) {
+    schema = schema.length(length, { message: message?.length || baseDefaultMessages.FIX_LENGTH(length) })
   }
 
   return schema.refine((value) => Boolean(value.length), { message: message?.min || baseDefaultMessages.NON_EMPTY() }).default('')
@@ -39,9 +48,9 @@ type StringRequiredSchema = ReturnType<typeof getStringRequired>
  * Схема валидации обязательного поля строкового типа
  */
 const getStringOptional = (props?: Omit<StringValidationOptions<false>, 'required'>) => {
-  const { min, max, message } = props || {}
+  const { min, max, length, message } = props || {}
 
-  let schema = z.string()
+  let schema = z.string({ message: message?.root })
 
   if (min) {
     schema = schema.min(min, { message: message?.min || baseDefaultMessages.MIN_LENGTH(min) })
@@ -49,6 +58,10 @@ const getStringOptional = (props?: Omit<StringValidationOptions<false>, 'require
 
   if (max) {
     schema = schema.max(max, { message: message?.max || baseDefaultMessages.MAX_LENGTH(max) })
+  }
+
+  if (length) {
+    schema = schema.length(length, { message: message?.length || baseDefaultMessages.FIX_LENGTH(length) })
   }
 
   return schema.optional().transform((value) => (!value?.length ? undefined : value))
