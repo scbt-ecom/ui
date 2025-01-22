@@ -19,7 +19,7 @@ export const HookForm = <ComponentProps extends {}, Schema extends FieldValues>(
   renderComponent,
   ...props
 }: FormProps<ComponentProps, Schema>) => {
-  const { control, handleSubmit } = useControlledForm({
+  const { control, handleSubmit, reset } = useControlledForm({
     schema,
     defaultValues
   })
@@ -36,6 +36,9 @@ export const HookForm = <ComponentProps extends {}, Schema extends FieldValues>(
     <form className='flex w-[500px] flex-col gap-y-2' onSubmit={handleSubmit(onSubmit, onError)}>
       {renderComponent({ control, ...props })}
       <Button type='submit'>Submit</Button>
+      <Button type='button' onClick={reset}>
+        Reset
+      </Button>
     </form>
   )
 }

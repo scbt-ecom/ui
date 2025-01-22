@@ -52,6 +52,8 @@ const InnerComponent = <TFieldValues extends FieldValues = FieldValues>({
   const { error, invalid, isTouched } = fieldState
   const { message, container, ...restClasses } = classes || {}
 
+  console.log(error)
+
   return (
     <div className={cn('w-full', container)}>
       <Uncontrolled.InputBase

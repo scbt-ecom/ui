@@ -6,10 +6,9 @@ import { fn } from '@storybook/test'
 import z from 'zod'
 import { HookForm } from '../utils'
 import { Controlled } from '$/shared/ui'
-import { zodValidators } from '$/shared/validation'
 
 const schema = z.object({
-  field: zodValidators.base.getEmailRequired()
+  field: z.string().min(1, '123')
 })
 
 type Schema = z.TypeOf<typeof schema>
