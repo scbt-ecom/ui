@@ -1,0 +1,1 @@
+export { getDefaults } from './getDefaults'
