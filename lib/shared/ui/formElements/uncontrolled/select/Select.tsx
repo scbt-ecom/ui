@@ -159,7 +159,7 @@ export const SelectBase = forwardRef<HTMLElement, SelectBaseProps<boolean>>(
                   label={label}
                   disabled={disabled}
                   readOnly={!isSearchable}
-                  value={(externalInputValue || getDisplayValue()) ?? ''}
+                  value={externalInputValue || getDisplayValue() || ''}
                   autoComplete='off'
                   onChange={(event) => {
                     const { value } = event.target

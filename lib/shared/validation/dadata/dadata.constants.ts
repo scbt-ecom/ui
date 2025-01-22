@@ -9,7 +9,7 @@ export const fioDefaultMessages = {
 }
 
 export const fioRegex = {
-  ONLY_CYRILLIC: /^[а-яА-ЯёЁ]+$/,
+  ONLY_CYRILLIC: /[а-яА-ЯёЁ]/g,
   CHECK_HYPHEN: /^(?:[^-]+(?:-[^-]+){0,4}|[^-]+)$/,
   CHECK_WHITESPACES: /\s/g,
   PATRONYMIC: /^[a-zA-Zа-яА-ЯёЁ]+(?:\s*-\s*[a-zA-Zа-яА-ЯёЁ]+){0,4}(?:\s+[a-zA-Zа-яА-ЯёЁ]+(?:\s*-\s*[a-zA-Zа-яА-ЯёЁ]+){0,4})?$/i

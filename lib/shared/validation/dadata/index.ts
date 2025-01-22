@@ -1,5 +1,5 @@
-import { getFioRequired } from './fio.validators'
+import { getFioSchema } from './fio.validators'
 
 export const dadataValidationSchemas = {
-  getFioRequired
+  getFioSchema
 }

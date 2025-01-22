@@ -8,7 +8,12 @@ const getFioParts = (value: string) => {
   return { surname, name, patronymic }
 }
 
-type FioValidationOptions = {
+type FioValidationOptions<Required extends boolean> = {
+  /**
+   * указывает что поле обязательное
+   * @default true
+   */
+  required?: Required
   message?: {
     root?: string
     nameOrSurnameEmpty?: string
@@ -18,16 +23,16 @@ type FioValidationOptions = {
   }
 }
 
-export const getFioRequired = (props?: FioValidationOptions) => {
+/**
+ * Схема валидации обязательного поля автозаполнения ФИО
+ */
+const getFioRequired = (props?: Omit<FioValidationOptions<true>, 'required'>) => {
   const { message } = props || {}
 
-  const { root, nameOrSurnameEmpty, invalidSurname, invalidPatronymic, invalidName } = message || {}
+  const { nameOrSurnameEmpty, invalidSurname, invalidPatronymic, invalidName } = message || {}
 
   return z
     .string()
-    .min(1, {
-      message: root || fioDefaultMessages.NON_EMPTY()
-    })
     .superRefine((value, context) => {
       const { name, surname, patronymic } = getFioParts(value)
 
@@ -82,4 +87,43 @@ export const getFioRequired = (props?: FioValidationOptions) => {
       }
     })
     .default('')
+}
+type FioRequiredSchema = ReturnType<typeof getFioRequired>
+
+/**
+ * Схема валидации опционального поля автозаполнения ФИО
+ */
+const getFioOptional = (props?: Omit<FioValidationOptions<false>, 'required'>) => {
+  return getFioRequired(props)
+    .optional()
+    .transform((value) => (!value ? undefined : value))
+}
+type FioOptionalSchema = ReturnType<typeof getFioOptional>
+
+/**
+ * Схема валидации поля автозаполнения ФИО
+ * @param {DateValidationOptions} props настройки схемы
+ * @typeParam `required` - `boolean`
+ * @returns схема валидации поля в соответствии с настройками
+ *
+ * @example with required value
+ * z.object({
+ *   field: zodValidators.base.getFioSchema()
+ * })
+ * // will returns z.string()
+ *
+ * @example with required value
+ * z.object({
+ *   field: zodValidators.base.getFioSchema({ required: false })
+ * })
+ * // will returns z.string().optional()
+ */
+export function getFioSchema(props?: FioValidationOptions<true>): FioRequiredSchema
+export function getFioSchema(props?: FioValidationOptions<false>): FioOptionalSchema
+export function getFioSchema<Required extends boolean>(
+  props?: FioValidationOptions<Required>
+): FioRequiredSchema | FioOptionalSchema {
+  const { required = true, ...restProps } = props || {}
+
+  return required ? getFioRequired(restProps) : getFioOptional(restProps)
 }
