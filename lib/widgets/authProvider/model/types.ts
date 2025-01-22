@@ -1,8 +1,8 @@
-import type { TAuthWrapperClasses, TLinksClasses } from '../ui/ui'
+import type { AuthWrapperClasses, TLinksClasses } from '../ui/ui'
 import { type AUTH_PROVIDER_MODE } from './helpers'
-import type { ILoaderProps } from '$/shared/ui'
+import type { LoaderProps } from '$/shared/ui'
 
-export type TCombineClasses = {
+export type CombineClasses = {
   root?: string
   topContent?: string
   badge?: string
@@ -10,8 +10,8 @@ export type TCombineClasses = {
   authWrapper?: string
 }
 
-type TMobileIdClasses = {
-  authWrapper?: TAuthWrapperClasses
+type MobileIdClasses = {
+  authWrapper?: AuthWrapperClasses
   innerWrapper?: string
   textContent?: string
   mtsLogo?: string
@@ -22,8 +22,8 @@ type TMobileIdClasses = {
   links?: TLinksClasses
 }
 
-type TEsiaClasses = {
-  authWrapper?: TAuthWrapperClasses
+type EsiaClasses = {
+  authWrapper?: AuthWrapperClasses
   innerWrapper?: string
   textContent?: string
   esiaLogo?: string
@@ -32,7 +32,7 @@ type TEsiaClasses = {
   links?: TLinksClasses
 }
 
-export type TSingleAuthSchema = {
+export type SingleAuthSchema = {
   mainLink: {
     title: string
     mobileTitle: string
@@ -42,34 +42,34 @@ export type TSingleAuthSchema = {
     text: string
     href: string
   }
-  classes?: TCombineClasses
+  classes?: CombineClasses
   badge?: string
-  loaderProps?: ILoaderProps
+  loaderProps?: LoaderProps
   isLoading?: boolean
 }
 
-type TCombineAuthSchema = {
-  esiaConfig: Omit<TSingleAuthSchema, 'badge'> & Pick<TEsiaMode, 'classes'>
-  mobileIdConfig: Omit<TSingleAuthSchema, 'badge'> & Pick<TMobileIdMode, 'classes'>
+type CombineAuthSchema = {
+  esiaConfig: Omit<SingleAuthSchema, 'badge'> & Pick<EsiaMode, 'classes'>
+  mobileIdConfig: Omit<SingleAuthSchema, 'badge'> & Pick<MobileIdMode, 'classes'>
   subtitle?: string
   badge?: string
-  classes?: TCombineClasses
+  classes?: CombineClasses
 }
 
-type TEsiaMode = TSingleAuthSchema & { classes?: TEsiaClasses } & {
+type EsiaMode = SingleAuthSchema & { classes?: EsiaClasses } & {
   mode: typeof AUTH_PROVIDER_MODE.ESIA
 }
 
-type TMobileIdMode = TSingleAuthSchema & { classes?: TMobileIdClasses } & {
+type MobileIdMode = SingleAuthSchema & { classes?: MobileIdClasses } & {
   mode: typeof AUTH_PROVIDER_MODE.MOBILE_ID
 }
 
-type TCombineMode = TCombineAuthSchema & {
+type CombineMode = CombineAuthSchema & {
   mode: typeof AUTH_PROVIDER_MODE.COMBINE
 }
 
-export type TEsiaProps = Omit<TEsiaMode, 'mode'>
-export type TMobileIdProps = Omit<TMobileIdMode, 'mode'>
-export type TCombineProps = Omit<TCombineMode, 'mode'>
+export type TEsiaProps = Omit<EsiaMode, 'mode'>
+export type TMobileIdProps = Omit<MobileIdMode, 'mode'>
+export type TCombineProps = Omit<CombineMode, 'mode'>
 
-export type TAuthProviderProps = TCombineMode | TMobileIdMode | TEsiaMode
+export type AuthProviderProps = CombineMode | MobileIdMode | EsiaMode

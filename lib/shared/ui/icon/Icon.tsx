@@ -3,10 +3,10 @@ import { SPRITES_META, type SpritesMap } from './sprite.gen'
 import { cn } from '$/shared/utils'
 
 export type IconName<Key extends keyof SpritesMap> = `${Key}/${SpritesMap[Key]}`
-export type TAllowedIcons = { [Key in keyof SpritesMap]: IconName<Key> }[keyof SpritesMap]
+export type AllowedIcons = { [Key in keyof SpritesMap]: IconName<Key> }[keyof SpritesMap]
 
 export interface IconProps extends React.SVGProps<SVGSVGElement> {
-  name: TAllowedIcons
+  name: AllowedIcons
 }
 
 const getIconMeta = <Key extends keyof SpritesMap>(name: IconName<Key>) => {

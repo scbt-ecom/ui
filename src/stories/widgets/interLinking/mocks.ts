@@ -1,4 +1,4 @@
-import type { TInterLinkingSchema } from '$/widgets'
+import type { InterLinkingSchema } from '$/widgets'
 
 const columns = [
   {
@@ -524,19 +524,19 @@ const columns = [
   }
 ]
 
-export const MOCK_INTERLINKING_FOUR_COLS: TInterLinkingSchema = {
+export const MOCK_INTERLINKING_FOUR_COLS: InterLinkingSchema = {
   intent: 'fourCols',
   heading: 'Другие предложения по лизингу',
   columns: [...columns]
 }
 
-export const MOCK_INTERLINKING_THREE_COLS: TInterLinkingSchema = {
+export const MOCK_INTERLINKING_THREE_COLS: InterLinkingSchema = {
   intent: 'threeCols',
   heading: 'Другие предложения по лизингу',
   columns: [columns[0], columns[2], columns[3]]
 }
 
-export const MOCK_INTERLINKING_TWO_COLS: TInterLinkingSchema = {
+export const MOCK_INTERLINKING_TWO_COLS: InterLinkingSchema = {
   intent: 'twoCols',
   heading: 'Другие предложения по лизингу',
   columns: [columns[0], columns[2]]

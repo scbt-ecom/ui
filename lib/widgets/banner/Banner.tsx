@@ -1,31 +1,13 @@
 'use client'
 
 import { type ReactElement } from 'react'
-import { type IAdvantage, type IAdvantageClasses } from '../advantages/Advantages.tsx'
-import { type IBannerButtonsGroupClasses } from './ui/BannerButtonsGroup'
+import { type AdvantageClasses } from '../advantages/Advantages.tsx'
+import { type AdvantageItem } from '../advantages/model/types.ts'
+import { type BannerClasses, type ButtonsConfig } from './model/types.ts'
 import { BannerWithSeparateImg } from './ui/banners'
 import { BannerImageFull } from './ui/banners'
-import { type IButtonProps } from '$/shared/ui'
 
-interface IBannerClasses extends IBannerButtonsGroupClasses {
-  section: string
-  container: string
-  wrapper: string
-  content: string
-  textBlock: string
-  title: string
-  subtitle: string
-  imageContainer: string
-  image: string
-  advantageContainer: string
-}
-
-export type TButtonsConfig = {
-  primary: IButtonProps
-  secondary?: IButtonProps
-}
-
-export interface IBannerProps {
+export interface BannerProps {
   headTitle: string | ReactElement
   subtitle: string | ReactElement
   img?: string
@@ -34,13 +16,15 @@ export interface IBannerProps {
     mob: string
     type?: string
   }
-  buttonsConfig: TButtonsConfig
-  advantagesList?: IAdvantage[]
-  classes?: Partial<IBannerClasses> & Partial<IAdvantageClasses>
+  buttonsConfig: ButtonsConfig
+  advantagesList?: AdvantageItem[]
+  classes?: BannerClasses & {
+    advantages?: AdvantageClasses
+  }
   bannerVariant?: 'separateImg' | 'fullImg'
 }
 
-export const Banner = ({ bannerVariant, ...props }: IBannerProps) => {
+export const Banner = ({ bannerVariant, ...props }: BannerProps) => {
   switch (bannerVariant) {
     case 'separateImg':
       return <BannerWithSeparateImg {...props} />

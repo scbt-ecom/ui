@@ -1,20 +1,20 @@
-import type { IAccordionProps } from '../../../shared/ui'
+import type { AccordionProps } from '../../../shared/ui'
 import { cn } from '../../../shared/utils'
 import type { TColumnGroupSchema } from '../model/types'
-import { ColumnGroup, type TColumnGroupClasses } from './ColumnGroup'
+import { ColumnGroup, type ColumnGroupClasses } from './ColumnGroup'
 
-export type TColumnClasses = {
+export type ColumnClasses = {
   column?: string
-  columnGroup?: TColumnGroupClasses
+  columnGroup?: ColumnGroupClasses
 }
 
-export interface IColumnProps {
+export interface ColumnProps {
   columnsGroup: TColumnGroupSchema
-  mobileAccordionProps?: IAccordionProps
-  classes?: TColumnClasses
+  mobileAccordionProps?: AccordionProps
+  classes?: ColumnClasses
 }
 
-export const Column = ({ columnsGroup, mobileAccordionProps, classes }: IColumnProps) => {
+export const Column = ({ columnsGroup, mobileAccordionProps, classes }: ColumnProps) => {
   return (
     <div className={cn('flex flex-col gap-4 desktop:gap-6', classes?.column)}>
       {columnsGroup?.map((group) => (

@@ -3,12 +3,12 @@
 import { useEffect } from 'react'
 import toast, { Toaster, useToasterStore } from 'react-hot-toast'
 
-export interface INotificationProviderProps {
+export interface NotificationProviderProps {
   maxToastViewLimit?: number
   toastDuration?: number
 }
 
-export const NotificationProvider = ({ maxToastViewLimit = 2, toastDuration = 5000 }: INotificationProviderProps) => {
+export const NotificationProvider = ({ maxToastViewLimit = 2, toastDuration = 5000 }: NotificationProviderProps) => {
   const { toasts } = useToasterStore()
 
   useEffect(() => {

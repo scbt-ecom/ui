@@ -61,7 +61,6 @@ const meta = {
   ],
   args: {
     label: 'Input',
-    options: generateOptions(10),
     name: 'test'
   },
   render: (props) => (

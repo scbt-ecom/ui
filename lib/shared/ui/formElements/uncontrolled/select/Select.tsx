@@ -1,4 +1,4 @@
-import { forwardRef, Fragment } from 'react'
+import { forwardRef } from 'react'
 import { Combobox, ComboboxButton, ComboboxInput, ComboboxOptions, type ComboboxProps } from '@headlessui/react'
 import { motion } from 'framer-motion'
 import { useSelectController } from './hooks'
@@ -136,7 +136,7 @@ export const SelectBase = forwardRef<HTMLElement, SelectBaseProps<boolean>>(
         onBlur={externalHandlers?.onBlur}
         onFocus={externalHandlers?.onFocus}
         onClick={externalHandlers?.onClick}
-        value={value ?? null}
+        value={(value ? value : isMulti ? [] : '') as typeof value}
         onChange={onValueChange}
         multiple={isMulti}
       >
@@ -153,7 +153,7 @@ export const SelectBase = forwardRef<HTMLElement, SelectBaseProps<boolean>>(
 
           return (
             <div className={cn('relative w-full', root)}>
-              <ComboboxButton as={Fragment}>
+              <ComboboxButton className='w-full'>
                 <ComboboxInput
                   as={Uncontrolled.InputBase}
                   label={label}

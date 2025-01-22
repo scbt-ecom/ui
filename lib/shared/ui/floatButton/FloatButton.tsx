@@ -1,19 +1,19 @@
-import { Button, type IButtonProps, ResponsiveContainer } from '$/shared/ui'
+import { Button, type ButtonProps, ResponsiveContainer } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
-type TFloatButtonClasses = {
+type FloatButtonClasses = {
   root?: string
   button?: string
 }
 
-export interface IFloatButtonProps {
+export interface FloatButtonProps {
   isVisible: boolean
-  classes?: TFloatButtonClasses
+  classes?: FloatButtonClasses
   children: React.ReactElement
-  buttonProps?: IButtonProps
+  buttonProps?: ButtonProps
 }
 
-export const FloatButton = ({ isVisible, classes, children, buttonProps }: IFloatButtonProps) => {
+export const FloatButton = ({ isVisible, classes, children, buttonProps }: FloatButtonProps) => {
   return (
     <ResponsiveContainer
       className={cn(

@@ -1,2 +1,2 @@
-export { Icon, type IconProps, type TAllowedIcons } from './Icon'
+export { Icon, type IconProps, type AllowedIcons } from './Icon'
 export type { SpritesMap } from './sprite.gen'

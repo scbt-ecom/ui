@@ -1,19 +1,19 @@
-import { type TButtonsConfig } from '../Banner'
+import { type ButtonsConfig } from '../model'
 import { Button } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
-export interface IBannerButtonsGroupClasses {
-  group: string
-  primary: string
-  secondary: string
+export interface BannerButtonsGroupClasses {
+  group?: string
+  primary?: string
+  secondary?: string
 }
-interface IBannerButtonsGroupProps {
-  buttonsConfig: TButtonsConfig
-  classes?: Partial<IBannerButtonsGroupClasses>
+interface BannerButtonsGroupProps {
+  buttonsConfig: ButtonsConfig
+  classes?: Partial<BannerButtonsGroupClasses>
   className?: string
 }
 
-export const BannerButtonsGroup = ({ buttonsConfig, classes, className }: IBannerButtonsGroupProps) => {
+export const BannerButtonsGroup = ({ buttonsConfig, classes, className }: BannerButtonsGroupProps) => {
   const withSecondaryBtn = buttonsConfig?.secondary && buttonsConfig.secondary.children
 
   return (

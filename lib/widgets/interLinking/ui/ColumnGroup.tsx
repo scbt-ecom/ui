@@ -1,23 +1,23 @@
-import type { TColumnsGroupLabel, TColumnsLinks } from '../model/types'
-import { LinksList, type TLinksListClasses } from './LinksList'
+import type { ColumnsGroupLabel, ColumnsLinks } from '../model/types'
+import { LinksList, type LinksListClasses } from './LinksList'
 import { useDevice } from '$/shared/hooks'
-import { Accordion, type IAccordionProps, Icon } from '$/shared/ui'
+import { Accordion, type AccordionProps, Icon } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
-export type TColumnGroupClasses = {
+export type ColumnGroupClasses = {
   columnGroup?: string
   columnGroupHeading?: string
-  linksList?: TLinksListClasses
+  linksList?: LinksListClasses
 }
 
-export interface IColumnGroupProps {
-  groupLabel: TColumnsGroupLabel
-  links: TColumnsLinks
-  mobileAccordionProps?: IAccordionProps
-  classes?: TColumnGroupClasses
+export interface ColumnGroupProps {
+  groupLabel: ColumnsGroupLabel
+  links: ColumnsLinks
+  mobileAccordionProps?: AccordionProps
+  classes?: ColumnGroupClasses
 }
 
-export const ColumnGroup = ({ groupLabel, links, mobileAccordionProps, classes }: IColumnGroupProps) => {
+export const ColumnGroup = ({ groupLabel, links, mobileAccordionProps, classes }: ColumnGroupProps) => {
   const { isMobile } = useDevice()
 
   return (
@@ -41,7 +41,9 @@ export const ColumnGroup = ({ groupLabel, links, mobileAccordionProps, classes }
           {...mobileAccordionProps}
           classes={{
             ...mobileAccordionProps?.classes,
-            trigger: cn('p-0', mobileAccordionProps?.classes?.trigger),
+            header: {
+              trigger: cn('p-0', mobileAccordionProps?.classes?.header?.trigger)
+            },
             contentInner: cn('py-2 px-4', mobileAccordionProps?.classes?.contentInner)
           }}
         >

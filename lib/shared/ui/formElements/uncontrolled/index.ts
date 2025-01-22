@@ -11,20 +11,23 @@ export type { DayPickerProps } from './dayPicker'
 import { SwitchBase } from './switch'
 export type { SwitchBaseProps } from './switch'
 import { AutocompleteBase } from './autocomplete'
+import { SliderBase } from './slider'
 export type { AutocompleteBaseProps } from './autocomplete'
 import { RadioGroupBase } from './radio'
 export type { RadioGroupBaseProps, RadioOption } from './radio'
 import { TextareaBase } from './textarea'
 import { UploaderBase } from './uploader'
 export type { TextareaBaseProps } from './textarea'
+export { isSingleOption } from './select'
 
 export const Uncontrolled = {
   InputBase,
+  SliderBase,
+  AutocompleteBase,
   MaskInput,
   SelectBase,
   CheckboxBase,
   DayPickerBase,
-  AutocompleteBase,
   SwitchBase,
   RadioGroupBase,
   TextareaBase,

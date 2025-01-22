@@ -1,12 +1,12 @@
 'use client'
 
 import type { ReactElement, ReactNode } from 'react'
-import type { PopoverContentProps as TPopoverContentPropsBase } from '@radix-ui/react-popover'
+import type { PopoverContentProps as PopoverContentPropsBase } from '@radix-ui/react-popover'
 import * as PopoverPrimitive from '@radix-ui/react-popover'
 import { Icon } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
-type TPopoverClasses = {
+type PopoverClasses = {
   root?: string
   content?: string
   trigger?: string
@@ -15,7 +15,7 @@ type TPopoverClasses = {
   closeTrigger?: string
 }
 
-interface IPopoverContentProps extends TPopoverContentPropsBase {
+interface PopoverContentProps extends PopoverContentPropsBase {
   sideOffset?: number
   alignOffset?: number
   align?: 'end' | 'center' | 'start'
@@ -24,10 +24,10 @@ interface IPopoverContentProps extends TPopoverContentPropsBase {
   avoidCollisions?: boolean
 }
 
-export interface IPopoverProps extends IPopoverContentProps {
+export interface PopoverProps extends PopoverContentProps {
   triggerElement: ReactElement
   children: ReactNode
-  classes?: TPopoverClasses
+  classes?: PopoverClasses
   portalContainer?: PopoverPrimitive.PopoverPortalProps['container']
 }
 
@@ -44,7 +44,7 @@ export const Popover = ({
   arrowPadding,
   portalContainer,
   ...contentProps
-}: IPopoverProps) => {
+}: PopoverProps) => {
   return (
     <PopoverPrimitive.Root defaultOpen={defaultOpen}>
       <div className={cn('flex w-max items-center gap-2', classes?.root)}>

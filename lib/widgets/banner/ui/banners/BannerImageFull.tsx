@@ -4,7 +4,7 @@ import { BannerButtonsGroup } from '../BannerButtonsGroup'
 import { useDevice } from '$/shared/hooks'
 import { Heading, ResponsiveContainer } from '$/shared/ui'
 import { cn } from '$/shared/utils'
-import { Advantages, type IBannerProps } from '$/widgets'
+import { Advantages, type BannerProps } from '$/widgets'
 
 export const BannerImageFull = ({
   headTitle,
@@ -14,7 +14,7 @@ export const BannerImageFull = ({
   classes,
   img,
   imgSets
-}: Omit<IBannerProps, 'bannerVariant'>) => {
+}: Omit<BannerProps, 'bannerVariant'>) => {
   const { isDesktop, isMobile } = useDevice()
   const advantage = (
     <div
@@ -24,13 +24,15 @@ export const BannerImageFull = ({
         classes?.advantageContainer
       )}
     >
-      {advantagesList && advantagesList?.length > 0 && <Advantages classes={classes} advantagesList={advantagesList} />}
+      {advantagesList && advantagesList?.length > 0 && (
+        <Advantages classes={classes?.advantages} advantagesList={advantagesList} />
+      )}
     </div>
   )
 
   return (
     <>
-      <section data-id='banner-section' className={cn('relative h-[552px] desktop:h-[456px]', classes?.section)}>
+      <section data-id='banner-section' className={cn('relative h-[552px] desktop:h-[456px]', classes?.root)}>
         <div
           data-id='banner-img-wrapper'
           className='absolute bottom-0 left-0 right-0 top-0 z-[-1] mx-auto h-full max-w-[1920px] desktop:h-[456px]'

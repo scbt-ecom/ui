@@ -1,19 +1,19 @@
 import { type HTMLAttributes } from 'react'
 import { cn } from '$/shared/utils'
 
-interface IPhoneViewClasses {
+interface PhoneViewClasses {
   wrapper?: string
   link?: string
   text?: string
 }
 
-export interface IPhoneViewProps extends HTMLAttributes<HTMLDivElement> {
+export interface PhoneViewProps extends HTMLAttributes<HTMLDivElement> {
   phone: string
   text: string
-  classes?: IPhoneViewClasses
+  classes?: PhoneViewClasses
 }
 
-export const PhoneView = ({ phone, text, classes, ...props }: IPhoneViewProps) => {
+export const PhoneView = ({ phone, text, classes, ...props }: PhoneViewProps) => {
   return (
     <div className={cn('flex w-max flex-col', classes?.wrapper)} {...props}>
       <a

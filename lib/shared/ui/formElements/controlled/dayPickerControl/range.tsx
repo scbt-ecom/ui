@@ -107,7 +107,7 @@ export const RangeDayPicker = ({ inputProps, classes, value, onChange, ...props 
   }
 
   return (
-    <div ref={containerRef} className='relative'>
+    <div ref={containerRef} className={cn('relative w-full', classes?.container)}>
       <Uncontrolled.MaskInput
         mask={RANGE_MASK}
         {...inputProps}

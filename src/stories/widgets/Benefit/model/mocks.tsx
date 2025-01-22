@@ -1,9 +1,9 @@
 import clock from './assets/clock.avif'
 import clockLarge from './assets/clock_large.png'
 import percentMob from './assets/percentMob.avif'
-import { type IBenefitProps } from '$/widgets'
+import { type BenefitProps } from '$/widgets'
 
-export const mockBenefitDataFourCards: IBenefitProps = {
+export const mockBenefitDataFourCards: BenefitProps = {
   intent: 'fourCards',
   heading: (
     <>
@@ -44,7 +44,7 @@ export const mockBenefitDataFourCards: IBenefitProps = {
   ]
 }
 
-export const mockBenefitDataThreeCards: IBenefitProps = {
+export const mockBenefitDataThreeCards: BenefitProps = {
   intent: 'threeCards',
   heading: (
     <>
@@ -80,7 +80,7 @@ export const mockBenefitDataThreeCards: IBenefitProps = {
   ]
 }
 
-export const mockBenefitDataTwoCards: IBenefitProps = {
+export const mockBenefitDataTwoCards: BenefitProps = {
   intent: 'twoCards',
   heading: (
     <>

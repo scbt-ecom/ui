@@ -6,6 +6,7 @@ import { DayPickerControl } from './dayPickerControl'
 import { InputControl, MaskInputControl } from './input'
 import { RadioGroupControl } from './radio'
 import { SelectControl } from './select'
+import { SliderControl } from './slider'
 import { SwitchControl } from './switch'
 import { TextareaControl } from './textarea'
 import { UploaderControl } from './uploader'
@@ -26,6 +27,7 @@ export const Controlled = {
   DadataCountry,
   DadataAuto,
   DadataOrganization,
+  SliderControl,
   TextareaControl,
   UploaderControl
 }

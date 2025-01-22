@@ -68,14 +68,14 @@ const buttonConfig = cva(
   }
 )
 
-export type TButtonConfig = VariantProps<typeof buttonConfig>
-export interface IButtonProps extends ComponentProps<'button'>, TButtonConfig {
+export type ButtonConfig = VariantProps<typeof buttonConfig>
+export interface ButtonProps extends ComponentProps<'button'>, ButtonConfig {
   iconLeft?: ReactElement
   iconRight?: ReactElement
   isLoading?: boolean
 }
 
-export const Button = forwardRef<HTMLButtonElement, IButtonProps>(
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
       intent,

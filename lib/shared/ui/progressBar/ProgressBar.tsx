@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { cn } from '$/shared/utils'
 
-type IProgressBarClasses = {
+type ProgressBarClasses = {
   root?: string
   topContent?: string
   bottomContent?: string
@@ -15,7 +15,7 @@ export interface IProgressBarProps {
   bottomContent?: React.ReactElement
   progress: number
   maxPercent?: number
-  classes?: IProgressBarClasses
+  classes?: ProgressBarClasses
 }
 
 export const ProgressBar = ({ topContent, bottomContent, progress, maxPercent = 100, classes }: IProgressBarProps) => {

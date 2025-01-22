@@ -1,4 +1,4 @@
-import type { TSingleAuthSchema } from '../../model/types'
+import type { SingleAuthSchema } from '../../model/types'
 import { CustomLink } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
@@ -8,7 +8,7 @@ export type TLinksClasses = {
   linksSubLink?: string
 }
 
-interface ILinksProps extends Pick<TSingleAuthSchema, 'subLink' | 'mainLink'> {
+interface ILinksProps extends Pick<SingleAuthSchema, 'subLink' | 'mainLink'> {
   isMobile: boolean
   classes?: TLinksClasses
 }

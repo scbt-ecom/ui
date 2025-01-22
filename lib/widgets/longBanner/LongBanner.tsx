@@ -1,16 +1,16 @@
 import { type ReactElement } from 'react'
 import { containerImgConfig } from './model/cva'
-import { type IButtonConfig, type ILongBannerClasses, type ITextContent, type TLongBannerConfig } from './model/types'
+import { type IButtonConfig, type ILongBannerClasses, type ITextContent, type LongBannerConfig } from './model/types'
 import { TextList, Title } from './ui'
 import { Button, ResponsiveContainer } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
-export interface ILongBannerProps extends TLongBannerConfig {
+export interface LongBannerProps extends LongBannerConfig {
   title: string | ReactElement
   buttonConfig?: IButtonConfig
   textContent: ITextContent[]
   imageComponent: ReactElement
-  classes?: Partial<ILongBannerClasses>
+  classes?: ILongBannerClasses
 }
 
 export const LongBanner = ({
@@ -20,14 +20,14 @@ export const LongBanner = ({
   textContent,
   imageComponent,
   classes
-}: ILongBannerProps) => {
+}: LongBannerProps) => {
   const withButton = !!buttonConfig
   const isFourItems = intent === 'fourItems'
   const isTwoItems = intent === 'twoItems'
 
   return (
-    <section className={cn(classes?.section)}>
-      <ResponsiveContainer className={cn(classes?.mainContainer)}>
+    <section className={cn(classes?.root)}>
+      <ResponsiveContainer className={cn(classes?.container)}>
         {isTwoItems && <Title intent={intent} title={title} />}
 
         <div

@@ -1,7 +1,7 @@
 import { cva } from 'class-variance-authority'
-import type { TInterLinkingSchema } from './model/types'
-import { Column, type TColumnClasses } from './ui'
-import { Accordion, Heading, type IAccordionProps, ResponsiveContainer } from '$/shared/ui'
+import type { InterLinkingSchema } from './model/types'
+import { Column, type ColumnClasses } from './ui'
+import { Accordion, type AccordionProps, Heading, ResponsiveContainer } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
 const columnsWrapper = cva('grid gap-4 grid-cols-1', {
@@ -17,21 +17,21 @@ const columnsWrapper = cva('grid gap-4 grid-cols-1', {
   }
 })
 
-export type TInterLinkingClasses = {
+export type InterLinkingClasses = {
   root?: string
   heading?: string
   columnsWrapper?: string
-  column?: TColumnClasses
+  column?: ColumnClasses
 }
 
-export interface IInterLinkingProps {
-  data: TInterLinkingSchema
-  mobileAccordionProps?: IAccordionProps
-  rootAccordionProps?: IAccordionProps
-  classes?: TInterLinkingClasses
+export interface InterLinkingProps {
+  data: InterLinkingSchema
+  mobileAccordionProps?: AccordionProps
+  rootAccordionProps?: AccordionProps
+  classes?: InterLinkingClasses
 }
 
-export const InterLinking = ({ data, mobileAccordionProps, rootAccordionProps, classes }: IInterLinkingProps) => {
+export const InterLinking = ({ data, mobileAccordionProps, rootAccordionProps, classes }: InterLinkingProps) => {
   return (
     <section id='inter-linking' className={cn('min-w-full desktop:min-w-[1140px]', classes?.root)}>
       <ResponsiveContainer>

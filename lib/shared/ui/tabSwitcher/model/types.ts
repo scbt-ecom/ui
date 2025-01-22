@@ -1,13 +1,13 @@
 /**
  * @param {string} id - для триггера и для контента должен совпадать
  */
-import type { TTabContentClasses } from '../ui/TabContent'
+import type { TabContentClasses } from '../ui/TabContent'
 
-export type TTabsClasses = {
+export type TabsClasses = {
   root?: string
   list?: string
   trigger?: string
-  tabContent?: TTabContentClasses
+  tabContent?: TabContentClasses
 }
 
 export interface ITabContent {
@@ -23,7 +23,7 @@ interface ITabTrigger {
   label: string
 }
 
-export interface ITabRenderContent {
+export interface TabRenderContent {
   triggers: ITabTrigger[]
   contents: ITabContent[]
 }

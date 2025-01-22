@@ -2,25 +2,25 @@ import { type ReactElement } from 'react'
 import { Icon } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
-export interface IBreadcrumbLink {
+export interface BreadcrumbLink {
   label: string | ReactElement
   path: string
   isDisabled?: boolean
 }
-interface IBreadcrumbLinkWithoutPath {
+interface BreadcrumbLinkWithoutPath {
   label: string
   isDisabled?: boolean
 }
 
-export type TLinksList = [...IBreadcrumbLink[], IBreadcrumbLinkWithoutPath]
+export type LinksList = [...BreadcrumbLink[], BreadcrumbLinkWithoutPath]
 
-export interface IBreadcrumbsProps {
-  linksList: TLinksList
+export interface BreadcrumbsProps {
+  linksList: LinksList
 }
 
 //TODO: Его должны переработать не использовать! DEPRECATED
 
-export const Breadcrumbs = ({ linksList }: IBreadcrumbsProps) => {
+export const Breadcrumbs = ({ linksList }: BreadcrumbsProps) => {
   return (
     <div aria-label='Breadcrumb' className='flex max-w-[840px] items-center gap-2'>
       {linksList.map((link) => (

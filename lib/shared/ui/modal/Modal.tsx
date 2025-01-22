@@ -7,17 +7,17 @@ import { modalContentAnimation, modalOverlayAnimation } from './model/helpers'
 import { ModalHeader, type TModalHeaderClasses } from './ui/ModalHeader'
 import { cn } from '$/shared/utils'
 
-type IModalClasses = {
+type ModalClasses = {
   overlay?: string
   modal?: string
   content?: string
   modalHeader?: TModalHeaderClasses
 }
 
-export interface IModalProps {
+export interface ModalProps {
   children: React.ReactElement
   isModalOpen: boolean
-  classes?: IModalClasses
+  classes?: ModalClasses
   isPortal?: boolean
   portalContainer?: HTMLElement
   title?: string | React.ReactElement
@@ -32,7 +32,7 @@ export const Modal = ({
   portalContainer = globalThis?.document?.body,
   closeModal,
   classes
-}: IModalProps) => {
+}: ModalProps) => {
   const modalBody = (
     <AnimatePresence>
       {isModalOpen && (

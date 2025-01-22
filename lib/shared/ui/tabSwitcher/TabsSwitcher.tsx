@@ -1,19 +1,19 @@
 'use client'
 
 import * as TabPrimitive from '@radix-ui/react-tabs'
-import type { ITabRenderContent, TTabsClasses } from './model/types'
+import type { TabRenderContent, TabsClasses } from './model/types'
 import { TabContent } from './ui/TabContent'
 import { cn } from '$/shared/utils'
 
-export interface ITabsSwitcherProps {
-  renderContent: ITabRenderContent
+export interface TabsSwitcherProps {
+  renderContent: TabRenderContent
   value: string
   onChangeTab: (tab: string) => void
   defaultActiveTabId?: string
-  classes?: TTabsClasses
+  classes?: TabsClasses
 }
 
-export const TabsSwitcher = ({ renderContent, defaultActiveTabId = '1', value, onChangeTab, classes }: ITabsSwitcherProps) => {
+export const TabsSwitcher = ({ renderContent, defaultActiveTabId = '1', value, onChangeTab, classes }: TabsSwitcherProps) => {
   return (
     <TabPrimitive.Root
       value={value}

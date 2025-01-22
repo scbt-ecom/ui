@@ -1,44 +1,42 @@
-import * as React from 'react'
 import { type HTMLAttributes } from 'react'
-import { type ISingleStepClasses, SingleStep } from './ui/SingleStep'
+import type { SingleStepItem, StepperVariant } from './model/types'
+import { SingleStep, type SingleStepClasses } from './ui/SingleStep'
 import { Heading, ResponsiveContainer, Section } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
-export type TStepperClasses = {
+export type StepperClasses = {
   root?: string
   container?: string
   wrapper?: string
   headline?: string
   stepsWrapper?: string
-  step?: ISingleStepClasses
+  step?: SingleStepClasses
 }
 
-export interface ISingleStep {
-  title: string
-  description: string | React.ReactElement
+export interface StepperProps extends HTMLAttributes<HTMLDivElement> {
+  headline: string
+  variant: StepperVariant
+  stepsList: SingleStepItem[]
+  classes?: StepperClasses
 }
 
-export interface IStepperProps extends HTMLAttributes<HTMLDivElement> {
-  heading: string
-  stepsList: ISingleStep[]
-  classes?: TStepperClasses
-}
-
-export const Stepper = ({ heading, stepsList, classes }: IStepperProps) => {
+export const Stepper = ({ headline, variant, stepsList, classes }: StepperProps) => {
   return (
     <Section className={classes?.root}>
       <ResponsiveContainer className={classes?.container}>
-        <div className={cn('flex flex-col gap-12 desktop:items-start', classes?.wrapper)}>
+        <div className={cn('flex flex-col gap-6 desktop:items-start desktop:gap-12', classes?.wrapper)}>
           <Heading as='h2' className={cn('text-color-dark', classes?.headline)}>
-            {heading}
+            {headline}
           </Heading>
           <div
             className={cn(
-              'flex w-full flex-col items-start gap-6 desktop:flex-row desktop:items-center desktop:gap-12',
+              'flex w-full flex-col items-start gap-6 desktop:flex-row desktop:items-start desktop:gap-12',
               classes?.stepsWrapper
             )}
           >
-            {stepsList?.map((step, index) => <SingleStep key={step.title} index={index + 1} {...step} classes={classes?.step} />)}
+            {stepsList?.map((step, index) => (
+              <SingleStep variant={variant} key={step.description} {...step} index={index + 1} classes={classes?.step} />
+            ))}
           </div>
         </div>
       </ResponsiveContainer>

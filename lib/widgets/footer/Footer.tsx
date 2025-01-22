@@ -1,16 +1,16 @@
 import * as React from 'react'
 import { defaultCopyright, defaultNavigationLinks, defaultPhones, defaultSocialsLinks } from './model/defaultValues'
-import type { IFooterNavLinks, IFooterPhones, IFooterSocialLinks, TFooterClasses, TFooterRenderBlocks } from './model/types'
+import type { FooterClasses, FooterNavLinks, FooterPhones, FooterRenderBlocks, FooterSocialLinks } from './model/types'
 import { Copyright, FooterLogo, NavLinks, PhonesBlock, SiteMap, SocialLinks } from './ui'
 import { ResponsiveContainer } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
-export interface IFooterProps {
-  classes?: TFooterClasses
-  renderBlocks?: TFooterRenderBlocks
-  socialsLinks?: IFooterSocialLinks[]
-  phones?: IFooterPhones[]
-  navigationLinks?: IFooterNavLinks[]
+export interface FooterProps {
+  classes?: FooterClasses
+  renderBlocks?: FooterRenderBlocks
+  socialsLinks?: FooterSocialLinks[]
+  phones?: FooterPhones[]
+  navigationLinks?: FooterNavLinks[]
   ligal?: string | React.ReactElement
   copyright?: string | React.ReactElement
 }
@@ -23,7 +23,7 @@ export const Footer = ({
   ligal,
   copyright = defaultCopyright,
   classes
-}: IFooterProps) => {
+}: FooterProps) => {
   return (
     <footer className={cn('w-full bg-color-footer py-8 desktop:py-10', classes?.root)}>
       <ResponsiveContainer className={cn(classes?.footerContainer)}>

@@ -2,16 +2,16 @@
 
 import { type ReactElement } from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
-import { BenefitItem, type IBenefitItemClasses, type IBenefitItemProps } from './ui/BenefitItem'
+import { BenefitItem, type BenefitItemClasses, type BenefitItemProps } from './ui/BenefitItem'
 import { Heading, ResponsiveContainer } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
-export type IBenefitClasses = IBenefitItemClasses & {
-  item?: string
+export type BenefitClasses = {
+  root?: string
+  container?: string
+  item?: BenefitItemClasses
   heading?: string
   grid?: string
-  container?: string
-  section?: string
 }
 
 const gridConfig = cva('grid gap-4', {
@@ -24,21 +24,21 @@ const gridConfig = cva('grid gap-4', {
   }
 })
 
-export interface IBenefitProps extends VariantProps<typeof gridConfig> {
+export interface BenefitProps extends VariantProps<typeof gridConfig> {
   heading: string | ReactElement
-  cards: IBenefitItemProps[]
-  classes?: IBenefitClasses
+  cards: BenefitItemProps[]
+  classes?: BenefitClasses
 }
 
-export const Benefit = ({ heading, cards, classes, intent }: IBenefitProps) => {
+export const Benefit = ({ heading, cards, classes, intent }: BenefitProps) => {
   return (
-    <section className={cn('pb-20', classes?.section)}>
-      <ResponsiveContainer>
-        <Heading className='mb-8' as='h2'>
+    <section className={cn('pb-20', classes?.root)}>
+      <ResponsiveContainer className={classes?.container}>
+        <Heading className={cn('mb-8', classes?.heading)} as='h2'>
           {heading}
         </Heading>
         <ul className={cn(gridConfig({ intent }), classes?.grid)}>
-          {cards?.map((card) => <BenefitItem intent={intent} key={card.img} classes={classes} {...card} />)}
+          {cards?.map((card) => <BenefitItem intent={intent} key={card.img} classes={classes?.item} {...card} />)}
         </ul>
       </ResponsiveContainer>
     </section>
