@@ -1,4 +1,4 @@
-import type { ColumnsGroupLabel, ColumnsLinks } from '../model/types'
+import type { ColumnGroupSchema } from '../model/types'
 import { LinksList, type LinksListClasses } from './LinksList'
 import { useDevice } from '$/shared/hooks'
 import { Accordion, type AccordionProps, Icon } from '$/shared/ui'
@@ -10,9 +10,7 @@ export type ColumnGroupClasses = {
   linksList?: LinksListClasses
 }
 
-export interface ColumnGroupProps {
-  groupLabel: ColumnsGroupLabel
-  links: ColumnsLinks
+export interface ColumnGroupProps extends ColumnGroupSchema {
   mobileAccordionProps?: AccordionProps
   classes?: ColumnGroupClasses
 }

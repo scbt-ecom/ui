@@ -14,18 +14,18 @@ type Story = StoryObj<typeof InterLinking>
 
 export const FourColumns: Story = {
   args: {
-    data: MOCK_INTERLINKING_FOUR_COLS
+    ...MOCK_INTERLINKING_FOUR_COLS
   }
 }
 
 export const ThreeColumns: Story = {
   args: {
-    data: MOCK_INTERLINKING_THREE_COLS
+    ...MOCK_INTERLINKING_THREE_COLS
   }
 }
 
 export const TwoColumns: Story = {
   args: {
-    data: MOCK_INTERLINKING_TWO_COLS
+    ...MOCK_INTERLINKING_TWO_COLS
   }
 }

@@ -1,8 +1,6 @@
 import { type z } from 'zod'
-import { type columnGroupSchema, type interLinkingSchema } from './helpers'
+import { type groupSchema, type interLinkingSchema, type linkSchema } from './helpers'
 
-export type TColumnGroupSchema = z.infer<typeof columnGroupSchema>
 export type InterLinkingSchema = z.infer<typeof interLinkingSchema>
-
-export type ColumnsLinks = TColumnGroupSchema[number]['links']
-export type ColumnsGroupLabel = TColumnGroupSchema[number]['groupLabel']
+export type ColumnGroupSchema = z.infer<typeof groupSchema>
+export type GroupLinkSchema = z.infer<typeof linkSchema>

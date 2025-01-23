@@ -1,4 +1,4 @@
-import type { ColumnsLinks } from '../model/types'
+import type { GroupLinkSchema } from '../model/types'
 import { CustomLink } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
@@ -9,7 +9,7 @@ export type LinksListClasses = {
 }
 
 export interface LinksListProps {
-  links: ColumnsLinks
+  links: GroupLinkSchema[]
   classes?: LinksListClasses
 }
 
