@@ -1,24 +1,17 @@
-import { getDateOptional, getDateRequired } from './date.validators'
-import { getEmailOptional, getEmailRequired } from './email.validators'
-import { getNumberOptional, getNumberRequired } from './number.validators'
-import { getPhoneOptional, getPhoneRequired } from './phone.validators'
-import { getSelectOptional, getSelectRequired } from './select.validators'
-import { getStringOptional, getStringRequired } from './string.validators'
-import { getUnionOptional, getUnionRequired } from './union.validators'
+import { getDateSchema } from './date.validators'
+import { getEmailSchema } from './email.validators'
+import { getNumberSchema } from './number.validators'
+import { getPhoneSchema } from './phone.validators'
+import { getSelectSchema } from './select.validators'
+import { getStringSchema } from './string.validators'
+import { getUnionSchema } from './union.validators'
 
 export const baseValidationSchemas = {
-  getStringRequired,
-  getStringOptional,
-  getEmailRequired,
-  getEmailOptional,
-  getSelectRequired,
-  getSelectOptional,
-  getNumberRequired,
-  getNumberOptional,
-  getPhoneRequired,
-  getPhoneOptional,
-  getDateRequired,
-  getDateOptional,
-  getUnionRequired,
-  getUnionOptional
+  getStringSchema,
+  getEmailSchema,
+  getSelectSchema,
+  getNumberSchema,
+  getPhoneSchema,
+  getDateSchema,
+  getUnionSchema
 }

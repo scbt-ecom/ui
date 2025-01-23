@@ -1,10 +1,10 @@
 import z from 'zod'
 import { baseDefaultMessages } from './base.constants'
 
-export type PhoneValidationOptions = {
+export type PhoneValidationOptions<Required extends boolean> = {
   /**
    * исключает маску в возвращаемом значении
-   * @default false
+   * @default true
    */
   ignoreMask?: boolean
   /**
@@ -12,6 +12,10 @@ export type PhoneValidationOptions = {
    * @default /[()+_ -]/g
    */
   maskSymbols?: RegExp
+  /**
+   * указывает что поле обязательное
+   */
+  required?: Required
   message?: {
     min?: string
     invalidOperator?: string
@@ -20,19 +24,8 @@ export type PhoneValidationOptions = {
 
 /**
  * Схема валидации обязательного поля номера телефона
- * @param {PhoneValidationOptions} props настройки схемы
- * @typeParam `ignoreMask` - `boolean | undefined` `default: false`
- * @typeParam `maskSymbols` - `RegExp | undefined` `default: /[()+_ -]/g`
- * @typeParam `message` - `{ [min | invalidOperator]: string }`
- * @returns схема валидации поля в соответствии с настройками
- *
- * @example
- * z.object({
- *   field: zodValidators.base.getPhoneRequired()
- * })
- * // will returns z.string()
  */
-export const getPhoneRequired = (props?: PhoneValidationOptions) => {
+const getPhoneRequired = (props?: Omit<PhoneValidationOptions<true>, 'required'>) => {
   const { ignoreMask = true, maskSymbols = /[()+_ -]/g, message } = props || {}
 
   let schema = z.string().superRefine((value, context) => {
@@ -65,22 +58,12 @@ export const getPhoneRequired = (props?: PhoneValidationOptions) => {
 
   return schema.default('')
 }
+type PhoneRequiredSchema = ReturnType<typeof getPhoneRequired>
 
 /**
  * Схема валидации опционального поля номера телефона
- * @param {PhoneValidationOptions} props настройки схемы
- * @typeParam `ignoreSeparators` - `boolean | undefined` `default: false` возвращает строку вырезая символы маски
- * @typeParam `maskSymbols` - `RegExp | undefined` `default: /[()+_ -]/g` игнорирует символы для проверки поля исключая данные символы
- * @typeParam `message` - `{ [min | invalidOperator]: string }`
- * @returns схема валидации поля в соответствии с настройками
- *
- * @example
- * z.object({
- *   field: zodValidators.base.getPhoneOptional()
- * })
- * // will returns z.string()
  */
-export const getPhoneOptional = (props?: PhoneValidationOptions) => {
+const getPhoneOptional = (props?: Omit<PhoneValidationOptions<false>, 'required'>) => {
   const { ignoreMask = true, maskSymbols = /[()+_ -]/g, message } = props || {}
 
   let schema = z.string().superRefine((value, context) => {
@@ -112,4 +95,36 @@ export const getPhoneOptional = (props?: PhoneValidationOptions) => {
   }
 
   return schema.transform((value) => (!value ? undefined : value))
+}
+type PhoneOptionalSchema = ReturnType<typeof getPhoneOptional>
+
+/**
+ * Схема валидации опционального поля номера телефона
+ * @param {PhoneValidationOptions} props настройки схемы
+ @typeParam `required` - `boolean`
+ * @typeParam `ignoreSeparators` - `boolean | undefined` `default: false`
+ * @typeParam `maskSymbols` - `RegExp | undefined` `default: /[()+_ -]/g`
+ * @typeParam `message` - `{ [min | invalidOperator]: string }`
+ * @returns схема валидации поля в соответствии с настройками
+ *
+ * @example with required value
+ * z.object({
+ *   field: zodValidators.base.getPhoneSchema()
+ * })
+ * // will returns z.string()
+ *
+ * @example with optional value
+ * z.object({
+ *   field: zodValidators.base.getPhoneSchema({ required: false })
+ * })
+ * // will returns z.string().optional()
+ */
+export function getPhoneSchema(props?: PhoneValidationOptions<true>): PhoneRequiredSchema
+export function getPhoneSchema(props?: PhoneValidationOptions<false>): PhoneOptionalSchema
+export function getPhoneSchema<Required extends boolean>(
+  props?: PhoneValidationOptions<Required>
+): PhoneRequiredSchema | PhoneOptionalSchema {
+  const { required = true } = props || {}
+
+  return required ? getPhoneRequired(props) : getPhoneOptional(props)
 }

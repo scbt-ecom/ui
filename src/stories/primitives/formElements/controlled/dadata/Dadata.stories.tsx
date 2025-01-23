@@ -7,13 +7,14 @@ import z from 'zod'
 import { DADATA_BASE_CACHE_URL, DADATA_BASE_CONSTANTS_URL } from '@/configs/api'
 import { useControlledForm } from '$/shared/hooks'
 import { Controlled } from '$/shared/ui'
+import { zodValidators } from '$/shared/validation'
 
 const schema = z.object({
-  fio: z.string().min(1),
-  country: z.string().min(1),
-  auto: z.string().min(1),
-  organization: z.string().min(1),
-  address: z.string().min(1)
+  fio: zodValidators.dadata.getFioSchema(),
+  country: zodValidators.base.getStringSchema(),
+  auto: zodValidators.base.getStringSchema(),
+  organization: zodValidators.base.getStringSchema(),
+  address: zodValidators.base.getStringSchema()
 })
 
 type Schema = z.TypeOf<typeof schema>
@@ -39,7 +40,7 @@ const Form = () => {
   }
 
   return (
-    <form className='flex flex-col gap-4' onSubmit={handleSubmit(onSubmit, onError)}>
+    <form className='flex w-[500px] flex-col gap-4' onSubmit={handleSubmit(onSubmit, onError)}>
       <Controlled.DadataOrganization
         control={control}
         dadataBaseUrl={DADATA_BASE_CACHE_URL as string}
