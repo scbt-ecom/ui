@@ -32,6 +32,9 @@ jobs:
       - name: Install @octokit/auth-app 💀
         run: npm install -g @octokit/auth-app
 
+      - name: Check @octokit/auth-app
+        run: npx @octokit/auth-app --help
+
       - name: Generate JWT 🗝️
         id: generate-jwt
         run: |
