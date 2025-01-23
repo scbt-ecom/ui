@@ -29,8 +29,15 @@ jobs:
       - name: Build 🏗️
         run: npm run build
 
+      - name: Generate JWT
+        id: generate-jwt
+        run: |
+          JWT=$(npx @octokit/auth-app --app-id ${{ secrets.SEMANTIC_APP_ID }} --private-key <(echo "${{ secrets.SEMANTIC_APP_PRIVATE_KEY }}"))
+          echo "::set-output name=jwt::$JWT"
+
       - name: Publish with Semantic Release 🚀
         env:
+          JWT_TOKEN: ${{ steps.generate-jwt.outputs.jwt }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npx semantic-release

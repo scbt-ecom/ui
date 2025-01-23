@@ -22,6 +22,11 @@
         ],
         "message": "chore(release): ${nextRelease.version} [skip ci]"
       }
-    ]
+    ],
+    "githubUrl": "https://github.com",
+    "githubApiPathPrefix": "",
+    githubApiHeaders: {
+        "Authorization": "Bearer ${process.env.JWT_TOKEN}"
+    }
   ]
 }
