@@ -30,7 +30,7 @@ export interface UploaderBaseProps
    * Сеттер значение
    * @param file - файлы
    */
-  onChange: (file: File[]) => void
+  onChange?: (file: File[]) => void
   /**
    * Валидное ли значение
    */
@@ -38,7 +38,7 @@ export interface UploaderBaseProps
   /**
    * Значение
    */
-  value: File[]
+  value?: File[]
 }
 
 export const UploaderBase = forwardRef<HTMLInputElement, UploaderBaseProps>(

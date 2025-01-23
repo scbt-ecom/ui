@@ -19,6 +19,8 @@ import { TextareaBase } from './textarea'
 import { UploaderBase } from './uploader'
 export type { TextareaBaseProps } from './textarea'
 export { isSingleOption } from './select'
+import { InputOtpBase } from './inputOtp'
+export type { InputOtpBaseProps } from './inputOtp'
 
 export const Uncontrolled = {
   InputBase,
@@ -31,5 +33,6 @@ export const Uncontrolled = {
   SwitchBase,
   RadioGroupBase,
   TextareaBase,
+  InputOtpBase,
   UploaderBase
 }
