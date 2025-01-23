@@ -1,6 +1,5 @@
 import { type Control, type FieldValues, type Path, useController, type UseControllerProps } from 'react-hook-form'
 import { MessageView } from '../../ui'
-import { type SelectClasses } from '../../uncontrolled/select/Select'
 import { type AutocompleteBaseProps, Uncontrolled } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
@@ -12,7 +11,7 @@ export type AutocompleteControlProps<
   Omit<AutocompleteBaseProps<T>, 'classes'> & {
     control: Control<TFieldValues>
     helperText?: string
-    classes?: SelectClasses & {
+    classes?: AutocompleteBaseProps<T>['classes'] & {
       container?: string
       message?: string
     }
