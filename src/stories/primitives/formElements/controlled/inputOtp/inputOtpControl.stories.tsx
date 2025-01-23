@@ -6,64 +6,58 @@ import { fn } from '@storybook/test'
 import z from 'zod'
 import { HookForm } from '../utils'
 import { Controlled } from '$/shared/ui'
-import { zodValidators } from '$/shared/validation'
+
+export type InputOtpControlProps = React.ComponentPropsWithoutRef<typeof Controlled.InputOtpControl>
 
 const schema = z.object({
-  field: zodValidators.base.getEmailRequired()
+  test: z.string().min(4, 'Name error')
 })
 
 type Schema = z.TypeOf<typeof schema>
-type InputControlProps = React.ComponentPropsWithoutRef<typeof Controlled.InputControl>
 
 const meta = {
-  title: 'CONTROLLED/InputControl',
-  component: Controlled.InputControl,
+  title: 'CONTROLLED/InputOtpControl',
+  component: Controlled.InputOtpControl,
   parameters: {
     layout: 'centered'
   },
   args: {
-    label: 'Input',
     name: 'test'
   },
   render: (props) => (
-    <HookForm<InputControlProps, Schema>
+    <HookForm<InputOtpControlProps, Schema>
       {...props}
       schema={schema}
       defaultValues={{
-        field: ''
+        test: ''
       }}
-      renderComponent={(componentProps: InputControlProps) => <Controlled.InputControl {...componentProps} />}
+      renderComponent={(componentProps: InputOtpControlProps) => <Controlled.InputOtpControl {...componentProps} />}
     />
   )
-} satisfies Meta<typeof Controlled.InputControl>
+} satisfies Meta<typeof Controlled.InputOtpControl>
 
 export default meta
 
-type Story = StoryObj<typeof Controlled.InputControl>
+type Story = StoryObj<typeof Controlled.InputOtpControl>
 
 /**
- * \`InputControl\` компонент, контролируемый библиотекой \`react-hook-form\`\n
+ * \`InputOtpControl\` компонент, управляемый библиотекой \`react-hook-form\`\n
  *
  * | Props        | Description                         | Type                         | Required  |
  * | ------------ | ----------------------------------- | ---------------------------- | --------- |
  * | \`control\`  | Контрол объект для управления полем | \`Control\<TFieldValues\>\`  | \`true\`  |
  * | \`name\`     | Имя поля                            | \`string\`                   | \`true\`  |
- * | \`classes\`  | Дополнительные стили компонента     | \`InputControlClasses\`      | \`false\` |
+ * | \`classes\`  | Дополнительные стили компонента     | \`MaskInputClasses\`         | \`false\` |
  * | \`helperText\` | Дополнительный текст                | \`string\`                   | \`false\` |
  *
- * Остальные свойства наследуются от [Input](?path=/docs/base-inputbase--docs)\n
+ * Остальные свойства наследуются от [InputOtpBase](?path=/docs/base-inputOtp--docs)\n
  */
 export const Base: Story = {}
 
 export const Disabled: Story = {
   args: {
-    disabled: true
-  }
-}
-
-export const ReadOnly: Story = {
-  args: {
-    readOnly: true
+    disabled: true,
+    helperText: 'Эта кнопка выключена'
   }
 }
 

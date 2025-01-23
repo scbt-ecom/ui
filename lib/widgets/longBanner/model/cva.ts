@@ -4,7 +4,7 @@ export const titleConfig = cva('', {
   variants: {
     intent: {
       twoItems: 'mob-headline-bold-s mb-6 desktop:desk-headline-bold-m desktop:mb-12',
-      fourItems: 'mob-title-bold-l desktop:desk-title-bold-l  mb-8'
+      fourItems: 'mob-title-bold-l desktop:desk-title-bold-l mb-8'
     },
     desktopHidden: {
       true: 'desktop:hidden'
@@ -18,7 +18,7 @@ export const titleConfig = cva('', {
   }
 })
 
-export const listItemConfig = cva('desktop:max-h-[98px]', {
+export const listItemConfig = cva('', {
   variants: {
     intent: {
       twoItems: '',

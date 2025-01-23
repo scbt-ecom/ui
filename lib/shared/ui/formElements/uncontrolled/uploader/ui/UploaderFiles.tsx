@@ -8,7 +8,7 @@ export type UploaderFilesClasses = {
 }
 
 interface UploaderFilesProps extends HTMLAttributes<HTMLDivElement> {
-  files: File[]
+  files?: File[]
   filesStatus: {
     [key: string]: 'loading' | 'success' | 'error'
   }
@@ -16,7 +16,7 @@ interface UploaderFilesProps extends HTMLAttributes<HTMLDivElement> {
   classes?: UploaderFilesClasses
 }
 
-export const UploaderFiles = ({ files, filesStatus, classes, removeFile }: UploaderFilesProps) => {
+export const UploaderFiles = ({ files = [], filesStatus, classes, removeFile }: UploaderFilesProps) => {
   const filesEmpty = TypeGuards.isArrayEmpty(files)
 
   const { root, file: fileClasses } = classes || {}

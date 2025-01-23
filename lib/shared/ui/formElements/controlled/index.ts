@@ -5,6 +5,7 @@ import { DayPickerControl } from './dayPickerControl'
 import { EditorControl } from './editor'
 import { InputControl, MaskInputControl } from './input'
 import { InputCurrencyControl } from './inputCurrency'
+import { InputOtpControl } from './inputOtp'
 import { RadioGroupControl } from './radio'
 import { SelectControl } from './select'
 import { SliderControl } from './slider'
@@ -12,6 +13,7 @@ import { SwitchControl } from './switch'
 import { TextareaControl } from './textarea'
 import { UploaderControl } from './uploader'
 export type { TextareaControlProps } from './textarea'
+export type { InputOtpControlProps } from './inputOtp'
 
 export const Controlled = {
   InputControl,
@@ -30,6 +32,7 @@ export const Controlled = {
   SliderControl,
   TextareaControl,
   UploaderControl,
+  InputOtpControl,
   EditorControl,
   InputCurrencyControl
 }

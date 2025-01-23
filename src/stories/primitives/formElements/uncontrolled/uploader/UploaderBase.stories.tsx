@@ -51,14 +51,14 @@ export const WithCustomClasses: Story = {
 export const Controlled: Story = {
   args: Base.args,
   render: (props) => {
-    const [value, setValue] = useState<File[]>([])
+    const [files, setFiles] = useState<File[]>([])
 
     return (
       <Uncontrolled.UploaderBase
         {...props}
-        value={value}
+        value={files}
         onChange={(value) => {
-          setValue(value)
+          setFiles(value)
         }}
       />
     )
