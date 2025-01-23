@@ -1,7 +1,7 @@
-import type { AccordionProps } from '../../../shared/ui'
-import { cn } from '../../../shared/utils'
 import type { TColumnGroupSchema } from '../model/types'
 import { ColumnGroup, type ColumnGroupClasses } from './ColumnGroup'
+import type { AccordionProps } from '$/shared/ui'
+import { cn } from '$/shared/utils'
 
 export type ColumnClasses = {
   column?: string
