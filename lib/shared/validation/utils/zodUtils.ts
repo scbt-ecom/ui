@@ -20,8 +20,7 @@ export const getDefaults = <ZodSchema extends z.AnyZodObject, Schema = z.TypeOf<
 }
 
 type GetZodUtilsOptions = {
-  arrayEmpty?: boolean
-  dateEmpty?: boolean
+  fillArrayWithValue?: boolean
 }
 
 export class ZodUtils {
@@ -29,45 +28,7 @@ export class ZodUtils {
     zodSchema: ZodSchema | z.ZodEffects<ZodSchema>,
     options?: GetZodUtilsOptions
   ): Schema {
-    const { arrayEmpty = false, dateEmpty = false } = options || {}
-
-    const getDefaultValue = (schema: z.ZodTypeAny): any => {
-      switch (true) {
-        case schema instanceof z.ZodDefault:
-          if (!('_def' in schema) || !('defaultValue' in schema._def)) return undefined
-
-          return schema._def.defaultValue()
-        case schema instanceof z.ZodArray:
-          if (!('_def' in schema)) return undefined
-
-          return arrayEmpty ? [] : [getDefaultValue(schema._def.type)].filter((value) => value !== undefined)
-        case schema instanceof z.ZodString:
-          return ''
-        case schema instanceof z.ZodNumber || schema instanceof z.ZodBigInt:
-          return schema.minValue ?? 0
-        case schema instanceof z.ZodDate:
-          return dateEmpty ? schema.minDate : ''
-        case schema instanceof z.ZodSymbol:
-          return ''
-        case schema instanceof z.ZodBoolean:
-          return schema._def.coerce
-        case schema instanceof z.ZodNull:
-          return null
-        case schema instanceof z.ZodPipeline:
-          if (!('out' in schema._def)) return undefined
-          return getDefaultValue(schema._def.out)
-        case schema instanceof z.ZodUnion:
-          if (!('options' in schema._def)) return undefined
-
-          return schema._def.options[0]._def.value
-        case schema instanceof z.ZodObject:
-          return this.getZodDefaults(schema, options)
-        case schema instanceof z.ZodAny && !('innerType' in schema._def):
-          return undefined
-        default:
-          getDefaultValue(schema._def.innerType)
-      }
-    }
+    const { fillArrayWithValue } = options || {}
 
     if (zodSchema instanceof z.ZodEffects) {
       if (zodSchema.innerType() instanceof z.ZodEffects) {
@@ -77,13 +38,34 @@ export class ZodUtils {
       return this.getZodDefaults(z.ZodObject.create(zodSchema.innerType().shape), options)
     }
 
-    const shape = zodSchema.shape as z.ZodAny
-    const entries = Object.entries(shape)
-    const temp = entries.map(([key, value]) => {
-      const defaults = value instanceof z.ZodEffects ? this.getZodDefaults(value, options) : getDefaultValue(value)
+    const getDefaultValue = (schema: z.ZodTypeAny): unknown => {
+      switch (true) {
+        case schema instanceof z.ZodDefault:
+          return schema._def.defaultValue()
+        case schema instanceof z.ZodArray:
+          if (!('_def' in schema)) return []
+          return fillArrayWithValue ? [getDefaultValue(schema._def.type)] : []
+        case schema instanceof z.ZodString:
+          return ''
+        case schema instanceof z.ZodObject:
+          return this.getZodDefaults(schema, options)
+        case schema instanceof z.ZodUnion:
+          return schema._def.options[0]._def.value
+        case !('innerType' in schema._def):
+          return undefined
+        default:
+          getDefaultValue(schema._def.innerType)
+      }
+    }
 
-      return [key, defaults]
+    const defaults = {} as Schema
+
+    const schemaEntries = Object.entries(zodSchema.shape) as [keyof Schema, z.ZodAny][]
+
+    schemaEntries.map(([key, value]) => {
+      defaults[key] = getDefaultValue(value) as Schema[keyof Schema]
     })
-    return Object.fromEntries(temp)
+
+    return defaults
   }
 }
