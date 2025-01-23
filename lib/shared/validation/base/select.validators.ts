@@ -27,6 +27,21 @@ type SelectMultipleValidationOptions<Required extends boolean, Multi extends boo
    * @default 0
    */
   minLength?: number
+  /**
+   * максимальное количество элементов
+   * @default undefined
+   */
+  maxLength?: number
+  /**
+   * фиксированное количество элементов
+   * @default undefined
+   */
+  length?: number
+  message?: SelectSingleValidationOptions<Required, Multi> & {
+    minLength?: string
+    maxLength?: string
+    length?: string
+  }
 }
 
 type SelectValidationOptions<Required extends boolean, Multi extends boolean> = Multi extends true
@@ -47,10 +62,22 @@ const getSelectRequired = <Required extends boolean, Multi extends boolean>(prop
     .default(null)
 
   if (props?.multiple) {
-    return z
+    let arraySchema = z
       .array(selectSchema)
-      .min(props?.minLength || 0, message?.multiple || baseDefaultMessages.SELECT_MULTIPLE_NON_EMPTY(props?.minLength || 0))
-      .default([])
+      .min(props?.minLength || 0, message?.multiple || baseDefaultMessages.SELECT_MULTIPLE_MIN_LENGTH(props?.minLength || 0))
+
+    if (props?.length) {
+      return arraySchema
+        .length(props.length, props.message?.length || baseDefaultMessages.SELECT_FIX_LENGTH(props.length))
+        .default([])
+    } else if (props?.maxLength) {
+      arraySchema = arraySchema.max(
+        props.maxLength,
+        props.message?.maxLength || baseDefaultMessages.SELECT_MULTIPLE_MAX_LENGTH(props.maxLength)
+      )
+    }
+
+    return arraySchema.default([])
   }
 
   return selectSchema

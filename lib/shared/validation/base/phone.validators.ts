@@ -4,7 +4,7 @@ import { baseDefaultMessages } from './base.constants'
 export type PhoneValidationOptions<Required extends boolean> = {
   /**
    * исключает маску в возвращаемом значении
-   * @default false
+   * @default true
    */
   ignoreMask?: boolean
   /**

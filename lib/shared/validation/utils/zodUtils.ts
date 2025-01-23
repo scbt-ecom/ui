@@ -20,10 +20,43 @@ export const getDefaults = <ZodSchema extends z.AnyZodObject, Schema = z.TypeOf<
 }
 
 type ZodUtilsGetDefaultsOptions = {
+  /**
+   * Вставить в массив значение, исходя из внутренней схемы z.array
+   */
   fillArrayWithValue?: boolean
 }
 
 export class ZodUtils {
+  /**
+   * Функция для получения значения по умолчанию исходя из схемы
+   * @param zodSchema схема формы
+   * @param options настройки генерации значений по умолчанию
+   * @returns объект значений по умолчанию
+   *
+   * @example
+   * const schema = z.object({
+   *   name: zodValidators.base.getStringSchema(),
+   *   role: zodValidators.base.getUnionSchema(['UNKNOWN', 'ADMIN', 'MODERATOR', 'USER'] as const),
+   *   info: z.object({
+   *     address: zodValidators.base.getStringSchema(),
+   *     phone: zodValidators.base.getPhoneSchema({ ignoreMask: true }),
+   *     age: zodValidators.base.getNumberSchema()
+   *   })
+   * })
+   *
+   * const defaultValues = ZodUtils.getZodDefaults(schema)
+   *
+   * // default values will be inferred from schema
+   * // {
+   * //   name: '',
+   * //   role: 'UNKNOWN',
+   * //   info: {
+   * //     address: '',
+   * //     phone: '',
+   * //     age: 0
+   * //   }
+   * // }
+   */
   static getZodDefaults<ZodSchema extends z.AnyZodObject, Schema = z.TypeOf<ZodSchema>>(
     zodSchema: ZodSchema | z.ZodEffects<ZodSchema>,
     options?: ZodUtilsGetDefaultsOptions
