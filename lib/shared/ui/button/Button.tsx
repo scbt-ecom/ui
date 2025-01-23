@@ -73,6 +73,7 @@ export interface ButtonProps extends ComponentProps<'button'>, ButtonConfig {
   iconLeft?: ReactElement
   iconRight?: ReactElement
   isLoading?: boolean
+  testid?: string
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(

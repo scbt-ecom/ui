@@ -6,14 +6,23 @@ import typeChecker from 'vite-plugin-checker'
 import dts from 'vite-plugin-dts'
 import { dependencies } from './package.json'
 import { viteStaticCopy } from 'vite-plugin-static-copy'
+import AutoImport from 'unplugin-auto-import/vite'
 // import { viteStorybookMdxGenerationPlugin } from './plugins'
 
 export default defineConfig({
+  test: {
+    globals: true,
+    environment: 'jsdom'
+  },
   plugins: [
     // viteStorybookMdxGenerationPlugin(),
     react(),
     dts({ include: ['lib'], insertTypesEntry: true }),
     typeChecker({ typescript: true }),
+    AutoImport({
+      imports: ['vitest'],
+      dts: true
+    }),
     svg({
       root: 'static',
       group: true,
