@@ -32,13 +32,25 @@ jobs:
       - name: Install @octokit/auth-app 💀
         run: npm install -g @octokit/auth-app
 
-      - name: Check @octokit/auth-app
-        run: npx @octokit/auth-app --help
-
       - name: Generate JWT 🗝️
         id: generate-jwt
         run: |
-          JWT=$(npx @octokit/auth-app --app-id ${{ secrets.SEMANTIC_APP_ID }} --private-key <(echo "${{ secrets.SEMANTIC_APP_PRIVATE_KEY }}"))
+          JWT=$(node -e "
+            const { createAuthApp } = require('@octokit-auth-app');
+          
+            const appId = process.env.SEMANTIC_APP_ID;
+            const privateKey = process.env.SEMANTIC_APP_PRIVATE_KEY;
+          
+            const auth = createAuthApp({ appId, privateKey, installationId: 1 });
+          
+            auth().then(({ token }) => {
+              console.log(token);
+            }).catch((error) => {
+              console.error(`Error generating JWT: ${error}`);
+              process.exit(1);
+            });
+          ")
+#          JWT=$(npx @octokit/auth-app --app-id ${{ secrets.SEMANTIC_APP_ID }} --private-key <(echo "${{ secrets.SEMANTIC_APP_PRIVATE_KEY }}"))
           echo "::set-output name=jwt::$JWT"
 
       - name: Publish with Semantic Release 🚀
