@@ -6,7 +6,7 @@ import { type AllowedIcons, Icon } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
 const customLinkConfig = cva(
-  'group outline-none transition-all duration-100 p-[2px] rounded-sm border border-solid border-transparent',
+  'group outline-hidden transition-all duration-100 p-[2px] rounded-sm border border-solid border-transparent',
   {
     variants: {
       intent: {
@@ -19,7 +19,7 @@ const customLinkConfig = cva(
         false: ''
       },
       disabled: {
-        true: '!text-color-primary-disabled pointer-events-none !border-transparent',
+        true: 'text-color-primary-disabled! pointer-events-none border-transparent!',
         false: ''
       },
       size: {
@@ -43,7 +43,7 @@ const linkArrowConfig = cva('size-6', {
       white: 'text-icon-white group-hover:text-icon-footer group-focus:text-icon-white'
     },
     disabled: {
-      true: '!text-icon-primary-disabled pointer-events-none',
+      true: 'text-icon-primary-disabled! pointer-events-none',
       false: ''
     }
   },

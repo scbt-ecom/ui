@@ -20,15 +20,15 @@ const renderProvider = (props: AuthProviderProps): React.ReactElement => {
       return (
         <div
           className={cn(
-            'flex w-[328px] flex-col items-center justify-center gap-2 rounded-sm bg-color-white px-2 py-4 outline outline-1 outline-warm-grey-200 desktop:w-[524px] desktop:p-4',
+            'bg-color-white outline-warm-grey-200 desktop:w-[524px] desktop:p-4 flex w-[328px] flex-col items-center justify-center gap-2 rounded-sm px-2 py-4 outline outline-1',
             classes?.root
           )}
         >
           <HeadWrapper className={cn('flex w-full items-center justify-between gap-2', classes?.topContent)}>
-            {subtitle && <h5 className={cn('desk-body-regular-l flex flex-1 text-color-dark', classes?.subtitle)}>{subtitle}</h5>}
+            {subtitle && <h5 className={cn('desk-body-regular-l text-color-dark flex flex-1', classes?.subtitle)}>{subtitle}</h5>}
             {badge && <Badge className={cn('bg-color-positive', classes?.badge)}>{badge}</Badge>}
           </HeadWrapper>
-          <div className={cn('grid w-full grid-cols-2 gap-2 desktop:gap-4', classes?.authWrapper)}>
+          <div className={cn('desktop:gap-4 grid w-full grid-cols-2 gap-2', classes?.authWrapper)}>
             <Esia
               {...esiaConfig}
               classes={{

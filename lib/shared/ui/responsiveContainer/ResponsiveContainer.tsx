@@ -9,7 +9,7 @@ export interface ResponsiveContainerProps extends HTMLAttributes<HTMLDivElement>
 
 export const ResponsiveContainer = ({ children, offset = true, className, ...props }: ResponsiveContainerProps) => {
   return (
-    <div className={cn('m-auto w-full max-w-[636px] desktop:max-w-[1140px]', { 'mobile:px-4': offset }, className)} {...props}>
+    <div className={cn('desktop:max-w-[1140px] m-auto w-full max-w-[636px]', { 'mobile:px-4': offset }, className)} {...props}>
       {children}
     </div>
   )

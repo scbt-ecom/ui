@@ -47,8 +47,8 @@ export const SetCustomLink = ({ editor }: ISetCustomLinkProps) => {
           <span
             title='Добавить заголовок'
             className={cn(
-              'flex size-7 cursor-pointer items-center justify-center rounded-sm text-color-secondary outline-none transition-colors hover:bg-color-primary-hover hover:text-color-white',
-              { '!bg-color-primary-hover !text-color-white': editor.isActive('link') }
+              'text-color-secondary hover:bg-color-primary-hover hover:text-color-white flex size-7 cursor-pointer items-center justify-center rounded-sm outline-hidden transition-colors',
+              { 'bg-color-primary-hover! text-color-white!': editor.isActive('link') }
             )}
           >
             <Icon name='editor/link' className='size-4' />

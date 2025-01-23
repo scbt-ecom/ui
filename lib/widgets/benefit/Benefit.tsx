@@ -19,7 +19,7 @@ const gridConfig = cva('grid gap-4', {
     intent: {
       twoCards: 'grid-cols-1 mobile:grid-rows-[repeat(2,400px)] desktop:grid-cols-2',
       threeCards: 'grid-cols-1 desktop:grid-cols-2',
-      fourCards: 'grid-cols-1 mobile:grid-rows-[400px,1fr,1fr,400px] desktop:grid-cols-3'
+      fourCards: 'grid-cols-1 mobile:grid-rows-[400px_1fr_1fr_400px] desktop:grid-cols-3'
     }
   }
 })

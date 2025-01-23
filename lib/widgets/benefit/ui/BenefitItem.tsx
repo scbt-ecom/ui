@@ -71,7 +71,7 @@ export const BenefitItem = ({
       key={img}
       className={cn(itemConfig({ intent }), { 'pb-0': mobileImg }, { 'pb-12': !mobileImg }, cardColor, classes?.root)}
     >
-      <div className={cn('flex flex-col items-start justify-between px-4 desktop:px-8 desktop:py-8', classes?.wrapper)}>
+      <div className={cn('desktop:px-8 desktop:py-8 flex flex-col items-start justify-between px-4', classes?.wrapper)}>
         <div className={cn('flex flex-col gap-4', classes?.textContainer)}>
           <Heading as='h4' className={cn('desktop:desk-title-bold-s', classes?.title)}>
             {title}

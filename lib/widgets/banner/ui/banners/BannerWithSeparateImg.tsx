@@ -18,7 +18,7 @@ export const BannerWithSeparateImg = ({
     <div
       data-id='banner-advantages'
       className={cn(
-        'flex items-center justify-center rounded-md bg-color-blue-grey-100 p-4 pb-8 desktop:absolute desktop:bottom-[-50px] desktop:right-1/2 desktop:translate-x-1/2 desktop:p-0',
+        'bg-color-blue-grey-100 desktop:absolute desktop:bottom-[-50px] desktop:right-1/2 desktop:translate-x-1/2 desktop:p-0 flex items-center justify-center rounded-md p-4 pb-8',
         classes?.advantageContainer
       )}
     >
@@ -31,9 +31,9 @@ export const BannerWithSeparateImg = ({
     <>
       <section data-id='banner-section' className={cn('bg-banner-skyblue-300 desktop:h-[456px]', classes?.root)}>
         <ResponsiveContainer data-id='banner-container' className={cn('relative', classes?.container)}>
-          <div data-id='banner' className={cn('flex flex-col desktop:flex-row desktop:justify-between', classes?.wrapper)}>
-            <div className='flex flex-col desktop:gap-10 desktop:pt-20'>
-              <div data-id='banner-text-block' className={cn('flex flex-col gap-4 pt-6 desktop:pt-0', classes?.textBlock)}>
+          <div data-id='banner' className={cn('desktop:flex-row desktop:justify-between flex flex-col', classes?.wrapper)}>
+            <div className='desktop:gap-10 desktop:pt-20 flex flex-col'>
+              <div data-id='banner-text-block' className={cn('desktop:pt-0 flex flex-col gap-4 pt-6', classes?.textBlock)}>
                 <Heading data-id='banner-title' as='h1' className={cn('text-color-dark', classes?.title)}>
                   {headTitle}
                 </Heading>
@@ -47,7 +47,7 @@ export const BannerWithSeparateImg = ({
 
             <div
               data-id='banner-image-wrapper'
-              className={cn('flex h-[356px] justify-center desktop:h-[456px] desktop:w-[550px]', classes?.imageContainer)}
+              className={cn('desktop:h-[456px] desktop:w-[550px] flex h-[356px] justify-center', classes?.imageContainer)}
             >
               <picture>
                 <source media='(min-width: 1128px)' srcSet={imgSets?.large} />

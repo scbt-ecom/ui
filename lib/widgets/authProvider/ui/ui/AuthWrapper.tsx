@@ -18,14 +18,14 @@ export const AuthWrapper = ({ children, isLoading, classes, loaderProps }: AuthW
     <div
       tabIndex={0}
       className={cn(
-        'relative flex h-[90px] w-full max-w-[328px] items-center justify-center rounded-sm p-2 desktop:max-w-[524px]',
-        'bg-color-white outline outline-1 outline-warm-grey-200 transition-colors focus-visible:outline-primary-focus',
+        'desktop:max-w-[524px] relative flex h-[90px] w-full max-w-[328px] items-center justify-center rounded-sm p-2',
+        'bg-color-white outline-warm-grey-200 focus-visible:outline-primary-focus outline outline-1 transition-colors',
         classes?.root
       )}
     >
       <div
         className={cn(
-          'flex h-[74px] flex-1 cursor-pointer rounded-sm px-2 py-3 transition-colors desktop:px-4 desktop:py-3',
+          'desktop:px-4 desktop:py-3 flex h-[74px] flex-1 cursor-pointer rounded-sm px-2 py-3 transition-colors',
           'bg-color-blue-grey-100 hover:bg-color-blue-grey-200 active:bg-color-blue-grey-300',
           { 'items-center': isLoading },
           classes?.wrapper

@@ -8,7 +8,7 @@ export interface SectionProps extends HTMLAttributes<HTMLDivElement> {
 
 export const Section = ({ children, className, ...props }: SectionProps) => {
   return (
-    <section className={cn('pb-16 desktop:pb-20', className)} {...props}>
+    <section className={cn('desktop:pb-20 pb-16', className)} {...props}>
       {children}
     </section>
   )

@@ -17,7 +17,7 @@ export const FloatButton = ({ isVisible, classes, children, buttonProps }: Float
   return (
     <ResponsiveContainer
       className={cn(
-        'fixed bottom-0 left-1/2 z-[60] w-full max-w-[604px] -translate-x-1/2 translate-y-0 rounded-t-lg bg-color-white px-6 py-4 shadow-[0px_-6px_8px_0px_#2929290A] transition-transform duration-1000 desktop:hidden',
+        'bg-color-white desktop:hidden fixed bottom-0 left-1/2 z-60 w-full max-w-[604px] -translate-x-1/2 translate-y-0 rounded-t-lg px-6 py-4 shadow-[0px_-6px_8px_0px_#2929290A] transition-transform duration-1000',
         { 'translate-y-[100%]': !isVisible },
         classes?.root
       )}

@@ -9,7 +9,7 @@ const meta = {
   },
   decorators: [
     (Story) => (
-      <div className='flex items-center justify-center rounded-md bg-color-blue-grey-300 p-12'>
+      <div className='bg-color-blue-grey-300 flex items-center justify-center rounded-md p-12'>
         <Story />
       </div>
     )

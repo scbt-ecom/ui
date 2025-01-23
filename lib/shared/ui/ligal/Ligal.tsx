@@ -41,7 +41,7 @@ export const Ligal = ({ text, classes }: LigalProps) => {
           role='button'
           onClick={() => setIsExpanded((prev) => !prev)}
           className={cn(
-            'desk-body-regular-l w-max cursor-pointer font-medium text-color-footer transition-colors hover:text-color-white',
+            'desk-body-regular-l text-color-footer hover:text-color-white w-max cursor-pointer font-medium transition-colors',
             classes?.ligalButton
           )}
         >

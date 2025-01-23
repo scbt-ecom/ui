@@ -42,7 +42,7 @@ export const WithCustomClasses: Story = {
     ...Base.args,
     classes: {
       input: {
-        root: 'bg-inherit !bg-none'
+        root: 'bg-inherit bg-none!'
       }
     }
   }

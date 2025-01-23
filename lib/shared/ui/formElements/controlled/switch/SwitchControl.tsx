@@ -118,7 +118,7 @@ export const SwitchControl = <TFieldValues extends FieldValues = FieldValues>({
           triggerElement={
             <Icon
               name='info/helpCircle'
-              className={cn('size-4 text-color-blue-grey-600', {
+              className={cn('text-color-blue-grey-600 size-4', {
                 'text-icon-blue-grey-100': disabled
               })}
             />

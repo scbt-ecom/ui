@@ -20,7 +20,7 @@ export const NavLinks = ({ navigationLinks, classes }: NavLinksProps) => {
   return (
     <div
       className={cn(
-        'mt-6 grid grid-cols-1 gap-6 border-b border-blue-grey-500 pb-6 desktop:my-8 desktop:grid-cols-4 desktop:gap-10 desktop:pb-8',
+        'border-blue-grey-500 desktop:my-8 desktop:grid-cols-4 desktop:gap-10 desktop:pb-8 mt-6 grid grid-cols-1 gap-6 border-b pb-6',
         classes?.navRoot
       )}
     >

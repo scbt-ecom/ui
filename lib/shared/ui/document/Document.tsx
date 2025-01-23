@@ -37,7 +37,7 @@ export const Document = ({ text, size, sizeType, href, intent = 'outline' }: Doc
       rel='noreferrer'
       tabIndex={0}
       className={cn(
-        'group flex cursor-pointer items-center gap-2 rounded-sm p-1 outline outline-2 outline-transparent transition-colors focus-within:outline-primary-focus desktop:max-w-[592px]'
+        'group focus-within:outline-primary-focus desktop:max-w-[592px] flex cursor-pointer items-center gap-2 rounded-sm p-1 outline outline-2 outline-transparent transition-colors'
       )}
     >
       <Icon name={iconVariant[intent!]} className={cn(iconConfig({ intent }))} />

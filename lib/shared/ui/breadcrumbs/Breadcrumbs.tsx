@@ -28,8 +28,8 @@ export const Breadcrumbs = ({ linksList }: BreadcrumbsProps) => {
           {'path' in link ? (
             <div
               className={cn(
-                'flex items-center gap-1 rounded-sm border-2 border-solid border-transparent px-1 focus-within:border-primary-focus',
-                { 'pointer-events-none !border-transparent': link?.isDisabled }
+                'focus-within:border-primary-focus flex items-center gap-1 rounded-sm border-2 border-solid border-transparent px-1',
+                { 'pointer-events-none border-transparent!': link?.isDisabled }
               )}
             >
               <a
@@ -37,15 +37,15 @@ export const Breadcrumbs = ({ linksList }: BreadcrumbsProps) => {
                 target='_blank'
                 rel='noreferrer'
                 className={cn(
-                  'desk-body-regular-m text-color-primary-default outline-none hover:text-color-primary-hover focus:text-color-primary-default',
-                  { '!text-color-disabled': link?.isDisabled }
+                  'desk-body-regular-m text-color-primary-default hover:text-color-primary-hover focus:text-color-primary-default outline-hidden',
+                  { 'text-color-disabled!': link?.isDisabled }
                 )}
               >
                 {link.label}
               </a>
               <Icon
                 name='arrows/arrowRight'
-                className={cn('size-4 text-icon-primary-default', { '!text-icon-disabled': link?.isDisabled })}
+                className={cn('text-icon-primary-default size-4', { 'text-icon-disabled!': link?.isDisabled })}
               />
             </div>
           ) : (

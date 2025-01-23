@@ -34,7 +34,7 @@ export const CustomToast = ({ intent, text, customIcon, closure = true, content,
         {content}
 
         {closure && (
-          <Icon onClick={() => toast.dismiss(id)} name='general/close' className='size-5 cursor-pointer text-icon-white' />
+          <Icon onClick={() => toast.dismiss(id)} name='general/close' className='text-icon-white size-5 cursor-pointer' />
         )}
       </div>
     </div>

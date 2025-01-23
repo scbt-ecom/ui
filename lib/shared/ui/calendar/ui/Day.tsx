@@ -29,7 +29,7 @@ export const Day = ({ className, day, children, disabledAfterToday = true, ...pr
         <span
           className={cn(
             'pointer-events-none absolute bottom-2 left-1/2 h-0.5 w-4',
-            '-translate-x-1/2 rounded-sm bg-color-primary-default'
+            'bg-color-primary-default -translate-x-1/2 rounded-sm'
           )}
         />
       )}

@@ -18,7 +18,7 @@ export const KeyboardShortcuts = ({ keyList, classes }: KeyboardShortcutsProps) 
         <div key={index} className={cn('flex items-center gap-1', classes?.keys)}>
           <span
             className={cn(
-              'desk-body-regular-s rounded-sm border border-solid border-warm-grey-200 px-2 py-1 capitalize',
+              'desk-body-regular-s border-warm-grey-200 rounded-sm border border-solid px-2 py-1 capitalize',
               classes?.key
             )}
           >

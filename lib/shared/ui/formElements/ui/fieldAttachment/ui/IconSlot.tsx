@@ -19,7 +19,7 @@ export const IconSlot = ({ onClickIcon, onKeyDownIcon, icon, classes, disabled }
     <span
       {...interactiveIconAttr}
       className={cn(
-        'outline-none',
+        'outline-hidden',
         {
           'pointer-events-none': disabled
         },

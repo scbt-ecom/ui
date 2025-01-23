@@ -60,7 +60,7 @@ export const RadioGroupControl = <TFieldValues extends FieldValues = FieldValues
 
   return (
     <div className={container}>
-      <p className={cn('desk-body-regular-l w-full pb-4 text-color-dark', labelClass)}>{label}</p>
+      <p className={cn('desk-body-regular-l text-color-dark w-full pb-4', labelClass)}>{label}</p>
       <Uncontrolled.RadioGroupBase
         {...props}
         {...restField}

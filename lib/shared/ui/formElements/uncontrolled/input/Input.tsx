@@ -61,12 +61,12 @@ export const InputBase = forwardRef<HTMLInputElement, InputBaseProps>(
       <div
         ref={renderValues ? ref : undefined}
         className={cn(
-          'relative flex w-full gap-x-4 rounded-sm bg-color-blue-grey-100',
-          '[&_label]:focus-within:top-[9px] [&_label]:focus-within:translate-y-0',
-          '[&_label]:focus-within:desk-body-regular-s',
-          '[&_label]:focus-within:text-color-tetriary',
+          'bg-color-blue-grey-100 relative flex w-full gap-x-4 rounded-sm',
+          'focus-within:[&_label]:top-[9px] focus-within:[&_label]:translate-y-0',
+          'focus-within:[&_label]:desk-body-regular-s',
+          'focus-within:[&_label]:text-color-tetriary',
           'hover:bg-color-blue-grey-200',
-          'border-[1px] border-transparent focus-within:border-blue-grey-800',
+          'focus-within:border-blue-grey-800 border-[1px] border-transparent',
           {
             'border-secondary-default': invalid
           },
@@ -78,8 +78,8 @@ export const InputBase = forwardRef<HTMLInputElement, InputBaseProps>(
             onClick={props.onClick}
             onBlur={props.onBlur}
             className={cn(
-              'peer desk-body-regular-l min-h-[54px] w-full bg-color-transparent [&_input]:px-4 [&_input]:pb-[6px] [&_input]:pt-[28px]',
-              'text-color-dark outline-none placeholder:text-color-transparent',
+              'peer desk-body-regular-l bg-color-transparent min-h-[54px] w-full [&_input]:px-4 [&_input]:pt-[28px] [&_input]:pb-[6px]',
+              'text-color-dark placeholder:text-color-transparent outline-hidden',
               'flex flex-row flex-wrap gap-2',
               classes?.renderWrapper
             )}
@@ -98,8 +98,8 @@ export const InputBase = forwardRef<HTMLInputElement, InputBaseProps>(
             ref={ref}
             id={id}
             className={cn(
-              'peer desk-body-regular-l w-full bg-color-transparent px-4 pb-[9px] pt-[25px]',
-              'text-color-dark outline-none placeholder:text-color-transparent',
+              'peer desk-body-regular-l bg-color-transparent w-full px-4 pt-[25px] pb-[9px]',
+              'text-color-dark placeholder:text-color-transparent outline-hidden',
               {
                 hidden: Boolean(renderValues)
               },
@@ -111,9 +111,9 @@ export const InputBase = forwardRef<HTMLInputElement, InputBaseProps>(
           htmlFor={id}
           className={cn(
             'desk-body-regular-l pointer-events-none absolute left-4',
-            'top-1/2 -translate-y-1/2 text-color-blue-grey-600 duration-100',
+            'text-color-blue-grey-600 top-1/2 -translate-y-1/2 duration-100',
             {
-              'desk-body-regular-s top-[9px] translate-y-0 text-color-tetriary': Boolean(value),
+              'desk-body-regular-s text-color-tetriary top-[9px] translate-y-0': Boolean(value),
               'text-color-disabled': disabled
             },
             classes?.label

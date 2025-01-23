@@ -192,7 +192,7 @@ export const SelectBase = forwardRef<HTMLElement, SelectBaseProps<boolean>>(
                       <ComboboxButton as='span'>
                         <Icon
                           name='arrows/arrowRight'
-                          className={cn('size-6 rotate-90 text-color-blue-grey-600 duration-100', {
+                          className={cn('text-color-blue-grey-600 size-6 rotate-90 duration-100', {
                             '-rotate-90': open
                           })}
                         />
@@ -205,8 +205,8 @@ export const SelectBase = forwardRef<HTMLElement, SelectBaseProps<boolean>>(
               <ComboboxOptions
                 as={motion.ul}
                 className={cn(
-                  'customScrollbar-y absolute left-0 top-full z-10 mt-1',
-                  'max-h-[264px] w-full overflow-y-auto bg-color-white',
+                  'customScrollbar-y absolute top-full left-0 z-10 mt-1',
+                  'bg-color-white max-h-[264px] w-full overflow-y-auto',
                   'rounded-md p-1 shadow-[0_8px_20px_0px_rgba(41,41,41,0.08)]',
                   list
                 )}

@@ -51,7 +51,7 @@ export const Hint = ({
           <TooltipPrimitive.Content
             onPointerDownOutside={(event) => event.preventDefault()}
             className={cn(
-              'desk-body-regular-m w-48 origin-center animate-scale-in rounded-sm bg-color-white p-4 text-color-dark shadow-sm',
+              'desk-body-regular-m animate-scale-in bg-color-white text-color-dark w-48 origin-center rounded-sm p-4 shadow-sm',
               classes?.content
             )}
             sideOffset={sideOffset}

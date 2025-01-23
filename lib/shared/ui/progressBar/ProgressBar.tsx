@@ -23,15 +23,15 @@ export const ProgressBar = ({ topContent, bottomContent, progress, maxPercent = 
     <div className={cn('flex w-full flex-col', classes?.root)}>
       {topContent && <div className={cn('mb-2 flex justify-between gap-5', classes?.topContent)}>{topContent}</div>}
 
-      <div className={cn('relative h-2 w-[328xp] rounded-md bg-color-blue-grey-100 desktop:w-[524px]', classes?.progressBar)}>
+      <div className={cn('bg-color-blue-grey-100 desktop:w-[524px] relative h-2 w-[328xp] rounded-md', classes?.progressBar)}>
         <div
           style={{ width: `${progress}%` }}
-          className={cn('relative z-10 h-2 rounded-md bg-color-positive transition-all', classes?.progress)}
+          className={cn('bg-color-positive relative z-10 h-2 rounded-md transition-all', classes?.progress)}
         ></div>
         <span
           style={{ maxWidth: `${maxPercent}%` }}
           className={cn(
-            'progressBar-apply z-1 absolute top-1/2 h-full w-full -translate-y-1/2 animate-progress-loader rounded-md',
+            'progressBar-apply animate-progress-loader absolute top-1/2 z-1 h-full w-full -translate-y-1/2 rounded-md',
             classes?.loader
           )}
         ></span>

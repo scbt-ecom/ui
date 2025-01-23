@@ -33,7 +33,7 @@ export interface InterLinkingProps {
 
 export const InterLinking = ({ data, mobileAccordionProps, rootAccordionProps, classes }: InterLinkingProps) => {
   return (
-    <section id='inter-linking' className={cn('min-w-full desktop:min-w-[1140px]', classes?.root)}>
+    <section id='inter-linking' className={cn('desktop:min-w-[1140px] min-w-full', classes?.root)}>
       <ResponsiveContainer>
         <Accordion
           defaultOpen

@@ -14,7 +14,7 @@ export const SetHeadings = ({ editor }: ISetHeadingsProps) => {
       triggerElement={
         <span
           title='Добавить заголовок'
-          className='flex size-7 cursor-pointer items-center justify-center rounded-sm text-color-secondary outline-none transition-colors hover:bg-color-primary-hover hover:text-color-white'
+          className='text-color-secondary hover:bg-color-primary-hover hover:text-color-white flex size-7 cursor-pointer items-center justify-center rounded-sm outline-hidden transition-colors'
         >
           <Icon name='editor/heading' className='size-4' />
         </span>
@@ -22,13 +22,13 @@ export const SetHeadings = ({ editor }: ISetHeadingsProps) => {
     >
       <div className='flex w-full flex-1 flex-col gap-2'>
         {headingsOptions.map(({ level, shortcuts }) => (
-          <div key={level} className='flex items-center gap-4 border-b border-solid border-warm-grey-200 pb-4 last:border-none'>
+          <div key={level} className='border-warm-grey-200 flex items-center gap-4 border-b border-solid pb-4 last:border-none'>
             <button
               type='button'
               onClick={() => editor.chain().focus().toggleHeading({ level }).run()}
               className={cn(
-                'desk-body-regular-l flex size-8 cursor-pointer items-center justify-center rounded-sm text-color-secondary outline-none transition-colors hover:bg-color-primary-hover hover:text-color-white',
-                { '!bg-color-primary-hover !text-color-white': editor.isActive('heading', { level }) }
+                'desk-body-regular-l text-color-secondary hover:bg-color-primary-hover hover:text-color-white flex size-8 cursor-pointer items-center justify-center rounded-sm outline-hidden transition-colors',
+                { 'bg-color-primary-hover! text-color-white!': editor.isActive('heading', { level }) }
               )}
             >
               {`H${level}`}

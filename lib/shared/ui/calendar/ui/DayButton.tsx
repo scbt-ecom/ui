@@ -13,9 +13,9 @@ export const DayButton = ({ className, ...props }: DayButtonProps) => (
     {...props}
     className={cn(
       'mob-body-medium-m h-full w-full',
-      'unset-all-apply z-10 block h-10 w-10 cursor-pointer rounded-sm text-14',
+      'unset-all-apply text-14 z-10 block h-10 w-10 cursor-pointer rounded-sm',
       'hover:bg-color-primary-tr-hover hover:text-color-primary-default',
-      'hover:shadow-[0px_0px_0px_1px_rgba(0,55,144,1)] disabled:text-color-disabled',
+      'disabled:text-color-disabled hover:shadow-[0px_0px_0px_1px_rgba(0,55,144,1)]',
       className
     )}
   />

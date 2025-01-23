@@ -20,7 +20,7 @@ export const ChipList = ({ values, onDeleteItem, inputValue, onInputValueChange,
         ))}
       <input
         type='text'
-        className='unset-all-apply desk-body-regular-l flex-1 bg-color-transparent'
+        className='unset-all-apply desk-body-regular-l bg-color-transparent flex-1'
         value={inputValue}
         onChange={onInputValueChange}
       />

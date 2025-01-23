@@ -58,7 +58,7 @@ export const InfoWithLink: Story = {
             Notification({
               intent: 'info',
               text: 'Документы отправлены',
-              customIcon: <Icon name='general/check' className='size-5 text-icon-white' />,
+              customIcon: <Icon name='general/check' className='text-icon-white size-5' />,
               content: (
                 <CustomLink
                   icon='arrows/arrowLink'
@@ -89,7 +89,7 @@ export const WithIcon: Story = {
             Notification({
               intent: 'info',
               text: 'Документы отправлены',
-              customIcon: <Icon name='general/check' className='size-5 text-icon-white' />,
+              customIcon: <Icon name='general/check' className='text-icon-white size-5' />,
               closure: false
             })
           }

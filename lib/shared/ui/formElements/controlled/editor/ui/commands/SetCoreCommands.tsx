@@ -22,8 +22,8 @@ export const SetCoreCommands = ({ editor }: ISetCoreCommandsProps) => {
               type='button'
               onClick={onClick}
               className={cn(
-                'flex size-7 cursor-pointer items-center justify-center rounded-sm text-color-secondary outline-none transition-colors hover:bg-color-primary-hover hover:text-color-white focus:bg-color-primary-focus focus:text-color-white',
-                { '!bg-color-primary-hover !text-color-white': isActive }
+                'text-color-secondary hover:bg-color-primary-hover hover:text-color-white focus:bg-color-primary-focus focus:text-color-white flex size-7 cursor-pointer items-center justify-center rounded-sm outline-hidden transition-colors',
+                { 'bg-color-primary-hover! text-color-white!': isActive }
               )}
             >
               {icon}

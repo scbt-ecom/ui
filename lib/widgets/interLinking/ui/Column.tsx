@@ -16,7 +16,7 @@ export interface ColumnProps {
 
 export const Column = ({ columnsGroup, mobileAccordionProps, classes }: ColumnProps) => {
   return (
-    <div className={cn('flex flex-col gap-4 desktop:gap-6', classes?.column)}>
+    <div className={cn('desktop:gap-6 flex flex-col gap-4', classes?.column)}>
       {columnsGroup?.map((group) => (
         <ColumnGroup key={group.groupLabel} {...mobileAccordionProps} {...group} classes={classes?.columnGroup} />
       ))}

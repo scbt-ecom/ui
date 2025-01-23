@@ -11,7 +11,7 @@ export const TextItem = ({ data, intent }: TextItemProps) => {
         <div className={cn('mb-2 flex items-center gap-2')}>
           <h4 className={cn('mob-title-bold-m text-color-dark')}>{title}</h4>
           {popoverText && (
-            <Popover triggerElement={<Icon className={cn('size-5 text-icon-blue-grey-600')} name='info/helpCircle' />}>
+            <Popover triggerElement={<Icon className={cn('text-icon-blue-grey-600 size-5')} name='info/helpCircle' />}>
               {popoverText}
             </Popover>
           )}

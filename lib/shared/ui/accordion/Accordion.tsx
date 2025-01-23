@@ -30,7 +30,7 @@ export const Accordion = forwardRef<HTMLDivElement, AccordionProps>(
         type='multiple'
         defaultValue={defaultOpen ? [label.toString()] : undefined}
       >
-        <AccordionPrimitive.Item className={cn('w-full disabled:text-color-dark', classes?.wrapper)} value={label.toString()}>
+        <AccordionPrimitive.Item className={cn('disabled:text-color-dark w-full', classes?.wrapper)} value={label.toString()}>
           <AccordionHeader icon={icon} classes={classes?.header}>
             {label}
           </AccordionHeader>
@@ -38,11 +38,11 @@ export const Accordion = forwardRef<HTMLDivElement, AccordionProps>(
             id='text'
             ref={ref}
             className={cn(
-              'desk-body-regular-l max-w-[680px] overflow-hidden bg-color-transparent text-color-dark transition-all data-[state=closed]:animate-slideUp data-[state=open]:animate-slideDown',
+              'desk-body-regular-l bg-color-transparent text-color-dark data-[state=closed]:animate-slideUp data-[state=open]:animate-slideDown max-w-[680px] overflow-hidden transition-all',
               classes?.content
             )}
           >
-            <div className={cn('p-4 desktop:p-6', classes?.contentInner)}>{children}</div>
+            <div className={cn('desktop:p-6 p-4', classes?.contentInner)}>{children}</div>
           </AccordionPrimitive.Content>
         </AccordionPrimitive.Item>
       </AccordionPrimitive.Root>

@@ -16,11 +16,11 @@ export const MobileId = ({ mainLink, subLink, isLoading, badge, loaderProps, cla
           classes?.innerWrapper
         )}
       >
-        <div className={cn('flex items-center gap-1 desktop:gap-4', classes?.textContent)}>
+        <div className={cn('desktop:gap-4 flex items-center gap-1', classes?.textContent)}>
           <div>
-            <Icon name='logos/mts' className={cn('relative z-[9] size-7 desktop:size-8', classes?.mtsLogo)} />
-            <Icon name='logos/megafon' className={cn('relative z-[8] -ml-4 size-7 desktop:size-8', classes?.megafonLogo)} />
-            <Icon name='logos/beeline' className={cn('relative z-[7] -ml-4 size-7 desktop:size-8', classes?.beelineLogo)} />
+            <Icon name='logos/mts' className={cn('desktop:size-8 relative z-9 size-7', classes?.mtsLogo)} />
+            <Icon name='logos/megafon' className={cn('desktop:size-8 relative z-8 -ml-4 size-7', classes?.megafonLogo)} />
+            <Icon name='logos/beeline' className={cn('desktop:size-8 relative z-7 -ml-4 size-7', classes?.beelineLogo)} />
           </div>
           <Links mainLink={mainLink} subLink={subLink} isMobile={isMobile} classes={classes?.links} />
           <Icon name='arrows/arrowRight' className={cn('mobile:hidden', classes?.arrowIcon)} />

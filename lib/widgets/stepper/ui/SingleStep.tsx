@@ -17,13 +17,13 @@ export const SingleStep = ({ classes, index, variant, title, description }: Sing
   return (
     <div
       className={cn(
-        'flex w-[328px] max-w-[328px] flex-col gap-4 rounded-md border border-solid border-blue-grey-500 p-4 desktop:w-[348px] desktop:max-w-[348px] desktop:border-none desktop:p-0',
+        'border-blue-grey-500 desktop:w-[348px] desktop:max-w-[348px] desktop:border-none desktop:p-0 flex w-[328px] max-w-[328px] flex-col gap-4 rounded-md border border-solid p-4',
         classes?.singleStep
       )}
     >
       <div
         className={cn(
-          'mob-headline-bold-s flex size-10 items-center justify-center rounded-sm bg-color-blue-grey-500 text-color-white desktop:desk-title-bold-l desktop:size-12',
+          'mob-headline-bold-s bg-color-blue-grey-500 text-color-white desktop:desk-title-bold-l desktop:size-12 flex size-10 items-center justify-center rounded-sm',
           classes?.numeric
         )}
       >

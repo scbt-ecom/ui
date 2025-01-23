@@ -15,7 +15,7 @@ export const FooterLogo = ({ classes }: FooterLogoProps) => {
     <a
       aria-label='logo'
       href='https://sovcombank.ru/'
-      className={cn('block h-[24px] w-[132px] desktop:h-[32px] desktop:w-[194px]', classes?.footerLogo)}
+      className={cn('desktop:h-[32px] desktop:w-[194px] block h-[24px] w-[132px]', classes?.footerLogo)}
     >
       <Icon name='brandLogos/logoWhite' className={cn('size-full', classes?.footerLogoIcon)} />
     </a>

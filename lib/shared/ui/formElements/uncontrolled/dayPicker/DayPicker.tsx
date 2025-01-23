@@ -132,7 +132,7 @@ export const DayPickerBase = forwardRef<HTMLInputElement, DayPickerProps>(
               onMonthChange={setMonth}
               selected={date}
               onSelect={onDateChange}
-              className='absolute right-0 top-full'
+              className='absolute top-full right-0'
             />
           )}
         </AnimatePresence>

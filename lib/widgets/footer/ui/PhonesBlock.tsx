@@ -16,7 +16,7 @@ interface PhonesBlockProps {
 
 export const PhonesBlock = ({ phones, classes }: PhonesBlockProps) => {
   return (
-    <div className={cn('flex flex-col gap-4 desktop:items-end', classes?.phonesRoot)}>
+    <div className={cn('desktop:items-end flex flex-col gap-4', classes?.phonesRoot)}>
       {phones?.map(({ phone, text }) => (
         <PhoneView
           key={phone}

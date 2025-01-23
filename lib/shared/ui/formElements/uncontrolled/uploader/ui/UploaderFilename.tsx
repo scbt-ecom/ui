@@ -21,11 +21,11 @@ export const UploaderFilename = ({ file, classes }: UploaderFilenameProps) => {
   return (
     <div className='w-[300px]'>
       {isOverflow ? (
-        <Hint triggerElement={<p className={cn('desk-body-regular-m truncate text-color-dark', fileText)}>{file.name}</p>}>
+        <Hint triggerElement={<p className={cn('desk-body-regular-m text-color-dark truncate', fileText)}>{file.name}</p>}>
           {file.name}
         </Hint>
       ) : (
-        <p ref={fileRef} className={cn('desk-body-regular-m text-nowrap text-color-dark', fileText)}>
+        <p ref={fileRef} className={cn('desk-body-regular-m text-color-dark text-nowrap', fileText)}>
           {file.name}
         </p>
       )}

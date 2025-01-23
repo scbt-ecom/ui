@@ -129,7 +129,7 @@ export const RangeDayPicker = ({ inputProps, classes, value, onChange, ...props 
           onMonthChange={setMonth}
           selected={date}
           onSelect={onDateChange}
-          className={cn('absolute right-0 top-full', calendar)}
+          className={cn('absolute top-full right-0', calendar)}
         />
       )}
     </div>

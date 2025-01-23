@@ -40,7 +40,7 @@ export const Modal = ({
           tabIndex={-1}
           onClick={closeModal}
           className={cn(
-            'fixed inset-0 flex h-screen w-screen items-center justify-center bg-color-overlay',
+            'bg-color-overlay fixed inset-0 flex h-screen w-screen items-center justify-center',
             { 'z-1000': !isPortal },
             classes?.overlay
           )}
@@ -54,7 +54,7 @@ export const Modal = ({
           <motion.div
             onClick={(event) => event.stopPropagation()}
             className={cn(
-              'w-full max-w-[600px] rounded-md bg-color-white px-4 py-6 shadow-sm desktop:px-6 desktop:py-8',
+              'bg-color-white desktop:px-6 desktop:py-8 w-full max-w-[600px] rounded-md px-4 py-6 shadow-sm',
               classes?.modal
             )}
             {...modalContentAnimation}

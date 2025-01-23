@@ -5,5 +5,5 @@ type FooterProps = React.HTMLAttributes<HTMLDivElement> & {
 }
 
 export const Footer = ({ render, ...props }: FooterProps) => (
-  <div className='flex justify-end border-t-[1px] border-warm-grey-200 pt-2'>{render(props)}</div>
+  <div className='border-warm-grey-200 flex justify-end border-t-[1px] pt-2'>{render(props)}</div>
 )

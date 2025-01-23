@@ -88,7 +88,7 @@ export const InputCurrencyControl = <T extends FieldValues>({
               allowNegative={false}
               disabled={disabled}
               className={cn(
-                'desk-body-regular-l w-full bg-color-transparent text-color-dark outline-none transition-all',
+                'desk-body-regular-l bg-color-transparent text-color-dark w-full outline-hidden transition-all',
                 classes?.input
               )}
             />

@@ -30,7 +30,7 @@ export const Navigation = ({ className, ...props }: NavigationProps) => {
       >
         <Icon
           name='arrows/arrowRight'
-          className={cn('rotate-180 text-icon-blue-grey-800', {
+          className={cn('text-icon-blue-grey-800 rotate-180', {
             'text-icon-disabled': !previousMonth
           })}
         />

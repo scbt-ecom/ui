@@ -55,10 +55,10 @@ export const TextareaBase = forwardRef<HTMLTextAreaElement, TextareaBaseProps>(
     return (
       <div
         className={cn(
-          'relative flex w-full items-start gap-x-4 rounded-sm bg-color-blue-grey-100 pb-4 pl-4 pr-1 pt-2',
-          '[&_label]:focus-within:text-color-tetriary',
+          'bg-color-blue-grey-100 relative flex w-full items-start gap-x-4 rounded-sm pt-2 pr-1 pb-4 pl-4',
+          'focus-within:[&_label]:text-color-tetriary',
           'hover:bg-color-blue-grey-200',
-          'border-[1px] border-transparent focus-within:border-blue-grey-800',
+          'focus-within:border-blue-grey-800 border-[1px] border-transparent',
           {
             'border-secondary-default': invalid
           },
@@ -89,8 +89,8 @@ export const TextareaBase = forwardRef<HTMLTextAreaElement, TextareaBaseProps>(
             id={id}
             onChange={onValueChange}
             className={cn(
-              'customScrollbar-y peer desk-body-regular-l w-full overflow-y-auto bg-color-transparent',
-              'resize-none text-color-dark outline-none placeholder:text-color-blue-grey-600',
+              'customScrollbar-y peer desk-body-regular-l bg-color-transparent w-full overflow-y-auto',
+              'text-color-dark placeholder:text-color-blue-grey-600 resize-none outline-hidden',
               {
                 'placeholder:text-color-disabled': disabled
               },

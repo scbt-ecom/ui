@@ -6,7 +6,7 @@ interface ToolbarProps {
 }
 export const Toolbar = ({ editor }: ToolbarProps) => {
   return (
-    <div className='mobile:customScrollbar-y flex items-center gap-2 bg-color-blue-grey-200 px-4 py-3 mobile:max-w-[340px] mobile:overflow-x-auto'>
+    <div className='mobile:customScrollbar-y bg-color-blue-grey-200 mobile:max-w-[340px] mobile:overflow-x-auto flex items-center gap-2 px-4 py-3'>
       <SetCoreCommands editor={editor} />
       <div className='flex items-center gap-2'>
         <SetColor editor={editor} />

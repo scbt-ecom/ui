@@ -20,7 +20,7 @@ export const Advantages = ({ advantagesList, classes }: AdvantagesProps) => {
   return (
     <div
       className={cn(
-        'flex w-full max-w-[636px] flex-col gap-8 rounded-md bg-color-white p-6 shadow-sm desktop:w-full desktop:max-w-full desktop:flex-row desktop:items-start desktop:gap-0 desktop:p-0 desktop:py-6',
+        'bg-color-white desktop:w-full desktop:max-w-full desktop:flex-row desktop:items-start desktop:gap-0 desktop:p-0 desktop:py-6 flex w-full max-w-[636px] flex-col gap-8 rounded-md p-6 shadow-sm',
         classes?.root
       )}
     >
@@ -28,7 +28,7 @@ export const Advantages = ({ advantagesList, classes }: AdvantagesProps) => {
         <div
           key={title}
           className={cn(
-            'after:content-[" "] relative flex h-full w-full flex-col gap-1 after:absolute after:-bottom-4 after:left-1/2 after:h-[1px] after:w-full after:-translate-x-1/2 after:bg-color-blue-grey-300 last:after:hidden desktop:w-[285px] desktop:px-8 desktop:after:bottom-auto desktop:after:left-auto desktop:after:right-0 desktop:after:top-1/2 desktop:after:h-10 desktop:after:w-[1px] desktop:after:-translate-y-1/2 desktop:after:translate-x-0',
+            'after:content-[" "] after:bg-color-blue-grey-300 desktop:w-[285px] desktop:px-8 desktop:after:bottom-auto desktop:after:left-auto desktop:after:right-0 desktop:after:top-1/2 desktop:after:h-10 desktop:after:w-[1px] desktop:after:-translate-y-1/2 desktop:after:translate-x-0 relative flex h-full w-full flex-col gap-1 after:absolute after:-bottom-4 after:left-1/2 after:h-[1px] after:w-full after:-translate-x-1/2 last:after:hidden',
             classes?.item
           )}
         >

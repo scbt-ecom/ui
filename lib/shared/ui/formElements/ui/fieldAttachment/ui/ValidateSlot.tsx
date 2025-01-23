@@ -12,10 +12,10 @@ export const ValidateSlot = ({ badge, withValidateIcons, isValid, isInvalid, cla
   return (
     <>
       {isValid && withValidateIcons && (
-        <Icon name='general/check' className={cn('size-6 text-icon-positive-default', classes?.successIcon)} />
+        <Icon name='general/check' className={cn('text-icon-positive-default size-6', classes?.successIcon)} />
       )}
       {isInvalid && withValidateIcons && (
-        <Icon name='info/warningCircle' className={cn('size-5 text-icon-secondary-default', classes?.errorIcon)} />
+        <Icon name='info/warningCircle' className={cn('text-icon-secondary-default size-5', classes?.errorIcon)} />
       )}
       {badge && !isValid && <Badge className={cn('bg-color-positive text-color-white', classes?.badge)}>{badge}</Badge>}
     </>

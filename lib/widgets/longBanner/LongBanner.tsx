@@ -32,7 +32,7 @@ export const LongBanner = ({
 
         <div
           className={cn(
-            'bg-banner-skyblue-100 px-6 pb-8 pt-6 desktop:flex desktop:flex-row-reverse desktop:justify-between desktop:px-0 desktop:py-0 desktop:pl-12',
+            'bg-banner-skyblue-100 desktop:flex desktop:flex-row-reverse desktop:justify-between desktop:px-0 desktop:py-0 desktop:pl-12 px-6 pt-6 pb-8',
             classes?.contentContainer
           )}
         >
@@ -45,7 +45,7 @@ export const LongBanner = ({
             <TextList textContent={textContent} intent={intent} withButton={withButton} />
             {withButton && (
               <Button
-                className={cn('w-full px-4 desktop:w-max', classes?.button)}
+                className={cn('desktop:w-max w-full px-4', classes?.button)}
                 size='lg'
                 onClick={buttonConfig.onClick}
                 intent='secondary'

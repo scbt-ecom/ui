@@ -58,7 +58,7 @@ export const Popover = ({
       <PopoverPrimitive.Portal container={portalContainer}>
         <PopoverPrimitive.Content
           className={cn(
-            'desk-body-regular-m flex w-fit max-w-64 items-start gap-2 rounded-sm bg-color-white p-4 shadow-sm outline-none',
+            'desk-body-regular-m bg-color-white flex w-fit max-w-64 items-start gap-2 rounded-sm p-4 shadow-sm outline-hidden',
             classes?.content
           )}
           sideOffset={sideOffset}
@@ -77,7 +77,7 @@ export const Popover = ({
             <Icon
               name='general/close'
               className={cn(
-                'size-5 cursor-pointer text-icon-blue-grey-600 transition-colors hover:text-icon-blue-grey-800',
+                'text-icon-blue-grey-600 hover:text-icon-blue-grey-800 size-5 cursor-pointer transition-colors',
                 classes?.closeIcon
               )}
             />

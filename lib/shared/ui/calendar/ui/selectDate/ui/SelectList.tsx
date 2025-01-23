@@ -19,7 +19,7 @@ export const SelectList = ({ dates, selected, onSelect, className, mode, ...prop
       animate={{ opacity: 1, translateY: 5 }}
       exit={{ opacity: 0 }}
       className={cn(
-        'customScrollbar-y absolute left-0 top-[50px] z-10 max-h-[280px] w-full translate-y-2 list-none overflow-y-scroll bg-color-white pr-1.5',
+        'customScrollbar-y bg-color-white absolute top-[50px] left-0 z-10 max-h-[280px] w-full translate-y-2 list-none overflow-y-scroll pr-1.5',
         className
       )}
     >
@@ -50,8 +50,8 @@ export const SelectList = ({ dates, selected, onSelect, className, mode, ...prop
                 onSelect(updatedDate)
               }}
               className={cn(
-                'desk-body-regular-l h-10 w-full rounded-sm bg-color-white px-2 text-start',
-                'capitalize hover:bg-color-primary-tr-hover hover:text-color-primary-default',
+                'desk-body-regular-l bg-color-white h-10 w-full rounded-sm px-2 text-start',
+                'hover:bg-color-primary-tr-hover hover:text-color-primary-default capitalize',
                 {
                   'bg-color-primary-tr-hover text-color-primary-default':
                     mode === 'month' ? selected.getMonth() === date : selected.getFullYear() === date

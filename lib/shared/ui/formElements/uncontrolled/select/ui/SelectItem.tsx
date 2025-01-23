@@ -36,15 +36,15 @@ export const SelectItem = forwardRef<HTMLLIElement, SelectItemProps>(
             {...motionProps}
             ref={ref}
             className={cn(
-              'unset-all-apply desk-body-regular-l cursor-pointer truncate rounded-sm bg-color-white px-2',
-              'flex h-12 items-center gap-x-4 text-color-dark hover:bg-color-primary-tr-hover hover:text-color-primary-hover',
-              '[&:not(:disabled)]:cursor-pointer [&:not(:last-child)]:mb-1 [&>p]:hover:text-color-secondary',
-              'data-[selected]:bg-color-primary-tr-hover data-[selected]:text-color-primary-hover',
-              'data-[focus]:bg-color-primary-tr-hover data-[focus]:text-color-primary-hover',
+              'unset-all-apply desk-body-regular-l bg-color-white cursor-pointer truncate rounded-sm px-2',
+              'text-color-dark hover:bg-color-primary-tr-hover hover:text-color-primary-hover flex h-12 items-center gap-x-4',
+              'hover:[&>p]:text-color-secondary not-last:mb-1 not-disabled:cursor-pointer',
+              'data-selected:bg-color-primary-tr-hover data-selected:text-color-primary-hover',
+              'data-focus:bg-color-primary-tr-hover data-focus:text-color-primary-hover',
               {
                 // 'bg-color-primary-tr-hover text-color-primary-hover': selected || focus,
-                'pointer-events-none !text-color-disabled': disabled,
-                '!flex items-center gap-x-4': isMulti || (option.attachment && option.attachment.left)
+                'text-color-disabled! pointer-events-none': disabled,
+                'flex! items-center gap-x-4': isMulti || (option.attachment && option.attachment.left)
               },
               item
             )}

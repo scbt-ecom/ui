@@ -124,7 +124,7 @@ export const SingleDayPicker = ({ inputProps, classes, value, onChange, external
           onMonthChange={setMonth}
           selected={date}
           onSelect={onDateChange}
-          className={cn('absolute right-0 top-full z-10', calendar)}
+          className={cn('absolute top-full right-0 z-10', calendar)}
         />
       )}
     </div>

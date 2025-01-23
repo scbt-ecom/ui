@@ -18,7 +18,7 @@ export const ControlChip = ({ data, displayValue, classes, onDeleteItem, ...prop
     {...props}
     className={cn(
       'mob-body-regular-l flex w-fit items-center gap-x-1 whitespace-nowrap',
-      'rounded-sm bg-color-primary-tr-hover px-1 text-color-primary-default',
+      'bg-color-primary-tr-hover text-color-primary-default rounded-sm px-1',
       classes?.chip
     )}
   >

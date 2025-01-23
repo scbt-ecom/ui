@@ -11,7 +11,7 @@ import { cn, mergeRefs } from '$/shared/utils'
 const defaultIcon = (
   <Icon
     name='general/edit'
-    className='size-[19px] text-icon-blue-grey-600 transition-[color] group-focus-within/icon:text-icon-blue-grey-800'
+    className='text-icon-blue-grey-600 group-focus-within/icon:text-icon-blue-grey-800 size-[19px] transition-[color]'
   />
 )
 
@@ -169,7 +169,7 @@ export const SliderBase = forwardRef<HTMLInputElement, SliderBaseProps>(
                   }
                 }}
                 className={cn(
-                  'group/slider desk-title-bold-s w-full bg-color-transparent text-color-dark outline-none transition-all',
+                  'group/slider desk-title-bold-s bg-color-transparent text-color-dark w-full outline-hidden transition-all',
                   input
                 )}
                 {...props}

@@ -18,7 +18,7 @@ export const PhoneView = ({ phone, text, classes, ...props }: PhoneViewProps) =>
     <div className={cn('flex w-max flex-col', classes?.wrapper)} {...props}>
       <a
         href={`tel:${phone}`}
-        className={cn('mob-body-medium-l ml-auto text-color-dark desktop:desk-body-medium-l', classes?.link)}
+        className={cn('mob-body-medium-l text-color-dark desktop:desk-body-medium-l ml-auto', classes?.link)}
       >
         {phone}
       </a>

@@ -56,7 +56,7 @@ export const Base: Story = {
   args: {},
   render: (props) => {
     return (
-      <div className='flex flex-col gap-4 rounded-lg border border-blue-grey-700 p-5'>
+      <div className='border-blue-grey-700 flex flex-col gap-4 rounded-lg border p-5'>
         <Uncontrolled.AutocompleteBase
           {...props}
           label='Autocomplete Base'

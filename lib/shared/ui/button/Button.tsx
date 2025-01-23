@@ -41,22 +41,22 @@ const buttonConfig = cva(
       {
         intent: 'primary',
         isLoading: true,
-        class: '!bg-color-primary-default'
+        class: 'bg-color-primary-default!'
       },
       {
         intent: 'secondary',
         isLoading: true,
-        class: '!bg-color-transparent  !border-primary-hover'
+        class: 'bg-color-transparent!  border-primary-hover!'
       },
       {
         intent: 'ghost',
         isLoading: true,
-        class: '!bg-color-blue-grey-200'
+        class: 'bg-color-blue-grey-200!'
       },
       {
         intent: 'negative',
         isLoading: true,
-        class: '!bg-color-secondary-default'
+        class: 'bg-color-secondary-default!'
       }
     ],
     defaultVariants: {

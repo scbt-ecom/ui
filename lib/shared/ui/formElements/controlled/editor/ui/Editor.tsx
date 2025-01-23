@@ -63,7 +63,10 @@ export const Editor = forwardRef<EditorRef, EditorProps>(
         },
         attributes: {
           spellcheck: 'false',
-          class: cn('p-4 outline-none min-h-[240px] max-h-[500px] customScrollbar-y overflow-y-auto break-keep', classes?.editor)
+          class: cn(
+            'p-4 outline-hidden min-h-[240px] max-h-[500px] customScrollbar-y overflow-y-auto break-keep',
+            classes?.editor
+          )
         }
       },
       shouldRerenderOnTransaction,
@@ -75,12 +78,12 @@ export const Editor = forwardRef<EditorRef, EditorProps>(
     }
 
     return (
-      <div className={cn('flex max-w-[528px] flex-col mobile:w-[340px]', classes?.root)}>
+      <div className={cn('mobile:w-[340px] flex max-w-[528px] flex-col', classes?.root)}>
         <div
-          className={cn('relative flex w-full flex-col rounded-md border border-solid border-warm-grey-200', classes?.wrapper)}
+          className={cn('border-warm-grey-200 relative flex w-full flex-col rounded-md border border-solid', classes?.wrapper)}
         >
           <Toolbar editor={editor} />
-          {!value && <p className={cn('absolute left-4 top-16 text-color-disabled', classes?.label)}>{label}</p>}
+          {!value && <p className={cn('text-color-disabled absolute top-16 left-4', classes?.label)}>{label}</p>}
           <EditorContent ref={ref} editor={editor} />
         </div>
 

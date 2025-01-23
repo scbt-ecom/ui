@@ -25,12 +25,12 @@ export const Footer = ({
   classes
 }: FooterProps) => {
   return (
-    <footer className={cn('w-full bg-color-footer py-8 desktop:py-10', classes?.root)}>
+    <footer className={cn('bg-color-footer desktop:py-10 w-full py-8', classes?.root)}>
       <ResponsiveContainer className={cn(classes?.footerContainer)}>
         <div className={cn('mobile:pb-[176px]', classes?.footerWrapper)}>
           <div
             className={cn(
-              'flex flex-col items-start justify-between gap-4 border-b border-solid border-blue-grey-500 pb-6 desktop:flex-row desktop:gap-6 desktop:pb-8',
+              'border-blue-grey-500 desktop:flex-row desktop:gap-6 desktop:pb-8 flex flex-col items-start justify-between gap-4 border-b border-solid pb-6',
               classes?.footerHead
             )}
           >
@@ -47,7 +47,7 @@ export const Footer = ({
 
           <div
             className={cn(
-              'mt-6 flex flex-col-reverse items-start justify-between gap-4 desktop:mt-8 desktop:flex-row desktop:gap-6',
+              'desktop:mt-8 desktop:flex-row desktop:gap-6 mt-6 flex flex-col-reverse items-start justify-between gap-4',
               classes?.footerBottom
             )}
           >

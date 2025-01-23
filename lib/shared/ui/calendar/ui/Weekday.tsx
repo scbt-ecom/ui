@@ -10,7 +10,7 @@ export const Weekday = ({ className, children, ...props }: WeekdayProps) => {
   return (
     <td
       {...props}
-      className={cn('h-10 w-10 p-0 text-14 font-medium capitalize', { 'text-color-negative': isWeekend }, className)}
+      className={cn('text-14 h-10 w-10 p-0 font-medium capitalize', { 'text-color-negative': isWeekend }, className)}
     >
       {children}
     </td>

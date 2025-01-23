@@ -20,8 +20,8 @@ export const Trigger = ({ currentDate, mode, className, open, onOpenChange, ...p
       onClick={onOpenChange}
       className={cn(
         'mob-body-medium-m flex h-10 items-center gap-1 rounded-sm px-2',
-        'capitalize text-color-tetriary hover:bg-color-primary-tr-hover',
-        'disabled:pointer-events-none disabled:text-color-disabled',
+        'text-color-tetriary hover:bg-color-primary-tr-hover capitalize',
+        'disabled:text-color-disabled disabled:pointer-events-none',
         { 'text-color-primary-default': open },
         className
       )}

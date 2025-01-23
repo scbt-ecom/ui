@@ -50,15 +50,15 @@ export const CheckboxBase = forwardRef<HTMLButtonElement, CheckboxBaseProps>(
         disabled={disabled}
         ref={ref}
         className={cn(
-          'flex h-6 max-h-6 min-h-6 w-6 min-w-6 max-w-6 items-center justify-center rounded-full',
-          'relative rounded-sm border-2 border-blue-grey-700 outline-none',
-          'after:left-1/2 after:top-1/2 after:h-10 after:w-10 after:-translate-x-1/2 after:-translate-y-1/2 after:content-[""]',
-          'after:absolute after:rounded-full [&:not(:disabled)]:hover:after:bg-color-primary-tr-hover',
-          'after:duration-100 [&:not(:disabled)]:active:after:bg-color-primary-tr-pressed',
-          'after:-z-10 [&:not(:disabled)]:focus:after:bg-color-primary-tr-focus',
+          'flex h-6 max-h-6 min-h-6 w-6 max-w-6 min-w-6 items-center justify-center rounded-full',
+          'border-blue-grey-700 relative rounded-sm border-2 outline-hidden',
+          'after:top-1/2 after:left-1/2 after:h-10 after:w-10 after:-translate-x-1/2 after:-translate-y-1/2 after:content-[""]',
+          'not-disabled:hover:after:bg-color-primary-tr-hover after:absolute after:rounded-full',
+          'not-disabled:active:after:bg-color-primary-tr-pressed after:duration-100',
+          'not-disabled:focus:after:bg-color-primary-tr-focus after:-z-10',
           {
             'border-negative': invalid,
-            'disabled:border-0 disabled:bg-color-blue-grey-300': disabled
+            'disabled:bg-color-blue-grey-300 disabled:border-0': disabled
           },
           classes?.root,
           className
@@ -66,11 +66,11 @@ export const CheckboxBase = forwardRef<HTMLButtonElement, CheckboxBaseProps>(
       >
         <Indicator
           className={cn(
-            'h-6 w-6 rounded-sm bg-color-primary-default group-disabled:bg-color-primary-disabled',
+            'bg-color-primary-default group-disabled:bg-color-primary-disabled h-6 w-6 rounded-sm',
             classes?.indicator
           )}
         >
-          <Icon name='general/check' className={cn('size-6 text-icon-white', classes?.icon)} />
+          <Icon name='general/check' className={cn('text-icon-white size-6', classes?.icon)} />
         </Indicator>
       </Root>
     )

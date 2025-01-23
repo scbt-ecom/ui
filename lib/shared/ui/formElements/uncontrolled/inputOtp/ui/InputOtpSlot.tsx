@@ -23,7 +23,7 @@ export const InputOTPSlot = forwardRef<ElementRef<'div'>, InputOTPSlotProps>(({ 
     <div
       ref={ref}
       className={cn(
-        'desk-headline-bold-m relative flex size-10 items-center justify-center bg-color-dark bg-color-transparent',
+        'desk-headline-bold-m bg-color-dark bg-color-transparent relative flex size-10 items-center justify-center',
         classes?.singleChar
       )}
       {...props}
@@ -31,12 +31,12 @@ export const InputOTPSlot = forwardRef<ElementRef<'div'>, InputOTPSlotProps>(({ 
       {char}
       {hasFakeCaret && (
         <div className={cn('pointer-events-none absolute inset-0 flex items-center justify-center', classes?.caretWrapper)}>
-          <div className={cn('h-5 w-px animate-caret-blink bg-color-dark duration-1000', classes?.caret)} />
+          <div className={cn('animate-caret-blink bg-color-dark h-5 w-px duration-1000', classes?.caret)} />
         </div>
       )}
       <span
         className={cn(
-          'absolute bottom-0 h-px w-8 bg-color-blue-grey-500',
+          'bg-color-blue-grey-500 absolute bottom-0 h-px w-8',
           { 'bg-color-dark': isActive, 'bg-color-negative': invalid },
           classes?.substrate
         )}
