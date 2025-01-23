@@ -1,24 +1,5 @@
 import z from 'zod'
 
-/**
- * @deprecated For better performance use `ZodUtils.getZodDefaults` instead.
- */
-export const getDefaults = <ZodSchema extends z.AnyZodObject, Schema = z.TypeOf<ZodSchema>>(schema: ZodSchema) => {
-  const defaults = {} as Schema
-
-  const entries = Object.entries(schema.shape) as [keyof Schema, Schema[keyof Schema]][]
-
-  entries.forEach(([key, value]) => {
-    if (value instanceof z.ZodDefault) {
-      defaults[key] = value._def.defaultValue()
-    }
-
-    if (value) defaults[key] = undefined as Schema[keyof Schema]
-  })
-
-  return defaults
-}
-
 type ZodUtilsGetDefaultsOptions = {
   /**
    * Вставить в массив значение, исходя из внутренней схемы z.array

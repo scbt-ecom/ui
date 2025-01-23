@@ -8,7 +8,7 @@ const getFioParts = (value: string) => {
   return { surname, name, patronymic }
 }
 
-type FioValidationOptions<Required extends boolean> = {
+export type FioValidationOptions<Required extends boolean> = {
   /**
    * указывает что поле обязательное
    * @default true
