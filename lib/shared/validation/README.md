@@ -4,24 +4,25 @@
 
 Модуль содержит всю логику, связанную с валидацией форм и полей в них.
 
-- `zodValidators` - базовые пере используемые схемы валидации основанные на [zod](https://zod.dev/)
-  - `base`
-    - `getStringSchema`
-    - `getEmailSchema`
-    - `getSelectSchema`
-    - `getNumberSchema`
-    - `getPhoneSchema`
-    - `getDateSchema`
-    - `getUnionSchema`
-  - `dadata`
-    - `getFioSchema`
-- `ZodUtils`
+- [`zodValidators`](#zodvalidators) - базовые пере используемые схемы валидации основанные на [zod](https://zod.dev/)
+  - [`base`](#basegetstringschema)
+    - [`getStringSchema`](#basegetstringschema)
+    - [`getEmailSchema`](#basegetemailschema)
+    - [`getSelectSchema`](#basegetselectschema)
+    - [`getNumberSchema`](#basegetnumberschema)
+    - [`getPhoneSchema`](#basegetphoneschema)
+    - [`getDateSchema`](#basegetdateschema)
+    - [`getUnionSchema`](#basegetunionschema)
+  - [`dadata`](#dadatagetfioschema)
+    - [`getFioSchema`](#dadatagetfioschema)
+- [`ZodUtils`](#zodutils)
+  - [`getZodDefaults`](#getzoddefaults)
 
 # Api Reference
 
 ## `zodValidators`
 
-- ### `base.getStringSchema`
+### `base.getStringSchema`
 
 Стандартная строковая схема
 
@@ -60,7 +61,7 @@ schema.parse({
 | `required` | `boolean` | указывает что поле обязательное  | `false`  | `true`      |
 | `message`  | `{}`      | переопределение сообщений ошибки | `false`  | `undefined` |
 
-- ### `base.getEmailSchema`
+### `base.getEmailSchema`
 
 Строковая схема с email валидацией
 
@@ -97,7 +98,7 @@ schema.parse({
 | `required` | `boolean` | указывает что поле обязательное                       | `false`  | `true`                               |
 | `message`  | `{}`      | переопределение сообщений ошибки                      | `false`  | `undefined`                          |
 
-- ### `base.getSelectSchema`
+### `base.getSelectSchema`
 
 Строковая схема для `Select` полей
 
@@ -142,7 +143,7 @@ schema.parse({
 | `length`    | `number`  | фиксированное количество элементов (игнорируется есть `multiple = false`) | `false`  | `undefined` |
 | `message`   | `{}`      | переопределение сообщений ошибки                                          | `false`  | `undefined` |
 
-- ### `base.getNumberSchema`
+### `base.getNumberSchema`
 
 Стандартная числовая схема
 
@@ -180,7 +181,7 @@ schema.parse({
 | `required` | `boolean` | указывает что поле обязательное  | `false`  | `true`      |
 | `message`  | `{}`      | переопределение сообщений ошибки | `false`  | `undefined` |
 
-- ### `base.getPhoneSchema`
+### `base.getPhoneSchema`
 
 Строковая схема с валидацией номера телефона
 
@@ -228,7 +229,7 @@ schema.parse({
 | `required`    | `boolean` | указывает что поле обязательное                              | `false`  | `true`        |
 | `message`     | `{}`      | переопределение сообщений ошибки                             | `false`  | `undefined`   |
 
-- ### `base.getDateSchema`
+### `base.getDateSchema`
 
 Строковая схема валидации даты
 
@@ -269,7 +270,7 @@ schema.parse({
 | `required` | `boolean` | указывает что поле обязательное                                       | `false`  | `true`       |
 | `message`  | `{}`      | переопределение сообщений ошибки                                      | `false`  | `undefined`  |
 
-- ### `base.getUnionSchema`
+### `base.getUnionSchema`
 
 Схема валидации юнион-полей
 
@@ -310,7 +311,7 @@ schema.parse({
 | `required`           | `boolean`                                      | указывает что поле обязательное                     | `false`  | `true`      |
 | `message`            | `((values: readonly T[]) => string) \| string` | переопределение сообщений ошибки                    | `false`  | `undefined` |
 
-- ### `dadata.getFioSchema`
+### `dadata.getFioSchema`
 
 Стандартная строковая схема валидации ФИО
 
@@ -350,7 +351,7 @@ schema.parse({
 
 Класс утилитарных функций для [zod](https://zod.dev/)
 
-- ### `getZodDefaults`
+### `getZodDefaults`
 
 Утилита для получения значений по умолчанию в соответствии со схемой валидации
 
