@@ -3,8 +3,7 @@ import { type Meta, type StoryObj } from '@storybook/react'
 import { z } from 'zod'
 import { useBoolean, useControlledForm } from '$/shared/hooks'
 import { Button, Modal } from '$/shared/ui'
-import { CheckboxControl, InputControl } from '$/shared/ui/formElements'
-// import { Button, CheckboxControl, InputControl, Modal } from '$/shared/ui'
+import { Controlled } from '$/shared/ui'
 import { VALIDATION_MESSAGES } from '$/shared/validation'
 
 const meta = {
@@ -86,11 +85,13 @@ export const ModalWithForm: Story = {
           <form onSubmit={handleSubmit(onSubmit)}>
             <p>Укажите ваш адрес электронной почты, чтобы узнавать обо всех новостях и изменения вовремя</p>
             <div className='my-4 flex flex-col gap-2'>
-              <InputControl name='email' label='Электронная почта' control={control} />
+              <Controlled.InputControl name='email' label='Электронная почта' control={control} />
               <p>Присылать новости на тему:</p>
               <div className='flex flex-col gap-2'>
                 {checkboxGroup?.map(({ label, name }) => (
-                  <CheckboxControl key={name} control={control} name={name} label={label} />
+                  <Controlled.CheckboxControl key={name} control={control} name={name}>
+                    {label}
+                  </Controlled.CheckboxControl>
                 ))}
               </div>
             </div>

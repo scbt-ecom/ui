@@ -42,16 +42,14 @@ export const UploaderControl = ({
   const { message, container, ...restClasses } = classes || {}
 
   return (
-    <>
-      <div className={cn('w-full', container)}>
-        <Uncontrolled.UploaderBase {...props} {...field} invalid={invalid} disabled={disabled} classes={restClasses} />
-        <MessageView
-          text={error?.message || helperText}
-          className={message}
-          intent={error ? 'error' : 'simple'}
-          disabled={disabled}
-        />
-      </div>
-    </>
+    <div className={cn('w-full', container)}>
+      <Uncontrolled.UploaderBase {...props} {...field} invalid={invalid} disabled={disabled} classes={restClasses} />
+      <MessageView
+        text={error?.message || helperText}
+        className={message}
+        intent={error ? 'error' : 'simple'}
+        disabled={disabled}
+      />
+    </div>
   )
 }

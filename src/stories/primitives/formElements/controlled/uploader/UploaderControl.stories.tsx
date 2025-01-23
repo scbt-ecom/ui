@@ -59,12 +59,6 @@ export const Disabled: Story = {
   }
 }
 
-export const Invalid: Story = {
-  args: {
-    invalid: true
-  }
-}
-
 export const CustomOptions: Story = {
   args: {
     dropzoneOptions: {

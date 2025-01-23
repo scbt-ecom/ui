@@ -1,6 +1,6 @@
 'use client'
 
-import { memo, useState } from 'react'
+import { useState } from 'react'
 import { type Control, type FieldPath, type FieldValues, useController, type UseControllerProps } from 'react-hook-form'
 import { SingleDayPicker } from './single'
 import { type Calendar, type MaskInputProps } from '$/shared/ui'
@@ -46,7 +46,7 @@ export type DayPickerControlProps<
     externalHandlers?: ExternalHandlers
   }
 
-const InnerComponent = <T extends FieldValues = FieldValues>({
+export const DayPickerControl = <T extends FieldValues = FieldValues>({
   control,
   name,
   disabled,
@@ -97,5 +97,3 @@ const InnerComponent = <T extends FieldValues = FieldValues>({
     </div>
   )
 }
-
-export const DayPickerControl = memo(InnerComponent) as typeof InnerComponent

@@ -1,4 +1,3 @@
-import { memo } from 'react'
 import { type Control, type FieldPath, type FieldValues, useController, type UseControllerProps } from 'react-hook-form'
 import { type RadioGroupBaseProps, Uncontrolled } from '$/shared/ui'
 import { MessageView } from '$/shared/ui/formElements/ui'
@@ -33,7 +32,7 @@ type RadioGroupControlProps<
     helperText?: string
   }
 
-const InnerComponent = <TFieldValues extends FieldValues = FieldValues>({
+export const RadioGroupControl = <TFieldValues extends FieldValues = FieldValues>({
   classes,
   className,
   control,
@@ -79,4 +78,3 @@ const InnerComponent = <TFieldValues extends FieldValues = FieldValues>({
     </div>
   )
 }
-export const RadioGroupControl = memo(InnerComponent) as typeof InnerComponent

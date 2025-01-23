@@ -1,9 +1,10 @@
 import { AutocompleteControl } from './autocomplete'
 import { CheckboxControl } from './checkbox'
-import { ComboboxControl } from './combobox'
 import { DadataAddress, DadataAuto, DadataCountry, DadataFio, DadataOrganization } from './dadata'
 import { DayPickerControl } from './dayPickerControl'
+import { EditorControl } from './editor'
 import { InputControl, MaskInputControl } from './input'
+import { InputCurrencyControl } from './inputCurrency'
 import { InputOtpControl } from './inputOtp'
 import { RadioGroupControl } from './radio'
 import { SelectControl } from './select'
@@ -22,7 +23,6 @@ export const Controlled = {
   SelectControl,
   SwitchControl,
   RadioGroupControl,
-  ComboboxControl,
   AutocompleteControl,
   DadataFio,
   DadataAddress,
@@ -32,5 +32,7 @@ export const Controlled = {
   SliderControl,
   TextareaControl,
   UploaderControl,
-  InputOtpControl
+  InputOtpControl,
+  EditorControl,
+  InputCurrencyControl
 }

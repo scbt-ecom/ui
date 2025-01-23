@@ -1,4 +1,3 @@
-import { memo } from 'react'
 import { type Control, type FieldValues, type Path, useController, type UseControllerProps } from 'react-hook-form'
 import { type SliderBaseClasses, type SliderBaseProps } from '../../uncontrolled/slider/SliderBase'
 import { Uncontrolled } from '$/shared/ui'
@@ -17,7 +16,7 @@ type SliderControlProps<
     classes?: SliderControlClasses
   }
 
-export const InnerComponent = ({
+export const SliderControl = ({
   control,
   name,
   defaultValue,
@@ -45,5 +44,3 @@ export const InnerComponent = ({
     </div>
   )
 }
-
-export const SliderControl = memo(InnerComponent) as typeof InnerComponent

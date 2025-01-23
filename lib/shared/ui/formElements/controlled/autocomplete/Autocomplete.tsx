@@ -1,8 +1,6 @@
-import { memo } from 'react'
 import { type Control, type FieldValues, type Path, useController, type UseControllerProps } from 'react-hook-form'
 import { MessageView } from '../../ui'
-import { type AutocompleteBaseProps, Uncontrolled } from '../../uncontrolled'
-import { type SelectClasses } from '../../uncontrolled/select/Select'
+import { type AutocompleteBaseProps, Uncontrolled } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
 export type AutocompleteControlProps<
@@ -13,13 +11,13 @@ export type AutocompleteControlProps<
   Omit<AutocompleteBaseProps<T>, 'classes'> & {
     control: Control<TFieldValues>
     helperText?: string
-    classes?: SelectClasses & {
+    classes?: AutocompleteBaseProps<T>['classes'] & {
       container?: string
       message?: string
     }
   }
 
-export const InnerComponent = <TFieldValues extends FieldValues, T>({
+export const AutocompleteControl = <TFieldValues extends FieldValues, T>({
   control,
   name,
   defaultValue,
@@ -51,5 +49,3 @@ export const InnerComponent = <TFieldValues extends FieldValues, T>({
     </div>
   )
 }
-
-export const AutocompleteControl = memo(InnerComponent) as typeof InnerComponent
