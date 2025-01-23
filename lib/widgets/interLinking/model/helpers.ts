@@ -1,25 +1,21 @@
 import { z } from 'zod'
 
-export const columnGroupSchema = z.array(
-  z.object({
-    groupLabel: z.string(),
-    links: z.array(
-      z.object({
-        label: z.string(),
-        path: z.string()
-      })
-    )
-  })
-)
+export const linkSchema = z.object({
+  label: z.string(),
+  path: z.string()
+})
 
-export const columnsSchema = z.array(
-  z.object({
-    columnsGroup: columnGroupSchema
-  })
-)
+export const groupSchema = z.object({
+  groupLabel: z.string(),
+  links: z.array(linkSchema)
+})
+
+export const columnsSchema = z.object({
+  column: z.array(groupSchema)
+})
 
 export const interLinkingSchema = z.object({
-  intent: z.enum(['twoCols', 'threeCols', 'fourCols']),
-  heading: z.string(),
-  columns: columnsSchema
+  headline: z.string(),
+  variant: z.enum(['twoCols', 'threeCols', 'fourCols']),
+  columns: z.array(columnsSchema)
 })

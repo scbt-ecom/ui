@@ -6,40 +6,46 @@ import { cn } from '$/shared/utils'
 
 const columnsWrapper = cva('grid gap-4 grid-cols-1', {
   variants: {
-    intent: {
+    variant: {
       twoCols: 'desktop:grid-cols-2',
       threeCols: 'desktop:grid-cols-3',
       fourCols: 'desktop:grid-cols-4'
     }
   },
   defaultVariants: {
-    intent: 'fourCols'
+    variant: 'fourCols'
   }
 })
 
 export type InterLinkingClasses = {
   root?: string
-  heading?: string
+  headline?: string
   columnsWrapper?: string
   column?: ColumnClasses
 }
 
-export interface InterLinkingProps {
-  data: InterLinkingSchema
+export interface InterLinkingProps extends InterLinkingSchema {
   mobileAccordionProps?: AccordionProps
   rootAccordionProps?: AccordionProps
   classes?: InterLinkingClasses
 }
 
-export const InterLinking = ({ data, mobileAccordionProps, rootAccordionProps, classes }: InterLinkingProps) => {
+export const InterLinking = ({
+  columns,
+  variant,
+  headline,
+  mobileAccordionProps,
+  rootAccordionProps,
+  classes
+}: InterLinkingProps) => {
   return (
     <section id='inter-linking' className={cn('min-w-full desktop:min-w-[1140px]', classes?.root)}>
       <ResponsiveContainer>
         <Accordion
           defaultOpen
           label={
-            <Heading as='h4' className={cn('text-left', classes?.heading)}>
-              {data?.heading}
+            <Heading as='h4' className={cn('text-left', classes?.headline)}>
+              {headline}
             </Heading>
           }
           {...rootAccordionProps}
@@ -48,8 +54,8 @@ export const InterLinking = ({ data, mobileAccordionProps, rootAccordionProps, c
             content: cn('max-w-full bg-color-blue-grey-100 relative', rootAccordionProps?.classes?.content)
           }}
         >
-          <div className={cn(columnsWrapper({ intent: data?.intent }), classes?.columnsWrapper)}>
-            {data?.columns?.map((column, index) => (
+          <div className={cn(columnsWrapper({ variant: variant }), classes?.columnsWrapper)}>
+            {columns?.map((column, index) => (
               <Column key={index} {...column} {...mobileAccordionProps} classes={classes?.column} />
             ))}
           </div>

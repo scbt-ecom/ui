@@ -1,8 +1,8 @@
 import type { InterLinkingSchema } from '$/widgets'
 
-const columns = [
+const mockColumns = [
   {
-    columnsGroup: [
+    column: [
       {
         groupLabel: 'Калькулятор',
         links: [
@@ -113,7 +113,7 @@ const columns = [
     ]
   },
   {
-    columnsGroup: [
+    column: [
       {
         groupLabel: 'По возрасту',
         links: [
@@ -183,7 +183,7 @@ const columns = [
     ]
   },
   {
-    columnsGroup: [
+    column: [
       {
         groupLabel: 'В других городах',
         links: [
@@ -346,7 +346,7 @@ const columns = [
     ]
   },
   {
-    columnsGroup: [
+    column: [
       {
         groupLabel: 'По сумме',
         links: [
@@ -525,19 +525,19 @@ const columns = [
 ]
 
 export const MOCK_INTERLINKING_FOUR_COLS: InterLinkingSchema = {
-  intent: 'fourCols',
-  heading: 'Другие предложения по лизингу',
-  columns: [...columns]
+  variant: 'fourCols',
+  headline: 'Другие предложения по лизингу',
+  columns: mockColumns
 }
 
 export const MOCK_INTERLINKING_THREE_COLS: InterLinkingSchema = {
-  intent: 'threeCols',
-  heading: 'Другие предложения по лизингу',
-  columns: [columns[0], columns[2], columns[3]]
+  variant: 'threeCols',
+  headline: 'Другие предложения по лизингу',
+  columns: [mockColumns[0], mockColumns[2], mockColumns[3]]
 }
 
 export const MOCK_INTERLINKING_TWO_COLS: InterLinkingSchema = {
-  intent: 'twoCols',
-  heading: 'Другие предложения по лизингу',
-  columns: [columns[0], columns[2]]
+  variant: 'twoCols',
+  headline: 'Другие предложения по лизингу',
+  columns: [mockColumns[0], mockColumns[2]]
 }
