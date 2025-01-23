@@ -4,7 +4,7 @@
 
 Модуль содержит всю логику, связанную с валидацией форм и полей в них.
 
-- [`zodValidators`](#zodvalidators) - базовые пере используемые схемы валидации основанные на [zod](https://zod.dev/)
+- [`zodValidators`](#zodvalidators)
   - [`base`](#basegetstringschema)
     - [`getStringSchema`](#basegetstringschema)
     - [`getEmailSchema`](#basegetemailschema)
@@ -21,6 +21,8 @@
 # Api Reference
 
 ## `zodValidators`
+
+Базовые пере-используемые схемы валидации основанные на [zod](https://zod.dev/)
 
 ### `base.getStringSchema`
 
