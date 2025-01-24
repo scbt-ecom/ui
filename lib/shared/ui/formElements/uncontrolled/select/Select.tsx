@@ -234,6 +234,7 @@ export const SelectBase = forwardRef<HTMLElement, SelectBaseProps<boolean>>(
                 ) : options.length > 0 ? (
                   options.map((option, index) => (
                     <SelectItem
+                      data-test-id={`select-item-${index}`}
                       key={option.value}
                       option={option}
                       isMulti={isMulti}
