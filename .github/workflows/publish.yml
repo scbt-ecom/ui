@@ -19,6 +19,8 @@ jobs:
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup Node.js ⚙️ - Cache dependencies ⚡ - Install dependencies 🔧
         uses: ./.github/workflows/setup-node
@@ -29,16 +31,15 @@ jobs:
       - name: Build 🏗️
         run: npm run build
 
+      - name: Configure Git 🔧
+        run: |
+          git config user.name "@scbt-ecom/semantic-bot"
+
       - name: Switch to release branch
         run: |
           BRANCH="update/semantic-release"
-          git config user.name "@scbt-ecom/semantic-bot"
-          if git show-ref --quiet refs/remotes/origin/$BRANCH; then
-            git checkout $BRANCH
-            git pull origin $BRANCH
-          else
-            git checkout -b $BRANCH
-          fi
+          git fetch origin
+          git checkout -B $BRANCH origin/$BRANCH || git checkout -b $BRANCH
 
       - name: Publish with Semantic Release 🚀
         env:
@@ -46,16 +47,12 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npx semantic-release
 
-      - name: Commiting release
+      - name: Commit and push changes
         run: |
-          git add .
-          git commit -m "chore(release): update version [skip ci]" || echo "No changes to commit"
           BRANCH="update/semantic-release"
-          if git show-ref --quiet refs/remotes/origin/$BRANCH; then
-            git push
-          else
-            git push -u origin/$BRANCH
-          fi
+          git add .
+          git diff --staged --quiet || git commit -m "chore(release): update version [skip ci]"
+          git push origin $BRANCH || git push -u origin $BRANCH
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
@@ -67,13 +64,13 @@ jobs:
           branch: update/semantic-release
           base: master
 
-      - name: Approve Pull Request
+      - name: Auto-approve Pull Request
         uses: hmarr/auto-approve-action@v3
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           pull-request-number: ${{ steps.cpr.outputs.pull-request-number }}
 
-      - name: Merge Pull Request
+      - name: Enable Pull Request auto-merge
         uses: peter-evans/enable-pull-request-automerge@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
