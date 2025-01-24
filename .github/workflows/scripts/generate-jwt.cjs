@@ -23,4 +23,3 @@ Promise.all([fs, authApp]).then(([fs, { createAppAuth }]) => {
       process.exit(1);
     });
 });
-
