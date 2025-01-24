@@ -1,50 +1,57 @@
 import z from 'zod'
 import { baseDefaultMessages } from './base.constants'
 
-export type SelectSingleValidationOptions<Multi extends boolean = false> = {
+export type SelectSingleValidationOptions<Required extends boolean, Multi extends boolean = false> = {
   /**
    * включает валидацию мульти селекта
    * @default false
    */
   multiple?: Multi
+  /**
+   * указывает что поле обязательное
+   * @default true
+   */
+  required?: Required
   message?: {
     single?: string
     multiple?: string
   }
 }
 
-type SelectMultipleValidationOptions<Multi extends boolean = true> = SelectSingleValidationOptions<Multi> & {
+type SelectMultipleValidationOptions<Required extends boolean, Multi extends boolean = true> = SelectSingleValidationOptions<
+  Required,
+  Multi
+> & {
   /**
    * минимальное количество элементов
    * @default 0
    */
   minLength?: number
+  /**
+   * максимальное количество элементов
+   * @default undefined
+   */
+  maxLength?: number
+  /**
+   * фиксированное количество элементов
+   * @default undefined
+   */
+  length?: number
+  message?: SelectSingleValidationOptions<Required, Multi> & {
+    minLength?: string
+    maxLength?: string
+    length?: string
+  }
 }
 
-type SelectValidationOptions<Multi extends boolean> = Multi extends true
-  ? SelectMultipleValidationOptions<Multi>
-  : SelectSingleValidationOptions<Multi>
+type SelectValidationOptions<Required extends boolean, Multi extends boolean> = Multi extends true
+  ? SelectMultipleValidationOptions<Required, Multi>
+  : SelectSingleValidationOptions<Required, Multi>
 
 /**
  * Схема валидации обязательного поля типа select
- * @param {SelectValidationOptions} props настройки схемы
- * @typeParam `multiple` - `boolean`
- * @typeParam `minLength` - `number` `required if multiple = true`
- * @typeParam `message` - `{ [single | multiple]: string }`
- * @returns схема валидации поля в соответствии с настройками
- *
- * @example
- * z.object({
- *   field: zodValidators.base.getSelectRequired({ multiple: false })
- * })
- * // will returns z.string().min(1).nullable().refine(Boolean)
- *
- * z.object({
- *   field: zodValidators.base.getSelectRequired({ multiple: true, minLength: 3 })
- * })
- * // will returns z.array(z.string().min(1).nullable().refine(Boolean))
  */
-export const getSelectRequired = <Multi extends boolean>(props?: SelectValidationOptions<Multi>) => {
+const getSelectRequired = <Required extends boolean, Multi extends boolean>(props?: SelectValidationOptions<Required, Multi>) => {
   const { message } = props || {}
 
   const selectSchema = z
@@ -55,34 +62,34 @@ export const getSelectRequired = <Multi extends boolean>(props?: SelectValidatio
     .default(null)
 
   if (props?.multiple) {
-    return z
+    let arraySchema = z
       .array(selectSchema)
-      .min(props?.minLength || 0, message?.multiple || baseDefaultMessages.SELECT_MULTIPLE_NON_EMPTY(props?.minLength || 0))
-      .default([])
+      .min(props?.minLength || 0, message?.multiple || baseDefaultMessages.SELECT_MULTIPLE_MIN_LENGTH(props?.minLength || 0))
+
+    if (props?.length) {
+      return arraySchema
+        .length(props.length, props.message?.length || baseDefaultMessages.SELECT_FIX_LENGTH(props.length))
+        .default([])
+    } else if (props?.maxLength) {
+      arraySchema = arraySchema.max(
+        props.maxLength,
+        props.message?.maxLength || baseDefaultMessages.SELECT_MULTIPLE_MAX_LENGTH(props.maxLength)
+      )
+    }
+
+    return arraySchema.default([])
   }
 
   return selectSchema
 }
+type SelectRequiredSchema = ReturnType<typeof getSelectRequired>
 
 /**
  * Схема валидации опционального поля типа select
- * @param {SelectValidationOptions} props настройки схемы
- * @typeParam `multiple` - `boolean`
- * @typeParam `minLength` - `number` `required if multiple = true`
- * @returns схема валидации поля в соответствии с настройками
- *
- * @example
- * z.object({
- *   field: zodValidators.base.getSelectOptional({ multiple: false })
- * })
- * // will returns z.string().nullable()
- *
- * z.object({
- *   field: zodValidators.base.getSelectOptional({ multiple: true })
- * })
- * // will returns z.array(z.string().nullable())
  */
-export const getSelectOptional = <Multi extends boolean>(props?: Omit<SelectValidationOptions<Multi>, 'message'>) => {
+function getSelectOptional<Required extends boolean, Multi extends boolean>(
+  props?: Omit<SelectValidationOptions<Required, Multi>, 'message'>
+) {
   const selectSchema = z.string().nullable().optional()
 
   if (props?.multiple) {
@@ -90,4 +97,47 @@ export const getSelectOptional = <Multi extends boolean>(props?: Omit<SelectVali
   }
 
   return selectSchema
+}
+type SelectOptionalSchema = ReturnType<typeof getSelectOptional>
+
+/**
+ * Схема валидации опционального поля типа select
+ * @param {SelectValidationOptions} props настройки схемы
+ @typeParam `required` - `boolean`
+ * @typeParam `multiple` - `boolean`
+ * @typeParam `minLength` - `number | undefined`
+ * @returns схема валидации поля в соответствии с настройками
+ *
+ * @example with required single value
+ * z.object({
+ *   field: zodValidators.base.getSelectSchema({ multiple: false })
+ * })
+ * // will returns z.string().nullable()
+ *
+ * @example with required multiple value
+ * z.object({
+ *   field: zodValidators.base.getSelectSchema({ multiple: true })
+ * })
+ * // will returns z.array(z.string().nullable())
+ *
+ * @example with optional single value
+ * z.object({
+ *   field: zodValidators.base.getSelectSchema({ required: false, multiple: false })
+ * })
+ * // will returns z.string().nullable().optional()
+ *
+ * @example with optional multiple value
+ * z.object({
+ *   field: zodValidators.base.getSelectSchema({ required: false, multiple: true })
+ * })
+ * // will returns z.array(z.string().nullable().optional()).optional()
+ */
+export function getSelectSchema<Multi extends boolean>(props?: SelectValidationOptions<true, Multi>): SelectRequiredSchema
+export function getSelectSchema<Multi extends boolean>(props?: SelectValidationOptions<false, Multi>): SelectOptionalSchema
+export function getSelectSchema<Multi extends boolean, Required extends boolean>(
+  props?: SelectValidationOptions<Required, Multi>
+): SelectRequiredSchema | SelectOptionalSchema {
+  const { required = true } = props || {}
+
+  return required ? getSelectRequired(props) : getSelectOptional(props)
 }

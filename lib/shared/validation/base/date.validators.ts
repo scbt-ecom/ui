@@ -4,9 +4,9 @@ import { baseDefaultMessages } from './base.constants'
 import { DATE_VISIBLE_PATTERN } from '$/shared/ui'
 import { TypeGuards } from '$/shared/utils'
 
-export type DateValidationOptions = {
+export type DateValidationOptions<Required extends boolean> = {
   /**
-   * парсить строку с учетом ISO формата
+   * валидация строки с учетом ISO формата
    * @default false
    */
   iso?: boolean
@@ -15,6 +15,10 @@ export type DateValidationOptions = {
    * @default 'dd.MM.yyyy'
    */
   pattern?: string
+  /**
+   * указывает что поле обязательное
+   */
+  required?: Required
   message?: {
     min?: string
     invalidDate?: string
@@ -23,19 +27,8 @@ export type DateValidationOptions = {
 
 /**
  * Схема валидации опционального поля номера телефона
- * @param {DateValidationOptions} props настройки схемы
- * @typeParam `iso` - `boolean | undefined` `default: false`
- * @typeParam `pattern` - `string | undefined` `default: 'dd.MM.yyyy'`
- * @typeParam `message` - `{ [min | invalidOperator]: string }`
- * @returns схема валидации поля в соответствии с настройками
- *
- * @example
- * z.object({
- *   field: zodValidators.base.getDateRequired()
- * })
- * // will returns z.string()
  */
-export const getDateRequired = (props?: DateValidationOptions) => {
+const getDateRequired = (props?: Omit<DateValidationOptions<boolean>, 'required'>) => {
   const { iso = false, pattern = DATE_VISIBLE_PATTERN, message } = props || {}
 
   return z
@@ -77,22 +70,12 @@ export const getDateRequired = (props?: DateValidationOptions) => {
     })
     .default('')
 }
+type DateRequiredSchema = ReturnType<typeof getDateRequired>
 
 /**
  * Схема валидации опционального поля номера телефона
- * @param {DateValidationOptions} props настройки схемы
- * @typeParam `iso` - `boolean | undefined` `default: false` парсить строку с учетом ISO формата
- * @typeParam `pattern` - `string | undefined` `default: 'dd.MM.yyyy'` шаблон для валидации строки (будет проигнорирован, если `iso = true`)
- * @typeParam `message` - `{ [min | invalidOperator]: string }`
- * @returns схема валидации поля в соответствии с настройками
- *
- * @example
- * z.object({
- *   field: zodValidators.base.getDateOptional()
- * })
- * // will returns z.string()
  */
-export const getDateOptional = (props?: DateValidationOptions) => {
+const getDateOptional = (props?: Omit<DateValidationOptions<boolean>, 'required'>) => {
   const { iso = false, pattern = DATE_VISIBLE_PATTERN, message } = props || {}
 
   return z
@@ -135,4 +118,36 @@ export const getDateOptional = (props?: DateValidationOptions) => {
       }
     })
     .optional()
+}
+type DateOptionalSchema = ReturnType<typeof getDateOptional>
+
+/**
+ * Схема валидации поля даты
+ * @param {DateValidationOptions} props настройки схемы
+ * @typeParam `required` - `boolean`
+ * @typeParam `iso` - `boolean | undefined`
+ * @typeParam `pattern` - `string | undefined`
+ * @typeParam `message` - `{ [min | invalidOperator]: string }`
+ * @returns схема валидации поля в соответствии с настройками
+ *
+ * @example with required value
+ * z.object({
+ *   field: zodValidators.base.getDateSchema()
+ * })
+ * // will returns z.string()
+ *
+ * @example with required value
+ * z.object({
+ *   field: zodValidators.base.getDateSchema({ required: false })
+ * })
+ * // will returns z.string().optional()
+ */
+export function getDateSchema(props?: DateValidationOptions<true>): DateRequiredSchema
+export function getDateSchema(props?: DateValidationOptions<false>): DateOptionalSchema
+export function getDateSchema<Required extends boolean>(
+  props?: DateValidationOptions<Required>
+): DateRequiredSchema | DateOptionalSchema {
+  const { required = true } = props || {}
+
+  return required ? getDateRequired(props) : getDateOptional(props)
 }

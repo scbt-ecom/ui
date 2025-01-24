@@ -20,6 +20,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
+    "removeComments": false,
     "incremental": true,
     "baseUrl": ".",
     "paths": {
@@ -28,6 +29,6 @@
     },
   },
   "include": ["vite-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.jsx", ".next/types/**/*.ts", "src", "lib"],
-  "exclude": ["node_modules", "vitest.config.mjs"],
+  "exclude": ["node_modules", "vitest.config.mjs, .github/**/*.js"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

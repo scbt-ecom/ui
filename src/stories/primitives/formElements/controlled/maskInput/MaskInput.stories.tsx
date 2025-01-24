@@ -5,7 +5,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { fn } from '@storybook/test'
 import type { TypeOf } from 'zod'
 import { HookForm } from '../utils'
-import { baseSchema, dateSchema, phoneSchema } from './schemas'
+import { baseDefaultValues, baseSchema, dateDefaultValues, dateSchema, phoneDefaultValues, phoneSchema } from './schemas'
 import { Controlled } from '$/shared/ui'
 
 type MaskInputControlProps = React.ComponentPropsWithoutRef<typeof Controlled.MaskInputControl>
@@ -25,9 +25,7 @@ const meta = {
     <HookForm<MaskInputControlProps, TypeOf<typeof baseSchema>>
       {...props}
       schema={baseSchema}
-      defaultValues={{
-        field: ''
-      }}
+      defaultValues={baseDefaultValues}
       renderComponent={(componentProps: MaskInputControlProps) => <Controlled.MaskInputControl {...componentProps} />}
     />
   )
@@ -60,9 +58,7 @@ export const WithPhoneMask: Story = {
     <HookForm<MaskInputControlProps, TypeOf<typeof phoneSchema>>
       {...props}
       schema={phoneSchema}
-      defaultValues={{
-        field: ''
-      }}
+      defaultValues={phoneDefaultValues}
       renderComponent={(componentProps: MaskInputControlProps) => <Controlled.MaskInputControl {...componentProps} />}
     />
   )
@@ -77,9 +73,7 @@ export const WithDateMask: Story = {
     <HookForm<MaskInputControlProps, TypeOf<typeof dateSchema>>
       {...props}
       schema={dateSchema}
-      defaultValues={{
-        field: ''
-      }}
+      defaultValues={dateDefaultValues}
       renderComponent={(componentProps: MaskInputControlProps) => <Controlled.MaskInputControl {...componentProps} />}
     />
   )

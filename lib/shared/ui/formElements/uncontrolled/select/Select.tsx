@@ -104,6 +104,7 @@ export const SelectBase = forwardRef<HTMLElement, SelectBaseProps<boolean>>(
       inputValue: externalInputValue,
       onInputChange: externalOnInputChange,
       externalHandlers,
+      immediate,
       ...props
     },
     ref
@@ -139,6 +140,7 @@ export const SelectBase = forwardRef<HTMLElement, SelectBaseProps<boolean>>(
         value={(value ? value : isMulti ? [] : '') as typeof value}
         onChange={onValueChange}
         multiple={isMulti}
+        immediate={immediate || !isSearchable}
       >
         {({ disabled, open, value }) => {
           const getDisplayValue = () => {
@@ -153,55 +155,53 @@ export const SelectBase = forwardRef<HTMLElement, SelectBaseProps<boolean>>(
 
           return (
             <div className={cn('relative w-full', root)}>
-              <ComboboxButton className='w-full'>
-                <ComboboxInput
-                  as={Uncontrolled.InputBase}
-                  label={label}
-                  disabled={disabled}
-                  readOnly={!isSearchable}
-                  value={(externalInputValue || getDisplayValue()) ?? ''}
-                  autoComplete='off'
-                  onChange={(event) => {
-                    const { value } = event.target
+              <ComboboxInput
+                as={Uncontrolled.InputBase}
+                label={label}
+                disabled={disabled}
+                readOnly={!isSearchable}
+                value={externalInputValue || getDisplayValue() || ''}
+                autoComplete='off'
+                onChange={(event) => {
+                  const { value } = event.target
 
-                    if (isSearchable) {
-                      if (externalOnInputChange) externalOnInputChange(value)
-                      if (externalHandlers?.onInputChange) externalHandlers.onInputChange(value)
-                      if (onInputValueChange) onInputValueChange(event)
-                    }
-                  }}
-                  invalid={invalid}
-                  classes={{
-                    input: isMulti || !isSearchable ? 'cursor-pointer' : undefined
-                  }}
-                  // TODO: think about it
-                  // renderValues={
-                  //   isMulti
-                  //     ? () => (
-                  //         <ChipList
-                  //           values={value}
-                  //           onDeleteItem={(option) => onDeleteItem(value, option)}
-                  //           inputValue={inputValue}
-                  //           onInputValueChange={onInputValueChange}
-                  //         />
-                  //       )
-                  //     : undefined
-                  // }
-                  attachmentProps={{
-                    icon: (
-                      <ComboboxButton as='span'>
-                        <Icon
-                          name='arrows/arrowRight'
-                          className={cn('size-6 rotate-90 text-color-blue-grey-600 duration-100', {
-                            '-rotate-90': open
-                          })}
-                        />
-                      </ComboboxButton>
-                    ),
-                    ...attachmentProps
-                  }}
-                />
-              </ComboboxButton>
+                  if (isSearchable) {
+                    if (externalOnInputChange) externalOnInputChange(value)
+                    if (externalHandlers?.onInputChange) externalHandlers.onInputChange(value)
+                    if (onInputValueChange) onInputValueChange(event)
+                  }
+                }}
+                invalid={invalid}
+                classes={{
+                  input: isMulti || !isSearchable ? 'cursor-pointer' : undefined
+                }}
+                // TODO: think about it
+                // renderValues={
+                //   isMulti
+                //     ? () => (
+                //         <ChipList
+                //           values={value}
+                //           onDeleteItem={(option) => onDeleteItem(value, option)}
+                //           inputValue={inputValue}
+                //           onInputValueChange={onInputValueChange}
+                //         />
+                //       )
+                //     : undefined
+                // }
+                attachmentProps={{
+                  icon: (
+                    <ComboboxButton as='span'>
+                      <Icon
+                        name='arrows/arrowRight'
+                        className={cn('size-6 rotate-90 text-color-blue-grey-600 duration-100', {
+                          '-rotate-90': open
+                        })}
+                      />
+                    </ComboboxButton>
+                  ),
+                  ...attachmentProps
+                }}
+              />
               <ComboboxOptions
                 as={motion.ul}
                 className={cn(
