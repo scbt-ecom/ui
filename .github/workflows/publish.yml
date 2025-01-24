@@ -55,6 +55,7 @@ jobs:
           git push origin $BRANCH || git push -u origin $BRANCH
 
       - name: Create Pull Request
+        id: cpr
         uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -65,12 +66,14 @@ jobs:
           base: master
 
       - name: Auto-approve Pull Request
+        if: steps.cpr.outputs.pull-request-number
         uses: hmarr/auto-approve-action@v3
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           pull-request-number: ${{ steps.cpr.outputs.pull-request-number }}
 
       - name: Enable Pull Request auto-merge
+        if: steps.cpr.outputs.pull-request-number
         uses: peter-evans/enable-pull-request-automerge@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
