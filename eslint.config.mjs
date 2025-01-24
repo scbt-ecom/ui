@@ -30,7 +30,7 @@ export default tseslint.config(
       '**/storybook-static',
       'lib/hybrid.ts',
       '.storybook',
-      '.github/**/*.js'
+      '.github/**/*.cjs'
     ]
   },
   {
