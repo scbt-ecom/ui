@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import parse from 'html-react-parser'
 import type { SingleStepProps } from '../model/types'
 import { Heading } from '$/shared/ui'
