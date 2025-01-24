@@ -29,9 +29,6 @@ jobs:
       - name: Build 🏗️
         run: npm run build
 
-      - name: Install @octokit/auth-app 💀
-        run: npm install -g @octokit/auth-app
-
       - name: Switch to release branch
         run: |
           BRANCH="update/semantic-release"
