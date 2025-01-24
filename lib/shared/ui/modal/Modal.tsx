@@ -31,12 +31,14 @@ export const Modal = ({
   isPortal = true,
   portalContainer = globalThis?.document?.body,
   closeModal,
-  classes
+  classes,
+  ...props
 }: ModalProps) => {
   const modalBody = (
     <AnimatePresence>
       {isModalOpen && (
         <motion.div
+          {...props}
           tabIndex={-1}
           onClick={closeModal}
           className={cn(
@@ -52,7 +54,6 @@ export const Modal = ({
           {...modalOverlayAnimation}
         >
           <motion.div
-            onClick={(event) => event.stopPropagation()}
             className={cn(
               'w-full max-w-[600px] rounded-md bg-color-white px-4 py-6 shadow-sm desktop:px-6 desktop:py-8',
               classes?.modal

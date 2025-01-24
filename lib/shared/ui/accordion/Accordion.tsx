@@ -23,9 +23,10 @@ export interface AccordionProps {
 }
 
 export const Accordion = forwardRef<HTMLDivElement, AccordionProps>(
-  ({ children, label, classes, defaultOpen = false, icon }, ref) => {
+  ({ children, label, classes, defaultOpen = false, icon, ...props }, ref) => {
     return (
       <AccordionPrimitive.Root
+        {...props}
         className={cn('flex flex-col gap-5', classes?.root)}
         type='multiple'
         defaultValue={defaultOpen ? [label.toString()] : undefined}
