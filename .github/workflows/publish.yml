@@ -19,8 +19,6 @@ jobs:
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: Setup Node.js ⚙️ - Cache dependencies ⚡ - Install dependencies 🔧
         uses: ./.github/workflows/setup-node
@@ -31,51 +29,8 @@ jobs:
       - name: Build 🏗️
         run: npm run build
 
-      - name: Configure Git 🔧
-        run: |
-          git config user.name "@scbt-ecom/semantic-bot"
-
-      - name: Switch to release branch
-        run: |
-          BRANCH="update/semantic-release"
-          git fetch origin
-          git checkout -B $BRANCH origin/$BRANCH || git checkout -b $BRANCH
-
       - name: Publish with Semantic Release 🚀
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npx semantic-release
-
-      - name: Commit and push changes
-        run: |
-          BRANCH="update/semantic-release"
-          git add .
-          git diff --staged --quiet || git commit -m "chore(release): update version [skip ci]"
-          git push origin $BRANCH || git push -u origin $BRANCH
-
-      - name: Create Pull Request
-        id: cpr
-        uses: peter-evans/create-pull-request@v5
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: "chore(release): update version [skip ci]"
-          title: "chore(release): update version"
-          body: "This PR is automatically created by the Semantic Release GitHub Action."
-          branch: update/semantic-release
-          base: master
-
-      - name: Auto-approve Pull Request
-        if: steps.cpr.outputs.pull-request-number
-        uses: hmarr/auto-approve-action@v3
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          pull-request-number: ${{ steps.cpr.outputs.pull-request-number }}
-
-      - name: Enable Pull Request auto-merge
-        if: steps.cpr.outputs.pull-request-number
-        uses: peter-evans/enable-pull-request-automerge@v3
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          pull-request-number: ${{ steps.cpr.outputs.pull-request-number }}
-          merge-method: squash
