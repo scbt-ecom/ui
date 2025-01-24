@@ -1,4 +1,4 @@
-import type { TColumnGroupSchema } from '../model/types'
+import type { ColumnGroupSchema } from '../model/types'
 import { ColumnGroup, type ColumnGroupClasses } from './ColumnGroup'
 import type { AccordionProps } from '$/shared/ui'
 import { cn } from '$/shared/utils'
@@ -9,15 +9,15 @@ export type ColumnClasses = {
 }
 
 export interface ColumnProps {
-  columnsGroup: TColumnGroupSchema
+  column: ColumnGroupSchema[]
   mobileAccordionProps?: AccordionProps
   classes?: ColumnClasses
 }
 
-export const Column = ({ columnsGroup, mobileAccordionProps, classes }: ColumnProps) => {
+export const Column = ({ column, mobileAccordionProps, classes }: ColumnProps) => {
   return (
     <div className={cn('flex flex-col gap-4 desktop:gap-6', classes?.column)}>
-      {columnsGroup?.map((group) => (
+      {column?.map((group) => (
         <ColumnGroup key={group.groupLabel} {...mobileAccordionProps} {...group} classes={classes?.columnGroup} />
       ))}
     </div>
