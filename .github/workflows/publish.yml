@@ -32,6 +32,7 @@ jobs:
       - name: Switch to release branch
         run: |
           BRANCH="update/semantic-release"
+          git config user.name "@scbt-ecom/semantic-bot"
           if git show-ref --quiet refs/remotes/origin/$BRANCH; then
             git checkout $BRANCH
             git pull origin $BRANCH
