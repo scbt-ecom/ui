@@ -1,5 +1,5 @@
-import fs from 'fs';
-import { createAppAuth } from '@octokit/auth-app';
+const fs = require('fs');
+const { createAppAuth } = require('@octokit/auth-app');
 
 const appId = process.env.SEMANTIC_APP_ID;
 const privateKey = process.env.SEMANTIC_APP_PRIVATE_KEY;
