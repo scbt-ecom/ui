@@ -38,8 +38,8 @@ jobs:
           SEMANTIC_APP_CLIENT_SECRET: ${{ secrets.SEMANTIC_APP_CLIENT_SECRET }}
         run: |
           JWT=$(node -e "
-            const fs = require('fs');
-            const { createAppAuth } = require('@octokit/auth-app');
+            import fs from 'fs';
+            import { createAuthApp } from '@octokit/auth-app';
             
             const appId = process.env.SEMANTIC_APP_ID;
             const privateKey = process.env.SEMANTIC_APP_PRIVATE_KEY;
