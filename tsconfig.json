@@ -29,6 +29,6 @@
     },
   },
   "include": ["vite-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.jsx", ".next/types/**/*.ts", "src", "lib"],
-  "exclude": ["node_modules", "vitest.config.mjs, .github/**/*.js"],
+  "exclude": ["node_modules", "vitest.config.mjs, .github/**/*.cjs"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
