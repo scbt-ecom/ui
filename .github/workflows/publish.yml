@@ -37,7 +37,7 @@ jobs:
           SEMANTIC_APP_CLIENT_ID: ${{ secrets.SEMANTIC_APP_CLIENT_ID }}
           SEMANTIC_APP_CLIENT_SECRET: ${{ secrets.SEMANTIC_APP_CLIENT_SECRET }}
         run: |
-          node .github/workflows/scripts/generate-jwt.js
+          node .github/workflows/scripts/generate-jwt.cjs
           echo "::set-output name=jwt::$(cat jwt.txt)"
 
       - name: Publish with Semantic Release 🚀
