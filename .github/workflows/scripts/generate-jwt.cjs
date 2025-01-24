@@ -1,6 +1,10 @@
 async function generateJwt() {
-  const fs = await import('fs');
-  const authApp = await import('@octokit/auth-app');
+  const fs = await import('fs').catch((error) => {
+    throw error;
+  });
+  const authApp = await import('@octokit/auth-app').catch((error) => {
+    throw error;
+  });
 
   const appId = process.env.SEMANTIC_APP_ID;
   const privateKey = process.env.SEMANTIC_APP_PRIVATE_KEY;
@@ -24,4 +28,7 @@ async function generateJwt() {
     });
 }
 
-generateJwt();
+generateJwt().catch((error) => {
+  console.error(error);
+  process.exit(1);
+});
