@@ -35,7 +35,7 @@ jobs:
           SEMANTIC_APP_ID: ${{ secrets.SEMANTIC_APP_ID }}
           SEMANTIC_APP_PRIVATE_KEY: ${{ secrets.SEMANTIC_APP_PRIVATE_KEY }}
           SEMANTIC_APP_CLIENT_ID: ${{ secrets.SEMANTIC_APP_CLIENT_ID }}
-          SEMANTIC_APP_CLIENT_SECRET: ${{ SEMANTIC_APP_CLIENT_SECRET }}
+          SEMANTIC_APP_CLIENT_SECRET: ${{ secrets.SEMANTIC_APP_CLIENT_SECRET }}
         run: |
           JWT=$(node -e "
             const fs = require('fs');
