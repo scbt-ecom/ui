@@ -49,6 +49,12 @@ jobs:
         run: |
           git add .
           git commit -m "chore(release): update version [skip ci]" || echo "No changes to commit"
+          BRANCH="update/semantic-release"
+          if git show-ref --quiet refs/remotes/origin/$BRANCH; then
+            git push
+          else
+            git push -u origin/$BRANCH
+          fi
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
