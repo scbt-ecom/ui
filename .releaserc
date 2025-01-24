@@ -1,12 +1,7 @@
 {
   "repositoryUrl": "https://github.com/scbt-ecom/ui.git",
   "branches": [
-    "master",
-    {
-      "name": "update/semantic-release",
-      "channel": "next",
-      "prerelease": false
-    }
+    "master"
   ],
   "plugins": [
     "@semantic-release/commit-analyzer",
