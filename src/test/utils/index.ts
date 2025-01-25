@@ -1,1 +1,1 @@
-export { TestWrapper } from './TestWrapper'
+export { ComponentProvider } from './ComponentProvider.tsx'

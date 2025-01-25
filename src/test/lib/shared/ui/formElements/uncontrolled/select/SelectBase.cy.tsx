@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { TestWrapper } from '@/test/utils'
+import { ComponentProvider } from '@/test/utils'
 import { type SelectItemOption, Uncontrolled } from '$/shared/ui'
 
 const options: SelectItemOption[] = [
@@ -18,16 +18,27 @@ describe('Test cases for Uncontrolled.SelectBase', () => {
   beforeEach(() => {
     // see: https://on.cypress.io/mounting-react
     cy.mount(
-      <TestWrapper
+      <ComponentProvider
         title='Тестовое название'
-        render={() => {
+        Component={Uncontrolled.SelectBase}
+        args={{
+          'data-test-id': 'select',
+          label: 'Test',
+          options
+        }}
+        decorator={(Component, props) => (
+          <>
+            <p>This applied from decorator</p>
+            <Component {...props} />
+          </>
+        )}
+        render={(props) => {
           const [value, setValue] = useState<SelectItemOption | SelectItemOption[] | undefined>()
 
           return (
             <Uncontrolled.SelectBase
+              {...props}
               data-test-id='select'
-              label='Test'
-              options={options}
               value={value}
               onChange={(value) => {
                 setValue(value)
