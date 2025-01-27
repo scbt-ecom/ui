@@ -3,7 +3,18 @@ import bezrykovDesk from './assets/bezrukov_desk.png'
 import bezrykovMob from './assets/bezrukov_mob.png'
 import saif from './assets/saif.jpg'
 import saifMob from './assets/saifMob.jpg'
+import { type AdvantagesProps } from '$/widgets'
 import { type BannerProps } from '$/widgets/banner/Banner.tsx'
+
+const defaultMockAdvantageProps: AdvantagesProps = {
+  advantagesList: [
+    { title: 'До 5 млн ₽', description: 'сумма кредита' },
+    { title: 'До 5 лет', description: 'срок кредита' },
+    { title: 'От 5 минут', description: 'быстрое одобрение' },
+    { title: 'Бесплатная', description: 'доставка кредита' }
+  ],
+  variant: 'fourCards'
+}
 
 export const mockBannerBase: BannerProps = {
   headTitle: 'Кредит на любые цели',
@@ -51,13 +62,7 @@ export const mockWithAdvantages: BannerProps = {
       size: 'lg'
     }
   },
-
-  advantagesList: [
-    { title: 'До 5 млн ₽', description: 'сумма кредита' },
-    { title: 'До 5 лет', description: 'срок кредита' },
-    { title: 'От 5 минут', description: 'быстрое одобрение' },
-    { title: 'Бесплатная', description: 'доставка кредита' }
-  ]
+  advantagesConfig: defaultMockAdvantageProps
 }
 export const mockBannerBaseFullImage: BannerProps = {
   headTitle: 'Кредит на любые цели',
@@ -124,12 +129,7 @@ export const mockBannerFullImageWithAdvantages: BannerProps = {
     secondary: 'bg-color-negative text-color-white'
   },
   bannerVariant: 'fullImg',
-  advantagesList: [
-    { title: 'До 5 млн ₽', description: 'сумма кредита' },
-    { title: 'До 5 лет', description: 'срок кредита' },
-    { title: 'От 5 минут', description: 'быстрое одобрение' },
-    { title: 'Бесплатная', description: 'доставка кредита' }
-  ]
+  advantagesConfig: defaultMockAdvantageProps
 }
 
 export const mockBannerBaseGradient: BannerProps = {
@@ -172,10 +172,5 @@ export const mockBannerBaseGradientAdvantages: BannerProps = {
   classes: {
     root: 'bg-color-transparent gradient-apply'
   },
-  advantagesList: [
-    { title: 'До 5 млн ₽', description: 'сумма кредита' },
-    { title: 'До 5 лет', description: 'срок кредита' },
-    { title: 'От 5 минут', description: 'быстрое одобрение' },
-    { title: 'Бесплатная', description: 'доставка кредита' }
-  ]
+  advantagesConfig: defaultMockAdvantageProps
 }
