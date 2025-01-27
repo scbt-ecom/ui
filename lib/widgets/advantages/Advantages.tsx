@@ -13,14 +13,17 @@ export interface AdvantageClasses {
 
 export interface AdvantagesProps {
   advantagesList: AdvantageItem[]
+  variant: 'threeCards' | 'fourCards'
   classes?: AdvantageClasses
 }
 
-export const Advantages = ({ advantagesList, classes }: AdvantagesProps) => {
+export const Advantages = ({ variant, advantagesList, classes }: AdvantagesProps) => {
   return (
     <div
       className={cn(
-        'flex w-full max-w-[636px] flex-col gap-8 rounded-md bg-color-white p-6 shadow-sm desktop:w-full desktop:max-w-full desktop:flex-row desktop:items-start desktop:gap-0 desktop:p-0 desktop:py-6',
+        'm-auto flex w-full min-w-[328px] max-w-[636px] flex-col gap-8 rounded-md bg-color-white p-6 shadow-sm desktop:w-full desktop:flex-row desktop:items-start desktop:gap-0 desktop:p-0 desktop:py-6',
+        { 'desktop:max-w-[860px]': variant === 'threeCards' },
+        { 'desktop:max-w-[1140px]': variant === 'fourCards' },
         classes?.root
       )}
     >

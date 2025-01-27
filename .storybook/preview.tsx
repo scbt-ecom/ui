@@ -1,5 +1,6 @@
 import { RootProvider } from '../src/app/providers'
 import '../lib/shared/style.css'
+import './reset.css'
 import { STORYBOOK_VIEWPORTS } from '../src/configs/storybook.config'
 import type { Preview } from '@storybook/react'
 import { withConsole } from '@storybook/addon-console'
