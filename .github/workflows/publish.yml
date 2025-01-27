@@ -30,10 +30,7 @@ jobs:
         run: npm run build
 
       - name: Running tests
-        uses: cypress-io/github-action@v6
-        with:
-          build: npm run build
-          start: npm start
+        run: npx cypress run --component
 
       - name: Publish with Semantic Release 🚀
         env:
