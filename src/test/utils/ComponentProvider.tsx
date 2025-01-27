@@ -2,7 +2,7 @@ type DataAttributes = {
   [key: `data-${string}`]: string | number | boolean | undefined
 }
 
-interface ComponentProviderProps<Props extends {}> {
+export interface ComponentProviderProps<Props extends {}> {
   title?: string
   Component: React.FC<Props>
   args: Props & DataAttributes

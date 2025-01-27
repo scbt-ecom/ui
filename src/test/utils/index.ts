@@ -1,1 +1,2 @@
-export { ComponentProvider } from './ComponentProvider.tsx'
+export { ComponentProvider } from './ComponentProvider'
+export { ComponentFactory } from './ComponentFactory'
