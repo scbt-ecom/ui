@@ -29,6 +29,12 @@ jobs:
       - name: Build 🏗️
         run: npm run build
 
+      - name: Running tests
+        uses: cypress-io/github-action@v6
+        with:
+          build: npm run build
+          start: npm start
+
       - name: Publish with Semantic Release 🚀
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
