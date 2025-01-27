@@ -1,12 +1,10 @@
 'use client'
 
 import { type ReactElement } from 'react'
-import { type AdvantageClasses, type AdvantagesProps } from '../advantages/Advantages.tsx'
-import { type BannerClasses, type ButtonsConfig } from './model/types.ts'
+import { type AdvantageClasses, type AdvantagesProps } from '../advantages/Advantages'
+import { type BannerClasses, type ButtonsConfig } from './model/types'
 import { BannerWithSeparateImg } from './ui/banners'
 import { BannerImageFull } from './ui/banners'
-
-interface AdvantagesConfig extends AdvantagesProps {}
 
 export interface BannerProps {
   headTitle: string | ReactElement
@@ -18,7 +16,7 @@ export interface BannerProps {
     type?: string
   }
   buttonsConfig: ButtonsConfig
-  advantagesConfig?: AdvantagesConfig
+  advantagesConfig?: AdvantagesProps
   classes?: BannerClasses & {
     advantages?: AdvantageClasses
   }
