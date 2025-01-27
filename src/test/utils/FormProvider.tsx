@@ -12,6 +12,7 @@ const defaultSchema = object({
 })
 
 export type FormProviderProps<ComponentProps extends {}, Schema extends FieldValues = FieldValues> = {
+  title?: string
   schema?: ZodSchema
   defaultValues?: Schema
   args: Omit<ComponentProps, 'control'> & DataAttributes
@@ -19,6 +20,7 @@ export type FormProviderProps<ComponentProps extends {}, Schema extends FieldVal
 }
 
 export const FormProvider = <ComponentProps extends {}, Schema extends FieldValues>({
+  title = 'Тестирование компонента',
   schema = defaultSchema,
   defaultValues = ZodUtils.getZodDefaults(defaultSchema),
   renderComponent,
@@ -43,6 +45,7 @@ export const FormProvider = <ComponentProps extends {}, Schema extends FieldValu
       onSubmit={handleSubmit(onSubmit, onError)}
       data-test-id='form'
     >
+      <h2 className='desk-title-bold-l pb-2'>{title}</h2>
       <Toaster position='top-right' />
       {renderComponent(control, args)}
       <Button type='submit' data-test-id='submit'>
