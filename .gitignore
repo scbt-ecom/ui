@@ -9,7 +9,6 @@ lerna-debug.log*
 build-storybook.log*
 
 node_modules
-package-lock.json
 dist
 dist-ssr
 storybook-static
