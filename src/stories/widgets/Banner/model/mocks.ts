@@ -51,13 +51,15 @@ export const mockWithAdvantages: BannerProps = {
       size: 'lg'
     }
   },
-
-  advantagesList: [
-    { title: 'До 5 млн ₽', description: 'сумма кредита' },
-    { title: 'До 5 лет', description: 'срок кредита' },
-    { title: 'От 5 минут', description: 'быстрое одобрение' },
-    { title: 'Бесплатная', description: 'доставка кредита' }
-  ]
+  advantagesConfig: {
+    advantagesList: [
+      { title: 'До 5 млн ₽', description: 'сумма кредита' },
+      { title: 'До 5 лет', description: 'срок кредита' },
+      { title: 'От 5 минут', description: 'быстрое одобрение' },
+      { title: 'Бесплатная', description: 'доставка кредита' }
+    ],
+    variant: 'fourCards'
+  }
 }
 export const mockBannerBaseFullImage: BannerProps = {
   headTitle: 'Кредит на любые цели',
@@ -124,12 +126,15 @@ export const mockBannerFullImageWithAdvantages: BannerProps = {
     secondary: 'bg-color-negative text-color-white'
   },
   bannerVariant: 'fullImg',
-  advantagesList: [
-    { title: 'До 5 млн ₽', description: 'сумма кредита' },
-    { title: 'До 5 лет', description: 'срок кредита' },
-    { title: 'От 5 минут', description: 'быстрое одобрение' },
-    { title: 'Бесплатная', description: 'доставка кредита' }
-  ]
+  advantagesConfig: {
+    advantagesList: [
+      { title: 'До 5 млн ₽', description: 'сумма кредита' },
+      { title: 'До 5 лет', description: 'срок кредита' },
+      { title: 'От 5 минут', description: 'быстрое одобрение' },
+      { title: 'Бесплатная', description: 'доставка кредита' }
+    ],
+    variant: 'fourCards'
+  }
 }
 
 export const mockBannerBaseGradient: BannerProps = {
@@ -172,10 +177,13 @@ export const mockBannerBaseGradientAdvantages: BannerProps = {
   classes: {
     root: 'bg-color-transparent gradient-apply'
   },
-  advantagesList: [
-    { title: 'До 5 млн ₽', description: 'сумма кредита' },
-    { title: 'До 5 лет', description: 'срок кредита' },
-    { title: 'От 5 минут', description: 'быстрое одобрение' },
-    { title: 'Бесплатная', description: 'доставка кредита' }
-  ]
+  advantagesConfig: {
+    advantagesList: [
+      { title: 'До 5 млн ₽', description: 'сумма кредита' },
+      { title: 'До 5 лет', description: 'срок кредита' },
+      { title: 'От 5 минут', description: 'быстрое одобрение' },
+      { title: 'Бесплатная', description: 'доставка кредита' }
+    ],
+    variant: 'fourCards'
+  }
 }
