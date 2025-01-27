@@ -24,9 +24,7 @@ export const BannerImageFull = ({
         classes?.advantageContainer
       )}
     >
-      {advantagesConfig?.advantagesList && advantagesConfig?.advantagesList?.length > 0 && (
-        <Advantages {...advantagesConfig} />
-      )}
+      {advantagesConfig?.advantagesList && advantagesConfig?.advantagesList?.length > 0 && <Advantages {...advantagesConfig} />}
     </div>
   )
 
