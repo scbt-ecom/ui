@@ -30,7 +30,7 @@ jobs:
         run: npm run build
 
       - name: Running tests
-        run: npx cypress run --component
+        run: npx cypress run --component --browser chrome
 
       - name: Publish with Semantic Release 🚀
         env:
