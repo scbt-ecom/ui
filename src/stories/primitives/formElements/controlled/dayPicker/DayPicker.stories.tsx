@@ -4,10 +4,11 @@ import type { Meta, StoryObj } from '@storybook/react'
 import z from 'zod'
 import { HookForm } from '../utils'
 import { Controlled } from '$/shared/ui'
+import { ZodUtils, zodValidators } from '$/shared/validation'
 
 const schema = z.object({
-  from: z.string().optional().refine(Boolean),
-  to: z.string().optional()
+  from: zodValidators.base.getDateSchema({ iso: true }),
+  to: zodValidators.base.getDateSchema({ iso: true, required: false })
 })
 
 type Schema = z.TypeOf<typeof schema>
@@ -28,9 +29,7 @@ const meta = {
     <HookForm<DayPickerControlProps, Schema>
       {...props}
       schema={schema}
-      defaultValues={{
-        to: '2024-12-20T08:05:24.003Z'
-      }}
+      defaultValues={ZodUtils.getZodDefaults(schema)}
       renderComponent={(componentProps: DayPickerControlProps) => (
         <>
           <Controlled.DayPickerControl {...componentProps} name='from' inputProps={{ label: 'Pick the date' }} />
