@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { format, isValid, parse } from 'date-fns'
 import { type ExternalHandlers } from './dayPickerControl'
 import { getCurrentDate, getInitialValue, SINGLE_MASK, SINGLE_VALIDATION_REGEX } from './model'
@@ -52,6 +52,10 @@ export const SingleDayPicker = ({ inputProps, classes, value, onChange, external
   const date = getCurrentDate('single', value)
 
   const [visibleValue, setVisibleValue] = useState<string>(getInitialValue('single', value))
+
+  useEffect(() => {
+    setVisibleValue(getInitialValue('single', value))
+  }, [value])
 
   useClickOutside(containerRef, () => setCalendarOpen(false))
 

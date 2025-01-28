@@ -243,8 +243,8 @@ schema.parse({
 import { zodValidators } from '@scbt-ecom/ui/validation'
 
 const schema = z.object({
-  field_1: zodValidators.base.getDateSchema({ iso: true }),
-  field_2: zodValidators.base.getDateSchema(),
+  field_1: zodValidators.base.getDateSchema(),
+  field_2: zodValidators.base.getDateSchema({ iso: false }),
   field_3: zodValidators.base.getDateSchema({ required: false }),
 })
 /*
@@ -267,7 +267,7 @@ schema.parse({
 
 | Prop       | Type      | Description                                                           | Required | Default      |
 |------------|-----------|-----------------------------------------------------------------------|----------|--------------|
-| `iso`      | `boolean` | валидация строки с учетом ISO формата                                 | `false`  | `false`      |
+| `iso`      | `boolean` | валидация строки с учетом ISO формата                                 | `false`  | `true`       |
 | `pattern`  | `string`  | шаблон для валидации строки (будет проигнорирован, если `iso = true`) | `false`  | `dd.MM.yyyy` |
 | `required` | `boolean` | указывает что поле обязательное                                       | `false`  | `true`       |
 | `message`  | `{}`      | переопределение сообщений ошибки                                      | `false`  | `undefined`  |
