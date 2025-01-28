@@ -3,10 +3,14 @@ import { ComponentProvider, type ComponentProviderProps } from './ComponentProvi
 import { FormProvider, type FormProviderProps } from './FormProvider'
 
 export class ComponentFactory<Props extends {}> {
-  constructor(private component: React.FC<Props>) {}
+  constructor(private _component: React.FC<Props>) {}
+
+  get component(): React.FC<Props> {
+    return this._component
+  }
 
   getComponentProvider(props: Omit<ComponentProviderProps<Props>, 'Component'>): React.JSX.Element {
-    return <ComponentProvider {...props} Component={this.component} />
+    return <ComponentProvider {...props} Component={this._component} />
   }
 
   getFormProvider<TFieldValues extends FieldValues>(
@@ -20,7 +24,7 @@ export class ComponentFactory<Props extends {}> {
         // TODO: я не смог победить тайпскрипт, если получится можете пофиксить
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-expect-error
-        renderComponent={(control, componentProps) => <this.component {...componentProps} control={control} />}
+        renderComponent={(control, componentProps) => <this._component {...componentProps} control={control} />}
       />
     )
   }

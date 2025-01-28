@@ -141,6 +141,7 @@ export const SelectBase = forwardRef<HTMLElement, SelectBaseProps<boolean>>(
         onChange={onValueChange}
         multiple={isMulti}
         immediate={immediate || !isSearchable}
+        aria-invalid={invalid}
       >
         {({ disabled, open, value }) => {
           const getDisplayValue = () => {
@@ -156,6 +157,7 @@ export const SelectBase = forwardRef<HTMLElement, SelectBaseProps<boolean>>(
           return (
             <div className={cn('relative w-full', root)}>
               <ComboboxInput
+                data-test-id='select-input'
                 as={Uncontrolled.InputBase}
                 label={label}
                 disabled={disabled}
@@ -203,6 +205,7 @@ export const SelectBase = forwardRef<HTMLElement, SelectBaseProps<boolean>>(
                 }}
               />
               <ComboboxOptions
+                data-test-id='select-list'
                 as={motion.ul}
                 className={cn(
                   'customScrollbar-y absolute left-0 top-full z-10 mt-1',
