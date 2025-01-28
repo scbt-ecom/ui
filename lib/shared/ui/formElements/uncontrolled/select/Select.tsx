@@ -5,7 +5,7 @@ import { useSelectController } from './hooks'
 import type { SelectItemOption } from './model'
 import { SelectItem, type SelectItemProps } from './ui'
 import { type DeepPartial } from '$/shared/types'
-import { Icon, Uncontrolled } from '$/shared/ui'
+import { Icon, Slot, Uncontrolled } from '$/shared/ui'
 import type { FieldAttachment } from '$/shared/ui/formElements/ui'
 import { cn } from '$/shared/utils'
 
@@ -105,6 +105,7 @@ export const SelectBase = forwardRef<HTMLElement, SelectBaseProps<boolean>>(
       onInputChange: externalOnInputChange,
       externalHandlers,
       immediate,
+      disabled,
       ...props
     },
     ref
@@ -123,6 +124,8 @@ export const SelectBase = forwardRef<HTMLElement, SelectBaseProps<boolean>>(
       externalHandlers
     })
 
+    const TriggerButton = isSearchable ? Slot : ComboboxButton
+
     return (
       <Combobox
         ref={ref}
@@ -140,6 +143,7 @@ export const SelectBase = forwardRef<HTMLElement, SelectBaseProps<boolean>>(
         value={(value ? value : isMulti ? [] : '') as typeof value}
         onChange={onValueChange}
         multiple={isMulti}
+        disabled={disabled}
         immediate={immediate || !isSearchable}
       >
         {({ disabled, open, value }) => {
@@ -155,53 +159,55 @@ export const SelectBase = forwardRef<HTMLElement, SelectBaseProps<boolean>>(
 
           return (
             <div className={cn('relative w-full', root)}>
-              <ComboboxInput
-                as={Uncontrolled.InputBase}
-                label={label}
-                disabled={disabled}
-                readOnly={!isSearchable}
-                value={externalInputValue || getDisplayValue() || ''}
-                autoComplete='off'
-                onChange={(event) => {
-                  const { value } = event.target
+              <TriggerButton className='w-full' disabled={disabled}>
+                <ComboboxInput
+                  as={Uncontrolled.InputBase}
+                  label={label}
+                  disabled={disabled}
+                  readOnly={!isSearchable}
+                  value={externalInputValue || getDisplayValue() || ''}
+                  autoComplete='off'
+                  onChange={(event) => {
+                    const { value } = event.target
 
-                  if (isSearchable) {
-                    if (externalOnInputChange) externalOnInputChange(value)
-                    if (externalHandlers?.onInputChange) externalHandlers.onInputChange(value)
-                    if (onInputValueChange) onInputValueChange(event)
-                  }
-                }}
-                invalid={invalid}
-                classes={{
-                  input: isMulti || !isSearchable ? 'cursor-pointer' : undefined
-                }}
-                // TODO: think about it
-                // renderValues={
-                //   isMulti
-                //     ? () => (
-                //         <ChipList
-                //           values={value}
-                //           onDeleteItem={(option) => onDeleteItem(value, option)}
-                //           inputValue={inputValue}
-                //           onInputValueChange={onInputValueChange}
-                //         />
-                //       )
-                //     : undefined
-                // }
-                attachmentProps={{
-                  icon: (
-                    <ComboboxButton as='span'>
-                      <Icon
-                        name='arrows/arrowRight'
-                        className={cn('size-6 rotate-90 text-color-blue-grey-600 duration-100', {
-                          '-rotate-90': open
-                        })}
-                      />
-                    </ComboboxButton>
-                  ),
-                  ...attachmentProps
-                }}
-              />
+                    if (isSearchable) {
+                      if (externalOnInputChange) externalOnInputChange(value)
+                      if (externalHandlers?.onInputChange) externalHandlers.onInputChange(value)
+                      if (onInputValueChange) onInputValueChange(event)
+                    }
+                  }}
+                  invalid={invalid}
+                  classes={{
+                    input: isMulti || !isSearchable ? 'cursor-pointer' : undefined
+                  }}
+                  // TODO: think about it
+                  // renderValues={
+                  //   isMulti
+                  //     ? () => (
+                  //         <ChipList
+                  //           values={value}
+                  //           onDeleteItem={(option) => onDeleteItem(value, option)}
+                  //           inputValue={inputValue}
+                  //           onInputValueChange={onInputValueChange}
+                  //         />
+                  //       )
+                  //     : undefined
+                  // }
+                  attachmentProps={{
+                    icon: (
+                      <ComboboxButton as='span'>
+                        <Icon
+                          name='arrows/arrowRight'
+                          className={cn('size-6 rotate-90 text-color-blue-grey-600 duration-100', {
+                            '-rotate-90': open
+                          })}
+                        />
+                      </ComboboxButton>
+                    ),
+                    ...attachmentProps
+                  }}
+                />
+              </TriggerButton>
               <ComboboxOptions
                 as={motion.ul}
                 className={cn(

@@ -33,6 +33,7 @@ export * from './document'
 
 // # OTHERS
 export * from './keyboardShortcuts'
+export * from './slot'
 
 // # CONTROLLED FORM UI
 export * from './formElements'
