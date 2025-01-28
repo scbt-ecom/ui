@@ -8,7 +8,7 @@ import { ZodUtils, zodValidators } from '$/shared/validation'
 
 const schema = z.object({
   from: zodValidators.base.getDateSchema(),
-  to: zodValidators.base.getDateSchema({ required: false })
+  to: zodValidators.base.getDateSchema({ iso: true, required: false })
 })
 
 type Schema = z.TypeOf<typeof schema>

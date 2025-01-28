@@ -57,7 +57,7 @@ export class ZodUtils {
         case schema instanceof z.ZodDefault:
           return schema._def.defaultValue()
         case schema instanceof z.ZodOptional:
-          return getDefaultValue(schema.unwrap())
+          return undefined
         case schema instanceof z.ZodNullable:
           return null
         case schema instanceof z.ZodArray:

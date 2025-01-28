@@ -54,8 +54,10 @@ export const SingleDayPicker = ({ inputProps, classes, value, onChange, external
   const [visibleValue, setVisibleValue] = useState<string>(getInitialValue('single', value))
 
   useEffect(() => {
-    setVisibleValue(getInitialValue('single', value))
-    setMonth(new Date(value))
+    if (value && !TypeGuards.isStringEmpty(value)) {
+      setVisibleValue(getInitialValue('single', value))
+      setMonth(new Date(value))
+    }
   }, [value])
 
   useClickOutside(containerRef, () => setCalendarOpen(false))
