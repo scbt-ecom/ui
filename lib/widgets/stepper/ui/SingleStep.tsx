@@ -1,4 +1,4 @@
-import parse from 'html-react-parser'
+import DOMPurify from 'isomorphic-dompurify'
 import type { SingleStepProps } from '../model/types'
 import { Heading } from '$/shared/ui'
 import { cn } from '$/shared/utils'
@@ -13,6 +13,7 @@ export type SingleStepClasses = {
 
 export const SingleStep = ({ classes, index, variant, title, description }: SingleStepProps) => {
   const withTitles = variant === 'withTitleAndDescription' && title
+  const cleanedHTML = DOMPurify.sanitize(description)
 
   return (
     <div
@@ -36,7 +37,7 @@ export const SingleStep = ({ classes, index, variant, title, description }: Sing
             {title}
           </Heading>
         )}
-        <div className={cn('desk-body-regular-l text-color-tetriary', classes?.description)}>{parse(description)}</div>
+        <div className={cn('desk-body-regular-l text-color-tetriary', classes?.description)}>{cleanedHTML}</div>
       </div>
     </div>
   )
