@@ -24,6 +24,14 @@ jobs:
       - name: Build 🏗️
         run: npm run build
 
+      - name: Archive build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+            name: build-output
+            path: |
+              node_modules
+              dist
+
   run-test:
     needs: build-ui
     runs-on: ubuntu-22.04
@@ -31,8 +39,11 @@ jobs:
       - name: Checkout 🛎️
         uses: actions/checkout@v4
 
-      - name: Setup Node.js ⚙️ - Cache dependencies ⚡ - Install dependencies 🔧
-        uses: ./.github/workflows/setup-node
+      - name: Download build artifacts
+        uses: actions/download-artifact@v3
+        with:
+            name: build-output
+            path: .
 
       - name: Running tests
         run: npx cypress run --component --browser chrome
@@ -49,8 +60,11 @@ jobs:
       - name: Checkout 🛎️
         uses: actions/checkout@v4
 
-      - name: Setup Node.js ⚙️ - Cache dependencies ⚡ - Install dependencies 🔧
-        uses: ./.github/workflows/setup-node
+      - name: Download build artifacts
+        uses: actions/download-artifact@v3
+        with:
+            name: build-output
+            path: .
 
       - name: Publish with Semantic Release 🚀
         env:
