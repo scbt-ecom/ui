@@ -64,6 +64,7 @@ export const TextareaBase = forwardRef<HTMLTextAreaElement, TextareaBaseProps>(
           },
           classes?.container
         )}
+        data-test-id='textarea-root'
       >
         <div className='flex w-full flex-col'>
           <label

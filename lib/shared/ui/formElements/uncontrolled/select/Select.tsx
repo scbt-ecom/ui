@@ -145,6 +145,7 @@ export const SelectBase = forwardRef<HTMLInputElement, SelectBaseProps<boolean>>
         multiple={isMulti}
         disabled={disabled}
         immediate={immediate || !isSearchable}
+        aria-invalid={invalid}
       >
         {({ disabled, open, value }) => {
           const getDisplayValue = () => {
@@ -210,6 +211,7 @@ export const SelectBase = forwardRef<HTMLInputElement, SelectBaseProps<boolean>>
                 />
               </TriggerButton>
               <ComboboxOptions
+                data-test-id='select-list'
                 as={motion.ul}
                 className={cn(
                   'customScrollbar-y absolute left-0 top-full z-10 mt-1',

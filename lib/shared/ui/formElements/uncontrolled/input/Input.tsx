@@ -72,6 +72,7 @@ export const InputBase = forwardRef<HTMLInputElement, InputBaseProps>(
           },
           classes?.container
         )}
+        data-test-id='input-root'
       >
         {renderValues ? (
           <div
@@ -95,6 +96,7 @@ export const InputBase = forwardRef<HTMLInputElement, InputBaseProps>(
             value={value ?? ''}
             placeholder={label}
             aria-placeholder={label}
+            aria-invalid={invalid}
             ref={ref}
             id={id}
             className={cn(
