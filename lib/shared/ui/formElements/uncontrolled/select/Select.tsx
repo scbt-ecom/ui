@@ -86,7 +86,7 @@ export type SelectBaseProps<Multi extends boolean> = Omit<
   externalHandlers?: ExternalHandlers
 }
 
-export const SelectBase = forwardRef<HTMLElement, SelectBaseProps<boolean>>(
+export const SelectBase = forwardRef<HTMLInputElement, SelectBaseProps<boolean>>(
   (
     {
       label,
@@ -128,7 +128,6 @@ export const SelectBase = forwardRef<HTMLElement, SelectBaseProps<boolean>>(
 
     return (
       <Combobox
-        ref={ref}
         {...props}
         virtual={
           virtual
@@ -161,6 +160,7 @@ export const SelectBase = forwardRef<HTMLElement, SelectBaseProps<boolean>>(
             <div className={cn('relative w-full', root)}>
               <TriggerButton className='w-full' disabled={disabled}>
                 <ComboboxInput
+                  ref={ref}
                   as={Uncontrolled.InputBase}
                   label={label}
                   disabled={disabled}
