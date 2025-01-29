@@ -8,7 +8,13 @@ runs:
       with:
         node-version: 20
         registry-url: 'https://registry.npmjs.org'
-        cache: 'npm' # Автоматическое кэширование
+
+    - name: Cache dependencies ⚡
+      id: cache_dependencies
+      uses: actions/cache@v4
+      with:
+        path: node_modules
+        key: node-modules-${{ runner.os }}-${{ hashFiles('package.json') }}
 
     - name: Remove npm cache
       shell: bash
@@ -16,4 +22,5 @@ runs:
 
     - name: Install dependencies 🔧 (without package-lock)
       shell: bash
+      if: steps.cache_dependencies.outputs.cache-hit != 'true'
       run: npm install --no-package-lock
