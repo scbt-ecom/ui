@@ -40,7 +40,7 @@ const Form = () => {
   }
 
   return (
-    <form className='flex w-[500px] flex-col gap-4' onSubmit={handleSubmit(onSubmit, onError)}>
+    <form className='mx-auto flex w-[500px] flex-col gap-4' onSubmit={handleSubmit(onSubmit, onError)}>
       <Controlled.DadataOrganization
         control={control}
         dadataBaseUrl={DADATA_BASE_CACHE_URL as string}
