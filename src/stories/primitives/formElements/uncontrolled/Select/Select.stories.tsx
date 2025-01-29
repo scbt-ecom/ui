@@ -101,13 +101,25 @@ export const WithState: Story = {
 export const WithMulti: Story = {
   args: {
     isMulti: true
+  },
+  render: (props) => {
+    const [value, setValue] = useState<SelectItemOption | SelectItemOption[] | null>(null)
+
+    return (
+      <>
+        {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+        {/* @ts-expect-error */}
+        <Uncontrolled.SelectBase {...props} options={generateOptions(10)} value={value} onChange={setValue} />
+      </>
+    )
   }
 }
 
 export const WithSearchable: Story = {
   args: {
     isSearchable: true
-  }
+  },
+  render: WithState.render
 }
 
 export const WithBadge: Story = {
@@ -115,7 +127,8 @@ export const WithBadge: Story = {
     attachmentProps: {
       badge: '+25%'
     }
-  }
+  },
+  render: WithState.render
 }
 
 export const WithSearchState: Story = {
@@ -161,5 +174,6 @@ export const WithExternalHandler: Story = {
 export const Virtual: Story = {
   args: {
     virtual: true
-  }
+  },
+  render: WithState.render
 }

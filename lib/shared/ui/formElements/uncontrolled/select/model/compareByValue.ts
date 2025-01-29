@@ -1,8 +1,16 @@
 import type { SelectItemOption } from './types'
+import { isSingleOption } from '$/shared/ui'
 import { TypeGuards } from '$/shared/utils'
 
-const isSelectOptions = (value: SelectItemOption | SelectItemOption[] | {}): value is SelectItemOption | SelectItemOption[] =>
-  TypeGuards.isArray(value) ? 'value' in value[0] : 'value' in value
+const isSelectOptions = (value: any): value is SelectItemOption | SelectItemOption[] => {
+  let option = value satisfies SelectItemOption
+
+  if (TypeGuards.isArray(value)) {
+    option = value[0]
+  }
+
+  return Boolean(option['value'])
+}
 
 export const compareByValue = (
   current: NoInfer<SelectItemOption | SelectItemOption[]> | {},
@@ -14,6 +22,10 @@ export const compareByValue = (
 
   if (!isSelectOptions(current) || !isSelectOptions(prev)) {
     return false
+  }
+
+  if (isSingleOption(current) && isSingleOption(prev)) {
+    return current.value === prev.value
   }
 
   const currentArray = TypeGuards.isArray(current) ? current : [current]
