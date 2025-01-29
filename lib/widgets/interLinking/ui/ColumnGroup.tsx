@@ -40,7 +40,7 @@ export const ColumnGroup = ({ groupLabel, links, mobileAccordionProps, classes }
           classes={{
             ...mobileAccordionProps?.classes,
             header: {
-              trigger: cn('p-0', mobileAccordionProps?.classes?.header?.trigger)
+              trigger: cn('p-0 bg-color-blue-grey-100', mobileAccordionProps?.classes?.header?.trigger)
             },
             contentInner: cn('py-2 px-4', mobileAccordionProps?.classes?.contentInner)
           }}

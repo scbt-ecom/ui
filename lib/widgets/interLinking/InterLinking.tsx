@@ -51,6 +51,9 @@ export const InterLinking = ({
           {...rootAccordionProps}
           classes={{
             ...rootAccordionProps?.classes,
+            header: {
+              trigger: cn('bg-color-blue-grey-100', rootAccordionProps?.classes?.header?.trigger)
+            },
             content: cn('max-w-full bg-color-blue-grey-100 relative', rootAccordionProps?.classes?.content)
           }}
         >
