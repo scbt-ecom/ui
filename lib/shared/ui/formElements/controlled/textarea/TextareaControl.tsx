@@ -55,6 +55,7 @@ export const TextareaControl = <TFieldValues extends FieldValues = FieldValues>(
       <Uncontrolled.TextareaBase
         {...props}
         {...field}
+        aria-invalid={invalid}
         invalid={invalid}
         classes={restClasses}
         attachmentProps={{

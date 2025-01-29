@@ -2,7 +2,7 @@ import { baseSchema, uploaderDefaultProps } from './constants'
 import { ComponentFactory } from '@/test/utils'
 import { Controlled } from '$/shared/ui'
 
-describe('Test cases for Controlled.Uploader', () => {
+describe('Test cases for Controlled.UploaderControl', () => {
   const factory = new ComponentFactory(Controlled.UploaderControl)
 
   it('Should render and pass value correctly', () => {

@@ -2,7 +2,7 @@ import { baseSchema, sliderDefaultProps } from '@/test/lib/shared/ui/formElement
 import { ComponentFactory } from '@/test/utils'
 import { Controlled } from '$/shared/ui'
 
-describe('Test cases for Controlled.InputControl', () => {
+describe('Test cases for Controlled.SliderControl', () => {
   const factory = new ComponentFactory(Controlled.SliderControl)
 
   it('Should render and pass value correctly', () => {

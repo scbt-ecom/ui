@@ -2,7 +2,7 @@ import { inputOtpDefaultProps, optionalSchema } from './constants'
 import { ComponentFactory } from '@/test/utils'
 import { Controlled } from '$/shared/ui'
 
-describe('Test cases for Controlled.InputControl', () => {
+describe('Test cases for Controlled.InputOtpControl', () => {
   const factory = new ComponentFactory(Controlled.InputOtpControl)
 
   it('Should render and pass value correctly', () => {
