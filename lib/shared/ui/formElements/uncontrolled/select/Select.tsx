@@ -163,6 +163,7 @@ export const SelectBase = forwardRef<HTMLInputElement, SelectBaseProps<boolean>>
               <TriggerButton className='w-full' disabled={disabled}>
                 <ComboboxInput
                   ref={ref}
+                  data-test-id='select-input'
                   as={Uncontrolled.InputBase}
                   label={label}
                   disabled={disabled}
