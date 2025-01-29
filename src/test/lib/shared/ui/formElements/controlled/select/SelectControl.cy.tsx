@@ -56,7 +56,7 @@ describe('Test cases for Controlled.SelectControl', () => {
         cy.get('[data-test-id="select-item-0"]').click()
         cy.get('[data-test-id="select-item-1"]').click()
         // close list after values are selected
-        cy.get('span[id^=headlessui-combobox-button-]').click()
+        cy.get('body').click(0, 0)
       })
     // submit form
     cy.get('@submit').click()
