@@ -183,7 +183,6 @@ export const SelectBase = forwardRef<HTMLInputElement, SelectBaseProps<boolean>>
                   classes={{
                     input: isMulti || !isSearchable ? 'cursor-pointer' : undefined
                   }}
-                  data-test-id='select-input'
                   // TODO: think about it
                   // renderValues={
                   //   isMulti

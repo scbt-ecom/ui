@@ -20,7 +20,9 @@ const useQueryFn = (search: string, options?: Partial<UseQueryOptions<string[]>>
   useQuery<string[]>({
     queryKey: [search],
     queryFn: async () => {
-      return ['Some result']
+      return Array.from({ length: 20 }).map((_, index) => {
+        return `Value ${index}`
+      })
     },
     ...options
   })
@@ -65,6 +67,10 @@ type Story = StoryObj<typeof Controlled.AutocompleteControl<Schema, string>>
 export const Base: Story = {
   args: {
     label: 'Input',
+    formatter: (item) => ({
+      value: item,
+      label: item
+    }),
     query: useQueryFn
   }
 }
