@@ -8,7 +8,7 @@ export const BannerWithSeparateImg = ({
   headTitle,
   subtitle,
   buttonsConfig,
-  advantagesList,
+  advantagesConfig,
   classes,
   img,
   imgSets
@@ -22,9 +22,7 @@ export const BannerWithSeparateImg = ({
         classes?.advantageContainer
       )}
     >
-      {advantagesList && advantagesList?.length > 0 && (
-        <Advantages classes={classes?.advantages} advantagesList={advantagesList} />
-      )}
+      {advantagesConfig?.advantagesList && advantagesConfig?.advantagesList?.length > 0 && <Advantages {...advantagesConfig} />}
     </div>
   )
   return (
