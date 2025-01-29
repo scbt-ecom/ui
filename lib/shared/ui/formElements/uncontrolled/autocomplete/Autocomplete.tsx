@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { forwardRef, useMemo, useState } from 'react'
 import { type SelectBaseProps, type SelectItemOption, Uncontrolled } from '..'
 import { type UseQueryResult } from '@tanstack/react-query'
 import { useDebounceValue } from '$/shared/hooks'
@@ -30,44 +30,43 @@ export interface AutocompleteBaseProps<TData>
   onChange?: (value: string) => void
 }
 
-export const AutocompleteBase = <TData,>({
-  formatter,
-  query,
-  value,
-  returnValue,
-  onChange,
-  ...props
-}: AutocompleteBaseProps<TData>) => {
-  const [search, setSearch] = useState<string>('')
-  const debounceSearch = useDebounceValue(search, 100)
+export const AutocompleteBase = forwardRef(
+  <TData,>(
+    { formatter, query, value, returnValue, onChange, ...props }: AutocompleteBaseProps<TData>,
+    ref: React.ForwardedRef<HTMLInputElement>
+  ) => {
+    const [search, setSearch] = useState<string>('')
+    const debounceSearch = useDebounceValue(search, 100)
 
-  const { data } = query(debounceSearch)
+    const { data } = query(debounceSearch)
 
-  const options = data ? data.map(formatter) : []
+    const options = data ? data.map(formatter) : []
 
-  const onValueChange = (value?: SelectItemOption | SelectItemOption[]) => {
-    if (!value || Array.isArray(value)) return
+    const onValueChange = (value?: SelectItemOption | SelectItemOption[]) => {
+      if (!value || Array.isArray(value)) return
 
-    if (onChange) {
-      onChange(returnValue ? returnValue(value) : value.value)
+      if (onChange) {
+        onChange(returnValue ? returnValue(value) : value.value)
+      }
     }
+
+    const selected = useMemo<SelectItemOption | undefined>(() => {
+      return options.find((option) => (returnValue ? returnValue(option) : option.value === value))
+    }, [options, returnValue, value])
+
+    return (
+      <Uncontrolled.SelectBase
+        {...props}
+        ref={ref}
+        options={options}
+        filterDisabled
+        onChange={onValueChange}
+        value={selected}
+        inputValue={search}
+        isSearchable
+        isMulti={false}
+        onInputChange={setSearch}
+      />
+    )
   }
-
-  const selected = useMemo<SelectItemOption | undefined>(() => {
-    return options.find((option) => (returnValue ? returnValue(option) : option.value === value))
-  }, [options, returnValue, value])
-
-  return (
-    <Uncontrolled.SelectBase
-      {...props}
-      options={options}
-      filterDisabled
-      onChange={onValueChange}
-      value={selected}
-      inputValue={search}
-      isSearchable
-      isMulti={false}
-      onInputChange={setSearch}
-    />
-  )
-}
+) as <TData>(props: AutocompleteBaseProps<TData> & { ref: React.Ref<HTMLInputElement> }) => React.JSX.Element

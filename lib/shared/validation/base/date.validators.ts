@@ -7,7 +7,7 @@ import { TypeGuards } from '$/shared/utils'
 export type DateValidationOptions<Required extends boolean> = {
   /**
    * валидация строки с учетом ISO формата
-   * @default false
+   * @default true
    */
   iso?: boolean
   /**
@@ -29,7 +29,7 @@ export type DateValidationOptions<Required extends boolean> = {
  * Схема валидации опционального поля номера телефона
  */
 const getDateRequired = (props?: Omit<DateValidationOptions<boolean>, 'required'>) => {
-  const { iso = false, pattern = DATE_VISIBLE_PATTERN, message } = props || {}
+  const { iso = true, pattern = DATE_VISIBLE_PATTERN, message } = props || {}
 
   return z
     .string()
