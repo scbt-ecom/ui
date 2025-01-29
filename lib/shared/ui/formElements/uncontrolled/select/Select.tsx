@@ -2,7 +2,7 @@ import { forwardRef } from 'react'
 import { Combobox, ComboboxButton, ComboboxInput, ComboboxOptions, type ComboboxProps } from '@headlessui/react'
 import { motion } from 'framer-motion'
 import { useSelectController } from './hooks'
-import type { SelectItemOption } from './model'
+import { compareByValue, type SelectItemOption } from './model'
 import { SelectItem, type SelectItemProps } from './ui'
 import { type DeepPartial } from '$/shared/types'
 import { Icon, Slot, Uncontrolled } from '$/shared/ui'
@@ -136,6 +136,7 @@ export const SelectBase = forwardRef<HTMLInputElement, SelectBaseProps<boolean>>
               }
             : undefined
         }
+        by={compareByValue}
         onBlur={externalHandlers?.onBlur}
         onFocus={externalHandlers?.onFocus}
         onClick={externalHandlers?.onClick}
