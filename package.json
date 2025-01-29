@@ -1,6 +1,6 @@
 {
   "name": "@scbt-ecom/ui",
-  "version": "0.35.2",
+  "version": "0.36.0",
   "type": "module",
   "exports": {
     ".": {
@@ -52,7 +52,7 @@
     "build-storybook": "storybook build --quiet",
     "start": "npm run start:sb",
     "test-storybook": "test-storybook",
-    "cypress:open": "cypress open",
+    "cypress:open": "cypress open --component --browser chrome",
     "storybook-remove-mdx": "ts-node plugins/vite/viteStorybookMdxGenerationPlugin/utils/removeMdx.js",
     "prepare": "husky",
     "pre-commit": "npm run lint",

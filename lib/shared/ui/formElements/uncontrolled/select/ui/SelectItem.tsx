@@ -42,7 +42,6 @@ export const SelectItem = forwardRef<HTMLLIElement, SelectItemProps>(
               'data-[selected]:bg-color-primary-tr-hover data-[selected]:text-color-primary-hover',
               'data-[focus]:bg-color-primary-tr-hover data-[focus]:text-color-primary-hover',
               {
-                // 'bg-color-primary-tr-hover text-color-primary-hover': selected || focus,
                 'pointer-events-none !text-color-disabled': disabled,
                 '!flex items-center gap-x-4': isMulti || (option.attachment && option.attachment.left)
               },

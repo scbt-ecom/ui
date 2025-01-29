@@ -49,6 +49,7 @@ export const CheckboxBase = forwardRef<HTMLButtonElement, CheckboxBaseProps>(
         onCheckedChange={onCheckedChange}
         disabled={disabled}
         ref={ref}
+        aria-invalid={invalid}
         className={cn(
           'flex h-6 max-h-6 min-h-6 w-6 min-w-6 max-w-6 items-center justify-center rounded-full',
           'relative rounded-sm border-2 border-blue-grey-700 outline-none',

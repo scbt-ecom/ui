@@ -2,7 +2,7 @@ import { forwardRef } from 'react'
 import { Combobox, ComboboxButton, ComboboxInput, ComboboxOptions, type ComboboxProps } from '@headlessui/react'
 import { motion } from 'framer-motion'
 import { useSelectController } from './hooks'
-import type { SelectItemOption } from './model'
+import { compareByValue, type SelectItemOption } from './model'
 import { SelectItem, type SelectItemProps } from './ui'
 import { type DeepPartial } from '$/shared/types'
 import { Icon, Slot, Uncontrolled } from '$/shared/ui'
@@ -136,6 +136,7 @@ export const SelectBase = forwardRef<HTMLInputElement, SelectBaseProps<boolean>>
               }
             : undefined
         }
+        by={compareByValue}
         onBlur={externalHandlers?.onBlur}
         onFocus={externalHandlers?.onFocus}
         onClick={externalHandlers?.onClick}
@@ -144,6 +145,7 @@ export const SelectBase = forwardRef<HTMLInputElement, SelectBaseProps<boolean>>
         multiple={isMulti}
         disabled={disabled}
         immediate={immediate || !isSearchable}
+        aria-invalid={invalid}
       >
         {({ disabled, open, value }) => {
           const getDisplayValue = () => {
@@ -161,6 +163,7 @@ export const SelectBase = forwardRef<HTMLInputElement, SelectBaseProps<boolean>>
               <TriggerButton className='w-full' disabled={disabled}>
                 <ComboboxInput
                   ref={ref}
+                  data-test-id='select-input'
                   as={Uncontrolled.InputBase}
                   label={label}
                   disabled={disabled}
@@ -209,6 +212,7 @@ export const SelectBase = forwardRef<HTMLInputElement, SelectBaseProps<boolean>>
                 />
               </TriggerButton>
               <ComboboxOptions
+                data-test-id='select-list'
                 as={motion.ul}
                 className={cn(
                   'customScrollbar-y absolute left-0 top-full z-10 mt-1',

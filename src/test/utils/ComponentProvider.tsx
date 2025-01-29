@@ -1,6 +1,4 @@
-type DataAttributes = {
-  [key: `data-${string}`]: string | number | boolean | undefined
-}
+import type { DataAttributes } from './types'
 
 export interface ComponentProviderProps<Props extends {}> {
   title?: string

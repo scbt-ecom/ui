@@ -42,7 +42,10 @@ export interface UploaderBaseProps
 }
 
 export const UploaderBase = forwardRef<HTMLInputElement, UploaderBaseProps>(
-  ({ classes, dropzoneOptions = defaultDropzoneOptions, name, value, disabled, invalid, onChange }: UploaderBaseProps, ref) => {
+  (
+    { classes, dropzoneOptions = defaultDropzoneOptions, name, value, disabled, invalid, onChange, ...props }: UploaderBaseProps,
+    ref
+  ) => {
     const { filesStatus, removeFile, dropzoneState } = useUploader({
       controlledFiles: value,
       dropzoneOptions,
@@ -55,6 +58,7 @@ export const UploaderBase = forwardRef<HTMLInputElement, UploaderBaseProps>(
       <>
         <div className={cn('relative mb-3 w-[476px]', root)}>
           <UploaderInput
+            {...props}
             ref={ref}
             name={name}
             classes={input}

@@ -21,7 +21,7 @@ export interface UploaderInputProps {
 }
 
 export const UploaderInput = forwardRef(
-  ({ dropzoneState, classes, disabled, invalid, name }: UploaderInputProps, ref: Ref<HTMLDivElement>) => {
+  ({ dropzoneState, classes, disabled, invalid, name, ...props }: UploaderInputProps, ref: Ref<HTMLDivElement>) => {
     const dropzoneProps = dropzoneState.getRootProps()
     return (
       <div
@@ -42,11 +42,13 @@ export const UploaderInput = forwardRef(
           </p>
         </div>
         <input
+          {...props}
+          {...dropzoneState.getInputProps()}
           name={name}
           ref={dropzoneState.inputRef}
           disabled={disabled}
-          {...dropzoneState.getInputProps()}
           className={cn(classes?.input)}
+          data-test-id='uploader'
         />
       </div>
     )
