@@ -27,8 +27,9 @@ jobs:
       - name: Archive build artifacts
         uses: actions/upload-artifact@v3
         with:
-            name: build-output
-            path: dist
+          name: build-output
+          path: dist
+          retention-days: 1
 
   run-test:
     needs: build-ui
@@ -43,8 +44,8 @@ jobs:
       - name: Download build artifacts
         uses: actions/download-artifact@v3
         with:
-            name: build-output
-            path: .
+          name: build-output
+          path: dist
 
       - name: Running tests
         run: npx cypress run --component --browser chrome
@@ -53,10 +54,10 @@ jobs:
     needs: run-test
     runs-on: ubuntu-22.04
     permissions:
-      contents: write # to be able to publish a GitHub release
-      issues: write # to be able to comment on released issues
-      pull-requests: write # to be able to comment on released pull requests
-      id-token: write # to enable use of OIDC for npm provenance
+      contents: write # GitHub release
+      issues: write # Комментирование issues
+      pull-requests: write # Комментирование PR
+      id-token: write # OIDC для npm provenance
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v4
@@ -68,7 +69,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: build-output
-          path: .
+          path: dist
 
       - name: Publish with Semantic Release 🚀
         env:
