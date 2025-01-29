@@ -23,7 +23,7 @@ export const UploaderFiles = ({ files = [], filesStatus, classes, removeFile }: 
 
   if (!filesEmpty) {
     return (
-      <ul className={cn('flex max-w-[476px] flex-col gap-1 px-1', root)}>
+      <ul data-test-id='file-list' className={cn('flex max-w-[476px] flex-col gap-1 px-1', root)}>
         {files.map((file, index) => (
           <UploaderFile
             key={index}
