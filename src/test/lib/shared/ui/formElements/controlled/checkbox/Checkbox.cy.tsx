@@ -70,4 +70,30 @@ describe('Test cases for Controlled.CheckboxControl', () => {
     cy.get('@submit').click()
     cy.get('@checkbox').should('have.attr', 'aria-invalid', 'false')
   })
+
+  it('Should have helper text', () => {
+    cy.mount(
+      factory.getFormProvider({
+        args: {
+          ...checkboxDefaultProps,
+          helperText: 'Some helper text'
+        },
+        schema: baseSchema
+      })
+    )
+
+    cy.get('[data-test-id="checkbox"]').as('checkbox')
+    cy.get('[data-test-id="submit"]').as('submit')
+    cy.get('[data-test-id="form"]').as('form')
+
+    cy.get('@checkbox').should('be.visible')
+    cy.get('@checkbox')
+      .click()
+      .then(() => {
+        cy.get('@checkbox').should('have.attr', 'data-state', 'checked')
+      })
+    cy.get('@submit', { timeout: 5000 }).click()
+    cy.get('@checkbox').should('have.attr', 'aria-invalid', 'false')
+    cy.get('@form').get('.desk-body-regular-m').should('be.visible')
+  })
 })
