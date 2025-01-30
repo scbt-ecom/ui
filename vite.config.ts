@@ -56,7 +56,6 @@ export default defineConfig({
         resolve(__dirname, './lib/exports/hooks.ts'),
         resolve(__dirname, './lib/exports/widget.ts'),
         resolve(__dirname, './lib/exports/ui.ts'),
-        resolve(__dirname, './lib/exports/types.ts'),
         resolve(__dirname, './lib/exports/api.ts'),
         resolve(__dirname, './lib/exports/config.ts')
       ],
