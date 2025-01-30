@@ -1,4 +1,5 @@
-import { Button, type ButtonProps, ResponsiveContainer } from '$/shared/ui'
+import { Button, type ButtonProps } from '../button'
+import { ResponsiveContainer } from '../responsiveContainer'
 import { cn } from '$/shared/utils'
 
 type FloatButtonClasses = {
