@@ -1,6 +1,8 @@
 import type { Editor } from '@tiptap/react'
 import { headingsOptions } from '../../model/helper'
-import { Icon, KeyboardShortcuts, Popover } from '$/shared/ui'
+import { Icon } from '$/shared/ui/icon'
+import { KeyboardShortcuts } from '$/shared/ui/keyboardShortcuts'
+import { Popover } from '$/shared/ui/popover'
 import { cn } from '$/shared/utils'
 
 interface ISetHeadingsProps {

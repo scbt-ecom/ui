@@ -4,6 +4,8 @@
     "types": ["vitest", "@testing-library/jest-dom"],
     "target": "ES2022",
     "useDefineForClassFields": true,
+    "declaration": true,
+    "emitDeclarationOnly": true,
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -26,7 +28,7 @@
     "paths": {
       "@/*": ["src/*"],
       "$/*": ["lib/*"]
-    },
+    }
   },
   "include": ["vite-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.jsx", ".next/types/**/*.ts", "src", "lib"],
   "exclude": ["node_modules", "vitest.config.mjs"],
