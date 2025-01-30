@@ -49,6 +49,7 @@ export const Modal = ({
               closeModal()
             }
           }}
+          data-test-id='modal-overlay'
           {...modalOverlayAnimation}
         >
           <motion.div
@@ -57,6 +58,7 @@ export const Modal = ({
               'w-full max-w-[600px] rounded-md bg-color-white px-4 py-6 shadow-sm desktop:px-6 desktop:py-8',
               classes?.modal
             )}
+            data-test-id='modal'
             {...modalContentAnimation}
           >
             <ModalHeader title={title} closeModal={closeModal} classes={classes?.modalHeader} />
