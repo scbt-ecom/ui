@@ -9,7 +9,8 @@ export interface NotificationProps {
   intent: 'info' | 'error'
   text: string | ReactElement
   customIcon?: ReactElement
-  content?: ReactElement
+  link?: string
+  linkText?: string
   closure?: boolean
 }
 

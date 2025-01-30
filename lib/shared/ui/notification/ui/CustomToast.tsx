@@ -22,21 +22,35 @@ const toastContainerConfig = cva(
 type TContainerConfig = VariantProps<typeof toastContainerConfig>
 export type ICustomToastProps = NotificationProps & TContainerConfig & Toast
 
-export const CustomToast = ({ intent, text, customIcon, closure = true, content, id }: ICustomToastProps) => {
+export const CustomToast = ({
+  intent,
+  text,
+  customIcon,
+  closure = true,
+  link,
+  linkText = 'Подробнее',
+  id
+}: ICustomToastProps) => {
   return (
     <div className={cn(toastContainerConfig({ intent }))}>
       <div className='flex items-center gap-2'>
-        <span className='size-6'>{customIcon}</span>
+        {customIcon && <span className='size-6'>{customIcon}</span>}
         <div className='desk-body-regular-m text-color-white'>{text}</div>
       </div>
 
-      <div className='flex items-center gap-6'>
-        {content}
+      {(link || closure) && (
+        <div className='flex items-center gap-6'>
+          {link && (
+            <a href={link} className='mob-body-medium-m cursor-pointer underline' target='_blank' rel='noreferrer'>
+              {linkText}
+            </a>
+          )}
 
-        {closure && (
-          <Icon onClick={() => toast.dismiss(id)} name='general/close' className='size-5 cursor-pointer text-icon-white' />
-        )}
-      </div>
+          {closure && (
+            <Icon onClick={() => toast.dismiss(id)} name='general/close' className='size-5 cursor-pointer text-icon-white' />
+          )}
+        </div>
+      )}
     </div>
   )
 }
