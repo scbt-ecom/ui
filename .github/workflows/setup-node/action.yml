@@ -23,9 +23,9 @@ runs:
         path: node_modules
         key: node-modules-${{ runner.os }}-${{ hashFiles('package.json') }}
 
-    - name: Remove npm cache
-      shell: bash
-      run: npm cache clean --force
+    # - name: Remove npm cache
+    #   shell: bash
+    #   run: npm cache clean --force
 
     - name: Install dependencies 🔧 (without package-lock)
       shell: bash
