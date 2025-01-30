@@ -22,6 +22,7 @@ export const LinksList = ({ links, classes }: LinksListProps) => {
             link: cn('w-max', classes?.linkText),
             icon: cn(classes?.linkIcon)
           }}
+          intent='dark'
           key={path}
           href={path}
         >
