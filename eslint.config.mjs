@@ -97,6 +97,7 @@ export default tseslint.config(
       'prefer-arrow-callback': 'off',
       'no-case-declarations': 'off',
       '@typescript-eslint/comma-dangle': 'off',
+      '@typescript-eslint/triple-slash-reference': 'off',
       'import/no-default-export': 'error',
       'max-len': 'off',
       'jsx-quotes': [2, 'prefer-single'],

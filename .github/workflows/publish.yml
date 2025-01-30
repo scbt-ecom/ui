@@ -29,6 +29,9 @@ jobs:
       - name: Build 🏗️
         run: npm run build
 
+      - name: Running tests
+        run: npx cypress run --component --browser chrome
+
       - name: Publish with Semantic Release 🚀
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

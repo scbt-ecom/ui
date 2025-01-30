@@ -26,6 +26,7 @@ export const AutocompleteControl = <TFieldValues extends FieldValues, T>({
   rules,
   shouldUnregister,
   classes,
+  immediate = true,
   ...props
 }: AutocompleteControlProps<TFieldValues, T>) => {
   const { field, fieldState } = useController({
@@ -37,14 +38,12 @@ export const AutocompleteControl = <TFieldValues extends FieldValues, T>({
     shouldUnregister
   })
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars,unused-imports/no-unused-vars
-  const { ref, ...restField } = field
   const { error, invalid } = fieldState
   const { container, message } = classes || {}
 
   return (
     <div className={cn('w-full', container)}>
-      <Uncontrolled.AutocompleteBase {...props} {...restField} invalid={invalid} />
+      <Uncontrolled.AutocompleteBase {...props} {...field} immediate={immediate} invalid={invalid} />
       <MessageView className={message} text={error?.message || helperText} intent={error ? 'error' : 'simple'} />
     </div>
   )

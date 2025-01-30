@@ -17,10 +17,11 @@ type ExternalHandlers = {
 export type SwitchBaseProps = SwitchProps & {
   classes?: SwitchBaseClasses
   externalHandlers?: ExternalHandlers
+  invalid?: boolean
 }
 
 export const SwitchBase = forwardRef<HTMLButtonElement, SwitchBaseProps>(
-  ({ classes, className, disabled, externalHandlers, onCheckedChange, ...props }, ref) => {
+  ({ classes, className, disabled, invalid, externalHandlers, onCheckedChange, ...props }, ref) => {
     const { onChange: externalOnChange, ...restHandlers } = externalHandlers || {}
 
     const onChange = (value: boolean) => {
@@ -35,6 +36,7 @@ export const SwitchBase = forwardRef<HTMLButtonElement, SwitchBaseProps>(
         ref={ref}
         onCheckedChange={onChange}
         disabled={disabled}
+        aria-invalid={invalid}
         className={cn(
           'h-6 w-10 rounded-full bg-color-blue-grey-300 p-[2px] outline-2',
           'outline-offset-4 outline-transparent focus:outline-primary-focus',

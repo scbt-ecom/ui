@@ -1,8 +1,6 @@
-type DataAttributes = {
-  [key: `data-${string}`]: string | number | boolean | undefined
-}
+import type { DataAttributes } from './types'
 
-interface ComponentProviderProps<Props extends {}> {
+export interface ComponentProviderProps<Props extends {}> {
   title?: string
   Component: React.FC<Props>
   args: Props & DataAttributes

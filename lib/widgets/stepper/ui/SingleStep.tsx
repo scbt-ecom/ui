@@ -1,4 +1,3 @@
-import parse from 'html-react-parser'
 import type { SingleStepProps } from '../model/types'
 import { Heading } from '$/shared/ui'
 import { cn } from '$/shared/utils'
@@ -36,7 +35,10 @@ export const SingleStep = ({ classes, index, variant, title, description }: Sing
             {title}
           </Heading>
         )}
-        <div className={cn('desk-body-regular-l text-color-tetriary', classes?.description)}>{parse(description)}</div>
+        <div
+          dangerouslySetInnerHTML={{ __html: description ?? '' }}
+          className={cn('desk-body-regular-l text-color-tetriary', classes?.description)}
+        />
       </div>
     </div>
   )

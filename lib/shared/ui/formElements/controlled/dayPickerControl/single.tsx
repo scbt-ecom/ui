@@ -1,12 +1,12 @@
 'use client'
 
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { format, isValid, parse } from 'date-fns'
 import { type ExternalHandlers } from './dayPickerControl'
 import { getCurrentDate, getInitialValue, SINGLE_MASK, SINGLE_VALIDATION_REGEX } from './model'
 import { useClickOutside } from '$/shared/hooks'
 import { Calendar, DATE_VISIBLE_PATTERN, Icon, type MaskInputProps, Uncontrolled } from '$/shared/ui'
-import { cn } from '$/shared/utils'
+import { cn, TypeGuards } from '$/shared/utils'
 
 type CalendarProps = React.ComponentPropsWithoutRef<typeof Calendar>
 
@@ -53,6 +53,13 @@ export const SingleDayPicker = ({ inputProps, classes, value, onChange, external
 
   const [visibleValue, setVisibleValue] = useState<string>(getInitialValue('single', value))
 
+  useEffect(() => {
+    if (value && !TypeGuards.isStringEmpty(value)) {
+      setVisibleValue(getInitialValue('single', value))
+      setMonth(new Date(value))
+    }
+  }, [value])
+
   useClickOutside(containerRef, () => setCalendarOpen(false))
 
   const onVisibleValueChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -60,7 +67,7 @@ export const SingleDayPicker = ({ inputProps, classes, value, onChange, external
 
     setVisibleValue(value)
 
-    if (!value.length) {
+    if (TypeGuards.isStringEmpty(value)) {
       return onChange('')
     }
 

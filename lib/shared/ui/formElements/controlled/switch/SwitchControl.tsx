@@ -56,7 +56,7 @@ export const SwitchControl = <TFieldValues extends FieldValues = FieldValues>({
   popoverProps,
   ...props
 }: SwitchControlProps<TFieldValues>) => {
-  const { field } = useController({
+  const { field, fieldState } = useController({
     control,
     name,
     rules,
@@ -66,6 +66,7 @@ export const SwitchControl = <TFieldValues extends FieldValues = FieldValues>({
   })
 
   const { value, onChange, ...restField } = field
+  const { invalid } = fieldState
   const { container, message, ...restClasses } = classes || {}
 
   const id = useId()
@@ -84,6 +85,7 @@ export const SwitchControl = <TFieldValues extends FieldValues = FieldValues>({
       <Uncontrolled.SwitchBase
         {...props}
         {...restField}
+        invalid={invalid}
         classes={restClasses}
         id={id}
         checked={value}

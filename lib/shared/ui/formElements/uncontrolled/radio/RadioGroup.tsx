@@ -59,12 +59,20 @@ export const RadioGroupBase = forwardRef<HTMLDivElement, RadioGroupBaseProps>(
     }
 
     return (
-      <Root {...props} onValueChange={onChange} disabled={disabled} ref={ref} className={cn('w-full', className, root)}>
+      <Root
+        {...props}
+        onValueChange={onChange}
+        aria-invalid={invalid}
+        disabled={disabled}
+        ref={ref}
+        className={cn('w-full', className, root)}
+      >
         <ul className={cn('w-full', list)}>
-          {options.map((option) => (
+          {options.map((option, index) => (
             <RadioItem
               {...restHandlers}
               key={option.id}
+              data-test-id={`radio-item-${index}`}
               item={option}
               invalid={invalid}
               disabled={disabled || option?.disabled}
