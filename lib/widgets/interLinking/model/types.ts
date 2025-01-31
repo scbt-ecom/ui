@@ -1,6 +1,23 @@
-import { type z } from 'zod'
-import { type groupSchema, type interLinkingSchema, type linkSchema } from './schema'
+export interface Link {
+  label: string
+  path: string
+}
 
-export type InterLinkingSchema = z.infer<typeof interLinkingSchema>
-export type ColumnGroupSchema = z.infer<typeof groupSchema>
-export type GroupLinkSchema = z.infer<typeof linkSchema>
+export interface Group {
+  groupLabel: string
+  links: Link[]
+}
+
+export interface Column {
+  column: Group[]
+}
+
+export type InterLinkingVariant = 'twoCols' | 'threeCols' | 'fourCols'
+
+export interface InterLinkingRoot {
+  headline: string
+  config: {
+    variant: InterLinkingVariant
+    details: Column[]
+  }
+}

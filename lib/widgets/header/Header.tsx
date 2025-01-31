@@ -1,10 +1,10 @@
 import { renderContentVariant } from './model/helpers'
-import type { PageHeaderProps } from './model/types'
+import type { HeaderProps } from './model/types'
 import { brandLogos, ResponsiveContainer } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
-export const PageHeader = (props: PageHeaderProps) => {
-  const { logoPath = '/', logoType = 'main', classes } = props
+export const Header = (props: HeaderProps) => {
+  const { logoPath = '/', logoType = 'main', config, classes } = props
 
   return (
     <header className={cn('flex h-[64px] items-center justify-center bg-color-white desktop:h-[72px]', classes?.header)}>
@@ -22,7 +22,7 @@ export const PageHeader = (props: PageHeaderProps) => {
           >
             {brandLogos[logoType]}
           </a>
-          {renderContentVariant(props)}
+          {renderContentVariant(config)}
         </div>
       </ResponsiveContainer>
     </header>

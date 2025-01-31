@@ -9,7 +9,7 @@ import {
   mockBannerOnlyPrimaryButton,
   mockWithAdvantages
 } from './model/mocks.ts'
-import { Banner, PageHeader } from '$/widgets'
+import { Banner, Header } from '$/widgets'
 
 const meta = {
   title: 'WIDGETS/Banner',
@@ -31,7 +31,7 @@ type Story = StoryObj<typeof Banner>
 export const Base: Story = {
   render: () => (
     <>
-      <PageHeader variant='withButton' />
+      <Header variant='withButton' />
       <Banner {...mockBannerBase} />
     </>
   )
@@ -40,7 +40,7 @@ export const Base: Story = {
 export const OnlyPrimaryButton: Story = {
   render: () => (
     <>
-      <PageHeader variant='withButton' />
+      <Header variant='withButton' />
       <Banner {...mockBannerOnlyPrimaryButton} />
     </>
   )
@@ -49,7 +49,7 @@ export const OnlyPrimaryButton: Story = {
 export const WithAdvantages: Story = {
   render: () => (
     <>
-      <PageHeader variant='withButton' />
+      <Header variant='withButton' />
       <Banner {...mockWithAdvantages} />
     </>
   )
@@ -58,7 +58,7 @@ export const WithAdvantages: Story = {
 export const BaseFullImage: Story = {
   render: () => (
     <>
-      <PageHeader variant='withButton' />
+      <Header variant='withButton' />
       <Banner {...mockBannerBaseFullImage} />
     </>
   )
@@ -67,7 +67,7 @@ export const BaseFullImage: Story = {
 export const FullImageOnlyPrimaryButton: Story = {
   render: () => (
     <>
-      <PageHeader variant='withButton' />
+      <Header variant='withButton' />
       <Banner {...mockBannerFullImageOnlyPrimaryButton} />
     </>
   )
@@ -76,7 +76,7 @@ export const FullImageOnlyPrimaryButton: Story = {
 export const BaseFullImageWithAdvantages: Story = {
   render: () => (
     <>
-      <PageHeader variant='withButton' />
+      <Header variant='withButton' />
       <Banner {...mockBannerFullImageWithAdvantages} />
     </>
   )
@@ -85,7 +85,7 @@ export const BaseFullImageWithAdvantages: Story = {
 export const BaseGradient: Story = {
   render: () => (
     <>
-      <PageHeader variant='withButton' />
+      <Header variant='withButton' />
       <Banner {...mockBannerBaseGradient} />
     </>
   )
@@ -94,7 +94,7 @@ export const BaseGradient: Story = {
 export const BaseGradientWithAdvantages: Story = {
   render: () => (
     <>
-      <PageHeader variant='withButton' />
+      <Header variant='withButton' />
       <Banner {...mockBannerBaseGradientAdvantages} />
     </>
   )

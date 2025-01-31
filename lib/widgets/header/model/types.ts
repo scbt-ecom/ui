@@ -1,6 +1,6 @@
 import { type BrandLogoVariant, type ButtonProps, type PhoneViewProps } from '$/shared/ui'
 
-type PageHeaderClasses = {
+type HeaderClasses = {
   header?: string
   container?: string
   wrapper?: string
@@ -10,21 +10,28 @@ type PageHeaderClasses = {
 interface CommonHeaderProps {
   logoPath?: string
   logoType?: BrandLogoVariant
-  classes?: PageHeaderClasses
+  classes?: HeaderClasses
 }
 
 export interface HeaderEmptyProps extends CommonHeaderProps {
-  variant: 'empty'
+  config: {
+    variant: 'empty'
+    details: undefined
+  }
 }
 
 export interface HeaderWithPhone extends CommonHeaderProps {
-  variant: 'withPhone'
-  phoneProps: PhoneViewProps
+  config: {
+    variant: 'withPhone'
+    details: PhoneViewProps
+  }
 }
 
 export interface HeaderWithButton extends CommonHeaderProps {
-  variant: 'withButton'
-  buttonProps?: ButtonProps
+  config: {
+    variant: 'withButton'
+    details?: ButtonProps
+  }
 }
 
-export type PageHeaderProps = HeaderWithButton | HeaderWithPhone | HeaderEmptyProps
+export type HeaderProps = HeaderWithButton | HeaderWithPhone | HeaderEmptyProps

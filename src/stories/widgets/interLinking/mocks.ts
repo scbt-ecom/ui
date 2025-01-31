@@ -1,6 +1,6 @@
-import type { InterLinkingSchema } from '$/widgets'
+import type { Column, InterLinkingRoot } from '$/widgets/interLinking/model/types'
 
-const mockColumns = [
+const mockColumns: Column[] = [
   {
     column: [
       {
@@ -524,20 +524,26 @@ const mockColumns = [
   }
 ]
 
-export const MOCK_INTERLINKING_FOUR_COLS: InterLinkingSchema = {
-  variant: 'fourCols',
+export const MOCK_INTERLINKING_FOUR_COLS: InterLinkingRoot = {
   headline: 'Другие предложения по лизингу',
-  columns: mockColumns
+  config: {
+    variant: 'fourCols',
+    details: mockColumns
+  }
 }
 
-export const MOCK_INTERLINKING_THREE_COLS: InterLinkingSchema = {
-  variant: 'threeCols',
+export const MOCK_INTERLINKING_THREE_COLS: InterLinkingRoot = {
   headline: 'Другие предложения по лизингу',
-  columns: [mockColumns[0], mockColumns[2], mockColumns[3]]
+  config: {
+    variant: 'threeCols',
+    details: [mockColumns[0], mockColumns[2], mockColumns[3]]
+  }
 }
 
-export const MOCK_INTERLINKING_TWO_COLS: InterLinkingSchema = {
-  variant: 'twoCols',
+export const MOCK_INTERLINKING_TWO_COLS: InterLinkingRoot = {
   headline: 'Другие предложения по лизингу',
-  columns: [mockColumns[0], mockColumns[2]]
+  config: {
+    variant: 'twoCols',
+    details: [mockColumns[0], mockColumns[2]]
+  }
 }

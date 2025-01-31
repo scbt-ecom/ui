@@ -13,14 +13,25 @@ export type StepperClasses = {
   step?: SingleStepClasses
 }
 
+// export interface StepperProps extends HTMLAttributes<HTMLDivElement> {
+//   headline: string
+//   variant: StepperVariant
+//   stepsList: SingleStepItem[]
+//   classes?: StepperClasses
+// }
+
 export interface StepperProps extends HTMLAttributes<HTMLDivElement> {
   headline: string
-  variant: StepperVariant
-  stepsList: SingleStepItem[]
+  config: {
+    variant: StepperVariant
+    details: SingleStepItem[]
+  }
   classes?: StepperClasses
 }
 
-export const Stepper = ({ headline, variant, stepsList, classes }: StepperProps) => {
+export const Stepper = ({ headline, config, classes }: StepperProps) => {
+  const { variant, details: stepsList } = config
+
   return (
     <Section className={classes?.root}>
       <ResponsiveContainer className={classes?.container}>

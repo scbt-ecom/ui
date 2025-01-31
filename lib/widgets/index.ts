@@ -1,5 +1,5 @@
 export * from './benefit'
-export * from './pageHeader'
+export * from './header'
 export * from './banner'
 export * from './advantages'
 export * from './footer'
