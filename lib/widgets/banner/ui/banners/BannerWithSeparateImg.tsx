@@ -22,7 +22,7 @@ export const BannerWithSeparateImg = ({
         classes?.advantageContainer
       )}
     >
-      {advantagesConfig?.advantagesList && advantagesConfig?.advantagesList?.length > 0 && <Advantages {...advantagesConfig} />}
+      {advantagesConfig?.config.details && advantagesConfig?.config.details?.length > 0 && <Advantages {...advantagesConfig} />}
     </div>
   )
   return (

@@ -7,13 +7,15 @@ import { type AdvantagesProps } from '$/widgets'
 import { type BannerProps } from '$/widgets/banner/Banner.tsx'
 
 const defaultMockAdvantageProps: AdvantagesProps = {
-  advantagesList: [
-    { title: 'До 5 млн ₽', description: 'сумма кредита' },
-    { title: 'До 5 лет', description: 'срок кредита' },
-    { title: 'От 5 минут', description: 'быстрое одобрение' },
-    { title: 'Бесплатная', description: 'доставка кредита' }
-  ],
-  variant: 'fourCards'
+  config: {
+    details: [
+      { title: 'До 5 млн ₽', description: 'сумма кредита' },
+      { title: 'До 5 лет', description: 'срок кредита' },
+      { title: 'От 5 минут', description: 'быстрое одобрение' },
+      { title: 'Бесплатная', description: 'доставка кредита' }
+    ],
+    variant: 'fourCards'
+  }
 }
 
 export const mockBannerBase: BannerProps = {
