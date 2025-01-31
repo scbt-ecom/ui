@@ -9,11 +9,14 @@ lerna-debug.log*
 build-storybook.log*
 
 node_modules
+package-lock.json
+pnpm-lock.yaml
 dist
 dist-ssr
 storybook-static
 *.local
 *.tsbuildinfo
+coverage
 
 env
 tsconfig.tsbuildinfo
@@ -32,4 +35,3 @@ tsconfig.node.tsbuildinfo
 *.sw?
 
 *.docs.mdx
-package-lock.json

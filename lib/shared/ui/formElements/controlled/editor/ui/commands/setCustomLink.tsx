@@ -3,14 +3,13 @@ import { z } from 'zod'
 import { useControlledForm } from '$/shared/hooks'
 import { Button, Controlled, Icon, Popover } from '$/shared/ui'
 import { cn } from '$/shared/utils'
-import { VALIDATION_MESSAGES } from '$/shared/validation'
 
 interface ISetCustomLinkProps {
   editor: Editor
 }
 
 const linkSchema = z.object({
-  href: z.string({ message: VALIDATION_MESSAGES.REQUIRED }).url({ message: VALIDATION_MESSAGES.INVALID_URL }),
+  href: z.string().url(),
   underline: z.boolean().optional().default(true)
 })
 
