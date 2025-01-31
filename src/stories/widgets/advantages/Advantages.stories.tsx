@@ -17,14 +17,18 @@ type Story = StoryObj<typeof Advantages>
 
 export const ThreeCards: Story = {
   args: {
-    variant: 'threeCards',
-    advantagesList: mockCards.toSpliced(-1, 1)
+    config: {
+      variant: 'threeCards',
+      details: mockCards.toSpliced(-1, 1)
+    }
   }
 }
 
 export const FourCards: Story = {
   args: {
-    variant: 'fourCards',
-    advantagesList: mockCards
+    config: {
+      variant: 'fourCards',
+      details: mockCards
+    }
   }
 }

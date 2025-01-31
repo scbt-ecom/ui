@@ -1,4 +1,4 @@
-import type { ColumnGroupSchema } from '../model/types'
+import type { Group } from '../model/types'
 import { ColumnGroup, type ColumnGroupClasses } from './ColumnGroup'
 import type { AccordionProps } from '$/shared/ui'
 import { cn } from '$/shared/utils'
@@ -9,7 +9,7 @@ export type ColumnClasses = {
 }
 
 export interface ColumnProps {
-  column: ColumnGroupSchema[]
+  column: Group[]
   mobileAccordionProps?: AccordionProps
   classes?: ColumnClasses
 }

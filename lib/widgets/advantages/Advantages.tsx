@@ -1,6 +1,6 @@
 'use client'
 
-import { type AdvantageItem } from './model/types'
+import type { AdvantageItem } from './model'
 import { Heading } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
@@ -11,13 +11,25 @@ export interface AdvantageClasses {
   description?: string
 }
 
+//TODO: REMOVE AFTER TESTING
+
+// export interface AdvantagesProps {
+//   advantagesList: AdvantageItem[]
+//   variant: 'threeCards' | 'fourCards'
+//   classes?: AdvantageClasses
+// }
+
 export interface AdvantagesProps {
-  advantagesList: AdvantageItem[]
-  variant: 'threeCards' | 'fourCards'
+  config: {
+    variant: 'threeCards' | 'fourCards'
+    details: AdvantageItem[]
+  }
   classes?: AdvantageClasses
 }
 
-export const Advantages = ({ variant, advantagesList, classes }: AdvantagesProps) => {
+export const Advantages = ({ config, classes }: AdvantagesProps) => {
+  const { variant, details: advantagesList } = config
+
   return (
     <div
       className={cn(

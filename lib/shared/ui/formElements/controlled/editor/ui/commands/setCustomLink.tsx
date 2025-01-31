@@ -56,12 +56,19 @@ export const SetCustomLink = ({ editor }: ISetCustomLinkProps) => {
         }
       >
         <div className='flex flex-1'>
-          <form className='flex flex-1 flex-col gap-4' onSubmit={handleSubmit(onSubmit)}>
+          <form
+            onSubmit={(event) => {
+              event.stopPropagation()
+              event.nativeEvent.stopPropagation()
+              handleSubmit(onSubmit)(event)
+            }}
+            className='flex flex-1 flex-col gap-4'
+          >
             <Controlled.InputControl control={control} name='href' label='Введите ссылку' />
             <Controlled.SwitchControl control={control} name='underline'>
               С подчеркиванием
             </Controlled.SwitchControl>
-            <Button size='sm' type='submit'>
+            <Button type='submit' size='sm'>
               Сохранить
             </Button>
           </form>
