@@ -47,6 +47,7 @@
     "lint": "eslint . --quiet",
     "prettier": "prettier --write .",
     "test": "vitest --watch",
+    "test-ci": "vitest run --teardownTimeout=0",
     "test-coverage": "vitest run --coverage",
     "preview": "vite preview",
     "start:sb": "storybook dev -p 6006 --no-open",
@@ -56,9 +57,9 @@
     "cypress:open": "cypress open --component --browser chrome",
     "storybook-remove-mdx": "ts-node plugins/vite/viteStorybookMdxGenerationPlugin/utils/removeMdx.js",
     "prepare": "husky",
-    "pre-commit": "npm run lint && vitest run",
+    "pre-commit": "npm run lint && npm run test-ci",
     "chromatic": "npx chromatic --project-token=chpt_9468dafcf1bf3e3 --only-changed --files='src/stories/**/*.stories.@(tsx)'",
-    "pre-deploy": "npm run lint && vitest run"
+    "pre-deploy": "npm run lint && npm run test-ci"
   },
   "peerDependecies": {
     "react": "^18.3.1",
