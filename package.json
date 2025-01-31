@@ -56,9 +56,9 @@
     "cypress:open": "cypress open --component --browser chrome",
     "storybook-remove-mdx": "ts-node plugins/vite/viteStorybookMdxGenerationPlugin/utils/removeMdx.js",
     "prepare": "husky",
-    "pre-commit": "npm run lint",
+    "pre-commit": "npm run lint && vitest run",
     "chromatic": "npx chromatic --project-token=chpt_9468dafcf1bf3e3 --only-changed --files='src/stories/**/*.stories.@(tsx)'",
-    "pre-deploy": "npm run lint"
+    "pre-deploy": "npm run lint && vitest run"
   },
   "peerDependecies": {
     "react": "^18.3.1",
