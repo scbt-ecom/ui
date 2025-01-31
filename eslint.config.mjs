@@ -29,7 +29,8 @@ export default tseslint.config(
       '**/postcss.config.mjs',
       '**/storybook-static',
       'lib/hybrid.ts',
-      '.storybook'
+      '.storybook',
+      'coverage'
     ]
   },
   {

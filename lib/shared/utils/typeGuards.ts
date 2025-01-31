@@ -19,11 +19,11 @@ export class TypeGuards {
     return this.isNull(value) || this.isUndefined(value)
   }
 
-  static isArray<T>(value: T | T[]): value is T[] {
+  static isArray(value: unknown): value is unknown[] {
     return Array.isArray(value)
   }
 
-  static isArrayEmpty(value: unknown): boolean {
+  static isArrayEmpty(value: unknown): value is boolean {
     return this.isArray(value) && !value.length
   }
 }

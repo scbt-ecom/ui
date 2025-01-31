@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "lib": ["dom", "dom.iterable", "esnext"],
-    "types": ["vitest", "@testing-library/jest-dom"],
+    "types": ["vitest"],
     "target": "ES2022",
     "useDefineForClassFields": true,
     "allowJs": true,
@@ -29,6 +29,6 @@
     },
   },
   "include": ["vite-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.jsx", ".next/types/**/*.ts", "src", "lib"],
-  "exclude": ["node_modules", "vitest.config.mjs"],
+  "exclude": ["node_modules", "coverage"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

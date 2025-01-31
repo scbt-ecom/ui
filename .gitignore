@@ -16,6 +16,7 @@ dist-ssr
 storybook-static
 *.local
 *.tsbuildinfo
+coverage
 
 env
 tsconfig.tsbuildinfo
