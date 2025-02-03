@@ -1,6 +1,6 @@
 import * as vi from 'vitest'
 import type { TypeOf } from 'zod'
-import { optionalSchema, patternSchema, requiredSchema } from './constants'
+import { optionalSchema, requiredSchema } from './constants'
 
 type RequiredSchema = {
   field: string
@@ -15,7 +15,7 @@ vi.describe('Test cases for number validation schema', () => {
     vi.expectTypeOf<TypeOf<typeof requiredSchema>>().toEqualTypeOf<RequiredSchema>()
 
     const validRequiredField = {
-      field: new Date().toISOString()
+      field: 'example@gmail.com'
     }
     const invalidRequiredField = {
       field: 'invalid'
@@ -38,23 +38,6 @@ vi.describe('Test cases for number validation schema', () => {
 
     const { data } = optionalSchema.safeParse(validOptionalField)
     const { error } = optionalSchema.safeParse(invalidOptionalField)
-
-    vi.expect(data).not.toBeFalsy()
-    vi.expect(error).not.toBeFalsy()
-  })
-
-  vi.it('Should validate readable date field correctly', () => {
-    vi.expectTypeOf<TypeOf<typeof patternSchema>>().toEqualTypeOf<RequiredSchema>()
-
-    const validOptionalField = {
-      field: '10.10.2024'
-    }
-    const invalidOptionalField = {
-      field: '50.50.5050'
-    }
-
-    const { data } = patternSchema.safeParse(validOptionalField)
-    const { error } = patternSchema.safeParse(invalidOptionalField)
 
     vi.expect(data).not.toBeFalsy()
     vi.expect(error).not.toBeFalsy()
