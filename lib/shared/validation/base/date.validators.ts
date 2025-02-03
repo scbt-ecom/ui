@@ -76,7 +76,7 @@ type DateRequiredSchema = ReturnType<typeof getDateRequired>
  * Схема валидации опционального поля номера телефона
  */
 const getDateOptional = (props?: Omit<DateValidationOptions<boolean>, 'required'>) => {
-  const { iso = false, pattern = DATE_VISIBLE_PATTERN, message } = props || {}
+  const { iso = true, pattern = DATE_VISIBLE_PATTERN, message } = props || {}
 
   return z
     .string()
