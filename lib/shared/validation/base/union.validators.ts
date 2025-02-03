@@ -45,10 +45,14 @@ const getUnionRequired = <T extends z.Primitive>(
     return baseDefaultMessages.VALUE_OUT_OF_RANGE(values)
   })()
 
-  return z.union([first, second, ...other], {
-    message: errorMessage,
-    ...restProps
-  })
+  return z
+    .union([first, second, ...other], {
+      message: errorMessage,
+      ...restProps
+    })
+    .nullable()
+    .refine(Boolean, baseDefaultMessages.NON_EMPTY())
+    .default(null)
 }
 type UnionRequiredSchema<T extends z.Primitive> = ReturnType<typeof getUnionRequired<T>>
 
