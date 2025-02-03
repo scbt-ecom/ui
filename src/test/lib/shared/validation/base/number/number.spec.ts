@@ -1,36 +1,24 @@
 import * as vi from 'vitest'
-import { type TypeOf } from 'zod'
+import type { TypeOf } from 'zod'
 import { maxSchema, minMaxSchema, minSchema, optionalSchema, requiredSchema } from './constants'
 
 type RequiredSchema = {
-  field: string
+  field: number
 }
 
 type OptionalSchema = {
-  field?: string
+  field?: number
 }
 
-type MinSchema = {
-  field: string
-}
-
-type MaxSchema = {
-  field: string
-}
-
-type MinMaxSchema = {
-  field: string
-}
-
-vi.describe('Test cases for string validation schema', () => {
+vi.describe('Test cases for number validation schema', () => {
   vi.it('Should validate required field correctly', () => {
     vi.expectTypeOf<TypeOf<typeof requiredSchema>>().toEqualTypeOf<RequiredSchema>()
 
     const validRequiredField = {
-      field: 'testField'
+      field: 10
     }
     const invalidRequiredField = {
-      field: ''
+      field: 'invalid'
     }
 
     const { data } = requiredSchema.safeParse(validRequiredField)
@@ -43,11 +31,9 @@ vi.describe('Test cases for string validation schema', () => {
   vi.it('Should validate optional field correctly', () => {
     vi.expectTypeOf<TypeOf<typeof optionalSchema>>().toEqualTypeOf<OptionalSchema>()
 
-    const validOptionalField = {
-      field: 'testField'
-    }
+    const validOptionalField = {}
     const invalidOptionalField = {
-      field: 0
+      field: 'testField'
     }
 
     const { data } = optionalSchema.safeParse(validOptionalField)
@@ -58,13 +44,13 @@ vi.describe('Test cases for string validation schema', () => {
   })
 
   vi.it('Should validate min field correctly', () => {
-    vi.expectTypeOf<TypeOf<typeof minSchema>>().toEqualTypeOf<MinSchema>()
+    vi.expectTypeOf<TypeOf<typeof minSchema>>().toEqualTypeOf<RequiredSchema>()
 
     const validMinField = {
-      field: 'valid'
+      field: 10
     }
     const invalidMinField = {
-      field: ''
+      field: 0
     }
 
     const { data } = minSchema.safeParse(validMinField)
@@ -75,13 +61,13 @@ vi.describe('Test cases for string validation schema', () => {
   })
 
   vi.it('Should validate max field correctly', () => {
-    vi.expectTypeOf<TypeOf<typeof maxSchema>>().toEqualTypeOf<MaxSchema>()
+    vi.expectTypeOf<TypeOf<typeof maxSchema>>().toEqualTypeOf<RequiredSchema>()
 
     const validMaxField = {
-      field: 'valid'
+      field: 6
     }
     const invalidMaxField = {
-      field: 'invalid'
+      field: 16
     }
 
     const { data } = maxSchema.safeParse(validMaxField)
@@ -92,13 +78,13 @@ vi.describe('Test cases for string validation schema', () => {
   })
 
   vi.it('Should validate min-max field correctly', () => {
-    vi.expectTypeOf<TypeOf<typeof minMaxSchema>>().toEqualTypeOf<MinMaxSchema>()
+    vi.expectTypeOf<TypeOf<typeof minMaxSchema>>().toEqualTypeOf<RequiredSchema>()
 
     const validMinField = {
-      field: 'valid'
+      field: 5
     }
     const invalidMinField = {
-      field: 'invalid'
+      field: 0
     }
 
     const { data } = minMaxSchema.safeParse(validMinField)
