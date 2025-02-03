@@ -37,7 +37,16 @@ type SingleDayPickerProps = Omit<CalendarProps, 'mode'> & {
   externalHandlers?: ExternalHandlers
 }
 
-export const SingleDayPicker = ({ inputProps, classes, value, onChange, externalHandlers, ...props }: SingleDayPickerProps) => {
+export const SingleDayPicker = ({
+  inputProps,
+  classes,
+  value,
+  onChange,
+  externalHandlers,
+  month,
+  onMonthChange,
+  ...props
+}: SingleDayPickerProps) => {
   const { onChange: externalOnChange, onFocus: externalOnFocus, ...restHandlers } = externalHandlers || {}
 
   const containerRef = useRef<HTMLDivElement>(null)
@@ -48,7 +57,6 @@ export const SingleDayPicker = ({ inputProps, classes, value, onChange, external
     setCalendarOpen((prev) => !prev)
   }
 
-  const [month, setMonth] = useState<Date>(new Date())
   const date = getCurrentDate('single', value)
 
   const [visibleValue, setVisibleValue] = useState<string>(getInitialValue('single', value))
@@ -56,7 +64,7 @@ export const SingleDayPicker = ({ inputProps, classes, value, onChange, external
   useEffect(() => {
     if (value && !TypeGuards.isStringEmpty(value)) {
       setVisibleValue(getInitialValue('single', value))
-      setMonth(new Date(value))
+      if (onMonthChange) onMonthChange(new Date(value))
     }
   }, [value])
 
@@ -81,14 +89,14 @@ export const SingleDayPicker = ({ inputProps, classes, value, onChange, external
       const isoDate = date.toISOString()
 
       onChange(isoDate)
-      setMonth(date)
+      if (onMonthChange) onMonthChange(date)
 
       if (externalOnChange) externalOnChange(isoDate)
     }
   }
 
   const onDateChange = (newDate: Date) => {
-    setMonth(newDate)
+    if (onMonthChange) onMonthChange(newDate)
 
     const isoDate = newDate.toISOString()
 
@@ -128,7 +136,7 @@ export const SingleDayPicker = ({ inputProps, classes, value, onChange, external
           required
           mode='single'
           month={month}
-          onMonthChange={setMonth}
+          onMonthChange={onMonthChange}
           selected={date}
           onSelect={onDateChange}
           className={cn('absolute right-0 top-full z-10', calendar)}
