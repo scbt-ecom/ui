@@ -66,32 +66,39 @@ type PhoneRequiredSchema = ReturnType<typeof getPhoneRequired>
 const getPhoneOptional = (props?: Omit<PhoneValidationOptions<false>, 'required'>) => {
   const { ignoreMask = true, maskSymbols = /[()+_ -]/g, message } = props || {}
 
-  let schema = z.string().superRefine((value, context) => {
-    const cleanValue = value.replace(maskSymbols, '')
+  let schema = z
+    .string()
+    .optional()
+    .superRefine((value, context) => {
+      if (!value) {
+        return
+      }
 
-    const operatorCode = cleanValue.charAt(1)
+      const cleanValue = value.replace(maskSymbols, '')
 
-    if (!['3', '4', '5', '6', '7', '9'].includes(operatorCode)) {
-      context.addIssue({
-        code: z.ZodIssueCode.invalid_string,
-        validation: 'regex',
-        message: message?.invalidOperator || baseDefaultMessages.PHONE_INVALID_OPERATOR()
-      })
-    }
+      const operatorCode = cleanValue.charAt(1)
 
-    if (cleanValue.length < 11) {
-      context.addIssue({
-        code: z.ZodIssueCode.too_small,
-        minimum: 11,
-        inclusive: true,
-        type: 'string',
-        message: message?.min || baseDefaultMessages.PHONE_NON_EMPTY()
-      })
-    }
-  })
+      if (!['3', '4', '5', '6', '7', '9'].includes(operatorCode)) {
+        context.addIssue({
+          code: z.ZodIssueCode.invalid_string,
+          validation: 'regex',
+          message: message?.invalidOperator || baseDefaultMessages.PHONE_INVALID_OPERATOR()
+        })
+      }
+
+      if (cleanValue.length < 11) {
+        context.addIssue({
+          code: z.ZodIssueCode.too_small,
+          minimum: 11,
+          inclusive: true,
+          type: 'string',
+          message: message?.min || baseDefaultMessages.PHONE_NON_EMPTY()
+        })
+      }
+    })
 
   if (ignoreMask) {
-    schema = schema.transform((value) => value.replace(maskSymbols, '')) as unknown as typeof schema
+    schema = schema.transform((value) => value?.replace(maskSymbols, '')) as unknown as typeof schema
   }
 
   return schema.transform((value) => (!value ? undefined : value))

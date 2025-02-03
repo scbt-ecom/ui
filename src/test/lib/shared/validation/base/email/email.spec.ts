@@ -10,7 +10,7 @@ type OptionalSchema = {
   field?: string
 }
 
-vi.describe('Test cases for number validation schema', () => {
+vi.describe('Test cases for email validation schema', () => {
   vi.it('Should validate required field correctly', () => {
     vi.expectTypeOf<TypeOf<typeof requiredSchema>>().toEqualTypeOf<RequiredSchema>()
 
