@@ -87,4 +87,28 @@ describe('Test cases for Controlled.DayPicker', () => {
       cy.get('@day-picker').should('have.attr', 'aria-invalid', 'true')
     })
   })
+
+  it('Should be valid with filled correct date', () => {
+    cy.mount(
+      factory.getFormProvider({
+        args: dayPickerBaseProps,
+        schema: baseSchema
+      })
+    )
+
+    cy.get('[data-test-id="day-picker"]').as('day-picker')
+    cy.get('[data-test-id="submit"]').as('submit')
+    cy.get('[data-test-id="form"]').as('form')
+
+    cy.get('@day-picker')
+      .type('10.10.2024')
+      .then(() => {
+        cy.get('@submit').click()
+      })
+
+    cy.get('@form', { timeout: 5000 }).within(() => {
+      cy.get('@form').get('.desk-body-regular-m').should('not.exist')
+      cy.get('@day-picker').should('have.attr', 'aria-invalid', 'false')
+    })
+  })
 })
