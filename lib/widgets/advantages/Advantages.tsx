@@ -11,14 +11,6 @@ export interface AdvantageClasses {
   description?: string
 }
 
-//TODO: REMOVE AFTER TESTING
-
-// export interface AdvantagesProps {
-//   advantagesList: AdvantageItem[]
-//   variant: 'threeCards' | 'fourCards'
-//   classes?: AdvantageClasses
-// }
-
 export interface AdvantagesProps {
   config: {
     variant: 'threeCards' | 'fourCards'

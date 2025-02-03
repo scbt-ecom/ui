@@ -29,7 +29,8 @@ const mock_accordion_list = [
   },
   {
     label: 'Заголовок аккордеон 3',
-    content: 'Контент аккордеона 3'
+    content: 'Контент аккордеона 3',
+    defaultOpen: true
   }
 ]
 
@@ -49,11 +50,11 @@ export const WithDefaultOpen: Story = {
 }
 
 export const MappedWithDefaultOpen: Story = {
-  render: (...args) => (
+  render: (args) => (
     <div className='flex flex-col gap-6'>
-      {mock_accordion_list?.map(({ label, content }) => (
-        <Accordion key={label.toString()} defaultOpen label={label} {...args}>
-          {content}
+      {mock_accordion_list?.map((props) => (
+        <Accordion key={props.label} {...args} {...props}>
+          {props.content}
         </Accordion>
       ))}
     </div>

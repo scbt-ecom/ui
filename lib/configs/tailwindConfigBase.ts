@@ -57,14 +57,6 @@ export const tailwindConfigBase: Omit<Config, 'content'> = {
         DEFAULT: 'ease-in-out'
       },
       keyframes: {
-        slideDown: {
-          from: { height: '0px' },
-          to: { height: 'var(--radix-accordion-content-height)' }
-        },
-        slideUp: {
-          from: { height: 'var(--radix-accordion-content-height)' },
-          to: { height: '0px' }
-        },
         'scale-in': {
           from: { opacity: '0', scale: '0' },
           to: { opacity: '1', scale: '1' }
@@ -85,8 +77,6 @@ export const tailwindConfigBase: Omit<Config, 'content'> = {
         }
       },
       animation: {
-        slideDown: 'slideDown 0.3s cubic-bezier(0.87, 0, 0.13, 1)',
-        slideUp: 'slideUp 0.3s cubic-bezier(0.87, 0, 0.13, 1)',
         'scale-in': 'scale-in 0.3s ease-in-out',
         'progress-loader': 'progress-loader 250s linear infinite',
         'caret-blink': 'caret-blink 1.25s ease-out infinite'
