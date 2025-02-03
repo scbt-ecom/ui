@@ -1,5 +1,5 @@
 import { type Meta, type StoryObj } from '@storybook/react'
-import { Button, CustomLink, Icon, Notification } from '$/shared/ui'
+import { Button, Icon, Notification } from '$/shared/ui'
 
 const meta = {
   title: 'INTERACTIVE/Notification',
@@ -59,17 +59,8 @@ export const InfoWithLink: Story = {
               intent: 'info',
               text: 'Документы отправлены',
               customIcon: <Icon name='general/check' className='size-5 text-icon-white' />,
-              content: (
-                <CustomLink
-                  icon='arrows/arrowLink'
-                  target='_blank'
-                  rel='noreferrer'
-                  intent='white'
-                  href='https://www.figma.com/design/4i9LqYBbtItQUpviA45cMw/SCBT-Design-System?node-id=3530-1129&node-type=frame&t=XT3FQKKIzTob4WrF-0'
-                >
-                  Подробнее
-                </CustomLink>
-              )
+              link: 'https://www.figma.com/design/4i9LqYBbtItQUpviA45cMw/SCBT-Design-System?node-id=3530-1129&node-type=frame&t=XT3FQKKIzTob4WrF-0',
+              linkText: 'Подробнее'
             })
           }
         >
