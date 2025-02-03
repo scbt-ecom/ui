@@ -14,7 +14,7 @@ const meta = {
   },
   decorators: [
     (Story) => (
-      <div className='w-[800px]'>
+      <div className='mx-auto w-[600px]'>
         <Story />
       </div>
     )
@@ -113,4 +113,16 @@ export const WithExternalHandlers: Story = {
     }
   },
   render: Controlled.render
+}
+
+export const WithTypeNumber: Story = {
+  args: {
+    ...Base.args,
+    type: 'number'
+  },
+  render: (props) => {
+    const [value, setValue] = useState<number>()
+
+    return <Uncontrolled.InputBase {...props} value={value} onChange={(e) => setValue(Number(e.target.value))} />
+  }
 }
