@@ -180,4 +180,41 @@ describe('Test cases for Controlled.SelectControl', () => {
     // check that select is not invalid
     cy.get('@select', { timeout: 5000 }).should('have.attr', 'aria-invalid', 'false')
   })
+
+  it('Should display custom empty list message', () => {
+    cy.mount(
+      factory.getFormProvider({
+        args: constants.emptyListSelectBaseProps,
+        schema: constants.baseSchema
+      })
+    )
+
+    cy.get('[data-test-id="select"]').as('select')
+    cy.get('[data-test-id="submit"]').as('submit')
+    cy.get('[data-test-id="select-input"]').as('select-input')
+
+    cy.get('@select-input').type('Ах ты волк')
+
+    cy.get('[data-test-id="select-empty-message"]').should('exist').and('have.text', 'Я Лупа, а ты Пупа')
+  })
+
+  it('Should not display custom empty list message', () => {
+    cy.mount(
+      factory.getFormProvider({
+        args: {
+          ...constants.emptyListSelectBaseProps,
+          emptyList: () => null
+        },
+        schema: constants.baseSchema
+      })
+    )
+
+    cy.get('[data-test-id="select"]').as('select')
+    cy.get('[data-test-id="submit"]').as('submit')
+    cy.get('[data-test-id="select-input"]').as('select-input')
+
+    cy.get('@select-input').type('Ах ты волк')
+
+    cy.get('[data-test-id="select-empty-message"]').should('not.exist')
+  })
 })

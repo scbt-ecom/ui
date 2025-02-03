@@ -26,3 +26,15 @@ export const selectBaseProps = {
   options: getOptions(),
   'data-test-id': 'select'
 }
+
+export const emptyListSelectBaseProps = {
+  ...selectBaseProps,
+  optionalSchema: getOptions(0),
+  isSearchable: true,
+  emptyList: (query?: string) =>
+    query?.length ? (
+      <p data-test-id='select-empty-message' className='py-4 text-center align-middle'>
+        Я Лупа, а ты Пупа
+      </p>
+    ) : null
+}
