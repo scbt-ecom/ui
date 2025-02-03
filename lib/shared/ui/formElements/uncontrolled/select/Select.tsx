@@ -84,6 +84,10 @@ export type SelectBaseProps<Multi extends boolean> = Omit<
    * Внешние handlers которые можно прокинуть из вне
    */
   externalHandlers?: ExternalHandlers
+  /**
+   * Кастомизация отображения текста при пустом списке
+   */
+  emptyList?: (query?: string) => React.ReactNode
 }
 
 export const SelectBase = forwardRef<HTMLInputElement, SelectBaseProps<boolean>>(
@@ -106,6 +110,7 @@ export const SelectBase = forwardRef<HTMLInputElement, SelectBaseProps<boolean>>
       externalHandlers,
       immediate,
       disabled,
+      emptyList,
       ...props
     },
     ref
@@ -257,6 +262,8 @@ export const SelectBase = forwardRef<HTMLInputElement, SelectBaseProps<boolean>>
                       }}
                     />
                   ))
+                ) : emptyList ? (
+                  emptyList(externalInputValue || inputValue)
                 ) : (
                   <p className='py-4 text-center align-middle'>Ничего не найдено</p>
                 )}
