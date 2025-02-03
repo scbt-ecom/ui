@@ -6,13 +6,18 @@ import { fn } from '@storybook/test'
 import z from 'zod'
 import { HookForm } from '../utils'
 import { Controlled } from '$/shared/ui'
-import { zodValidators } from '$/shared/validation'
+import { ZodUtils, zodValidators } from '$/shared/validation'
 
 const schema = z.object({
   field: zodValidators.base.getEmailSchema()
 })
 
+const numberSchema = z.object({
+  field: zodValidators.base.getNumberSchema()
+})
+
 type Schema = z.TypeOf<typeof schema>
+type NumberSchema = z.TypeOf<typeof numberSchema>
 type InputControlProps = React.ComponentPropsWithoutRef<typeof Controlled.InputControl>
 
 const meta = {
@@ -23,7 +28,7 @@ const meta = {
   },
   args: {
     label: 'Input',
-    name: 'test'
+    name: 'field'
   },
   render: (props) => (
     <HookForm<InputControlProps, Schema>
@@ -85,4 +90,19 @@ export const WithExternalHandlers: Story = {
       })
     }
   }
+}
+
+export const WithTypeNumber: Story = {
+  args: {
+    ...Base.args,
+    type: 'number'
+  },
+  render: (props) => (
+    <HookForm<InputControlProps, NumberSchema>
+      {...props}
+      schema={numberSchema}
+      defaultValues={ZodUtils.getZodDefaults(numberSchema)}
+      renderComponent={(componentProps: InputControlProps) => <Controlled.InputControl {...componentProps} />}
+    />
+  )
 }
