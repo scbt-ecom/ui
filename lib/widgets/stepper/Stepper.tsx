@@ -13,13 +13,6 @@ export type StepperClasses = {
   step?: SingleStepClasses
 }
 
-// export interface StepperProps extends HTMLAttributes<HTMLDivElement> {
-//   headline: string
-//   variant: StepperVariant
-//   stepsList: SingleStepItem[]
-//   classes?: StepperClasses
-// }
-
 export interface StepperProps extends HTMLAttributes<HTMLDivElement> {
   headline: string
   config: {

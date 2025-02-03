@@ -25,8 +25,8 @@ export type InterLinkingClasses = {
 }
 
 export interface InterLinkingProps extends InterLinkingRoot {
-  mobileAccordionProps?: AccordionProps
-  rootAccordionProps?: AccordionProps
+  mobileAccordionProps?: Partial<AccordionProps>
+  rootAccordionProps?: Partial<AccordionProps>
   classes?: InterLinkingClasses
 }
 
