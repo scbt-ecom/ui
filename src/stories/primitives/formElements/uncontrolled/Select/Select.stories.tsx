@@ -23,7 +23,7 @@ const meta = {
       const [optionsCount, setOptionsCount] = useState<number>(10)
 
       return (
-        <div className='flex w-[800px] flex-col gap-y-2'>
+        <div className='flex w-[600px] flex-col gap-y-2'>
           <label>
             Количество элементов
             <select
@@ -75,6 +75,7 @@ type Story = StoryObj<typeof Uncontrolled.SelectBase>
  * | \`onChange\`             | \`(value: SelectItemOption | SelectItemOption[] | null) => void\` | Функция для изменения значения                    | \`false\` |
  * | \`attachmentProps\`      | \`DeepPartial<FieldAttachmentProps>\`                             | Свойства дополнительной иконки                    | \`false\` |
  * | \`externalHandlers\`     | \`ExternalHandlers\`                                              | Внешние handlers которые можно прокинуть из вне   | \`false\` |
+ * | \`emptyList\`            | \`(query?: string) => React.ReactNode\`                           | Кастомизация отображения текста при пустом списке | \`false\` |
  *
  * Остальные свойства наследуются от [Headless UI](https://headlessui.com/react/combobox#component-api)
  */
@@ -176,4 +177,12 @@ export const Virtual: Story = {
     virtual: true
   },
   render: WithState.render
+}
+
+export const WithCustomEmptyList: Story = {
+  args: {
+    ...WithSearchState.args,
+    emptyList: (query) => (query?.length ? null : <p className='py-4 text-center align-middle'>Я Лупа, а ты Пупа</p>)
+  },
+  render: WithSearchState.render
 }
