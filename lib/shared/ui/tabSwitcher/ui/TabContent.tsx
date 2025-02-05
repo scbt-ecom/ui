@@ -1,6 +1,6 @@
 import * as TabPrimitive from '@radix-ui/react-tabs'
+import { Accordion } from '../../accordion'
 import type { ITabContent } from '../model/types'
-import { Accordion } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
 export type TabContentClasses = {
