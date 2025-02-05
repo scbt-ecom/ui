@@ -3,9 +3,7 @@ import type { HeaderProps } from './model/types'
 import { brandLogos, ResponsiveContainer } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
-export const Header = (props: HeaderProps) => {
-  const { logoPath = '/', logoType = 'main', config, classes } = props
-
+export const Header = ({ logoPath = '/', logoType = 'main', config, classes }: HeaderProps) => {
   return (
     <header className={cn('flex h-[64px] items-center justify-center bg-color-white desktop:h-[72px]', classes?.header)}>
       <ResponsiveContainer className={cn(classes?.container)}>

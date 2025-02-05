@@ -1,6 +1,7 @@
+import type { HTMLAttributes } from 'react'
 import { cn } from '$/shared/utils'
 
-export interface SkeletonProps {
+export interface SkeletonProps extends HTMLAttributes<HTMLDivElement> {
   className?: string
 }
 

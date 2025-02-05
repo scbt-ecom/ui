@@ -35,7 +35,7 @@ export const Empty: Story = {
   args: {
     config: {
       variant: 'empty',
-      details: undefined
+      details: {}
     }
   }
 }
