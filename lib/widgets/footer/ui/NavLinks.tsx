@@ -1,4 +1,4 @@
-import type { FooterNavLinks } from '../model/types'
+import type { Config } from '../model/types'
 import { CustomLink } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
@@ -12,11 +12,12 @@ export type NavigationLinksClasses = {
 }
 
 interface NavLinksProps {
-  navigationLinks: FooterNavLinks[]
   classes?: NavigationLinksClasses
+  config: Config
 }
 
-export const NavLinks = ({ navigationLinks, classes }: NavLinksProps) => {
+export const NavLinks = ({ classes, config }: NavLinksProps) => {
+  const { details } = config || {}
   return (
     <div
       className={cn(
@@ -24,27 +25,29 @@ export const NavLinks = ({ navigationLinks, classes }: NavLinksProps) => {
         classes?.navRoot
       )}
     >
-      {navigationLinks?.map(({ groupLabel, links }) => (
-        <div key={groupLabel} className={cn('flex flex-col gap-4', classes?.navGroup)}>
-          <div className={cn('desk-body-medium-l text-color-white', classes?.navLabel)}>{groupLabel}</div>
-          <div className={cn('flex flex-col gap-1', classes?.navLinks)}>
-            {links?.map(({ text, href }) => (
-              <CustomLink
-                key={text}
-                href={href}
-                aria-label={text}
-                intent='white'
-                classes={{
-                  link: classes?.navLink,
-                  icon: classes?.navLinkIcon
-                }}
-              >
-                {text}
-              </CustomLink>
-            ))}
+      {details?.map(({ column }) =>
+        column?.map(({ groupLabel, links }) => (
+          <div key={groupLabel} className={cn('flex flex-col gap-4', classes?.navGroup)}>
+            <div className={cn('desk-body-medium-l text-color-white', classes?.navLabel)}>{groupLabel}</div>
+            <div className={cn('flex flex-col gap-1', classes?.navLinks)}>
+              {links?.map(({ path, label }) => (
+                <CustomLink
+                  key={label}
+                  href={path}
+                  aria-label={label}
+                  intent='white'
+                  classes={{
+                    link: classes?.navLink,
+                    icon: classes?.navLinkIcon
+                  }}
+                >
+                  {label}
+                </CustomLink>
+              ))}
+            </div>
           </div>
-        </div>
-      ))}
+        ))
+      )}
     </div>
   )
 }

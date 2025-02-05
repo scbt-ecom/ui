@@ -1,4 +1,5 @@
 import { type HTMLAttributes } from 'react'
+import { formatPhoneNumber } from './helpers'
 import { cn } from '$/shared/utils'
 
 interface PhoneViewClasses {
@@ -20,7 +21,7 @@ export const PhoneView = ({ phone, text, classes, ...props }: PhoneViewProps) =>
         href={`tel:${phone}`}
         className={cn('mob-body-medium-l ml-auto text-color-dark desktop:desk-body-medium-l', classes?.link)}
       >
-        {phone}
+        {formatPhoneNumber(phone)}
       </a>
       <p className={cn('desk-body-regular-s text-color-tetriary', classes?.text)}>{text}</p>
     </div>
