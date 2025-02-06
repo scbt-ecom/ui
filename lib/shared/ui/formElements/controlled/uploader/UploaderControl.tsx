@@ -10,15 +10,15 @@ type UploaderControlClasses = UploaderBaseProps & {
 }
 
 type UploaderControlProps<
-  TFieldValues extends FieldValues = FieldValues,
+  TFieldValues extends FieldValues,
   TName extends Path<TFieldValues> = Path<TFieldValues>
 > = UseControllerProps<TFieldValues, TName> &
-  UploaderBaseProps & {
+  Omit<UploaderBaseProps, 'name'> & {
     control: Control<TFieldValues>
     classes?: UploaderControlClasses
   }
 
-export const UploaderControl = ({
+export const UploaderControl = <TFieldValues extends FieldValues>({
   control,
   name,
   defaultValue,
@@ -28,7 +28,7 @@ export const UploaderControl = ({
   helperText,
   disabled,
   ...props
-}: UploaderControlProps) => {
+}: UploaderControlProps<TFieldValues>) => {
   const { field, fieldState } = useController({
     control,
     name,

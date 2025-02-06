@@ -26,10 +26,14 @@ export const UploaderInput = forwardRef(
     return (
       <div
         className={cn(
-          'flex h-[64px] w-[476px] rounded-sm bg-[length:100%_100%] bg-no-repeat hover:border hover:border-primary-hover hover:bg-color-primary-tr-hover focus-visible:border focus-visible:border-primary-hover focus-visible:bg-color-primary-tr-hover focus-visible:outline-none active:border active:border-primary-hover active:bg-color-primary-tr-pressed [&:not(:hover)(:focus-visible)(:active)(:disabled)]:bg-[url("/static/files/border.svg")]',
+          'flex h-[64px] w-[476px] rounded-sm',
+          'active:border-1 active:border-solid active:border-primary-hover active:bg-color-primary-tr-pressed',
+          'focus-visible:border-1 focus-visible:border-solid focus-visible:border-primary-hover focus-visible:bg-color-primary-tr-hover focus-visible:outline-none',
+          'hover:border-1 hover:border-solid hover:border-primary-hover hover:bg-color-primary-tr-hover',
+          'border-[1.5px] border-dashed border-blue-grey-700',
           classes?.root,
           { 'bg-color-primary-light-default opacity-50': disabled },
-          { '[&:not(:hover)(:focus-visible)(:active)(:disabled)]:bg-[url("/static/files/borderError.svg")]': invalid }
+          { 'border-negative': invalid }
         )}
         ref={ref}
         {...dropzoneProps}
