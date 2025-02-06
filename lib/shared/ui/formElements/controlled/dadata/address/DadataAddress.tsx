@@ -9,6 +9,14 @@ const addressFormatter = (item: IDadataCacheOption<unknown>): SelectItemOption =
   label: item?.value || ''
 })
 
+export type DadataAddressProps<TFieldValues extends FieldValues> = Omit<
+  AutocompleteControlProps<TFieldValues, IDadataCacheOption<unknown>>,
+  'query' | 'formatter'
+> & {
+  dadataBaseUrl: string
+  formatter?: (item: IDadataCacheOption<unknown>) => SelectItemOption
+}
+
 /**
  * DADATA_BASE_CACHE_URL - нужно использовать этот url
  */
@@ -16,10 +24,7 @@ export const DadataAddress = <TFieldValues extends FieldValues>({
   formatter = addressFormatter,
   dadataBaseUrl,
   ...props
-}: Omit<AutocompleteControlProps<TFieldValues, IDadataCacheOption<unknown>>, 'query' | 'formatter'> & {
-  dadataBaseUrl: string
-  formatter?: (item: IDadataCacheOption<unknown>) => SelectItemOption
-}) => {
+}: DadataAddressProps<TFieldValues>) => {
   const queryFn = useDadataQueryAddress
 
   return <Controlled.AutocompleteControl query={(query) => queryFn(query, dadataBaseUrl)} formatter={formatter} {...props} />

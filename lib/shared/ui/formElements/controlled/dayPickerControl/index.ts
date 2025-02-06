@@ -1,1 +1,1 @@
-export { DayPickerControl } from './dayPickerControl'
+export { DayPickerControl, type DayPickerControlProps } from './dayPickerControl'

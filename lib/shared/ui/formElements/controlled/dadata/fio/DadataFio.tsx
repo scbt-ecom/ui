@@ -9,6 +9,14 @@ const fioFormatter = (item: IDadataCacheOption<unknown>): SelectItemOption => ({
   label: item?.value || ''
 })
 
+export type DadataFioProps<TFieldValues extends FieldValues> = Omit<
+  AutocompleteControlProps<TFieldValues, IDadataCacheOption<unknown>>,
+  'query' | 'formatter'
+> & {
+  dadataBaseUrl: string
+  formatter?: (item: IDadataCacheOption<unknown>) => SelectItemOption
+}
+
 /**
  * DADATA_BASE_CACHE_URL - нужно использовать этот url
  */
@@ -16,10 +24,7 @@ export const DadataFio = <TFieldValues extends FieldValues>({
   formatter = fioFormatter,
   dadataBaseUrl,
   ...props
-}: Omit<AutocompleteControlProps<TFieldValues, IDadataCacheOption<unknown>>, 'query' | 'formatter'> & {
-  dadataBaseUrl: string
-  formatter?: (item: IDadataCacheOption<unknown>) => SelectItemOption
-}) => {
+}: DadataFioProps<TFieldValues>) => {
   const queryFn = useDadataQueryFio
 
   return <Controlled.AutocompleteControl query={(query) => queryFn(query, dadataBaseUrl)} formatter={formatter} {...props} />

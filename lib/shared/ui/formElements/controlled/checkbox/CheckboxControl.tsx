@@ -12,7 +12,7 @@ type CheckboxControlClasses = CheckboxBaseProps['classes'] & {
   label?: string
 }
 
-type CheckboxControlProps<
+export type CheckboxControlProps<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
 > = UseControllerProps<TFieldValues, TName> &

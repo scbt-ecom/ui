@@ -12,7 +12,7 @@ type SelectControlClasses = SelectBaseProps<boolean>['classes'] & {
   message?: string
 }
 
-type SelectControlProps<
+export type SelectControlProps<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
 > = UseControllerProps<TFieldValues, TName> &

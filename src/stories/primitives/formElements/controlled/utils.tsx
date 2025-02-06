@@ -25,15 +25,15 @@ export const HookForm = <ComponentProps extends {}, Schema extends FieldValues>(
   })
 
   const onSubmit = (values: Schema) => {
-    toast.success(JSON.stringify(values))
+    toast.success(JSON.stringify(values, null, 2))
   }
 
   const onError = (errors: FieldErrors<Schema>) => {
-    toast.error(JSON.stringify(errors))
+    toast.error(JSON.stringify(errors, null, 2))
   }
 
   return (
-    <form className='mx-auto flex w-full max-w-[600px] flex-col gap-y-4' onSubmit={handleSubmit(onSubmit, onError)}>
+    <form className='mx-auto flex w-full max-w-[600px] flex-col gap-y-4 p-4' onSubmit={handleSubmit(onSubmit, onError)}>
       {renderComponent({ control, ...props })}
       <Button type='submit'>Submit</Button>
       <Button type='button' onClick={reset}>

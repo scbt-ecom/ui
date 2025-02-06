@@ -9,7 +9,7 @@ type UploaderControlClasses = UploaderBaseProps & {
   container?: string
 }
 
-type UploaderControlProps<
+export type UploaderControlProps<
   TFieldValues extends FieldValues = FieldValues,
   TName extends Path<TFieldValues> = Path<TFieldValues>
 > = UseControllerProps<TFieldValues, TName> &

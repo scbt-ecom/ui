@@ -1,1 +1,1 @@
-export { SelectControl } from './SelectControl'
+export { SelectControl, type SelectControlProps } from './SelectControl'

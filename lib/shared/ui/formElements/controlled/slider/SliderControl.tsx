@@ -7,7 +7,7 @@ type SliderControlClasses = SliderBaseClasses & {
   container?: string
 }
 
-type SliderControlProps<
+export type SliderControlProps<
   TFieldValues extends FieldValues = FieldValues,
   TName extends Path<TFieldValues> = Path<TFieldValues>
 > = Omit<SliderBaseProps, 'value' | 'onChange' | 'classes'> &

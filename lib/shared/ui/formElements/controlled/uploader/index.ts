@@ -1,1 +1,1 @@
-export { UploaderControl } from './UploaderControl'
+export { UploaderControl, type UploaderControlProps } from './UploaderControl'
