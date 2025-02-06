@@ -10,7 +10,7 @@ type LigalClasses = {
 }
 
 export interface LigalProps {
-  text: string | React.ReactElement
+  text: string
   classes?: LigalClasses
 }
 
@@ -28,12 +28,11 @@ export const Ligal = ({ text, classes }: LigalProps) => {
 
   return (
     <div className={cn('mt-8 flex flex-col gap-4', classes?.ligalRoot)}>
-      <p
+      <div
         ref={ligalRef}
         className={cn('desk-body-regular-m text-color-footer', { 'line-clamp-3': !isExpanded }, classes?.ligalText)}
-      >
-        {text}
-      </p>
+        dangerouslySetInnerHTML={{ __html: text }}
+      />
 
       {isClamped && (
         <div

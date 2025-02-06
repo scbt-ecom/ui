@@ -8,7 +8,6 @@ export * from './badge'
 export * from './loader'
 export * from './skeleton'
 export * from './floatButton'
-export * from './ligal'
 export * from './calendar'
 
 // # INTERACTIVE

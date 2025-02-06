@@ -1,7 +1,6 @@
-import * as React from 'react'
-import { defaultCopyright, defaultNavigationLinks, defaultPhones, defaultSocialsLinks } from './model/defaultValues'
-import type { FooterClasses, FooterNavLinks, FooterPhones, FooterRenderBlocks, FooterSocialLinks } from './model/types'
+import type { Config, FooterClasses, FooterPhones, FooterRenderBlocks, FooterSocialLinks } from './model/types'
 import { Copyright, FooterLogo, NavLinks, PhonesBlock, SiteMap, SocialLinks } from './ui'
+import { Ligal } from './ui/Ligal'
 import { ResponsiveContainer } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
@@ -10,19 +9,26 @@ export interface FooterProps {
   renderBlocks?: FooterRenderBlocks
   socialsLinks?: FooterSocialLinks[]
   phones?: FooterPhones[]
-  navigationLinks?: FooterNavLinks[]
-  ligal?: string | React.ReactElement
-  copyright?: string | React.ReactElement
+  ligal?: string
+  copyright?: string
+  config: Config
 }
 
 export const Footer = ({
-  renderBlocks: { withSocial = true, withPhones = true, withNavLinks = true, withCopyright = true, withSiteMap = true } = {},
-  socialsLinks = defaultSocialsLinks,
-  phones = defaultPhones,
-  navigationLinks = defaultNavigationLinks,
+  renderBlocks: {
+    withSocialsLinks = true,
+    withPhones = true,
+    withNavLinks = true,
+    withCopyright = true,
+    withSiteMap = true,
+    withLigal = true
+  } = {},
+  socialsLinks = [],
+  phones = [],
   ligal,
-  copyright = defaultCopyright,
-  classes
+  copyright = '',
+  classes,
+  config
 }: FooterProps) => {
   return (
     <footer className={cn('w-full bg-color-footer py-8 desktop:py-10', classes?.root)}>
@@ -36,14 +42,14 @@ export const Footer = ({
           >
             <div className={cn(classes?.footerSocialBlock)}>
               <FooterLogo classes={classes?.footerLogo} />
-              {withSocial && <SocialLinks socialsLinks={socialsLinks} classes={classes?.socialLinks} />}
+              {withSocialsLinks && <SocialLinks socialsLinks={socialsLinks} classes={classes?.socialLinks} />}
             </div>
 
             {withPhones && <PhonesBlock phones={phones} classes={classes?.phonesBlock} />}
           </div>
 
-          {withNavLinks && <NavLinks navigationLinks={navigationLinks} classes={classes?.navLinks} />}
-          {ligal && ligal}
+          {withNavLinks && <NavLinks config={config} classes={classes?.navLinks} />}
+          {withLigal && <Ligal text={ligal || ''} />}
 
           <div
             className={cn(

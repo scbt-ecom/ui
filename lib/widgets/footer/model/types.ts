@@ -13,12 +13,23 @@ export interface FooterSocialLinks {
   href: string
 }
 
-export interface FooterNavLinks {
+export interface Config {
+  variant?: string
+  details: Detail[]
+}
+
+export interface Detail {
+  column: Column[]
+}
+
+export interface Column {
   groupLabel: string
-  links: {
-    text: string
-    href: string
-  }[]
+  links: Link[]
+}
+
+export interface Link {
+  label: string
+  path: string
 }
 
 export interface FooterPhones {
@@ -27,11 +38,12 @@ export interface FooterPhones {
 }
 
 export type FooterRenderBlocks = {
-  withSocial?: boolean
+  withSocialsLinks?: boolean
   withPhones?: boolean
   withNavLinks?: boolean
   withCopyright?: boolean
   withSiteMap?: boolean
+  withLigal?: boolean
 }
 
 export type FooterClasses = {

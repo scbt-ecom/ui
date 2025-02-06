@@ -1,5 +1,5 @@
 import { type Meta, type StoryObj } from '@storybook/react'
-import { Ligal } from '$/shared/ui'
+import { defaultNavigationLinks } from './model/defaultValues'
 import { Footer } from '$/widgets'
 
 const meta = {
@@ -37,13 +37,13 @@ export const WithPhone: Story = {
       withPhones: true,
       withSiteMap: false
     },
-    phones: [{ text: 'Звонок по России (бесплатно)', phone: '8 800 100-00-06' }]
+    phones: [{ text: 'Звонок по России (бесплатно)', phone: '88001000006' }]
   }
 }
 
 export const BaseWithLigal: Story = {
   args: {
-    ligal: <Ligal text={defaultLigal} />,
+    ligal: defaultLigal,
     renderBlocks: {
       withNavLinks: false,
       withPhones: false,
@@ -54,6 +54,9 @@ export const BaseWithLigal: Story = {
 
 export const Seo: Story = {
   args: {
-    ligal: <Ligal text={defaultLigal} />
+    ligal: defaultLigal,
+    config: {
+      details: defaultNavigationLinks
+    }
   }
 }
