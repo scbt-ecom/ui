@@ -4,18 +4,28 @@ import { type itemConfig } from './cva'
 
 export type LongBannerConfig = VariantProps<typeof itemConfig>
 
-export interface ITextContent {
-  title: string | ReactElement
-  description: string | ReactElement
-  popoverText?: string | ReactElement
+export type Config = {
+  intent?: 'twoItems' | 'fourItems'
+  details: Details[]
 }
 
-export interface IButtonConfig {
+export type Details = {
+  title: string
+  description: string
+  popover?: Popover
+}
+
+export interface ButtonConfig {
   text: string | ReactElement
-  onClick: () => void
+  onClick?: () => void
 }
 
-export interface ILongBannerClasses {
+export type Popover = {
+  enabled: boolean
+  text?: string
+}
+
+export interface LongBannerClasses {
   root?: string
   container?: string
   title?: string
@@ -30,6 +40,6 @@ export interface TextItemProps extends LongBannerConfig {
   data: {
     title: string | ReactElement
     description: string | ReactElement
-    popoverText?: string | ReactElement
+    popover?: Popover
   }
 }

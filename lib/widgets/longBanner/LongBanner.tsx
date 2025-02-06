@@ -1,34 +1,28 @@
 import { type ReactElement } from 'react'
 import { containerImgConfig } from './model/cva'
-import { type IButtonConfig, type ILongBannerClasses, type ITextContent, type LongBannerConfig } from './model/types'
+import { type ButtonConfig, type Config, type LongBannerClasses, type LongBannerConfig } from './model/types'
 import { TextList, Title } from './ui'
 import { Button, ResponsiveContainer } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
 export interface LongBannerProps extends LongBannerConfig {
-  title: string | ReactElement
-  buttonConfig?: IButtonConfig
-  textContent: ITextContent[]
+  headline: string | ReactElement
+  buttonConfig?: ButtonConfig
+  config: Config
   imageComponent: ReactElement
-  classes?: ILongBannerClasses
+  withButton?: boolean
+  classes?: LongBannerClasses
 }
 
-export const LongBanner = ({
-  title,
-  buttonConfig,
-  intent = 'twoItems',
-  textContent,
-  imageComponent,
-  classes
-}: LongBannerProps) => {
-  const withButton = !!buttonConfig
+export const LongBanner = ({ headline, buttonConfig, withButton = false, config, imageComponent, classes }: LongBannerProps) => {
+  const { intent = 'twoItems', details } = config
   const isFourItems = intent === 'fourItems'
   const isTwoItems = intent === 'twoItems'
 
   return (
     <section className={cn(classes?.root)}>
       <ResponsiveContainer className={cn(classes?.container)}>
-        {isTwoItems && <Title intent={intent} title={title} />}
+        {isTwoItems && <Title intent={intent} headline={headline} />}
 
         <div
           className={cn(
@@ -36,21 +30,21 @@ export const LongBanner = ({
             classes?.contentContainer
           )}
         >
-          {isFourItems && <Title intent={intent} title={title} desktopHidden={true} />}
+          {isFourItems && <Title intent={intent} headline={headline} desktopHidden={true} />}
           <div className={cn(containerImgConfig({ intent, withButton }), classes?.imgContainer)}>{imageComponent}</div>
           <div
             className={cn('desktop:flex desktop:flex-col desktop:justify-center desktop:py-10', classes?.textWithBtnContainer)}
           >
-            {isFourItems && <Title intent={intent} title={title} mobileHidden={true} />}
-            <TextList textContent={textContent} intent={intent} withButton={withButton} />
+            {isFourItems && <Title intent={intent} headline={headline} mobileHidden={true} />}
+            <TextList details={details} intent={intent} withButton={withButton} />
             {withButton && (
               <Button
                 className={cn('w-full px-4 desktop:w-max', classes?.button)}
                 size='lg'
-                onClick={buttonConfig.onClick}
+                onClick={buttonConfig?.onClick}
                 intent='secondary'
               >
-                {buttonConfig.text}
+                {buttonConfig?.text}
               </Button>
             )}
           </div>
