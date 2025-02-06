@@ -1,4 +1,4 @@
-import { forwardRef, useMemo, useState } from 'react'
+import { forwardRef, useEffect, useMemo, useState } from 'react'
 import { type SelectBaseProps, type SelectItemOption, Uncontrolled } from '..'
 import { type UseQueryResult } from '@tanstack/react-query'
 import { useDebounceValue } from '$/shared/hooks'
@@ -39,6 +39,10 @@ export const AutocompleteBase = forwardRef(
     const debounceSearch = useDebounceValue(search, 100)
 
     const { data } = query(debounceSearch)
+
+    useEffect(() => {
+      setSearch(value || '')
+    }, [value])
 
     const options = data ? data.map(formatter) : []
 
