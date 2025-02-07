@@ -1,5 +1,5 @@
 import type { EntityTable } from '../../../model'
-import { tableConfig } from './model/helpers'
+import { tableConfig } from './model/utils'
 import { TableBody } from './ui/TableBody'
 import { Accordion, Heading } from '$/shared/ui'
 import { cn } from '$/shared/utils'

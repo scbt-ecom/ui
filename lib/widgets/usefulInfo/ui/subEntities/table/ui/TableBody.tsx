@@ -8,14 +8,14 @@ import { useDevice } from '$/shared/hooks'
 interface TableBodyProps {
   tableVariant: EntityTable['tableVariant']
   rows: EntityTable['rows']
-  headings: EntityTable['headings']
+  headings?: EntityTable['headings']
   columnsVariant: EntityTable['columnsVariant']
 }
 
 export const TableBody = ({ tableVariant, rows, headings, columnsVariant }: TableBodyProps) => {
   const { isDesktop } = useDevice()
   const formattedRows = transformMobileRows(rows, headings)?.rows ?? []
-  const headingsExist = headings && headings.length > 0
+  const headingsExist = Boolean(headings && headings.length > 0)
 
   return (
     <div className='flex flex-col'>

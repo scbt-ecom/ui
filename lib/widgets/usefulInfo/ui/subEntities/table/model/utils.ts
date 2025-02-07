@@ -1,6 +1,7 @@
+import { cva } from 'class-variance-authority'
 import type { TableHeading, TableRow } from '../../../../model'
 
-export const transformMobileRows = (rows: TableRow[], headings: TableHeading[]) => {
+export const transformMobileRows = (rows: TableRow[], headings?: TableHeading[]) => {
   return {
     rows: rows?.map(({ row }) => ({
       row: row?.map((cell, index) => ({
@@ -10,3 +11,12 @@ export const transformMobileRows = (rows: TableRow[], headings: TableHeading[]) 
     }))
   }
 }
+
+export const tableConfig = cva('flex flex-col', {
+  variants: {
+    columnsVariant: {
+      twoCols: 'w-full max-w-[656px]',
+      threeCols: 'w-full max-w-[768px]'
+    }
+  }
+})
