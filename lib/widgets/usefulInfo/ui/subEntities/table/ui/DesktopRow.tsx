@@ -1,6 +1,6 @@
-import { cn } from '@scbt-ecom/ui/utils'
 import { cva } from 'class-variance-authority'
 import type { EntityTable, TableRow } from '../../../../model'
+import { cn } from '$/shared/utils'
 
 type DesktopRowProps = {
   row: TableRow['row']
