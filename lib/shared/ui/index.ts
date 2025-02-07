@@ -28,7 +28,6 @@ export * from './brandLogos'
 
 export * from './breadcrumbs'
 export * from './customLink'
-export * from './document'
 
 // # OTHERS
 export * from './keyboardShortcuts'

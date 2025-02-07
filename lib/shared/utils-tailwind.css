@@ -23,6 +23,17 @@
   height: 0;
 }
 
+.hidden-scroll {
+  /* Для WebKit-браузеров (Chrome, Safari) */
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Для Firefox */
+  scrollbar-width: none;
+  -ms-overflow-style: none; /* Для Internet Explorer и Edge */
+}
+
 .progressBar-apply {
   background-image: repeating-linear-gradient(-33deg, #d4dbe2, #d4dbe2 5px, #f3f4f7 0, #f3f4f7 14px);
   background-size: 2000% 2000%;
