@@ -1,6 +1,6 @@
-import { cn } from '@scbt-ecom/ui/utils'
 import { cva } from 'class-variance-authority'
 import type { EntityTable } from '../../../../model'
+import { cn } from '$/shared/utils'
 
 const headingsConfig = cva('grid px-4 mb-4', {
   variants: {
