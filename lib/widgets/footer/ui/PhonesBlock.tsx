@@ -24,7 +24,7 @@ export const PhonesBlock = ({ phones, classes }: PhonesBlockProps) => {
           phone={formatPhoneNumber(phone)}
           text={text}
           classes={{
-            wrapper: cn(classes?.phoneWrapper),
+            root: cn(classes?.phoneWrapper),
             text: cn('text-color-footer', classes?.phoneText),
             link: cn('text-color-white mobile:m-0', classes?.phoneLink)
           }}
