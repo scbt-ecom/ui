@@ -1,2 +1,2 @@
-export { InputControl } from './InputControl'
-export { MaskInputControl } from './MaskInputControl'
+export { InputControl, type InputControlProps } from './InputControl'
+export { MaskInputControl, type MaskInputControlProps } from './MaskInputControl'

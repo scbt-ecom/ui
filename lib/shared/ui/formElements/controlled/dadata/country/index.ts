@@ -1,1 +1,1 @@
-export { DadataCountry } from './DadataCountry'
+export { DadataCountry, type DadataCountryProps } from './DadataCountry'

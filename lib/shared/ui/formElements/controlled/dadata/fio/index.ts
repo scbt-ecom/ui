@@ -1,1 +1,1 @@
-export { DadataFio } from './DadataFio'
+export { DadataFio, type DadataFioProps } from './DadataFio'

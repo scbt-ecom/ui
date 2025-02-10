@@ -1,1 +1,1 @@
-export { DadataAddress } from './DadataAddress'
+export { DadataAddress, type DadataAddressProps } from './DadataAddress'

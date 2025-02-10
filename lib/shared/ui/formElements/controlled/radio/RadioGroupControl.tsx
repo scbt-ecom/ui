@@ -9,7 +9,7 @@ type RadioControlClasses = RadioGroupBaseProps['classes'] & {
   label?: string
 }
 
-type RadioGroupControlProps<
+export type RadioGroupControlProps<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
 > = UseControllerProps<TFieldValues, TName> &

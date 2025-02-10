@@ -9,6 +9,14 @@ const organizationFormatter = (item: IDadataOrganizationOption): SelectItemOptio
   label: item?.value || ''
 })
 
+export type DadataOrganizationProps<TFieldValues extends FieldValues> = Omit<
+  AutocompleteControlProps<TFieldValues, IDadataOrganizationOption>,
+  'query' | 'formatter'
+> & {
+  dadataBaseUrl: string
+  formatter?: (item: IDadataOrganizationOption) => SelectItemOption
+}
+
 /**
  * DADATA_BASE_CACHE_URL - нужно использовать этот url
  */
@@ -16,10 +24,7 @@ export const DadataOrganization = <TFieldValues extends FieldValues>({
   formatter = organizationFormatter,
   dadataBaseUrl,
   ...props
-}: Omit<AutocompleteControlProps<TFieldValues, IDadataOrganizationOption>, 'query' | 'formatter'> & {
-  dadataBaseUrl: string
-  formatter?: (item: IDadataOrganizationOption) => SelectItemOption
-}) => {
+}: DadataOrganizationProps<TFieldValues>) => {
   const queryFn = useDadataQueryParty
 
   return <Controlled.AutocompleteControl query={(query) => queryFn(query, dadataBaseUrl)} formatter={formatter} {...props} />

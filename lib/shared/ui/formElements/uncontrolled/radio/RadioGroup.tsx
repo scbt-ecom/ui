@@ -71,7 +71,7 @@ export const RadioGroupBase = forwardRef<HTMLDivElement, RadioGroupBaseProps>(
           {options.map((option, index) => (
             <RadioItem
               {...restHandlers}
-              key={option.id}
+              key={option.value}
               data-test-id={`radio-item-${index}`}
               item={option}
               invalid={invalid}

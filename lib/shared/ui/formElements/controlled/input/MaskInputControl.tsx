@@ -10,7 +10,7 @@ type MaskInputClasses = MaskInputProps['classes'] & {
   message?: string
 }
 
-type MaskInputControlProps<
+export type MaskInputControlProps<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
 > = UseControllerProps<TFieldValues, TName> &

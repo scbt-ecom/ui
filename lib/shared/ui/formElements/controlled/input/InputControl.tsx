@@ -10,7 +10,7 @@ type InputControlClasses = InputBaseProps['classes'] & {
   root?: string
 }
 
-type InputControlProps<
+export type InputControlProps<
   TFieldValues extends FieldValues = FieldValues,
   TName extends Path<TFieldValues> = Path<TFieldValues>
 > = UseControllerProps<TFieldValues, TName> &

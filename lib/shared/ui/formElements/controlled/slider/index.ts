@@ -1,1 +1,1 @@
-export { SliderControl } from './SliderControl'
+export { SliderControl, type SliderControlProps } from './SliderControl'

@@ -9,6 +9,14 @@ const countryFormatter = (item: IDadataCountryOption): SelectItemOption => ({
   label: item?.country_name || ''
 })
 
+export type DadataCountryProps<TFieldValues extends FieldValues> = Omit<
+  AutocompleteControlProps<TFieldValues, IDadataCountryOption>,
+  'query' | 'formatter'
+> & {
+  dadataBaseUrl: string
+  formatter?: (item: IDadataCountryOption) => SelectItemOption
+}
+
 /**
  * DADATA_BASE_CONSTANTS_URL - нужно использовать этот url
  */
@@ -16,10 +24,7 @@ export const DadataCountry = <TFieldValues extends FieldValues>({
   formatter = countryFormatter,
   dadataBaseUrl,
   ...props
-}: Omit<AutocompleteControlProps<TFieldValues, IDadataCountryOption>, 'query' | 'formatter'> & {
-  dadataBaseUrl: string
-  formatter?: (item: IDadataCountryOption) => SelectItemOption
-}) => {
+}: DadataCountryProps<TFieldValues>) => {
   const queryFn = useDadataQueryCountry
 
   return <Controlled.AutocompleteControl query={(query) => queryFn(query, dadataBaseUrl)} formatter={formatter} {...props} />

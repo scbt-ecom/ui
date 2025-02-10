@@ -1,1 +1,1 @@
-export { RadioGroupControl } from './RadioGroupControl'
+export { RadioGroupControl, type RadioGroupControlProps } from './RadioGroupControl'
