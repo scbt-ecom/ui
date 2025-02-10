@@ -9,7 +9,7 @@ export const baseSchema = z.object({
 export const baseDefaultValues = ZodUtils.getZodDefaults(baseSchema)
 
 export const dateSchema = z.object({
-  field: zodValidators.base.getDateSchema()
+  field: zodValidators.base.getDateSchema({ iso: false, max: new Date() })
 })
 export const dateDefaultValues = ZodUtils.getZodDefaults(dateSchema)
 

@@ -7,8 +7,8 @@ import { Controlled } from '$/shared/ui'
 import { ZodUtils, zodValidators } from '$/shared/validation'
 
 const schema = z.object({
-  from: zodValidators.base.getDateSchema(),
-  to: zodValidators.base.getDateSchema({ iso: true, required: false })
+  from: zodValidators.base.getDateSchema({ min: new Date('01/01/2025') }),
+  to: zodValidators.base.getDateSchema({ iso: true, max: new Date(), required: false })
 })
 
 type Schema = z.TypeOf<typeof schema>

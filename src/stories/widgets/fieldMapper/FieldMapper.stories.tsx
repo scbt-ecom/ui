@@ -11,15 +11,13 @@ const meta = {
   parameters: {
     layout: 'centered'
   },
-  args: {
-    fields
-  },
+  args: {},
   render: (props) => (
     <HookForm<React.ComponentPropsWithoutRef<typeof FieldMapper>, Schema>
       {...props}
       schema={schema}
       defaultValues={defaultValues}
-      renderComponent={(componentProps) => <FieldMapper {...componentProps} />}
+      renderComponent={(componentProps) => <FieldMapper {...componentProps} fields={fields} />}
     />
   )
 } satisfies Meta<typeof FieldMapper>

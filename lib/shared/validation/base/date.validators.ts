@@ -16,20 +16,31 @@ export type DateValidationOptions<Required extends boolean> = {
    */
   pattern?: string
   /**
+   * минимальная дата
+   * `Date | ISO string`
+   */
+  min?: Date | string
+  /**
+   * максимальная дата
+   * `Date | ISO string`
+   */
+  max?: Date | string
+  /**
    * указывает что поле обязательное
    */
   required?: Required
   message?: {
     min?: string
+    max?: string
     invalidDate?: string
   }
 }
 
 /**
- * Схема валидации опционального поля номера телефона
+ * Схема валидации обязательного поля даты
  */
 const getDateRequired = (props?: Omit<DateValidationOptions<boolean>, 'required'>) => {
-  const { iso = true, pattern = DATE_VISIBLE_PATTERN, message } = props || {}
+  const { iso = true, pattern = DATE_VISIBLE_PATTERN, min, max, message } = props || {}
 
   return z
     .string()
@@ -49,13 +60,33 @@ const getDateRequired = (props?: Omit<DateValidationOptions<boolean>, 'required'
       }
 
       if (iso) {
+        let date: Date | null = null
+
         try {
-          new Date(value).toISOString()
+          date = new Date(value)
         } catch {
           context.addIssue({
             code: z.ZodIssueCode.invalid_date,
             message: message?.invalidDate || baseDefaultMessages.DATE_INVALID_FORMAT()
           })
+        }
+
+        if (min) {
+          if (date!.getTime() < (TypeGuards.isString(min) ? new Date(min).getTime() : min.getTime())) {
+            context.addIssue({
+              code: z.ZodIssueCode.invalid_date,
+              message: message?.min || baseDefaultMessages.DATE_MIN(min)
+            })
+          }
+        }
+
+        if (max) {
+          if (date!.getTime() > (TypeGuards.isString(max) ? new Date(max).getTime() : max.getTime())) {
+            context.addIssue({
+              code: z.ZodIssueCode.invalid_date,
+              message: message?.max || baseDefaultMessages.DATE_MAX(max)
+            })
+          }
         }
       } else {
         const date = parse(value, pattern, new Date())
@@ -66,6 +97,24 @@ const getDateRequired = (props?: Omit<DateValidationOptions<boolean>, 'required'
             message: message?.invalidDate || baseDefaultMessages.DATE_INVALID_FORMAT()
           })
         }
+
+        if (min) {
+          if (date.getTime() < (TypeGuards.isString(min) ? new Date(min).getTime() : min.getTime())) {
+            context.addIssue({
+              code: z.ZodIssueCode.invalid_date,
+              message: message?.min || baseDefaultMessages.DATE_MIN(min)
+            })
+          }
+        }
+
+        if (max) {
+          if (date.getTime() > (TypeGuards.isString(max) ? new Date(max).getTime() : max.getTime())) {
+            context.addIssue({
+              code: z.ZodIssueCode.invalid_date,
+              message: message?.max || baseDefaultMessages.DATE_MAX(max)
+            })
+          }
+        }
       }
     })
     .default('')
@@ -73,10 +122,10 @@ const getDateRequired = (props?: Omit<DateValidationOptions<boolean>, 'required'
 type DateRequiredSchema = ReturnType<typeof getDateRequired>
 
 /**
- * Схема валидации опционального поля номера телефона
+ * Схема валидации опционального поля даты
  */
 const getDateOptional = (props?: Omit<DateValidationOptions<boolean>, 'required'>) => {
-  const { iso = true, pattern = DATE_VISIBLE_PATTERN, message } = props || {}
+  const { iso = true, pattern = DATE_VISIBLE_PATTERN, min, max, message } = props || {}
 
   return z
     .string()
@@ -97,13 +146,33 @@ const getDateOptional = (props?: Omit<DateValidationOptions<boolean>, 'required'
         }
 
         if (iso) {
+          let date: Date | null = null
+
           try {
-            new Date(value).toISOString()
+            date = new Date(value)
           } catch {
             context.addIssue({
               code: z.ZodIssueCode.invalid_date,
               message: message?.invalidDate || baseDefaultMessages.DATE_INVALID_FORMAT()
             })
+          }
+
+          if (min) {
+            if (date!.getTime() < (TypeGuards.isString(min) ? new Date(min).getTime() : min.getTime())) {
+              context.addIssue({
+                code: z.ZodIssueCode.invalid_date,
+                message: message?.min || baseDefaultMessages.DATE_MIN(min)
+              })
+            }
+          }
+
+          if (max) {
+            if (date!.getTime() > (TypeGuards.isString(max) ? new Date(max).getTime() : max.getTime())) {
+              context.addIssue({
+                code: z.ZodIssueCode.invalid_date,
+                message: message?.max || baseDefaultMessages.DATE_MAX(max)
+              })
+            }
           }
         } else {
           const date = parse(value, pattern, new Date())
@@ -113,6 +182,24 @@ const getDateOptional = (props?: Omit<DateValidationOptions<boolean>, 'required'
               code: z.ZodIssueCode.invalid_date,
               message: message?.invalidDate || baseDefaultMessages.DATE_INVALID_FORMAT()
             })
+          }
+
+          if (min) {
+            if (date.getTime() < (TypeGuards.isString(min) ? new Date(min).getTime() : min.getTime())) {
+              context.addIssue({
+                code: z.ZodIssueCode.invalid_date,
+                message: message?.min || baseDefaultMessages.DATE_MIN(min)
+              })
+            }
+          }
+
+          if (max) {
+            if (date.getTime() > (TypeGuards.isString(max) ? new Date(max).getTime() : max.getTime())) {
+              context.addIssue({
+                code: z.ZodIssueCode.invalid_date,
+                message: message?.max || baseDefaultMessages.DATE_MAX(max)
+              })
+            }
           }
         }
       }
