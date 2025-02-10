@@ -24,6 +24,9 @@ import { UsefulInfo } from '$/widgets'
 const meta = {
   title: 'WIDGETS/UsefulInfo',
   component: UsefulInfo,
+  parameters: {
+    layout: 'fullscreen'
+  },
   tags: ['autodocs']
 } satisfies Meta<typeof UsefulInfo>
 
