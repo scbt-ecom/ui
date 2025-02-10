@@ -1,18 +1,18 @@
 import { listItemConfig } from '../model/cva'
-import { type ITextContent, type LongBannerConfig } from '../model/types'
+import { type Details, type LongBannerConfig } from '../model/types'
 import { TextItem } from './TextItem'
 import { cn } from '$/shared/utils'
 
 interface ListItemsProps {
-  textContent: ITextContent[]
+  details: Details[]
   intent: LongBannerConfig['intent']
   withButton: boolean
 }
 
-export const TextList = ({ textContent, intent, withButton }: ListItemsProps) => {
+export const TextList = ({ details, intent, withButton }: ListItemsProps) => {
   return (
     <ul className={cn(listItemConfig({ intent, withButton }))}>
-      {textContent?.map((element, index) => <TextItem intent={intent} data={element} key={index} />)}
+      {details?.map((element, index) => <TextItem intent={intent} data={element} key={index} />)}
     </ul>
   )
 }

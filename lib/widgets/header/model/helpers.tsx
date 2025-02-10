@@ -11,7 +11,7 @@ export const renderContentVariant = (config: HeaderProps['config']) => {
         </Button>
       )
     case 'withPhone':
-      return <PhoneView {...details} />
+      return <PhoneView classes={{ root: 'items-end' }} {...details} />
     default:
       return null
   }

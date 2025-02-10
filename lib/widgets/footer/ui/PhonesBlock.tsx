@@ -1,3 +1,4 @@
+import { formatPhoneNumber } from '../model/helpers'
 import type { FooterPhones } from '../model/types'
 import { PhoneView } from '$/shared/ui'
 import { cn } from '$/shared/utils'
@@ -20,7 +21,7 @@ export const PhonesBlock = ({ phones, classes }: PhonesBlockProps) => {
       {phones?.map(({ phone, text }) => (
         <PhoneView
           key={phone}
-          phone={phone}
+          phone={formatPhoneNumber(phone)}
           text={text}
           classes={{
             wrapper: cn(classes?.phoneWrapper),
