@@ -1,1 +1,1 @@
-export { DadataOrganization } from './DadataOrganization'
+export { DadataOrganization, type DadataOrganizationProps } from './DadataOrganization'

@@ -1,1 +1,1 @@
-export { SwitchControl } from './SwitchControl'
+export { SwitchControl, type SwitchControlProps } from './SwitchControl'

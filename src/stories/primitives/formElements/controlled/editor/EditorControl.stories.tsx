@@ -20,8 +20,9 @@ const meta = {
     layout: 'centered'
   },
   args: {
-    label: 'Editor',
-    name: 'test'
+    name: 'test',
+    label: 'Введите HTML',
+    helperText: 'Текст преобразуется в HTML'
   },
   render: (props) => (
     <HookForm<EditorControlProps, Schema>
@@ -52,9 +53,5 @@ type Story = StoryObj<typeof Controlled.EditorControl>
  */
 
 export const Base: Story = {
-  args: {
-    name: 'html',
-    label: 'Введите HTML',
-    helperText: 'Текст преобразуется в HTML'
-  }
+  args: {}
 }

@@ -1,1 +1,1 @@
-export { DadataAuto } from './DadataAuto'
+export { DadataAuto, type DadataAutoProps } from './DadataAuto'
