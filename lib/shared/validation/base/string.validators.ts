@@ -21,16 +21,20 @@ export type StringValidationOptions<Required extends boolean> = {
    * @default true
    */
   required?: Required
-  message?: Record<keyof Omit<StringValidationOptions<Required>, 'message'> | 'root', string>
+  message?: Partial<Record<keyof Omit<StringValidationOptions<Required>, 'message'> | 'root', string>>
 }
 
 /**
  * Схема валидации обязательного поля строкового типа
  */
 const getStringRequired = (props?: Omit<StringValidationOptions<true>, 'required'>) => {
-  const { min = 1, max, length, message } = props || {}
+  const { min, max, length, message } = props || {}
 
-  let schema = z.string({ message: message?.root }).min(min, { message: message?.min || baseDefaultMessages.MIN_LENGTH(min) })
+  let schema = z.string({ message: message?.root })
+
+  if (min) {
+    schema = schema.min(min, { message: message?.min || baseDefaultMessages.MIN_LENGTH(min) })
+  }
 
   if (max) {
     schema = schema.max(max, { message: message?.max || baseDefaultMessages.MAX_LENGTH(max) })
