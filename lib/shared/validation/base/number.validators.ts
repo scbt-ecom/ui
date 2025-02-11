@@ -17,16 +17,20 @@ export type NumberValidationOptions<Required extends boolean> = {
    * @default true
    */
   required?: Required
-  message?: Record<keyof Omit<NumberValidationOptions<Required>, 'message'>, string>
+  message?: Partial<Record<keyof Omit<NumberValidationOptions<Required>, 'message'>, string>>
 }
 
 /**
  * Схема валидации обязательного поля числового типа
  */
 const getNumberRequired = (props?: Omit<NumberValidationOptions<true>, 'required'>) => {
-  const { min = 0, max, message } = props || {}
+  const { min, max, message } = props || {}
 
-  let schema = z.coerce.number().min(min, message?.min || baseDefaultMessages.MIN_VALUE(min))
+  let schema = z.coerce.number()
+
+  if (min) {
+    schema = schema.min(min, message?.min || baseDefaultMessages.MIN_VALUE(min))
+  }
 
   if (max) {
     schema = schema.max(max, message?.min || baseDefaultMessages.MAX_VALUE(max))

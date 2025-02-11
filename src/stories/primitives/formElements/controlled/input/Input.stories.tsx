@@ -9,7 +9,7 @@ import { Controlled } from '$/shared/ui'
 import { ZodUtils, zodValidators } from '$/shared/validation'
 
 const schema = z.object({
-  field: zodValidators.base.getEmailSchema()
+  field: zodValidators.base.getStringSchema()
 })
 
 const numberSchema = z.object({
