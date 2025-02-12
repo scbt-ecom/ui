@@ -14,6 +14,10 @@ export interface BannerClasses extends BannerButtonsGroupClasses {
   advantageContainer?: string
 }
 
+export type BannerImg = {
+  url: string
+}
+
 export type ButtonsConfig = {
   primary: ButtonProps
   secondary?: ButtonProps
