@@ -1,4 +1,4 @@
-import { forwardRef, useEffect, useMemo, useState } from 'react'
+import { forwardRef } from 'react'
 import { type SelectBaseProps, type SelectItemOption, Uncontrolled } from '..'
 import { type UseQueryResult } from '@tanstack/react-query'
 import { useDebounceValue } from '$/shared/hooks'
@@ -9,17 +9,13 @@ export interface AutocompleteBaseProps<TData>
     'options' | 'inputValue' | 'onInputChange' | 'isSearchable' | 'isMulti' | 'value' | 'onChange'
   > {
   /**
-   * Запрос который должен получать options (пишем на tanstack/query)
+   * Функция для запроса основанная на [@tanstack/query](https://tanstack.com/query/latest/docs/framework/react/overview)
    */
   query: (query: string) => UseQueryResult<TData[]>
   /**
    * Позволяет форматировать данные
    */
   formatter: (item: TData, index: number, array: TData[]) => SelectItemOption
-  /**
-   * Позволяет управлять выходным значением
-   */
-  returnValue?: (value: SelectItemOption) => string
   /**
    * Значение инпута
    */
@@ -32,31 +28,20 @@ export interface AutocompleteBaseProps<TData>
 
 export const AutocompleteBase = forwardRef(
   <TData,>(
-    { formatter, query, value, returnValue, onChange, ...props }: AutocompleteBaseProps<TData>,
+    { formatter, query, value, displayValue, onChange, externalHandlers, ...props }: AutocompleteBaseProps<TData>,
     ref: React.ForwardedRef<HTMLInputElement>
   ) => {
-    const [search, setSearch] = useState<string>('')
-    const debounceSearch = useDebounceValue(search, 100)
+    const debounceSearch = useDebounceValue(value || '', 100)
 
     const { data } = query(debounceSearch)
-
-    useEffect(() => {
-      setSearch(value || '')
-    }, [value])
 
     const options = data ? data.map(formatter) : []
 
     const onValueChange = (value?: SelectItemOption | SelectItemOption[]) => {
       if (!value || Array.isArray(value)) return
 
-      if (onChange) {
-        onChange(returnValue ? returnValue(value) : value.value)
-      }
+      if (onChange) onChange(displayValue ? displayValue(value) : value.label)
     }
-
-    const selected = useMemo<SelectItemOption | undefined>(() => {
-      return options.find((option) => (returnValue ? returnValue(option) : option.value === value))
-    }, [options, returnValue, value])
 
     return (
       <Uncontrolled.SelectBase
@@ -64,12 +49,18 @@ export const AutocompleteBase = forwardRef(
         ref={ref}
         options={options}
         filterDisabled
-        onChange={onValueChange}
-        value={selected}
-        inputValue={search}
+        inputValue={value}
+        onInputChange={onChange}
         isSearchable
         isMulti={false}
-        onInputChange={setSearch}
+        displayValue={displayValue}
+        externalHandlers={{
+          onChange: (value) => {
+            onValueChange(value)
+            if (externalHandlers?.onChange) externalHandlers?.onChange(value)
+          },
+          ...externalHandlers
+        }}
       />
     )
   }
