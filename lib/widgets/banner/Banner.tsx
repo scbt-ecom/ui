@@ -1,15 +1,15 @@
 'use client'
 
-import { type ReactElement } from 'react'
+import { type ReactElement, type ReactNode } from 'react'
 import { type AdvantageClasses, type AdvantagesProps } from '../advantages/Advantages'
-import { type BannerClasses, type BannerImg, type ButtonsConfig } from './model/types'
+import { type BannerClasses, type ButtonsConfig } from './model/types'
 import { BannerImageFull, BannerWithSeparateImg } from './ui'
 
 export interface BannerProps {
   headTitle: string | ReactElement
   subtitle: string | ReactElement
-  imgDesktop: BannerImg
-  imgMobile: BannerImg
+  imgDesktop: ReactNode
+  imgMobile: ReactNode
   buttonsConfig: ButtonsConfig
   advantages?: AdvantagesProps
   classes?: BannerClasses & {

@@ -45,7 +45,7 @@ export const BannerWithSeparateImg = ({
             </div>
 
             <div className={cn('flex h-[356px] justify-center desktop:h-[456px] desktop:w-[550px]', classes?.imageContainer)}>
-              {isMobile ? imgMobile?.url : imgDesktop?.url}
+              {isMobile ? imgMobile : imgDesktop}
             </div>
           </div>
 

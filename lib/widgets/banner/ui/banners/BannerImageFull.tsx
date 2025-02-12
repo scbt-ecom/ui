@@ -31,7 +31,7 @@ export const BannerImageFull = ({
     <>
       <section data-test-id='banner' className={cn('relative h-[552px] desktop:h-[456px]', classes?.root)}>
         <div className='absolute bottom-0 left-0 right-0 top-0 z-[-1] mx-auto h-full max-w-[1920px] desktop:h-[456px]'>
-          {isMobile ? imgMobile?.url : imgDesktop?.url}
+          {isMobile ? imgMobile : imgDesktop}
         </div>
         <ResponsiveContainer className={cn('h-full', classes?.container)}>
           <div className={cn('flex h-full', classes?.wrapper)}>
