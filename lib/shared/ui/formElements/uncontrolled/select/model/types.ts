@@ -4,7 +4,7 @@ import { type FieldAttachment } from '$/shared/ui/formElements/ui'
 type FieldAttachmentProps = React.ComponentPropsWithoutRef<typeof FieldAttachment>
 
 export type SelectItemOption = {
-  value: string
+  value: string | null
   label: string
   helperText?: string
   disabled?: boolean
