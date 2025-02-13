@@ -236,11 +236,15 @@ export const SelectBase = forwardRef<HTMLInputElement, SelectBaseProps<boolean>>
                 portal
                 data-test-id='select-list'
                 as={motion.ul}
-                style={{
-                  top: triggerCoords ? triggerCoords.bottom + 4 : 0,
-                  left: triggerCoords?.left || 0,
-                  width: triggerCoords?.width || '100%'
-                }}
+                style={
+                  triggerCoords
+                    ? {
+                        top: triggerCoords.bottom + 4,
+                        left: triggerCoords.left,
+                        width: triggerCoords.width
+                      }
+                    : undefined
+                }
                 className={cn(
                   'customScrollbar-y absolute left-0 top-full z-10 mt-1',
                   'max-h-[264px] w-full overflow-y-auto bg-color-white',
