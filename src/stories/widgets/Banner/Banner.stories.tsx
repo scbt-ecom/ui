@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import {
+  bannerAdminData,
   mockBannerBase,
   mockBannerBaseFullImage,
   mockBannerBaseGradient,
@@ -27,6 +28,19 @@ const meta = {
 export default meta
 
 type Story = StoryObj<typeof Banner>
+
+export const Admin: Story = {
+  render: () => (
+    <>
+      <Header
+        config={{
+          variant: 'withButton'
+        }}
+      />
+      <Banner {...bannerAdminData} />
+    </>
+  )
+}
 
 export const Base: Story = {
   render: () => (

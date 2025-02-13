@@ -21,11 +21,8 @@ const defaultMockAdvantageProps: AdvantagesProps = {
 export const mockBannerBase: BannerProps = {
   headTitle: 'Кредит на любые цели',
   subtitle: 'до 5 млн рублей',
-  img: bezrykovMob,
-  imgSets: {
-    mob: bezrykovMob,
-    large: bezrykovDesk
-  },
+  imgMobile: { url: bezrykovMob },
+  imgDesktop: { url: bezrykovDesk },
   buttonsConfig: {
     primary: {
       onClick: () => toast.success('@click on primary btn'),
@@ -42,7 +39,8 @@ export const mockBannerBase: BannerProps = {
 export const mockBannerOnlyPrimaryButton: BannerProps = {
   headTitle: 'Кредит на любые цели',
   subtitle: 'до 5 млн рублей',
-  img: bezrykovMob,
+  imgMobile: { url: bezrykovMob },
+  imgDesktop: { url: bezrykovDesk },
   buttonsConfig: {
     primary: {
       onClick: () => toast.success('@click on primary btn'),
@@ -55,7 +53,8 @@ export const mockBannerOnlyPrimaryButton: BannerProps = {
 export const mockWithAdvantages: BannerProps = {
   headTitle: 'Кредит на любые цели',
   subtitle: 'до 5 млн рублей',
-  img: bezrykovMob,
+  imgMobile: { url: bezrykovMob },
+  imgDesktop: { url: bezrykovDesk },
 
   buttonsConfig: {
     primary: {
@@ -64,16 +63,13 @@ export const mockWithAdvantages: BannerProps = {
       size: 'lg'
     }
   },
-  advantagesConfig: defaultMockAdvantageProps
+  advantages: defaultMockAdvantageProps
 }
 export const mockBannerBaseFullImage: BannerProps = {
   headTitle: 'Кредит на любые цели',
   subtitle: 'до 5 млн рублей',
-  img: saif,
-  imgSets: {
-    mob: saifMob,
-    large: saif
-  },
+  imgDesktop: { url: saif },
+  imgMobile: { url: saifMob },
   buttonsConfig: {
     primary: {
       onClick: () => toast.success('@click on primary btn'),
@@ -86,17 +82,14 @@ export const mockBannerBaseFullImage: BannerProps = {
       size: 'lg'
     }
   },
-  classes: {
-    primary: 'bg-color-negative',
-    secondary: 'bg-color-negative text-color-white'
-  },
-  bannerVariant: 'fullImg'
+  variant: 'fullImg'
 }
 
 export const mockBannerFullImageOnlyPrimaryButton: BannerProps = {
   headTitle: 'Кредит на любые цели',
   subtitle: 'до 5 млн рублей',
-  img: saif,
+  imgDesktop: { url: saif },
+  imgMobile: { url: saifMob },
   buttonsConfig: {
     primary: {
       onClick: () => toast.success('@click on primary btn'),
@@ -104,16 +97,14 @@ export const mockBannerFullImageOnlyPrimaryButton: BannerProps = {
       size: 'lg'
     }
   },
-  classes: {
-    primary: 'bg-color-negative'
-  },
-  bannerVariant: 'fullImg'
+  variant: 'fullImg'
 }
 
 export const mockBannerFullImageWithAdvantages: BannerProps = {
   headTitle: 'Кредит на любые цели',
   subtitle: 'до 5 млн рублей',
-  img: saif,
+  imgDesktop: { url: saif },
+  imgMobile: { url: saifMob },
   buttonsConfig: {
     primary: {
       onClick: () => toast.success('@click on primary btn'),
@@ -126,18 +117,15 @@ export const mockBannerFullImageWithAdvantages: BannerProps = {
       size: 'lg'
     }
   },
-  classes: {
-    primary: 'bg-color-negative',
-    secondary: 'bg-color-negative text-color-white'
-  },
-  bannerVariant: 'fullImg',
-  advantagesConfig: defaultMockAdvantageProps
+  variant: 'fullImg',
+  advantages: defaultMockAdvantageProps
 }
 
 export const mockBannerBaseGradient: BannerProps = {
   headTitle: 'Кредит на любые цели',
   subtitle: 'до 5 млн рублей',
-  img: bezrykovMob,
+  imgMobile: { url: bezrykovMob },
+  imgDesktop: { url: bezrykovDesk },
   buttonsConfig: {
     primary: {
       onClick: () => toast.success('@click on primary btn'),
@@ -158,7 +146,8 @@ export const mockBannerBaseGradient: BannerProps = {
 export const mockBannerBaseGradientAdvantages: BannerProps = {
   headTitle: 'Кредит на любые цели',
   subtitle: 'до 5 млн рублей',
-  img: bezrykovMob,
+  imgMobile: { url: bezrykovMob },
+  imgDesktop: { url: bezrykovDesk },
   buttonsConfig: {
     primary: {
       onClick: () => toast.success('@click on primary btn'),
@@ -174,5 +163,5 @@ export const mockBannerBaseGradientAdvantages: BannerProps = {
   classes: {
     root: 'bg-color-transparent gradient-apply'
   },
-  advantagesConfig: defaultMockAdvantageProps
+  advantages: defaultMockAdvantageProps
 }
