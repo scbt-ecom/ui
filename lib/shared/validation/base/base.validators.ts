@@ -5,6 +5,7 @@ import { getPhoneSchema } from './phone.validators'
 import { getSelectSchema } from './select.validators'
 import { getStringSchema } from './string.validators'
 import { getUnionSchema } from './union.validators'
+import { getUrlSchema } from './url.validators'
 
 export const baseValidationSchemas = {
   getStringSchema,
@@ -13,5 +14,6 @@ export const baseValidationSchemas = {
   getNumberSchema,
   getPhoneSchema,
   getDateSchema,
-  getUnionSchema
+  getUnionSchema,
+  getUrlSchema
 }
