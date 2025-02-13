@@ -72,6 +72,8 @@ export const SelectControl = <TFieldValues extends FieldValues = FieldValues>({
       onChange(values)
     } else if (isSingleValue(value)) {
       onChange(returnValue ? returnValue(value) : value.value)
+    } else {
+      onChange(null)
     }
   }
 

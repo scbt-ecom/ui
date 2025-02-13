@@ -89,7 +89,15 @@ type Story = StoryObj<typeof Controlled.SelectControl>
  *
  * Остальные свойства наследуются от [Select](?path=/docs/base-selectbase--docs)\n
  */
-export const Base: Story = {}
+export const Base: Story = {
+  args: {}
+}
+
+export const WithReset: Story = {
+  args: {
+    reset: 'Очистить'
+  }
+}
 
 const multiSchema = object({
   test: zodValidators.base.getSelectSchema({
