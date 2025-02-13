@@ -1,8 +1,9 @@
 import toast from 'react-hot-toast'
 import bezrykovDesk from './assets/bezrukov_desk.png'
 import bezrykovMob from './assets/bezrukov_mob.png'
-import saif from './assets/saif.jpg'
+import saifDesktop from './assets/saif.jpg'
 import saifMob from './assets/saifMob.jpg'
+import { cn } from '$/shared/utils'
 import { type AdvantagesProps } from '$/widgets'
 import { type BannerProps } from '$/widgets/banner/Banner.tsx'
 
@@ -21,8 +22,8 @@ const defaultMockAdvantageProps: AdvantagesProps = {
 export const mockBannerBase: BannerProps = {
   headTitle: 'Кредит на любые цели',
   subtitle: 'до 5 млн рублей',
-  imgMobile: { url: bezrykovMob },
-  imgDesktop: { url: bezrykovDesk },
+  imgMobile: <img src={bezrykovMob} alt='Картинка баннера' className={cn('h-full object-cover')} />,
+  imgDesktop: <img src={bezrykovDesk} alt='Картинка баннера' className={cn('h-full object-cover')} />,
   buttonsConfig: {
     primary: {
       onClick: () => toast.success('@click on primary btn'),
@@ -39,8 +40,8 @@ export const mockBannerBase: BannerProps = {
 export const mockBannerOnlyPrimaryButton: BannerProps = {
   headTitle: 'Кредит на любые цели',
   subtitle: 'до 5 млн рублей',
-  imgMobile: { url: bezrykovMob },
-  imgDesktop: { url: bezrykovDesk },
+  imgMobile: <img src={bezrykovMob} alt='Картинка баннера' className={cn('h-full object-cover')} />,
+  imgDesktop: <img src={bezrykovDesk} alt='Картинка баннера' className={cn('h-full object-cover')} />,
   buttonsConfig: {
     primary: {
       onClick: () => toast.success('@click on primary btn'),
@@ -53,8 +54,8 @@ export const mockBannerOnlyPrimaryButton: BannerProps = {
 export const mockWithAdvantages: BannerProps = {
   headTitle: 'Кредит на любые цели',
   subtitle: 'до 5 млн рублей',
-  imgMobile: { url: bezrykovMob },
-  imgDesktop: { url: bezrykovDesk },
+  imgMobile: <img src={bezrykovMob} alt='Картинка баннера' className={cn('h-full object-cover')} />,
+  imgDesktop: <img src={bezrykovDesk} alt='Картинка баннера' className={cn('h-full object-cover')} />,
 
   buttonsConfig: {
     primary: {
@@ -63,13 +64,14 @@ export const mockWithAdvantages: BannerProps = {
       size: 'lg'
     }
   },
+  withAdvantages: true,
   advantages: defaultMockAdvantageProps
 }
 export const mockBannerBaseFullImage: BannerProps = {
   headTitle: 'Кредит на любые цели',
   subtitle: 'до 5 млн рублей',
-  imgDesktop: { url: saif },
-  imgMobile: { url: saifMob },
+  imgDesktop: <img src={saifDesktop} alt='Картинка баннера' className={cn('h-full w-full object-cover object-center')} />,
+  imgMobile: <img src={saifMob} alt='Картинка баннера' className={cn('h-full w-full object-cover object-center')} />,
   buttonsConfig: {
     primary: {
       onClick: () => toast.success('@click on primary btn'),
@@ -81,6 +83,10 @@ export const mockBannerBaseFullImage: BannerProps = {
       children: 'Secondary',
       size: 'lg'
     }
+  },
+  classes: {
+    title: 'text-color-white',
+    subtitle: 'text-color-white'
   },
   variant: 'fullImg'
 }
@@ -88,8 +94,8 @@ export const mockBannerBaseFullImage: BannerProps = {
 export const mockBannerFullImageOnlyPrimaryButton: BannerProps = {
   headTitle: 'Кредит на любые цели',
   subtitle: 'до 5 млн рублей',
-  imgDesktop: { url: saif },
-  imgMobile: { url: saifMob },
+  imgDesktop: <img src={saifDesktop} alt='Картинка баннера' className={cn('h-full w-full object-cover object-center')} />,
+  imgMobile: <img src={saifMob} alt='Картинка баннера' className={cn('h-full w-full object-cover object-center')} />,
   buttonsConfig: {
     primary: {
       onClick: () => toast.success('@click on primary btn'),
@@ -97,14 +103,18 @@ export const mockBannerFullImageOnlyPrimaryButton: BannerProps = {
       size: 'lg'
     }
   },
+  classes: {
+    title: 'text-color-white',
+    subtitle: 'text-color-white'
+  },
   variant: 'fullImg'
 }
 
 export const mockBannerFullImageWithAdvantages: BannerProps = {
   headTitle: 'Кредит на любые цели',
   subtitle: 'до 5 млн рублей',
-  imgDesktop: { url: saif },
-  imgMobile: { url: saifMob },
+  imgDesktop: <img src={saifDesktop} alt='Картинка баннера' className={cn('h-full w-full object-cover object-center')} />,
+  imgMobile: <img src={saifMob} alt='Картинка баннера' className={cn('h-full w-full object-cover object-center')} />,
   buttonsConfig: {
     primary: {
       onClick: () => toast.success('@click on primary btn'),
@@ -116,6 +126,10 @@ export const mockBannerFullImageWithAdvantages: BannerProps = {
       children: 'Secondary',
       size: 'lg'
     }
+  },
+  classes: {
+    title: 'text-color-white',
+    subtitle: 'text-color-white'
   },
   variant: 'fullImg',
   advantages: defaultMockAdvantageProps
@@ -124,8 +138,8 @@ export const mockBannerFullImageWithAdvantages: BannerProps = {
 export const mockBannerBaseGradient: BannerProps = {
   headTitle: 'Кредит на любые цели',
   subtitle: 'до 5 млн рублей',
-  imgMobile: { url: bezrykovMob },
-  imgDesktop: { url: bezrykovDesk },
+  imgMobile: <img src={bezrykovMob} alt='Картинка баннера' className={cn('h-full object-cover')} />,
+  imgDesktop: <img src={bezrykovDesk} alt='Картинка баннера' className={cn('h-full object-cover')} />,
   buttonsConfig: {
     primary: {
       onClick: () => toast.success('@click on primary btn'),
@@ -146,8 +160,8 @@ export const mockBannerBaseGradient: BannerProps = {
 export const mockBannerBaseGradientAdvantages: BannerProps = {
   headTitle: 'Кредит на любые цели',
   subtitle: 'до 5 млн рублей',
-  imgMobile: { url: bezrykovMob },
-  imgDesktop: { url: bezrykovDesk },
+  imgMobile: <img src={bezrykovMob} alt='Картинка баннера' className={cn('h-full object-cover')} />,
+  imgDesktop: <img src={bezrykovDesk} alt='Картинка баннера' className={cn('h-full object-cover')} />,
   buttonsConfig: {
     primary: {
       onClick: () => toast.success('@click on primary btn'),
