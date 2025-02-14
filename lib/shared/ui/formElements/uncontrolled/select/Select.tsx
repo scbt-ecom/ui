@@ -1,4 +1,4 @@
-import { forwardRef, useState } from 'react'
+import { forwardRef, useEffect, useRef, useState } from 'react'
 import { Combobox, ComboboxButton, ComboboxInput, ComboboxOptions, type ComboboxProps } from '@headlessui/react'
 import { motion } from 'framer-motion'
 import { useSelectController } from './hooks'
@@ -94,6 +94,8 @@ export type SelectBaseProps<Multi extends boolean> = Omit<
   reset?: string
 }
 
+const LIST_OFFSET = 4
+
 export const SelectBase = forwardRef<HTMLInputElement, SelectBaseProps<boolean>>(
   (
     {
@@ -122,7 +124,28 @@ export const SelectBase = forwardRef<HTMLInputElement, SelectBaseProps<boolean>>
   ) => {
     const { root, list, ...innerClasses } = classes || {}
 
+    const triggerRef = useRef<HTMLButtonElement>(null)
     const [triggerCoords, setTriggerCoords] = useState<DOMRect | null>(null)
+
+    useEffect(() => {
+      if (triggerRef.current) {
+        setTriggerCoords(triggerRef.current.getBoundingClientRect())
+      }
+
+      const updateTriggerCoords = () => {
+        if (triggerRef.current) {
+          setTriggerCoords(triggerRef.current.getBoundingClientRect())
+        }
+      }
+
+      window.addEventListener('resize', updateTriggerCoords)
+      window.addEventListener('orientationchange', updateTriggerCoords)
+
+      return () => {
+        window.removeEventListener('resize', updateTriggerCoords)
+        window.removeEventListener('orientationchange', updateTriggerCoords)
+      }
+    }, [])
 
     const { options, inputValue, onValueChange, onInputValueChange, selectDisplayValue } = useSelectController({
       options: initialOptions,
@@ -173,15 +196,7 @@ export const SelectBase = forwardRef<HTMLInputElement, SelectBaseProps<boolean>>
 
           return (
             <div className={cn('relative w-full', root)}>
-              <TriggerButton
-                ref={(node: HTMLButtonElement | null) => {
-                  if (node) {
-                    setTriggerCoords(node.getBoundingClientRect())
-                  }
-                }}
-                className='w-full'
-                disabled={disabled}
-              >
+              <TriggerButton ref={triggerRef} className='w-full' disabled={disabled}>
                 <ComboboxInput
                   ref={ref}
                   data-test-id='select-input'
@@ -239,14 +254,14 @@ export const SelectBase = forwardRef<HTMLInputElement, SelectBaseProps<boolean>>
                 style={
                   triggerCoords
                     ? {
-                        top: triggerCoords.bottom + 4,
+                        top: triggerCoords.bottom + LIST_OFFSET,
                         left: triggerCoords.left,
                         width: triggerCoords.width
                       }
                     : undefined
                 }
                 className={cn(
-                  'customScrollbar-y absolute left-0 top-full z-10 mt-1',
+                  'customScrollbar-y fixed left-0 top-full z-10 mt-1',
                   'max-h-[264px] w-full overflow-y-auto bg-color-white',
                   'rounded-md p-1 shadow-[0_8px_20px_0px_rgba(41,41,41,0.08)]',
                   list
