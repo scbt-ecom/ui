@@ -23,7 +23,7 @@ const meta = {
       const [optionsCount, setOptionsCount] = useState<number>(10)
 
       return (
-        <div className='flex w-[600px] flex-col gap-y-2'>
+        <div className='mt-[100px] flex w-[600px] flex-col gap-y-2'>
           <label>
             Количество элементов
             <select
