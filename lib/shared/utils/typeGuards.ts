@@ -26,4 +26,8 @@ export class TypeGuards {
   static isArrayEmpty(value: unknown): value is boolean {
     return this.isArray(value) && !value.length
   }
+
+  static isObject(value: unknown): value is Record<string, unknown> {
+    return typeof value === 'object' && value !== null && !Array.isArray(value)
+  }
 }
