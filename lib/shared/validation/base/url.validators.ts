@@ -9,9 +9,9 @@ export type UrlValidationOptions<Required extends boolean> = {
    */
   required?: Required
   /**
-   * Регулярное выражение для проверки email на валидность
+   * Регулярное выражение для проверки url на валидность
    */
-  regexp?: RegExp
+  regexp?: RegExp | string
   message?: {
     min?: string
     invalid?: string
@@ -27,9 +27,11 @@ const URL_REGEX =
 const getUrlRequired = (props?: Omit<UrlValidationOptions<true>, 'required'>) => {
   const { message, regexp = URL_REGEX } = props || {}
 
+  const regex = TypeGuards.isString(regexp) ? new RegExp(regexp) : regexp
+
   return string()
     .min(1, message?.min || baseDefaultMessages.NON_EMPTY())
-    .regex(regexp, message?.invalid || baseDefaultMessages.INVALID_URL())
+    .regex(regex, message?.invalid || baseDefaultMessages.INVALID_URL())
     .default('')
 }
 type UrlRequiredSchema = ReturnType<typeof getUrlRequired>
@@ -40,10 +42,12 @@ type UrlRequiredSchema = ReturnType<typeof getUrlRequired>
 const getUrlOptional = (props?: Omit<UrlValidationOptions<false>, 'required'>) => {
   const { message, regexp = URL_REGEX } = props || {}
 
+  const regex = TypeGuards.isString(regexp) ? new RegExp(regexp) : regexp
+
   return string()
     .refine((value) => {
       if (TypeGuards.isStringEmpty(value)) return true
-      return regexp.test(value)
+      return regex.test(value)
     }, message?.invalid || baseDefaultMessages.INVALID_URL())
     .optional()
     .transform((value) => (!value?.length ? undefined : value))
