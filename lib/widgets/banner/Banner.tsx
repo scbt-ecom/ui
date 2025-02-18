@@ -1,15 +1,16 @@
 'use client'
 
-import { type ReactElement, type ReactNode } from 'react'
+import { type ReactElement } from 'react'
 import { type AdvantageClasses, type AdvantagesProps } from '../advantages/Advantages'
-import { type BannerClasses, type ButtonsConfig } from './model/types'
+import { type BackgroundBannerColorsValues } from './model/constants'
+import { type BannerClasses, type ButtonsConfig, type ImgBanner } from './model/types'
 import { BannerImageFull, BannerWithSeparateImg } from './ui'
 
 export interface BannerProps {
   headTitle: string | ReactElement
   subtitle: string | ReactElement
-  imgDesktop: ReactNode
-  imgMobile: ReactNode
+  imgDesktop: ImgBanner
+  imgMobile: ImgBanner
   buttonsConfig: ButtonsConfig
   advantages?: AdvantagesProps
   classes?: BannerClasses & {
@@ -17,6 +18,7 @@ export interface BannerProps {
   }
   withAdvantages?: boolean
   variant?: 'separateImg' | 'fullImg'
+  color?: BackgroundBannerColorsValues
 }
 
 export const Banner = ({ variant, ...props }: BannerProps) => {
