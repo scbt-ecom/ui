@@ -3,6 +3,10 @@ export class TypeGuards {
     return typeof value === 'string'
   }
 
+  static isBoolean(value: unknown): value is boolean {
+    return typeof value === 'boolean'
+  }
+
   static isStringEmpty(value: unknown): value is string {
     return this.isString(value) && !value.length
   }

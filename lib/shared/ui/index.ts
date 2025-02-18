@@ -18,6 +18,7 @@ export * from './progressBar'
 export * from './tabSwitcher'
 export * from './modal'
 export * from './notification'
+export * from './table'
 
 // # PROVIDERS
 export * from './providers'
