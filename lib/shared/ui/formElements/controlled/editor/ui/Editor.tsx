@@ -1,4 +1,4 @@
-import { forwardRef, type ReactElement } from 'react'
+import { forwardRef, type ReactElement, useEffect } from 'react'
 import { type FieldError } from 'react-hook-form'
 import { EditorContent, type EditorEvents, useEditor, type UseEditorOptions } from '@tiptap/react'
 import { type EditorControlClasses } from '../EditorControl'
@@ -69,6 +69,12 @@ export const Editor = forwardRef<EditorRef, EditorProps>(
       shouldRerenderOnTransaction,
       ...props
     })
+
+    useEffect(() => {
+      if (editor && editor.getHTML() !== value) {
+        editor.commands.setContent(value)
+      }
+    }, [editor, value])
 
     if (!editor) {
       return null
