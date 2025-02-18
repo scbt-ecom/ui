@@ -1,7 +1,7 @@
 import { BannerButtonsGroup } from '../BannerButtonsGroup'
 import { useDevice } from '$/shared/hooks'
 import { ResponsiveContainer } from '$/shared/ui'
-import { cn } from '$/shared/utils'
+import { cn, TypeGuards } from '$/shared/utils'
 import { Advantages, type BannerProps } from '$/widgets'
 
 export const BannerWithSeparateImg = ({
@@ -12,9 +12,25 @@ export const BannerWithSeparateImg = ({
   classes,
   imgMobile,
   withAdvantages,
-  imgDesktop
+  imgDesktop,
+  color
 }: Omit<BannerProps, 'bannerVariant'>) => {
   const { isDesktop, isMobile } = useDevice()
+
+  const imgMob =
+    imgMobile && 'url' in imgMobile && TypeGuards.isObject(imgMobile) ? (
+      <img className='w-full object-contain' alt='Картинка баннера' src={imgMobile.url} />
+    ) : (
+      imgMobile
+    )
+
+  const imgDesk =
+    imgDesktop && 'url' in imgDesktop && TypeGuards.isObject(imgDesktop) ? (
+      <img className='w-full object-contain' alt='Картинка баннера' src={imgDesktop.url} />
+    ) : (
+      imgDesktop
+    )
+
   const advantage = (
     <div
       className={cn(
@@ -25,9 +41,14 @@ export const BannerWithSeparateImg = ({
       {advantages?.config.details && advantages?.config.details?.length > 0 && <Advantages {...advantages} />}
     </div>
   )
+
   return (
     <>
-      <section data-test-id='banner' className={cn('bg-banner-skyblue-300 desktop:h-[456px]', classes?.root)}>
+      <section
+        style={{ backgroundColor: color ?? '#d9edff' }}
+        data-test-id='banner'
+        className={cn('bg-banner-skyblue-300 desktop:h-[456px]', classes?.root)}
+      >
         <ResponsiveContainer className={cn('relative', classes?.container)}>
           <div className={cn('flex flex-col desktop:flex-row desktop:justify-between', classes?.wrapper)}>
             <div className='flex flex-col desktop:gap-10 desktop:pt-20'>
@@ -45,7 +66,7 @@ export const BannerWithSeparateImg = ({
             </div>
 
             <div className={cn('flex h-[356px] justify-center desktop:h-[456px] desktop:w-[550px]', classes?.imageContainer)}>
-              {isMobile ? imgMobile : imgDesktop}
+              {isMobile ? imgMob : imgDesk}
             </div>
           </div>
 

@@ -3,7 +3,7 @@
 import { BannerButtonsGroup } from '../BannerButtonsGroup'
 import { useDevice } from '$/shared/hooks'
 import { ResponsiveContainer } from '$/shared/ui'
-import { cn } from '$/shared/utils'
+import { cn, TypeGuards } from '$/shared/utils'
 import { Advantages, type BannerProps } from '$/widgets'
 
 export const BannerImageFull = ({
@@ -13,9 +13,25 @@ export const BannerImageFull = ({
   advantages,
   classes,
   imgMobile,
-  imgDesktop
+  imgDesktop,
+  color
 }: Omit<BannerProps, 'bannerVariant'>) => {
   const { isDesktop, isMobile } = useDevice()
+
+  const imgMob =
+    imgMobile && 'url' in imgMobile && TypeGuards.isObject(imgMobile) ? (
+      <img className='h-full w-full object-cover object-center' alt='Картинка баннера' src={imgMobile.url} />
+    ) : (
+      imgMobile
+    )
+
+  const imgDesk =
+    imgDesktop && 'url' in imgDesktop && TypeGuards.isObject(imgDesktop) ? (
+      <img className='h-full w-full object-cover object-center' alt='Картинка баннера' src={imgDesktop.url} />
+    ) : (
+      imgDesktop
+    )
+
   const advantage = (
     <div
       className={cn(
@@ -29,9 +45,13 @@ export const BannerImageFull = ({
 
   return (
     <>
-      <section data-test-id='banner' className={cn('relative h-[552px] desktop:h-[456px]', classes?.root)}>
+      <section
+        style={{ backgroundColor: color ?? '#d9edff' }}
+        data-test-id='banner'
+        className={cn('relative h-[552px] desktop:h-[456px]', classes?.root)}
+      >
         <div className='absolute bottom-0 left-0 right-0 top-0 z-[-1] mx-auto h-full max-w-[1920px] desktop:h-[456px]'>
-          {isMobile ? imgMobile : imgDesktop}
+          {isMobile ? imgMob : imgDesk}
         </div>
         <ResponsiveContainer className={cn('h-full', classes?.container)}>
           <div className={cn('flex h-full', classes?.wrapper)}>
