@@ -14,10 +14,13 @@ export const Mobile = <TData extends {}>({
         table.getRowModel().rows.map((row) => (
           <div
             key={row.id}
-            className={cn({
-              '[&:not(:last-child)]:border-b [&:not(:last-child)]:border-b-[rgba(234,237,241,1)]': mode === 'solid',
-              '[&:nth-child(odd)]:bg-color-primary-light-default': mode === 'odd'
-            })}
+            className={cn(
+              {
+                '[&:not(:last-child)]:border-b [&:not(:last-child)]:border-b-[rgba(234,237,241,1)]': mode === 'solid',
+                '[&:nth-child(odd)]:bg-color-primary-light-default': mode === 'odd'
+              },
+              classes?.tableRow
+            )}
           >
             {row.getVisibleCells().map((cell, index) => {
               const header = table.getHeaderGroups()[0].headers[index]
