@@ -10,7 +10,7 @@ type DataTableColumnHeaderClasses = {
 }
 
 type DataTableColumnHeaderProps = {
-  title: string
+  children: React.ReactNode
   isSorted: boolean | SortDirection
   toggleSorting: (desc: boolean) => void
   nextSortingOrder: boolean | SortDirection
@@ -19,7 +19,7 @@ type DataTableColumnHeaderProps = {
 }
 
 export const DataTableColumnHeader = ({
-  title,
+  children,
   canSort,
   toggleSorting,
   nextSortingOrder,
@@ -39,7 +39,7 @@ export const DataTableColumnHeader = ({
       onClick={() => toggleSorting(!isSorted)}
       disabled={!isSortable}
     >
-      <span className={cn('', content)}>{title}</span>
+      <span className={cn('', content)}>{children}</span>
       {isSortable && (
         <Icon
           name='arrows/arrowRight'
