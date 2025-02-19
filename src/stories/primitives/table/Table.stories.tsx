@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { columns } from './columns'
 import data from './data.json'
 import { DataTable } from '$/shared/ui/table'
+import { TablePagination } from '$/shared/ui/table/TablePagination'
 
 const meta = {
   title: 'Base/DataTable',
@@ -11,7 +12,7 @@ const meta = {
   },
   decorators: [
     (Story) => (
-      <div className='w-[450px]'>
+      <div className='w-[600px]'>
         <Story />
       </div>
     )
@@ -32,6 +33,12 @@ export const BaseWithoutHeaders: Story = {
   }
 }
 
+export const BaseWithoutPagination: Story = {
+  args: {
+    pagination: false
+  }
+}
+
 export const WithOdd: Story = {
   args: {
     mode: 'odd'
@@ -42,5 +49,18 @@ export const WithOddWithoutHeaders: Story = {
   args: {
     mode: 'odd',
     enableHeaders: false
+  }
+}
+
+export const WithOddWithoutPagination: Story = {
+  args: {
+    ...WithOdd.args,
+    pagination: false
+  }
+}
+
+export const PaginationAsRenderProp: Story = {
+  args: {
+    pagination: (props) => <TablePagination {...props} />
   }
 }

@@ -1,6 +1,11 @@
 import type { ColumnDef } from '@tanstack/react-table'
+import { type TablePaginationProps } from '../TablePagination'
 
 type DataTableClasses = {
+  /**
+   * Стили родителя
+   */
+  root?: string
   /**
    * Стили таблицы
    */
@@ -21,6 +26,10 @@ type DataTableClasses = {
    * Стили ячейки
    */
   tableCell?: string
+  /**
+   * Стили пагинации
+   */
+  pagination?: TablePaginationProps['classes']
 }
 
 export type DataTableProps<TData extends {}> = {
@@ -44,4 +53,8 @@ export type DataTableProps<TData extends {}> = {
    * Режим отображения таблицы
    */
   mode?: 'solid' | 'odd'
+  /**
+   * пагинация
+   */
+  pagination: ((props: TablePaginationProps) => React.JSX.Element) | boolean
 }
