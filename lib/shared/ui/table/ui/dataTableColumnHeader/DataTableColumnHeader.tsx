@@ -1,5 +1,6 @@
 import { type SortDirection } from '@tanstack/react-table'
-import { Icon } from '$/shared/ui'
+import { useDevice } from '$/shared/hooks'
+import { Icon } from '$/shared/ui/icon'
 import { cn } from '$/shared/utils'
 
 type DataTableColumnHeaderClasses = {
@@ -27,6 +28,10 @@ export const DataTableColumnHeader = ({
 }: DataTableColumnHeaderProps) => {
   const { root, content, icon } = classes || {}
 
+  const { isDesktop } = useDevice()
+
+  const isSortable = canSort && isDesktop
+
   return (
     <button
       type='button'
@@ -35,7 +40,7 @@ export const DataTableColumnHeader = ({
       disabled={!canSort}
     >
       <span className={cn('', content)}>{title}</span>
-      {canSort && (
+      {isSortable && (
         <Icon
           name='arrows/arrowRight'
           className={cn(
