@@ -18,7 +18,12 @@ export class TableUtils {
     template: TData,
     options?: ColumnDefOptions<TData, TValue>
   ): ColumnDef<TData>[] {
-    const { helper = this.getColumnHelper<TData>(), enableColumnFilter = [], enableSorting = [], cellAccessor } = options || {}
+    const {
+      helper = this.getColumnHelper<TData>(),
+      enableColumnFilter = false,
+      enableSorting = false,
+      cellAccessor
+    } = options || {}
 
     const keys = Object.keys(template) as (keyof TData)[]
 
