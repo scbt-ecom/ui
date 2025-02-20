@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { type DropzoneOptions, type FileRejection, useDropzone } from 'react-dropzone'
+import { type ExternalHandlers } from '../../UploaderBase'
 import { bytesToMegabytes, FilesErrorCode } from '../helpers'
 import { Notification } from '$/shared/ui/'
 
@@ -7,9 +8,10 @@ export type TUseUploader = {
   controlledFiles?: File[]
   dropzoneOptions: DropzoneOptions
   onChange?: (files: File[]) => void
+  externalHandlers?: ExternalHandlers
 }
 
-export const useUploader = ({ dropzoneOptions, controlledFiles = [], onChange }: TUseUploader) => {
+export const useUploader = ({ dropzoneOptions, controlledFiles = [], onChange, externalHandlers }: TUseUploader) => {
   const [filesStatus, setFilesStatus] = useState<Record<string, 'loading' | 'success' | 'error'>>({})
 
   const removeFile = (index: number) => {
@@ -55,6 +57,7 @@ export const useUploader = ({ dropzoneOptions, controlledFiles = [], onChange }:
     const updatedFiles = [...controlledFiles, ...acceptedFiles]
 
     if (onChange) onChange(updatedFiles)
+    if (externalHandlers?.onChange) externalHandlers?.onChange(updatedFiles)
   }
 
   const dropzoneState = useDropzone({
