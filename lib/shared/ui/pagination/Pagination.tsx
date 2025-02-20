@@ -6,6 +6,7 @@ type PaginationClasses = {
   root?: string
   button?: string
   ellipsis?: string
+  active?: string
 }
 
 export type PaginationProps = {
@@ -125,7 +126,7 @@ export const Pagination = ({
             className={cn(
               'mob-body-regular-l w-[40px] p-0 text-color-dark',
               {
-                'text-color-primary-default': active
+                [`text-color-primary-default ${classes?.active}`]: active
               },
               classes?.button
             )}
