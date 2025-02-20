@@ -49,23 +49,31 @@ export const Pagination = ({
   ellipsis = 0,
   classes
 }: PaginationProps) => {
+  // гарантирует что between никогда не будет меньше 1
   between = between < 1 ? 1 : between
+  // ограничиваем текущую страницу от 1 до totalPages
   page = Math.min(Math.max(page, 1), totalPages)
+  // ограничиваем количество сужаемых элементов от 0 до between - 2
   ellipsis = Math.min(Math.max(ellipsis, 0), between - 2)
 
   const positions = Array.from({ length: totalPages }, (_, index) => index)
 
-  const qtdPages = between * 2 + 1
+  // количество отображаемых страниц (включая активную)
+  const visiblePages = between * 2 + 1
 
   let range
 
-  if (totalPages < qtdPages) {
+  if (totalPages < visiblePages) {
+    // если общее количество страниц меньше, чем нужно отобразить, то отображаем все страницы
     range = positions
   } else if (page - 1 <= between) {
-    range = positions.slice(0, qtdPages - (ellipsis > 0 ? ellipsis + 1 : 0))
+    // если текущая страница близка к началу, то отображаем страницы с начала
+    range = positions.slice(0, visiblePages - (ellipsis > 0 ? ellipsis + 1 : 0))
   } else if (page + between >= totalPages) {
-    range = positions.slice(totalPages - qtdPages + (ellipsis > 0 ? ellipsis + 1 : 0), totalPages)
+    // если текущая страница близка к концу, то отображаем страницы с конца
+    range = positions.slice(totalPages - visiblePages + (ellipsis > 0 ? ellipsis + 1 : 0), totalPages)
   } else {
+    // иначе показываем страницы обрезая их слева и справа
     range = positions.slice(
       page - 1 - (between - (ellipsis > 0 ? ellipsis + 1 : 0)),
       page + (between - (ellipsis > 0 ? ellipsis + 1 : 0))
@@ -85,7 +93,7 @@ export const Pagination = ({
           <Icon name='arrows/arrowRight' className='rotate-180' />
         </Button>
       )}
-      {totalPages > between * 2 + 1 &&
+      {totalPages > visiblePages &&
         ellipsis > 0 &&
         positions.slice(0, page - 1 <= between ? 0 : ellipsis).map((value) => (
           <Button
@@ -98,7 +106,7 @@ export const Pagination = ({
             {value + 1}
           </Button>
         ))}
-      {totalPages > between * 2 + 1 && ellipsis > 0 && page - 1 > between && (
+      {totalPages > visiblePages && ellipsis > 0 && page - 1 > between && (
         <Button
           size='sm'
           intent='ghost'
@@ -128,7 +136,7 @@ export const Pagination = ({
           </Button>
         )
       })}
-      {totalPages > between * 2 + 1 && ellipsis > 0 && page < totalPages - between && (
+      {totalPages > visiblePages && ellipsis > 0 && page < totalPages - between && (
         <Button
           size='sm'
           intent='ghost'
@@ -137,7 +145,7 @@ export const Pagination = ({
           ...
         </Button>
       )}
-      {totalPages > between * 2 + 1 &&
+      {totalPages > visiblePages &&
         ellipsis > 0 &&
         positions.slice(page >= totalPages - between ? totalPages : totalPages - ellipsis, totalPages).map((value) => (
           <Button
