@@ -16,7 +16,7 @@ export const WithPhone: Story = {
     config: {
       variant: 'withPhone',
       details: {
-        phone: '8 800 000-00-00',
+        phone: '88000000000',
         text: 'Бесплатно по России'
       }
     }
