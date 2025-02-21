@@ -126,6 +126,7 @@ export const SelectBase = forwardRef<HTMLInputElement, SelectBaseProps<boolean>>
 
     const { refs, floatingStyles } = useFloating({
       placement: 'bottom-start',
+      strategy: 'absolute',
       middleware: [
         flip({
           boundary: 'clippingAncestors',
