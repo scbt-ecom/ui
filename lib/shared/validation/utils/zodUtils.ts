@@ -68,6 +68,8 @@ export class ZodUtils {
           return getDefaultValue(schema._def.options[0])
         case schema instanceof z.ZodLiteral:
           return schema._def.value
+        case schema instanceof z.ZodDiscriminatedUnion:
+          return getDefaultValue(schema._def.options[0])
         case schema instanceof z.ZodEnum:
           return schema._def.values[0]
         case schema instanceof z.ZodString:
