@@ -1,7 +1,6 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { createPortal } from 'react-dom'
 import { autoUpdate, flip, offset, useFloating } from '@floating-ui/react'
 import { format, isValid, parse } from 'date-fns'
 import { type ExternalHandlers } from './dayPickerControl'
@@ -147,26 +146,24 @@ export const SingleDayPicker = ({
           onClickIcon: onCalendarOpenChange
         }}
       />
-      {calendarOpen &&
-        createPortal(
-          <Calendar
-            ref={refs.setFloating}
-            {...props}
-            required
-            mode='single'
-            style={{
-              ...floatingStyles,
-              width: 'max-content'
-            }}
-            month={month}
-            onMonthChange={onMonthChange}
-            selected={date}
-            onSelect={onDateChange}
-            className={cn('z-10', calendar)}
-            data-test-id='calendar'
-          />,
-          document.body
-        )}
+      {calendarOpen && (
+        <Calendar
+          ref={refs.setFloating}
+          {...props}
+          required
+          mode='single'
+          style={{
+            ...floatingStyles,
+            width: 'max-content'
+          }}
+          month={month}
+          onMonthChange={onMonthChange}
+          selected={date}
+          onSelect={onDateChange}
+          className={cn('z-10', calendar)}
+          data-test-id='calendar'
+        />
+      )}
     </div>
   )
 }
