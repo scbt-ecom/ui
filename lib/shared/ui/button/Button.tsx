@@ -101,15 +101,17 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         className={cn(buttonConfig({ intent, size, textFormat, isLoading, isFull }), className)}
         {...props}
       >
-        {isLoading ? (
-          <Loader size='sm' intent={setButtonLoaderIntent(intent)} />
-        ) : (
-          <>
-            {iconLeft && <span className='flex size-5 items-center justify-center'>{iconLeft}</span>}
-            {children}
-            {iconRight && <span className='flex size-5 items-center justify-center'>{iconRight}</span>}
-          </>
-        )}
+        <>
+          {iconLeft && <span className='flex size-5 items-center justify-center'>{iconLeft}</span>}
+          {isLoading ? (
+            <>
+              {children} <Loader size='sm' intent={setButtonLoaderIntent(intent)} />
+            </>
+          ) : (
+            children
+          )}
+          {iconRight && <span className='flex size-5 items-center justify-center'>{iconRight}</span>}
+        </>
       </button>
     )
   }

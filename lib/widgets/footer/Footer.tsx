@@ -31,7 +31,7 @@ export const Footer = ({
   config
 }: FooterProps) => {
   return (
-    <footer className={cn('w-full bg-color-footer py-8 desktop:py-10', classes?.root)}>
+    <footer id='footer' className={cn('w-full bg-color-footer py-8 desktop:py-10', classes?.root)}>
       <ResponsiveContainer className={cn(classes?.footerContainer)}>
         <div className={cn('mobile:pb-[176px]', classes?.footerWrapper)}>
           <div
