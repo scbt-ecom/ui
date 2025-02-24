@@ -54,29 +54,29 @@ export class ZodUtils {
 
     const getDefaultValue = (schema: z.ZodTypeAny): unknown => {
       switch (true) {
-        case schema instanceof z.ZodDefault:
-          return schema._def.defaultValue()
-        case schema instanceof z.ZodOptional:
+        case schema._def.typeName === 'ZodDefault' || schema instanceof z.ZodDefault:
+          return (schema as z.ZodDefault<ZodSchema>)._def.defaultValue()
+        case schema._def.typeName === 'ZodOptional' || schema instanceof z.ZodOptional:
           return undefined
-        case schema instanceof z.ZodNullable:
+        case schema._def.typeName === 'ZodNullable' || schema instanceof z.ZodNullable:
           return null
-        case schema instanceof z.ZodArray:
-          return fillArrayWithValue ? [getDefaultValue(schema.element)] : []
-        case schema instanceof z.ZodObject:
+        case schema._def.typeName === 'ZodArray' || schema instanceof z.ZodArray:
+          return fillArrayWithValue ? [getDefaultValue((schema as z.ZodArray<ZodSchema>).element)] : []
+        case schema._def.typeName === 'ZodObject' || schema instanceof z.ZodObject:
           return this.getZodDefaults(schema, options)
-        case schema instanceof z.ZodUnion:
+        case schema._def.typeName === 'ZodUnion' || schema instanceof z.ZodUnion:
           return getDefaultValue(schema._def.options[0])
-        case schema instanceof z.ZodLiteral:
+        case schema._def.typeName === 'ZodLiteral' || schema instanceof z.ZodLiteral:
           return schema._def.value
-        case schema instanceof z.ZodDiscriminatedUnion:
+        case schema._def.typeName === 'ZodDiscriminatedUnion' || schema instanceof z.ZodDiscriminatedUnion:
           return getDefaultValue(schema._def.options[0])
-        case schema instanceof z.ZodEnum:
+        case schema._def.typeName === 'ZodEnum' || schema instanceof z.ZodEnum:
           return schema._def.values[0]
-        case schema instanceof z.ZodString:
+        case schema._def.typeName === 'ZodString' || schema instanceof z.ZodString:
           return ''
-        case schema instanceof z.ZodNumber:
+        case schema._def.typeName === 'ZodNumber' || schema instanceof z.ZodNumber:
           return 0
-        case schema instanceof z.ZodBoolean:
+        case schema._def.typeName === 'ZodBoolean' || schema instanceof z.ZodBoolean:
           return false
         case !('innerType' in schema._def):
           return undefined
@@ -87,8 +87,7 @@ export class ZodUtils {
 
     const defaults = {} as Schema
 
-    const schemaShape =
-      zodSchema instanceof z.ZodIntersection ? zodSchema._def.left.merge(zodSchema._def.right).shape : zodSchema.shape
+    const schemaShape = zodSchema instanceof z.ZodIntersection ? this.zodMergeIntersection(zodSchema).shape : zodSchema.shape
 
     const schemaEntries = Object.entries(schemaShape) as [keyof Schema, z.ZodAny][]
 
@@ -97,5 +96,27 @@ export class ZodUtils {
     })
 
     return defaults
+  }
+
+  /**
+   * Функция для объединения zod схождений
+   * @param {ZodIntersection} zodSchema
+   * @returns объединенная схема двух схождений
+   */
+  static zodMergeIntersection<ZodLeft extends z.ZodTypeAny, ZodRight extends z.ZodTypeAny>(
+    zodSchema: z.ZodIntersection<ZodLeft, ZodRight>
+  ): z.ZodObject<z.objectUtil.MergeShapes<z.TypeOf<ZodLeft>, z.TypeOf<ZodRight>>> {
+    const { left, right } = zodSchema._def
+
+    const leftSchema =
+      left instanceof z.ZodDiscriminatedUnion || left._def.typeName === 'ZodDiscriminatedUnion' ? left._def.options[0] : left
+    const rightSchema =
+      right instanceof z.ZodDiscriminatedUnion || left._def.typeName === 'ZodDiscriminatedUnion' ? right._def.options[0] : right
+
+    if (leftSchema instanceof z.ZodObject && rightSchema instanceof z.ZodObject) {
+      return leftSchema.merge(rightSchema)
+    }
+
+    throw new Error(`Cannot merge schema type ${rightSchema._def.typeName} to ${leftSchema._def.typeName}`)
   }
 }
