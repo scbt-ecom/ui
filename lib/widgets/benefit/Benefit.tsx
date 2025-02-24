@@ -32,7 +32,7 @@ export interface BenefitProps extends VariantProps<typeof gridConfig> {
 
 export const Benefit = ({ heading, cards, classes, intent }: BenefitProps) => {
   return (
-    <section className={cn('pb-20', classes?.root)}>
+    <section id='benefit' className={cn('pb-20', classes?.root)}>
       <ResponsiveContainer className={classes?.container}>
         <Heading className={cn('mb-8', classes?.heading)} as='h2'>
           {heading}

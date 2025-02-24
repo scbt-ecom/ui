@@ -24,6 +24,7 @@ export const Advantages = ({ config, classes }: AdvantagesProps) => {
 
   return (
     <div
+      id='advantages'
       className={cn(
         'm-auto flex w-full min-w-[328px] max-w-[636px] flex-col gap-8 rounded-md bg-color-white p-6 shadow-sm desktop:w-full desktop:flex-row desktop:items-start desktop:gap-0 desktop:p-0 desktop:py-6',
         { 'desktop:max-w-[860px]': variant === 'threeCards' },

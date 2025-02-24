@@ -1,5 +1,4 @@
 // # BASE
-export * from './section'
 export * from './responsiveContainer'
 export * from './button'
 export * from './buttonIcon'

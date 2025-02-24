@@ -1,8 +1,8 @@
-import type { HTMLAttributes, ReactElement } from 'react'
+import type { HTMLAttributes, ReactNode } from 'react'
 import { cn } from '$/shared/utils'
 
 export interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
-  children: ReactElement | string
+  children: ReactNode
   className?: string
 }
 

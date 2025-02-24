@@ -5,7 +5,10 @@ import { cn } from '$/shared/utils'
 
 export const Header = ({ logoPath = '/', logoType = 'main', config, classes }: HeaderProps) => {
   return (
-    <header className={cn('flex h-[64px] items-center justify-center bg-color-white desktop:h-[72px]', classes?.header)}>
+    <header
+      id='header'
+      className={cn('flex h-[64px] items-center justify-center bg-color-white desktop:h-[72px]', classes?.header)}
+    >
       <ResponsiveContainer className={cn(classes?.container)}>
         <div className={cn('flex items-center justify-between gap-5', classes?.wrapper)}>
           <a
