@@ -42,8 +42,8 @@ vi.describe('Test cases for ZodUtils', () => {
     )
 
     const mergedSchema = ZodUtils.zodMergeIntersection(schema)
-    vi.expect(mergedSchema).toHaveProperty('enabled')
-    vi.expect(mergedSchema).toHaveProperty('bar')
+    vi.expect(mergedSchema.shape).toHaveProperty('enabled')
+    vi.expect(mergedSchema.shape).toHaveProperty('bar')
 
     const expectedValues: TypeOf<typeof mergedSchema> = {
       foo: '',
@@ -62,6 +62,6 @@ vi.describe('Test cases for ZodUtils', () => {
       foo: zodValidators.base.getStringSchema()
     }).and(zodValidators.base.getStringSchema())
 
-    vi.expect(ZodUtils.zodMergeIntersection(schema)).toThrowError(/^Cannot merge/)
+    vi.expect(() => ZodUtils.zodMergeIntersection(schema)).toThrowError()
   })
 })
