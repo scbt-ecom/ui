@@ -102,6 +102,26 @@ export class ZodUtils {
    * Функция для объединения zod схождений
    * @param {ZodIntersection} zodSchema
    * @returns объединенная схема двух схождений
+   *
+   * @example
+   * let schema = z.object({
+   *   foo: z.string()
+   * })
+   *   // this will return intersection and we need
+   *   // to merge its left to right schema's
+   *   .and(
+   *     z.object({
+   *       bar: z.string()
+   *     })
+   *   )
+   *
+   * schema = ZodUtils.zodMergeIntersection(schema)
+   *
+   * // schema will be
+   * z.object({
+   *   foo: z.string(),
+   *   bar: z.string()
+   * })
    */
   static zodMergeIntersection<ZodLeft extends z.ZodTypeAny, ZodRight extends z.ZodTypeAny>(
     zodSchema: z.ZodIntersection<ZodLeft, ZodRight>
