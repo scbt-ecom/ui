@@ -39,7 +39,7 @@ export class ZodUtils {
    * // }
    */
   static getZodDefaults<ZodSchema extends z.AnyZodObject, Schema = z.TypeOf<ZodSchema>>(
-    zodSchema: ZodSchema | z.ZodEffects<ZodSchema> | z.ZodIntersection<ZodSchema, ZodSchema>,
+    zodSchema: ZodSchema | z.ZodEffects<ZodSchema>,
     options?: ZodUtilsGetDefaultsOptions
   ): Schema {
     const { fillArrayWithValue } = options || {}
@@ -63,7 +63,7 @@ export class ZodUtils {
         case schema._def.typeName === 'ZodArray' || schema instanceof z.ZodArray:
           return fillArrayWithValue ? [getDefaultValue((schema as z.ZodArray<ZodSchema>).element)] : []
         case schema._def.typeName === 'ZodObject' || schema instanceof z.ZodObject:
-          return this.getZodDefaults(schema, options)
+          return this.getZodDefaults(schema as z.ZodObject<z.ZodRawShape>, options)
         case schema._def.typeName === 'ZodUnion' || schema instanceof z.ZodUnion:
           return getDefaultValue(schema._def.options[0])
         case schema._def.typeName === 'ZodLiteral' || schema instanceof z.ZodLiteral:
@@ -87,9 +87,7 @@ export class ZodUtils {
 
     const defaults = {} as Schema
 
-    const schemaShape = zodSchema instanceof z.ZodIntersection ? this.zodMergeIntersection(zodSchema).shape : zodSchema.shape
-
-    const schemaEntries = Object.entries(schemaShape) as [keyof Schema, z.ZodAny][]
+    const schemaEntries = Object.entries(zodSchema.shape) as [keyof Schema, z.ZodAny][]
 
     schemaEntries.map(([key, value]) => {
       defaults[key] = getDefaultValue(value) as Schema[keyof Schema]
