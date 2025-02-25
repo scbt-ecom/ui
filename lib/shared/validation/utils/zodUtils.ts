@@ -129,9 +129,12 @@ export class ZodUtils {
     const leftSchema =
       left instanceof z.ZodDiscriminatedUnion || left._def.typeName === 'ZodDiscriminatedUnion' ? left._def.options[0] : left
     const rightSchema =
-      right instanceof z.ZodDiscriminatedUnion || left._def.typeName === 'ZodDiscriminatedUnion' ? right._def.options[0] : right
+      right instanceof z.ZodDiscriminatedUnion || right._def.typeName === 'ZodDiscriminatedUnion' ? right._def.options[0] : right
 
-    if (leftSchema instanceof z.ZodObject && rightSchema instanceof z.ZodObject) {
+    if (
+      (leftSchema._def.typeName === 'ZodObject' || leftSchema instanceof z.ZodObject) &&
+      (rightSchema._def.typeName === 'ZodObject' || rightSchema instanceof z.ZodObject)
+    ) {
       return leftSchema.merge(rightSchema)
     }
 
