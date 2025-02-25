@@ -44,20 +44,32 @@ export class ZodUtils {
   ): Schema {
     const { fillArrayWithValue } = options || {}
 
-    if (zodSchema instanceof z.ZodEffects) {
-      if (zodSchema.innerType() instanceof z.ZodEffects) {
-        return this.getZodDefaults(zodSchema.innerType(), options)
+    const processZodEffects = (schema: z.ZodEffects<any>) => {
+      const innerType = schema._def.schema
+
+      if (innerType instanceof z.ZodEffects || innerType._def.typeName === 'ZodEffects') {
+        return processZodEffects(innerType)
       }
 
-      return this.getZodDefaults(z.ZodObject.create(zodSchema.innerType().shape), options)
+      if (innerType instanceof z.ZodObject || innerType._def.typeName === 'ZodObject') {
+        return this.getZodDefaults(innerType, options)
+      }
+
+      return getDefaultValue(innerType)
     }
 
     const getDefaultValue = (schema: z.ZodTypeAny): unknown => {
+      if (schema instanceof z.ZodEffects || schema._def.typeName === 'ZodEffects') {
+        return processZodEffects(schema as z.ZodEffects<ZodSchema>)
+      }
+
       switch (true) {
         case schema._def.typeName === 'ZodDefault' || schema instanceof z.ZodDefault:
           return (schema as z.ZodDefault<ZodSchema>)._def.defaultValue()
         case schema._def.typeName === 'ZodOptional' || schema instanceof z.ZodOptional:
           return undefined
+        case schema._def.typeName === 'ZodEffects':
+          return processZodEffects(schema as z.ZodEffects<ZodSchema>)
         case schema._def.typeName === 'ZodNullable' || schema instanceof z.ZodNullable:
           return null
         case schema._def.typeName === 'ZodArray' || schema instanceof z.ZodArray:
@@ -83,6 +95,10 @@ export class ZodUtils {
         default:
           return getDefaultValue(schema._def.innerType)
       }
+    }
+
+    if (zodSchema instanceof z.ZodEffects) {
+      return processZodEffects(zodSchema)
     }
 
     const defaults = {} as Schema
