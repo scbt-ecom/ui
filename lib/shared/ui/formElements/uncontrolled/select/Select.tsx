@@ -1,13 +1,13 @@
-import { forwardRef } from 'react'
+import { forwardRef, useRef } from 'react'
+import { autoUpdate, flip, offset, useFloating } from '@floating-ui/react'
 import { Combobox, ComboboxButton, ComboboxInput, ComboboxOptions, type ComboboxProps } from '@headlessui/react'
-import { motion } from 'framer-motion'
 import { useSelectController } from './hooks'
-import { compareByValue, type SelectItemOption } from './model'
+import { type SelectItemOption } from './model'
 import { SelectItem, type SelectItemProps } from './ui'
 import { type DeepPartial } from '$/shared/types'
 import { Icon, Slot, Uncontrolled } from '$/shared/ui'
 import type { FieldAttachment } from '$/shared/ui/formElements/ui'
-import { cn } from '$/shared/utils'
+import { cn, mergeRefs } from '$/shared/utils'
 
 type FieldAttachmentProps = React.ComponentPropsWithoutRef<typeof FieldAttachment>
 
@@ -88,7 +88,13 @@ export type SelectBaseProps<Multi extends boolean> = Omit<
    * Кастомизация отображения текста при пустом списке
    */
   emptyList?: (query?: string) => React.ReactNode
+  /**
+   * Добавляет option который, позволяет очистить значение селекта
+   */
+  reset?: string
 }
+
+const LIST_OFFSET = 4
 
 export const SelectBase = forwardRef<HTMLInputElement, SelectBaseProps<boolean>>(
   (
@@ -111,11 +117,27 @@ export const SelectBase = forwardRef<HTMLInputElement, SelectBaseProps<boolean>>
       immediate,
       disabled,
       emptyList,
+      reset,
       ...props
     },
     ref
   ) => {
     const { root, list, ...innerClasses } = classes || {}
+
+    const { refs, floatingStyles } = useFloating({
+      placement: 'bottom-start',
+      strategy: 'absolute',
+      middleware: [
+        flip({
+          boundary: 'clippingAncestors',
+          crossAxis: false
+        }),
+        offset(LIST_OFFSET)
+      ],
+      whileElementsMounted: autoUpdate
+    })
+
+    const triggerRef = useRef<HTMLButtonElement>(null)
 
     const { options, inputValue, onValueChange, onInputValueChange, selectDisplayValue } = useSelectController({
       options: initialOptions,
@@ -141,7 +163,8 @@ export const SelectBase = forwardRef<HTMLInputElement, SelectBaseProps<boolean>>
               }
             : undefined
         }
-        by={compareByValue}
+        // @ts-expect-error headless ui issue
+        by='value'
         onBlur={externalHandlers?.onBlur}
         onFocus={externalHandlers?.onFocus}
         onClick={externalHandlers?.onClick}
@@ -165,9 +188,10 @@ export const SelectBase = forwardRef<HTMLInputElement, SelectBaseProps<boolean>>
 
           return (
             <div className={cn('relative w-full', root)}>
-              <TriggerButton className='w-full' disabled={disabled}>
+              <TriggerButton ref={triggerRef} className='w-full' disabled={disabled}>
                 <ComboboxInput
-                  ref={ref}
+                  // @ts-expect-error asdf
+                  ref={mergeRefs(ref, refs.setReference)}
                   data-test-id='select-input'
                   as={Uncontrolled.InputBase}
                   label={label}
@@ -217,17 +241,20 @@ export const SelectBase = forwardRef<HTMLInputElement, SelectBaseProps<boolean>>
                 />
               </TriggerButton>
               <ComboboxOptions
+                portal
                 data-test-id='select-list'
-                as={motion.ul}
+                ref={refs.setFloating}
+                as='ul'
+                style={{
+                  ...floatingStyles,
+                  width: triggerRef.current?.getBoundingClientRect().width
+                }}
                 className={cn(
-                  'customScrollbar-y absolute left-0 top-full z-10 mt-1',
+                  'customScrollbar-y z-10 mt-1',
                   'max-h-[264px] w-full overflow-y-auto bg-color-white',
                   'rounded-md p-1 shadow-[0_8px_20px_0px_rgba(41,41,41,0.08)]',
                   list
                 )}
-                initial={{ opacity: 0, translateY: 10 }}
-                animate={{ opacity: 1, translateY: 0 }}
-                exit={{ opacity: 0, translateY: 10 }}
               >
                 {virtual ? (
                   ({ option }) => (
@@ -247,21 +274,37 @@ export const SelectBase = forwardRef<HTMLInputElement, SelectBaseProps<boolean>>
                     />
                   )
                 ) : options.length > 0 ? (
-                  options.map((option, index) => (
-                    <SelectItem
-                      data-test-id={`select-item-${index}`}
-                      key={option.value}
-                      option={option}
-                      isMulti={isMulti}
-                      classes={innerClasses}
-                      displayValue={displayValue}
-                      motionProps={{
-                        initial: { opacity: 0 },
-                        animate: { opacity: 1 },
-                        transition: { delay: index / 25 }
-                      }}
-                    />
-                  ))
+                  <>
+                    {reset && !isMulti && (
+                      <SelectItem
+                        data-test-id='select-item-empty'
+                        option={{ value: null, label: reset }}
+                        isMulti={isMulti}
+                        classes={innerClasses}
+                        displayValue={displayValue}
+                        motionProps={{
+                          initial: { opacity: 0 },
+                          animate: { opacity: 1 },
+                          transition: { delay: 0 / 25 }
+                        }}
+                      />
+                    )}
+                    {options.map((option, index) => (
+                      <SelectItem
+                        data-test-id={`select-item-${index}`}
+                        key={option.value}
+                        option={option}
+                        isMulti={isMulti}
+                        classes={innerClasses}
+                        displayValue={displayValue}
+                        motionProps={{
+                          initial: { opacity: 0 },
+                          animate: { opacity: 1 },
+                          transition: { delay: index / 25 }
+                        }}
+                      />
+                    ))}
+                  </>
                 ) : emptyList ? (
                   emptyList(externalInputValue || inputValue)
                 ) : (

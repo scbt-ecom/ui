@@ -3,6 +3,10 @@ export class TypeGuards {
     return typeof value === 'string'
   }
 
+  static isBoolean(value: unknown): value is boolean {
+    return typeof value === 'boolean'
+  }
+
   static isStringEmpty(value: unknown): value is string {
     return this.isString(value) && !value.length
   }
@@ -25,5 +29,9 @@ export class TypeGuards {
 
   static isArrayEmpty(value: unknown): value is boolean {
     return this.isArray(value) && !value.length
+  }
+
+  static isObject(value: unknown): value is Record<string, unknown> {
+    return typeof value === 'object' && value !== null && !Array.isArray(value)
   }
 }

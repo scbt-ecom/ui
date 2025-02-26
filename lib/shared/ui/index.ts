@@ -1,5 +1,4 @@
 // # BASE
-export * from './section'
 export * from './responsiveContainer'
 export * from './button'
 export * from './buttonIcon'
@@ -18,6 +17,8 @@ export * from './progressBar'
 export * from './tabSwitcher'
 export * from './modal'
 export * from './notification'
+export * from './table'
+export * from './pagination'
 
 // # PROVIDERS
 export * from './providers'

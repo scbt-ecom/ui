@@ -2,29 +2,27 @@
 
 import { type ReactElement } from 'react'
 import { type AdvantageClasses, type AdvantagesProps } from '../advantages/Advantages'
-import { type BannerClasses, type ButtonsConfig } from './model/types'
-import { BannerWithSeparateImg } from './ui/banners'
-import { BannerImageFull } from './ui/banners'
+import { type BackgroundBannerColorsValues } from './model/constants'
+import { type BannerClasses, type ButtonsConfig, type ImgBanner } from './model/types'
+import { BannerImageFull, BannerWithSeparateImg } from './ui'
 
 export interface BannerProps {
   headTitle: string | ReactElement
   subtitle: string | ReactElement
-  img?: string
-  imgSets?: {
-    large: string
-    mob: string
-    type?: string
-  }
+  imgDesktop: ImgBanner
+  imgMobile: ImgBanner
   buttonsConfig: ButtonsConfig
-  advantagesConfig?: AdvantagesProps
+  advantages?: AdvantagesProps
   classes?: BannerClasses & {
     advantages?: AdvantageClasses
   }
-  bannerVariant?: 'separateImg' | 'fullImg'
+  withAdvantages?: boolean
+  variant?: 'separateImg' | 'fullImg'
+  color?: BackgroundBannerColorsValues
 }
 
-export const Banner = ({ bannerVariant, ...props }: BannerProps) => {
-  switch (bannerVariant) {
+export const Banner = ({ variant, ...props }: BannerProps) => {
+  switch (variant) {
     case 'separateImg':
       return <BannerWithSeparateImg {...props} />
     case 'fullImg':

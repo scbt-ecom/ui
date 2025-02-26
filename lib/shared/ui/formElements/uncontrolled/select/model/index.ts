@@ -1,2 +1,2 @@
 export type * from './types'
-export { compareByValue } from './compareByValue'
+export { isSingleOption } from './typeGuards'

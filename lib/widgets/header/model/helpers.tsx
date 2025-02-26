@@ -1,5 +1,6 @@
 import type { HeaderProps } from './types'
 import { Button, PhoneView } from '$/shared/ui'
+import { createPhoneNumber } from '$/shared/utils'
 
 export const renderContentVariant = (config: HeaderProps['config']) => {
   const { variant, details } = config
@@ -11,7 +12,7 @@ export const renderContentVariant = (config: HeaderProps['config']) => {
         </Button>
       )
     case 'withPhone':
-      return <PhoneView classes={{ root: 'items-end' }} {...details} />
+      return <PhoneView classes={{ root: 'items-end' }} {...details} phone={createPhoneNumber(details.phone)} />
     default:
       return null
   }

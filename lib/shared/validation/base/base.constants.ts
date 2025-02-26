@@ -29,5 +29,6 @@ export const baseDefaultMessages = {
     const date = TypeGuards.isString(max) ? new Date(max) : max
 
     return `Выбранная дата должна быть не позже ${formatDateToLocaleString(date)}`
-  }
+  },
+  INVALID_URL: () => 'Ссылка введена некорректно. Пример: https://example.com, example.com'
 }

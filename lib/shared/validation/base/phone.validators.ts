@@ -1,5 +1,6 @@
 import z from 'zod'
 import { baseDefaultMessages } from './base.constants'
+import { TypeGuards } from '$/shared/utils'
 
 export type PhoneValidationOptions<Required extends boolean> = {
   /**
@@ -11,7 +12,7 @@ export type PhoneValidationOptions<Required extends boolean> = {
    * игнорирует символы для проверки поля исключая данные символы
    * @default /[()+_ -]/g
    */
-  maskSymbols?: RegExp
+  maskSymbols?: RegExp | string
   /**
    * указывает что поле обязательное
    */
@@ -28,8 +29,10 @@ export type PhoneValidationOptions<Required extends boolean> = {
 const getPhoneRequired = (props?: Omit<PhoneValidationOptions<true>, 'required'>) => {
   const { ignoreMask = true, maskSymbols = /[()+_ -]/g, message } = props || {}
 
+  const mask = TypeGuards.isString(maskSymbols) ? new RegExp(maskSymbols) : maskSymbols
+
   let schema = z.string().superRefine((value, context) => {
-    const cleanValue = value.replace(maskSymbols, '')
+    const cleanValue = value.replace(mask, '')
 
     const operatorCode = cleanValue.charAt(1)
 
@@ -53,7 +56,7 @@ const getPhoneRequired = (props?: Omit<PhoneValidationOptions<true>, 'required'>
   })
 
   if (ignoreMask) {
-    schema = schema.transform((value) => value.replace(maskSymbols, '')) as unknown as typeof schema
+    schema = schema.transform((value) => value.replace(mask, '')) as unknown as typeof schema
   }
 
   return schema.default('')
@@ -66,8 +69,10 @@ type PhoneRequiredSchema = ReturnType<typeof getPhoneRequired>
 const getPhoneOptional = (props?: Omit<PhoneValidationOptions<false>, 'required'>) => {
   const { ignoreMask = true, maskSymbols = /[()+_ -]/g, message } = props || {}
 
+  const mask = TypeGuards.isString(maskSymbols) ? new RegExp(maskSymbols) : maskSymbols
+
   let schema = z.string().superRefine((value, context) => {
-    const cleanValue = value.replace(maskSymbols, '')
+    const cleanValue = value.replace(mask, '')
 
     const operatorCode = cleanValue.charAt(1)
 
@@ -91,7 +96,7 @@ const getPhoneOptional = (props?: Omit<PhoneValidationOptions<false>, 'required'
   })
 
   if (ignoreMask) {
-    schema = schema.transform((value) => value.replace(maskSymbols, '')) as unknown as typeof schema
+    schema = schema.transform((value) => value.replace(mask, '')) as unknown as typeof schema
   }
 
   return schema.transform((value) => (!value ? undefined : value))

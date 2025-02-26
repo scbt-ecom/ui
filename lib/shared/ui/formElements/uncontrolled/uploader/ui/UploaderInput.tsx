@@ -1,5 +1,6 @@
 import { forwardRef, type Ref } from 'react'
 import { type DropzoneRootProps } from 'react-dropzone'
+import { type ExternalHandlers } from '../UploaderBase'
 import { Icon } from '$/shared/ui/icon'
 import { cn } from '$/shared/utils'
 
@@ -18,10 +19,14 @@ export interface UploaderInputProps {
   invalid?: boolean
   classes?: UploaderInputClasses
   name?: string
+  externalHandlers?: ExternalHandlers
 }
 
 export const UploaderInput = forwardRef(
-  ({ dropzoneState, classes, disabled, invalid, name, ...props }: UploaderInputProps, ref: Ref<HTMLDivElement>) => {
+  (
+    { dropzoneState, classes, disabled, invalid, name, externalHandlers, ...props }: UploaderInputProps,
+    ref: Ref<HTMLDivElement>
+  ) => {
     const dropzoneProps = dropzoneState.getRootProps()
     return (
       <div
@@ -48,6 +53,7 @@ export const UploaderInput = forwardRef(
         <input
           {...props}
           {...dropzoneState.getInputProps()}
+          onClick={externalHandlers?.onClick}
           name={name}
           ref={dropzoneState.inputRef}
           disabled={disabled}

@@ -23,7 +23,7 @@ const meta = {
       const [optionsCount, setOptionsCount] = useState<number>(10)
 
       return (
-        <div className='flex w-[600px] flex-col gap-y-2'>
+        <div className='my-[1000px] flex w-[600px] flex-col gap-y-2'>
           <label>
             Количество элементов
             <select
@@ -84,7 +84,24 @@ export const Base: Story = {
 }
 
 export const WithState: Story = {
-  args: {},
+  render: (props) => {
+    const [value, setValue] = useState<SelectItemOption | null>(null)
+
+    return (
+      <>
+        {value ? (props.displayValue ? props.displayValue(value) : value.label) : 'Выберите значение'}
+        {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+        {/* @ts-expect-error */}
+        <Uncontrolled.SelectBase {...props} value={value} onChange={setValue} />
+      </>
+    )
+  }
+}
+
+export const WithReset: Story = {
+  args: {
+    reset: 'Очистить'
+  },
   render: (props) => {
     const [value, setValue] = useState<SelectItemOption | null>(null)
 

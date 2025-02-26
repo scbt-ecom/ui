@@ -52,12 +52,21 @@ export const useSelectController = ({
     )
   }, [isSearchable, initialOptions, withDisplayValue, inputValue, externalInputValue, filterDisabled])
 
+  const resetValue = () => {
+    if (onChange) onChange(undefined)
+    if (externalHandlers?.onChange) externalHandlers?.onChange(undefined)
+  }
+
   const onValueChange = (value: SelectItemOption | SelectItemOption[] | null) => {
     if (!value) {
       return
     }
 
     if (!Array.isArray(value)) {
+      if (!value.value) {
+        return resetValue()
+      }
+
       const label = withDisplayValue(value)
       setInputValue(label)
       if (externalOnInputChange) externalOnInputChange(label)

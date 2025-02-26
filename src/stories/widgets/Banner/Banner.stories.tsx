@@ -8,7 +8,7 @@ import {
   mockBannerFullImageWithAdvantages,
   mockBannerOnlyPrimaryButton,
   mockWithAdvantages
-} from './model/mocks.ts'
+} from './model/mocks'
 import { Banner, Header } from '$/widgets'
 
 const meta = {
