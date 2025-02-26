@@ -1,13 +1,22 @@
 import { useState } from 'react'
 import { type Control, type SubmitHandler } from 'react-hook-form'
-import { type Approvement, type ApprovementType, type Chips, type ChipsType, defaultValues, type Schema, schema } from './model'
+import { type TypeOf } from 'zod'
+import {
+  type Approvement,
+  type ApprovementType,
+  type Chips,
+  type ChipsType,
+  type FieldValidation,
+  getDynamicSchema
+} from './model'
 import { useControlledForm } from '$/shared/hooks'
 import { Button, type CheckedState, Heading, Icon, Uncontrolled } from '$/shared/ui'
 import { cn } from '$/shared/utils'
+import { ZodUtils } from '$/shared/validation'
 import { type FieldElement, FieldMapper } from '$/widgets/fieldMapper'
 
-type DynamicFormProps<AType extends ApprovementType, CType extends ChipsType> = {
-  fields: FieldElement[]
+export type DynamicFormProps<AType extends ApprovementType, CType extends ChipsType> = {
+  fields: FieldElement<any, any, { validation: FieldValidation }>[]
   title: string
   progress: []
   approvement: Approvement<AType>
@@ -20,6 +29,8 @@ const withApprovement = <Type extends ApprovementType>(
   checked: CheckedState,
   onCheckedChange: (checked: CheckedState) => void
 ): React.ReactNode => {
+  console.log(approvement)
+
   if (!approvement.type) return null
 
   if (approvement.type === 'text') {
@@ -46,16 +57,18 @@ export const DynamicForm = <AType extends ApprovementType, CType extends ChipsTy
   // progress,
   approvement,
   chips,
-  submitContent
+  submitContent = 'Submit'
 }: DynamicFormProps<AType, CType>) => {
   const [checked, onCheckedChange] = useState<CheckedState>(false)
 
+  const schema = getDynamicSchema(fields)
+
   const { control, handleSubmit } = useControlledForm({
     schema,
-    defaultValues
+    defaultValues: ZodUtils.getZodDefaults(schema)
   })
 
-  const onSubmit: SubmitHandler<Schema> = (values) => {
+  const onSubmit: SubmitHandler<TypeOf<typeof schema>> = (values) => {
     console.warn(values)
   }
 
@@ -69,7 +82,7 @@ export const DynamicForm = <AType extends ApprovementType, CType extends ChipsTy
             'right-4 top-4 w-max'
           )}
         >
-          <Icon name={chips.image} className='size-4' />
+          {chips.image && <Icon name={chips.image} className='size-4' />}
           {chips.content}
         </div>
       )}

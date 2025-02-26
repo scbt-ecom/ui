@@ -25,7 +25,7 @@ export type Approvement<Type extends ApprovementType> = Type extends 'checkbox'
 type ChipsEnabled = {
   enabled: true
   content: string
-  image: AllowedIcons
+  image?: AllowedIcons
 }
 
 type ChipsDisabled = {

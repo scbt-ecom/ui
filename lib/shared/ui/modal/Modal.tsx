@@ -33,6 +33,12 @@ export const Modal = ({
   closeModal,
   classes
 }: ModalProps) => {
+  if (isModalOpen) {
+    document.body.style.overflow = 'hidden'
+  } else {
+    document.body.style.overflow = 'visible'
+  }
+
   const modalBody = (
     <AnimatePresence>
       {isModalOpen && (

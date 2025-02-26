@@ -23,7 +23,11 @@ export const Base: Story = {
         type: 'InputControl',
         args: {
           name: 'field',
-          label: 'Field'
+          label: 'Field',
+          validation: {
+            type: '',
+            args: {}
+          }
         }
       }
     ],
