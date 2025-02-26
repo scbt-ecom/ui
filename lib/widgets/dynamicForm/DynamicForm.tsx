@@ -31,7 +31,7 @@ const withApprovement = <Type extends ApprovementType>(
 ): React.ReactNode => {
   console.log(approvement)
 
-  if (!approvement.type) return null
+  if (approvement.type === 'off') return null
 
   if (approvement.type === 'text') {
     return approvement.message

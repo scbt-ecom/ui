@@ -1,7 +1,7 @@
 import { type AllowedIcons } from '$/shared/ui'
 
 type ApprovementDisabled = {
-  type: false
+  type: 'off'
 }
 
 type ApprovementCheckbox = {
@@ -14,7 +14,7 @@ type ApprovementText = {
   message: React.ReactElement
 }
 
-export type ApprovementType = false | 'checkbox' | 'text'
+export type ApprovementType = 'off' | 'checkbox' | 'text'
 
 export type Approvement<Type extends ApprovementType> = Type extends 'checkbox'
   ? ApprovementCheckbox

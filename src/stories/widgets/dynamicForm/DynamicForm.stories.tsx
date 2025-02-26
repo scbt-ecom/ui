@@ -38,7 +38,7 @@ export const Base: Story = {
       enabled: false
     },
     approvement: {
-      type: false
+      type: 'off'
     }
   }
 }
