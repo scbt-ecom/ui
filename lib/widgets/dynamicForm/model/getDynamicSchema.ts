@@ -40,8 +40,12 @@ const createFieldSchema = <Schema extends ValidationSchema, Type extends keyof S
 ): ValidationReturn<Schema>[Type] => {
   const validator = schema[type]
 
+  if (TypeGuards.isNil(validator)) {
+    throw new Error(`validation for type ${String(type)} not found`)
+  }
+
   if (!TypeGuards.isFunction(validator)) {
-    throw new Error(`Cannot call ${String(type)} because is not a function`)
+    throw new Error(`Cannot generate ${String(type)} because is not a function`)
   }
 
   return validator(props) as ValidationReturn<Schema>[Type]

@@ -91,6 +91,7 @@ export const DynamicForm = <AType extends ApprovementType, CType extends ChipsTy
           {withApprovement(approvement, checked, onCheckedChange)}
           <Button
             type='submit'
+            disabled={approvement.type === 'checkbox' ? !checked : false}
             className={cn('w-full whitespace-nowrap', {
               'w-full desktop:w-[216px]': Boolean(approvement)
             })}
