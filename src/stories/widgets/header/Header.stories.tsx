@@ -13,38 +13,31 @@ type Story = StoryObj<typeof Header>
 
 export const WithPhone: Story = {
   args: {
-    config: {
-      variant: 'withPhone',
-      details: {
-        phone: '88000000000',
-        text: 'Бесплатно по России'
-      }
+    variant: 'withPhone',
+    details: {
+      phone: '88000000000',
+      text: 'Бесплатно по России'
     }
   }
 }
 
 export const WithButton: Story = {
   args: {
-    config: {
-      variant: 'withButton'
-    }
+    variant: 'withButton'
   }
 }
 
 export const Empty: Story = {
   args: {
-    config: {
-      variant: 'empty',
-      details: {}
-    }
+    variant: 'empty',
+    details: {}
   }
 }
 
 export const WithOtherLogo: Story = {
   args: {
     logoType: 'business',
-    config: {
-      variant: 'withButton'
-    }
+
+    variant: 'withButton'
   }
 }

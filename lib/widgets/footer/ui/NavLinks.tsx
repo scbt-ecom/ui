@@ -1,4 +1,4 @@
-import type { Config } from '../model/types'
+import type { Details } from '../model/types'
 import { CustomLink } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
@@ -13,11 +13,10 @@ export type NavigationLinksClasses = {
 
 interface NavLinksProps {
   classes?: NavigationLinksClasses
-  config: Config
+  details: Details[]
 }
 
-export const NavLinks = ({ classes, config }: NavLinksProps) => {
-  const { details } = config || {}
+export const NavLinks = ({ classes, details }: NavLinksProps) => {
   return (
     <div
       className={cn(
