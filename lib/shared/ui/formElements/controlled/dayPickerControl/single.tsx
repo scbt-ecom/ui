@@ -142,6 +142,7 @@ export const SingleDayPicker = ({
           }
         }}
         attachmentProps={{
+          disabled: inputProps.disabled,
           icon: <Icon name='general/calendar' className='text-icon-blue-grey-600' />,
           onClickIcon: onCalendarOpenChange
         }}
