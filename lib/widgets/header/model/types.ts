@@ -52,9 +52,11 @@ interface CommonHeaderProps {
   classes?: HeaderClasses
 }
 
+export type HeaderVariantType = 'empty' | 'withPhone' | 'withButton'
+
 export interface HeaderEmptyProps {
   variant: 'empty'
-  details: {}
+  details?: {}
 }
 
 export interface HeaderWithPhone {
@@ -67,8 +69,10 @@ export interface HeaderWithButton {
   details?: ButtonProps
 }
 
-export type HeaderVariant = HeaderWithButton | HeaderWithPhone | HeaderEmptyProps
+export type HeaderVariant<Type extends HeaderVariantType> = Type extends 'withButton'
+  ? HeaderWithButton
+  : Type extends 'withPhone'
+    ? HeaderWithPhone
+    : HeaderEmptyProps
 
-export type HeaderProps = CommonHeaderProps & {
-  config: HeaderVariant
-}
+export type HeaderProps<Type extends HeaderVariantType> = CommonHeaderProps & HeaderVariant<Type>

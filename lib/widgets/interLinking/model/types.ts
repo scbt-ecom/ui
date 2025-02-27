@@ -16,8 +16,6 @@ export type InterLinkingVariant = 'twoCols' | 'threeCols' | 'fourCols'
 
 export interface InterLinkingRoot {
   headline: string
-  config: {
-    variant: InterLinkingVariant
-    details: Column[]
-  }
+  variant: InterLinkingVariant
+  details: Column[]
 }

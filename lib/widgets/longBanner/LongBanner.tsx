@@ -1,6 +1,6 @@
 import { type ReactElement } from 'react'
 import { containerImgConfig } from './model/cva'
-import { type ButtonConfig, type Config, type LongBannerClasses, type LongBannerConfig } from './model/types'
+import { type ButtonConfig, type Details, type LongBannerClasses, type LongBannerConfig } from './model/types'
 import { TextList, Title } from './ui'
 import { Button, ResponsiveContainer } from '$/shared/ui'
 import { cn } from '$/shared/utils'
@@ -8,14 +8,22 @@ import { cn } from '$/shared/utils'
 export interface LongBannerProps extends LongBannerConfig {
   headline: string | ReactElement
   buttonConfig?: ButtonConfig
-  config: Config
+  details: Details[]
+  intent?: 'twoItems' | 'fourItems'
   imageComponent: ReactElement
   withButton?: boolean
   classes?: LongBannerClasses
 }
 
-export const LongBanner = ({ headline, buttonConfig, withButton = false, config, imageComponent, classes }: LongBannerProps) => {
-  const { intent = 'twoItems', details } = config
+export const LongBanner = ({
+  headline,
+  buttonConfig,
+  withButton = false,
+  intent = 'twoItems',
+  details,
+  imageComponent,
+  classes
+}: LongBannerProps) => {
   const isFourItems = intent === 'fourItems'
   const isTwoItems = intent === 'twoItems'
 

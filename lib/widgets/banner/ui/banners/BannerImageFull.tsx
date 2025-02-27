@@ -39,7 +39,7 @@ export const BannerImageFull = ({
         classes?.advantageContainer
       )}
     >
-      {advantages?.config.details && advantages?.config.details?.length > 0 && <Advantages {...advantages} />}
+      {advantages?.details && advantages?.details?.items.length > 0 && <Advantages {...advantages} />}
     </div>
   )
 
@@ -50,13 +50,13 @@ export const BannerImageFull = ({
         data-test-id='banner'
         className={cn('relative h-[552px] desktop:h-[456px]', classes?.root)}
       >
-        <div className='absolute bottom-0 left-0 right-0 top-0 z-[-1] mx-auto h-full max-w-[1920px] desktop:h-[456px]'>
+        <div className='absolute bottom-0 left-0 right-0 top-0 mx-auto h-full max-w-[1920px] desktop:h-[456px]'>
           {isMobile ? imgMob : imgDesk}
         </div>
         <ResponsiveContainer className={cn('h-full', classes?.container)}>
           <div className={cn('flex h-full', classes?.wrapper)}>
             <div className={cn('flex w-[328px] flex-col gap-10 pt-6 desktop:w-full desktop:pt-20', classes?.textBlock)}>
-              <div className='flex flex-col gap-4'>
+              <div className='z-10 flex flex-col gap-4'>
                 <div
                   dangerouslySetInnerHTML={{ __html: headTitle }}
                   className={cn('mob-headline-bold-m text-color-dark desktop:desk-headline-bold-l', classes?.title)}
@@ -70,10 +70,10 @@ export const BannerImageFull = ({
             </div>
           </div>
 
-          {isDesktop && advantage}
+          {isDesktop && advantages?.enabled && advantage}
         </ResponsiveContainer>
       </section>
-      {isMobile && advantage}
+      {isMobile && advantages?.enabled && advantage}
     </>
   )
 }

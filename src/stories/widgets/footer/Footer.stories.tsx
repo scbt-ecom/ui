@@ -22,41 +22,36 @@ const defaultLigal = `Кредит на бизнес цели, срок 3, 6, 9,
 
 export const Base: Story = {
   args: {
-    renderBlocks: {
-      withNavLinks: false,
-      withPhones: false,
-      withSiteMap: false
-    }
+    phones: {
+      enabled: false
+    },
+    siteMap: false
   }
 }
 
 export const WithPhone: Story = {
   args: {
-    renderBlocks: {
-      withNavLinks: false,
-      withPhones: true,
-      withSiteMap: false
-    },
-    phones: [{ text: 'Звонок по России (бесплатно)', phone: '88001000006' }]
+    siteMap: false,
+    phones: { items: [{ text: 'Звонок по России (бесплатно)', phone: '88001000006' }] }
   }
 }
 
 export const BaseWithLigal: Story = {
   args: {
-    ligal: defaultLigal,
-    renderBlocks: {
-      withNavLinks: false,
-      withPhones: false,
-      withSiteMap: false
+    ligal: {
+      text: defaultLigal,
+      enabled: true
+    },
+    siteMap: false,
+    phones: {
+      enabled: false
     }
   }
 }
 
 export const Seo: Story = {
   args: {
-    ligal: defaultLigal,
-    config: {
-      details: defaultNavigationLinks
-    }
+    ligal: { text: defaultLigal, enabled: true },
+    details: defaultNavigationLinks
   }
 }

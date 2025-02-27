@@ -12,15 +12,16 @@ export interface AdvantageClasses {
 }
 
 export interface AdvantagesProps {
-  config: {
+  details: {
     variant: 'threeCards' | 'fourCards'
-    details: AdvantageItem[]
+    items: AdvantageItem[]
   }
+  enabled?: boolean
   classes?: AdvantageClasses
 }
 
-export const Advantages = ({ config, classes }: AdvantagesProps) => {
-  const { variant, details: advantagesList } = config
+export const Advantages = ({ details, classes }: AdvantagesProps) => {
+  const { variant, items } = details ?? {}
 
   return (
     <div
@@ -32,7 +33,7 @@ export const Advantages = ({ config, classes }: AdvantagesProps) => {
         classes?.root
       )}
     >
-      {advantagesList?.map(({ title, description }) => (
+      {items?.map(({ title, description }) => (
         <div
           key={title}
           className={cn(
