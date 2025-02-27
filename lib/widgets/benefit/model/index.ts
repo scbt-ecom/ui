@@ -1,1 +1,1 @@
-export type { AllowedBannerBackgroundColor } from './types.ts'
+export type { AllowedBannerBackgroundColor, BenefitColors } from './types.ts'

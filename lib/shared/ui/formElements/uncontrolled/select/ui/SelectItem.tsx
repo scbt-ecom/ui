@@ -69,6 +69,15 @@ export const SelectItem = forwardRef<HTMLLIElement, SelectItemProps>(
                 </p>
               )}
             </ContentWrapper>
+            {option.attachment && option.attachment.right && (
+              <FieldAttachment
+                {...option.attachment.right}
+                classes={{
+                  fieldAttachmentRoot: cn('ml-auto', option.attachment.right?.classes?.fieldAttachmentRoot),
+                  ...option.attachment.right?.classes
+                }}
+              />
+            )}
           </motion.li>
         )}
       </ComboboxOption>
