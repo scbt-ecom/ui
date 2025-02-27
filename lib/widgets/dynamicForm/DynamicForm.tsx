@@ -29,8 +29,6 @@ const withApprovement = <Type extends ApprovementType>(
   checked: CheckedState,
   onCheckedChange: (checked: CheckedState) => void
 ): React.ReactNode => {
-  console.log(approvement)
-
   if (approvement.type === 'off') return null
 
   if (approvement.type === 'text') {
@@ -54,7 +52,7 @@ const withApprovement = <Type extends ApprovementType>(
 export const DynamicForm = <AType extends ApprovementType, CType extends ChipsType>({
   fields,
   title,
-  // progress,
+  // progress, TODO: its need later
   approvement,
   chips,
   submitContent = 'Submit'

@@ -80,7 +80,7 @@ export const getDynamicSchema = <TFieldValues extends FieldValues>(
     acc[field.name] = validation
 
     return acc
-  }, {} as ZodRawShape)
+  }, {})
 
   return object(shape)
 }
