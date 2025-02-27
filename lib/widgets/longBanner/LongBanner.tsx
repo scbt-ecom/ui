@@ -5,17 +5,17 @@ import { TextList, Title } from './ui'
 import { Button, ResponsiveContainer } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
-export interface LongBannerProps extends LongBannerConfig {
+export interface LongBannerProps<Enabled extends boolean> extends LongBannerConfig {
   headline: string | ReactElement
   buttonConfig?: ButtonConfig
-  details: Details[]
+  details: Details<Enabled>[]
   intent?: 'twoItems' | 'fourItems'
   imageComponent: ReactElement
   withButton?: boolean
   classes?: LongBannerClasses
 }
 
-export const LongBanner = ({
+export const LongBanner = <Enabled extends boolean>({
   headline,
   buttonConfig,
   withButton = false,
@@ -23,7 +23,7 @@ export const LongBanner = ({
   details,
   imageComponent,
   classes
-}: LongBannerProps) => {
+}: LongBannerProps<Enabled>) => {
   const isFourItems = intent === 'fourItems'
   const isTwoItems = intent === 'twoItems'
 

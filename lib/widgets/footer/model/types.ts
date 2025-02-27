@@ -32,24 +32,50 @@ export interface FooterPhones {
   text: string
 }
 
-export type SocialsLinks = {
-  enabled?: boolean
-  links?: FooterSocialLinks[]
-}
-export type PhonesType = {
-  enabled?: boolean
-  items?: FooterPhones[]
+type SocialsLinksEnabled = {
+  enabled: true
+  links: FooterSocialLinks[]
 }
 
-export type LigalType = {
-  enabled?: boolean
-  text?: string
+type SocialsLinksDisabled = {
+  enabled: false
 }
 
-export type CopyrightType = {
-  enabled?: boolean
-  text?: string
+export type SocialsLinksType<Enabled extends boolean> = Enabled extends true ? SocialsLinksEnabled : SocialsLinksDisabled
+
+type PhonesEnabled = {
+  enabled: true
+  items: FooterPhones[]
 }
+
+type PhonesDisabled = {
+  enabled: false
+}
+
+export type PhonesType<Enabled extends boolean> = Enabled extends true ? PhonesEnabled : PhonesDisabled
+
+type LigalEnabled = {
+  enabled: true
+  text: string
+}
+
+type LigalDisabled = {
+  enabled: false
+}
+
+export type LigalType<Enabled extends boolean> = Enabled extends true ? LigalEnabled : LigalDisabled
+
+type CopyrightEnabled = {
+  enabled: true
+  text: string
+}
+
+type CopyrightDisabled = {
+  enabled: true
+  text: string
+}
+
+export type CopyrightType<Enabled extends boolean> = Enabled extends true ? CopyrightEnabled : CopyrightDisabled
 
 export type FooterClasses = {
   root?: string

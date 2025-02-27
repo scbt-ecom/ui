@@ -4,30 +4,33 @@ import {
   type FooterClasses,
   type LigalType,
   type PhonesType,
-  type SocialsLinks
+  type SocialsLinksType
 } from './model/types'
 import { Copyright, FooterLogo, NavLinks, PhonesBlock, SiteMap, SocialLinks } from './ui'
 import { Ligal } from './ui/Ligal'
 import { ResponsiveContainer } from '$/shared/ui'
 import { cn, TypeGuards } from '$/shared/utils'
 
-export interface FooterProps {
+export interface FooterProps<Enabled extends boolean> {
   variant: 'fourCols'
-  socialsLinks: SocialsLinks
-  phones: PhonesType
-  ligal: LigalType
-  copyright: CopyrightType
+  socialsLinks: SocialsLinksType<Enabled>
+  phones: PhonesType<Enabled>
+  ligal: LigalType<Enabled>
+  copyright: CopyrightType<Enabled>
   siteMap?: boolean
   details: Details[]
   classes?: FooterClasses
 }
 
-export const Footer = ({ socialsLinks, phones, ligal, copyright, classes, details, siteMap = true }: FooterProps) => {
-  const { enabled: socialsLinksEnabled = true, links } = socialsLinks
-  const { enabled: phonesEnabled = true, items: phoneItems } = phones
-  const { enabled: ligalEnabled = true, text: ligalText } = ligal
-  const { enabled: copyrightEnabled = true, text: copyrightText } = copyright
-
+export const Footer = <Enabled extends boolean>({
+  socialsLinks,
+  phones,
+  ligal,
+  copyright,
+  classes,
+  details,
+  siteMap = true
+}: FooterProps<Enabled>) => {
   return (
     <footer id='footer' className={cn('w-full bg-color-footer py-8 desktop:py-10', classes?.root)}>
       <ResponsiveContainer className={cn(classes?.footerContainer)}>
@@ -40,14 +43,14 @@ export const Footer = ({ socialsLinks, phones, ligal, copyright, classes, detail
           >
             <div className={cn(classes?.footerSocialBlock)}>
               <FooterLogo classes={classes?.footerLogo} />
-              {socialsLinksEnabled && <SocialLinks socialsLinks={links ?? []} classes={classes?.socialLinks} />}
+              {socialsLinks.enabled && <SocialLinks socialsLinks={socialsLinks.links} classes={classes?.socialLinks} />}
             </div>
 
-            {phonesEnabled && <PhonesBlock phones={phoneItems ?? []} classes={classes?.phonesBlock} />}
+            {phones.enabled && <PhonesBlock phones={phones.items} classes={classes?.phonesBlock} />}
           </div>
 
           {!TypeGuards.isArrayEmpty(details) && <NavLinks details={details} classes={classes?.navLinks} />}
-          {ligalEnabled && <Ligal text={ligalText || ''} />}
+          {ligal.enabled && <Ligal text={ligal.text} />}
 
           <div
             className={cn(
@@ -55,7 +58,7 @@ export const Footer = ({ socialsLinks, phones, ligal, copyright, classes, detail
               classes?.footerBottom
             )}
           >
-            {copyrightEnabled && <Copyright text={copyrightText ?? ''} classes={classes?.copyright} />}
+            {copyright.enabled && <Copyright text={copyright.text} classes={classes?.copyright} />}
             {siteMap && <SiteMap classes={classes?.siteMap} />}
           </div>
         </div>

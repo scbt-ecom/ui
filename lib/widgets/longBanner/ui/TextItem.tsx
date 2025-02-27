@@ -3,7 +3,7 @@ import { type TextItemProps } from '../model/types'
 import { Icon, Popover } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
-export const TextItem = ({ data, intent }: TextItemProps) => {
+export const TextItem = <Enabled extends boolean>({ data, intent }: TextItemProps<Enabled>) => {
   const {
     title,
     description,
@@ -18,7 +18,7 @@ export const TextItem = ({ data, intent }: TextItemProps) => {
           <h4 className={cn('mob-title-bold-m text-color-dark')}>{title}</h4>
           {popover.enabled && (
             <Popover triggerElement={<Icon className={cn('size-5 text-icon-blue-grey-600')} name='info/helpCircle' />}>
-              {popover?.text}
+              {popover.text}
             </Popover>
           )}
         </div>

@@ -4,15 +4,10 @@ import { type itemConfig } from './cva'
 
 export type LongBannerConfig = VariantProps<typeof itemConfig>
 
-export type Config = {
-  intent?: 'twoItems' | 'fourItems'
-  details: Details[]
-}
-
-export type Details = {
+export type Details<Enabled extends boolean> = {
   title: string
   description: string
-  popover?: Popover
+  popover?: Popover<Enabled>
 }
 
 export interface ButtonConfig {
@@ -20,10 +15,16 @@ export interface ButtonConfig {
   onClick?: () => void
 }
 
-export type Popover = {
-  enabled: boolean
+type PopoverEnabled = {
+  enabled: true
   text?: string
 }
+
+type PopoverDisabled = {
+  enabled: false
+}
+
+export type Popover<Enabled extends boolean> = Enabled extends true ? PopoverEnabled : PopoverDisabled
 
 export interface LongBannerClasses {
   root?: string
@@ -36,10 +37,10 @@ export interface LongBannerClasses {
   button?: string
 }
 
-export interface TextItemProps extends LongBannerConfig {
+export interface TextItemProps<Enabled extends boolean> extends LongBannerConfig {
   data: {
     title: string | ReactElement
     description: string | ReactElement
-    popover?: Popover
+    popover?: Popover<Enabled>
   }
 }
