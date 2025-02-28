@@ -27,13 +27,19 @@ export const Base: Story = {
           validation: {
             type: '',
             args: {}
+          },
+          progress: {
+            progress: 0,
+            maxPercent: 0
           }
         }
       }
     ],
     submitContent: 'Далее',
     title: 'Оформите заявку на кредит',
-    progress: [],
+    progress: {
+      enabled: false
+    },
     chips: {
       enabled: false
     },
