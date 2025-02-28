@@ -34,7 +34,7 @@ export const MonthCaption = ({
   return (
     <div
       {...props}
-      className={cn('mb-2 flex h-fit items-center justify-between border-b-[1px] border-warm-grey-200 pb-2', className)}
+      className={cn('relative mb-2 flex h-fit items-center justify-between border-b-[1px] border-warm-grey-200 pb-2', className)}
     >
       <div className='flex content-center justify-center'>
         {month && (

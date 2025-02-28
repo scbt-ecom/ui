@@ -16,7 +16,7 @@ export const SelectList = ({ dates, selected, onSelect, className, mode, ...prop
       {...props}
       layout
       initial={{ opacity: 0, translateY: -20 }}
-      animate={{ opacity: 1, translateY: 5 }}
+      animate={{ opacity: 1, translateY: 8 }}
       exit={{ opacity: 0 }}
       className={cn(
         'customScrollbar-y absolute left-0 top-[50px] z-10 max-h-[280px] w-full translate-y-2 list-none overflow-y-scroll bg-color-white pr-1.5',

@@ -1,4 +1,5 @@
 import { forwardRef, useRef, useState } from 'react'
+import { createPortal } from 'react-dom'
 import { format, isValid, parse } from 'date-fns'
 import { AnimatePresence } from 'framer-motion'
 import { type InputBaseClasses } from '../input/Input'
@@ -124,17 +125,19 @@ export const DayPickerBase = forwardRef<HTMLInputElement, DayPickerProps>(
               disabled
             }}
           />
-          {calendarOpen && (
-            <Calendar
-              required
-              mode='single'
-              month={month}
-              onMonthChange={setMonth}
-              selected={date}
-              onSelect={onDateChange}
-              className='absolute right-0 top-full'
-            />
-          )}
+          {calendarOpen &&
+            createPortal(
+              <Calendar
+                required
+                mode='single'
+                month={month}
+                onMonthChange={setMonth}
+                selected={date}
+                onSelect={onDateChange}
+                className='absolute right-0 top-full'
+              />,
+              document.body
+            )}
         </AnimatePresence>
       </div>
     )
