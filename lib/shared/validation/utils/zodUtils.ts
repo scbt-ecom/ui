@@ -97,8 +97,9 @@ export class ZodUtils {
       }
     }
 
-    if (zodSchema instanceof z.ZodEffects) {
-      return processZodEffects(zodSchema)
+    // @ts-expect-error asf
+    if (zodSchema instanceof z.ZodEffects || zodSchema._def.typeName === 'ZodEffects') {
+      return processZodEffects(zodSchema as unknown as z.ZodEffects<any>)
     }
 
     const defaults = {} as Schema
