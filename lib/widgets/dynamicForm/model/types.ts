@@ -35,3 +35,23 @@ type ChipsDisabled = {
 export type ChipsType = boolean
 
 export type Chips<Type extends ChipsType> = Type extends true ? ChipsEnabled : ChipsDisabled
+
+type ProgressEnabled = {
+  enabled: true
+  maxPercent: number
+  title: string
+  subtitle: string
+}
+
+type ProgressDisabled = {
+  enabled: false
+}
+
+export type ProgressType = boolean
+
+export type Progress<Type extends ProgressType> = Type extends true ? ProgressEnabled : ProgressDisabled
+
+export type ProgressField = {
+  progress: number
+  maxPercent: number
+}

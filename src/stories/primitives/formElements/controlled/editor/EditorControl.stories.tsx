@@ -24,6 +24,13 @@ const meta = {
     label: 'Введите HTML',
     helperText: 'Текст преобразуется в HTML'
   },
+  decorators: [
+    (Story) => (
+      <div className='w-[clamp(360px,90vw,1200px)]'>
+        <Story />
+      </div>
+    )
+  ],
   render: (props) => (
     <HookForm<EditorControlProps, Schema>
       {...props}
