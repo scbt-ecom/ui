@@ -36,7 +36,7 @@ const withApprovement = <Type extends ApprovementType>(
   if (approvement.type === 'off') return null
 
   if (approvement.type === 'text') {
-    return approvement.message
+    return <span dangerouslySetInnerHTML={{ __html: approvement.message }} />
   }
 
   return (
@@ -48,7 +48,7 @@ const withApprovement = <Type extends ApprovementType>(
       )}
     >
       <Uncontrolled.CheckboxBase checked={checked} onCheckedChange={onCheckedChange} />
-      {approvement.content}
+      <span dangerouslySetInnerHTML={{ __html: approvement.content }} />
     </label>
   )
 }

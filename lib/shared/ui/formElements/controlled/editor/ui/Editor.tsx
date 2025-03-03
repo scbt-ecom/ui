@@ -81,7 +81,7 @@ export const Editor = forwardRef<EditorRef, EditorProps>(
     }
 
     return (
-      <div className={cn('flex max-w-[528px] flex-col mobile:w-[340px]', classes?.root)}>
+      <div className={cn('flex w-full flex-col', classes?.root)}>
         <div
           className={cn('relative flex w-full flex-col rounded-md border border-solid border-warm-grey-200', classes?.wrapper)}
         >
