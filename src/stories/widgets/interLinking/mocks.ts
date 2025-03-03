@@ -526,24 +526,18 @@ const mockColumns: Column[] = [
 
 export const MOCK_INTERLINKING_FOUR_COLS: InterLinkingRoot = {
   headline: 'Другие предложения по лизингу',
-  config: {
-    variant: 'fourCols',
-    details: mockColumns
-  }
+  variant: 'fourCols',
+  details: mockColumns
 }
 
 export const MOCK_INTERLINKING_THREE_COLS: InterLinkingRoot = {
   headline: 'Другие предложения по лизингу',
-  config: {
-    variant: 'threeCols',
-    details: [mockColumns[0], mockColumns[2], mockColumns[3]]
-  }
+  variant: 'threeCols',
+  details: [mockColumns[0], mockColumns[2], mockColumns[3]]
 }
 
 export const MOCK_INTERLINKING_TWO_COLS: InterLinkingRoot = {
   headline: 'Другие предложения по лизингу',
-  config: {
-    variant: 'twoCols',
-    details: [mockColumns[0], mockColumns[2]]
-  }
+  variant: 'twoCols',
+  details: [mockColumns[0], mockColumns[2]]
 }

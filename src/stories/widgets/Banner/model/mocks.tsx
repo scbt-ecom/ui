@@ -8,8 +8,8 @@ import { type AdvantagesProps } from '$/widgets'
 import { type BannerProps } from '$/widgets/banner/Banner.tsx'
 
 const defaultMockAdvantageProps: AdvantagesProps = {
-  config: {
-    details: [
+  details: {
+    items: [
       { title: 'До 5 млн ₽', description: 'сумма кредита' },
       { title: 'До 5 лет', description: 'срок кредита' },
       { title: 'От 5 минут', description: 'быстрое одобрение' },
@@ -64,8 +64,8 @@ export const mockWithAdvantages: BannerProps = {
       size: 'lg'
     }
   },
-  withAdvantages: true,
-  advantages: defaultMockAdvantageProps
+
+  advantages: { details: { items: defaultMockAdvantageProps.details?.items ?? [], variant: 'fourCards' }, enabled: true }
 }
 export const mockBannerBaseFullImage: BannerProps = {
   headTitle: 'Кредит на любые цели',

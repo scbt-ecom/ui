@@ -11,7 +11,6 @@ export const BannerWithSeparateImg = ({
   advantages,
   classes,
   imgMobile,
-  withAdvantages,
   imgDesktop,
   color
 }: Omit<BannerProps, 'bannerVariant'>) => {
@@ -38,7 +37,7 @@ export const BannerWithSeparateImg = ({
         classes?.advantageContainer
       )}
     >
-      {advantages?.config.details && advantages?.config.details?.length > 0 && <Advantages {...advantages} />}
+      {advantages?.details && advantages?.details?.items.length > 0 && <Advantages {...advantages} />}
     </div>
   )
 
@@ -70,10 +69,10 @@ export const BannerWithSeparateImg = ({
             </div>
           </div>
 
-          {isDesktop && withAdvantages && advantage}
+          {isDesktop && advantages?.enabled && advantage}
         </ResponsiveContainer>
       </section>
-      {isMobile && withAdvantages && advantage}
+      {isMobile && advantages?.enabled && advantage}
     </>
   )
 }

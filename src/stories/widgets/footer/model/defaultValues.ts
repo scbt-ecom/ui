@@ -1,4 +1,4 @@
-import { type Config, type FooterPhones, type FooterSocialLinks } from '$/widgets/footer/model/types'
+import { type Details, type FooterPhones, type FooterSocialLinks } from '$/widgets/footer/model/types'
 
 export const defaultCopyright = `
   <p>
@@ -17,7 +17,7 @@ export const defaultSocialsLinks: FooterSocialLinks[] = [
   { iconName: 'social/classmates', href: 'https://ok.ru/paosovcombank' }
 ]
 
-export const defaultNavigationLinks: Config['details'] = [
+export const defaultNavigationLinks: Details[] = [
   {
     column: [
       {

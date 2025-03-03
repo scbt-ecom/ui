@@ -16,7 +16,6 @@ export interface BannerProps {
   classes?: BannerClasses & {
     advantages?: AdvantageClasses
   }
-  withAdvantages?: boolean
   variant?: 'separateImg' | 'fullImg'
   color?: BackgroundBannerColorsValues
 }
