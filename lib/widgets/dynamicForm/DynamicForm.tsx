@@ -67,7 +67,8 @@ export const DynamicForm = <AType extends ApprovementType, CType extends ChipsTy
 
   const { control, handleSubmit } = useControlledForm({
     schema,
-    defaultValues: ZodUtils.getZodDefaults(schema)
+    defaultValues: ZodUtils.getZodDefaults(schema),
+    mode: 'onBlur'
   })
 
   const fieldsProgress = getFieldsProgress(progress, fields)

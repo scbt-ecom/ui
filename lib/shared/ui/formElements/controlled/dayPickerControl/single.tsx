@@ -69,12 +69,6 @@ export const SingleDayPicker = ({
 
   const [calendarOpen, setCalendarOpen] = useState<boolean>(false)
 
-  if (calendarOpen) {
-    document.body.style.overflow = 'hidden'
-  } else {
-    document.body.style.overflow = 'auto'
-  }
-
   const onCalendarOpenChange = () => {
     setCalendarOpen((prev) => !prev)
   }
@@ -151,7 +145,8 @@ export const SingleDayPicker = ({
         attachmentProps={{
           disabled: inputProps.disabled,
           icon: <Icon name='general/calendar' className='text-icon-blue-grey-600' />,
-          onClickIcon: onCalendarOpenChange
+          onClickIcon: onCalendarOpenChange,
+          ...inputProps.attachmentProps
         }}
       />
       {calendarOpen &&
