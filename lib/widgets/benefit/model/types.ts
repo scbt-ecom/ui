@@ -6,11 +6,6 @@ export type Colors = keyof typeof allowedBannersBackgroundColors
 
 export type AllowedBannerBackgroundColor = `bg-banner-${Colors}`
 
-export type Config = {
-  variant: 'twoCards' | 'threeCards' | 'fourCards'
-  details: Details[]
-}
-
 export type Img = {
   url: string
 }

@@ -1,7 +1,7 @@
 'use client'
 
 import { cva } from 'class-variance-authority'
-import { type Config } from './model/types'
+import { type Details } from './model/types'
 import { BenefitItem, type BenefitItemClasses } from './ui/BenefitItem'
 import { ResponsiveContainer } from '$/shared/ui'
 import { cn } from '$/shared/utils'
@@ -27,12 +27,11 @@ const gridConfig = cva('grid gap-4', {
 export interface BenefitProps {
   headline: string
   classes?: BenefitClasses
-  config: Config
+  variant: 'twoCards' | 'threeCards' | 'fourCards'
+  details: Details[]
 }
 
-export const Benefit = ({ headline, config, classes }: BenefitProps) => {
-  const { details, variant } = config
-
+export const Benefit = ({ headline, details, variant, classes }: BenefitProps) => {
   return (
     <section className={cn('pb-20', classes?.root)}>
       <ResponsiveContainer className={classes?.container}>

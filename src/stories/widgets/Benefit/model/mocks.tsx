@@ -5,83 +5,77 @@ import { cn } from '$/shared/utils'
 import { type BenefitProps } from '$/widgets'
 
 export const mockBenefitDataFourCards: BenefitProps = {
-  config: {
-    variant: 'fourCards',
-    details: [
-      {
-        title: 'Удобное внесение платежей',
-        subtitle: `<p>
+  variant: 'fourCards',
+  details: [
+    {
+      title: 'Удобное внесение платежей',
+      subtitle: `<p>
             Отсрочка платежа и возможность досрочного погашения через мобильное приложении <br />
             «ХАЛВА-Совкомбанк»
           </p>`,
-        img: <img className={cn('h-[246px] object-cover')} src={percentMob} alt='test' />
-      },
-      {
-        title: 'Честные условия',
-        subtitle: 'Гарантия отсутствия скрытых комиссий и платежей. Страхование является добровольным'
-      },
-      {
-        title: 'Честные условия',
-        subtitle: 'Гарантия отсутствия скрытых комиссий и платежей. Страхование является добровольным'
-      },
-      {
-        title: 'Минимум документов',
-        subtitle: `<p>Понадобится только паспорт, если сумма кредита до&nbsp;1&nbsp;млн&nbsp;₽</p>`,
-        img: <img className={cn('h-[246px] object-cover')} src={clockLarge} alt='test' />,
-        buttonText: 'Оформить заявку'
-      }
-    ]
-  },
+      img: <img className={cn('h-[246px] object-cover')} src={percentMob} alt='test' />
+    },
+    {
+      title: 'Честные условия',
+      subtitle: 'Гарантия отсутствия скрытых комиссий и платежей. Страхование является добровольным'
+    },
+    {
+      title: 'Честные условия',
+      subtitle: 'Гарантия отсутствия скрытых комиссий и платежей. Страхование является добровольным'
+    },
+    {
+      title: 'Минимум документов',
+      subtitle: `<p>Понадобится только паспорт, если сумма кредита до&nbsp;1&nbsp;млн&nbsp;₽</p>`,
+      img: <img className={cn('h-[246px] object-cover')} src={clockLarge} alt='test' />,
+      buttonText: 'Оформить заявку'
+    }
+  ],
   headline: `<h2>
       Преимущества <br /> потребительского кредита
     </h2>`
 }
 
 export const mockBenefitDataThreeCards: BenefitProps = {
-  config: {
-    variant: 'threeCards',
-    details: [
-      {
-        title: 'Удобное внесение платежей',
-        subtitle: `<p>
+  variant: 'threeCards',
+  details: [
+    {
+      title: 'Удобное внесение платежей',
+      subtitle: `<p>
             Отсрочка платежа и возможность досрочного погашения через мобильное приложении 
             «ХАЛВА-Совкомбанк»
           </p>`,
-        img: <img className={cn('h-[246px] object-cover')} src={percentMob} alt='test' />,
-        buttonText: 'Оформить заявку'
-      },
-      {
-        title: 'Честные условия',
-        subtitle: 'Гарантия отсутствия скрытых комиссий и платежей. Страхование является добровольным'
-      },
-      {
-        title: 'Минимум документов',
-        subtitle: `<p>Понадобится только паспорт, если сумма кредита до&nbsp;1&nbsp;млн&nbsp;₽</p>`,
-        img: <img className={cn('h-[246px] object-cover')} src={clock} alt='test' />
-      }
-    ]
-  },
+      img: <img className={cn('h-[246px] object-cover')} src={percentMob} alt='test' />,
+      buttonText: 'Оформить заявку'
+    },
+    {
+      title: 'Честные условия',
+      subtitle: 'Гарантия отсутствия скрытых комиссий и платежей. Страхование является добровольным'
+    },
+    {
+      title: 'Минимум документов',
+      subtitle: `<p>Понадобится только паспорт, если сумма кредита до&nbsp;1&nbsp;млн&nbsp;₽</p>`,
+      img: <img className={cn('h-[246px] object-cover')} src={clock} alt='test' />
+    }
+  ],
   headline: `<h2>
       Преимущества <br /> потребительского кредита
     </h2>`
 }
 
 export const mockBenefitDataTwoCards: BenefitProps = {
-  config: {
-    variant: 'twoCards',
-    details: [
-      {
-        title: 'Удобное внесение платежей',
-        subtitle: `<p>Отсрочка платежа и возможность досрочного погашения</p>`,
-        img: <img className={cn('h-[246px] object-cover')} src={percentMob} alt='test' />
-      },
-      {
-        title: 'Минимум документов',
-        subtitle: `<p>Понадобится только паспорт, если сумма кредита до&nbsp;1&nbsp;млн&nbsp;₽</p>`,
-        img: <img className={cn('h-[246px] object-cover')} src={clock} alt='test' />
-      }
-    ]
-  },
+  variant: 'twoCards',
+  details: [
+    {
+      title: 'Удобное внесение платежей',
+      subtitle: `<p>Отсрочка платежа и возможность досрочного погашения</p>`,
+      img: <img className={cn('h-[246px] object-cover')} src={percentMob} alt='test' />
+    },
+    {
+      title: 'Минимум документов',
+      subtitle: `<p>Понадобится только паспорт, если сумма кредита до&nbsp;1&nbsp;млн&nbsp;₽</p>`,
+      img: <img className={cn('h-[246px] object-cover')} src={clock} alt='test' />
+    }
+  ],
   headline: `<h2>
       Преимущества <br /> потребительского кредита
     </h2>`
