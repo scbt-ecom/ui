@@ -98,8 +98,12 @@ export const DynamicForm = <AType extends ApprovementType, CType extends ChipsTy
         {progress.enabled && (
           <ProgressBar
             progress={formattedProgress}
-            topContent={<p>{progress.title}</p>}
-            bottomContent={<p>{progress.subtitle}</p>}
+            topContent={
+              <div dangerouslySetInnerHTML={{ __html: progress.title }} className='flex w-full items-center justify-between' />
+            }
+            bottomContent={
+              <div dangerouslySetInnerHTML={{ __html: progress.subtitle }} className='flex w-full items-center justify-between' />
+            }
             maxPercent={progress.maxPercent}
           />
         )}
