@@ -33,7 +33,8 @@ export const Base: Story = {
     <>
       <Header
         config={{
-          variant: 'withButton'
+          variant: 'empty',
+          details: {}
         }}
       />
       <Banner {...mockBannerBase} />
@@ -46,7 +47,8 @@ export const OnlyPrimaryButton: Story = {
     <>
       <Header
         config={{
-          variant: 'withButton'
+          variant: 'empty',
+          details: {}
         }}
       />
       <Banner {...mockBannerOnlyPrimaryButton} />
@@ -59,7 +61,8 @@ export const WithAdvantages: Story = {
     <>
       <Header
         config={{
-          variant: 'withButton'
+          variant: 'empty',
+          details: {}
         }}
       />
       <Banner {...mockWithAdvantages} />
@@ -72,7 +75,8 @@ export const BaseFullImage: Story = {
     <>
       <Header
         config={{
-          variant: 'withButton'
+          variant: 'empty',
+          details: {}
         }}
       />
       <Banner {...mockBannerBaseFullImage} />
@@ -85,7 +89,8 @@ export const FullImageOnlyPrimaryButton: Story = {
     <>
       <Header
         config={{
-          variant: 'withButton'
+          variant: 'empty',
+          details: {}
         }}
       />
       <Banner {...mockBannerFullImageOnlyPrimaryButton} />
@@ -98,7 +103,8 @@ export const BaseFullImageWithAdvantages: Story = {
     <>
       <Header
         config={{
-          variant: 'withButton'
+          variant: 'empty',
+          details: {}
         }}
       />
       <Banner {...mockBannerFullImageWithAdvantages} />
@@ -111,7 +117,8 @@ export const BaseGradient: Story = {
     <>
       <Header
         config={{
-          variant: 'withButton'
+          variant: 'empty',
+          details: {}
         }}
       />
       <Banner {...mockBannerBaseGradient} />
@@ -124,7 +131,8 @@ export const BaseGradientWithAdvantages: Story = {
     <>
       <Header
         config={{
-          variant: 'withButton'
+          variant: 'empty',
+          details: {}
         }}
       />
       <Banner {...mockBannerBaseGradientAdvantages} />
