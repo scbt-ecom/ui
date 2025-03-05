@@ -6,12 +6,12 @@ type ApprovementDisabled = {
 
 type ApprovementCheckbox = {
   type: 'checkbox'
-  content: React.ReactElement
+  content: string
 }
 
 type ApprovementText = {
   type: 'text'
-  message: React.ReactElement
+  message: string
 }
 
 export type ApprovementType = 'off' | 'checkbox' | 'text'

@@ -15,7 +15,7 @@ import {
 } from './model'
 import { useControlledForm, useFieldsProgress } from '$/shared/hooks'
 import { Button, type CheckedState, Heading, Icon, ProgressBar, Uncontrolled } from '$/shared/ui'
-import { cn } from '$/shared/utils'
+import { cn, ReactHTMLParser } from '$/shared/utils'
 import { ZodUtils } from '$/shared/validation'
 import { type FieldElement, FieldMapper } from '$/widgets/fieldMapper'
 
@@ -36,7 +36,7 @@ const withApprovement = <Type extends ApprovementType>(
   if (approvement.type === 'off') return null
 
   if (approvement.type === 'text') {
-    return <span dangerouslySetInnerHTML={{ __html: approvement.message }} />
+    return <div>{ReactHTMLParser.toReactNodes(approvement.message)}</div>
   }
 
   return (
@@ -48,7 +48,7 @@ const withApprovement = <Type extends ApprovementType>(
       )}
     >
       <Uncontrolled.CheckboxBase checked={checked} onCheckedChange={onCheckedChange} />
-      <span dangerouslySetInnerHTML={{ __html: approvement.content }} />
+      <div>{ReactHTMLParser.toReactNodes(approvement.content)}</div>
     </label>
   )
 }
@@ -98,12 +98,8 @@ export const DynamicForm = <AType extends ApprovementType, CType extends ChipsTy
         {progress.enabled && (
           <ProgressBar
             progress={formattedProgress}
-            topContent={
-              <div dangerouslySetInnerHTML={{ __html: progress.title }} className='flex w-full items-center justify-between' />
-            }
-            bottomContent={
-              <div dangerouslySetInnerHTML={{ __html: progress.subtitle }} className='flex w-full items-center justify-between' />
-            }
+            topContent={<>{ReactHTMLParser.toReactNodes(progress.title)}</>}
+            bottomContent={<>{ReactHTMLParser.toReactNodes(progress.subtitle)}</>}
             maxPercent={progress.maxPercent}
           />
         )}
