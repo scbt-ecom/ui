@@ -32,48 +32,48 @@ export class HTMLParser {
   private static traverse(node: Node, as: 'string' | 'node', elements: (string | Node)[], options?: ParserOptions) {
     const { includeSolidText, recursive, element } = options || {}
 
-    // if node is element node (e.g. HTML | DIV | P | UL or another)
+    // если node является элементом (HTML | DIV | P | UL или другие)
     if (node.nodeType === Node.ELEMENT_NODE) {
-      // collect as Node
+      // собираем как Node
       if (as === 'node') {
-        // if not need to filter by element
+        // если фильтрация не нужна
         if (!element) {
           elements.push(node)
           return
         }
 
-        // collect only filtered node
+        // собираем node только по фильтру
         if ((node as Element).tagName.toLowerCase() === element) {
           elements.push(node)
         }
       } else {
-        // collect as string
+        // собираем как строки
         const content = (node as Element).outerHTML.trim()
-        // if not need to filter by element
+        // если фильтрация не нужна
         if (!element) {
           elements.push(content)
           return
         }
-        // collect only filtered element
+        // собираем только по фильтру
         if (content.startsWith(`<${element}`)) {
           elements.push(content)
         }
       }
-      // if recursive provided traverse all nodes inside
+      // проходим по всем нодам рекурсивно
       if (recursive) {
         for (const child of node.childNodes) {
           this.traverse(child, as, elements, options)
         }
       }
     }
-    // collect text nodes
+    // собираем текстовые ноды
     if (includeSolidText) {
       if (node.nodeType === Node.TEXT_NODE) {
-        // collect as Node
+        // собираем как Node
         if (as === 'node') {
           elements.push(node)
         } else {
-          // collect as plain text
+          // собираем как простой текст
           const content = node.textContent
 
           if (content) {

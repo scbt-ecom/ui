@@ -12,13 +12,13 @@ export class ReactHTMLParser {
 
       return content ?? null
     }
-    // if node is element node
+    // если node является элементом
     if (node.nodeType === Node.ELEMENT_NODE) {
       const element = node as Element
       const tagName = element.tagName.toLowerCase()
 
       const attributes: Record<string, string | boolean | Record<string, string>> = {}
-      // collect attributes
+      // собираем атрибуты
       for (const attr of element.attributes) {
         let reactAttrName = attr.name
         let reactAttrValue: string | boolean | Record<string, string> = attr.value
@@ -64,7 +64,7 @@ export class ReactHTMLParser {
       attributes.key = Math.random().toString(36).substring(2, 9)
 
       const children: React.ReactNode[] = []
-      // recursive parse children nodes
+      // рекурсивно парсим все внутренние ноды
       for (const child of element.childNodes) {
         const childNode = this.parseNode(child as Node)
 
