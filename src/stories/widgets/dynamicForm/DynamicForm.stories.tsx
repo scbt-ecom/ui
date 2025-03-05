@@ -27,13 +27,19 @@ export const Base: Story = {
           validation: {
             type: '',
             args: {}
+          },
+          progress: {
+            progress: 0,
+            maxPercent: 0
           }
         }
       }
     ],
     submitContent: 'Далее',
     title: 'Оформите заявку на кредит',
-    progress: [],
+    progress: {
+      enabled: false
+    },
     chips: {
       enabled: false
     },
@@ -59,7 +65,7 @@ export const WithApprovementText: Story = {
     ...Base.args,
     approvement: {
       type: 'text',
-      message: <p>Нажимая на кнопку, вы даете согласие на обработку персональных данных</p>
+      message: '<p>Нажимая на кнопку, вы даете согласие на обработку персональных данных</p>'
     }
   }
 }
@@ -80,7 +86,7 @@ export const WithApprovementCheckbox: Story = {
     ...Base.args,
     approvement: {
       type: 'checkbox',
-      content: <p>Нажимая на кнопку, вы даете согласие на обработку персональных данных</p>
+      content: '<p>Нажимая на кнопку, вы даете согласие на обработку персональных данных</p>'
     }
   }
 }

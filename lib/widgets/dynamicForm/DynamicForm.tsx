@@ -7,18 +7,22 @@ import {
   type Chips,
   type ChipsType,
   type FieldValidation,
-  getDynamicSchema
+  getDynamicSchema,
+  getFieldsProgress,
+  type Progress,
+  type ProgressField,
+  type ProgressType
 } from './model'
-import { useControlledForm } from '$/shared/hooks'
-import { Button, type CheckedState, Heading, Icon, Uncontrolled } from '$/shared/ui'
-import { cn } from '$/shared/utils'
+import { useControlledForm, useFieldsProgress } from '$/shared/hooks'
+import { Button, type CheckedState, Heading, Icon, ProgressBar, Uncontrolled } from '$/shared/ui'
+import { cn, HTMLRenderer } from '$/shared/utils'
 import { ZodUtils } from '$/shared/validation'
 import { type FieldElement, FieldMapper } from '$/widgets/fieldMapper'
 
-export type DynamicFormProps<AType extends ApprovementType, CType extends ChipsType> = {
-  fields: FieldElement<any, any, { validation: FieldValidation }>[]
+export type DynamicFormProps<AType extends ApprovementType, CType extends ChipsType, PType extends ProgressType> = {
+  fields: FieldElement<any, any, { validation: FieldValidation; progress: ProgressField }>[]
   title: string
-  progress: []
+  progress: Progress<PType>
   approvement: Approvement<AType>
   chips: Chips<CType>
   submitContent: string
@@ -32,7 +36,7 @@ const withApprovement = <Type extends ApprovementType>(
   if (approvement.type === 'off') return null
 
   if (approvement.type === 'text') {
-    return approvement.message
+    return <HTMLRenderer html={approvement.message} as='div' />
   }
 
   return (
@@ -44,27 +48,32 @@ const withApprovement = <Type extends ApprovementType>(
       )}
     >
       <Uncontrolled.CheckboxBase checked={checked} onCheckedChange={onCheckedChange} />
-      {approvement.content}
+      <HTMLRenderer html={approvement.content} as='div' />
     </label>
   )
 }
 
-export const DynamicForm = <AType extends ApprovementType, CType extends ChipsType>({
+export const DynamicForm = <AType extends ApprovementType, CType extends ChipsType, PType extends ProgressType>({
   fields,
   title,
-  // progress, TODO: its need later
+  progress,
   approvement,
   chips,
   submitContent = 'Submit'
-}: DynamicFormProps<AType, CType>) => {
+}: DynamicFormProps<AType, CType, PType>) => {
   const [checked, onCheckedChange] = useState<CheckedState>(false)
 
   const schema = getDynamicSchema(fields)
 
   const { control, handleSubmit } = useControlledForm({
     schema,
-    defaultValues: ZodUtils.getZodDefaults(schema)
+    defaultValues: ZodUtils.getZodDefaults(schema),
+    mode: 'onBlur'
   })
+
+  const fieldsProgress = getFieldsProgress(progress, fields)
+
+  const formattedProgress = useFieldsProgress({ control, fields: fieldsProgress || [], schema })
 
   const onSubmit: SubmitHandler<TypeOf<typeof schema>> = (values) => {
     console.warn(values)
@@ -86,6 +95,14 @@ export const DynamicForm = <AType extends ApprovementType, CType extends ChipsTy
       )}
       <Heading as='h3'>{title}</Heading>
       <form onSubmit={handleSubmit(onSubmit)} className='flex w-[328px] flex-col gap-y-6 desktop:w-[524px] desktop:gap-y-8'>
+        {progress.enabled && (
+          <ProgressBar
+            progress={formattedProgress}
+            topContent={<HTMLRenderer html={progress.title} />}
+            bottomContent={<HTMLRenderer html={progress.subtitle} />}
+            maxPercent={progress.maxPercent}
+          />
+        )}
         <FieldMapper control={control as unknown as Control} fields={fields} />
         <div className='mob-body-regular-m flex flex-col items-center justify-center gap-4 desktop:flex-row desktop:justify-between'>
           {withApprovement(approvement, checked, onCheckedChange)}
