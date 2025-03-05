@@ -31,7 +31,7 @@ export type SelectControlProps<
     /**
      * Функция для управления возвращаемым значением
      */
-    returnValue?: (option: SelectItemOption) => string
+    returnValue?: (option?: SelectItemOption) => string
   }
 
 export const SelectControl = <TFieldValues extends FieldValues = FieldValues>({
@@ -66,7 +66,7 @@ export const SelectControl = <TFieldValues extends FieldValues = FieldValues>({
       const values = value.map((item) => (returnValue ? returnValue(item) : item.value))
       onChange(values)
     } else if (isSingleOption(value)) {
-      onChange(returnValue ? returnValue(value) : value.value)
+      onChange(returnValue ? returnValue(value) : value?.value)
     } else {
       onChange(null)
     }
