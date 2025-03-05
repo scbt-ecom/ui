@@ -36,7 +36,7 @@ export class HTMLParser {
     if (node.nodeType === Node.ELEMENT_NODE) {
       // collect as Node
       if (as === 'node') {
-        // if do need to filter by element
+        // if not need to filter by element
         if (!element) {
           elements.push(node)
           return
@@ -49,7 +49,7 @@ export class HTMLParser {
       } else {
         // collect as string
         const content = (node as Element).outerHTML.trim()
-        // if do need to filter by element
+        // if not need to filter by element
         if (!element) {
           elements.push(content)
           return
