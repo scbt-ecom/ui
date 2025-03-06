@@ -66,7 +66,7 @@ export default defineConfig({
     },
     minify: true,
     rollupOptions: {
-      external: Object.keys(dependencies),
+      external: [...Object.keys(dependencies), 'jsdom'],
       onwarn(warning, defaultHandler) {
         if (warning.code === 'SOURCEMAP_ERROR') {
           return
