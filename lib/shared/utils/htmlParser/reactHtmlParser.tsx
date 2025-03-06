@@ -1,5 +1,6 @@
 import { createElement } from 'react'
-import { HTMLParser, type ParserOptions } from './htmlParser'
+import type { BaseHTMLParser, ParserOptions } from './baseHtmlParser'
+import { HTMLParser } from './htmlParser'
 import { NodeHTMLParser } from './nodeHtmlParser'
 
 const isBrowser = typeof window !== 'undefined'
@@ -89,8 +90,8 @@ export class ReactHTMLParser {
    * функция для преобразования html строки в react элементы
    */
   static async toReactNodes(html: string, options?: ParserOptions) {
-    const parser = isBrowser ? HTMLParser : NodeHTMLParser
-    const { nodes } = await parser.parse(html, 'node', options)
+    const parser: BaseHTMLParser = isBrowser ? new HTMLParser(options) : new NodeHTMLParser(options)
+    const { nodes } = await parser.parse(html, 'node')
 
     return nodes.map((node) => this.parseNode(node))
   }

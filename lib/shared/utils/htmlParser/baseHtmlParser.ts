@@ -17,35 +17,20 @@ export type ParserOptions = {
   element?: keyof React.JSX.IntrinsicElements
 }
 
-const isBrowser = typeof window !== 'undefined'
+export abstract class BaseHTMLParser {
+  private readonly TEXT_NODE = 3 as const
+  private readonly ELEMENT_NODE = 1 as const
 
-export class HTMLParser {
-  private static readonly TEXT_NODE = 3 as const
-  private static readonly ELEMENT_NODE = 1 as const
-
-  /**
-   * Преобразует HTML строку в DOM объект.
-   * @param html HTML строка
-   * @returns DOM объект
-   */
-  static async parseFromString(html: string): Promise<Document> {
-    if (!isBrowser) {
-      throw new Error('HTMLParser should only be used in the browser.')
-    }
-
-    const parser = new DOMParser()
-    return parser.parseFromString(html, 'text/html')
-  }
+  protected constructor(private options?: ParserOptions) {}
 
   /**
    * Рекурсивно обходит DOM дерево и собирает данные в зависимости от опций.
    * @param node Текущий узел DOM дерева
    * @param elements Массив для сбора элементов
    * @param as Тип возвращаемых данных ('string' или 'node')
-   * @param options Опции парсинга
    */
-  protected static traverse(node: Node, as: 'string' | 'node', elements: (string | Node)[], options?: ParserOptions) {
-    const { includeSolidText, recursive, element } = options || {}
+  protected traverse(node: Node, as: 'string' | 'node' = 'string', elements: (string | Node)[]) {
+    const { includeSolidText, recursive, element } = this.options || {}
 
     switch (node.nodeType) {
       // если узел - элемент
@@ -75,7 +60,7 @@ export class HTMLParser {
         // если требуется рекурсивно обрабатывать дочерние ноды
         if (recursive) {
           for (const child of node.childNodes) {
-            this.traverse(child, as, elements, options)
+            this.traverse(child, as, elements)
           }
         }
         break
@@ -102,19 +87,10 @@ export class HTMLParser {
    * Парсит HTML строку и возвращает массив тегов или нод в зависимости от опций.
    * @param html HTML строка
    * @param as Тип возвращаемых данных ('string' или 'node')
-   * @param options Опции парсинга
    * @returns Массив тегов или нод
    */
-  static async parse(
-    html: string,
-    as: 'string' | 'node' = 'string',
-    options?: ParserOptions
-  ): Promise<{ stringNodes: string[]; nodes: Node[] }> {
-    if (!isBrowser) {
-      throw new Error('HTMLParser should only be used in the browser.')
-    }
-
-    const { includeBody } = options || {}
+  async parse(html: string, as: 'string' | 'node' = 'string'): Promise<{ stringNodes: string[]; nodes: Node[] }> {
+    const { includeBody } = this.options || {}
 
     const stringNodes: string[] = []
     const nodes: Node[] = []
@@ -123,10 +99,10 @@ export class HTMLParser {
     const elements = as === 'string' ? stringNodes : nodes
 
     if (includeBody) {
-      this.traverse(doc.body, as, elements, options)
+      this.traverse(doc.body, as, elements)
     } else {
       for (const child of doc.body.childNodes) {
-        this.traverse(child, as, elements, options)
+        this.traverse(child, as, elements)
       }
     }
 
@@ -136,12 +112,18 @@ export class HTMLParser {
   /**
    * Считает количество указанных тегов в HTML строке.
    * @param html HTML строка
-   * @param options настройки парсера
    * @returns Количество найденных тегов
    */
-  static async countElements(html: string, options?: ParserOptions): Promise<number> {
-    const { stringNodes } = await this.parse(html, 'string', options)
+  async countElements(html: string): Promise<number> {
+    const { stringNodes } = await this.parse(html, 'string')
 
     return stringNodes.length
   }
+
+  /**
+   * Преобразует HTML строку в DOM объект.
+   * @param html HTML строка
+   * @returns DOM объект
+   */
+  protected abstract parseFromString(html: string): Promise<Document>
 }
