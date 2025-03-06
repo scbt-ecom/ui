@@ -58,7 +58,7 @@ export const BenefitItem = ({
       <Button
         intent='primary'
         className={cn('desktop:w-[200px]', classes?.button)}
-        onClick={() => scrollToElement('personal_form')}
+        onClick={() => scrollToElement({ widgetId: 'stepper' })}
         size='lg'
       >
         {buttonText}
