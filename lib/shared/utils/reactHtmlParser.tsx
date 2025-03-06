@@ -1,19 +1,25 @@
 import { createElement } from 'react'
 import { HTMLParser, type ParserOptions } from './htmlParser'
+import { NodeHTMLParser } from './nodeHtmlParser'
+
+const isBrowser = typeof window !== 'undefined'
 
 export class ReactHTMLParser {
+  private static readonly TEXT_NODE = 3 as const
+  private static readonly ELEMENT_NODE = 1 as const
+
   /**
    * Функция для парсинга ноды в react элемент
    */
   private static parseNode(node: Node): React.ReactNode {
     // if node is text node
-    if (node.nodeType === Node.TEXT_NODE) {
+    if (node.nodeType === this.TEXT_NODE) {
       const content = node.textContent
 
       return content ?? null
     }
     // если node является элементом
-    if (node.nodeType === Node.ELEMENT_NODE) {
+    if (node.nodeType === this.ELEMENT_NODE) {
       const element = node as Element
       const tagName = element.tagName.toLowerCase()
 
@@ -82,8 +88,9 @@ export class ReactHTMLParser {
   /**
    * функция для преобразования html строки в react элементы
    */
-  static toReactNodes(html: string, options?: ParserOptions) {
-    const { nodes } = HTMLParser.parse(html, 'node', options)
+  static async toReactNodes(html: string, options?: ParserOptions) {
+    const parser = isBrowser ? HTMLParser : NodeHTMLParser
+    const { nodes } = await parser.parse(html, 'node', options)
 
     return nodes.map((node) => this.parseNode(node))
   }
