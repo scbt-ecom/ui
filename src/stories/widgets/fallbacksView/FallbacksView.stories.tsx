@@ -26,27 +26,21 @@ export const Base: Story = {
 
 export const Reject: Story = {
   args: {
-    status: 'reject',
-    navigationFn: () => {
-      window.location.replace('https://long-app.sovcombank.ru/')
-    }
+    ...Base.args,
+    status: 'reject'
   }
 }
 
 export const Repeated: Story = {
   args: {
-    status: 'repeated',
-    navigationFn: () => {
-      window.location.replace('https://long-app.sovcombank.ru/')
-    }
+    ...Base.args,
+    status: 'repeated'
   }
 }
 
 export const Error: Story = {
   args: {
-    status: 'error',
-    navigationFn: () => {
-      window.location.replace('https://long-app.sovcombank.ru/')
-    }
+    ...Base.args,
+    status: 'error'
   }
 }
