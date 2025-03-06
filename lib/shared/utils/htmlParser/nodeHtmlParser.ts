@@ -16,11 +16,9 @@ export class NodeHTMLParser extends BaseHTMLParser {
   }
 
   async parseFromString(html: string): Promise<Document> {
-    const { JSDOM } = await import('jsdom')
-
-    if (!JSDOM) {
-      throw new NodeHTMLParserError('Cannot find jsdom in dependencies. Try to install jsdom. pnpm add jsdom')
-    }
+    const { JSDOM } = await import('jsdom').catch((error) => {
+      throw new NodeHTMLParserError('Cannot find jsdom in dependencies. Try to install jsdom', error as Error)
+    })
 
     const dom = new JSDOM(html)
 
