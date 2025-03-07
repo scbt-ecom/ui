@@ -1,0 +1,1 @@
+export { viteAllowedIconsPlugin } from './viteAllowedIconsPlugin'

@@ -7,11 +7,13 @@ import dts from 'vite-plugin-dts'
 import { dependencies } from './package.json'
 import { viteStaticCopy } from 'vite-plugin-static-copy'
 // import { viteStorybookMdxGenerationPlugin } from './plugins'
+import { viteAllowedIconsPlugin } from './plugins'
 
 export default defineConfig({
   plugins: [
     // viteStorybookMdxGenerationPlugin(),
     react(),
+    viteAllowedIconsPlugin(),
     dts({ include: ['lib'], insertTypesEntry: true }),
     typeChecker({ typescript: true }),
     svg({
