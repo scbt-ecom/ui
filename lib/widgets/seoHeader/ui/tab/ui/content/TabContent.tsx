@@ -15,7 +15,7 @@ export const TabContent = ({ categories, ...props }: TabContentProps) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.2 }}
-      className='fixed bg-color-white'
+      className='absolute bg-color-white'
     >
       <div className='mx-auto flex w-[1140px] gap-x-[56px] py-10'>
         {categories.map((category) => {

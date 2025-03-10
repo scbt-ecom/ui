@@ -578,48 +578,87 @@ const mockCategories: Category[] = [
         title: 'Малому бизнесу и ИП',
         children: [
           {
-            title: 'Для бизнеса кредиты',
+            title: 'РКО',
             children: [
               {
-                title: 'Кредиты',
+                title: 'Расчетный счет',
+                link: {
+                  href: 'https://google.com/'
+                },
                 children: [
                   {
-                    title: 'Кредиты наличными',
+                    title: 'Счет для ИП',
                     children: [],
                     link: {
                       href: 'https://www.google.com/'
                     }
                   },
                   {
-                    title: 'Рефинансирование кредита',
+                    title: 'Счет для ЮЛ',
                     children: [],
                     link: {
                       href: 'https://www.google.com/'
                     }
                   },
                   {
-                    title: 'Кредит на карту',
+                    title: 'Счет участника торгов',
                     children: [],
                     link: {
                       href: 'https://www.google.com/'
                     }
                   },
                   {
-                    title: 'Пенсионерам',
+                    title: 'Тарифные планы РКО',
                     children: [],
                     link: {
                       href: 'https://www.google.com/'
                     }
                   },
                   {
-                    title: 'Кредитный калькулятор',
+                    title: 'Регистрация бизнеса',
+                    children: [],
+                    link: {
+                      href: 'https://www.google.com/'
+                    }
+                  }
+                ]
+              },
+              {
+                title: 'Сервисы для бизнеса',
+                link: {
+                  href: 'https://google.com/'
+                },
+                children: [
+                  {
+                    title: 'Интернет-банк',
                     children: [],
                     link: {
                       href: 'https://www.google.com/'
                     }
                   },
                   {
-                    title: 'Все кредиты',
+                    title: 'Бизнес-карты',
+                    children: [],
+                    link: {
+                      href: 'https://www.google.com/'
+                    }
+                  },
+                  {
+                    title: 'Зарплатный проект',
+                    children: [],
+                    link: {
+                      href: 'https://www.google.com/'
+                    }
+                  },
+                  {
+                    title: 'Электронная подпись',
+                    children: [],
+                    link: {
+                      href: 'https://www.google.com/'
+                    }
+                  },
+                  {
+                    title: 'ВЭД',
                     children: [],
                     link: {
                       href: 'https://www.google.com/'
@@ -630,23 +669,253 @@ const mockCategories: Category[] = [
             ]
           },
           {
-            title: 'Для бизнеса РКО',
+            title: 'Кредиты',
             children: [
               {
-                title: 'Карта халва',
-                children: [],
+                title: 'Для развития бизнеса',
                 link: {
                   href: 'https://www.google.com/'
-                }
+                },
+                children: [
+                  {
+                    title: 'Легкий кредит',
+                    link: {
+                      href: 'https://google.com/'
+                    },
+                    children: []
+                  },
+                  {
+                    title: 'Овердрафт',
+                    link: {
+                      href: 'https://google.com/'
+                    },
+                    children: []
+                  },
+                  {
+                    title: 'Кредитная линия',
+                    link: {
+                      href: 'https://google.com/'
+                    },
+                    children: []
+                  },
+                  {
+                    title: 'Лизинг',
+                    link: {
+                      href: 'https://google.com/'
+                    },
+                    children: []
+                  },
+                  {
+                    title: 'Факторинг',
+                    link: {
+                      href: 'https://google.com/'
+                    },
+                    children: []
+                  }
+                ]
+              },
+              {
+                title: 'Участие в госконтрактах и тендерах',
+                link: {
+                  href: 'https://www.google.com/'
+                },
+                children: [
+                  {
+                    title: 'Банковские гарантии',
+                    link: {
+                      href: 'https://google.com/'
+                    },
+                    children: []
+                  },
+                  {
+                    title: 'Кредит на исполнение контракта',
+                    link: {
+                      href: 'https://google.com/'
+                    },
+                    children: []
+                  }
+                ]
               }
             ]
           },
           {
-            title: 'Для бизнеса депозиты',
+            title: 'Эквайринг',
             link: {
               href: 'https://www.google.com/'
             },
-            children: []
+            children: [
+              {
+                title: 'Прием платежей',
+                link: {
+                  href: 'https://google.com'
+                },
+                children: [
+                  {
+                    title: 'Торговый эквайринг',
+                    link: {
+                      href: 'https://google.com'
+                    },
+                    children: []
+                  },
+                  {
+                    title: 'Интернет-эквайринг',
+                    link: {
+                      href: 'https://google.com'
+                    },
+                    children: []
+                  },
+                  {
+                    title: 'Платежи по QR-коду',
+                    link: {
+                      href: 'https://google.com'
+                    },
+                    children: []
+                  },
+                  {
+                    title: 'Прием платежей NFC',
+                    link: {
+                      href: 'https://google.com'
+                    },
+                    children: []
+                  }
+                ]
+              },
+              {
+                title: 'Прием платежей',
+                link: {
+                  href: 'https://google.com'
+                },
+                children: [
+                  {
+                    title: 'Онлайн-кассы',
+                    link: {
+                      href: 'https://google.com'
+                    },
+                    children: []
+                  },
+                  {
+                    title: 'Обратный эквайринг',
+                    link: {
+                      href: 'https://google.com'
+                    },
+                    children: []
+                  },
+                  {
+                    title: 'Для ресторанов',
+                    link: {
+                      href: 'https://google.com'
+                    },
+                    children: []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            title: 'Акции',
+            link: {
+              href: 'https://google.com/'
+            },
+            children: [
+              {
+                children: [
+                  {
+                    title: 'Программа лояльности',
+                    link: {
+                      href: 'https://google.com/'
+                    },
+                    children: []
+                  },
+                  {
+                    title: 'Специальное предложение по сертификату ЭП',
+                    link: {
+                      href: 'https://google.com/'
+                    },
+                    children: []
+                  },
+                  {
+                    title: 'Для партнеров',
+                    link: {
+                      href: 'https://google.com/'
+                    },
+                    children: []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            title: 'Предложения',
+            link: {
+              href: 'https://google.com/'
+            },
+            children: [
+              {
+                title: 'Сервисы для бизнеса',
+                link: {
+                  href: 'https://google.com/'
+                },
+                children: [
+                  {
+                    title: 'Электронная подпись',
+                    link: {
+                      href: 'https://google.com/'
+                    },
+                    children: []
+                  },
+                  {
+                    title: 'Консалтинг ВЭД',
+                    link: {
+                      href: 'https://google.com/'
+                    },
+                    children: []
+                  },
+                  {
+                    title: 'Выставление счетов',
+                    link: {
+                      href: 'https://google.com/'
+                    },
+                    children: []
+                  },
+                  {
+                    title: 'Совкомопора',
+                    link: {
+                      href: 'https://google.com/'
+                    },
+                    children: []
+                  },
+                  {
+                    title: 'Тендерное сопровождение',
+                    link: {
+                      href: 'https://google.com/'
+                    },
+                    children: []
+                  }
+                ]
+              },
+              {
+                title: 'Сотрудничество',
+                link: {
+                  href: 'https://google.com/'
+                },
+                children: [
+                  {
+                    title: 'Стать партнером Халвы',
+                    link: {
+                      href: 'https://google.com/'
+                    },
+                    children: []
+                  },
+                  {
+                    title: 'Стать фриселлером',
+                    link: {
+                      href: 'https://google.com/'
+                    },
+                    children: []
+                  }
+                ]
+              }
+            ]
           }
         ]
       },
@@ -654,48 +923,88 @@ const mockCategories: Category[] = [
         title: 'Корпоративным клиентам',
         children: [
           {
-            title: 'Клиентам кредиты',
+            title: 'Кредиты',
             children: [
               {
-                title: 'Кредиты',
+                title: 'Кредитные продукты',
+                link: {
+                  href: 'https://google.com/'
+                },
                 children: [
                   {
-                    title: 'Кредиты наличными',
+                    title: 'Льготное кредитование',
                     children: [],
                     link: {
                       href: 'https://www.google.com/'
                     }
                   },
                   {
-                    title: 'Рефинансирование кредита',
+                    title: 'Легкий кредит',
                     children: [],
                     link: {
                       href: 'https://www.google.com/'
                     }
                   },
                   {
-                    title: 'Кредит на карту',
+                    title: 'Кредитная линия',
                     children: [],
                     link: {
                       href: 'https://www.google.com/'
                     }
                   },
                   {
-                    title: 'Пенсионерам',
+                    title: 'Кредит на оборотные средства',
                     children: [],
                     link: {
                       href: 'https://www.google.com/'
                     }
                   },
                   {
-                    title: 'Кредитный калькулятор',
+                    title: 'Инвестиционный кредит',
+                    children: [],
+                    link: {
+                      href: 'https://www.google.com/'
+                    }
+                  }
+                ]
+              },
+              {
+                title: 'Кредитные продукты',
+                link: {
+                  href: 'https://google.com/'
+                },
+                children: [
+                  {
+                    title: 'Тендерное кредитование',
                     children: [],
                     link: {
                       href: 'https://www.google.com/'
                     }
                   },
                   {
-                    title: 'Все кредиты',
+                    title: 'Кредит на исполнение контракта',
+                    children: [],
+                    link: {
+                      href: 'https://www.google.com/'
+                    }
+                  }
+                ]
+              },
+              {
+                title: 'Другие виды финансирования',
+                link: {
+                  href: 'https://google.com/'
+                },
+                children: [
+                  {
+                    title: 'Факторинг',
+                    children: [],
+                    link: {
+                      href: 'https://www.google.com/'
+                    }
+                  },
+                  {
+                    title: 'Лизинг',
                     children: [],
                     link: {
                       href: 'https://www.google.com/'
@@ -706,13 +1015,44 @@ const mockCategories: Category[] = [
             ]
           },
           {
-            title: 'Клиентам карты',
+            title: 'Банковские гарантии',
             children: [
               {
-                title: 'Карты рассрочки',
+                title: 'Банковские гарантии',
+                link: {
+                  href: 'https://google.com/'
+                },
                 children: [
                   {
-                    title: 'Карта халва',
+                    title: 'Банковские гарантии на исполнение контракта',
+                    children: [],
+                    link: {
+                      href: 'https://www.google.com/'
+                    }
+                  },
+                  {
+                    title: 'Банковские гарантии на участие в закупках',
+                    children: [],
+                    link: {
+                      href: 'https://www.google.com/'
+                    }
+                  },
+                  {
+                    title: 'Банковские гарантии на возврат аванса',
+                    children: [],
+                    link: {
+                      href: 'https://www.google.com/'
+                    }
+                  },
+                  {
+                    title: 'Банковские гарантии на исполнение обязательств в гарантийный период',
+                    children: [],
+                    link: {
+                      href: 'https://www.google.com/'
+                    }
+                  },
+                  {
+                    title: 'Коммерческая банковская гарантия',
                     children: [],
                     link: {
                       href: 'https://www.google.com/'
@@ -723,11 +1063,341 @@ const mockCategories: Category[] = [
             ]
           },
           {
-            title: 'Обмен валют',
+            title: 'РКО',
             link: {
               href: 'https://www.google.com/'
             },
-            children: []
+            children: [
+              {
+                title: 'Расчетный счет',
+                link: {
+                  href: 'https://google.com/'
+                },
+                children: [
+                  {
+                    title: 'Открытие счета',
+                    link: {
+                      href: 'https://google.com/'
+                    },
+                    children: []
+                  },
+                  {
+                    title: 'Номинальный счет опекуна',
+                    link: {
+                      href: 'https://google.com/'
+                    },
+                    children: []
+                  },
+                  {
+                    title: 'Публичный депозитный счет нотариуса',
+                    link: {
+                      href: 'https://google.com/'
+                    },
+                    children: []
+                  },
+                  {
+                    title: 'Счет должника (банкрота)',
+                    link: {
+                      href: 'https://google.com/'
+                    },
+                    children: []
+                  },
+                  {
+                    title: 'Расчетный счет НКО',
+                    link: {
+                      href: 'https://google.com/'
+                    },
+                    children: []
+                  }
+                ]
+              },
+              {
+                title: 'Банковское обслуживание',
+                link: {
+                  href: 'https://google.com/'
+                },
+                children: [
+                  {
+                    title: 'Банк-клиент',
+                    link: {
+                      href: 'https://google.com/'
+                    },
+                    children: []
+                  },
+                  {
+                    title: 'Корпоративная карта',
+                    link: {
+                      href: 'https://google.com/'
+                    },
+                    children: []
+                  },
+                  {
+                    title: 'Инкассация',
+                    link: {
+                      href: 'https://google.com/'
+                    },
+                    children: []
+                  },
+                  {
+                    title: 'Торговый эквайринг',
+                    link: {
+                      href: 'https://google.com/'
+                    },
+                    children: []
+                  },
+                  {
+                    title: 'Интернет-эквайринг',
+                    link: {
+                      href: 'https://google.com/'
+                    },
+                    children: []
+                  },
+                  {
+                    title: 'Выгодные платежи по QR',
+                    link: {
+                      href: 'https://google.com/'
+                    },
+                    children: []
+                  },
+                  {
+                    title: 'Обратный эквайринг',
+                    link: {
+                      href: 'https://google.com/'
+                    },
+                    children: []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            title: 'Зарплатный проект',
+            link: {
+              href: 'https://google.com/'
+            },
+            children: [
+              {
+                title: 'Зарплатный проект',
+                link: {
+                  href: 'https://google.com/'
+                },
+                children: [
+                  {
+                    title: 'Зарплатная карта для сотрудников',
+                    link: {
+                      href: 'https://google.com/'
+                    },
+                    children: []
+                  },
+                  {
+                    title: 'Премиальная карта',
+                    link: {
+                      href: 'https://google.com/'
+                    },
+                    children: []
+                  },
+                  {
+                    title: 'Продукты на специальных условиях',
+                    link: {
+                      href: 'https://google.com/'
+                    },
+                    children: []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            title: 'Страхование',
+            link: {
+              href: 'https://google.com/'
+            },
+            children: [
+              {
+                title: 'Компаниям',
+                link: {
+                  href: 'https://google.com/'
+                },
+                children: [
+                  {
+                    title: 'ДМС',
+                    link: {
+                      href: 'https://google.com/'
+                    },
+                    children: []
+                  },
+                  {
+                    title: 'Страхование сотрудников от несчастных случаев',
+                    link: {
+                      href: 'https://google.com/'
+                    },
+                    children: []
+                  }
+                ]
+              },
+              {
+                title: 'Грузоперевозки и транспорт',
+                link: {
+                  href: 'https://google.com/'
+                },
+                children: [
+                  {
+                    title: 'Страхование грузов и ответственности транспортных операторов',
+                    link: {
+                      href: 'https://google.com/'
+                    },
+                    children: []
+                  },
+                  {
+                    title: 'Страхование автотранспорта',
+                    link: {
+                      href: 'https://google.com/'
+                    },
+                    children: []
+                  }
+                ]
+              },
+              {
+                title: 'Имущество',
+                link: {
+                  href: 'https://google.com/'
+                },
+                children: [
+                  {
+                    title: 'Страхование залогов',
+                    link: {
+                      href: 'https://google.com/'
+                    },
+                    children: []
+                  },
+                  {
+                    title: 'Страхование имущества',
+                    link: {
+                      href: 'https://google.com/'
+                    },
+                    children: []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            title: 'Размещение средств',
+            link: {
+              href: 'https://google.com/'
+            },
+            children: [
+              {
+                title: 'Размещение средств',
+                link: {
+                  href: 'https://google.com/'
+                },
+                children: [
+                  {
+                    title: 'Депозиты',
+                    link: {
+                      href: 'https://google.com/'
+                    },
+                    children: []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            title: 'ВЭД',
+            link: {
+              href: 'https://google.com/'
+            },
+            children: [
+              {
+                title: 'ВЭД',
+                link: {
+                  href: 'https://google.com/'
+                },
+                children: [
+                  {
+                    title: 'Валютный контроль',
+                    link: {
+                      href: 'https://google.com/'
+                    },
+                    children: []
+                  },
+                  {
+                    title: 'Таможенная карта',
+                    link: {
+                      href: 'https://google.com/'
+                    },
+                    children: []
+                  },
+                  {
+                    title: 'Конверсия валюты',
+                    link: {
+                      href: 'https://google.com/'
+                    },
+                    children: []
+                  },
+                  {
+                    title: 'Хеджирование рисков',
+                    link: {
+                      href: 'https://google.com/'
+                    },
+                    children: []
+                  },
+                  {
+                    title: 'Персональный консультант комплаенс/ВЭД',
+                    link: {
+                      href: 'https://google.com/'
+                    },
+                    children: []
+                  }
+                ]
+              },
+              {
+                title: 'Предложения',
+                link: {
+                  href: 'https://google.com/'
+                },
+                children: [
+                  {
+                    title: 'Предложения',
+                    link: {
+                      href: 'https://google.com/'
+                    },
+                    children: [
+                      {
+                        title: 'Электронная подпись',
+                        link: {
+                          href: 'https://google.com'
+                        },
+                        children: []
+                      },
+                      {
+                        title: 'Совкомопора',
+                        link: {
+                          href: 'https://google.com'
+                        },
+                        children: []
+                      },
+                      {
+                        title: 'Тендерное сопровождение',
+                        link: {
+                          href: 'https://google.com'
+                        },
+                        children: []
+                      },
+                      {
+                        title: 'Комплексное предложение для ресторанов',
+                        link: {
+                          href: 'https://google.com'
+                        },
+                        children: []
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
           }
         ]
       }
@@ -759,6 +1429,7 @@ export const App = () => {
           use <span className='desk-title-bold-s text-color-primary-default'> npm run start </span> for run storybook
         </h2>
         <SeoHeader categories={mockCategories} helpers={mockHelpers} phone={mockPhone} />
+        <div className='h-10 w-full' />
         <div className='h-screen w-full bg-color-primary-default' />
       </ResponsiveContainer>
     </div>

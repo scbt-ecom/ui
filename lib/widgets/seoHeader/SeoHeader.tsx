@@ -16,7 +16,7 @@ export const SeoHeader = ({ categories, helpers, phone }: SeoHeaderProps) => {
 
   return (
     <div className='mx-auto w-full max-w-[1440px]'>
-      <div className='flex w-full items-center justify-between gap-x-4'>
+      <div className='flex w-full items-center justify-between gap-x-4 border-b border-b-[rgba(234,237,241)] py-4'>
         <Icon name='brandLogos/logoMain' className='mr-auto w-[130px]' />
         {categories.map((category) => {
           const active = selectedRootCategory.title === category.title
