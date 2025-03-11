@@ -32,7 +32,7 @@ export const Base: Story = {
 export const WithPhone: Story = {
   args: {
     siteMap: false,
-    phones: { items: [{ text: 'Звонок по России (бесплатно)', phone: '88001000006' }] }
+    phones: { items: [{ text: 'Звонок по России (бесплатно)', phone: '88001000006' }], enabled: true }
   }
 }
 

@@ -1,10 +1,10 @@
 import { readFileSync, writeFileSync } from 'fs'
 import { join } from 'path'
 import { cwd } from 'process'
+import { type Logger } from '../../utils'
 import type { MDXOptions } from '../viteStorybookMdxGenerationPlugin'
 import { findStories } from './findStories'
 import { getDocsContent } from './getDocsContent'
-import { type Logger } from './logger'
 
 /**
  * Функция для генерации файлов документации компонентов

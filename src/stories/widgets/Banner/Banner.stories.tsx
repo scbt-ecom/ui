@@ -31,7 +31,15 @@ type Story = StoryObj<typeof Banner>
 export const Base: Story = {
   render: () => (
     <>
-      <Header variant='withButton' />
+      <Header
+        details={{
+          handlerOptions: {
+            handler: 'scroll',
+            widgetId: 'stepper'
+          }
+        }}
+        variant='withButton'
+      />
       <Banner {...mockBannerBase} />
     </>
   )
@@ -40,7 +48,15 @@ export const Base: Story = {
 export const OnlyPrimaryButton: Story = {
   render: () => (
     <>
-      <Header variant='withButton' />
+      <Header
+        details={{
+          handlerOptions: {
+            handler: 'scroll',
+            widgetId: 'stepper'
+          }
+        }}
+        variant='withButton'
+      />
       <Banner {...mockBannerOnlyPrimaryButton} />
     </>
   )
@@ -49,7 +65,15 @@ export const OnlyPrimaryButton: Story = {
 export const WithAdvantages: Story = {
   render: () => (
     <>
-      <Header variant='withButton' />
+      <Header
+        details={{
+          handlerOptions: {
+            handler: 'scroll',
+            widgetId: 'stepper'
+          }
+        }}
+        variant='withButton'
+      />
       <Banner {...mockWithAdvantages} />
     </>
   )
@@ -58,7 +82,15 @@ export const WithAdvantages: Story = {
 export const BaseFullImage: Story = {
   render: () => (
     <>
-      <Header variant='withButton' />
+      <Header
+        details={{
+          handlerOptions: {
+            handler: 'scroll',
+            widgetId: 'stepper'
+          }
+        }}
+        variant='withButton'
+      />
       <Banner {...mockBannerBaseFullImage} />
     </>
   )
@@ -67,7 +99,15 @@ export const BaseFullImage: Story = {
 export const FullImageOnlyPrimaryButton: Story = {
   render: () => (
     <>
-      <Header variant='withButton' />
+      <Header
+        details={{
+          handlerOptions: {
+            handler: 'scroll',
+            widgetId: 'stepper'
+          }
+        }}
+        variant='withButton'
+      />
       <Banner {...mockBannerFullImageOnlyPrimaryButton} />
     </>
   )
@@ -76,7 +116,15 @@ export const FullImageOnlyPrimaryButton: Story = {
 export const BaseFullImageWithAdvantages: Story = {
   render: () => (
     <>
-      <Header variant='withButton' />
+      <Header
+        details={{
+          handlerOptions: {
+            handler: 'scroll',
+            widgetId: 'stepper'
+          }
+        }}
+        variant='withButton'
+      />
       <Banner {...mockBannerFullImageWithAdvantages} />
     </>
   )
@@ -85,7 +133,15 @@ export const BaseFullImageWithAdvantages: Story = {
 export const BaseGradient: Story = {
   render: () => (
     <>
-      <Header variant='withButton' />
+      <Header
+        details={{
+          handlerOptions: {
+            handler: 'scroll',
+            widgetId: 'stepper'
+          }
+        }}
+        variant='withButton'
+      />
       <Banner {...mockBannerBaseGradient} />
     </>
   )
@@ -94,7 +150,15 @@ export const BaseGradient: Story = {
 export const BaseGradientWithAdvantages: Story = {
   render: () => (
     <>
-      <Header variant='withButton' />
+      <Header
+        details={{
+          handlerOptions: {
+            handler: 'scroll',
+            widgetId: 'stepper'
+          }
+        }}
+        variant='withButton'
+      />
       <Banner {...mockBannerBaseGradientAdvantages} />
     </>
   )

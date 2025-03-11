@@ -1,16 +1,17 @@
 import { type ReactElement } from 'react'
-import { cva, type VariantProps } from 'class-variance-authority'
+import { cva } from 'class-variance-authority'
+import { type BackgroundBenefitColorsValues } from '../model/constants'
 import { useDevice } from '$/shared/hooks'
-import { Button, Heading } from '$/shared/ui'
-import { cn, scrollToElement } from '$/shared/utils'
-import { type AllowedBannerBackgroundColor } from '$/widgets/benefit/model'
+import { Button } from '$/shared/ui'
+import { cn, scrollToElement, TypeGuards } from '$/shared/utils'
+import { type Img } from '$/widgets/benefit/model/types'
 
 export type BenefitItemClasses = {
   root?: string
   button?: string
   wrapper?: string
   textContainer?: string
-  description?: string
+  subtitle?: string
   img?: string
   imgContainer?: string
   title?: string
@@ -20,7 +21,7 @@ const itemConfig = cva(
   'flex flex-col justify-between overflow-hidden rounded-md bg-color-blue-grey-100 py-6 desktop:flex-row desktop:px-0 desktop:py-0',
   {
     variants: {
-      intent: {
+      variant: {
         twoCards: '',
         threeCards: 'desktop:first:col-span-full',
         fourCards: 'desktop:first:col-span-2 desktop:last:col-span-2'
@@ -29,27 +30,28 @@ const itemConfig = cva(
   }
 )
 
-export interface BenefitItemProps extends VariantProps<typeof itemConfig> {
+export interface BenefitItemProps {
   title: string
-  description: string | ReactElement
-  img?: string
+  subtitle: string
+  img?: ReactElement | Img
   mobileImg?: boolean
   classes?: BenefitItemClasses
   withButton?: boolean
   buttonText?: string
-  cardColor?: AllowedBannerBackgroundColor
+  variant?: 'twoCards' | 'threeCards' | 'fourCards'
+  color?: BackgroundBenefitColorsValues
 }
 
 export const BenefitItem = ({
-  description,
+  subtitle,
   title,
   img,
   mobileImg,
   classes,
   withButton,
   buttonText,
-  intent,
-  cardColor
+  variant,
+  color
 }: BenefitItemProps) => {
   const { isDesktop } = useDevice()
 
@@ -58,7 +60,7 @@ export const BenefitItem = ({
       <Button
         intent='primary'
         className={cn('desktop:w-[200px]', classes?.button)}
-        onClick={() => scrollToElement('personal_form')}
+        onClick={() => scrollToElement({ widgetId: 'stepper' })}
         size='lg'
       >
         {buttonText}
@@ -68,24 +70,28 @@ export const BenefitItem = ({
 
   return (
     <li
-      key={img}
-      className={cn(itemConfig({ intent }), { 'pb-0': mobileImg }, { 'pb-12': !mobileImg }, cardColor, classes?.root)}
+      key={title}
+      style={{ backgroundColor: color ?? '#f4f8fe' }}
+      className={cn(itemConfig({ variant }), { 'pb-0': mobileImg }, { 'pb-12': !mobileImg }, classes?.root)}
     >
       <div className={cn('flex flex-col items-start justify-between px-4 desktop:px-8 desktop:py-8', classes?.wrapper)}>
         <div className={cn('flex flex-col gap-4', classes?.textContainer)}>
-          <Heading as='h4' className={cn('desktop:desk-title-bold-s', classes?.title)}>
-            {title}
-          </Heading>
-          <p className={cn('mob-body-regular-l text-icon-blue-grey-800 desktop:desk-body-regular-l', classes?.description)}>
-            {description}
-          </p>
+          <div dangerouslySetInnerHTML={{ __html: title }} className={cn('desktop:desk-title-bold-s', classes?.title)} />
+          <div
+            dangerouslySetInnerHTML={{ __html: subtitle }}
+            className={cn('mob-body-regular-l text-icon-blue-grey-800 desktop:desk-body-regular-l', classes?.subtitle)}
+          />
         </div>
         {withButton && isDesktop && button}
       </div>
 
       {(mobileImg || isDesktop) && img && (
         <div className={cn('flex w-full justify-end', classes?.imgContainer)}>
-          <img className={cn('h-[246px] object-cover', classes?.img)} src={img} alt={title} />
+          {img && 'url' in img && TypeGuards.isObject(img) ? (
+            <img className={cn('h-[246px] object-cover', classes?.img)} src={img.url} alt={title} />
+          ) : (
+            img
+          )}
         </div>
       )}
     </li>

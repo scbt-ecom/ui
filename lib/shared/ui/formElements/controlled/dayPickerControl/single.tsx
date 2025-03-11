@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import { createPortal } from 'react-dom'
 import { autoUpdate, flip, offset, useFloating } from '@floating-ui/react'
 import { format, isValid, parse } from 'date-fns'
 import { type ExternalHandlers } from './dayPickerControl'
@@ -50,7 +51,7 @@ export const SingleDayPicker = ({
 }: SingleDayPickerProps) => {
   const { onChange: externalOnChange, onFocus: externalOnFocus, ...restHandlers } = externalHandlers || {}
 
-  const containerRef = useRef<HTMLDivElement>(null)
+  const calendarRef = useRef<HTMLDivElement>(null)
 
   const { refs, floatingStyles } = useFloating({
     placement: 'bottom-end',
@@ -67,6 +68,7 @@ export const SingleDayPicker = ({
   const { calendar, ...restClasses } = classes || {}
 
   const [calendarOpen, setCalendarOpen] = useState<boolean>(false)
+
   const onCalendarOpenChange = () => {
     setCalendarOpen((prev) => !prev)
   }
@@ -82,7 +84,7 @@ export const SingleDayPicker = ({
     }
   }, [value])
 
-  useClickOutside(containerRef, () => setCalendarOpen(false))
+  useClickOutside(calendarRef, () => setCalendarOpen(false))
 
   const onVisibleValueChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target
@@ -122,8 +124,7 @@ export const SingleDayPicker = ({
   }
 
   return (
-    // @ts-expect-error asdfasfd
-    <div ref={mergeRefs(containerRef, refs.setReference)} className={cn('relative w-full', classes?.container)}>
+    <div ref={refs.setReference} className={cn('relative w-full', classes?.container)}>
       <Uncontrolled.MaskInput
         mask={SINGLE_MASK}
         {...inputProps}
@@ -142,28 +143,33 @@ export const SingleDayPicker = ({
           }
         }}
         attachmentProps={{
+          disabled: inputProps.disabled,
           icon: <Icon name='general/calendar' className='text-icon-blue-grey-600' />,
-          onClickIcon: onCalendarOpenChange
+          onClickIcon: onCalendarOpenChange,
+          ...inputProps.attachmentProps
         }}
       />
-      {calendarOpen && (
-        <Calendar
-          ref={refs.setFloating}
-          {...props}
-          required
-          mode='single'
-          style={{
-            ...floatingStyles,
-            width: 'max-content'
-          }}
-          month={month}
-          onMonthChange={onMonthChange}
-          selected={date}
-          onSelect={onDateChange}
-          className={cn('z-10', calendar)}
-          data-test-id='calendar'
-        />
-      )}
+      {calendarOpen &&
+        createPortal(
+          <Calendar
+            // @ts-expect-error asdf
+            ref={mergeRefs(calendarRef, refs.setFloating)}
+            {...props}
+            required
+            mode='single'
+            style={{
+              ...floatingStyles,
+              width: 'max-content'
+            }}
+            month={month}
+            onMonthChange={onMonthChange}
+            selected={date}
+            onSelect={onDateChange}
+            className={cn(calendar)}
+            data-test-id='calendar'
+          />,
+          document.body
+        )}
     </div>
   )
 }

@@ -1,5 +1,5 @@
 export interface SpritesMap {
-  arrows: 'arrowCircle' | 'arrowLink' | 'arrowRight' | 'arrowScroll'
+  arrows: 'arrowCircle' | 'arrowLink' | 'arrowRight' | 'arrowRotate' | 'arrowScroll'
   brandLogos: 'logoBlack' | 'logoBusiness' | 'logoGray' | 'logoInsurance' | 'logoMain' | 'logoWhite'
   editor:
     | 'bold'
@@ -20,6 +20,7 @@ export interface SpritesMap {
   info: 'helpCircle' | 'warningCircle'
   logos: 'beeline' | 'megafon' | 'mts'
   social: 'classmates' | 'telegram' | 'vk'
+  status: 'badSmile' | 'iconMark' | 'iconRetry' | 'iconUser'
 }
 export const SPRITES_META: {
   [Key in keyof SpritesMap]: {
@@ -51,6 +52,11 @@ export const SPRITES_META: {
         viewBox: '0 0 16 17',
         width: 16,
         height: 17
+      },
+      arrowRotate: {
+        viewBox: '0 0 18 18',
+        width: 18,
+        height: 18
       },
       arrowScroll: {
         viewBox: '0 0 14 16',
@@ -291,6 +297,31 @@ export const SPRITES_META: {
         viewBox: '0 0 16 9',
         width: 16,
         height: 9
+      }
+    }
+  },
+  status: {
+    filePath: 'status.svg',
+    items: {
+      badSmile: {
+        viewBox: '0 0 30 30',
+        width: 30,
+        height: 30
+      },
+      iconMark: {
+        viewBox: '0 0 24 20',
+        width: 24,
+        height: 20
+      },
+      iconRetry: {
+        viewBox: '0 0 24 24',
+        width: 24,
+        height: 24
+      },
+      iconUser: {
+        viewBox: '0 0 24 28',
+        width: 24,
+        height: 28
       }
     }
   }

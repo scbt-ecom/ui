@@ -3,14 +3,18 @@ import { containerImgConfig } from './model/cva'
 import { type ButtonConfig, type Details, type LongBannerClasses, type LongBannerConfig } from './model/types'
 import { TextList, Title } from './ui'
 import { Button, ResponsiveContainer } from '$/shared/ui'
-import { cn } from '$/shared/utils'
+import { cn, TypeGuards } from '$/shared/utils'
 
 export interface LongBannerProps<Enabled extends boolean> extends LongBannerConfig {
   headline: string | ReactElement
   buttonConfig?: ButtonConfig
   details: Details<Enabled>[]
   intent?: 'twoItems' | 'fourItems'
-  imageComponent: ReactElement
+  image:
+    | ReactElement
+    | {
+        url: string
+      }
   withButton?: boolean
   classes?: LongBannerClasses
 }
@@ -21,11 +25,18 @@ export const LongBanner = <Enabled extends boolean>({
   withButton = false,
   intent = 'twoItems',
   details,
-  imageComponent,
+  image,
   classes
 }: LongBannerProps<Enabled>) => {
   const isFourItems = intent === 'fourItems'
   const isTwoItems = intent === 'twoItems'
+
+  const img =
+    image && 'url' in image && TypeGuards.isObject(image) ? (
+      <img className='w-full object-contain' alt='Картинка баннера' src={image.url} />
+    ) : (
+      image
+    )
 
   return (
     <section id='long-banner' className={cn(classes?.root)}>
@@ -39,7 +50,7 @@ export const LongBanner = <Enabled extends boolean>({
           )}
         >
           {isFourItems && <Title intent={intent} headline={headline} desktopHidden={true} />}
-          <div className={cn(containerImgConfig({ intent, withButton }), classes?.imgContainer)}>{imageComponent}</div>
+          <div className={cn(containerImgConfig({ intent, withButton }), classes?.imgContainer)}>{img}</div>
           <div
             className={cn('desktop:flex desktop:flex-col desktop:justify-center desktop:py-10', classes?.textWithBtnContainer)}
           >

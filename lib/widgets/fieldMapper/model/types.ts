@@ -3,9 +3,14 @@ import { type Controlled } from '$/shared/ui'
 
 export type ElementType = keyof typeof Controlled
 
-export type FieldElement<TFieldValues extends FieldValues = FieldValues, Type extends ElementType = ElementType> = {
+export type FieldElement<
+  TFieldValues extends FieldValues = FieldValues,
+  Type extends ElementType = ElementType,
+  ExternalProps = {}
+> = {
   type: Type
-  args: React.ComponentPropsWithoutRef<(typeof Controlled)[Type]> & {
-    name: FieldPath<TFieldValues>
-  }
+  args: React.ComponentPropsWithoutRef<(typeof Controlled)[Type]> &
+    ExternalProps & {
+      name: FieldPath<TFieldValues>
+    }
 }

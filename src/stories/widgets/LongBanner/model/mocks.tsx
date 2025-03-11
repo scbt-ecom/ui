@@ -3,7 +3,7 @@ import money from './assets/money.png'
 import { cn } from '$/shared/utils'
 import { type LongBannerProps } from '$/widgets/longBanner/LongBanner.tsx'
 
-export const mockLongBannerBase: LongBannerProps = {
+export const mockLongBannerBase: LongBannerProps<true> = {
   headline: 'Main Title',
   buttonConfig: {
     text: 'Button',
@@ -23,10 +23,10 @@ export const mockLongBannerBase: LongBannerProps = {
       description: `<p>Выберите офис Совкомбанка и получите деньги в кассе</p>`
     }
   ],
-  imageComponent: <img data-id='banner-image' src={money} alt='money' className={cn('h-full w-full object-contain')} />
+  image: <img data-id='banner-image' src={money} alt='money' className={cn('h-full w-full object-contain')} />
 }
 
-export const mockLongBannerWithoutButton: LongBannerProps = {
+export const mockLongBannerWithoutButton: LongBannerProps<true> = {
   headline: 'Main Title',
   details: [
     {
@@ -42,10 +42,10 @@ export const mockLongBannerWithoutButton: LongBannerProps = {
       description: `<p>Выберите офис Совкомбанка и получите деньги в кассе</p>`
     }
   ],
-  imageComponent: <img data-id='banner-image' src={money} alt='money' className={cn('h-full w-full object-contain')} />
+  image: <img data-id='banner-image' src={money} alt='money' className={cn('h-full w-full object-contain')} />
 }
 
-export const mockLongBannerMulti: LongBannerProps = {
+export const mockLongBannerMulti: LongBannerProps<true> = {
   intent: 'fourItems',
   headline: 'Main Title',
   buttonConfig: {
@@ -78,10 +78,10 @@ export const mockLongBannerMulti: LongBannerProps = {
       description: `<p>Выберите офис Совкомбанка и получите деньги в кассе</p>`
     }
   ],
-  imageComponent: <img data-id='banner-image' src={money} alt='money' className={cn('h-full w-full object-contain')} />
+  image: <img data-id='banner-image' src={money} alt='money' className={cn('h-full w-full object-contain')} />
 }
 
-export const mockLongBannerMultiWithoutButton: LongBannerProps = {
+export const mockLongBannerMultiWithoutButton: LongBannerProps<true> = {
   intent: 'fourItems',
   headline: 'Main Title',
   details: [
@@ -110,5 +110,5 @@ export const mockLongBannerMultiWithoutButton: LongBannerProps = {
       description: `<p>Выберите офис Совкомбанка и получите деньги в кассе</p>`
     }
   ],
-  imageComponent: <img data-id='banner-image' src={money} alt='money' className={cn('h-full w-full object-contain')} />
+  image: <img data-id='banner-image' src={money} alt='money' className={cn('h-full w-full object-contain')} />
 }
