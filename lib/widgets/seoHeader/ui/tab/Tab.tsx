@@ -1,21 +1,21 @@
 import { memo, useRef } from 'react'
 import { motion } from 'framer-motion'
 import type { Category } from '../../model'
-import { useTabContext } from '../model'
 import { TabContent } from './ui'
 import { cn, TypeGuards } from '$/shared/utils'
 
 type TabProps = {
   category: Category
-  value: string
+  active: boolean
+  onActiveTabChange: (active: string | null) => void
 }
 
-const InnerComponent = ({ category, value }: TabProps) => {
-  const { activeTab, setActiveTab } = useTabContext()
+const InnerComponent = ({ category, active, onActiveTabChange }: TabProps) => {
+  // const { activeTab, setActiveTab } = useTabContext()
   const triggerRef = useRef<HTMLDivElement>(null)
   const triggerClientRect = triggerRef.current?.getBoundingClientRect()
 
-  const contentShouldRender = activeTab === value && !TypeGuards.isArrayEmpty(category.children)
+  const contentShouldRender = active && !TypeGuards.isArrayEmpty(category.children)
 
   const Button = !TypeGuards.isArrayEmpty(category.children) ? 'span' : 'a'
 
@@ -31,9 +31,9 @@ const InnerComponent = ({ category, value }: TabProps) => {
           'after:w-full': contentShouldRender
         }
       )}
-      onMouseEnter={() => setActiveTab(category.title!)}
-      onMouseLeave={() => setActiveTab(null)}
-      onFocus={() => setActiveTab(category.title!)}
+      onMouseEnter={() => onActiveTabChange(category.title!)}
+      onMouseLeave={() => onActiveTabChange(null)}
+      onFocus={() => onActiveTabChange(category.title!)}
     >
       <Button href={Button === 'a' ? category.link?.href : undefined} className='desk-body-regular-m outline-none'>
         {category.title}

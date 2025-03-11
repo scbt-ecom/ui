@@ -1,1 +1,0 @@
-export { useTabContext } from './useTabContext'

@@ -4,8 +4,8 @@ import { cn } from '$/shared/utils'
 type RootTabProps = React.HTMLAttributes<HTMLDivElement> & {
   category: Category
   selectedCategory: Category
-  onCurrentCategoryChange: React.Dispatch<React.SetStateAction<Category>>
-  onRootCategoryChange: React.Dispatch<React.SetStateAction<Category>>
+  onCurrentCategoryChange: (category: Category) => void
+  onRootCategoryChange: (category: Category) => void
   active: boolean
 }
 
