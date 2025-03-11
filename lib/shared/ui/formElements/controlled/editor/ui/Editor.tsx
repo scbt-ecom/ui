@@ -1,4 +1,4 @@
-import { forwardRef, type ReactElement } from 'react'
+import { forwardRef, type ReactElement, useEffect } from 'react'
 import { type FieldError } from 'react-hook-form'
 import { EditorContent, type EditorEvents, useEditor, type UseEditorOptions } from '@tiptap/react'
 import { type EditorControlClasses } from '../EditorControl'
@@ -70,12 +70,18 @@ export const Editor = forwardRef<EditorRef, EditorProps>(
       ...props
     })
 
+    useEffect(() => {
+      if (editor && editor.getHTML() !== value) {
+        editor.commands.setContent(value)
+      }
+    }, [editor, value])
+
     if (!editor) {
       return null
     }
 
     return (
-      <div className={cn('flex max-w-[528px] flex-col mobile:w-[340px]', classes?.root)}>
+      <div className={cn('flex w-full flex-col', classes?.root)}>
         <div
           className={cn('relative flex w-full flex-col rounded-md border border-solid border-warm-grey-200', classes?.wrapper)}
         >

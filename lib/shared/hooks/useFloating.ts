@@ -10,8 +10,8 @@ type FloatingPosition = {
 }
 
 export const useFloating = (
-  trigger: React.RefObject<HTMLButtonElement>,
-  list: React.RefObject<HTMLUListElement>,
+  trigger: React.RefObject<HTMLElement>,
+  list: React.RefObject<HTMLElement>,
   offset: number
 ): FloatingPosition | null => {
   const [position, setPosition] = useState<FloatingPosition | null>(null)

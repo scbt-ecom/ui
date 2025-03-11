@@ -16,7 +16,7 @@ export const UsefulInfo = ({ headline, tabs }: UsefulInfoProps) => {
   if (!tabs || tabs?.length === 0) return null
 
   return (
-    <section id='useful-info' className='pb-[64px] desktop:pb-20'>
+    <section id='useful-info'>
       <ResponsiveContainer>
         <Heading as='h2'>{headline}</Heading>
         <div className='mt-6 flex flex-col gap-2 desktop:mt-12'>

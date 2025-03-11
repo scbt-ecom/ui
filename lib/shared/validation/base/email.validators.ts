@@ -11,7 +11,7 @@ export type EmailValidationOptions<Required extends boolean> = {
   /**
    * Регулярное выражение для проверки email на валидность
    */
-  regexp?: RegExp
+  regexp?: RegExp | string
   message?: {
     min?: string
     invalid?: string
@@ -26,10 +26,12 @@ const EMAIL_REGEX = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g
 const getEmailRequired = (props?: Omit<EmailValidationOptions<true>, 'required'>) => {
   const { message, regexp = EMAIL_REGEX } = props || {}
 
+  const regex = TypeGuards.isString(regexp) ? new RegExp(regexp) : regexp
+
   return z
     .string()
     .min(1, message?.min || baseDefaultMessages.EMAIL_NON_EMPTY())
-    .regex(regexp, message?.invalid || baseDefaultMessages.EMAIL_INVALID())
+    .regex(regex, message?.invalid || baseDefaultMessages.EMAIL_INVALID())
     .default('')
 }
 type EmailRequiredSchema = ReturnType<typeof getEmailRequired>
@@ -40,12 +42,14 @@ type EmailRequiredSchema = ReturnType<typeof getEmailRequired>
 const getEmailOptional = (props?: Omit<EmailValidationOptions<false>, 'required'>) => {
   const { message, regexp = EMAIL_REGEX } = props || {}
 
+  const regex = TypeGuards.isString(regexp) ? new RegExp(regexp) : regexp
+
   return z
     .string()
     .refine(
       (value) => {
         if (TypeGuards.isStringEmpty(value)) return true
-        return regexp.test(value)
+        return regex.test(value)
       },
       {
         message: message?.invalid || baseDefaultMessages.EMAIL_INVALID()

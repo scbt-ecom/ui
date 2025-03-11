@@ -1,10 +1,9 @@
-import { forwardRef, Fragment } from 'react'
+import React, { forwardRef, Fragment } from 'react'
 import { ComboboxOption, type ComboboxOptionProps } from '@headlessui/react'
 import { motion } from 'framer-motion'
 import { type CheckboxBaseClasses } from '../../checkbox/Checkbox'
 import type { SelectItemOption } from '../model'
 import { Uncontrolled } from '$/shared/ui'
-import { FieldAttachment } from '$/shared/ui/formElements/ui'
 import { cn } from '$/shared/utils'
 
 type SelectItemClasses = {
@@ -43,7 +42,8 @@ export const SelectItem = forwardRef<HTMLLIElement, SelectItemProps>(
               'data-[focus]:bg-color-primary-tr-hover data-[focus]:text-color-primary-hover',
               {
                 'pointer-events-none !text-color-disabled': disabled,
-                '!flex items-center gap-x-4': isMulti || (option.attachment && option.attachment.left)
+                '!flex items-center gap-x-4': isMulti,
+                'gap-x-3': option.attachment && option.attachment.left
               },
               item
             )}
@@ -51,7 +51,7 @@ export const SelectItem = forwardRef<HTMLLIElement, SelectItemProps>(
             {isMulti ? (
               <Uncontrolled.CheckboxBase checked={selected} disabled={disabled} classes={{ root: 'z-10', ...checkbox }} />
             ) : (
-              option.attachment && option.attachment.left && <FieldAttachment {...option.attachment.left} />
+              option.attachment && option.attachment.left
             )}
             <ContentWrapper>
               {label}
@@ -69,15 +69,7 @@ export const SelectItem = forwardRef<HTMLLIElement, SelectItemProps>(
                 </p>
               )}
             </ContentWrapper>
-            {option.attachment && option.attachment.right && (
-              <FieldAttachment
-                {...option.attachment.right}
-                classes={{
-                  fieldAttachmentRoot: cn('ml-auto', option.attachment.right?.classes?.fieldAttachmentRoot),
-                  ...option.attachment.right?.classes
-                }}
-              />
-            )}
+            <div className='ml-auto'>{option.attachment && option.attachment.right}</div>
           </motion.li>
         )}
       </ComboboxOption>

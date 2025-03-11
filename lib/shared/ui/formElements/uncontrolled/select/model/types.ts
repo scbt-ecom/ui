@@ -1,7 +1,4 @@
-import type { DeepPartial } from '$/shared/types'
-import { type FieldAttachment } from '$/shared/ui/formElements/ui'
-
-type FieldAttachmentProps = React.ComponentPropsWithoutRef<typeof FieldAttachment>
+import { type ReactElement } from 'react'
 
 export type SelectItemOption = {
   value: string | null
@@ -9,7 +6,7 @@ export type SelectItemOption = {
   helperText?: string
   disabled?: boolean
   attachment?: {
-    left?: DeepPartial<FieldAttachmentProps>
-    right?: DeepPartial<FieldAttachmentProps>
+    left?: ReactElement
+    right?: ReactElement
   }
 }

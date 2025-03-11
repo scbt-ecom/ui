@@ -33,7 +33,7 @@ export interface BenefitProps {
 
 export const Benefit = ({ headline, details, variant, classes }: BenefitProps) => {
   return (
-    <section className={cn('pb-20', classes?.root)}>
+    <section id='benefit' className={cn('pb-20', classes?.root)}>
       <ResponsiveContainer className={classes?.container}>
         <div
           dangerouslySetInnerHTML={{ __html: headline }}

@@ -1,11 +1,28 @@
-type TId = 'personal_form' | 'calculator' | 'inter-linking'
+import type { AllowedWidgets } from '$/widgets'
 
-export const scrollToElement = (id: TId, behavior: ScrollBehavior = 'smooth') => {
-  const element = document.getElementById(id)
+type ScrollConfig = {
+  behavior?: ScrollBehavior
+  block?: ScrollLogicalPosition
+}
+
+type ScrollElement = {
+  widgetId: AllowedWidgets
+  config?: ScrollConfig
+}
+
+const DEFAULT_SCROLL_CONFIG: Required<ScrollConfig> = {
+  behavior: 'smooth',
+  block: 'center'
+}
+
+export const scrollToElement = ({ widgetId, config = {} }: ScrollElement) => {
+  const { behavior, block } = { ...DEFAULT_SCROLL_CONFIG, ...config }
+
+  const element = document.getElementById(widgetId)
   if (!element) {
-    console.error('Такого элемента в DOM не существует', id)
+    console.error('Такого элемента в DOM не существует', widgetId)
     return
   }
 
-  element.scrollIntoView({ behavior, block: 'start' })
+  element.scrollIntoView({ behavior, block })
 }

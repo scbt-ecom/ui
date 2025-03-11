@@ -1,12 +1,14 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import { createPortal } from 'react-dom'
+import { autoUpdate, flip, offset, useFloating } from '@floating-ui/react'
 import { format, isValid, parse } from 'date-fns'
 import { type ExternalHandlers } from './dayPickerControl'
 import { getCurrentDate, getInitialValue, SINGLE_MASK, SINGLE_VALIDATION_REGEX } from './model'
 import { useClickOutside } from '$/shared/hooks'
 import { Calendar, DATE_VISIBLE_PATTERN, Icon, type MaskInputProps, Uncontrolled } from '$/shared/ui'
-import { cn, TypeGuards } from '$/shared/utils'
+import { cn, mergeRefs, TypeGuards } from '$/shared/utils'
 
 type CalendarProps = React.ComponentPropsWithoutRef<typeof Calendar>
 
@@ -49,10 +51,24 @@ export const SingleDayPicker = ({
 }: SingleDayPickerProps) => {
   const { onChange: externalOnChange, onFocus: externalOnFocus, ...restHandlers } = externalHandlers || {}
 
-  const containerRef = useRef<HTMLDivElement>(null)
+  const calendarRef = useRef<HTMLDivElement>(null)
+
+  const { refs, floatingStyles } = useFloating({
+    placement: 'bottom-end',
+    middleware: [
+      flip({
+        boundary: 'clippingAncestors',
+        crossAxis: false
+      }),
+      offset(0)
+    ],
+    whileElementsMounted: autoUpdate
+  })
+
   const { calendar, ...restClasses } = classes || {}
 
   const [calendarOpen, setCalendarOpen] = useState<boolean>(false)
+
   const onCalendarOpenChange = () => {
     setCalendarOpen((prev) => !prev)
   }
@@ -68,7 +84,7 @@ export const SingleDayPicker = ({
     }
   }, [value])
 
-  useClickOutside(containerRef, () => setCalendarOpen(false))
+  useClickOutside(calendarRef, () => setCalendarOpen(false))
 
   const onVisibleValueChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target
@@ -108,7 +124,7 @@ export const SingleDayPicker = ({
   }
 
   return (
-    <div ref={containerRef} className={cn('relative w-full', classes?.container)}>
+    <div ref={refs.setReference} className={cn('relative w-full', classes?.container)}>
       <Uncontrolled.MaskInput
         mask={SINGLE_MASK}
         {...inputProps}
@@ -116,6 +132,7 @@ export const SingleDayPicker = ({
         classes={restClasses}
         value={visibleValue}
         onChange={onVisibleValueChange}
+        autoComplete='off'
         onFocus={(event) => {
           setCalendarOpen(true)
           if (externalOnFocus) externalOnFocus(event)
@@ -126,23 +143,33 @@ export const SingleDayPicker = ({
           }
         }}
         attachmentProps={{
+          disabled: inputProps.disabled,
           icon: <Icon name='general/calendar' className='text-icon-blue-grey-600' />,
-          onClickIcon: onCalendarOpenChange
+          onClickIcon: onCalendarOpenChange,
+          ...inputProps.attachmentProps
         }}
       />
-      {calendarOpen && (
-        <Calendar
-          {...props}
-          required
-          mode='single'
-          month={month}
-          onMonthChange={onMonthChange}
-          selected={date}
-          onSelect={onDateChange}
-          className={cn('absolute right-0 top-full z-10', calendar)}
-          data-test-id='calendar'
-        />
-      )}
+      {calendarOpen &&
+        createPortal(
+          <Calendar
+            // @ts-expect-error asdf
+            ref={mergeRefs(calendarRef, refs.setFloating)}
+            {...props}
+            required
+            mode='single'
+            style={{
+              ...floatingStyles,
+              width: 'max-content'
+            }}
+            month={month}
+            onMonthChange={onMonthChange}
+            selected={date}
+            onSelect={onDateChange}
+            className={cn(calendar)}
+            data-test-id='calendar'
+          />,
+          document.body
+        )}
     </div>
   )
 }

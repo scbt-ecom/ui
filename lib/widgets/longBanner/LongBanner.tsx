@@ -20,7 +20,7 @@ export const LongBanner = ({ headline, buttonConfig, withButton = false, config,
   const isTwoItems = intent === 'twoItems'
 
   return (
-    <section className={cn(classes?.root)}>
+    <section id='long-banner' className={cn(classes?.root)}>
       <ResponsiveContainer className={cn(classes?.container)}>
         {isTwoItems && <Title intent={intent} headline={headline} />}
 

@@ -1,14 +1,13 @@
 import { forwardRef, useRef } from 'react'
+import { autoUpdate, flip, offset, useFloating } from '@floating-ui/react'
 import { Combobox, ComboboxButton, ComboboxInput, ComboboxOptions, type ComboboxProps } from '@headlessui/react'
-import { motion } from 'framer-motion'
 import { useSelectController } from './hooks'
 import { type SelectItemOption } from './model'
 import { SelectItem, type SelectItemProps } from './ui'
-import { useFloating } from '$/shared/hooks'
 import { type DeepPartial } from '$/shared/types'
 import { Icon, Slot, Uncontrolled } from '$/shared/ui'
 import type { FieldAttachment } from '$/shared/ui/formElements/ui'
-import { cn } from '$/shared/utils'
+import { cn, mergeRefs } from '$/shared/utils'
 
 type FieldAttachmentProps = React.ComponentPropsWithoutRef<typeof FieldAttachment>
 
@@ -125,8 +124,20 @@ export const SelectBase = forwardRef<HTMLInputElement, SelectBaseProps<boolean>>
   ) => {
     const { root, list, ...innerClasses } = classes || {}
 
+    const { refs, floatingStyles } = useFloating({
+      placement: 'bottom-start',
+      strategy: 'absolute',
+      middleware: [
+        flip({
+          boundary: 'clippingAncestors',
+          crossAxis: false
+        }),
+        offset(LIST_OFFSET)
+      ],
+      whileElementsMounted: autoUpdate
+    })
+
     const triggerRef = useRef<HTMLButtonElement>(null)
-    const listRef = useRef<HTMLUListElement>(null)
 
     const { options, inputValue, onValueChange, onInputValueChange, selectDisplayValue } = useSelectController({
       options: initialOptions,
@@ -175,14 +186,12 @@ export const SelectBase = forwardRef<HTMLInputElement, SelectBaseProps<boolean>>
             }
           }
 
-          // eslint-disable-next-line react-hooks/rules-of-hooks
-          const floating = useFloating(triggerRef, listRef, LIST_OFFSET)
-
           return (
             <div className={cn('relative w-full', root)}>
               <TriggerButton ref={triggerRef} className='w-full' disabled={disabled}>
                 <ComboboxInput
-                  ref={ref}
+                  // @ts-expect-error asdf
+                  ref={mergeRefs(ref, refs.setReference)}
                   data-test-id='select-input'
                   as={Uncontrolled.InputBase}
                   label={label}
@@ -234,36 +243,18 @@ export const SelectBase = forwardRef<HTMLInputElement, SelectBaseProps<boolean>>
               <ComboboxOptions
                 portal
                 data-test-id='select-list'
-                ref={listRef}
-                as={motion.ul}
-                style={
-                  floating
-                    ? {
-                        top: floating.top,
-                        left: floating.left,
-                        width: floating.width,
-                        transformOrigin: floating.transformOrigin
-                      }
-                    : undefined
-                }
-                // style={
-                //   triggerCoords
-                //     ? {
-                //         top: triggerCoords.bottom + LIST_OFFSET,
-                //         left: triggerCoords.left,
-                //         width: triggerCoords.width
-                //       }
-                //     : undefined
-                // }
+                ref={refs.setFloating}
+                as='ul'
+                style={{
+                  ...floatingStyles,
+                  width: triggerRef.current?.getBoundingClientRect().width
+                }}
                 className={cn(
-                  'customScrollbar-y fixed left-0 top-full z-10 mt-1',
+                  'customScrollbar-y z-10 mt-1',
                   'max-h-[264px] w-full overflow-y-auto bg-color-white',
                   'rounded-md p-1 shadow-[0_8px_20px_0px_rgba(41,41,41,0.08)]',
                   list
                 )}
-                initial={{ opacity: 0, translateY: 10 }}
-                animate={{ opacity: 1, translateY: 0 }}
-                exit={{ opacity: 0, translateY: 10 }}
               >
                 {virtual ? (
                   ({ option }) => (

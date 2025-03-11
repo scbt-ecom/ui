@@ -1,0 +1,1 @@
+export { generateFile } from './generateFile'

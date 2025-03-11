@@ -11,6 +11,11 @@ type UploaderBaseClasses = {
   files?: UploaderFilesClasses
 }
 
+export type ExternalHandlers = {
+  onChange?: (files: File[]) => void
+  onClick?: (event: React.MouseEvent<HTMLInputElement>) => void
+}
+
 export interface UploaderBaseProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size' | 'placeholder' | 'value' | 'onChange'> {
   /**
@@ -39,17 +44,32 @@ export interface UploaderBaseProps
    * Значение
    */
   value?: File[]
+  /**
+   * Внешние объект handlers
+   */
+  externalHandlers?: ExternalHandlers
 }
 
 export const UploaderBase = forwardRef<HTMLInputElement, UploaderBaseProps>(
   (
-    { classes, dropzoneOptions = defaultDropzoneOptions, name, value, disabled, invalid, onChange, ...props }: UploaderBaseProps,
+    {
+      classes,
+      dropzoneOptions = defaultDropzoneOptions,
+      name,
+      value,
+      disabled,
+      invalid,
+      onChange,
+      externalHandlers,
+      ...props
+    }: UploaderBaseProps,
     ref
   ) => {
     const { filesStatus, removeFile, dropzoneState } = useUploader({
       controlledFiles: value,
       dropzoneOptions,
-      onChange
+      onChange,
+      externalHandlers
     })
 
     const { root, input, files } = classes || {}
@@ -65,6 +85,7 @@ export const UploaderBase = forwardRef<HTMLInputElement, UploaderBaseProps>(
             disabled={disabled}
             invalid={invalid}
             dropzoneState={dropzoneState}
+            externalHandlers={externalHandlers}
           />
         </div>
         <UploaderFiles files={value} removeFile={removeFile} classes={files} filesStatus={filesStatus} />

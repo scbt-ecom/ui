@@ -1,3 +1,4 @@
+import type { ReactElement } from 'react'
 import { type ButtonProps } from '$/shared/ui'
 import { type BannerButtonsGroupClasses } from '$/widgets/banner/ui/BannerButtonsGroup'
 
@@ -18,3 +19,9 @@ export type ButtonsConfig = {
   primary: ButtonProps
   secondary?: ButtonProps
 }
+
+export type ImgBanner =
+  | ReactElement
+  | {
+      url: string
+    }

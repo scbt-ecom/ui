@@ -2,8 +2,7 @@
 
 import { useMemo } from 'react'
 import { type Control, type FieldPath, type FieldValues, useController, type UseControllerProps } from 'react-hook-form'
-import type { OnChangeValue } from 'react-select'
-import { type SelectBaseProps, type SelectItemOption, Uncontrolled } from '$/shared/ui'
+import { isSingleOption, type SelectBaseProps, type SelectItemOption, Uncontrolled } from '$/shared/ui'
 import { MessageView } from '$/shared/ui/formElements/ui'
 import { cn } from '$/shared/utils'
 
@@ -32,12 +31,8 @@ export type SelectControlProps<
     /**
      * Функция для управления возвращаемым значением
      */
-    returnValue?: (option: SelectItemOption) => string
+    returnValue?: (option?: SelectItemOption) => string
   }
-
-function isSingleValue(value?: OnChangeValue<SelectItemOption, boolean>): value is SelectItemOption {
-  return value !== null && typeof value !== 'undefined' && !Array.isArray(value)
-}
 
 export const SelectControl = <TFieldValues extends FieldValues = FieldValues>({
   control,
@@ -66,12 +61,12 @@ export const SelectControl = <TFieldValues extends FieldValues = FieldValues>({
 
   const { value, onChange, ...restField } = field
 
-  const onValueChange = (value?: OnChangeValue<SelectItemOption, boolean>) => {
+  const onValueChange = (value?: SelectItemOption | SelectItemOption[]) => {
     if (Array.isArray(value)) {
       const values = value.map((item) => (returnValue ? returnValue(item) : item.value))
       onChange(values)
-    } else if (isSingleValue(value)) {
-      onChange(returnValue ? returnValue(value) : value.value)
+    } else if (isSingleOption(value)) {
+      onChange(returnValue ? returnValue(value) : value?.value)
     } else {
       onChange(null)
     }

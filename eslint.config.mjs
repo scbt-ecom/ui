@@ -117,7 +117,7 @@ export default tseslint.config(
         }
       ],
       'no-console': [
-        'error',
+        'warn',
         {
           allow: ['warn', 'error']
         }
