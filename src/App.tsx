@@ -818,6 +818,10 @@ const mockCategories: Category[] = [
             },
             children: [
               {
+                title: 'Акции',
+                link: {
+                  href: 'https://google.com/'
+                },
                 children: [
                   {
                     title: 'Программа лояльности',

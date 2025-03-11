@@ -1,6 +1,7 @@
 export interface SpritesMap {
   arrows: 'arrowCircle' | 'arrowLink' | 'arrowRight' | 'arrowRotate' | 'arrowScroll'
   brandLogos: 'logoBlack' | 'logoBusiness' | 'logoGray' | 'logoInsurance' | 'logoMain' | 'logoWhite'
+  communication: 'phone'
   editor:
     | 'bold'
     | 'heading'
@@ -16,7 +17,7 @@ export interface SpritesMap {
     | 'underline'
     | 'undo'
   files: 'border' | 'borderError' | 'documentFilled' | 'documentOutline' | 'upload'
-  general: 'calendar' | 'check' | 'close' | 'edit' | 'hiddenEye' | 'plus' | 'reorder' | 'showEye'
+  general: 'calendar' | 'check' | 'close' | 'edit' | 'hiddenEye' | 'menu' | 'plus' | 'reorder' | 'showEye'
   info: 'helpCircle' | 'warningCircle'
   logos: 'beeline' | 'megafon' | 'mts'
   social: 'classmates' | 'telegram' | 'vk'
@@ -97,6 +98,16 @@ export const SPRITES_META: {
         viewBox: '0 0 194 32',
         width: 194,
         height: 32
+      }
+    }
+  },
+  communication: {
+    filePath: 'communication.svg',
+    items: {
+      phone: {
+        viewBox: '0 0 24 24',
+        width: 24,
+        height: 24
       }
     }
   },
@@ -227,6 +238,11 @@ export const SPRITES_META: {
         viewBox: '0 0 20 18',
         width: 20,
         height: 18
+      },
+      menu: {
+        viewBox: '0 0 24 24',
+        width: 24,
+        height: 24
       },
       plus: {
         viewBox: '0 0 16 16',

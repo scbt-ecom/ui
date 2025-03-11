@@ -1,6 +1,6 @@
 import { memo, useRef } from 'react'
 import { motion } from 'framer-motion'
-import type { Category } from '../../model'
+import type { Category } from '../../../model'
 import { TabContent } from './ui'
 import { cn, TypeGuards } from '$/shared/utils'
 
@@ -11,7 +11,6 @@ type TabProps = {
 }
 
 const InnerComponent = ({ category, active, onActiveTabChange }: TabProps) => {
-  // const { activeTab, setActiveTab } = useTabContext()
   const triggerRef = useRef<HTMLDivElement>(null)
   const triggerClientRect = triggerRef.current?.getBoundingClientRect()
 

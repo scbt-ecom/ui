@@ -1,7 +1,7 @@
 import { memo, useCallback, useState } from 'react'
 import { AnimatePresence } from 'framer-motion'
-import type { Category } from '../model'
-import { Tab } from '$/widgets/seoHeader/ui/tab'
+import type { Category } from '../../model'
+import { Tab } from './tab'
 
 type CategoryTabsProps = {
   categories: Category[]

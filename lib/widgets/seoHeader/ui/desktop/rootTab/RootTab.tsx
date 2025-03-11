@@ -1,4 +1,4 @@
-import type { Category } from '../../model'
+import type { Category } from '../../../model'
 import { cn } from '$/shared/utils'
 
 type RootTabProps = React.HTMLAttributes<HTMLDivElement> & {
