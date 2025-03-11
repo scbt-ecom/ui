@@ -25,7 +25,7 @@ export const mockLongBannerBase: LongBannerProps = {
       }
     ]
   },
-  imageComponent: <img data-id='banner-image' src={money} alt='money' className={cn('h-full w-full object-contain')} />
+  image: <img data-id='banner-image' src={money} alt='money' className={cn('h-full w-full object-contain')} />
 }
 
 export const mockLongBannerWithoutButton: LongBannerProps = {
@@ -46,7 +46,7 @@ export const mockLongBannerWithoutButton: LongBannerProps = {
       }
     ]
   },
-  imageComponent: <img data-id='banner-image' src={money} alt='money' className={cn('h-full w-full object-contain')} />
+  image: <img data-id='banner-image' src={money} alt='money' className={cn('h-full w-full object-contain')} />
 }
 
 export const mockLongBannerMulti: LongBannerProps = {
@@ -84,7 +84,7 @@ export const mockLongBannerMulti: LongBannerProps = {
       }
     ]
   },
-  imageComponent: <img data-id='banner-image' src={money} alt='money' className={cn('h-full w-full object-contain')} />
+  image: <img data-id='banner-image' src={money} alt='money' className={cn('h-full w-full object-contain')} />
 }
 
 export const mockLongBannerMultiWithoutButton: LongBannerProps = {
@@ -118,5 +118,5 @@ export const mockLongBannerMultiWithoutButton: LongBannerProps = {
       }
     ]
   },
-  imageComponent: <img data-id='banner-image' src={money} alt='money' className={cn('h-full w-full object-contain')} />
+  image: <img data-id='banner-image' src={money} alt='money' className={cn('h-full w-full object-contain')} />
 }
