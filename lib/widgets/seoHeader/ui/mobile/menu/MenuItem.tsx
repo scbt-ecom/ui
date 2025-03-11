@@ -40,8 +40,10 @@ export const MenuItem = ({ category }: MenuItemProps) => (
               <Icon name='arrows/arrowLink' />
             </Title>
             {child.children.map((innerChild) => (
-              <li key={innerChild.title} className='[&:not(:last-child)]:mb-3'>
-                <a href={innerChild.link?.href}>{innerChild.title}</a>
+              <li key={innerChild.title} className='inline-block w-full [&:not(:last-child)]:mb-3'>
+                <a href={innerChild.link?.href} className='w-full'>
+                  {innerChild.title}
+                </a>
               </li>
             ))}
           </ul>
