@@ -1,3 +1,5 @@
+'use client'
+
 import { BaseHTMLParser, type ParserOptions } from './baseHtmlParser'
 
 const isBrowser = typeof window !== 'undefined'
