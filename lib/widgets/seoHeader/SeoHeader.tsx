@@ -1,6 +1,8 @@
+import { Breadcrumbs } from '../breadcrumbs'
 import type { Category, SeoHeaderHelpers } from './model'
 import { CategoriesDesktop, CategoriesMobile } from './ui'
 import { useDevice } from '$/shared/hooks'
+import { capitalize } from '$/shared/utils'
 
 type SeoHeaderProps = {
   categories: Category[]
@@ -18,6 +20,7 @@ export const SeoHeader = ({ categories, helpers, phone }: SeoHeaderProps) => {
       ) : (
         <CategoriesDesktop categories={categories} helpers={helpers} phone={phone} />
       )}
+      <Breadcrumbs matcher={(breadcrumb) => capitalize(breadcrumb.label).split('-').join(' ')} />
     </div>
   )
 }

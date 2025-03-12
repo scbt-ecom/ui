@@ -1433,7 +1433,6 @@ export const App = () => {
           use <span className='desk-title-bold-s text-color-primary-default'> npm run start </span> for run storybook
         </h2>
         <SeoHeader categories={mockCategories} helpers={mockHelpers} phone={mockPhone} />
-        <div className='h-10 w-full' />
         <div className='h-screen w-full bg-color-primary-default' />
       </ResponsiveContainer>
     </div>
