@@ -37,7 +37,7 @@ import { zodValidators } from '@scbt-ecom/ui/validation'
 
 const schema = z.object({
   field_1: zodValidators.base.getStringSchema({ min: 1, max: 10 }),
-  field_2: zodValidators.base.getStringSchema({ min: 1, max: 10, required: false }),
+  field_2: zodValidators.base.getStringSchema({ min: 1, max: 10, required: false })
 })
 /*
   this will return
@@ -46,7 +46,7 @@ const schema = z.object({
     field_2: z.string().min(1).max(10).optional()
   }
 */
-  
+
 schema.parse({
   field_1: 'some value',
   field_2: 'some long value' // this field contains invalid value and throws an validation error
@@ -56,7 +56,7 @@ schema.parse({
 ### Prop types
 
 | Prop       | Type      | Description                      | Required | Default     |
-|------------|-----------|----------------------------------|----------|-------------|
+| ---------- | --------- | -------------------------------- | -------- | ----------- |
 | `min`      | `number`  | минимальное количество символов  | `false`  | `1`         |
 | `max`      | `number`  | максимальное количество символов | `false`  | `undefined` |
 | `length`   | `number`  | фиксированная длина символов     | `false`  | `undefined` |
@@ -67,7 +67,7 @@ schema.parse({
 
 Строковая схема с email валидацией
 
-Используется для стандартной валидации email полей 
+Используется для стандартной валидации email полей
 
 Пример использования:
 
@@ -76,7 +76,7 @@ import { zodValidators } from '@scbt-ecom/ui/validation'
 
 const schema = z.object({
   field_1: zodValidators.base.getEmailSchema({ regexp: /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g }),
-  field_2: zodValidators.base.getEmailSchema({ required: false }),
+  field_2: zodValidators.base.getEmailSchema({ required: false })
 })
 /*
   this will return
@@ -85,7 +85,7 @@ const schema = z.object({
     field_2: z.string().regex(DEFAULT_EMAIL_REGEX).optional()
   }
 */
-  
+
 schema.parse({
   field_1: 'example@domain.ru',
   field_2: 'example&domain,ru' // this field contains invalid email and throws an validation error
@@ -95,7 +95,7 @@ schema.parse({
 ### Prop types
 
 | Prop       | Type      | Description                                           | Required | Default                              |
-|------------|-----------|-------------------------------------------------------|----------|--------------------------------------|
+| ---------- | --------- | ----------------------------------------------------- | -------- | ------------------------------------ |
 | `regexp`   | `RegExp`  | Регулярное выражение для проверки email на валидность | `false`  | `/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g` |
 | `required` | `boolean` | указывает что поле обязательное                       | `false`  | `true`                               |
 | `message`  | `{}`      | переопределение сообщений ошибки                      | `false`  | `undefined`                          |
@@ -115,7 +115,7 @@ const schema = z.object({
   field_1: zodValidators.base.getSelectSchema(),
   field_2: zodValidators.base.getSelectSchema({ multiple: true }),
   field_3: zodValidators.base.getSelectSchema({ required: false }),
-  field_4: zodValidators.base.getSelectSchema({ multiple: true, required: false }),
+  field_4: zodValidators.base.getSelectSchema({ multiple: true, required: false })
 })
 /*
   this will return
@@ -126,7 +126,7 @@ const schema = z.object({
     field_4: z.array(z.string().min(1).nullable().optional()).optional(),
   }
 */
-  
+
 schema.parse({
   field_1: 'value_1',
   field_2: ['value_1', 'value_2'],
@@ -137,7 +137,7 @@ schema.parse({
 ### Prop types
 
 | Prop        | Type      | Description                                                               | Required | Default     |
-|-------------|-----------|---------------------------------------------------------------------------|----------|-------------|
+| ----------- | --------- | ------------------------------------------------------------------------- | -------- | ----------- |
 | `multiple`  | `boolean` | включает валидацию мульти селекта                                         | `false`  | `false`     |
 | `required`  | `boolean` | указывает что поле обязательное                                           | `false`  | `true`      |
 | `minLength` | `number`  | минимальное количество элементов (игнорируется есть `multiple = false`)   | `false`  | `1`         |
@@ -158,7 +158,7 @@ import { zodValidators } from '@scbt-ecom/ui/validation'
 
 const schema = z.object({
   field_1: zodValidators.base.getNumberSchema(),
-  field_2: zodValidators.base.getNumberSchema({ required: false }),
+  field_2: zodValidators.base.getNumberSchema({ required: false })
 })
 /*
   this will return
@@ -167,7 +167,7 @@ const schema = z.object({
     field_2: z.coerce.number().optional(),
   }
 */
-  
+
 schema.parse({
   field_1: 123,
   field_2: '123' // this field contains invalid value and throws an validation error
@@ -177,7 +177,7 @@ schema.parse({
 ### Prop types
 
 | Prop       | Type      | Description                      | Required | Default     |
-|------------|-----------|----------------------------------|----------|-------------|
+| ---------- | --------- | -------------------------------- | -------- | ----------- |
 | `min`      | `number`  | минимальное значение             | `false`  | `0`         |
 | `max`      | `number`  | максимальное значение            | `false`  | `undefined` |
 | `required` | `boolean` | указывает что поле обязательное  | `false`  | `true`      |
@@ -197,7 +197,7 @@ import { zodValidators } from '@scbt-ecom/ui/validation'
 const schema = z.object({
   field_1: zodValidators.base.getPhoneSchema(),
   field_2: zodValidators.base.getPhoneSchema({ ignoreMask: false }),
-  field_3: zodValidators.base.getPhoneSchema({ required: false }),
+  field_3: zodValidators.base.getPhoneSchema({ required: false })
 })
 /*
   this will return
@@ -207,7 +207,7 @@ const schema = z.object({
     field_3: z.string().optional(),
   }
 */
-  
+
 schema.parse({
   field_1: '+7 (999) 999-99-99',
   field_2: '+7 (999) 999-99-99',
@@ -225,7 +225,7 @@ schema.parse({
 ### Prop types
 
 | Prop          | Type      | Description                                                  | Required | Default       |
-|---------------|-----------|--------------------------------------------------------------|----------|---------------|
+| ------------- | --------- | ------------------------------------------------------------ | -------- | ------------- |
 | `ignoreMask`  | `boolean` | исключает маску в возвращаемом значении                      | `false`  | `true`        |
 | `maskSymbols` | `RegExp`  | игнорирует символы для проверки поля исключая данные символы | `false`  | `/[()+_ -]/g` |
 | `required`    | `boolean` | указывает что поле обязательное                              | `false`  | `true`        |
@@ -245,7 +245,7 @@ import { zodValidators } from '@scbt-ecom/ui/validation'
 const schema = z.object({
   field_1: zodValidators.base.getDateSchema(),
   field_2: zodValidators.base.getDateSchema({ iso: false }),
-  field_3: zodValidators.base.getDateSchema({ required: false }),
+  field_3: zodValidators.base.getDateSchema({ required: false })
 })
 /*
   this will return
@@ -255,7 +255,7 @@ const schema = z.object({
     field_3: z.string().optional(),
   }
 */
-  
+
 schema.parse({
   field_1: '2025-01-23T00:00:00.000Z',
   field_2: '23.01.2025',
@@ -266,7 +266,7 @@ schema.parse({
 ### Prop types
 
 | Prop       | Type      | Description                                                           | Required | Default      |
-|------------|-----------|-----------------------------------------------------------------------|----------|--------------|
+| ---------- | --------- | --------------------------------------------------------------------- | -------- | ------------ |
 | `iso`      | `boolean` | валидация строки с учетом ISO формата                                 | `false`  | `true`       |
 | `pattern`  | `string`  | шаблон для валидации строки (будет проигнорирован, если `iso = true`) | `false`  | `dd.MM.yyyy` |
 | `required` | `boolean` | указывает что поле обязательное                                       | `false`  | `true`       |
@@ -296,7 +296,7 @@ const schema = z.object({
     field_3: z.union([z.literal('A'), z.literal('B'), z.literal('C')]).optional(),
   }
 */
-  
+
 schema.parse({
   field_1: 'A',
   field_2: 'D' // this field contains invalid value and throws an validation error
@@ -306,7 +306,7 @@ schema.parse({
 ### Prop types
 
 | Prop                 | Type                                           | Description                                         | Required | Default     |
-|----------------------|------------------------------------------------|-----------------------------------------------------|----------|-------------|
+| -------------------- | ---------------------------------------------- | --------------------------------------------------- | -------- | ----------- |
 | `invalid_type_error` | `string`                                       | сообщение об ошибке при не правильном типе значение | `false`  | `undefined` |
 | `required_error`     | `string`                                       | сообщение об ошибке при отсутствии значения         | `false`  | `undefined` |
 | `description`        | `string`                                       | описание схемы                                      | `false`  | `undefined` |
@@ -326,7 +326,7 @@ import { zodValidators } from '@scbt-ecom/ui/validation'
 
 const schema = z.object({
   field_1: zodValidators.dadata.getFioSchema(),
-  field_2: zodValidators.dadata.getFioSchema({ required: false }),
+  field_2: zodValidators.dadata.getFioSchema({ required: false })
 })
 /*
   this will return
@@ -335,7 +335,7 @@ const schema = z.object({
     field_2: z.string().optional()
   }
 */
-  
+
 schema.parse({
   field_1: 'Иванов Иван Иванович',
   field_2: 'ИвановИванИванович' // this field contains invalid value and throws an validation error
@@ -345,7 +345,7 @@ schema.parse({
 ### Prop types
 
 | Prop       | Type      | Description                      | Required | Default     |
-|------------|-----------|----------------------------------|----------|-------------|
+| ---------- | --------- | -------------------------------- | -------- | ----------- |
 | `required` | `boolean` | указывает что поле обязательное  | `false`  | `true`      |
 | `message`  | `{}`      | переопределение сообщений ошибки | `false`  | `undefined` |
 
@@ -386,19 +386,23 @@ const defaultValues = ZodUtils.getZodDefaults(schema)
 //   }
 // }
 
-
 const Component = () => {
   const { control, handleSubmit } = useControlledForm({
     schema,
     defaultValues
   })
-  
+
   /*
     some logic
   */
-  
+
   return (
-    <form onSubmit={handleSubmit((values) => {}, (errors) => {})}>
+    <form
+      onSubmit={handleSubmit(
+        (values) => {},
+        (errors) => {}
+      )}
+    >
       {/* some fields */}
     </form>
   )
@@ -408,5 +412,5 @@ const Component = () => {
 ### Prop types
 
 | Prop                 | Type      | Description                                                    | Required | Default |
-|----------------------|-----------|----------------------------------------------------------------|----------|---------|
+| -------------------- | --------- | -------------------------------------------------------------- | -------- | ------- |
 | `fillArrayWithValue` | `boolean` | Вставить в массив значение, исходя из внутренней схемы z.array | `false`  | `false` |
