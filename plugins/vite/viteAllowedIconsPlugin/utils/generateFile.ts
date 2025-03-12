@@ -1,5 +1,5 @@
 import { writeFileSync } from 'fs'
-import { relative } from 'path'
+import { relative, sep } from 'path'
 import { findIcon } from './findIcon'
 
 export const generateFile = (staticPath: string, outputDir: string) => {
@@ -7,7 +7,7 @@ export const generateFile = (staticPath: string, outputDir: string) => {
   const iconsFlatten: string[] = []
 
   findIcon(staticPath, (filename) => {
-    const [root, icon] = relative(staticPath, filename).split('\\')
+    const [root, icon] = relative(staticPath, filename).split(sep)
 
     if (!icons[root]) {
       icons[root] = []
