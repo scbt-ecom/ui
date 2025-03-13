@@ -27,7 +27,12 @@ export const mockBenefitDataFourCards: BenefitProps = {
       title: 'Минимум документов',
       subtitle: `<p>Понадобится только паспорт, если сумма кредита до&nbsp;1&nbsp;млн&nbsp;₽</p>`,
       img: <img className={cn('h-[246px] object-cover')} src={clockLarge} alt='test' />,
-      buttonText: 'Оформить заявку'
+      button: {
+        handlerOptions: {
+          handler: 'scroll',
+          widgetId: 'benefit'
+        }
+      }
     }
   ],
   headline: `<h2>
@@ -45,7 +50,12 @@ export const mockBenefitDataThreeCards: BenefitProps = {
             «ХАЛВА-Совкомбанк»
           </p>`,
       img: <img className={cn('h-[246px] object-cover')} src={percentMob} alt='test' />,
-      buttonText: 'Оформить заявку'
+      button: {
+        handlerOptions: {
+          handler: 'scroll',
+          widgetId: 'benefit'
+        }
+      }
     },
     {
       title: 'Честные условия',

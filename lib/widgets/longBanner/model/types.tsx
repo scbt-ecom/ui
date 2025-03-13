@@ -10,14 +10,9 @@ export type Details<Enabled extends boolean> = {
   popover?: Popover<Enabled>
 }
 
-export interface ButtonConfig {
-  text: string | ReactElement
-  onClick?: () => void
-}
-
 type PopoverEnabled = {
   enabled: true
-  text?: string
+  text: string
 }
 
 type PopoverDisabled = {

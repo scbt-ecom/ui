@@ -36,7 +36,8 @@ export const Base: Story = {
           handlerOptions: {
             handler: 'scroll',
             widgetId: 'stepper'
-          }
+          },
+          children: 'Кнопка'
         }}
         variant='withButton'
       />
@@ -53,7 +54,8 @@ export const OnlyPrimaryButton: Story = {
           handlerOptions: {
             handler: 'scroll',
             widgetId: 'stepper'
-          }
+          },
+          children: 'Кнопка'
         }}
         variant='withButton'
       />
@@ -70,7 +72,8 @@ export const WithAdvantages: Story = {
           handlerOptions: {
             handler: 'scroll',
             widgetId: 'stepper'
-          }
+          },
+          children: 'Кнопка'
         }}
         variant='withButton'
       />
@@ -87,7 +90,8 @@ export const BaseFullImage: Story = {
           handlerOptions: {
             handler: 'scroll',
             widgetId: 'stepper'
-          }
+          },
+          children: 'Кнопка'
         }}
         variant='withButton'
       />
@@ -104,7 +108,8 @@ export const FullImageOnlyPrimaryButton: Story = {
           handlerOptions: {
             handler: 'scroll',
             widgetId: 'stepper'
-          }
+          },
+          children: 'Кнопка'
         }}
         variant='withButton'
       />
@@ -121,7 +126,8 @@ export const BaseFullImageWithAdvantages: Story = {
           handlerOptions: {
             handler: 'scroll',
             widgetId: 'stepper'
-          }
+          },
+          children: 'Кнопка'
         }}
         variant='withButton'
       />
@@ -138,7 +144,8 @@ export const BaseGradient: Story = {
           handlerOptions: {
             handler: 'scroll',
             widgetId: 'stepper'
-          }
+          },
+          children: 'Кнопка'
         }}
         variant='withButton'
       />
@@ -155,7 +162,8 @@ export const BaseGradientWithAdvantages: Story = {
           handlerOptions: {
             handler: 'scroll',
             widgetId: 'stepper'
-          }
+          },
+          children: 'Кнопка'
         }}
         variant='withButton'
       />

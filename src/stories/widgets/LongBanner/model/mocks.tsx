@@ -1,4 +1,3 @@
-import toast from 'react-hot-toast'
 import money from './assets/money.png'
 import { cn } from '$/shared/utils'
 import { type LongBannerProps } from '$/widgets/longBanner/LongBanner.tsx'
@@ -6,8 +5,14 @@ import { type LongBannerProps } from '$/widgets/longBanner/LongBanner.tsx'
 export const mockLongBannerBase: LongBannerProps<true> = {
   headline: 'Main Title',
   buttonConfig: {
-    text: 'Button',
-    onClick: () => toast.success('@click on primary btn')
+    enabled: true,
+    buttonContent: {
+      children: 'Button',
+      handlerOptions: {
+        handler: 'scroll',
+        widgetId: 'stepper'
+      }
+    }
   },
   details: [
     {
@@ -49,8 +54,14 @@ export const mockLongBannerMulti: LongBannerProps<true> = {
   intent: 'fourItems',
   headline: 'Main Title',
   buttonConfig: {
-    text: 'Button',
-    onClick: () => toast.success('@click on primary btn')
+    enabled: true,
+    buttonContent: {
+      children: 'Button',
+      handlerOptions: {
+        handler: 'scroll',
+        widgetId: 'stepper'
+      }
+    }
   },
   details: [
     {

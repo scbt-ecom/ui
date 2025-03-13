@@ -1,10 +1,9 @@
 'use client'
 
-import { BannerButtonsGroup } from '../BannerButtonsGroup'
 import { useDevice } from '$/shared/hooks'
 import { ResponsiveContainer } from '$/shared/ui'
 import { cn, TypeGuards } from '$/shared/utils'
-import { Advantages, type BannerProps } from '$/widgets'
+import { Advantages, type BannerProps, ButtonWithHandlers } from '$/widgets'
 
 export const BannerImageFull = ({
   headTitle,
@@ -17,6 +16,7 @@ export const BannerImageFull = ({
   color
 }: Omit<BannerProps, 'bannerVariant'>) => {
   const { isDesktop, isMobile } = useDevice()
+  const { primary, secondary } = buttonsConfig || {}
 
   const imgMob =
     imgMobile && 'url' in imgMobile && TypeGuards.isObject(imgMobile) ? (
@@ -53,6 +53,7 @@ export const BannerImageFull = ({
         <div className='absolute bottom-0 left-0 right-0 top-0 mx-auto h-full max-w-[1920px] desktop:h-[456px]'>
           {isMobile ? imgMob : imgDesk}
         </div>
+
         <ResponsiveContainer className={cn('h-full', classes?.container)}>
           <div className={cn('flex h-full', classes?.wrapper)}>
             <div className={cn('flex w-[328px] flex-col gap-10 pt-6 desktop:w-full desktop:pt-20', classes?.textBlock)}>
@@ -66,7 +67,30 @@ export const BannerImageFull = ({
                   className={cn('desk-body-regular-l text-color-dark', classes?.subtitle)}
                 />
               </div>
-              <BannerButtonsGroup className='self-end desktop:self-center' buttonsConfig={buttonsConfig} classes={classes} />
+
+              <div
+                className={cn(
+                  'grid-buttons-apply absolute bottom-6 left-1/2 flex w-full -translate-x-1/2 flex-col self-end justify-self-center px-4 desktop:static desktop:left-auto desktop:max-w-full desktop:translate-x-0 desktop:flex-row desktop:justify-normal desktop:self-center desktop:px-0',
+                  { 'flex items-center gap-4': secondary?.enabled },
+                  classes?.group
+                )}
+              >
+                {primary.enabled && (
+                  <ButtonWithHandlers
+                    className={cn('w-full desktop:max-w-[216px]', classes?.primary)}
+                    size='lg'
+                    intent='primary'
+                    {...primary.buttonContent}
+                  />
+                )}
+                {secondary?.enabled && (
+                  <ButtonWithHandlers
+                    intent='secondary'
+                    className={cn('w-full desktop:max-w-[216px]', classes?.secondary)}
+                    {...primary.buttonContent}
+                  />
+                )}
+              </div>
             </div>
           </div>
 
