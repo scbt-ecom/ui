@@ -1,11 +1,15 @@
 import { useEffect, useState } from 'react'
 import type { Breadcrumb, UseBreadcrumbsOptions } from './types'
-import { getUuid, TypeGuards } from '$/shared/utils'
+import { getUuid, isClient, TypeGuards } from '$/shared/utils'
 
 export const useBreadcrumbs = ({ startsWith, endsWith, matcher, filter, rootEnabled = true }: UseBreadcrumbsOptions) => {
   const [breadcrumbs, setBreadcrumbs] = useState<Breadcrumb[]>([])
 
   useEffect(() => {
+    if (!isClient) {
+      return
+    }
+
     let pathnameParts = window.location.pathname.split('/').filter((part) => !TypeGuards.isStringEmpty(part))
 
     if (!TypeGuards.isUndefined(startsWith)) {
@@ -42,7 +46,8 @@ export const useBreadcrumbs = ({ startsWith, endsWith, matcher, filter, rootEnab
       currentPath += `/${pathname}`
 
       const breadcrumb: Breadcrumb = {
-        // while root enabled we have root page out of pathname parts
+        // while root enabled we need to increment index
+        // cuz we have root breadcrumb
         index: rootEnabled ? index + 1 : index,
         id: getUuid(),
         path: currentPath,
