@@ -1,38 +1,115 @@
+import { getUuid } from '$/shared/utils'
 import type { Contents } from '$/widgets/usefulInfo/model'
 
 const twoColsRows = [
-  { row: [{ cell: 'Заемщик' }, { cell: 'Физическое лицо, индивидуальный предприниматель, собственник бизнеса' }] },
-  { row: [{ cell: 'Гражданство' }, { cell: 'Российская Федерация' }] },
-  { row: [{ cell: 'Регистрация' }, { cell: 'Постоянная либо временная регистрация на территории РФ' }] },
-  { row: [{ cell: 'Возраст на момент предоставления кредита ' }, { cell: 'Не менее 18 лет*' }] },
-  { row: [{ cell: 'Возраст на момент возврата кредита по договору' }, { cell: '85 лет*' }] }
+  {
+    row: [
+      { cellId: getUuid(), cell: 'Заемщик' },
+      { cellId: getUuid(), cell: 'Физическое лицо, индивидуальный предприниматель, собственник бизнеса' }
+    ],
+    rowId: getUuid()
+  },
+  {
+    row: [
+      { cellId: getUuid(), cell: 'Гражданство' },
+      { cellId: getUuid(), cell: 'Российская Федерация' }
+    ],
+    rowId: getUuid()
+  },
+  {
+    row: [
+      { cellId: getUuid(), cell: 'Регистрация' },
+      { cellId: getUuid(), cell: 'Постоянная либо временная регистрация на территории РФ' }
+    ],
+    rowId: getUuid()
+  },
+  {
+    row: [
+      { cellId: getUuid(), cell: 'Возраст на момент предоставления кредита ' },
+      { cellId: getUuid(), cell: 'Не менее 18 лет*' }
+    ],
+    rowId: getUuid()
+  },
+  {
+    row: [
+      { cellId: getUuid(), cell: 'Возраст на момент возврата кредита по договору' },
+      { cellId: getUuid(), cell: '85 лет*' }
+    ],
+    rowId: getUuid()
+  }
 ]
 
 const threeColsRows = [
-  { row: [{ cell: 'Новостройка' }, { cell: 'от 21,493% до 43,196%' }, { cell: 'от 14,99%' }] },
-  { row: [{ cell: 'Недвижимость на вторичном рынке' }, { cell: 'от 21,659% до 44,125%' }, { cell: 'от 14,99%' }] },
-  { row: [{ cell: 'Дальневосточная ипотека' }, { cell: 'от 2,988% до 5,180%' }, { cell: 'от 1,99%' }] },
   {
-    row: [{ cell: 'Ипотека с господдержкой для семей с детьми' }, { cell: 'от 5,627% до 9,616%' }, { cell: 'от 5,99%' }]
+    rowId: getUuid(),
+    row: [
+      { cellId: getUuid(), cell: 'Новостройка' },
+      { cellId: getUuid(), cell: 'от 21,493% до 43,196%' },
+      { cellId: getUuid(), cell: 'от 14,99%' }
+    ]
   },
-  { row: [{ cell: 'Ипотека для ИТ-специалистов' }, { cell: 'от 5,996% до 8,191%' }, { cell: 'от 5,996% до 8,191%' }] }
+  {
+    rowId: getUuid(),
+    row: [
+      { cellId: getUuid(), cell: 'Недвижимость на вторичном рынке' },
+      { cellId: getUuid(), cell: 'от 21,659% до 44,125%' },
+      { cellId: getUuid(), cell: 'от 14,99%' }
+    ]
+  },
+  {
+    rowId: getUuid(),
+    row: [
+      { cellId: getUuid(), cell: 'Дальневосточная ипотека' },
+      { cellId: getUuid(), cell: 'от 2,988% до 5,180%' },
+      { cellId: getUuid(), cell: 'от 1,99%' }
+    ]
+  },
+  {
+    rowId: getUuid(),
+    row: [
+      { cellId: getUuid(), cell: 'Ипотека с господдержкой для семей с детьми' },
+      { cellId: getUuid(), cell: 'от 5,627% до 9,616%' },
+      { cellId: getUuid(), cell: 'от 5,99%' }
+    ]
+  },
+  {
+    rowId: getUuid(),
+    row: [
+      { cellId: getUuid(), cell: 'Ипотека для ИТ-специалистов' },
+      { cellId: getUuid(), cell: 'от 5,996% до 8,191%' },
+      { cellId: getUuid(), cell: 'от 5,996% до 8,191%' }
+    ]
+  }
 ]
 
-const twoColsHeadings = [{ heading: 'Процентная ставка' }, { heading: 'Страхование заемщика' }]
-const threeColsHeadings = [{ heading: 'Программа кредитования*' }, { heading: 'Полная стоимость кредита' }, { heading: 'Ставка' }]
+const twoColsHeadings = [
+  { headingId: getUuid(), heading: 'Процентная ставка' },
+  { headingId: getUuid(), heading: 'Страхование заемщика' }
+]
+
+const threeColsHeadings = [
+  { headingId: getUuid(), heading: 'Программа кредитования*' },
+  { headingId: getUuid(), heading: 'Полная стоимость кредита' },
+  { headingId: getUuid(), heading: 'Ставка' }
+]
+
 const description =
   '*Ставки указаны с учетом подключения услуги «Снижение процентной ставки» и применимой ' +
   'Акции с использованием карты Халва, с учетом заключения всех видов договоров страхования: имущественного, личного, титульного.\n' +
   'Подробнее'
 
 export const tableTwoColsFilled: Contents = {
+  entityId: getUuid(),
   entity: {
     variant: 'TABLE',
     details: [
       {
         columnsVariant: 'twoCols',
         tableVariant: 'filled',
-        headings: [{ heading: 'Процентная ставка' }, { heading: 'Страхование заемщика' }],
+        headings: [
+          { heading: 'Процентная ставка', headingId: getUuid() },
+          { heading: 'Страхование заемщика', headingId: getUuid() }
+        ],
         rows: twoColsRows
       }
     ]
@@ -40,6 +117,7 @@ export const tableTwoColsFilled: Contents = {
 }
 
 export const tableTwoColsFilledWithoutHeadings: Contents = {
+  entityId: getUuid(),
   entity: {
     variant: 'TABLE',
     details: [
@@ -53,6 +131,7 @@ export const tableTwoColsFilledWithoutHeadings: Contents = {
 }
 
 export const tableThreeColsFilled: Contents = {
+  entityId: getUuid(),
   entity: {
     variant: 'TABLE',
     details: [
@@ -67,6 +146,7 @@ export const tableThreeColsFilled: Contents = {
 }
 
 export const tableThreeColsFilledWithoutHeadings: Contents = {
+  entityId: getUuid(),
   entity: {
     variant: 'TABLE',
     details: [
@@ -80,6 +160,7 @@ export const tableThreeColsFilledWithoutHeadings: Contents = {
 }
 
 export const tableThreeFilledWithTitleDescriptionAndHeadings: Contents = {
+  entityId: getUuid(),
   entity: {
     variant: 'TABLE',
     details: [
@@ -96,6 +177,7 @@ export const tableThreeFilledWithTitleDescriptionAndHeadings: Contents = {
 }
 
 export const tableThreeFilledWithTitleDescriptionAndHeadingsWrapInAccordion: Contents = {
+  entityId: getUuid(),
   entity: {
     variant: 'TABLE',
     details: [
@@ -108,7 +190,11 @@ export const tableThreeFilledWithTitleDescriptionAndHeadingsWrapInAccordion: Con
         description,
         columnsVariant: 'threeCols',
         tableVariant: 'filled',
-        headings: [{ heading: 'Программа' }, { heading: 'ПСК' }, { heading: 'Ставка' }],
+        headings: [
+          { heading: 'Программа', headingId: getUuid() },
+          { heading: 'ПСК', headingId: getUuid() },
+          { heading: 'Ставка', headingId: getUuid() }
+        ],
         rows: threeColsRows
       }
     ]
@@ -116,6 +202,7 @@ export const tableThreeFilledWithTitleDescriptionAndHeadingsWrapInAccordion: Con
 }
 
 export const tableTwoColsSeparator: Contents = {
+  entityId: getUuid(),
   entity: {
     variant: 'TABLE',
     details: [
@@ -130,6 +217,7 @@ export const tableTwoColsSeparator: Contents = {
 }
 
 export const tableTwoColsSeparatorWithoutHeadings: Contents = {
+  entityId: getUuid(),
   entity: {
     variant: 'TABLE',
     details: [
@@ -143,6 +231,7 @@ export const tableTwoColsSeparatorWithoutHeadings: Contents = {
 }
 
 export const tableThreeColsSeparator: Contents = {
+  entityId: getUuid(),
   entity: {
     variant: 'TABLE',
     details: [
@@ -157,6 +246,7 @@ export const tableThreeColsSeparator: Contents = {
 }
 
 export const tableThreeColsSeparatorWithoutHeadings: Contents = {
+  entityId: getUuid(),
   entity: {
     variant: 'TABLE',
     details: [
@@ -170,6 +260,7 @@ export const tableThreeColsSeparatorWithoutHeadings: Contents = {
 }
 
 export const tableThreeColsSeparatorWithTitleDescriptionAndHeadings: Contents = {
+  entityId: getUuid(),
   entity: {
     variant: 'TABLE',
     details: [
@@ -186,6 +277,7 @@ export const tableThreeColsSeparatorWithTitleDescriptionAndHeadings: Contents = 
 }
 
 export const tableThreeColsSeparatorWithTitleDescriptionAndHeadingsWrapInAccordion: Contents = {
+  entityId: getUuid(),
   entity: {
     variant: 'TABLE',
     details: [
