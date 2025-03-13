@@ -1,5 +1,5 @@
 import { cva } from 'class-variance-authority'
-import type { EntityTable } from '../../../../model'
+import type { EntityTableProps } from '../Table'
 import { cn } from '$/shared/utils'
 
 const headingsConfig = cva('grid px-4 mb-4', {
@@ -11,17 +11,23 @@ const headingsConfig = cva('grid px-4 mb-4', {
   }
 })
 
-interface DesktopHeadingsProps {
-  headings: EntityTable['headings']
-  columnsVariant: EntityTable['columnsVariant']
+export type DesktopHeadingClasses = {
+  row?: string
+  cell?: string
 }
 
-export const DesktopHeadings = ({ headings, columnsVariant }: DesktopHeadingsProps) => {
+interface DesktopHeadingsProps {
+  headings: EntityTableProps['headings']
+  columnsVariant: EntityTableProps['columnsVariant']
+  classes?: DesktopHeadingClasses
+}
+
+export const DesktopHeadings = ({ headings, columnsVariant, classes }: DesktopHeadingsProps) => {
   return (
-    <div className={cn(headingsConfig({ columnsVariant }))}>
-      {headings?.map((ceil) => (
-        <div key={ceil?.heading} className='text-color-secondary'>
-          {ceil?.heading}
+    <div className={cn(headingsConfig({ columnsVariant }), classes?.row)}>
+      {headings?.map((cell) => (
+        <div key={cell?.heading} className={cn('text-color-secondary', classes?.cell)}>
+          {cell?.heading}
         </div>
       ))}
     </div>

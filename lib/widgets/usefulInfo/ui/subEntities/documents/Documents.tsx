@@ -1,29 +1,54 @@
-import type { EntityDocuments } from '../../../model'
-import { Document } from './ui/document'
+import type { EntitiesAccordionsConfig, SubEntityDetailsConfig } from '../../../model'
+import { Document, type DocumentClasses } from './ui/document'
 import { Accordion, Heading } from '$/shared/ui'
+import { cn } from '$/shared/utils'
 
-//TODO: ОПРЕДЕЛИТЬСЯ С РАЗМЕРОМ ЗАГОЛОВКА И КАКОЙ ИЗ НИХ ОСТАВЛЯТЬ
+export type EntityDocumentsClasses = {
+  wrapper?: string
+  headline?: string
+  documentsWrapper?: string
+  description?: string
+  singleDocument?: DocumentClasses
+}
 
-export const Documents = ({ docs, config, title, iconType, description }: EntityDocuments) => {
+export type EntityDocumentsProps = {
+  iconType: 'documentOutline' | 'documentFilled'
+  title?: string
+  description?: string
+  docs: {
+    url: string
+    size: string
+    label: string
+  }[]
+  config?: SubEntityDetailsConfig
+  classes?: EntityDocumentsClasses
+  accordionConfig?: EntitiesAccordionsConfig['documentAccordion']
+}
+
+export const Documents = ({ docs, config, title, iconType, description, classes, accordionConfig }: EntityDocumentsProps) => {
   const content = (
-    <div className='flex max-w-[680px] flex-col'>
+    <div className={cn('flex max-w-[680px] flex-col', classes?.wrapper)}>
       {title && (
         <Heading as='h3' className='mb-4'>
           {title}
         </Heading>
       )}
-      <div className='gap- flex flex-col gap-4'>
-        {docs?.map((doc) => <Document iconType={iconType} key={doc.label} {...doc} />)}
+      <div className={cn('flex flex-col gap-4', classes?.documentsWrapper)}>
+        {docs?.map((doc) => <Document iconType={iconType} key={doc.label} {...doc} classes={classes?.singleDocument} />)}
       </div>
 
-      {description && <div className='mt-4' dangerouslySetInnerHTML={{ __html: description ?? '' }} />}
+      {description && (
+        <div className={cn('mt-4', classes?.description)} dangerouslySetInnerHTML={{ __html: description ?? '' }} />
+      )}
     </div>
   )
 
   return (
     <>
       {config && config?.isAccordion && config?.accordionTitle ? (
-        <Accordion label={config?.accordionTitle}>{content}</Accordion>
+        <Accordion label={config?.accordionTitle} {...accordionConfig}>
+          {accordionConfig?.children || content}
+        </Accordion>
       ) : (
         content
       )}

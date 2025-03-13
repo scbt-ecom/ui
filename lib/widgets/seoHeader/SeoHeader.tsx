@@ -1,4 +1,5 @@
 import { Breadcrumbs } from '../breadcrumbs'
+import { widgetIds } from '../model'
 import type { Category, SeoHeaderHelpers } from './model'
 import { CategoriesDesktop, CategoriesMobile } from './ui'
 import { useDevice } from '$/shared/hooks'
@@ -14,7 +15,7 @@ export const SeoHeader = ({ categories, helpers, phone }: SeoHeaderProps) => {
   const { isMobile } = useDevice()
 
   return (
-    <div className='mx-auto w-full max-w-[1440px]'>
+    <div id={widgetIds.seoHeader} data-test-id={widgetIds.seoHeader} className='mx-auto w-full max-w-[1440px]'>
       {isMobile ? (
         <CategoriesMobile categories={categories.map((category) => category.children).flat()} helpers={helpers} phone={phone} />
       ) : (
