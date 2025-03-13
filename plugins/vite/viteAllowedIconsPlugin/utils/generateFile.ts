@@ -1,3 +1,4 @@
+import { execSync } from 'child_process'
 import { writeFileSync } from 'fs'
 import { relative, sep } from 'path'
 import { findIcon } from './findIcon'
@@ -30,6 +31,7 @@ export const allowedIcons: {
   flatten: ${JSON.stringify(iconsFlatten, null, 2)}
 }
   `
-
   writeFileSync(`${outputDir}/allowedIcons.ts`, content.trim(), 'utf-8')
+  // format generated file using prettier
+  execSync(`prettier --write ${outputDir}/allowedIcons.ts`)
 }

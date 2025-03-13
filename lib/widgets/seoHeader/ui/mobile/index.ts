@@ -1,0 +1,1 @@
+export { CategoriesMobile } from './CategoriesMobile'
