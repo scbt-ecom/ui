@@ -13,12 +13,7 @@ export interface FooterSocialLinks {
   href: string
 }
 
-export interface Config {
-  variant?: string
-  details: Detail[]
-}
-
-export interface Detail {
+export interface Details {
   column: Column[]
 }
 
@@ -37,14 +32,50 @@ export interface FooterPhones {
   text: string
 }
 
-export type FooterRenderBlocks = {
-  withSocialsLinks?: boolean
-  withPhones?: boolean
-  withNavLinks?: boolean
-  withCopyright?: boolean
-  withSiteMap?: boolean
-  withLigal?: boolean
+type SocialsLinksEnabled = {
+  enabled: true
+  links: FooterSocialLinks[]
 }
+
+type SocialsLinksDisabled = {
+  enabled: false
+}
+
+export type SocialsLinksType<Enabled extends boolean> = Enabled extends true ? SocialsLinksEnabled : SocialsLinksDisabled
+
+type PhonesEnabled = {
+  enabled: true
+  items: FooterPhones[]
+}
+
+type PhonesDisabled = {
+  enabled: false
+}
+
+export type PhonesType<Enabled extends boolean> = Enabled extends true ? PhonesEnabled : PhonesDisabled
+
+type LigalEnabled = {
+  enabled: true
+  text: string
+}
+
+type LigalDisabled = {
+  enabled: false
+}
+
+export type LigalType<Enabled extends boolean> = Enabled extends true ? LigalEnabled : LigalDisabled
+
+type CopyrightEnabled = {
+  enabled: true
+  text: string
+}
+
+type CopyrightDisabled = {
+  enabled: true
+  text: string
+}
+
+export type CopyrightType<Enabled extends boolean> = Enabled extends true ? CopyrightEnabled : CopyrightDisabled
 
 export type FooterClasses = {
   root?: string

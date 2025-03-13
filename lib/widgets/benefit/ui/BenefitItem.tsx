@@ -2,9 +2,10 @@ import { type ReactElement } from 'react'
 import { cva } from 'class-variance-authority'
 import { type BackgroundBenefitColorsValues } from '../model/constants'
 import { useDevice } from '$/shared/hooks'
-import { Button } from '$/shared/ui'
-import { cn, scrollToElement, TypeGuards } from '$/shared/utils'
+import { type ButtonProps } from '$/shared/ui'
+import { cn, TypeGuards } from '$/shared/utils'
 import { type Img } from '$/widgets/benefit/model/types'
+import { type ButtonHandlerOptions, ButtonWithHandlers } from '$/widgets/buttonWithHandlers'
 
 export type BenefitItemClasses = {
   root?: string
@@ -37,7 +38,7 @@ export interface BenefitItemProps {
   mobileImg?: boolean
   classes?: BenefitItemClasses
   withButton?: boolean
-  buttonText?: string
+  button?: ButtonProps & { handlerOptions: ButtonHandlerOptions }
   variant?: 'twoCards' | 'threeCards' | 'fourCards'
   color?: BackgroundBenefitColorsValues
 }
@@ -49,24 +50,11 @@ export const BenefitItem = ({
   mobileImg,
   classes,
   withButton,
-  buttonText,
+  button,
   variant,
   color
 }: BenefitItemProps) => {
   const { isDesktop } = useDevice()
-
-  const button = (
-    <>
-      <Button
-        intent='primary'
-        className={cn('desktop:w-[200px]', classes?.button)}
-        onClick={() => scrollToElement({ widgetId: 'stepper' })}
-        size='lg'
-      >
-        {buttonText}
-      </Button>
-    </>
-  )
 
   return (
     <li
@@ -82,7 +70,10 @@ export const BenefitItem = ({
             className={cn('mob-body-regular-l text-icon-blue-grey-800 desktop:desk-body-regular-l', classes?.subtitle)}
           />
         </div>
-        {withButton && isDesktop && button}
+
+        {withButton && isDesktop && button?.handlerOptions && (
+          <ButtonWithHandlers intent='primary' className={cn('desktop:w-[200px]', classes?.button)} size='lg' {...button} />
+        )}
       </div>
 
       {(mobileImg || isDesktop) && img && (

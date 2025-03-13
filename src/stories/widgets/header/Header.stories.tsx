@@ -13,30 +13,26 @@ type Story = StoryObj<typeof Header>
 
 export const WithPhone: Story = {
   args: {
-    config: {
-      variant: 'withPhone',
-      details: {
-        phone: '88000000000',
-        text: 'Бесплатно по России'
-      }
+    variant: 'withPhone',
+    details: {
+      phone: '88000000000',
+      text: 'Бесплатно по России'
     }
   }
 }
 
 export const WithButtonHandlerNavigate: Story = {
   args: {
-    config: {
-      variant: 'withButton',
-      details: {
-        children: 'Оформить заявку',
-        intent: 'primary',
-        size: 'md',
-        handlerOptions: {
-          handler: 'navigate',
-          url: 'https://sovcombank.ru',
-          target: '_blank',
-          rel: 'noreferrer noopener'
-        }
+    variant: 'withButton',
+    details: {
+      children: 'Оформить заявку',
+      intent: 'primary',
+      size: 'md',
+      handlerOptions: {
+        handler: 'navigate',
+        url: 'https://sovcombank.ru',
+        target: '_blank',
+        rel: 'noreferrer noopener'
       }
     }
   }
@@ -47,16 +43,14 @@ export const WithButtonHandlerScroll: Story = {
     return (
       <div className='flex flex-col gap-4'>
         <Header
-          config={{
-            variant: 'withButton',
-            details: {
-              children: 'Оформить заявку',
-              intent: 'primary',
-              size: 'md',
-              handlerOptions: {
-                handler: 'scroll',
-                widgetId: 'stepper'
-              }
+          variant='withButton'
+          details={{
+            children: 'Оформить заявку',
+            intent: 'primary',
+            size: 'md',
+            handlerOptions: {
+              handler: 'scroll',
+              widgetId: 'stepper'
             }
           }}
         />
@@ -65,14 +59,12 @@ export const WithButtonHandlerScroll: Story = {
         </div>
         <Stepper
           headline='Как получить кредит'
-          config={{
-            variant: 'withTitleAndDescription',
-            details: [
-              { title: 'Заполните онлайн-заявку', description: 'Это займет несколько минут' },
-              { title: 'Дождитесь одобрения', description: 'Рассмотрим заявку за 5 минут' },
-              { title: 'Заберите деньги', description: 'Или закажите бесплатную доставку' }
-            ]
-          }}
+          variant='withTitleAndDescription'
+          details={[
+            { title: 'Заполните онлайн-заявку', description: 'Это займет несколько минут' },
+            { title: 'Дождитесь одобрения', description: 'Рассмотрим заявку за 5 минут' },
+            { title: 'Заберите деньги', description: 'Или закажите бесплатную доставку' }
+          ]}
         />
         <div className='desk-title-bold-l flex h-screen items-center justify-center bg-color-blue-grey-500 text-center'>
           Контент
@@ -84,19 +76,15 @@ export const WithButtonHandlerScroll: Story = {
 
 export const Empty: Story = {
   args: {
-    config: {
-      variant: 'empty',
-      details: {}
-    }
+    variant: 'empty',
+    details: {}
   }
 }
 
 export const WithOtherLogo: Story = {
   args: {
     logoType: 'business',
-    config: {
-      variant: 'empty',
-      details: {}
-    }
+
+    variant: 'withButton'
   }
 }

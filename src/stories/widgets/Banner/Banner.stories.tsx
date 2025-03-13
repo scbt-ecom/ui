@@ -32,10 +32,14 @@ export const Base: Story = {
   render: () => (
     <>
       <Header
-        config={{
-          variant: 'empty',
-          details: {}
+        details={{
+          handlerOptions: {
+            handler: 'scroll',
+            widgetId: 'stepper'
+          },
+          children: 'Кнопка'
         }}
+        variant='withButton'
       />
       <Banner {...mockBannerBase} />
     </>
@@ -46,10 +50,14 @@ export const OnlyPrimaryButton: Story = {
   render: () => (
     <>
       <Header
-        config={{
-          variant: 'empty',
-          details: {}
+        details={{
+          handlerOptions: {
+            handler: 'scroll',
+            widgetId: 'stepper'
+          },
+          children: 'Кнопка'
         }}
+        variant='withButton'
       />
       <Banner {...mockBannerOnlyPrimaryButton} />
     </>
@@ -60,10 +68,14 @@ export const WithAdvantages: Story = {
   render: () => (
     <>
       <Header
-        config={{
-          variant: 'empty',
-          details: {}
+        details={{
+          handlerOptions: {
+            handler: 'scroll',
+            widgetId: 'stepper'
+          },
+          children: 'Кнопка'
         }}
+        variant='withButton'
       />
       <Banner {...mockWithAdvantages} />
     </>
@@ -74,10 +86,14 @@ export const BaseFullImage: Story = {
   render: () => (
     <>
       <Header
-        config={{
-          variant: 'empty',
-          details: {}
+        details={{
+          handlerOptions: {
+            handler: 'scroll',
+            widgetId: 'stepper'
+          },
+          children: 'Кнопка'
         }}
+        variant='withButton'
       />
       <Banner {...mockBannerBaseFullImage} />
     </>
@@ -88,10 +104,14 @@ export const FullImageOnlyPrimaryButton: Story = {
   render: () => (
     <>
       <Header
-        config={{
-          variant: 'empty',
-          details: {}
+        details={{
+          handlerOptions: {
+            handler: 'scroll',
+            widgetId: 'stepper'
+          },
+          children: 'Кнопка'
         }}
+        variant='withButton'
       />
       <Banner {...mockBannerFullImageOnlyPrimaryButton} />
     </>
@@ -102,10 +122,14 @@ export const BaseFullImageWithAdvantages: Story = {
   render: () => (
     <>
       <Header
-        config={{
-          variant: 'empty',
-          details: {}
+        details={{
+          handlerOptions: {
+            handler: 'scroll',
+            widgetId: 'stepper'
+          },
+          children: 'Кнопка'
         }}
+        variant='withButton'
       />
       <Banner {...mockBannerFullImageWithAdvantages} />
     </>
@@ -116,10 +140,14 @@ export const BaseGradient: Story = {
   render: () => (
     <>
       <Header
-        config={{
-          variant: 'empty',
-          details: {}
+        details={{
+          handlerOptions: {
+            handler: 'scroll',
+            widgetId: 'stepper'
+          },
+          children: 'Кнопка'
         }}
+        variant='withButton'
       />
       <Banner {...mockBannerBaseGradient} />
     </>
@@ -130,10 +158,14 @@ export const BaseGradientWithAdvantages: Story = {
   render: () => (
     <>
       <Header
-        config={{
-          variant: 'empty',
-          details: {}
+        details={{
+          handlerOptions: {
+            handler: 'scroll',
+            widgetId: 'stepper'
+          },
+          children: 'Кнопка'
         }}
+        variant='withButton'
       />
       <Banner {...mockBannerBaseGradientAdvantages} />
     </>
