@@ -1,3 +1,4 @@
+import { getUuid } from '$/shared/utils'
 import type { Contents } from '$/widgets/usefulInfo/model'
 
 const htmlContent =
@@ -44,6 +45,7 @@ const htmlFull =
   '<p class="text-dark">Следите за нашими курсами наличной валюты в <a class="text-color-primary-default underline underline-offset-4" href="https://t.me/sovcomrates_msk" target="_blank" rel="noopener noreferrer">Telegram</a> 24/7</p>'
 
 export const htmlBase: Contents = {
+  entityId: getUuid(),
   entity: {
     variant: 'HTML',
     details: [
@@ -55,6 +57,7 @@ export const htmlBase: Contents = {
 }
 
 export const htmlBaseWrapInAccordion: Contents = {
+  entityId: getUuid(),
   entity: {
     variant: 'HTML',
     details: [
@@ -70,6 +73,7 @@ export const htmlBaseWrapInAccordion: Contents = {
 }
 
 export const htmlWithLinksAndBullets: Contents = {
+  entityId: getUuid(),
   entity: {
     variant: 'HTML',
     details: [

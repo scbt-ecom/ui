@@ -1,3 +1,4 @@
+import { getUuid } from '$/shared/utils'
 import type { Contents } from '$/widgets/usefulInfo/model'
 
 const description =
@@ -23,6 +24,7 @@ const docs = [
 ]
 
 export const documentsBase: Contents = {
+  entityId: getUuid(),
   entity: {
     variant: 'DOCUMENTS',
     details: [
@@ -35,6 +37,7 @@ export const documentsBase: Contents = {
 }
 
 export const documentsOutlineIconsWithLinks: Contents = {
+  entityId: getUuid(),
   entity: {
     variant: 'DOCUMENTS',
     details: [
@@ -49,6 +52,7 @@ export const documentsOutlineIconsWithLinks: Contents = {
 }
 
 export const documentsFilledIconsWithLinks: Contents = {
+  entityId: getUuid(),
   entity: {
     variant: 'DOCUMENTS',
     details: [
