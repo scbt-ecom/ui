@@ -1,4 +1,4 @@
-import { ButtonWithHandlers } from '../../buttonWithHandlers/ButtonWithHandlers'
+import { ButtonWithHandlers } from '../../buttonWithHandlers'
 import type { HeaderProps } from './types'
 import { PhoneView } from '$/shared/ui'
 import { createPhoneNumber } from '$/shared/utils'

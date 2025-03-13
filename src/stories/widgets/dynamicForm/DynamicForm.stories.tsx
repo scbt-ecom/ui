@@ -25,7 +25,7 @@ export const Base: Story = {
           name: 'field',
           label: 'Field',
           validation: {
-            type: '',
+            type: 'getStringSchema',
             args: {}
           },
           progress: {
@@ -44,7 +44,8 @@ export const Base: Story = {
       enabled: false
     },
     approvement: {
-      type: 'off'
+      type: 'text',
+      message: '<p>some text</p>'
     }
   }
 }
