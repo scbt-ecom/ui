@@ -19,6 +19,7 @@ import {
   tableTwoColsSeparator,
   tableTwoColsSeparatorWithoutHeadings
 } from './mocks'
+import { getUuid } from '$/shared/utils'
 import { UsefulInfo } from '$/widgets'
 
 const meta = {
@@ -39,14 +40,17 @@ export const MultiVariantsOnTab: Story = {
     headline: 'Полезная информация',
     tabs: [
       {
+        tabId: getUuid(),
         tabName: 'Условия',
         contents: [htmlBase, documentsBase]
       },
       {
+        tabId: getUuid(),
         tabName: 'Документы',
         contents: [tableThreeColsFilled, documentsFilledIconsWithLinks]
       },
       {
+        tabId: getUuid(),
         tabName: 'Описание',
         contents: [
           tableThreeColsFilledWithoutHeadings,
@@ -61,18 +65,9 @@ export const MultiVariantsOnTab: Story = {
 export const HtmlVariations: Story = {
   args: {
     tabs: [
-      {
-        tabName: 'HTML базовый',
-        contents: [htmlBase]
-      },
-      {
-        tabName: 'HTML базовый обернутый в аккордеон',
-        contents: [htmlBaseWrapInAccordion]
-      },
-      {
-        tabName: 'HTML с ссылками и кастомным списком',
-        contents: [htmlWithLinksAndBullets]
-      }
+      { tabId: getUuid(), tabName: 'HTML базовый', contents: [htmlBase] },
+      { tabId: getUuid(), tabName: 'HTML базовый обернутый в аккордеон', contents: [htmlBaseWrapInAccordion] },
+      { tabId: getUuid(), tabName: 'HTML с ссылками и кастомным списком', contents: [htmlWithLinksAndBullets] }
     ]
   }
 }
@@ -80,52 +75,48 @@ export const HtmlVariations: Story = {
 export const TablesVariations: Story = {
   args: {
     tabs: [
+      { tabId: getUuid(), tabName: 'Таблица закрашенная две колонки', contents: [tableTwoColsFilled] },
       {
-        tabName: 'Таблица закрашенная две колонки',
-        contents: [tableTwoColsFilled]
-      },
-      {
+        tabId: getUuid(),
         tabName: 'Таблица закрашенная две колонки без заголовков колонки',
         contents: [tableTwoColsFilledWithoutHeadings]
       },
+      { tabId: getUuid(), tabName: 'Таблица закрашенная три колонки', contents: [tableThreeColsFilled] },
       {
-        tabName: 'Таблица закрашенная три колонки',
-        contents: [tableThreeColsFilled]
-      },
-      {
+        tabId: getUuid(),
         tabName: 'Таблица закрашенная три колонки без заголовков колонки',
         contents: [tableThreeColsFilledWithoutHeadings]
       },
       {
+        tabId: getUuid(),
         tabName: 'Таблица закрашенная три колонки с заголовком таблицы с заголовками колонок и описанием',
         contents: [tableThreeFilledWithTitleDescriptionAndHeadings]
       },
       {
+        tabId: getUuid(),
         tabName: 'Таблица закрашенная три колонки с заголовком таблицы с заголовками колонок и описанием в аккордеоне',
         contents: [tableThreeFilledWithTitleDescriptionAndHeadingsWrapInAccordion]
       },
 
+      { tabId: getUuid(), tabName: 'Таблица базовая две колонки', contents: [tableTwoColsSeparator] },
       {
-        tabName: 'Таблица базовая две колонки',
-        contents: [tableTwoColsSeparator]
-      },
-      {
+        tabId: getUuid(),
         tabName: 'Таблица базовая две колонки без заголовков колонки',
         contents: [tableTwoColsSeparatorWithoutHeadings]
       },
+      { tabId: getUuid(), tabName: 'Таблица базовая три колонки', contents: [tableThreeColsSeparator] },
       {
-        tabName: 'Таблица базовая три колонки',
-        contents: [tableThreeColsSeparator]
-      },
-      {
+        tabId: getUuid(),
         tabName: 'Таблица базовая три колонки без заголовков колонки',
         contents: [tableThreeColsSeparatorWithoutHeadings]
       },
       {
+        tabId: getUuid(),
         tabName: 'Таблица базовая три колонки с заголовком таблицы с заголовками колонок и описанием',
         contents: [tableThreeColsSeparatorWithTitleDescriptionAndHeadings]
       },
       {
+        tabId: getUuid(),
         tabName: 'Таблица базовая три колонки с заголовком таблицы с заголовками колонок и описанием в аккордеоне',
         contents: [tableThreeColsSeparatorWithTitleDescriptionAndHeadingsWrapInAccordion]
       }
@@ -136,15 +127,14 @@ export const TablesVariations: Story = {
 export const DocumentsVariations: Story = {
   args: {
     tabs: [
+      { tabId: getUuid(), tabName: 'Документы базовые', contents: [documentsBase] },
       {
-        tabName: 'Документы базовые',
-        contents: [documentsBase]
-      },
-      {
+        tabId: getUuid(),
         tabName: 'Документы с дополнительными текстом,заголовком и типом иконок outline',
         contents: [documentsOutlineIconsWithLinks]
       },
       {
+        tabId: getUuid(),
         tabName: 'Документы с дополнительными текстом,заголовком и типом иконок filled',
         contents: [documentsFilledIconsWithLinks]
       }

@@ -3,7 +3,7 @@
 import { useDevice } from '$/shared/hooks'
 import { ResponsiveContainer } from '$/shared/ui'
 import { cn, TypeGuards } from '$/shared/utils'
-import { Advantages, type BannerProps, ButtonWithHandlers } from '$/widgets'
+import { Advantages, type BannerProps, ButtonWithHandlers, widgetIds } from '$/widgets'
 
 export const BannerImageFull = ({
   headTitle,
@@ -46,8 +46,9 @@ export const BannerImageFull = ({
   return (
     <>
       <section
+        id={widgetIds.banner}
+        data-test-id={widgetIds.banner}
         style={{ backgroundColor: color ?? '#d9edff' }}
-        data-test-id='banner'
         className={cn('relative h-[552px] desktop:h-[456px]', classes?.root)}
       >
         <div className='absolute bottom-0 left-0 right-0 top-0 mx-auto h-full max-w-[1920px] desktop:h-[456px]'>

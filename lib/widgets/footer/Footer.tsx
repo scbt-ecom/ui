@@ -1,3 +1,4 @@
+import { widgetIds } from '../model'
 import {
   type CopyrightType,
   type Details,
@@ -32,7 +33,11 @@ export const Footer = <Enabled extends boolean>({
   siteMap = true
 }: FooterProps<Enabled>) => {
   return (
-    <footer id='footer' className={cn('w-full bg-color-footer py-8 desktop:py-10', classes?.root)}>
+    <footer
+      id={widgetIds.footer}
+      data-test-id={widgetIds.footer}
+      className={cn('w-full bg-color-footer py-8 desktop:py-10', classes?.root)}
+    >
       <ResponsiveContainer className={cn(classes?.footerContainer)}>
         <div className={cn('mobile:pb-[176px]', classes?.footerWrapper)}>
           <div

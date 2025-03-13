@@ -1,4 +1,5 @@
 import { cva } from 'class-variance-authority'
+import { widgetIds } from '../model'
 import type { InterLinkingRoot } from './model/types'
 import { Column, type ColumnClasses } from './ui'
 import { Accordion, type AccordionProps, Heading, ResponsiveContainer } from '$/shared/ui'
@@ -39,7 +40,11 @@ export const InterLinking = ({
   classes
 }: InterLinkingProps) => {
   return (
-    <section id='inter-linking' className={cn('min-w-full desktop:min-w-[1140px]', classes?.root)}>
+    <section
+      id={widgetIds.interLinking}
+      data-test-id={widgetIds.interLinking}
+      className={cn('min-w-full desktop:min-w-[1140px]', classes?.root)}
+    >
       <ResponsiveContainer>
         <Accordion
           defaultOpen

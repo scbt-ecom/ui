@@ -1,6 +1,7 @@
 'use client'
 
 import { cva } from 'class-variance-authority'
+import { widgetIds } from '../model'
 import { type Details } from './model/types'
 import { BenefitItem, type BenefitItemClasses } from './ui/BenefitItem'
 import { ResponsiveContainer } from '$/shared/ui'
@@ -33,7 +34,7 @@ export interface BenefitProps {
 
 export const Benefit = ({ headline, details, variant, classes }: BenefitProps) => {
   return (
-    <section id='benefit' className={cn('pb-20', classes?.root)}>
+    <section id={widgetIds.benefit} data-test-id={widgetIds.benefit} className={cn('pb-20', classes?.root)}>
       <ResponsiveContainer className={classes?.container}>
         <div
           dangerouslySetInnerHTML={{ __html: headline }}

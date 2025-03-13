@@ -1,7 +1,7 @@
 import { useDevice } from '$/shared/hooks'
 import { ResponsiveContainer } from '$/shared/ui'
 import { cn, TypeGuards } from '$/shared/utils'
-import { Advantages, type BannerProps, ButtonWithHandlers } from '$/widgets'
+import { Advantages, type BannerProps, ButtonWithHandlers, widgetIds } from '$/widgets'
 
 export const BannerWithSeparateImg = ({
   headTitle,
@@ -44,8 +44,9 @@ export const BannerWithSeparateImg = ({
   return (
     <>
       <section
+        id={widgetIds.banner}
+        data-test-id={widgetIds.banner}
         style={{ backgroundColor: color ?? '#d9edff' }}
-        data-test-id='banner'
         className={cn('bg-banner-skyblue-300 desktop:h-[456px]', classes?.root)}
       >
         <ResponsiveContainer className={cn('relative', classes?.container)}>

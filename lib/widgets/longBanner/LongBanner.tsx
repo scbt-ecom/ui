@@ -1,5 +1,6 @@
 import { type ReactElement } from 'react'
 import { type ButtonHandlerOptions, ButtonWithHandlers } from '../buttonWithHandlers'
+import { widgetIds } from '../model'
 import { containerImgConfig } from './model/cva'
 import { type Details, type LongBannerClasses, type LongBannerConfig } from './model/types'
 import { TextList, Title } from './ui'
@@ -41,7 +42,7 @@ export const LongBanner = <Enabled extends boolean>({
     )
 
   return (
-    <section id='long-banner' className={cn(classes?.root)}>
+    <section id={widgetIds.longBanner} data-test-id={widgetIds.longBanner} className={cn(classes?.root)}>
       <ResponsiveContainer className={cn(classes?.container)}>
         {isTwoItems && <Title intent={intent} headline={headline} />}
 
