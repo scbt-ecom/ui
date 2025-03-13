@@ -1,3 +1,5 @@
+'use client'
+
 export type ParserOptions = {
   /**
    * включать элемент body
