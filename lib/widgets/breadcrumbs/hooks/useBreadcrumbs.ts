@@ -2,23 +2,13 @@ import { useEffect, useState } from 'react'
 import type { Breadcrumb, UseBreadcrumbsOptions } from './types'
 import { getUuid, TypeGuards } from '$/shared/utils'
 
-const defaultOptions: Required<Omit<UseBreadcrumbsOptions, 'endsWith' | 'startsWith'>> = {
-  matcher: (breadcrumb) => breadcrumb.label,
-  filter: () => true
-}
-
-export const useBreadcrumbs = ({
-  startsWith,
-  endsWith,
-  matcher = defaultOptions.matcher,
-  filter = defaultOptions.filter
-}: UseBreadcrumbsOptions) => {
+export const useBreadcrumbs = ({ startsWith, endsWith, matcher, filter, rootEnabled = true }: UseBreadcrumbsOptions) => {
   const [breadcrumbs, setBreadcrumbs] = useState<Breadcrumb[]>([])
 
   useEffect(() => {
     let pathnameParts = window.location.pathname.split('/').filter((part) => !TypeGuards.isStringEmpty(part))
 
-    if (startsWith) {
+    if (!TypeGuards.isUndefined(startsWith)) {
       if (TypeGuards.isString(startsWith)) {
         pathnameParts = pathnameParts.slice(pathnameParts.findIndex((part) => part === startsWith))
       } else {
@@ -26,7 +16,7 @@ export const useBreadcrumbs = ({
       }
     }
 
-    if (endsWith) {
+    if (!TypeGuards.isUndefined(endsWith)) {
       if (TypeGuards.isString(endsWith)) {
         pathnameParts = pathnameParts.slice(0, pathnameParts.findIndex((part) => part === endsWith) + 1)
       } else {
@@ -34,14 +24,26 @@ export const useBreadcrumbs = ({
       }
     }
 
-    const newBreadcrumbs: Breadcrumb[] = []
+    let newBreadcrumbs: Breadcrumb[] = []
     let currentPath = ''
+
+    if (rootEnabled) {
+      const breadcrumb: Breadcrumb = {
+        index: 0,
+        id: getUuid(),
+        path: '/',
+        label: 'home'
+      }
+
+      newBreadcrumbs.push(breadcrumb)
+    }
 
     pathnameParts.forEach((pathname, index) => {
       currentPath += `/${pathname}`
 
       const breadcrumb: Breadcrumb = {
-        index,
+        // while root enabled we have root page out of pathname parts
+        index: rootEnabled ? index + 1 : index,
         id: getUuid(),
         path: currentPath,
         label: pathname
@@ -50,12 +52,17 @@ export const useBreadcrumbs = ({
       newBreadcrumbs.push(breadcrumb)
     })
 
-    newBreadcrumbs.forEach((breadcrumb) => {
-      breadcrumb.label = matcher(breadcrumb)
-    })
+    if (matcher) {
+      newBreadcrumbs = newBreadcrumbs.map((breadcrumb) => {
+        return {
+          ...breadcrumb,
+          ...matcher(breadcrumb)
+        }
+      })
+    }
 
-    setBreadcrumbs(newBreadcrumbs.filter(filter))
-  }, [endsWith, filter, matcher, startsWith])
+    setBreadcrumbs(filter ? newBreadcrumbs.filter(filter) : newBreadcrumbs)
+  }, [endsWith, filter, matcher, rootEnabled, startsWith])
 
   return breadcrumbs
 }

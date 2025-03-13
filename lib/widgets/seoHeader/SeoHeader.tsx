@@ -20,7 +20,10 @@ export const SeoHeader = ({ categories, helpers, phone }: SeoHeaderProps) => {
       ) : (
         <CategoriesDesktop categories={categories} helpers={helpers} phone={phone} />
       )}
-      <Breadcrumbs matcher={(breadcrumb) => capitalize(breadcrumb.label).split('-').join(' ')} />
+      <Breadcrumbs
+        ellipsis={isMobile ? 1 : undefined}
+        matcher={(breadcrumb) => ({ label: capitalize(breadcrumb.label).split('-').join(' ') })}
+      />
     </div>
   )
 }
