@@ -59,7 +59,6 @@ export const InputBase = forwardRef<HTMLInputElement, InputBaseProps>(
 
     return (
       <div
-        ref={renderValues ? ref : undefined}
         className={cn(
           'relative flex w-full gap-x-4 rounded-sm bg-color-blue-grey-100',
           '[&_label]:focus-within:top-[9px] [&_label]:focus-within:translate-y-0',

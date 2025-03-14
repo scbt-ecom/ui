@@ -136,7 +136,7 @@ export const SelectBase = forwardRef<HTMLInputElement, SelectBaseProps<boolean>>
       whileElementsMounted: autoUpdate
     })
 
-    const triggerRef = useRef<HTMLButtonElement>(null)
+    const triggerRef = useRef<HTMLDivElement>(null)
 
     const { options, inputValue, onValueChange, onInputValueChange, selectDisplayValue } = useSelectController({
       options: initialOptions,
@@ -168,6 +168,7 @@ export const SelectBase = forwardRef<HTMLInputElement, SelectBaseProps<boolean>>
         value={(value ? value : isMulti ? [] : '') as typeof value}
         onChange={onValueChange}
         multiple={isMulti}
+        // immediate
         disabled={disabled}
         aria-invalid={invalid}
       >
@@ -183,8 +184,8 @@ export const SelectBase = forwardRef<HTMLInputElement, SelectBaseProps<boolean>>
           }
 
           return (
-            <div className={cn('relative w-full', root)}>
-              <ComboboxButton ref={triggerRef} className='w-full' disabled={disabled}>
+            <div ref={triggerRef} className={cn('relative w-full', root)}>
+              <ComboboxButton className='w-full'>
                 <ComboboxInput
                   // @ts-expect-error asdf
                   ref={mergeRefs(ref, refs.setReference)}
@@ -195,6 +196,10 @@ export const SelectBase = forwardRef<HTMLInputElement, SelectBaseProps<boolean>>
                   readOnly={!isSearchable}
                   value={externalInputValue || getDisplayValue() || ''}
                   autoComplete='off'
+                  onKeyDown={(event) => {
+                    event.stopPropagation()
+                    event.nativeEvent.stopPropagation()
+                  }}
                   onChange={(event) => {
                     const { value } = event.target
 
@@ -211,8 +216,9 @@ export const SelectBase = forwardRef<HTMLInputElement, SelectBaseProps<boolean>>
                   // TODO: think about it
                   // renderValues={
                   //   isMulti
-                  //     ? () => (
+                  //     ? (ref) => (
                   //         <ChipList
+                  //           ref={ref}
                   //           values={value}
                   //           onDeleteItem={(option) => onDeleteItem(value, option)}
                   //           inputValue={inputValue}
