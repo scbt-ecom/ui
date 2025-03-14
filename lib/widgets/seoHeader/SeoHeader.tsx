@@ -5,7 +5,7 @@ import { CategoriesDesktop, CategoriesMobile } from './ui'
 import { useDevice } from '$/shared/hooks'
 import { capitalize } from '$/shared/utils'
 
-type SeoHeaderProps = {
+export type SeoHeaderProps = {
   categories: Category[]
   helpers: SeoHeaderHelpers[]
   phone: string
