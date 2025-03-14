@@ -10,6 +10,7 @@ export type RadioOption = {
 }
 
 export type RadioItemClasses = {
+  root?: string
   item?: string
   indicator?: string
   label?: string
@@ -56,7 +57,7 @@ export const RadioItem = memo(
               'pointer-events-none text-color-disabled': disabled
             },
             className,
-            classes?.item
+            classes?.root
           )}
         >
           <div
@@ -72,7 +73,8 @@ export const RadioItem = memo(
                 'border-negative': invalid,
                 'group-data-[state=unchecked]:border-0 group-data-[state=checked]:border-primary-disabled group-data-[state=unchecked]:bg-color-blue-grey-300':
                   disabled
-              }
+              },
+              classes?.item
             )}
           >
             <Indicator

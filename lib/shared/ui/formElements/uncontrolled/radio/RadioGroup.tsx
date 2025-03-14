@@ -1,10 +1,10 @@
 import { forwardRef } from 'react'
 import { type RadioGroupProps as RadioGroupPrimitiveProps, Root } from '@radix-ui/react-radio-group'
-import { RadioItem, type RadioItemProps, type RadioOption } from './ui'
+import { RadioItem, type RadioOption } from './ui'
 import { type RadioItemClasses } from './ui/RadioItem'
 import { cn } from '$/shared/utils'
 
-type RadioGroupClasses = RadioItemProps['classes'] & {
+type RadioGroupClasses = {
   root?: string
   list?: string
   radioItem?: RadioItemClasses
