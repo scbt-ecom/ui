@@ -28,7 +28,7 @@ export default tseslint.config(
       '**/tailwind.config.ts',
       '**/postcss.config.mjs',
       '**/storybook-static',
-      'lib/hybrid.ts',
+      'lib/shared/ui/icon/allowedIcons.ts',
       '.storybook',
       'coverage'
     ]

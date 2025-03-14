@@ -1,6 +1,6 @@
 {
   "name": "@scbt-ecom/ui",
-  "version": "0.55.2",
+  "version": "0.59.1",
   "type": "module",
   "exports": {
     ".": {
@@ -55,11 +55,10 @@
     "start": "npm run start:sb",
     "test-storybook": "test-storybook",
     "cypress:open": "cypress open --component --browser chrome",
-    "storybook-remove-mdx": "ts-node plugins/vite/viteStorybookMdxGenerationPlugin/utils/removeMdx.js",
     "prepare": "husky",
     "pre-commit": "npm run lint",
     "chromatic": "npx chromatic --project-token=chpt_9468dafcf1bf3e3 --only-changed --files='src/stories/**/*.stories.@(tsx)'",
-    "pre-deploy": "npm run lint"
+    "pre-deploy": "npm run lint "
   },
   "peerDependecies": {
     "react": "^18.3.1",
@@ -70,7 +69,8 @@
     "ejs": "^3.1.10",
     "isomorphic-dompurify": "^2.20.0",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "uuid": "^11.1.0"
   },
   "overrides": {
     "esbuild": "0.24.0"

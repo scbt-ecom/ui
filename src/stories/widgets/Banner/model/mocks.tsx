@@ -1,4 +1,3 @@
-import toast from 'react-hot-toast'
 import bezrykovDesk from './assets/bezrukov_desk.png'
 import bezrykovMob from './assets/bezrukov_mob.png'
 import saifDesktop from './assets/saif.jpg'
@@ -8,8 +7,8 @@ import { type AdvantagesProps } from '$/widgets'
 import { type BannerProps } from '$/widgets/banner/Banner.tsx'
 
 const defaultMockAdvantageProps: AdvantagesProps = {
-  config: {
-    details: [
+  details: {
+    items: [
       { title: 'До 5 млн ₽', description: 'сумма кредита' },
       { title: 'До 5 лет', description: 'срок кредита' },
       { title: 'От 5 минут', description: 'быстрое одобрение' },
@@ -26,17 +25,28 @@ export const mockBannerBase: BannerProps = {
   imgDesktop: <img src={bezrykovDesk} alt='Картинка баннера' className={cn('h-full object-cover')} />,
   buttonsConfig: {
     primary: {
-      onClick: () => toast.success('@click on primary btn'),
-      children: 'Primary',
-      size: 'lg'
+      enabled: true,
+      buttonContent: {
+        children: 'Primary',
+        handlerOptions: {
+          handler: 'scroll',
+          widgetId: 'stepper'
+        }
+      }
     },
     secondary: {
-      onClick: () => toast.success('@click on secondary btn'),
-      children: 'Secondary',
-      size: 'lg'
+      enabled: true,
+      buttonContent: {
+        children: 'Secondary',
+        handlerOptions: {
+          handler: 'scroll',
+          widgetId: 'stepper'
+        }
+      }
     }
   }
 }
+
 export const mockBannerOnlyPrimaryButton: BannerProps = {
   headTitle: 'Кредит на любые цели',
   subtitle: 'до 5 млн рублей',
@@ -44,9 +54,14 @@ export const mockBannerOnlyPrimaryButton: BannerProps = {
   imgDesktop: <img src={bezrykovDesk} alt='Картинка баннера' className={cn('h-full object-cover')} />,
   buttonsConfig: {
     primary: {
-      onClick: () => toast.success('@click on primary btn'),
-      children: 'Primary',
-      size: 'lg'
+      enabled: true,
+      buttonContent: {
+        children: 'Primary',
+        handlerOptions: {
+          handler: 'scroll',
+          widgetId: 'stepper'
+        }
+      }
     }
   }
 }
@@ -59,13 +74,18 @@ export const mockWithAdvantages: BannerProps = {
 
   buttonsConfig: {
     primary: {
-      onClick: () => toast.success('@click on primary btn'),
-      children: 'Primary',
-      size: 'lg'
+      enabled: true,
+      buttonContent: {
+        children: 'Primary',
+        handlerOptions: {
+          handler: 'scroll',
+          widgetId: 'stepper'
+        }
+      }
     }
   },
-  withAdvantages: true,
-  advantages: defaultMockAdvantageProps
+
+  advantages: { details: { items: defaultMockAdvantageProps.details?.items ?? [], variant: 'fourCards' }, enabled: true }
 }
 export const mockBannerBaseFullImage: BannerProps = {
   headTitle: 'Кредит на любые цели',
@@ -74,14 +94,24 @@ export const mockBannerBaseFullImage: BannerProps = {
   imgMobile: <img src={saifMob} alt='Картинка баннера' className={cn('h-full w-full object-cover object-center')} />,
   buttonsConfig: {
     primary: {
-      onClick: () => toast.success('@click on primary btn'),
-      children: 'Primary',
-      size: 'lg'
+      enabled: true,
+      buttonContent: {
+        children: 'Primary',
+        handlerOptions: {
+          handler: 'scroll',
+          widgetId: 'stepper'
+        }
+      }
     },
     secondary: {
-      onClick: () => toast.success('@click on secondary btn'),
-      children: 'Secondary',
-      size: 'lg'
+      enabled: true,
+      buttonContent: {
+        children: 'Secondary',
+        handlerOptions: {
+          handler: 'scroll',
+          widgetId: 'stepper'
+        }
+      }
     }
   },
   classes: {
@@ -98,9 +128,14 @@ export const mockBannerFullImageOnlyPrimaryButton: BannerProps = {
   imgMobile: <img src={saifMob} alt='Картинка баннера' className={cn('h-full w-full object-cover object-center')} />,
   buttonsConfig: {
     primary: {
-      onClick: () => toast.success('@click on primary btn'),
-      children: 'Primary',
-      size: 'lg'
+      enabled: true,
+      buttonContent: {
+        children: 'Primary',
+        handlerOptions: {
+          handler: 'scroll',
+          widgetId: 'stepper'
+        }
+      }
     }
   },
   classes: {
@@ -117,14 +152,24 @@ export const mockBannerFullImageWithAdvantages: BannerProps = {
   imgMobile: <img src={saifMob} alt='Картинка баннера' className={cn('h-full w-full object-cover object-center')} />,
   buttonsConfig: {
     primary: {
-      onClick: () => toast.success('@click on primary btn'),
-      children: 'Primary',
-      size: 'lg'
+      enabled: true,
+      buttonContent: {
+        children: 'Primary',
+        handlerOptions: {
+          handler: 'scroll',
+          widgetId: 'stepper'
+        }
+      }
     },
     secondary: {
-      onClick: () => toast.success('@click on secondary btn'),
-      children: 'Secondary',
-      size: 'lg'
+      enabled: true,
+      buttonContent: {
+        children: 'Secondary',
+        handlerOptions: {
+          handler: 'scroll',
+          widgetId: 'stepper'
+        }
+      }
     }
   },
   classes: {
@@ -142,14 +187,24 @@ export const mockBannerBaseGradient: BannerProps = {
   imgDesktop: <img src={bezrykovDesk} alt='Картинка баннера' className={cn('h-full object-cover')} />,
   buttonsConfig: {
     primary: {
-      onClick: () => toast.success('@click on primary btn'),
-      children: 'Primary',
-      size: 'lg'
+      enabled: true,
+      buttonContent: {
+        children: 'Primary',
+        handlerOptions: {
+          handler: 'scroll',
+          widgetId: 'stepper'
+        }
+      }
     },
     secondary: {
-      onClick: () => toast.success('@click on secondary btn'),
-      children: 'Secondary',
-      size: 'lg'
+      enabled: true,
+      buttonContent: {
+        children: 'Secondary',
+        handlerOptions: {
+          handler: 'scroll',
+          widgetId: 'stepper'
+        }
+      }
     }
   },
   classes: {
@@ -164,14 +219,24 @@ export const mockBannerBaseGradientAdvantages: BannerProps = {
   imgDesktop: <img src={bezrykovDesk} alt='Картинка баннера' className={cn('h-full object-cover')} />,
   buttonsConfig: {
     primary: {
-      onClick: () => toast.success('@click on primary btn'),
-      children: 'Primary',
-      size: 'lg'
+      enabled: true,
+      buttonContent: {
+        children: 'Primary',
+        handlerOptions: {
+          handler: 'scroll',
+          widgetId: 'stepper'
+        }
+      }
     },
     secondary: {
-      onClick: () => toast.success('@click on secondary btn'),
-      children: 'Secondary',
-      size: 'lg'
+      enabled: true,
+      buttonContent: {
+        children: 'Secondary',
+        handlerOptions: {
+          handler: 'scroll',
+          widgetId: 'stepper'
+        }
+      }
     }
   },
   classes: {

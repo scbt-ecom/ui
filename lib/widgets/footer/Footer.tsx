@@ -1,37 +1,43 @@
-import type { Config, FooterClasses, FooterPhones, FooterRenderBlocks, FooterSocialLinks } from './model/types'
+import { widgetIds } from '../model'
+import {
+  type CopyrightType,
+  type Details,
+  type FooterClasses,
+  type LigalType,
+  type PhonesType,
+  type SocialsLinksType
+} from './model/types'
 import { Copyright, FooterLogo, NavLinks, PhonesBlock, SiteMap, SocialLinks } from './ui'
 import { Ligal } from './ui/Ligal'
 import { ResponsiveContainer } from '$/shared/ui'
-import { cn } from '$/shared/utils'
+import { cn, TypeGuards } from '$/shared/utils'
 
-export interface FooterProps {
+export interface FooterProps<Enabled extends boolean> {
+  variant: 'fourCols'
+  socialsLinks: SocialsLinksType<Enabled>
+  phones: PhonesType<Enabled>
+  ligal: LigalType<Enabled>
+  copyright: CopyrightType<Enabled>
+  siteMap?: boolean
+  details: Details[]
   classes?: FooterClasses
-  renderBlocks?: FooterRenderBlocks
-  socialsLinks?: FooterSocialLinks[]
-  phones?: FooterPhones[]
-  ligal?: string
-  copyright?: string
-  config: Config
 }
 
-export const Footer = ({
-  renderBlocks: {
-    withSocialsLinks = true,
-    withPhones = true,
-    withNavLinks = true,
-    withCopyright = true,
-    withSiteMap = true,
-    withLigal = true
-  } = {},
-  socialsLinks = [],
-  phones = [],
+export const Footer = <Enabled extends boolean>({
+  socialsLinks,
+  phones,
   ligal,
-  copyright = '',
+  copyright,
   classes,
-  config
-}: FooterProps) => {
+  details,
+  siteMap = true
+}: FooterProps<Enabled>) => {
   return (
-    <footer id='footer' className={cn('w-full bg-color-footer py-8 desktop:py-10', classes?.root)}>
+    <footer
+      id={widgetIds.footer}
+      data-test-id={widgetIds.footer}
+      className={cn('w-full bg-color-footer py-8 desktop:py-10', classes?.root)}
+    >
       <ResponsiveContainer className={cn(classes?.footerContainer)}>
         <div className={cn('mobile:pb-[176px]', classes?.footerWrapper)}>
           <div
@@ -42,14 +48,14 @@ export const Footer = ({
           >
             <div className={cn(classes?.footerSocialBlock)}>
               <FooterLogo classes={classes?.footerLogo} />
-              {withSocialsLinks && <SocialLinks socialsLinks={socialsLinks} classes={classes?.socialLinks} />}
+              {socialsLinks.enabled && <SocialLinks socialsLinks={socialsLinks.links} classes={classes?.socialLinks} />}
             </div>
 
-            {withPhones && <PhonesBlock phones={phones} classes={classes?.phonesBlock} />}
+            {phones.enabled && <PhonesBlock phones={phones.items} classes={classes?.phonesBlock} />}
           </div>
 
-          {withNavLinks && <NavLinks config={config} classes={classes?.navLinks} />}
-          {withLigal && <Ligal text={ligal || ''} />}
+          {!TypeGuards.isArrayEmpty(details) && <NavLinks details={details} classes={classes?.navLinks} />}
+          {ligal.enabled && <Ligal text={ligal.text} />}
 
           <div
             className={cn(
@@ -57,8 +63,8 @@ export const Footer = ({
               classes?.footerBottom
             )}
           >
-            {withCopyright && <Copyright text={copyright} classes={classes?.copyright} />}
-            {withSiteMap && <SiteMap classes={classes?.siteMap} />}
+            {copyright.enabled && <Copyright text={copyright.text} classes={classes?.copyright} />}
+            {siteMap && <SiteMap classes={classes?.siteMap} />}
           </div>
         </div>
       </ResponsiveContainer>

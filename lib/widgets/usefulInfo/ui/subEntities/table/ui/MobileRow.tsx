@@ -1,17 +1,25 @@
 import { cva } from 'class-variance-authority'
-import type { EntityTable } from '../../../../model'
+import type { EntityTableProps } from '../Table'
 import { cn } from '$/shared/utils'
 
-interface IFormattedRow {
+interface FormattedRow {
   cell: string
   heading?: string
 }
 
+export type MobileRowClasses = {
+  row?: string
+  wrapper?: string
+  heading?: string
+  cell?: string
+}
+
 export interface MobileRowProps {
-  row: IFormattedRow[]
-  tableVariant: EntityTable['tableVariant']
-  columnsVariant: EntityTable['columnsVariant']
+  row: FormattedRow[]
+  tableVariant: EntityTableProps['tableVariant']
+  columnsVariant: EntityTableProps['columnsVariant']
   headingsExist: boolean
+  classes?: MobileRowClasses
 }
 
 const mobileRowConfig = cva('flex flex-col gap-2', {
@@ -23,19 +31,23 @@ const mobileRowConfig = cva('flex flex-col gap-2', {
   }
 })
 
-export const MobileRow = ({ row, tableVariant, columnsVariant, headingsExist }: MobileRowProps) => {
+export const MobileRow = ({ row, tableVariant, columnsVariant, headingsExist, classes }: MobileRowProps) => {
   return (
-    <div className={cn(mobileRowConfig({ tableVariant }))}>
+    <div className={cn(mobileRowConfig({ tableVariant }), classes?.row)}>
       {row?.map(({ cell, heading }, cellIndex) => (
-        <div key={cellIndex} className={cn('grid grid-cols-2 gap-3', { 'grid-cols-1 gap-0': !headingsExist })}>
-          {heading && <div className='mob-body-regular-l text-color-secondary'>{heading}</div>}
+        <div key={cellIndex} className={cn('grid grid-cols-2 gap-3', { 'grid-cols-1 gap-0': !headingsExist }, classes?.wrapper)}>
+          {heading && <div className={cn('mob-body-regular-l text-color-secondary', classes?.heading)}>{heading}</div>}
           <div
-            className={cn('mob-body-regular-l text-color-dark', {
-              'font-medium':
-                (cellIndex !== 0 && columnsVariant === 'twoCols') ||
-                columnsVariant === 'threeCols' ||
-                (columnsVariant === 'twoCols' && headingsExist)
-            })}
+            className={cn(
+              'mob-body-regular-l text-color-dark',
+              {
+                'font-medium':
+                  (cellIndex !== 0 && columnsVariant === 'twoCols') ||
+                  columnsVariant === 'threeCols' ||
+                  (columnsVariant === 'twoCols' && headingsExist)
+              },
+              classes?.cell
+            )}
           >
             {cell}
           </div>

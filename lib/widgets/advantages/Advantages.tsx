@@ -12,15 +12,16 @@ export interface AdvantageClasses {
 }
 
 export interface AdvantagesProps {
-  config: {
+  details: {
     variant: 'threeCards' | 'fourCards'
-    details: AdvantageItem[]
+    items: AdvantageItem[]
   }
+  enabled?: boolean
   classes?: AdvantageClasses
 }
 
-export const Advantages = ({ config, classes }: AdvantagesProps) => {
-  const { variant, details: advantagesList } = config
+export const Advantages = ({ details, classes }: AdvantagesProps) => {
+  const { variant, items } = details ?? {}
 
   return (
     <div
@@ -32,11 +33,11 @@ export const Advantages = ({ config, classes }: AdvantagesProps) => {
         classes?.root
       )}
     >
-      {advantagesList?.map(({ title, description }) => (
+      {items?.map(({ title, description }) => (
         <div
           key={title}
           className={cn(
-            'after:content-[" "] relative flex h-full w-full flex-col gap-1 after:absolute after:-bottom-4 after:left-1/2 after:h-[1px] after:w-full after:-translate-x-1/2 after:bg-color-blue-grey-300 last:after:hidden desktop:w-[285px] desktop:px-8 desktop:after:bottom-auto desktop:after:left-auto desktop:after:right-0 desktop:after:top-1/2 desktop:after:h-10 desktop:after:w-[1px] desktop:after:-translate-y-1/2 desktop:after:translate-x-0',
+            'after:content-[" "] relative flex h-full w-full flex-col gap-1 after:absolute after:-bottom-4 after:left-1/2 after:h-[1px] after:w-full after:-translate-x-1/2 after:bg-color-blue-grey-300 last:after:hidden desktop:w-[285px] desktop:items-center desktop:px-8 desktop:after:bottom-auto desktop:after:left-auto desktop:after:right-0 desktop:after:top-1/2 desktop:after:h-10 desktop:after:w-[1px] desktop:after:-translate-y-1/2 desktop:after:translate-x-0',
             classes?.item
           )}
         >

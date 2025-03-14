@@ -1,5 +1,5 @@
 import { cva } from 'class-variance-authority'
-import type { TableHeading, TableRow } from '../../../../model'
+import type { TableHeading, TableRow } from '../Table'
 
 export const transformMobileRows = (rows: TableRow[], headings?: TableHeading[]) => {
   return {

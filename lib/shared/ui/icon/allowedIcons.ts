@@ -14,6 +14,7 @@ export const allowedIcons: {
       'brandLogos/logoMain',
       'brandLogos/logoWhite'
     ],
+    communication: ['communication/phone'],
     editor: [
       'editor/bold',
       'editor/heading',
@@ -36,13 +37,15 @@ export const allowedIcons: {
       'general/close',
       'general/edit',
       'general/hiddenEye',
+      'general/menu',
       'general/plus',
       'general/reorder',
       'general/showEye'
     ],
     info: ['info/helpCircle', 'info/warningCircle'],
     logos: ['logos/beeline', 'logos/megafon', 'logos/mts'],
-    social: ['social/classmates', 'social/telegram', 'social/vk']
+    social: ['social/classmates', 'social/telegram', 'social/vk'],
+    status: ['status/badSmile', 'status/iconMark', 'status/iconRetry', 'status/iconUser']
   },
   flatten: [
     'arrows/arrowCircle',
@@ -56,6 +59,7 @@ export const allowedIcons: {
     'brandLogos/logoInsurance',
     'brandLogos/logoMain',
     'brandLogos/logoWhite',
+    'communication/phone',
     'editor/bold',
     'editor/heading',
     'editor/italic',
@@ -79,6 +83,7 @@ export const allowedIcons: {
     'general/close',
     'general/edit',
     'general/hiddenEye',
+    'general/menu',
     'general/plus',
     'general/reorder',
     'general/showEye',
@@ -89,6 +94,10 @@ export const allowedIcons: {
     'logos/mts',
     'social/classmates',
     'social/telegram',
-    'social/vk'
+    'social/vk',
+    'status/badSmile',
+    'status/iconMark',
+    'status/iconRetry',
+    'status/iconUser'
   ]
 }

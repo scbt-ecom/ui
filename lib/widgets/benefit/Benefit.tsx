@@ -1,9 +1,10 @@
 'use client'
 
-import { type ReactElement } from 'react'
-import { cva, type VariantProps } from 'class-variance-authority'
-import { BenefitItem, type BenefitItemClasses, type BenefitItemProps } from './ui/BenefitItem'
-import { Heading, ResponsiveContainer } from '$/shared/ui'
+import { cva } from 'class-variance-authority'
+import { widgetIds } from '../model'
+import { type Details } from './model/types'
+import { BenefitItem, type BenefitItemClasses } from './ui/BenefitItem'
+import { ResponsiveContainer } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
 export type BenefitClasses = {
@@ -16,7 +17,7 @@ export type BenefitClasses = {
 
 const gridConfig = cva('grid gap-4', {
   variants: {
-    intent: {
+    variant: {
       twoCards: 'grid-cols-1 mobile:grid-rows-[repeat(2,400px)] desktop:grid-cols-2',
       threeCards: 'grid-cols-1 desktop:grid-cols-2',
       fourCards: 'grid-cols-1 mobile:grid-rows-[400px,1fr,1fr,400px] desktop:grid-cols-3'
@@ -24,21 +25,23 @@ const gridConfig = cva('grid gap-4', {
   }
 })
 
-export interface BenefitProps extends VariantProps<typeof gridConfig> {
-  heading: string | ReactElement
-  cards: BenefitItemProps[]
+export interface BenefitProps {
+  headline: string
   classes?: BenefitClasses
+  variant: 'twoCards' | 'threeCards' | 'fourCards'
+  details: Details[]
 }
 
-export const Benefit = ({ heading, cards, classes, intent }: BenefitProps) => {
+export const Benefit = ({ headline, details, variant, classes }: BenefitProps) => {
   return (
-    <section id='benefit' className={cn('pb-20', classes?.root)}>
+    <section id={widgetIds.benefit} data-test-id={widgetIds.benefit} className={cn('pb-20', classes?.root)}>
       <ResponsiveContainer className={classes?.container}>
-        <Heading className={cn('mb-8', classes?.heading)} as='h2'>
-          {heading}
-        </Heading>
-        <ul className={cn(gridConfig({ intent }), classes?.grid)}>
-          {cards?.map((card) => <BenefitItem intent={intent} key={card.img} classes={classes?.item} {...card} />)}
+        <div
+          dangerouslySetInnerHTML={{ __html: headline }}
+          className={cn('mob-headline-bold-s mb-8 desktop:desk-headline-bold-m', classes?.heading)}
+        />
+        <ul className={cn(gridConfig({ variant }), classes?.grid)}>
+          {details?.map((card) => <BenefitItem variant={variant} key={card.title} classes={classes?.item} {...card} />)}
         </ul>
       </ResponsiveContainer>
     </section>

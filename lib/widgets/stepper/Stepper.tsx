@@ -1,4 +1,5 @@
 import { type HTMLAttributes } from 'react'
+import { widgetIds } from '../model'
 import type { SingleStepItem, StepperVariant } from './model/types'
 import { SingleStep, type SingleStepClasses } from './ui/SingleStep'
 import { Heading, ResponsiveContainer } from '$/shared/ui'
@@ -15,18 +16,14 @@ export type StepperClasses = {
 
 export interface StepperProps extends HTMLAttributes<HTMLDivElement> {
   headline: string
-  config: {
-    variant: StepperVariant
-    details: SingleStepItem[]
-  }
+  variant: StepperVariant
+  details: SingleStepItem[]
   classes?: StepperClasses
 }
 
-export const Stepper = ({ headline, config, classes }: StepperProps) => {
-  const { variant, details: stepsList } = config
-
+export const Stepper = ({ headline, details, variant, classes }: StepperProps) => {
   return (
-    <section id='stepper' className={classes?.root}>
+    <section id={widgetIds.stepper} data-test-id={widgetIds.stepper} className={classes?.root}>
       <ResponsiveContainer className={classes?.container}>
         <div className={cn('flex flex-col gap-6 desktop:items-start desktop:gap-12', classes?.wrapper)}>
           <Heading as='h2' className={cn('text-color-dark', classes?.headline)}>
@@ -38,7 +35,7 @@ export const Stepper = ({ headline, config, classes }: StepperProps) => {
               classes?.stepsWrapper
             )}
           >
-            {stepsList?.map((step, index) => (
+            {details?.map((step, index) => (
               <SingleStep variant={variant} key={step.description} {...step} index={index + 1} classes={classes?.step} />
             ))}
           </div>

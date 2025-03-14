@@ -1,12 +1,16 @@
+import { widgetIds } from '../model'
 import { renderContentVariant } from './model/helpers'
-import type { HeaderProps } from './model/types'
+import type { HeaderProps, HeaderVariantType } from './model/types'
 import { brandLogos, ResponsiveContainer } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
-export const Header = ({ logoPath = '/', logoType = 'main', config, classes }: HeaderProps) => {
+export const Header = <Type extends HeaderVariantType>(props: HeaderProps<Type>) => {
+  const { logoPath = '/', logoType = 'main', classes } = props
+
   return (
     <header
-      id='header'
+      id={widgetIds.header}
+      data-test-id={widgetIds.header}
       className={cn('flex h-[64px] items-center justify-center bg-color-white desktop:h-[72px]', classes?.header)}
     >
       <ResponsiveContainer className={cn(classes?.container)}>
@@ -23,7 +27,7 @@ export const Header = ({ logoPath = '/', logoType = 'main', config, classes }: H
           >
             {brandLogos[logoType]}
           </a>
-          {renderContentVariant(config)}
+          {renderContentVariant(props)}
         </div>
       </ResponsiveContainer>
     </header>

@@ -1,3 +1,5 @@
+import type { AllowedWidgets } from './types'
+
 export const WIDGET_LIST = [
   'header',
   'footer',
@@ -6,5 +8,15 @@ export const WIDGET_LIST = [
   'usefulInfo',
   'longBanner',
   'banner',
-  'benefit'
+  'benefit',
+  'form',
+  'seoHeader'
 ] as const
+
+export const widgetIds = WIDGET_LIST.reduce(
+  (acc, widget) => {
+    acc[widget] = widget
+    return acc
+  },
+  {} as Record<AllowedWidgets, AllowedWidgets>
+)

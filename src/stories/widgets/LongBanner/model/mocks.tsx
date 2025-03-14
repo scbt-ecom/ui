@@ -1,122 +1,125 @@
-import toast from 'react-hot-toast'
 import money from './assets/money.png'
 import { cn } from '$/shared/utils'
 import { type LongBannerProps } from '$/widgets/longBanner/LongBanner.tsx'
 
-export const mockLongBannerBase: LongBannerProps = {
+export const mockLongBannerBase: LongBannerProps<true> = {
   headline: 'Main Title',
   buttonConfig: {
-    text: 'Button',
-    onClick: () => toast.success('@click on primary btn')
-  },
-  config: {
-    details: [
-      {
-        title: 'На карту «Халва»',
-        description: '<p>Снимайте в любом банкомате&nbsp;или переводите на карту любого банка через СБП</p>',
-        popover: {
-          text: 'Получите бесплатную карту «Халва», на которую будут перечислены кредитные средства: ее доставит курьер в удобное время',
-          enabled: true
-        }
-      },
-      {
-        title: 'Наличными в офисе банка»',
-        description: `<p>Выберите офис Совкомбанка и получите деньги в кассе</p>`
+    enabled: true,
+    buttonContent: {
+      children: 'Button',
+      handlerOptions: {
+        handler: 'scroll',
+        widgetId: 'stepper'
       }
-    ]
+    }
   },
-  imageComponent: <img data-id='banner-image' src={money} alt='money' className={cn('h-full w-full object-contain')} />
+  details: [
+    {
+      title: 'На карту «Халва»',
+      description: '<p>Снимайте в любом банкомате&nbsp;или переводите на карту любого банка через СБП</p>',
+      popover: {
+        text: 'Получите бесплатную карту «Халва», на которую будут перечислены кредитные средства: ее доставит курьер в удобное время',
+        enabled: true
+      }
+    },
+    {
+      title: 'Наличными в офисе банка»',
+      description: `<p>Выберите офис Совкомбанка и получите деньги в кассе</p>`
+    }
+  ],
+  image: <img data-id='banner-image' src={money} alt='money' className={cn('h-full w-full object-contain')} />
 }
 
-export const mockLongBannerWithoutButton: LongBannerProps = {
+export const mockLongBannerWithoutButton: LongBannerProps<true> = {
   headline: 'Main Title',
-  config: {
-    details: [
-      {
-        title: 'На карту «Халва»',
-        description: `<p>Снимайте в любом банкомате&nbsp;или переводите на карту любого банка через СБП</p>`,
-        popover: {
-          text: 'Получите бесплатную карту «Халва», на которую будут перечислены кредитные средства: ее доставит курьер в удобное время',
-          enabled: true
-        }
-      },
-      {
-        title: 'Наличными в офисе банка»',
-        description: `<p>Выберите офис Совкомбанка и получите деньги в кассе</p>`
+  details: [
+    {
+      title: 'На карту «Халва»',
+      description: `<p>Снимайте в любом банкомате&nbsp;или переводите на карту любого банка через СБП</p>`,
+      popover: {
+        text: 'Получите бесплатную карту «Халва», на которую будут перечислены кредитные средства: ее доставит курьер в удобное время',
+        enabled: true
       }
-    ]
-  },
-  imageComponent: <img data-id='banner-image' src={money} alt='money' className={cn('h-full w-full object-contain')} />
+    },
+    {
+      title: 'Наличными в офисе банка»',
+      description: `<p>Выберите офис Совкомбанка и получите деньги в кассе</p>`
+    }
+  ],
+  image: <img data-id='banner-image' src={money} alt='money' className={cn('h-full w-full object-contain')} />
 }
 
-export const mockLongBannerMulti: LongBannerProps = {
+export const mockLongBannerMulti: LongBannerProps<true> = {
   intent: 'fourItems',
   headline: 'Main Title',
   buttonConfig: {
-    text: 'Button',
-    onClick: () => toast.success('@click on primary btn')
-  },
-  config: {
-    details: [
-      {
-        title: 'На карту «Халва»',
-        description: `<p>Снимайте в любом банкомате&nbsp;или переводите на карту любого банка через СБП</p>`,
-        popover: {
-          text: 'Получите бесплатную карту «Халва», на которую будут перечислены кредитные средства: ее доставит курьер в удобное время',
-          enabled: true
-        }
-      },
-      {
-        title: 'Наличными в офисе банка»',
-        description: `<p>Выберите офис Совкомбанка и получите деньги в кассе</p>`
-      },
-      {
-        title: 'На карту «Халва»',
-        description: `<p>Снимайте в любом банкомате&nbsp;или переводите на карту любого банка через СБП</p>`,
-        popover: {
-          text: 'Получите бесплатную карту «Халва», на которую будут перечислены кредитные средства: ее доставит курьер в удобное время',
-          enabled: true
-        }
-      },
-      {
-        title: 'Наличными в офисе банка»',
-        description: `<p>Выберите офис Совкомбанка и получите деньги в кассе</p>`
+    enabled: true,
+    buttonContent: {
+      children: 'Button',
+      handlerOptions: {
+        handler: 'scroll',
+        widgetId: 'stepper'
       }
-    ]
+    }
   },
-  imageComponent: <img data-id='banner-image' src={money} alt='money' className={cn('h-full w-full object-contain')} />
+  details: [
+    {
+      title: 'На карту «Халва»',
+      description: `<p>Снимайте в любом банкомате&nbsp;или переводите на карту любого банка через СБП</p>`,
+      popover: {
+        text: 'Получите бесплатную карту «Халва», на которую будут перечислены кредитные средства: ее доставит курьер в удобное время',
+        enabled: true
+      }
+    },
+    {
+      title: 'Наличными в офисе банка»',
+      description: `<p>Выберите офис Совкомбанка и получите деньги в кассе</p>`
+    },
+    {
+      title: 'На карту «Халва»',
+      description: `<p>Снимайте в любом банкомате&nbsp;или переводите на карту любого банка через СБП</p>`,
+      popover: {
+        text: 'Получите бесплатную карту «Халва», на которую будут перечислены кредитные средства: ее доставит курьер в удобное время',
+        enabled: true
+      }
+    },
+    {
+      title: 'Наличными в офисе банка»',
+      description: `<p>Выберите офис Совкомбанка и получите деньги в кассе</p>`
+    }
+  ],
+  image: <img data-id='banner-image' src={money} alt='money' className={cn('h-full w-full object-contain')} />
 }
 
-export const mockLongBannerMultiWithoutButton: LongBannerProps = {
+export const mockLongBannerMultiWithoutButton: LongBannerProps<true> = {
   intent: 'fourItems',
   headline: 'Main Title',
-  config: {
-    details: [
-      {
-        title: 'На карту «Халва»',
-        description: `<p>Снимайте в любом банкомате&nbsp;или переводите на карту любого банка через СБП</p>`,
-        popover: {
-          text: 'Получите бесплатную карту «Халва», на которую будут перечислены кредитные средства: ее доставит курьер в удобное время',
-          enabled: true
-        }
-      },
-      {
-        title: 'Наличными в офисе банка»',
-        description: `<p>Выберите офис Совкомбанка и получите деньги в кассе</p>`
-      },
-      {
-        title: 'На карту «Халва»',
-        description: `<p>Снимайте в любом банкомате&nbsp;или переводите на карту любого банка через СБП</p>`,
-        popover: {
-          text: 'Получите бесплатную карту «Халва», на которую будут перечислены кредитные средства: ее доставит курьер в удобное время',
-          enabled: true
-        }
-      },
-      {
-        title: 'Наличными в офисе банка»',
-        description: `<p>Выберите офис Совкомбанка и получите деньги в кассе</p>`
+  details: [
+    {
+      title: 'На карту «Халва»',
+      description: `<p>Снимайте в любом банкомате&nbsp;или переводите на карту любого банка через СБП</p>`,
+      popover: {
+        text: 'Получите бесплатную карту «Халва», на которую будут перечислены кредитные средства: ее доставит курьер в удобное время',
+        enabled: true
       }
-    ]
-  },
-  imageComponent: <img data-id='banner-image' src={money} alt='money' className={cn('h-full w-full object-contain')} />
+    },
+    {
+      title: 'Наличными в офисе банка»',
+      description: `<p>Выберите офис Совкомбанка и получите деньги в кассе</p>`
+    },
+    {
+      title: 'На карту «Халва»',
+      description: `<p>Снимайте в любом банкомате&nbsp;или переводите на карту любого банка через СБП</p>`,
+      popover: {
+        text: 'Получите бесплатную карту «Халва», на которую будут перечислены кредитные средства: ее доставит курьер в удобное время',
+        enabled: true
+      }
+    },
+    {
+      title: 'Наличными в офисе банка»',
+      description: `<p>Выберите офис Совкомбанка и получите деньги в кассе</p>`
+    }
+  ],
+  image: <img data-id='banner-image' src={money} alt='money' className={cn('h-full w-full object-contain')} />
 }

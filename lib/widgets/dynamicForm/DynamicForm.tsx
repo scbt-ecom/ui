@@ -1,6 +1,10 @@
+'use client'
+
 import { useState } from 'react'
 import { type Control, type SubmitHandler } from 'react-hook-form'
 import { type TypeOf } from 'zod'
+import { HTMLRenderer } from '../htmlParser'
+import { widgetIds } from '../model'
 import {
   type Approvement,
   type ApprovementType,
@@ -15,7 +19,7 @@ import {
 } from './model'
 import { useControlledForm, useFieldsProgress } from '$/shared/hooks'
 import { Button, type CheckedState, Heading, Icon, ProgressBar, Uncontrolled } from '$/shared/ui'
-import { cn, HTMLRenderer } from '$/shared/utils'
+import { cn } from '$/shared/utils'
 import { ZodUtils } from '$/shared/validation'
 import { type FieldElement, FieldMapper } from '$/widgets/fieldMapper'
 
@@ -80,7 +84,11 @@ export const DynamicForm = <AType extends ApprovementType, CType extends ChipsTy
   }
 
   return (
-    <div className='relative flex flex-col gap-6 rounded-sm border border-warm-grey-200 px-4 py-8 desktop:gap-8 desktop:p-14'>
+    <div
+      id={widgetIds.form}
+      data-test-id={widgetIds.form}
+      className='relative flex flex-col gap-6 rounded-sm border border-warm-grey-200 px-4 py-8 desktop:gap-8 desktop:p-14'
+    >
       {chips.enabled && (
         <div
           className={cn(

@@ -1,11 +1,9 @@
-import { ButtonWithHandlers } from '../../buttonWithHandlers/ButtonWithHandlers'
-import type { HeaderProps } from './types'
+import { ButtonWithHandlers } from '../../buttonWithHandlers'
+import type { HeaderProps, HeaderVariantType } from './types'
 import { PhoneView } from '$/shared/ui'
 import { createPhoneNumber } from '$/shared/utils'
 
-export const renderContentVariant = (config: HeaderProps['config']) => {
-  const { variant, details } = config
-
+export const renderContentVariant = <Type extends HeaderVariantType>({ variant, details }: HeaderProps<Type>) => {
   switch (variant) {
     case 'withButton':
       return <ButtonWithHandlers {...details} />
