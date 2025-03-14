@@ -14,7 +14,7 @@
   "printWidth": 130,
   "tabWidth": 2,
   "rangeStart": 0,
-  "endOfLine": "auto",
+  "endOfLine": "lf",
   "semi": false,
   "plugins": ["prettier-plugin-tailwindcss"]
 }

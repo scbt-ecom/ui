@@ -5,7 +5,7 @@ import { useSelectController } from './hooks'
 import { type SelectItemOption } from './model'
 import { SelectItem, type SelectItemProps } from './ui'
 import { type DeepPartial } from '$/shared/types'
-import { Icon, Slot, Uncontrolled } from '$/shared/ui'
+import { Icon, Uncontrolled } from '$/shared/ui'
 import type { FieldAttachment } from '$/shared/ui/formElements/ui'
 import { cn, mergeRefs } from '$/shared/utils'
 
@@ -114,7 +114,6 @@ export const SelectBase = forwardRef<HTMLInputElement, SelectBaseProps<boolean>>
       inputValue: externalInputValue,
       onInputChange: externalOnInputChange,
       externalHandlers,
-      immediate,
       disabled,
       emptyList,
       reset,
@@ -151,8 +150,6 @@ export const SelectBase = forwardRef<HTMLInputElement, SelectBaseProps<boolean>>
       externalHandlers
     })
 
-    const TriggerButton = isSearchable ? Slot : ComboboxButton
-
     return (
       <Combobox
         {...props}
@@ -172,7 +169,6 @@ export const SelectBase = forwardRef<HTMLInputElement, SelectBaseProps<boolean>>
         onChange={onValueChange}
         multiple={isMulti}
         disabled={disabled}
-        immediate={immediate || !isSearchable}
         aria-invalid={invalid}
       >
         {({ disabled, open, value }) => {
@@ -188,7 +184,7 @@ export const SelectBase = forwardRef<HTMLInputElement, SelectBaseProps<boolean>>
 
           return (
             <div className={cn('relative w-full', root)}>
-              <TriggerButton ref={triggerRef} className='w-full' disabled={disabled}>
+              <ComboboxButton ref={triggerRef} className='w-full' disabled={disabled}>
                 <ComboboxInput
                   // @ts-expect-error asdf
                   ref={mergeRefs(ref, refs.setReference)}
@@ -239,7 +235,7 @@ export const SelectBase = forwardRef<HTMLInputElement, SelectBaseProps<boolean>>
                     ...attachmentProps
                   }}
                 />
-              </TriggerButton>
+              </ComboboxButton>
               <ComboboxOptions
                 portal
                 data-test-id='select-list'
@@ -284,8 +280,7 @@ export const SelectBase = forwardRef<HTMLInputElement, SelectBaseProps<boolean>>
                         displayValue={displayValue}
                         motionProps={{
                           initial: { opacity: 0 },
-                          animate: { opacity: 1 },
-                          transition: { delay: 0 / 25 }
+                          animate: { opacity: 1 }
                         }}
                       />
                     )}
@@ -299,8 +294,7 @@ export const SelectBase = forwardRef<HTMLInputElement, SelectBaseProps<boolean>>
                         displayValue={displayValue}
                         motionProps={{
                           initial: { opacity: 0 },
-                          animate: { opacity: 1 },
-                          transition: { delay: index / 25 }
+                          animate: { opacity: 1 }
                         }}
                       />
                     ))}
