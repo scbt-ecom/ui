@@ -23,13 +23,18 @@ import { cn } from '$/shared/utils'
 import { ZodUtils } from '$/shared/validation'
 import { type FieldElement, FieldMapper } from '$/widgets/fieldMapper'
 
+type SubmitProps = Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'children'> & {
+  submitCallback: (values: unknown) => void
+  children: string
+}
+
 export type DynamicFormProps<AType extends ApprovementType, CType extends ChipsType, PType extends ProgressType> = {
   fields: FieldElement<any, any, { validation: FieldValidation; progress: ProgressField }>[]
   title: string
   progress: Progress<PType>
   approvement: Approvement<AType>
   chips: Chips<CType>
-  submitContent: string
+  submitProps: SubmitProps
 }
 
 const withApprovement = <Type extends ApprovementType>(
@@ -63,8 +68,10 @@ export const DynamicForm = <AType extends ApprovementType, CType extends ChipsTy
   progress,
   approvement,
   chips,
-  submitContent = 'Submit'
+  submitProps
 }: DynamicFormProps<AType, CType, PType>) => {
+  const { submitCallback, ...buttonProps } = submitProps
+
   const [checked, onCheckedChange] = useState<CheckedState>(false)
 
   const schema = getDynamicSchema(fields)
@@ -80,6 +87,8 @@ export const DynamicForm = <AType extends ApprovementType, CType extends ChipsTy
   const formattedProgress = useFieldsProgress({ control, fields: fieldsProgress || [], schema })
 
   const onSubmit: SubmitHandler<TypeOf<typeof schema>> = (values) => {
+    submitCallback(values)
+
     console.warn(values)
   }
 
@@ -115,13 +124,14 @@ export const DynamicForm = <AType extends ApprovementType, CType extends ChipsTy
         <div className='mob-body-regular-m flex flex-col items-center justify-center gap-4 desktop:flex-row desktop:justify-between'>
           {withApprovement(approvement, checked, onCheckedChange)}
           <Button
+            {...buttonProps}
             type='submit'
             disabled={approvement.type === 'checkbox' ? !checked : false}
             className={cn('w-full whitespace-nowrap', {
               'w-full desktop:w-[216px]': Boolean(approvement)
             })}
           >
-            {submitContent}
+            {submitProps.children || 'Отправить форму'}
           </Button>
         </div>
       </form>
