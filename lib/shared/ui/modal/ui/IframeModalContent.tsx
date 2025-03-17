@@ -9,28 +9,26 @@ export const IframeModalContent = ({ children, className, ...props }: IframeModa
   const [iframeLoaded, setIframeLoaded] = useState<boolean>(false)
 
   useEffect(() => {
-    if (iframeRef.current) {
-      const abortController = new AbortController()
+    if (!iframeRef.current) return
 
-      const iframe = iframeRef.current
+    const abortController = new AbortController()
 
-      iframe.addEventListener(
-        'load',
-        () => {
-          const styles = document.createElement('link')
-          styles.rel = 'stylesheet'
-          styles.href = '/lib/shared/style.css'
+    const iframe = iframeRef.current
 
-          iframe.contentDocument?.head.appendChild(styles)
+    iframe.addEventListener(
+      'load',
+      () => {
+        document.querySelectorAll('head > link[rel="stylesheet"], head > style').forEach((node) => {
+          iframe.contentDocument?.head.appendChild(node.cloneNode(true))
+        })
 
-          setIframeLoaded(true)
-        },
-        { signal: abortController.signal }
-      )
+        setIframeLoaded(true)
+      },
+      { signal: abortController.signal }
+    )
 
-      return () => {
-        abortController.abort()
-      }
+    return () => {
+      abortController.abort()
     }
   }, [])
 
