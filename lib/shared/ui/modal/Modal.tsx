@@ -4,6 +4,7 @@ import * as React from 'react'
 import { createPortal } from 'react-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import { modalContentAnimation, modalOverlayAnimation } from './model/helpers'
+import { IframeModalContent } from './ui/IframeModalContent'
 import { ModalHeader, type TModalHeaderClasses } from './ui/ModalHeader'
 import { cn } from '$/shared/utils'
 
@@ -22,6 +23,7 @@ export interface ModalProps {
   portalContainer?: HTMLElement
   title?: string | React.ReactElement
   closeModal: () => void
+  iframe?: boolean
 }
 
 export const Modal = ({
@@ -31,13 +33,16 @@ export const Modal = ({
   isPortal = true,
   portalContainer = globalThis?.document?.body,
   closeModal,
-  classes
+  classes,
+  iframe
 }: ModalProps) => {
   if (isModalOpen) {
     document.body.style.overflow = 'hidden'
   } else {
     document.body.style.overflow = 'visible'
   }
+
+  const Content = iframe ? IframeModalContent : 'div'
 
   const modalBody = (
     <AnimatePresence>
@@ -68,7 +73,7 @@ export const Modal = ({
             {...modalContentAnimation}
           >
             <ModalHeader title={title} closeModal={closeModal} classes={classes?.modalHeader} />
-            <div className={cn('mt-4', classes?.content)}>{children}</div>
+            <Content className={cn('mt-4', classes?.content)}>{children}</Content>
           </motion.div>
         </motion.div>
       )}
