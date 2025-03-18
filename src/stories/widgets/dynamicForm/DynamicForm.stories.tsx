@@ -35,7 +35,10 @@ export const Base: Story = {
         }
       }
     ],
-    submitContent: 'Далее',
+    submitProps: {
+      children: 'Далее',
+      submitCallback: () => {}
+    },
     title: 'Оформите заявку на кредит',
     progress: {
       enabled: false
