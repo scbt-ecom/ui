@@ -21,13 +21,24 @@ export type PhoneValidationOptions<Required extends boolean> = {
     min?: string
     invalidOperator?: string
   }
+  /**
+   * указываем валидные коды оператор
+   * @default ['3', '4', '5', '6', '7', '9']
+   * @param string[]
+   */
+  validOperatorCodes?: string[]
 }
 
 /**
  * Схема валидации обязательного поля номера телефона
  */
 const getPhoneRequired = (props?: Omit<PhoneValidationOptions<true>, 'required'>) => {
-  const { ignoreMask = true, maskSymbols = /[()+_ -]/g, message } = props || {}
+  const {
+    ignoreMask = true,
+    maskSymbols = /[()+_ -]/g,
+    message,
+    validOperatorCodes = ['3', '4', '5', '6', '7', '9']
+  } = props || {}
 
   const mask = TypeGuards.isString(maskSymbols) ? new RegExp(maskSymbols) : maskSymbols
 
@@ -36,7 +47,7 @@ const getPhoneRequired = (props?: Omit<PhoneValidationOptions<true>, 'required'>
 
     const operatorCode = cleanValue.charAt(1)
 
-    if (!['3', '4', '5', '6', '7', '9'].includes(operatorCode)) {
+    if (!validOperatorCodes.includes(operatorCode)) {
       context.addIssue({
         code: z.ZodIssueCode.invalid_string,
         validation: 'regex',
@@ -67,7 +78,12 @@ type PhoneRequiredSchema = ReturnType<typeof getPhoneRequired>
  * Схема валидации опционального поля номера телефона
  */
 const getPhoneOptional = (props?: Omit<PhoneValidationOptions<false>, 'required'>) => {
-  const { ignoreMask = true, maskSymbols = /[()+_ -]/g, message } = props || {}
+  const {
+    ignoreMask = true,
+    maskSymbols = /[()+_ -]/g,
+    message,
+    validOperatorCodes = ['3', '4', '5', '6', '7', '9']
+  } = props || {}
 
   const mask = TypeGuards.isString(maskSymbols) ? new RegExp(maskSymbols) : maskSymbols
 
@@ -76,7 +92,7 @@ const getPhoneOptional = (props?: Omit<PhoneValidationOptions<false>, 'required'
 
     const operatorCode = cleanValue.charAt(1)
 
-    if (!['3', '4', '5', '6', '7', '9'].includes(operatorCode)) {
+    if (!validOperatorCodes.includes(operatorCode)) {
       context.addIssue({
         code: z.ZodIssueCode.invalid_string,
         validation: 'regex',
