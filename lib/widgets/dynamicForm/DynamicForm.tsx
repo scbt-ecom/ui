@@ -29,6 +29,26 @@ type SubmitProps = Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'children
   children: string
 }
 
+type ChipsClasses = {
+  root?: string
+  icon?: string
+}
+type ApprovementClasses = {
+  checkbox?: React.ComponentProps<typeof Uncontrolled.CheckboxBase>['classes']
+  content?: string
+}
+
+type DynamicFormClasses = {
+  root?: string
+  title?: string
+  fields?: string
+  form?: string
+  chips?: ChipsClasses
+  approvement?: ApprovementClasses
+  progressBar?: React.ComponentProps<typeof ProgressBar>['classes']
+  submit?: string
+}
+
 export type DynamicFormProps<AType extends ApprovementType, CType extends ChipsType, PType extends ProgressType> = {
   fields: FieldElement<any, any, { validation: FieldValidation; progress: ProgressField }>[]
   title: string
@@ -36,17 +56,19 @@ export type DynamicFormProps<AType extends ApprovementType, CType extends ChipsT
   approvement: Approvement<AType>
   chips: Chips<CType>
   submitProps?: SubmitProps
+  classes?: DynamicFormClasses
 }
 
 const withApprovement = <Type extends ApprovementType>(
   approvement: Approvement<Type>,
   checked: CheckedState,
-  onCheckedChange: (checked: CheckedState) => void
+  onCheckedChange: (checked: CheckedState) => void,
+  classes?: ApprovementClasses
 ): React.ReactNode => {
   if (approvement.type === 'off') return null
 
   if (approvement.type === 'text') {
-    return <HTMLRenderer html={approvement.message} as='div' />
+    return <HTMLRenderer html={approvement.message} as='div' className={classes?.content} />
   }
 
   return (
@@ -57,8 +79,8 @@ const withApprovement = <Type extends ApprovementType>(
         'flex items-center justify-items-start gap-x-3'
       )}
     >
-      <Uncontrolled.CheckboxBase checked={checked} onCheckedChange={onCheckedChange} />
-      <HTMLRenderer html={approvement.content} as='div' />
+      <Uncontrolled.CheckboxBase classes={classes?.checkbox} checked={checked} onCheckedChange={onCheckedChange} />
+      <HTMLRenderer html={approvement.content} as='div' className={classes?.content} />
     </label>
   )
 }
@@ -69,7 +91,8 @@ export const DynamicForm = <AType extends ApprovementType, CType extends ChipsTy
   progress,
   approvement,
   chips,
-  submitProps
+  submitProps,
+  classes
 }: DynamicFormProps<AType, CType, PType>) => {
   const { submitCallback, ...buttonProps } = submitProps || {}
 
@@ -98,40 +121,55 @@ export const DynamicForm = <AType extends ApprovementType, CType extends ChipsTy
       <div
         id={widgetIds.form}
         data-test-id={widgetIds.form}
-        className='relative flex flex-col gap-6 rounded-sm border border-warm-grey-200 px-4 py-8 desktop:gap-8 desktop:p-14'
+        className={cn(
+          'border-warm-grey-200 px-4 desktop:gap-8 desktop:p-14',
+          'relative flex flex-col gap-6 rounded-sm border py-8',
+          classes?.root
+        )}
       >
         {chips.enabled && (
           <div
             className={cn(
               'desk-body-regular-l flex items-center gap-x-2 rounded-sm desktop:absolute',
               'bg-color-blue-grey-100 px-2 py-1 text-color-tetriary',
-              'right-4 top-4 w-max'
+              'right-4 top-4 w-max',
+              classes?.chips?.root
             )}
           >
-            {chips.image && <Icon name={chips.image} className='size-4' />}
+            {chips.image && <Icon name={chips.image} className={cn('size-4', classes?.chips?.icon)} />}
             {chips.content}
           </div>
         )}
-        <Heading as='h3'>{title}</Heading>
-        <form onSubmit={handleSubmit(onSubmit)} className='flex w-[328px] flex-col gap-y-6 desktop:w-[524px] desktop:gap-y-8'>
+        <Heading as='h3' className={classes?.title}>
+          {title}
+        </Heading>
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className={cn('flex w-[328px] flex-col gap-y-6', 'desktop:w-[524px] desktop:gap-y-8', classes?.form)}
+        >
           {progress.enabled && (
             <ProgressBar
               progress={formattedProgress}
               topContent={<HTMLRenderer html={progress.title} />}
               bottomContent={<HTMLRenderer html={progress.subtitle} />}
               maxPercent={progress.maxPercent}
+              classes={classes?.progressBar}
             />
           )}
           <FieldMapper control={control as unknown as Control} fields={fields} />
           <div className='mob-body-regular-m flex flex-col items-center justify-center gap-4 desktop:flex-row desktop:justify-between'>
-            {withApprovement(approvement, checked, onCheckedChange)}
+            {withApprovement(approvement, checked, onCheckedChange, classes?.approvement)}
             <Button
               {...buttonProps}
               type='submit'
               disabled={approvement.type === 'checkbox' ? !checked : false}
-              className={cn('w-full whitespace-nowrap', {
-                'w-full desktop:w-[216px]': Boolean(approvement)
-              })}
+              className={cn(
+                'w-full whitespace-nowrap',
+                {
+                  'w-full desktop:w-[216px]': Boolean(approvement)
+                },
+                classes?.submit
+              )}
             >
               Отправить форму
             </Button>

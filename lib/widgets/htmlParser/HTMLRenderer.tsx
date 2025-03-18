@@ -3,11 +3,13 @@ import { Fragment, useEffect, useState } from 'react'
 import type { ParserOptions } from './baseHtmlParser'
 import { ReactHTMLParser } from './reactHtmlParser'
 
-type HTMLRendererProps = {
+type ElementTag = keyof React.JSX.IntrinsicElements
+
+type HTMLRendererProps<AS extends ElementTag, Props = AS extends ElementTag ? React.ComponentProps<AS> : {}> = {
   html: string
   options?: ParserOptions
-  as?: keyof React.JSX.IntrinsicElements
-}
+  as?: AS
+} & Props
 
 type AsyncRenderProps = {
   promises: Promise<React.ReactNode[]>
@@ -27,13 +29,16 @@ const AsyncRender = ({ promises }: AsyncRenderProps) => {
   return <>{nodes}</>
 }
 
-export const HTMLRenderer = ({ html, options, as }: HTMLRendererProps) => {
+export const HTMLRenderer = <AS extends ElementTag>({ html, options, as, ...props }: HTMLRendererProps<AS>) => {
   const Wrapper = as ?? Fragment
+
+  const wrapperProps = as ? props : {}
 
   const nodes = ReactHTMLParser.toReactNodes(html, options)
 
   return (
-    <Wrapper>
+    // @ts-expect-error disable warning
+    <Wrapper {...wrapperProps}>
       <AsyncRender promises={nodes} />
     </Wrapper>
   )
