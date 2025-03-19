@@ -13,7 +13,7 @@ export const BannerWithSeparateImg = ({
   imgDesktop,
   color
 }: Omit<BannerProps, 'bannerVariant'>) => {
-  const { isDesktop, isMobile } = useDevice()
+  const { isMobile } = useDevice()
   const { primary, secondary } = buttonsConfig || {}
 
   const imgMob =
@@ -29,17 +29,6 @@ export const BannerWithSeparateImg = ({
     ) : (
       imgDesktop
     )
-
-  const advantage = (
-    <div
-      className={cn(
-        'flex items-center justify-center rounded-md bg-color-blue-grey-100 p-4 pb-8 desktop:absolute desktop:bottom-[-50px] desktop:right-1/2 desktop:translate-x-1/2 desktop:p-0',
-        classes?.advantageContainer
-      )}
-    >
-      {advantages?.details && advantages?.details?.items.length > 0 && <Advantages {...advantages} />}
-    </div>
-  )
 
   return (
     <>
@@ -93,10 +82,28 @@ export const BannerWithSeparateImg = ({
             </div>
           </div>
 
-          {isDesktop && advantages?.enabled && advantage}
+          {advantages?.enabled && (
+            <div
+              className={cn(
+                'items-center justify-center rounded-md bg-color-blue-grey-100 p-4 pb-8 mobile:hidden desktop:absolute desktop:bottom-[-50px] desktop:right-1/2 desktop:flex desktop:translate-x-1/2 desktop:p-0',
+                classes?.advantageContainer
+              )}
+            >
+              {advantages?.details && advantages?.details?.items.length > 0 && <Advantages {...advantages} />}
+            </div>
+          )}
         </ResponsiveContainer>
       </section>
-      {isMobile && advantages?.enabled && advantage}
+      {advantages?.enabled && (
+        <div
+          className={cn(
+            'flex items-center justify-center rounded-md bg-color-blue-grey-100 p-4 pb-8 desktop:absolute desktop:bottom-[-50px] desktop:right-1/2 desktop:hidden desktop:translate-x-1/2 desktop:p-0',
+            classes?.advantageContainer
+          )}
+        >
+          {advantages?.details && advantages?.details?.items.length > 0 && <Advantages {...advantages} />}
+        </div>
+      )}
     </>
   )
 }
