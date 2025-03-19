@@ -71,8 +71,7 @@ type CopyrightEnabled = {
 }
 
 type CopyrightDisabled = {
-  enabled: true
-  text: string
+  enabled: false
 }
 
 export type CopyrightType<Enabled extends boolean> = Enabled extends true ? CopyrightEnabled : CopyrightDisabled

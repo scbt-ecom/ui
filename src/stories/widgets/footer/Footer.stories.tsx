@@ -25,13 +25,31 @@ export const Base: Story = {
     phones: {
       enabled: false
     },
-    siteMap: false
+    ligal: {
+      enabled: false
+    },
+    socialsLinks: {
+      enabled: false
+    },
+    siteMap: false,
+    copyright: {
+      enabled: false
+    }
   }
 }
 
 export const WithPhone: Story = {
   args: {
     siteMap: false,
+    ligal: {
+      enabled: false
+    },
+    socialsLinks: {
+      enabled: false
+    },
+    copyright: {
+      enabled: false
+    },
     phones: { items: [{ text: 'Звонок по России (бесплатно)', phone: '88001000006' }], enabled: true }
   }
 }
@@ -41,6 +59,12 @@ export const BaseWithLigal: Story = {
     ligal: {
       text: defaultLigal,
       enabled: true
+    },
+    copyright: {
+      enabled: false
+    },
+    socialsLinks: {
+      enabled: false
     },
     siteMap: false,
     phones: {
@@ -52,6 +76,16 @@ export const BaseWithLigal: Story = {
 export const Seo: Story = {
   args: {
     ligal: { text: defaultLigal, enabled: true },
-    details: defaultNavigationLinks
+    details: defaultNavigationLinks,
+    copyright: {
+      enabled: false
+    },
+    socialsLinks: {
+      enabled: false
+    },
+    siteMap: false,
+    phones: {
+      enabled: false
+    }
   }
 }
