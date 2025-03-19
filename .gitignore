@@ -9,6 +9,8 @@ lerna-debug.log*
 build-storybook.log*
 
 node_modules
+lib/shared/ui/icon/allowedIcons.ts
+lib/shared/ui/icon/sprite.gen.ts
 package-lock.json
 pnpm-lock.yaml
 dist
