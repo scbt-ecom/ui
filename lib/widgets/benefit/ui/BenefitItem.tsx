@@ -59,7 +59,7 @@ export const BenefitItem = ({
   return (
     <li
       key={title}
-      style={{ backgroundColor: color ?? '#f4f8fe' }}
+      style={{ backgroundColor: color ?? '#F3F4F7' }}
       className={cn(itemConfig({ variant }), { 'pb-0': mobileImg }, { 'pb-12': !mobileImg }, classes?.root)}
     >
       <div className={cn('flex flex-col items-start justify-between px-4 desktop:px-8 desktop:py-8', classes?.wrapper)}>
