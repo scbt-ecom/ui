@@ -29,6 +29,7 @@ export interface InterLinkingProps extends InterLinkingRoot {
   mobileAccordionProps?: Partial<AccordionProps>
   rootAccordionProps?: Partial<AccordionProps>
   classes?: InterLinkingClasses
+  defaultOpen?: boolean
 }
 
 export const InterLinking = ({
@@ -37,7 +38,8 @@ export const InterLinking = ({
   headline,
   mobileAccordionProps,
   rootAccordionProps,
-  classes
+  classes,
+  defaultOpen
 }: InterLinkingProps) => {
   return (
     <section
@@ -47,7 +49,7 @@ export const InterLinking = ({
     >
       <ResponsiveContainer>
         <Accordion
-          defaultOpen
+          defaultOpen={defaultOpen}
           label={
             <Heading as='h4' className={cn('text-left', classes?.headline)}>
               {headline}

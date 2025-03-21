@@ -22,7 +22,7 @@ export interface MobileRowProps {
   classes?: MobileRowClasses
 }
 
-const mobileRowConfig = cva('flex flex-col gap-2', {
+const mobileRowConfig = cva('mobile:flex desktop:hidden flex-col gap-2', {
   variants: {
     tableVariant: {
       filled: 'px-4 py-4 odd:bg-color-primary-light-default',
