@@ -77,7 +77,12 @@ export const BannerWithSeparateImg = ({
               </div>
             </div>
 
-            <div className={cn('flex h-[356px] justify-center desktop:h-[456px] desktop:w-[550px]', classes?.imageContainer)}>
+            <div
+              className={cn(
+                'relative flex h-[356px] justify-center desktop:h-[456px] desktop:w-[550px]',
+                classes?.imageContainer
+              )}
+            >
               {isMobile ? imgMob : imgDesk}
             </div>
           </div>

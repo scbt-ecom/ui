@@ -102,7 +102,7 @@ export const Editor = forwardRef<EditorRef, EditorProps>(
           {!value && <p className={cn('absolute left-4 top-16 z-10 text-color-disabled', classes?.label)}>{label}</p>}
           <EditorContent ref={ref} editor={editor} />
           {limit && (
-            <p className='absolute bottom-4 left-4 text-color-disabled'>
+            <p className='absolute bottom-4 right-4 text-color-disabled'>
               {editor.storage.characterCount.characters()} / {limit} символов
             </p>
           )}

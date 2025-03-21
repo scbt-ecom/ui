@@ -65,6 +65,6 @@ export const Base: Story = {
 
 export const WithLimit: Story = {
   args: {
-    limit: 10
+    limit: 1000
   }
 }
