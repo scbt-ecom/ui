@@ -64,8 +64,8 @@ export const renderEditorPanel = (editor: Editor) => [
     isActive: editor.isActive('bulletList')
   },
   {
-    label: 'Пробел',
-    icon: <Icon name='editor/space' className='size-4' />,
+    label: 'Перенос строки',
+    icon: <Icon name='arrows/arrowDownRight' className='size-4' />,
     onClick: () => editor.chain().focus().setHardBreak().run()
   },
 

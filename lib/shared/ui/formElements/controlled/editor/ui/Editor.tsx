@@ -1,5 +1,6 @@
 import { forwardRef, type ReactElement, useEffect } from 'react'
 import { type FieldError } from 'react-hook-form'
+import CharacterCount from '@tiptap/extension-character-count'
 import { EditorContent, type EditorEvents, useEditor, type UseEditorOptions } from '@tiptap/react'
 import { type EditorControlClasses } from '../EditorControl'
 import { editorConfig } from '../model/config'
@@ -19,9 +20,12 @@ interface EditorProps extends Partial<UseEditorOptions> {
   externalHandlers?: ExternalHandlers
   label?: string
   helperText?: string | ReactElement
+  limit?: number
 }
 
 type EditorRef = React.ElementRef<typeof EditorContent>
+
+const DEFAULT_LIMIT = Number.MAX_SAFE_INTEGER
 
 export const Editor = forwardRef<EditorRef, EditorProps>(
   (
@@ -29,6 +33,7 @@ export const Editor = forwardRef<EditorRef, EditorProps>(
       onChange,
       value = '',
       label,
+      limit,
       error,
       classes,
       editable,
@@ -42,7 +47,12 @@ export const Editor = forwardRef<EditorRef, EditorProps>(
     const { onUpdate: externalOnUpdate } = externalHandlers || {}
 
     const editor = useEditor({
-      extensions: editorConfig,
+      extensions: [
+        ...editorConfig,
+        CharacterCount.configure({
+          limit: limit ?? DEFAULT_LIMIT
+        })
+      ],
       editable: editable,
       content: value,
       onUpdate: (props) => {
@@ -91,6 +101,11 @@ export const Editor = forwardRef<EditorRef, EditorProps>(
           <Toolbar editor={editor} />
           {!value && <p className={cn('absolute left-4 top-16 z-10 text-color-disabled', classes?.label)}>{label}</p>}
           <EditorContent ref={ref} editor={editor} />
+          {limit && (
+            <p className='absolute bottom-4 left-4 text-color-disabled'>
+              {editor.storage.characterCount.characters()} / {limit} символов
+            </p>
+          )}
         </div>
 
         <MessageView

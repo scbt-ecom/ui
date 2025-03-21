@@ -62,3 +62,9 @@ type Story = StoryObj<typeof Controlled.EditorControl>
 export const Base: Story = {
   args: {}
 }
+
+export const WithLimit: Story = {
+  args: {
+    limit: 10
+  }
+}

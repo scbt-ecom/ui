@@ -1,5 +1,5 @@
 export interface SpritesMap {
-  arrows: 'arrowCircle' | 'arrowLink' | 'arrowRight' | 'arrowRotate' | 'arrowScroll'
+  arrows: 'arrowCircle' | 'arrowDownRight' | 'arrowLink' | 'arrowRight' | 'arrowRotate' | 'arrowScroll'
   brandLogos: 'logoBlack' | 'logoBusiness' | 'logoGray' | 'logoInsurance' | 'logoMain' | 'logoWhite'
   communication: 'phone'
   editor:
@@ -43,6 +43,11 @@ export const SPRITES_META: {
         viewBox: '0 0 32 32',
         width: 32,
         height: 32
+      },
+      arrowDownRight: {
+        viewBox: '0 0 24 24',
+        width: 24,
+        height: 24
       },
       arrowLink: {
         viewBox: '0 0 24 24',

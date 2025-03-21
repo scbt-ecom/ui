@@ -18,6 +18,7 @@ export type EditorControlProps<
   classes?: EditorControlClasses
   helperText?: string | ReactElement
   label?: string
+  limit?: number
 }
 
 export const EditorControl = <T extends FieldValues>({

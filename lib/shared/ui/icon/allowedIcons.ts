@@ -7,6 +7,7 @@ export const allowedIcons: {
   group: {
   "arrows": [
     "arrows/arrowCircle",
+    "arrows/arrowDownRight",
     "arrows/arrowLink",
     "arrows/arrowRight",
     "arrows/arrowRotate",
@@ -79,6 +80,7 @@ export const allowedIcons: {
 },
   flatten: [
   "arrows/arrowCircle",
+  "arrows/arrowDownRight",
   "arrows/arrowLink",
   "arrows/arrowRight",
   "arrows/arrowRotate",
