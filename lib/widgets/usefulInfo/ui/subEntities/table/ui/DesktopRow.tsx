@@ -15,7 +15,7 @@ type DesktopRowProps = {
   classes?: DesktopRowClasses
 }
 
-const desktopRowConfig = cva('grid items-center', {
+const desktopRowConfig = cva('desktop:grid mobile:hidden items-center', {
   variants: {
     columnsVariant: {
       twoCols: 'grid-cols-2 gap-16',

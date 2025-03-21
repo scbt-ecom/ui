@@ -1,5 +1,4 @@
 import type { SingleStepProps } from '../model/types'
-import { Heading } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
 export type SingleStepClasses = {
@@ -31,9 +30,10 @@ export const SingleStep = ({ classes, index, variant, title, description }: Sing
 
       <div className={cn('flex flex-col gap-2')}>
         {withTitles && (
-          <Heading as='h4' className={cn('text-color-dark', classes?.title)}>
-            {title}
-          </Heading>
+          <div
+            dangerouslySetInnerHTML={{ __html: title }}
+            className={cn('mob-title-bold-m text-color-dark desktop:desk-title-bold-s', classes?.title)}
+          />
         )}
         <div
           dangerouslySetInnerHTML={{ __html: description ?? '' }}

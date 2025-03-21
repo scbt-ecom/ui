@@ -2,7 +2,7 @@ import { cva } from 'class-variance-authority'
 import type { EntityTableProps } from '../Table'
 import { cn } from '$/shared/utils'
 
-const headingsConfig = cva('grid px-4 mb-4', {
+const headingsConfig = cva('desktop:grid mobile:hidden px-4 mb-4', {
   variants: {
     columnsVariant: {
       twoCols: 'grid-cols-2 gap-16',
