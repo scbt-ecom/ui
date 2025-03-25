@@ -1,5 +1,7 @@
 import { type ReactElement } from 'react'
 import { type VariantProps } from 'class-variance-authority'
+import type { ButtonProps } from '../../../shared/ui'
+import type { ButtonHandlerOptions } from '../../buttonWithHandlers'
 import { type itemConfig } from './cva'
 
 export type LongBannerConfig = VariantProps<typeof itemConfig>
@@ -39,3 +41,15 @@ export interface TextItemProps<Enabled extends boolean> extends LongBannerConfig
     popover?: Popover<Enabled>
   }
 }
+
+export type ButtonConfig = {
+  buttonContent: ButtonProps & { handlerOptions: ButtonHandlerOptions }
+  enabled: boolean
+}
+
+export type Image =
+  | ReactElement
+  | {
+      url: string
+      alt: string
+    }

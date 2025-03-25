@@ -1,8 +1,8 @@
 import type { ReactElement } from 'react'
+import type { ButtonHandlerOptions } from '../../buttonWithHandlers'
 import { type ButtonProps } from '$/shared/ui'
-import { type BannerButtonsGroupClasses } from '$/widgets/banner/ui/BannerButtonsGroup'
 
-export interface BannerClasses extends BannerButtonsGroupClasses {
+export interface BannerClasses {
   root?: string
   container?: string
   wrapper?: string
@@ -13,15 +13,25 @@ export interface BannerClasses extends BannerButtonsGroupClasses {
   imageContainer?: string
   image?: string
   advantageContainer?: string
+  group?: string
+  primary?: string
+  secondary?: string
 }
 
 export type ButtonsConfig = {
-  primary: ButtonProps
-  secondary?: ButtonProps
+  primary: {
+    buttonContent: ButtonProps & { handlerOptions: ButtonHandlerOptions }
+    enabled: boolean
+  }
+  secondary?: {
+    buttonContent: ButtonProps & { handlerOptions: ButtonHandlerOptions }
+    enabled: boolean
+  }
 }
 
 export type ImgBanner =
   | ReactElement
   | {
       url: string
+      alt: string
     }

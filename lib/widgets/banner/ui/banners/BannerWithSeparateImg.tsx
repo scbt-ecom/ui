@@ -16,16 +16,20 @@ export const BannerWithSeparateImg = ({
   const { isMobile } = useDevice()
   const { primary, secondary } = buttonsConfig || {}
 
+  /**
+   * Если imgMobile это объект с полем url, то присваиваем обычный <img>
+   * Если это не объект значит мы присваиваем JSX.Element (для Next компонент <Image>)
+   */
   const imgMob =
     imgMobile && 'url' in imgMobile && TypeGuards.isObject(imgMobile) ? (
-      <img className='w-full object-contain' alt='Картинка баннера' src={imgMobile.url} />
+      <img className='w-full object-contain' alt={imgMobile.alt} src={imgMobile.url} />
     ) : (
       imgMobile
     )
 
   const imgDesk =
     imgDesktop && 'url' in imgDesktop && TypeGuards.isObject(imgDesktop) ? (
-      <img className='w-full object-contain' alt='Картинка баннера' src={imgDesktop.url} />
+      <img className='w-full object-contain' alt={imgDesktop.alt} src={imgDesktop.url} />
     ) : (
       imgDesktop
     )

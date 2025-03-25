@@ -79,7 +79,7 @@ export const BenefitItem = ({
       {(mobileImg || isDesktop) && img && (
         <div className={cn('flex w-full justify-end', classes?.imgContainer)}>
           {img && 'url' in img && TypeGuards.isObject(img) ? (
-            <img className={cn('h-[246px] object-cover', classes?.img)} src={img.url} alt={title} />
+            <img className={cn('h-[246px] object-cover', classes?.img)} src={img.url} alt={img.alt} />
           ) : (
             img
           )}

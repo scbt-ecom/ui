@@ -10,6 +10,7 @@ export type AllowedBannerBackgroundColor = `bg-banner-${Colors}`
 
 export type Img = {
   url: string
+  alt: string
 }
 
 export type Details = {

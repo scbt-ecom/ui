@@ -1,11 +1,9 @@
 'use client'
 
 import { type ReactElement } from 'react'
-import type { ButtonProps } from '../../shared/ui'
 import { type AdvantageClasses, type AdvantagesProps } from '../advantages/Advantages'
-import type { ButtonHandlerOptions } from '../buttonWithHandlers'
 import { type BackgroundBannerColorsValues } from './model/constants'
-import { type BannerClasses, type ImgBanner } from './model/types'
+import { type BannerClasses, type ButtonsConfig, type ImgBanner } from './model/types'
 import { BannerImageFull, BannerWithSeparateImg } from './ui'
 
 export interface BannerProps {
@@ -13,22 +11,13 @@ export interface BannerProps {
   subtitle: string | ReactElement
   imgDesktop: ImgBanner
   imgMobile: ImgBanner
-  buttonsConfig: {
-    primary: {
-      buttonContent: ButtonProps & { handlerOptions: ButtonHandlerOptions }
-      enabled: boolean
-    }
-    secondary?: {
-      buttonContent: ButtonProps & { handlerOptions: ButtonHandlerOptions }
-      enabled: boolean
-    }
-  }
+  buttonsConfig: ButtonsConfig
   advantages?: AdvantagesProps
+  variant?: 'separateImg' | 'fullImg'
+  color?: BackgroundBannerColorsValues
   classes?: BannerClasses & {
     advantages?: AdvantageClasses
   }
-  variant?: 'separateImg' | 'fullImg'
-  color?: BackgroundBannerColorsValues
 }
 
 export const Banner = ({ variant, ...props }: BannerProps) => {

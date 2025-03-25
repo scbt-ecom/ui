@@ -1,25 +1,18 @@
 import { type ReactElement } from 'react'
-import { type ButtonHandlerOptions, ButtonWithHandlers } from '../buttonWithHandlers'
+import { ButtonWithHandlers } from '../buttonWithHandlers'
 import { widgetIds } from '../model'
 import { containerImgConfig } from './model/cva'
-import { type Details, type LongBannerClasses, type LongBannerConfig } from './model/types'
+import { type ButtonConfig, type Details, type Image, type LongBannerClasses, type LongBannerConfig } from './model/types'
 import { TextList, Title } from './ui'
-import { type ButtonProps, ResponsiveContainer } from '$/shared/ui'
+import { ResponsiveContainer } from '$/shared/ui'
 import { cn, TypeGuards } from '$/shared/utils'
 
 export interface LongBannerProps<Enabled extends boolean> extends LongBannerConfig {
   headline: string | ReactElement
   details: Details<Enabled>[]
   intent?: 'twoItems' | 'fourItems'
-  buttonConfig?: {
-    buttonContent: ButtonProps & { handlerOptions: ButtonHandlerOptions }
-    enabled: boolean
-  }
-  image:
-    | ReactElement
-    | {
-        url: string
-      }
+  buttonConfig?: ButtonConfig
+  image: Image
   classes?: LongBannerClasses
 }
 
@@ -36,7 +29,7 @@ export const LongBanner = <Enabled extends boolean>({
 
   const img =
     image && 'url' in image && TypeGuards.isObject(image) ? (
-      <img className='w-full object-contain' alt='Картинка баннера' src={image.url} />
+      <img className='w-full object-contain' alt={image.alt} src={image.url} />
     ) : (
       image
     )
