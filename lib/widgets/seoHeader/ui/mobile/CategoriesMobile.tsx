@@ -32,7 +32,7 @@ export const CategoriesMobile = ({ categories, helpers, phone }: CategoriesMobil
             phone={phone}
             style={{ top: containerClientRect ? containerClientRect.top + containerClientRect.height : 0 }}
           />,
-          document.body
+          document.body.querySelector('iframe')?.contentDocument?.body ?? document.body
         )}
     </div>
   )

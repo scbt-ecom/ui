@@ -1,6 +1,7 @@
 'use client'
 
 import * as React from 'react'
+import { useRef } from 'react'
 import { createPortal } from 'react-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import { modalContentAnimation, modalOverlayAnimation } from './model/helpers'
@@ -42,7 +43,7 @@ export const Modal = ({
     document.body.style.overflow = 'visible'
   }
 
-  const Content = iframe ? IframeModalContent : 'div'
+  const iframeRef = useRef<HTMLIFrameElement>(null)
 
   const modalBody = (
     <AnimatePresence>
@@ -73,7 +74,13 @@ export const Modal = ({
             {...modalContentAnimation}
           >
             <ModalHeader title={title} closeModal={closeModal} classes={classes?.modalHeader} />
-            <Content className={cn('mt-4', classes?.content)}>{children}</Content>
+            {iframe ? (
+              <IframeModalContent ref={iframeRef} className={cn('mt-4', classes?.content)}>
+                {(iframeBody) => createPortal(children, iframeBody)}
+              </IframeModalContent>
+            ) : (
+              <div className={cn('mt-4', classes?.content)}>{children}</div>
+            )}
           </motion.div>
         </motion.div>
       )}
