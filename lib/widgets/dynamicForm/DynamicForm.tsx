@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { type Control, type SubmitHandler } from 'react-hook-form'
+import { type Control, type FieldValues, type SubmitHandler } from 'react-hook-form'
 import { type TypeOf } from 'zod'
 import { HTMLRenderer } from '../htmlParser'
 import { widgetIds } from '../model'
@@ -25,7 +25,7 @@ import { type FieldElement, FieldMapper } from '$/widgets/fieldMapper'
 import { QueryClientProvider } from '$/widgets/queryClientProvider'
 
 type SubmitProps = Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'children'> & {
-  submitCallback: (values: unknown) => void
+  submitCallback: <T extends FieldValues>(values: T) => void
   children: string
 }
 
@@ -111,7 +111,7 @@ export const DynamicForm = <AType extends ApprovementType, CType extends ChipsTy
   const formattedProgress = useFieldsProgress({ control, fields: fieldsProgress || [], schema })
 
   const onSubmit: SubmitHandler<TypeOf<typeof schema>> = (values) => {
-    if (submitCallback) submitCallback(values)
+    if (submitCallback) submitCallback({ ...values, agree: checked })
 
     console.warn(values)
   }
