@@ -17,7 +17,7 @@ export const TabContent = ({ categories, ...props }: TabContentProps) => {
       transition={{ duration: 0.2 }}
       className='absolute bg-color-white'
     >
-      <div className='mx-auto flex w-[1140px] gap-x-[56px] py-10'>
+      <div className='flex w-[1140px] gap-x-[56px] py-10'>
         {categories.map((category) => {
           const CategoryTitle = category.link ? 'a' : 'p'
 
@@ -29,6 +29,7 @@ export const TabContent = ({ categories, ...props }: TabContentProps) => {
                   className='flex items-center gap-x-1 text-16 uppercase text-color-primary-default'
                 >
                   {category.title}
+
                   <Icon name='arrows/arrowLink' className='size-6' />
                 </CategoryTitle>
               )}
@@ -46,6 +47,9 @@ export const TabContent = ({ categories, ...props }: TabContentProps) => {
         })}
       </div>
     </motion.div>,
-    document.body
+    /**
+     * Нужно для preview, чтобы категории рендерились в iframe
+     */
+    document.body.querySelector<HTMLIFrameElement>('#modal-preview')?.contentDocument?.body ?? document.body
   )
 }

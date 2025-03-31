@@ -1,40 +1,32 @@
-import { useEffect, useRef, useState } from 'react'
-import { createPortal } from 'react-dom'
+import { forwardRef, useEffect, useState } from 'react'
 import { cn } from '$/shared/utils'
 
-type IframeModalContentProps = React.IframeHTMLAttributes<HTMLIFrameElement>
+type IframeModalContentProps = {
+  children: (body: HTMLElement) => React.ReactNode
+  className?: string
+} & Omit<React.IframeHTMLAttributes<HTMLIFrameElement>, 'children'>
 
-export const IframeModalContent = ({ children, className, ...props }: IframeModalContentProps) => {
-  const iframeRef = useRef<HTMLIFrameElement>(null)
-  const [iframeLoaded, setIframeLoaded] = useState<boolean>(false)
+export const IframeModalContent = forwardRef<HTMLIFrameElement, IframeModalContentProps>(
+  ({ children, className, ...props }, ref) => {
+    const [iframeBody, setIframeBody] = useState<HTMLElement | null>(null)
 
-  useEffect(() => {
-    if (!iframeRef.current) return
+    useEffect(() => {
+      const iframe = ref && 'current' in ref ? ref.current : null
+      if (!iframe || !iframe.contentDocument) return
 
-    const abortController = new AbortController()
-
-    const iframe = iframeRef.current
-
-    iframe.addEventListener(
-      'load',
-      () => {
+      if (iframe.contentDocument?.readyState === 'complete') {
         document.querySelectorAll('head > link[rel="stylesheet"], head > style').forEach((node) => {
           iframe.contentDocument?.head.appendChild(node.cloneNode(true))
         })
 
-        setIframeLoaded(true)
-      },
-      { signal: abortController.signal }
+        setIframeBody(iframe.contentDocument.body)
+      }
+    }, [])
+
+    return (
+      <iframe id='modal-preview' {...props} ref={ref} className={cn('h-[60vh] w-[60vw]', className)}>
+        {iframeBody && children(iframeBody)}
+      </iframe>
     )
-
-    return () => {
-      abortController.abort()
-    }
-  }, [])
-
-  return (
-    <iframe {...props} ref={iframeRef} className={cn('w-full', className)}>
-      {iframeLoaded && iframeRef.current?.contentDocument && createPortal(children, iframeRef.current.contentDocument.body)}
-    </iframe>
-  )
-}
+  }
+)

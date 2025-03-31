@@ -1,4 +1,4 @@
-import { memo, useRef } from 'react'
+import { forwardRef, memo } from 'react'
 import { motion } from 'framer-motion'
 import type { Category } from '../../../model'
 import { TabContent } from './ui'
@@ -10,9 +10,9 @@ type TabProps = {
   onActiveTabChange: (active: string | null) => void
 }
 
-const InnerComponent = ({ category, active, onActiveTabChange }: TabProps) => {
-  const triggerRef = useRef<HTMLDivElement>(null)
-  const triggerClientRect = triggerRef.current?.getBoundingClientRect()
+const InnerComponent = forwardRef<HTMLDivElement, TabProps>(({ category, active, onActiveTabChange }, ref) => {
+  const rootRef = ref && 'current' in ref ? ref : null
+  const triggerClientRect = rootRef?.current?.getBoundingClientRect()
 
   const contentShouldRender = active && !TypeGuards.isArrayEmpty(category.children)
 
@@ -20,7 +20,7 @@ const InnerComponent = ({ category, active, onActiveTabChange }: TabProps) => {
 
   return (
     <motion.div
-      ref={triggerRef}
+      ref={ref}
       className={cn(
         'relative flex cursor-default items-center justify-center py-4 text-color-dark',
         'after:content="" after:absolute after:bottom-0 after:left-1/2 after:h-[1px]',
@@ -42,12 +42,13 @@ const InnerComponent = ({ category, active, onActiveTabChange }: TabProps) => {
           categories={category.children}
           style={{
             top: triggerClientRect ? triggerClientRect.top + triggerClientRect.height : 0,
+            left: triggerClientRect ? triggerClientRect.left : 0,
             width: window.innerWidth
           }}
         />
       )}
     </motion.div>
   )
-}
+})
 
 export const Tab = memo(InnerComponent) as typeof InnerComponent

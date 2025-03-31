@@ -1,4 +1,4 @@
-import { memo, useCallback, useState } from 'react'
+import { memo, useCallback, useRef, useState } from 'react'
 import { AnimatePresence } from 'framer-motion'
 import type { Category } from '../../model'
 import { Tab } from './tab'
@@ -14,12 +14,19 @@ const InnerComponent = ({ categories }: CategoryTabsProps) => {
     setActiveTab(active)
   }, [])
 
+  const triggerRef = useRef<HTMLDivElement>(null)
+
   return (
     <AnimatePresence mode='sync'>
-      <div id='tabs' className='relative flex w-full items-center justify-between gap-x-4 border-b border-b-[rgba(234,237,241)]'>
+      <div
+        ref={triggerRef}
+        id='tabs'
+        className='relative flex w-full items-center justify-between gap-x-4 border-b border-b-[rgba(234,237,241)]'
+      >
         {categories.map((category) => (
           <Tab
             key={category.title}
+            ref={triggerRef}
             category={category}
             active={activeTab === category.title}
             onActiveTabChange={onActiveTabChange}
