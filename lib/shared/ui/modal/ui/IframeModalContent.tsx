@@ -24,7 +24,7 @@ export const IframeModalContent = forwardRef<HTMLIFrameElement, IframeModalConte
     }, [])
 
     return (
-      <iframe id='modal-preview' {...props} ref={ref} className={cn('h-[60vh] w-[60vw]', className)}>
+      <iframe id='modal-preview' {...props} ref={ref} className={cn('h-[60vh] w-[80vw]', className)}>
         {iframeBody && children(iframeBody)}
       </iframe>
     )
