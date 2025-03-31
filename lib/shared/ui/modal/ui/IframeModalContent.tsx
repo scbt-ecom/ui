@@ -12,25 +12,19 @@ export const IframeModalContent = forwardRef<HTMLIFrameElement, IframeModalConte
 
     useEffect(() => {
       const iframe = ref && 'current' in ref ? ref.current : null
-      if (!iframe) return
+      if (!iframe || !iframe.contentDocument) return
 
-      const handleLoad = () => {
-        if (!iframe.contentDocument) return
-
+      if (iframe.contentDocument?.readyState === 'complete') {
         document.querySelectorAll('head > link[rel="stylesheet"], head > style').forEach((node) => {
           iframe.contentDocument?.head.appendChild(node.cloneNode(true))
         })
 
         setIframeBody(iframe.contentDocument.body)
       }
-
-      if (iframe.contentDocument?.readyState === 'complete') {
-        handleLoad()
-      }
     }, [])
 
     return (
-      <iframe {...props} ref={ref} className={cn('h-[60vh] w-[80vw]', className)}>
+      <iframe id='modal-preview' {...props} ref={ref} className={cn('h-[60vh] w-[80vw]', className)}>
         {iframeBody && children(iframeBody)}
       </iframe>
     )

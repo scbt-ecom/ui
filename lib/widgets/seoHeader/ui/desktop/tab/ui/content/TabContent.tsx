@@ -12,7 +12,7 @@ export const TabContent = ({ categories, ...props }: TabContentProps) => {
     <motion.div
       {...props}
       layout
-      initial={{ opacity: 1 }}
+      initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.2 }}
       className='absolute bg-color-white'
@@ -50,6 +50,6 @@ export const TabContent = ({ categories, ...props }: TabContentProps) => {
     /**
      * Нужно для preview, чтобы категории рендерились в iframe
      */
-    document.body.querySelector('iframe')?.contentDocument?.body ?? document.body
+    document.body.querySelector<HTMLIFrameElement>('#modal-preview')?.contentDocument?.body ?? document.body
   )
 }

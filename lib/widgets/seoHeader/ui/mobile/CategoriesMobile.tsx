@@ -24,6 +24,7 @@ export const CategoriesMobile = ({ categories, helpers, phone }: CategoriesMobil
       <button type='button' onClick={onOpenToggle} className='h-max w-max'>
         <Icon name={open ? 'general/close' : 'general/menu'} className='size-6 text-color-primary-default' />
       </button>
+
       {open &&
         createPortal(
           <Menu
@@ -32,7 +33,10 @@ export const CategoriesMobile = ({ categories, helpers, phone }: CategoriesMobil
             phone={phone}
             style={{ top: containerClientRect ? containerClientRect.top + containerClientRect.height : 0 }}
           />,
-          document.body.querySelector('iframe')?.contentDocument?.body ?? document.body
+          /**
+           * Нужно для preview, чтобы категории рендерились в iframe
+           */
+          document.body.querySelector<HTMLIFrameElement>('#modal-preview')?.contentDocument?.body ?? document.body
         )}
     </div>
   )
