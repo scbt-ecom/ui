@@ -4,10 +4,10 @@ import type { NavigationMode } from '../types'
 
 type UseArrowNavigationProps = {
   emblaApi: EmblaCarouselType | undefined
-  onNavButtonClick?: (emblaApi: EmblaCarouselType) => void
+  navigationHandler?: (emblaApi: EmblaCarouselType) => void
 }
 
-export const useArrowNavigation = ({ emblaApi, onNavButtonClick }: UseArrowNavigationProps) => {
+export const useArrowNavigation = ({ emblaApi, navigationHandler }: UseArrowNavigationProps) => {
   const [prevBtnDisabled, setPrevBtnDisabled] = useState(true)
   const [nextBtnDisabled, setNextBtnDisabled] = useState(true)
 
@@ -23,11 +23,11 @@ export const useArrowNavigation = ({ emblaApi, onNavButtonClick }: UseArrowNavig
           break
       }
 
-      if (onNavButtonClick) {
-        onNavButtonClick(emblaApi)
+      if (navigationHandler) {
+        navigationHandler(emblaApi)
       }
     },
-    [emblaApi, onNavButtonClick]
+    [emblaApi, navigationHandler]
   )
 
   const onSelect = useCallback((emblaApi: EmblaCarouselType) => {

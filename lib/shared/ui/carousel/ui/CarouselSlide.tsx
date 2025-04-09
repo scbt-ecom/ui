@@ -1,20 +1,25 @@
-import { Button } from '../../button'
-import Card from '../image.png'
-import type { CarouselSlideProps } from '../model'
+import { type SlideVariants, slideVariantsMap } from '../model'
+import { cn } from '$/shared/utils'
 
-export const CarouselSlide = ({ title, description }: CarouselSlideProps) => {
+export type CarouselSlideClasses = {
+  root?: string
+  card?: string
+}
+
+export type CarouselSlideProps = {
+  variant: SlideVariants
+  classes?: CarouselSlideClasses
+}
+
+export const CarouselSlide = ({ variant, classes, ...props }: CarouselSlideProps) => {
+  const SlideVariant = slideVariantsMap[variant]
+
+  if (!SlideVariant) return <p>Такого слайда не существует</p>
+
   return (
-    <div className=''>
-      <div className='flex min-h-[420px] translate-x-0 translate-y-0 transform-gpu flex-col rounded-sm bg-color-blue-grey-300 p-4 mobile:w-[360px] desktop:w-[280px]'>
-        <div className='flex flex-1 flex-shrink select-none flex-col gap-2 rounded-md'>
-          <h3 className='desk-title-bold-s'>{title}</h3>
-          <img src={Card} alt='card' />
-          <p className='desk-body-medium-l text-color-tetriary'>{description}</p>
-        </div>
-
-        <Button size='sm' className='w-full'>
-          Оформить заявку
-        </Button>
+    <div className={cn(classes?.root)}>
+      <div className={cn('flex translate-x-0 translate-y-0 transform-gpu select-none flex-col', classes?.card)}>
+        <SlideVariant {...props} />
       </div>
     </div>
   )

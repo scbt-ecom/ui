@@ -1,22 +1,43 @@
+import type { DotsOptions } from '../model'
 import { cn } from '$/shared/utils'
 
-interface DotsNavigationsProps {
-  scrollSnaps: number[]
-  onDotButtonClick: (index: number) => void
-  selectedIndex: number
+export type DotsNavigationsClasses = {
+  dotsWrapper?: string
+  dot?: string
 }
 
-export const DotsNavigations = ({ scrollSnaps, selectedIndex, onDotButtonClick, ...props }: DotsNavigationsProps) => {
+interface DotsNavigationsProps extends Pick<DotsOptions, 'position'> {
+  scrollSnaps: number[]
+  onClickDot: (index: number) => void
+  visibleIndex: number
+  classes?: DotsNavigationsClasses
+}
+
+export const DotsNavigations = ({ scrollSnaps, visibleIndex, onClickDot, position, classes, ...props }: DotsNavigationsProps) => {
   return (
-    <div className='mt-4 flex items-center gap-[6px]'>
+    <div
+      className={cn(
+        'mt-4 flex items-center gap-[6px]',
+        {
+          'justify-center': position === 'center',
+          'justify-end': position === 'bot-right',
+          'justify-start': position === 'bot-left'
+        },
+        classes?.dotsWrapper
+      )}
+    >
       {scrollSnaps.map((_, index) => (
         <button
           type='button'
           key={index}
-          onClick={() => onDotButtonClick(index)}
-          className={cn('size-3 cursor-pointer rounded-full border border-solid border-warm-grey-300', {
-            'border-dark bg-color-dark': index === selectedIndex
-          })}
+          onClick={() => onClickDot(index)}
+          className={cn(
+            'size-3 cursor-pointer rounded-full border border-solid border-warm-grey-300',
+            {
+              'border-dark bg-color-dark': index === visibleIndex
+            },
+            classes?.dot
+          )}
           {...props}
         ></button>
       ))}

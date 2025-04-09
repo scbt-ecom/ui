@@ -1,3 +1,5 @@
 export * from './ArrowNavigationButton'
 export * from './CarouselSlide'
 export * from './DotsNavigations'
+export * from './slideVariants'
+export * from './CarouselContent'

@@ -3,22 +3,27 @@ import type { EmblaCarouselType } from 'embla-carousel'
 
 type UseDotsNavigationProps = {
   emblaApi: EmblaCarouselType | undefined
-  onNavButtonClick: (emblaApi: EmblaCarouselType) => void
+  navigationHandler: (emblaApi: EmblaCarouselType) => void
+  setVisibleIndex: (index: number) => void
 }
 
-export const useDotsNavigation = ({ emblaApi, onNavButtonClick }: UseDotsNavigationProps) => {
-  const [selectedIndex, setSelectedIndex] = useState(0)
+export type UseDotsNavigationReturn = {
+  scrollSnaps: number[]
+  onClickDot: (index: number) => void
+}
+
+export const useDotsNavigation = ({ emblaApi, navigationHandler, setVisibleIndex }: UseDotsNavigationProps) => {
   const [scrollSnaps, setScrollSnaps] = useState<number[]>([])
 
-  const onDotButtonClick = useCallback(
+  const onClickDot = useCallback(
     (index: number) => {
       if (!emblaApi) return
       emblaApi.scrollTo(index)
-      if (onNavButtonClick) {
-        onNavButtonClick(emblaApi)
+      if (navigationHandler) {
+        navigationHandler(emblaApi)
       }
     },
-    [emblaApi, onNavButtonClick]
+    [emblaApi, navigationHandler]
   )
 
   const onInit = useCallback((emblaApi: EmblaCarouselType) => {
@@ -26,7 +31,7 @@ export const useDotsNavigation = ({ emblaApi, onNavButtonClick }: UseDotsNavigat
   }, [])
 
   const onSelect = useCallback((emblaApi: EmblaCarouselType) => {
-    setSelectedIndex(emblaApi.selectedScrollSnap())
+    setVisibleIndex(emblaApi.selectedScrollSnap())
   }, [])
 
   useEffect(() => {
@@ -38,8 +43,7 @@ export const useDotsNavigation = ({ emblaApi, onNavButtonClick }: UseDotsNavigat
   }, [emblaApi, onInit, onSelect])
 
   return {
-    selectedIndex,
     scrollSnaps,
-    onDotButtonClick
+    onClickDot
   }
 }
