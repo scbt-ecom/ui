@@ -19,6 +19,7 @@ export * from './modal'
 export * from './notification'
 export * from './table'
 export * from './pagination'
+export * from './carousel'
 
 // # PROVIDERS
 export * from './providers'
