@@ -1,4 +1,4 @@
-import { type ReactNode } from 'react'
+import { type HTMLAttributes, type ReactNode } from 'react'
 import { type EmblaOptionsType } from 'embla-carousel'
 import type { AutoplayOptionsType } from 'embla-carousel-autoplay'
 import { useDevice } from '../../hooks'
@@ -29,7 +29,7 @@ type CarouselClasses = {
   carouselContentClasses?: CarouselContentClasses
 }
 
-export interface CarouselBaseProps {
+export interface CarouselBaseProps extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode
   heading?: string
   carouselOptions?: EmblaOptionsType
@@ -50,7 +50,8 @@ export const CarouselBase = ({
   setVisibleIndex,
   visibleIndex,
   children,
-  classes
+  classes,
+  ...props
 }: CarouselBaseProps) => {
   const mergedCarouselOptions = { ...defaultCarouselOptions, ...carouselOptions }
   const mergedAutoPlayOptions = { ...defaultAutoPlayOptions, ...autoPlayOptions }
@@ -81,7 +82,7 @@ export const CarouselBase = ({
   const withHeadingAndArrowsTop = Boolean(heading) || (winNavArrows && navArrowPosition === 'top-right')
 
   return (
-    <div className={cn('flex flex-col', classes?.root)}>
+    <div className={cn('flex flex-col', classes?.root)} {...props}>
       {withHeadingAndArrowsTop && (
         <div className={cn('flex items-center justify-between gap-6', { 'mb-6': withHeadingAndArrowsTop }, classes?.header)}>
           {Boolean(heading) && (
