@@ -1,3 +1,5 @@
+import type { CarouselSlideProps, SlideFullScreenProps, SlideOnlyImageProps, SlideProductCardProps } from '../ui'
+
 export type DotsOptions = {
   position?: 'bot-left' | 'center' | 'bot-right'
   deskVisible?: boolean
@@ -17,4 +19,16 @@ export type ImageProps = {
   alt: string
 }
 
-export type SlideVariants = 'productCard' | 'onlyImage'
+interface SlideFullScreen extends SlideFullScreenProps, CarouselSlideProps {
+  variant: 'fullScreen'
+}
+
+interface SlideOnlyImage extends SlideOnlyImageProps, CarouselSlideProps {
+  variant: 'onlyImage'
+}
+
+interface SlideProductCard extends SlideProductCardProps, CarouselSlideProps {
+  variant: 'productCard'
+}
+
+export type CarouselSlideVariant = SlideFullScreen | SlideOnlyImage | SlideProductCard

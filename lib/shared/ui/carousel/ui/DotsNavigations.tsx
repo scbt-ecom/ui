@@ -32,10 +32,8 @@ export const DotsNavigations = ({ scrollSnaps, visibleIndex, onClickDot, positio
           key={index}
           onClick={() => onClickDot(index)}
           className={cn(
-            'size-3 cursor-pointer rounded-full border border-solid border-warm-grey-300',
-            {
-              'border-dark bg-color-dark': index === visibleIndex
-            },
+            'size-2 cursor-pointer rounded-full bg-color-primary-tr-pressed',
+            { 'h-2 w-4 rounded-md bg-color-primary-default': index === visibleIndex },
             classes?.dot
           )}
           {...props}

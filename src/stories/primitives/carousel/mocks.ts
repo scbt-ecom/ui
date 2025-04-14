@@ -1,14 +1,15 @@
 import Card from './Card.png'
+import FullScreen from './fullScreen.png'
 import Phone from './Phone.png'
 import type { TextStep } from './ui'
-import type { ButtonProps, SlideProductCardProps } from '$/shared/ui'
+import type { ButtonProps, SlideFullScreenProps, SlideOnlyImageProps, SlideProductCardProps } from '$/shared/ui'
 
 const buttonProps: ButtonProps = {
   intent: 'secondary',
   children: 'Оформить карту'
 }
 
-export const productsSlidesMocks: SlideProductCardProps[] = [
+export const productsSlides: SlideProductCardProps[] = [
   {
     title: 'Первая карточка -  «Халва»',
     description: 'Покупки с кешбэком и рассрочка в несколько кликов',
@@ -83,7 +84,34 @@ export const productsSlidesMocks: SlideProductCardProps[] = [
   }
 ]
 
-export const slidesWithSteps = [
+export const fullScreenSlides: Omit<SlideFullScreenProps, 'slideIndex'>[] = [
+  {
+    title: 'Первая карточка -  «Халва»',
+    description: 'Покупки с кешбэком и рассрочка в несколько кликов',
+    imgProps: {
+      alt: 'FullScreen img',
+      src: FullScreen
+    }
+  },
+  {
+    title: 'Вклады',
+    description: 'Ставка до 25%, дистанционное управление счётом',
+    imgProps: {
+      alt: 'FullScreen img',
+      src: FullScreen
+    }
+  },
+  {
+    title: 'Кредит под залог авто',
+    description: 'Умный кешбэк, снятие и переводы без комиссии',
+    imgProps: {
+      alt: 'FullScreen img',
+      src: FullScreen
+    }
+  }
+]
+
+export const additionalContentSlides: SlideOnlyImageProps[] = [
   {
     imgProps: {
       alt: 'Phone img',
@@ -119,5 +147,5 @@ export const textSteps: TextStep[] = [
 
 export const baseArgs = {
   heading: 'Другие предложения',
-  slides: productsSlidesMocks
+  slides: productsSlides
 }

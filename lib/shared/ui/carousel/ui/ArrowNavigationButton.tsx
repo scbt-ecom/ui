@@ -17,10 +17,7 @@ interface ArrowNavigationButtonProps extends Omit<ComponentPropsWithRef<'button'
 export const ArrowNavigationButton = ({ mode, onClick, children, classes, ...props }: ArrowNavigationButtonProps) => {
   return (
     <button
-      className={cn(
-        'group flex size-8 cursor-pointer items-center justify-center rounded-full bg-color-blue-grey-200 p-1',
-        classes?.button
-      )}
+      className={cn('group flex size-8 cursor-pointer items-center justify-center p-1', classes?.button)}
       type='button'
       onClick={() => onClick(mode)}
       {...props}

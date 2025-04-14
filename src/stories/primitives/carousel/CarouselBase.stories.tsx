@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
-import { productsSlidesMocks, slidesWithSteps, textSteps } from './mocks'
+import { additionalContentSlides, fullScreenSlides, productsSlides, textSteps } from './mocks'
 import { TextStepsList } from './ui'
 import { CarouselBase, ResponsiveContainer } from '$/shared/ui'
 import { CarouselSlide } from '$/shared/ui/carousel/ui'
@@ -18,7 +18,7 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof CarouselBase>
 
-export const WithStepsSlides: Story = {
+export const WithAdditionalContent: Story = {
   render: () => {
     const [visibleIndex, setVisibleIndex] = useState(0)
 
@@ -44,14 +44,14 @@ export const WithStepsSlides: Story = {
               }
             }}
           >
-            {slidesWithSteps.map((slide, slideIndex) => (
+            {additionalContentSlides.map((slide, slideIndex) => (
               <CarouselSlide
                 variant='onlyImage'
                 key={slideIndex}
-                {...slide}
                 classes={{
-                  card: 'mobile:w-[240px] desktop:w-[240px]'
+                  slide: 'mobile:w-[240px] desktop:w-[240px]'
                 }}
+                {...slide}
               />
             ))}
           </CarouselBase>
@@ -61,7 +61,7 @@ export const WithStepsSlides: Story = {
   }
 }
 
-export const ProductCardsSlides: Story = {
+export const ProductCards: Story = {
   render: () => {
     const [visibleIndex, setVisibleIndex] = useState(0)
     return (
@@ -71,9 +71,10 @@ export const ProductCardsSlides: Story = {
           visibleIndex={visibleIndex}
           setVisibleIndex={setVisibleIndex}
           autoPlayOptions={{
-            active: false
+            active: true
           }}
           carouselOptions={{
+            loop: true,
             breakpoints: {
               '(max-width: 1188px)': { slidesToScroll: 1 },
               '(min-width: 1188px)': { slidesToScroll: 4 }
@@ -85,14 +86,52 @@ export const ProductCardsSlides: Story = {
             }
           }}
         >
-          {productsSlidesMocks.map((slide, slideIndex) => (
+          {productsSlides.map((slide, slideIndex) => (
             <CarouselSlide
               variant='productCard'
               key={slideIndex}
-              {...slide}
               classes={{
-                card: 'mobile:w-[320px] desktop:w-[280px] h-[450px]'
+                slide: 'mobile:w-[320px] desktop:w-[280px] h-[450px]'
               }}
+              {...slide}
+            />
+          ))}
+        </CarouselBase>
+      </ResponsiveContainer>
+    )
+  }
+}
+
+export const FullScreen: Story = {
+  render: () => {
+    const [visibleIndex, setVisibleIndex] = useState(0)
+
+    return (
+      <ResponsiveContainer>
+        <CarouselBase
+          visibleIndex={visibleIndex}
+          setVisibleIndex={setVisibleIndex}
+          autoPlayOptions={{
+            active: false
+          }}
+          classes={{
+            containerWithNavClasses: {
+              wrapper: 'gap-4'
+            },
+            carouselContentClasses: {
+              slidesOverlay: 'max-w-full w-full'
+            }
+          }}
+        >
+          {fullScreenSlides.map((slide, slideIndex) => (
+            <CarouselSlide
+              key={slideIndex}
+              variant='fullScreen'
+              slideIndex={slideIndex}
+              classes={{
+                slide: 'mobile:w-[328px]  desktop:w-[1140px]'
+              }}
+              {...slide}
             />
           ))}
         </CarouselBase>
