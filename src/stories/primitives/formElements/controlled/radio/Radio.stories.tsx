@@ -55,7 +55,7 @@ type RadioGroupControlProps = React.ComponentPropsWithoutRef<typeof Controlled.R
 
 const meta = {
   title: 'CONTROLLED/RadioGroupControl',
-  component: Controlled.RadioGroupControl,
+  component: Controlled.RadioGroupControl<Schema>,
   parameters: {
     layout: 'centered'
   },
@@ -71,10 +71,11 @@ const meta = {
       defaultValues={{
         test: null
       }}
+      // @ts-expect-error bug
       renderComponent={(componentProps: RadioGroupControlProps) => <Controlled.RadioGroupControl {...componentProps} />}
     />
   )
-} satisfies Meta<typeof Controlled.RadioGroupControl>
+} satisfies Meta<typeof Controlled.RadioGroupControl<Schema>>
 
 export default meta
 

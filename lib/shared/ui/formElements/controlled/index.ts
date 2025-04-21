@@ -14,7 +14,7 @@ import { InputCurrencyControl } from './inputCurrency'
 export type { InputCurrencyControlProps, ICurrencyOption, TCurrencyVariant } from './inputCurrency'
 import { InputOtpControl } from './inputOtp'
 export type { InputOtpControlProps } from './inputOtp'
-import { RadioGroupControl } from './radio'
+import { RadioGroupCardControl, RadioGroupControl, RadioGroupTabControl } from './radio'
 export type { RadioGroupControlProps } from './radio'
 import { SelectControl } from './select'
 export type { SelectControlProps } from './select'
@@ -35,6 +35,8 @@ export const Controlled = {
   SelectControl,
   SwitchControl,
   RadioGroupControl,
+  RadioGroupTabControl,
+  RadioGroupCardControl,
   AutocompleteControl,
   DadataFio,
   DadataAddress,

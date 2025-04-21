@@ -4,14 +4,12 @@ import { useState } from 'react'
 import { type Control, type FieldValues, type SubmitHandler } from 'react-hook-form'
 import { type TypeOf } from 'zod'
 import { HTMLRenderer } from '../htmlParser'
-import { widgetIds } from '../model'
+import { type FieldValidation, getDynamicSchema, widgetIds } from '../model'
 import {
   type Approvement,
   type ApprovementType,
   type Chips,
   type ChipsType,
-  type FieldValidation,
-  getDynamicSchema,
   getFieldsProgress,
   type Progress,
   type ProgressField,

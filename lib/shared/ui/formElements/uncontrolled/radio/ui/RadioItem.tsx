@@ -1,5 +1,6 @@
 import { memo, useId } from 'react'
 import { Indicator, Item, type RadioGroupItemProps } from '@radix-ui/react-radio-group'
+import { AdditionalContent, type AdditionalContentClasses, type AdditionalContentProps } from './AdditionalContent'
 import { cn } from '$/shared/utils'
 
 export type RadioOption = {
@@ -7,6 +8,7 @@ export type RadioOption = {
   value: string
   label: string
   disabled?: boolean
+  additionalContent?: AdditionalContentProps
 }
 
 export type RadioItemClasses = {
@@ -14,6 +16,7 @@ export type RadioItemClasses = {
   item?: string
   indicator?: string
   label?: string
+  additionalContent?: AdditionalContentClasses
 }
 
 export type RadioItemProps = Omit<RadioGroupItemProps, 'value'> & {
@@ -100,6 +103,9 @@ export const RadioItem = memo(
           >
             {label}
           </label>
+          {item?.additionalContent && (
+            <AdditionalContent disabled={disabled} {...item?.additionalContent} classes={classes?.additionalContent} />
+          )}
         </li>
       </Item>
     )

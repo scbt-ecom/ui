@@ -10,7 +10,8 @@ export const WIDGET_LIST = [
   'banner',
   'benefit',
   'form',
-  'seoHeader'
+  'seoHeader',
+  'calculator'
 ] as const
 
 export const widgetIds = WIDGET_LIST.reduce(

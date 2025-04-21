@@ -13,7 +13,7 @@ export type RadioGroupControlProps<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
 > = UseControllerProps<TFieldValues, TName> &
-  Omit<RadioGroupBaseProps, 'classes'> & {
+  Omit<RadioGroupBaseProps, 'classes' | 'name'> & {
     /**
      * Отображаемый лейбл
      */

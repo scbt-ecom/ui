@@ -17,6 +17,11 @@ type ExternalHandlers = {
   onBlur?: (event: React.FocusEvent<HTMLButtonElement>) => void
 }
 
+export type RenderComponentProps = { item: RadioOption; classes?: RadioItemClasses } & Pick<
+  RadioGroupBaseProps,
+  'displayValue' | 'returnValue' | 'invalid' | 'disabled'
+>
+
 export type RadioGroupBaseProps = Omit<RadioGroupPrimitiveProps, 'children'> & {
   /**
    * Список отображаемых опций
@@ -42,11 +47,27 @@ export type RadioGroupBaseProps = Omit<RadioGroupPrimitiveProps, 'children'> & {
    * Дополнительные хендлеры
    */
   externalHandlers?: ExternalHandlers
+  /**
+   * Отрисовка компонента из вне
+   */
+  renderComponent?: (props: RadioGroupBaseProps) => React.JSX.Element
 }
 
 export const RadioGroupBase = forwardRef<HTMLDivElement, RadioGroupBaseProps>(
   (
-    { options, displayValue, returnValue, invalid, className, disabled, classes, externalHandlers, onValueChange, ...props },
+    {
+      options,
+      displayValue,
+      returnValue,
+      invalid,
+      className,
+      disabled,
+      classes,
+      externalHandlers,
+      onValueChange,
+      renderComponent,
+      ...props
+    },
     ref
   ) => {
     const { root, list, radioItem } = classes || {}
@@ -67,21 +88,27 @@ export const RadioGroupBase = forwardRef<HTMLDivElement, RadioGroupBaseProps>(
         ref={ref}
         className={cn('w-full', className, root)}
       >
-        <ul className={cn('w-full', list)}>
-          {options.map((option, index) => (
-            <RadioItem
-              {...restHandlers}
-              key={option.value}
-              data-test-id={`radio-item-${index}`}
-              item={option}
-              invalid={invalid}
-              disabled={disabled || option?.disabled}
-              classes={radioItem}
-              returnValue={returnValue}
-              displayValue={displayValue}
-            />
-          ))}
-        </ul>
+        <>
+          {renderComponent ? (
+            renderComponent({ options, returnValue, displayValue, invalid, disabled })
+          ) : (
+            <ul className={cn('w-full', list)}>
+              {options.map((option, index) => (
+                <RadioItem
+                  {...restHandlers}
+                  key={option.value}
+                  data-test-id={`radio-item-${index}`}
+                  item={option}
+                  invalid={invalid}
+                  disabled={disabled || option?.disabled}
+                  classes={radioItem}
+                  returnValue={returnValue}
+                  displayValue={displayValue}
+                />
+              ))}
+            </ul>
+          )}
+        </>
       </Root>
     )
   }
