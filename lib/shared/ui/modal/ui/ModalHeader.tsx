@@ -23,7 +23,7 @@ export const ModalHeader = ({ title, closeModal, classes }: IModalHeaderProps) =
       <Icon
         onClick={closeModal}
         name='general/close'
-        className={cn('size-8 cursor-pointer text-icon-dark-hover', classes?.icon)}
+        className={cn('ml-auto size-6 cursor-pointer text-icon-dark-hover', classes?.icon)}
       />
     </div>
   )

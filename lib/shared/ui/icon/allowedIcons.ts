@@ -55,6 +55,7 @@ export const allowedIcons: {
     "general/menu",
     "general/plus",
     "general/reorder",
+    "general/shield",
     "general/showEye"
   ],
   "info": [
@@ -118,6 +119,7 @@ export const allowedIcons: {
   "general/menu",
   "general/plus",
   "general/reorder",
+  "general/shield",
   "general/showEye",
   "info/helpCircle",
   "info/warningCircle",

@@ -16,6 +16,7 @@ export type NumberValidationOptions<Required extends boolean> = {
    * указывает что поле обязательное
    * @default true
    */
+  defaultValue?: number
   required?: Required
   message?: Partial<Record<keyof Omit<NumberValidationOptions<Required>, 'message'>, string>>
 }
@@ -24,7 +25,7 @@ export type NumberValidationOptions<Required extends boolean> = {
  * Схема валидации обязательного поля числового типа
  */
 const getNumberRequired = (props?: Omit<NumberValidationOptions<true>, 'required'>) => {
-  const { min, max, message } = props || {}
+  const { min, max, message, defaultValue } = props || {}
 
   let schema = z.coerce.number()
 
@@ -36,7 +37,7 @@ const getNumberRequired = (props?: Omit<NumberValidationOptions<true>, 'required
     schema = schema.max(max, message?.min || baseDefaultMessages.MAX_VALUE(max))
   }
 
-  return schema.default(0)
+  return schema.default(defaultValue ?? 0)
 }
 type NumberRequiredSchema = ReturnType<typeof getNumberRequired>
 

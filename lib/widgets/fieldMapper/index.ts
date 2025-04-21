@@ -1,2 +1,2 @@
 export { FieldMapper } from './FieldMapper'
-export type { FieldElement } from './model/types'
+export type * from './model/types'

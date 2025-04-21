@@ -17,7 +17,7 @@ export interface SpritesMap {
     | 'underline'
     | 'undo'
   files: 'border' | 'borderError' | 'documentFilled' | 'documentOutline' | 'upload'
-  general: 'calendar' | 'check' | 'close' | 'edit' | 'hiddenEye' | 'menu' | 'plus' | 'reorder' | 'showEye'
+  general: 'calendar' | 'check' | 'close' | 'edit' | 'hiddenEye' | 'menu' | 'plus' | 'reorder' | 'shield' | 'showEye'
   info: 'helpCircle' | 'warningCircle'
   logos: 'beeline' | 'megafon' | 'mts'
   social: 'classmates' | 'telegram' | 'vk'
@@ -258,6 +258,11 @@ export const SPRITES_META: {
         viewBox: '0 0 12 18',
         width: 12,
         height: 18
+      },
+      shield: {
+        viewBox: '0 0 25 24',
+        width: 25,
+        height: 24
       },
       showEye: {
         viewBox: '0 0 20 14',

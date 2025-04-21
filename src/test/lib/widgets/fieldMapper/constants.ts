@@ -22,7 +22,7 @@ export const defaultValues = ZodUtils.getZodDefaults(schema)
 
 export type Schema = TypeOf<typeof schema>
 
-export const fields: FieldElement<Schema>[] = [
+export const fields: FieldElement<Schema, any>[] = [
   {
     type: 'InputControl',
     args: {

@@ -12,6 +12,7 @@ export type SelectSingleValidationOptions<Required extends boolean, Multi extend
    * @default true
    */
   required?: Required
+  defaultValue?: string
   message?: {
     single?: string
     multiple?: string
@@ -52,14 +53,14 @@ type SelectValidationOptions<Required extends boolean, Multi extends boolean> = 
  * Схема валидации обязательного поля типа select
  */
 const getSelectRequired = <Required extends boolean, Multi extends boolean>(props?: SelectValidationOptions<Required, Multi>) => {
-  const { message } = props || {}
+  const { message, defaultValue } = props || {}
 
   const selectSchema = z
     .string()
     .min(1, message?.single || baseDefaultMessages.SELECT_NON_EMPTY())
     .nullable()
     .refine((value) => Boolean(value), message?.single || baseDefaultMessages.SELECT_NON_EMPTY())
-    .default(null)
+    .default(defaultValue ?? null)
 
   if (props?.multiple) {
     let arraySchema = z

@@ -14,3 +14,15 @@ export type FieldElement<
       name: FieldPath<TFieldValues>
     }
 }
+
+export type FieldElementWithoutControl<
+  TFieldValues extends FieldValues = FieldValues,
+  Type extends ElementType = ElementType,
+  ExternalProps = {}
+> = {
+  type: Type
+  args: Omit<React.ComponentPropsWithoutRef<(typeof Controlled)[Type]>, 'control'> &
+    ExternalProps & {
+      name: FieldPath<TFieldValues>
+    }
+}

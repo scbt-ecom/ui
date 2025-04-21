@@ -6,6 +6,7 @@ import { useClickOutside, useDevice } from '$/shared/hooks'
 import { cn } from '$/shared/utils'
 
 type HintClasses = {
+  wrapper?: string
   content?: string
   arrow?: string
   trigger?: string
@@ -44,10 +45,8 @@ export const Hint = ({
   return (
     <TooltipPrimitive.Provider>
       <TooltipPrimitive.Root open={open} onOpenChange={setOpen} defaultOpen={defaultOpen} delayDuration={delayDuration}>
-        <div onClick={() => setOpen(isMobile)}>
-          <TooltipPrimitive.Trigger asChild className={cn('cursor-pointer', classes?.trigger)}>
-            {triggerElement}
-          </TooltipPrimitive.Trigger>
+        <div className={cn(classes?.wrapper)} onClick={() => setOpen(isMobile)}>
+          <TooltipPrimitive.Trigger className={cn('cursor-pointer', classes?.trigger)}>{triggerElement}</TooltipPrimitive.Trigger>
           <TooltipPrimitive.Content
             onPointerDownOutside={(event) => event.preventDefault()}
             className={cn(

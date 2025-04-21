@@ -22,6 +22,7 @@ interface PopoverContentProps extends PopoverContentPropsBase {
   side?: 'top' | 'right' | 'bottom' | 'left'
   defaultOpen?: boolean
   avoidCollisions?: boolean
+  withCloseBtn?: boolean
 }
 
 export interface PopoverProps extends PopoverContentProps {
@@ -43,6 +44,7 @@ export const Popover = ({
   children,
   arrowPadding,
   portalContainer,
+  withCloseBtn = true,
   ...contentProps
 }: PopoverProps) => {
   return (
@@ -70,18 +72,21 @@ export const Popover = ({
           {...contentProps}
         >
           {children}
-          <PopoverPrimitive.Close
-            aria-label='Close'
-            className={cn('flex size-5 items-center justify-center outline-0 outline-transparent', classes?.closeTrigger)}
-          >
-            <Icon
-              name='general/close'
-              className={cn(
-                'size-5 cursor-pointer text-icon-blue-grey-600 transition-colors hover:text-icon-blue-grey-800',
-                classes?.closeIcon
-              )}
-            />
-          </PopoverPrimitive.Close>
+
+          {withCloseBtn && (
+            <PopoverPrimitive.Close
+              aria-label='Close'
+              className={cn('flex size-5 items-center justify-center outline-0 outline-transparent', classes?.closeTrigger)}
+            >
+              <Icon
+                name='general/close'
+                className={cn(
+                  'size-5 cursor-pointer text-icon-blue-grey-600 transition-colors hover:text-icon-blue-grey-800',
+                  classes?.closeIcon
+                )}
+              />
+            </PopoverPrimitive.Close>
+          )}
           <PopoverPrimitive.Arrow width={12} height={6} className={cn('fill-white', classes?.arrowIcon)} />
         </PopoverPrimitive.Content>
       </PopoverPrimitive.Portal>
