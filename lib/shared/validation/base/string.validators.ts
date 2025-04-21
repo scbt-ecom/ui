@@ -21,6 +21,7 @@ export type StringValidationOptions<Required extends boolean> = {
    * @default true
    */
   required?: Required
+  defaultValue?: string
   message?: Partial<Record<keyof Omit<StringValidationOptions<Required>, 'message'> | 'root', string>>
 }
 
@@ -28,7 +29,7 @@ export type StringValidationOptions<Required extends boolean> = {
  * Схема валидации обязательного поля строкового типа
  */
 const getStringRequired = (props?: Omit<StringValidationOptions<true>, 'required'>) => {
-  const { min, max, length, message } = props || {}
+  const { min, max, length, defaultValue, message } = props || {}
 
   let schema = z.string({ message: message?.root })
 
@@ -44,7 +45,9 @@ const getStringRequired = (props?: Omit<StringValidationOptions<true>, 'required
     schema = schema.length(length, { message: message?.length || baseDefaultMessages.FIX_LENGTH(length) })
   }
 
-  return schema.refine((value) => Boolean(value.length), { message: message?.min || baseDefaultMessages.NON_EMPTY() }).default('')
+  return schema
+    .refine((value) => Boolean(value.length), { message: message?.min || baseDefaultMessages.NON_EMPTY() })
+    .default(defaultValue ?? '')
 }
 type StringRequiredSchema = ReturnType<typeof getStringRequired>
 

@@ -74,7 +74,7 @@ const firstCalculator: CalculatorProps = {
             args: {
               children: 'checkbox1',
               validation: {
-                type: 'getStringSchema',
+                type: 'getBooleanSchema',
                 args: {}
               },
               name: 'checkbox1'
@@ -85,7 +85,7 @@ const firstCalculator: CalculatorProps = {
             args: {
               children: 'checkbox2',
               validation: {
-                type: 'getStringSchema',
+                type: 'getBooleanSchema',
                 args: {}
               },
               name: 'checkbox2'
@@ -96,7 +96,7 @@ const firstCalculator: CalculatorProps = {
             args: {
               children: 'checkbox3',
               validation: {
-                type: 'getStringSchema',
+                type: 'getBooleanSchema',
                 args: {}
               },
               name: 'checkbox3'
@@ -212,7 +212,7 @@ const firstCalculator: CalculatorProps = {
               tooltip: 'switch1 tooltip',
               children: 'switch1',
               validation: {
-                type: 'getStringSchema',
+                type: 'getBooleanSchema',
                 args: {}
               },
               name: 'switch1'
@@ -224,7 +224,7 @@ const firstCalculator: CalculatorProps = {
               tooltip: 'switch1 tooltip',
               children: 'switch2',
               validation: {
-                type: 'getStringSchema',
+                type: 'getBooleanSchema',
                 args: {}
               },
               name: 'switch2'
@@ -236,7 +236,7 @@ const firstCalculator: CalculatorProps = {
               tooltip: 'switch1 tooltip',
               children: 'switch3',
               validation: {
-                type: 'getStringSchema',
+                type: 'getBooleanSchema',
                 args: {}
               },
               name: 'switch3'

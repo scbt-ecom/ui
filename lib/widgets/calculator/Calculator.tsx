@@ -24,7 +24,6 @@ export const Calculator = <T extends FieldValues>({ calculatedInfoConfig, rootCa
   const calculatedValue = isFormula(rootValue) ? evaluateFormula(rootValue.formula, watchedFields) : rootValue
 
   const mergedCalcInfoConfig = { ...calculatedInfoConfig, rootValue: calculatedValue }
-
   return (
     <FormProvider {...formMethods}>
       <div className='flex items-start gap-16'>
