@@ -20,6 +20,8 @@ export const Calculator = <T extends FieldValues>({ calculatedInfoConfig, rootCa
 
   const watchedFields = formMethods.watch()
 
+  console.log(watchedFields, '@watchedFields')
+
   const { rootValue } = calculatedInfoConfig
   const calculatedValue = isFormula(rootValue) ? evaluateFormula(rootValue.formula, watchedFields) : rootValue
 
