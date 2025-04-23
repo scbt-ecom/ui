@@ -27,7 +27,11 @@ export const RootCalculator = <T extends FieldValues>({ modalConfig, fieldsGroup
   return (
     <div className='flex flex-1 flex-col gap-8'>
       {modalConfig && <CalculatorModal {...modalConfig} />}
-      {fieldsGroup?.selectGroupConfig && <FieldsGroup {...fieldsGroup?.selectGroupConfig} />}
+      {fieldsGroup?.selectGroupConfig && (
+        <div className='flex flex-col gap-4'>
+          <FieldsGroup {...fieldsGroup?.selectGroupConfig} />
+        </div>
+      )}
       {fieldsGroup?.slidersGroupConfig && <FieldsGroup {...fieldsGroup?.slidersGroupConfig} />}
       {fieldsGroup?.radioGroupTabConfig && <FieldsGroup {...fieldsGroup?.radioGroupTabConfig} />}
       {fieldsGroup?.checkboxGroupConfig && (
