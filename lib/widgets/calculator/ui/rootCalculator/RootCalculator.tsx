@@ -2,20 +2,19 @@ import type { FieldValues } from 'react-hook-form'
 import {
   CalculatorModal,
   type CalculatorModalProps,
-  CheckboxGroup,
   type CheckboxGroupProps,
-  RadioGroup,
   type RadioGroupProps,
-  SlidersGroup,
+  type SelectGroupProps,
   type SlidersGroupProps,
-  SwitchGroup,
   type SwitchGroupProps
 } from './ui'
+import { FieldsGroup } from './ui'
 
 export interface RootCalculatorProps<T extends FieldValues> {
   modalConfig?: CalculatorModalProps
   fieldsGroup: {
-    slidersGroupConfig: SlidersGroupProps<T>
+    selectGroupConfig?: SelectGroupProps<T>
+    slidersGroupConfig?: SlidersGroupProps<T>
     radioGroupTabConfig?: RadioGroupProps<T>
     checkboxGroupConfig?: CheckboxGroupProps<T>
     radioGroupConfig?: RadioGroupProps<T>
@@ -28,12 +27,21 @@ export const RootCalculator = <T extends FieldValues>({ modalConfig, fieldsGroup
   return (
     <div className='flex flex-1 flex-col gap-8'>
       {modalConfig && <CalculatorModal {...modalConfig} />}
-      <SlidersGroup {...fieldsGroup?.slidersGroupConfig} />
-      {fieldsGroup?.radioGroupTabConfig && <RadioGroup {...fieldsGroup?.radioGroupTabConfig} />}
-      {fieldsGroup?.checkboxGroupConfig && <CheckboxGroup {...fieldsGroup?.checkboxGroupConfig} />}
-      {fieldsGroup?.radioGroupConfig && <RadioGroup {...fieldsGroup?.radioGroupConfig} />}
-      {fieldsGroup?.radioGroupCardConfig && <RadioGroup {...fieldsGroup?.radioGroupCardConfig} />}
-      {fieldsGroup?.switchGroupConfig && <SwitchGroup {...fieldsGroup?.switchGroupConfig} />}
+      {fieldsGroup?.selectGroupConfig && <FieldsGroup {...fieldsGroup?.selectGroupConfig} />}
+      {fieldsGroup?.slidersGroupConfig && <FieldsGroup {...fieldsGroup?.slidersGroupConfig} />}
+      {fieldsGroup?.radioGroupTabConfig && <FieldsGroup {...fieldsGroup?.radioGroupTabConfig} />}
+      {fieldsGroup?.checkboxGroupConfig && (
+        <div className='flex flex-col gap-4'>
+          <FieldsGroup {...fieldsGroup?.checkboxGroupConfig} />
+        </div>
+      )}
+      {fieldsGroup?.radioGroupConfig && <FieldsGroup {...fieldsGroup?.radioGroupConfig} />}
+      {fieldsGroup?.radioGroupCardConfig && <FieldsGroup {...fieldsGroup?.radioGroupCardConfig} />}
+      {fieldsGroup?.switchGroupConfig && (
+        <div className='flex flex-col gap-4'>
+          <FieldsGroup {...fieldsGroup?.switchGroupConfig} />
+        </div>
+      )}
     </div>
   )
 }

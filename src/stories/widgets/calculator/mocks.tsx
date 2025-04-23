@@ -67,6 +67,52 @@ const firstCalculator: CalculatorProps = {
           }
         ]
       },
+      selectGroupConfig: {
+        fields: [
+          {
+            type: 'SelectControl',
+            args: {
+              label: 'Описания селекта 1',
+              validation: {
+                type: 'getStringSchema',
+                args: {}
+              },
+              name: 'select1',
+              options: [
+                { value: '2', label: '2 месяца' },
+                { value: '3', label: '3 месяца' },
+                { value: '6', label: '6 месяцев' },
+                { value: '8', label: '8 месяцев' },
+                { value: '9', label: '9 месяцев' },
+                { value: '12', label: '1 год' },
+                { value: '24', label: '2 года' },
+                { value: '36', label: '3 года' }
+              ]
+            }
+          },
+          {
+            type: 'SelectControl',
+            args: {
+              label: 'Описания селекта 2',
+              validation: {
+                type: 'getStringSchema',
+                args: {}
+              },
+              name: 'select2',
+              options: [
+                { value: '2', label: '2 месяца' },
+                { value: '3', label: '3 месяца' },
+                { value: '6', label: '6 месяцев' },
+                { value: '8', label: '8 месяцев' },
+                { value: '9', label: '9 месяцев' },
+                { value: '12', label: '1 год' },
+                { value: '24', label: '2 года' },
+                { value: '36', label: '3 года' }
+              ]
+            }
+          }
+        ]
+      },
       checkboxGroupConfig: {
         fields: [
           {
