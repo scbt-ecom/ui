@@ -13,8 +13,6 @@ export const CalculatorView = <T extends FieldValues>({
   calculatorInfoConfig,
   calculatorFieldsConfig
 }: CalculatorViewProps<T>) => {
-  console.log(calculatorInfoConfig, '@calculatorInfoConfig')
-  console.log(calculatorFieldsConfig, '@calculatorFieldsConfig')
   const calculatorSchema: CalculatorSchema = getCalculatorSchema(calculatorFieldsConfig?.fieldsGroup)
 
   const formMethods = useControlledForm({
@@ -26,6 +24,7 @@ export const CalculatorView = <T extends FieldValues>({
   const watchedFields = formMethods.watch()
 
   const { rootValue } = calculatorInfoConfig
+
   const calculatedValue = isFormula(rootValue) ? evaluateFormula(rootValue.formula, watchedFields) : rootValue
 
   const mergedCalcInfoConfig = { ...calculatorInfoConfig, rootValue: calculatedValue }
