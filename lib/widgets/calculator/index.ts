@@ -1,2 +1,2 @@
 export * from './Calculator'
-export * from './CalculatorRoot'
+export * from './CalculatorView'

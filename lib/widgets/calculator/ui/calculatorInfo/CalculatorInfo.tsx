@@ -16,22 +16,22 @@ export interface CalculatorInfoProps
     CalculatorInfoFooterProps {}
 
 export const CalculatorInfo = ({
-  topDescription,
+  rootDescription,
   bottomDescription,
   rootValue,
   title,
   subtitle,
-  buttonProps,
+  buttonsConfig,
   infoList,
   suffix,
   assistHint
 }: CalculatorInfoProps) => {
   return (
     <div className='w-[456px] rounded-md bg-color-blue-grey-100 p-8'>
-      <CalculatedBlock suffix={suffix} rootValue={rootValue} topDescription={topDescription} />
+      <CalculatedBlock suffix={suffix} rootValue={rootValue} rootDescription={rootDescription} />
       <CalculatorInfoHead title={title} subtitle={subtitle} />
       <CalculatorInfoBody infoList={infoList} />
-      <CalculatorInfoFooter assistHint={assistHint} buttonProps={buttonProps} bottomDescription={bottomDescription} />
+      <CalculatorInfoFooter assistHint={assistHint} buttonsConfig={buttonsConfig} bottomDescription={bottomDescription} />
     </div>
   )
 }
