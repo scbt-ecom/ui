@@ -1,6 +1,7 @@
-import type { CalculatorViewProps, CalculatorProps } from '$/widgets'
+import type { CalculatorProps } from '$/widgets'
+import type { CalculatorViewProps } from '$/widgets/calculator/CalculatorView'
 
-const firstCalculator: CalculatorProps = {
+const firstCalculator: CalculatorViewProps = {
   name: 'individual',
   label: 'Для ИП',
   calculatorInfoConfig: {
@@ -337,7 +338,7 @@ const firstCalculator: CalculatorProps = {
   }
 }
 
-const secondCalculator: CalculatorProps = {
+const secondCalculator: CalculatorViewProps = {
   name: 'legal',
   label: 'Для юридических лиц',
   calculatorInfoConfig: {
