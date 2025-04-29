@@ -1,37 +1,50 @@
-import { type FieldValues, FormProvider } from 'react-hook-form'
-import { type CalculatorSchema, evaluateFormula, getCalculatorSchema, isFormula } from './model'
-import { CalculatorInfo, type CalculatorInfoProps, RootCalculator, type RootCalculatorProps } from './ui'
-import { useControlledForm } from '$/shared/hooks'
-import { ZodUtils } from '$/shared/validation'
+import { useMemo, useState } from 'react'
+import { widgetIds } from '../model'
+import { CalculatorView, type CalculatorViewProps } from './CalculatorView'
+import { CalculatorTabs, type CalculatorTabValue } from './ui'
+import { Heading, ResponsiveContainer } from '$/shared/ui'
 
-export interface CalculatorProps<T extends FieldValues = FieldValues> {
-  calculatedInfoConfig: CalculatorInfoProps
-  rootCalculatorConfig: RootCalculatorProps<T>
+export interface CalculatorProps {
+  headline: string
+  calculators: CalculatorViewProps[]
 }
 
-export const Calculator = <T extends FieldValues>({ calculatedInfoConfig, rootCalculatorConfig }: CalculatorProps<T>) => {
-  const calculatorSchema: CalculatorSchema = getCalculatorSchema(rootCalculatorConfig.fieldsGroup)
+export const Calculator = ({ calculators, headline }: CalculatorProps) => {
+  const shouldShowTabs = calculators.length > 1
 
-  const formMethods = useControlledForm({
-    schema: calculatorSchema,
-    mode: 'onBlur',
-    defaultValues: ZodUtils.getZodDefaults(calculatorSchema)
-  })
+  const [activeCalculator, setActiveCalculator] = useState<CalculatorTabValue>(shouldShowTabs ? calculators[0]?.name : '')
 
-  const watchedFields = formMethods.watch()
+  const calculatorsTabs = useMemo(() => calculators?.map(({ name, label }) => ({ name, label })), [calculators])
 
-  console.log(watchedFields, '@watchedFields')
+  const currentCalculatorIndex = shouldShowTabs
+    ? calculatorsTabs?.findIndex((tab) => tab.name === activeCalculator) //Активный калькулятор по значению таба
+    : 0 // Берем первый калькулятор если табов нет
 
-  const { rootValue } = calculatedInfoConfig
-  const calculatedValue = isFormula(rootValue) ? evaluateFormula(rootValue.formula, watchedFields) : rootValue
+  const currentCalculator = calculators[currentCalculatorIndex]
 
-  const mergedCalcInfoConfig = { ...calculatedInfoConfig, rootValue: calculatedValue }
   return (
-    <FormProvider {...formMethods}>
-      <div className='flex items-start gap-16'>
-        <RootCalculator {...rootCalculatorConfig} />
-        <CalculatorInfo {...mergedCalcInfoConfig} />
-      </div>
-    </FormProvider>
+    <section id={widgetIds.calculator}>
+      <ResponsiveContainer>
+        <div className='rounded-md bg-color-white px-10 py-12 shadow-md'>
+          <Heading className='mb-12' as='h2'>
+            {headline}
+          </Heading>
+          {shouldShowTabs && (
+            <CalculatorTabs
+              calculatorTabs={calculatorsTabs}
+              activeCalculator={activeCalculator}
+              setActiveCalculator={setActiveCalculator}
+            />
+          )}
+
+          <CalculatorView
+            name={currentCalculator.name}
+            label={currentCalculator.label}
+            calculatorInfoConfig={currentCalculator.calculatorInfoConfig}
+            calculatorFieldsConfig={currentCalculator.calculatorFieldsConfig}
+          />
+        </div>
+      </ResponsiveContainer>
+    </section>
   )
 }

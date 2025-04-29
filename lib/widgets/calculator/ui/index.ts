@@ -1,3 +1,3 @@
 export * from './calculatorInfo'
-export * from './rootCalculator'
+export * from './calculatorFields'
 export * from './CalculatorTabs'

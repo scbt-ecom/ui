@@ -10,7 +10,7 @@ import {
 } from './ui'
 import { FieldsGroup } from './ui'
 
-export interface RootCalculatorProps<T extends FieldValues> {
+export interface CalculatorFieldsProps<T extends FieldValues> {
   modalConfig?: CalculatorModalProps
   fieldsGroup: {
     selectGroupConfig?: SelectGroupProps<T>
@@ -23,7 +23,7 @@ export interface RootCalculatorProps<T extends FieldValues> {
   }
 }
 
-export const RootCalculator = <T extends FieldValues>({ modalConfig, fieldsGroup }: RootCalculatorProps<T>) => {
+export const CalculatorFields = <T extends FieldValues>({ modalConfig, fieldsGroup }: CalculatorFieldsProps<T>) => {
   return (
     <div className='flex flex-1 flex-col gap-8'>
       {modalConfig && <CalculatorModal {...modalConfig} />}
