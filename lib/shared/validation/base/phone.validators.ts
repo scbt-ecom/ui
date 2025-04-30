@@ -17,6 +17,11 @@ export type PhoneValidationOptions<Required extends boolean> = {
    * указывает что поле обязательное
    */
   required?: Required
+  /**
+   * значение по умолчанию
+   * @default undefined
+   */
+  defaultValue?: string
   message?: {
     min?: string
     invalidOperator?: string
@@ -37,6 +42,7 @@ const getPhoneRequired = (props?: Omit<PhoneValidationOptions<true>, 'required'>
     ignoreMask = true,
     maskSymbols = /[()+_ -]/g,
     message,
+    defaultValue,
     validOperatorCodes = ['3', '4', '5', '6', '7', '9']
   } = props || {}
 
@@ -70,7 +76,7 @@ const getPhoneRequired = (props?: Omit<PhoneValidationOptions<true>, 'required'>
     schema = schema.transform((value) => value.replace(mask, '')) as unknown as typeof schema
   }
 
-  return schema.default('')
+  return schema.default(defaultValue ?? '')
 }
 type PhoneRequiredSchema = ReturnType<typeof getPhoneRequired>
 

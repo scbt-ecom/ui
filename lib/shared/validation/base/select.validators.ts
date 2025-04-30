@@ -12,6 +12,10 @@ export type SelectSingleValidationOptions<Required extends boolean, Multi extend
    * @default true
    */
   required?: Required
+  /**
+   * значение по умолчанию
+   * @default undefined
+   */
   defaultValue?: string
   message?: {
     single?: string

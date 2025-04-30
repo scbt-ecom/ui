@@ -21,6 +21,10 @@ export type StringValidationOptions<Required extends boolean> = {
    * @default true
    */
   required?: Required
+  /**
+   * значение по умолчанию
+   * @default undefined
+   */
   defaultValue?: string
   message?: Partial<Record<keyof Omit<StringValidationOptions<Required>, 'message'> | 'root', string>>
 }

@@ -29,6 +29,11 @@ export type DateValidationOptions<Required extends boolean> = {
    * указывает что поле обязательное
    */
   required?: Required
+  /**
+   * значение по умолчанию
+   * @default undefined
+   */
+  defaultValue?: string
   message?: {
     min?: string
     max?: string
@@ -40,7 +45,7 @@ export type DateValidationOptions<Required extends boolean> = {
  * Схема валидации обязательного поля даты
  */
 const getDateRequired = (props?: Omit<DateValidationOptions<boolean>, 'required'>) => {
-  const { iso = true, pattern = DATE_VISIBLE_PATTERN, min, max, message } = props || {}
+  const { iso = true, pattern = DATE_VISIBLE_PATTERN, min, max, defaultValue, message } = props || {}
 
   return z
     .string()
@@ -117,7 +122,7 @@ const getDateRequired = (props?: Omit<DateValidationOptions<boolean>, 'required'
         }
       }
     })
-    .default('')
+    .default(defaultValue ?? '')
 }
 type DateRequiredSchema = ReturnType<typeof getDateRequired>
 

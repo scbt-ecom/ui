@@ -12,6 +12,10 @@ export type UrlValidationOptions<Required extends boolean> = {
    * Регулярное выражение для проверки url на валидность
    */
   regexp?: RegExp | string
+  /**
+   * значение по умолчанию
+   */
+  defaultValue?: string
   message?: {
     min?: string
     invalid?: string
@@ -25,14 +29,14 @@ const URL_REGEX =
  * Схема валидации обязательного поля ссылки
  */
 const getUrlRequired = (props?: Omit<UrlValidationOptions<true>, 'required'>) => {
-  const { message, regexp = URL_REGEX } = props || {}
+  const { message, defaultValue, regexp = URL_REGEX } = props || {}
 
   const regex = TypeGuards.isString(regexp) ? new RegExp(regexp) : regexp
 
   return string()
     .min(1, message?.min || baseDefaultMessages.NON_EMPTY())
     .regex(regex, message?.invalid || baseDefaultMessages.INVALID_URL())
-    .default('')
+    .default(defaultValue ?? '')
 }
 type UrlRequiredSchema = ReturnType<typeof getUrlRequired>
 
