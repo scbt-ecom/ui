@@ -36,7 +36,7 @@ export const WithState: Story = {
     label: 'Сумма кредита'
   },
   render: (props) => {
-    const [value, setValue] = useState<number>()
+    const [value, setValue] = useState<number | undefined>(props.value)
 
     return (
       <>
@@ -51,8 +51,8 @@ export const YearsVariant: Story = {
   args: {
     label: 'Срок кредита',
     marks: [1, 3, 6, 12, 18],
+    value: 6,
     componentType: 'marks',
-    readOnly: true,
     suffix: 'year',
     leftText: '1 год.',
     rightText: '18 лет.'
@@ -60,20 +60,12 @@ export const YearsVariant: Story = {
 }
 
 export const MonthsVariant: Story = {
-  render: (props) => {
-    const [value, setValue] = useState<number>()
-
-    return (
-      <>
-        <p>{value}</p>
-        <Uncontrolled.SliderBase {...props} componentType='step' min={0} max={100} step={1} value={value} onChange={setValue} />
-      </>
-    )
-  },
+  render: WithState.render,
   args: {
     label: 'Срок кредита',
     min: 1,
     max: 12,
+    value: 6,
     suffix: 'month',
     leftText: '1 месяц.',
     rightText: '12 месяцев.'

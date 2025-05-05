@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { forwardRef } from 'react'
 import { NumericFormat } from 'react-number-format'
+import { getInputSliderSuffix } from '../../model/helpers'
 import { type SliderAlgorithmicProps } from '../../model/types'
 import { SliderInner } from '../Slider'
 import { useSliderAlgorithmic } from './hooks'
@@ -44,15 +45,13 @@ export const SliderAlgorithmic = forwardRef<HTMLInputElement, SliderAlgorithmicP
       inputRef?.current?.focus()
     }
 
-    const { handleBlur, getSuffixText, sliderValue, sliderStep, sliderMin, sliderMax, handleChangeSlider } = useSliderAlgorithmic(
-      {
-        min,
-        max,
-        defaultValue: 0,
-        value,
-        onChange
-      }
-    )
+    const { handleBlur, sliderValue, sliderStep, sliderMin, sliderMax, handleChangeSlider } = useSliderAlgorithmic({
+      min,
+      max,
+      defaultValue: 0,
+      value,
+      onChange
+    })
 
     const { root, slider, textLeft, textRight, inputRoot, textContainer, input, field } = classes || {}
 
@@ -85,7 +84,7 @@ export const SliderAlgorithmic = forwardRef<HTMLInputElement, SliderAlgorithmicP
                 aria-invalid={invalid ? 'true' : 'false'}
                 value={value}
                 disabled={disabled}
-                suffix={` ${getSuffixText(value, suffix)} ${additionalSuffix ?? ''}`}
+                suffix={` ${getInputSliderSuffix(suffix, value)} ${additionalSuffix ?? ''}`}
                 thousandsGroupStyle='thousand'
                 thousandSeparator={' '}
                 allowNegative={false}

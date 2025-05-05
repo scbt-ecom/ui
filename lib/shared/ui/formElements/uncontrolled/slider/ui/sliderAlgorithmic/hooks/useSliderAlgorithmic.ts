@@ -1,5 +1,3 @@
-import { getInputSliderSuffix } from '../../../model/helpers/getInputSliderSuffix'
-import { type TSuffixVariants } from '../../../model/types'
 import { useLogarithmic } from '../../../model/useLogarithmic'
 
 interface UseSliderAlgorithmic {
@@ -12,12 +10,6 @@ interface UseSliderAlgorithmic {
 
 export const useSliderAlgorithmic = ({ min, max, defaultValue, value, onChange }: UseSliderAlgorithmic) => {
   const { fromSlider, toSlider, round } = useLogarithmic({ min, max, defaultSum: defaultValue })
-
-  const getSuffixText = (value: number | undefined, suffix: TSuffixVariants) => {
-    if (!value) return ''
-
-    return getInputSliderSuffix(suffix, value)
-  }
 
   const sliderValue = toSlider(value)
 
@@ -37,15 +29,14 @@ export const useSliderAlgorithmic = ({ min, max, defaultValue, value, onChange }
     }
   }
 
-  const handleChangeSlider = (value: number) => {
-    if (value === undefined) {
+  const handleChangeSlider = (value?: number) => {
+    if (!value) {
       return
     }
     if (onChange) onChange(round(fromSlider(value)))
   }
 
   return {
-    getSuffixText,
     handleBlur,
     handleChangeSlider,
     toSlider,

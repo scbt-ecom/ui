@@ -84,6 +84,7 @@ export interface SliderCommonProps
 export type SliderMarksProps = SliderCommonProps & {
   componentType: 'marks'
   marks: number[]
+  readOnly?: true
 }
 
 export type SliderStepProps = SliderCommonProps & {
@@ -116,5 +117,3 @@ export type SliderGatewayProps<Type extends ComponentType> = Type extends 'marks
   : Type extends 'algoritmic'
     ? SliderAlgorithmicProps
     : SliderStepProps
-
-// DiscriminatedUnion<'componentType', SliderStepProps | SliderMarksProps | SliderAlgorithmicProps>

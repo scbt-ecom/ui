@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { forwardRef } from 'react'
 import { NumericFormat } from 'react-number-format'
+import { getInputSliderSuffix } from '../../model/helpers'
 import { type SliderStepProps } from '../../model/types'
 import { SliderInner } from '../Slider'
 import { useSliderStep } from './hooks'
@@ -45,11 +46,9 @@ export const SliderStep = forwardRef<HTMLInputElement, SliderStepProps>(
       inputRef?.current?.focus()
     }
 
-    const { handleBlur, getSuffixText, sliderValue, sliderStep, sliderMin, sliderMax, handleChangeSlider } = useSliderStep({
+    const { handleBlur, sliderStep, sliderMin, sliderMax, handleChangeSlider } = useSliderStep({
       min,
       max,
-      defaultValue: 0,
-      value,
       step,
       onChange
     })
@@ -85,7 +84,7 @@ export const SliderStep = forwardRef<HTMLInputElement, SliderStepProps>(
                 aria-invalid={invalid ? 'true' : 'false'}
                 value={value}
                 disabled={disabled}
-                suffix={` ${getSuffixText(value, suffix)} ${additionalSuffix ?? ''}`}
+                suffix={` ${getInputSliderSuffix(suffix, value)} ${additionalSuffix ?? ''}`}
                 thousandsGroupStyle='thousand'
                 thousandSeparator={' '}
                 allowNegative={false}
@@ -110,7 +109,7 @@ export const SliderStep = forwardRef<HTMLInputElement, SliderStepProps>(
           <SliderInner
             classes={{ ...slider }}
             step={sliderStep}
-            value={sliderValue}
+            value={value ?? 0}
             disabled={disabled}
             min={sliderMin}
             max={sliderMax}

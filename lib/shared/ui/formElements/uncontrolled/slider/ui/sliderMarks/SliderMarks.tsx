@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { forwardRef } from 'react'
 import { NumericFormat } from 'react-number-format'
+import { getInputSliderSuffix } from '../../model/helpers'
 import { type SliderMarksProps } from '../../model/types'
 import { SliderInner } from '../../ui/Slider'
 import { useSliderMarks } from './hooks/useSliderMarks'
@@ -32,9 +33,8 @@ export const SliderMarks = forwardRef<HTMLInputElement, SliderMarksProps>(
 
     const inputRef = React.useRef<HTMLInputElement>(null)
 
-    const { sliderMin, sliderMax, handleChangeSlider, getSuffixText, sliderValue } = useSliderMarks({
+    const { sliderMin, sliderMax, handleChangeSlider } = useSliderMarks({
       marks,
-      value,
       onChange
     })
 
@@ -61,7 +61,7 @@ export const SliderMarks = forwardRef<HTMLInputElement, SliderMarksProps>(
                 aria-invalid={invalid ? 'true' : 'false'}
                 value={value}
                 disabled={disabled}
-                suffix={` ${getSuffixText(value, suffix)} ${additionalSuffix ?? ''}`}
+                suffix={` ${getInputSliderSuffix(suffix, value)} ${additionalSuffix ?? ''}`}
                 thousandsGroupStyle='thousand'
                 thousandSeparator={' '}
                 allowNegative={false}
@@ -86,7 +86,7 @@ export const SliderMarks = forwardRef<HTMLInputElement, SliderMarksProps>(
             classes={{ ...slider }}
             marks={marks}
             step={null}
-            value={sliderValue}
+            value={value ?? 0}
             disabled={disabled}
             min={sliderMin}
             max={sliderMax}
