@@ -1,0 +1,1 @@
+export { SliderAlgorithmic } from './SliderAlgorithmic'

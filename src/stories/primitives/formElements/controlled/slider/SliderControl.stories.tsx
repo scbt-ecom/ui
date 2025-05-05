@@ -19,7 +19,6 @@ const meta = {
     layout: 'centered'
   },
   args: {
-    label: 'Slider',
     name: 'slider'
   },
   render: (props) => (
@@ -52,20 +51,27 @@ type Story = StoryObj<typeof Controlled.SliderControl>
 
 export const Base: Story = {
   args: {
-    min: 30_000,
-    max: 5_000_000,
-    variant: 'credit',
-    leftText: '30 тыс.',
-    rightText: '5 млн.'
+    sliderProps: {
+      componentType: 'algoritmic',
+      min: 30_000,
+      max: 5_000_000,
+      suffix: 'currency',
+      leftText: '30 тыс.',
+      rightText: '5 млн.',
+      label: 'Slider'
+    }
   }
 }
 
 export const Term: Story = {
   args: {
-    min: 1,
-    max: 12,
-    variant: 'years',
-    leftText: '1 год.',
-    rightText: '12 лет.'
+    sliderProps: {
+      componentType: 'marks',
+      marks: [1, 2, 3, 6, 12, 24, 36],
+      suffix: 'year',
+      leftText: '1 год',
+      rightText: '36 лет',
+      label: 'Slider'
+    }
   }
 }
