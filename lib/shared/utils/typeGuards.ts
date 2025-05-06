@@ -38,4 +38,8 @@ export class TypeGuards {
   static isFunction(value: unknown): value is (...args: unknown[]) => unknown {
     return typeof value === 'function'
   }
+
+  static isObjectEmpty(value: unknown): value is Record<string, never> {
+    return this.isObject(value) && Object.keys(value).length === 0
+  }
 }

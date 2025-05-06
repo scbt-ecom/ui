@@ -3,7 +3,7 @@ import { multipleCalculator, singleCalculator } from './mocks'
 import { Calculator } from '$/widgets'
 
 const meta = {
-  title: 'WIDGETS/CalculatorRoot',
+  title: 'WIDGETS/Calculator',
   component: Calculator,
   decorators: [(Story) => <div className='my-20'>{Story()}</div>]
 } satisfies Meta<typeof Calculator>

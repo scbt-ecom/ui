@@ -1,9 +1,9 @@
 import { useFormContext } from 'react-hook-form'
 import { type CalculatorSchema, formatInfoList } from '../../../model'
-import { InfoListItem, type InfoListItemDto } from './InfoListItem'
+import { InfoListItem, type InfoListItemDTO } from './InfoListItem'
 
 export interface CalculatedInfoBodyProps {
-  infoList: InfoListItemDto[]
+  infoList: InfoListItemDTO[]
 }
 
 export const CalculatorInfoBody = ({ infoList }: CalculatedInfoBodyProps) => {

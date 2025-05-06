@@ -6,23 +6,28 @@ const firstCalculator: CalculatorViewProps = {
   label: 'Для ИП',
   calculatorInfoConfig: {
     rootValue: {
-      formula: 'sum * term / 3'
+      formula: 'sum * loanTerm / 3'
     },
     rootDescription: 'Ежемесячный платеж с НДС',
     suffix: 'percent',
     infoList: [
       {
         value: {
-          formula: 'sum - term'
+          formula: 'sum / loanTerm'
         },
         label: 'Экономия',
         hint: 'С хинтом',
-        suffix: 'currency'
+        mode: 'currency'
       },
       {
         value: '15',
         label: 'Общая сумма',
-        suffix: 'percent'
+        mode: 'percent'
+      },
+      {
+        value: 'паспорт РФ',
+        label: 'Вам понадобится',
+        mode: 'text'
       }
     ],
     assistHint: {
@@ -32,10 +37,22 @@ const firstCalculator: CalculatorViewProps = {
     },
     buttonsConfig: {
       primaryBtn: {
-        children: 'Оставить заявку'
+        children: 'Оставить заявку',
+        handlerOptions: {
+          handler: 'navigate',
+          url: 'https://sovcombank.ru',
+          target: '_blank',
+          rel: 'noreferrer noopener'
+        }
       },
       secondaryBtn: {
-        children: 'Подробнее'
+        children: 'Подробнее',
+        handlerOptions: {
+          handler: 'navigate',
+          url: 'https://sovcombank.ru',
+          target: '_blank',
+          rel: 'noreferrer noopener'
+        }
       }
     },
     subtitle: 'Подзаголовок',
@@ -128,7 +145,6 @@ const firstCalculator: CalculatorViewProps = {
                 componentType: 'step',
                 step: 1,
                 suffix: 'year',
-                name: 'term',
                 leftText: '1 год',
                 rightText: '5 лет',
                 min: 1,
@@ -361,12 +377,12 @@ const secondCalculator: CalculatorViewProps = {
         },
         label: 'Экономия',
         hint: 'С хинтом',
-        suffix: 'currency'
+        mode: 'currency'
       },
       {
         value: '15',
         label: 'Общая сумма',
-        suffix: 'percent'
+        mode: 'percent'
       }
     ],
     assistHint: {
@@ -376,10 +392,22 @@ const secondCalculator: CalculatorViewProps = {
     },
     buttonsConfig: {
       primaryBtn: {
-        children: 'Оставить заявку'
+        children: 'Оставить заявку',
+        handlerOptions: {
+          handler: 'navigate',
+          url: 'https://sovcombank.ru',
+          target: '_blank',
+          rel: 'noreferrer noopener'
+        }
       },
       secondaryBtn: {
-        children: 'Подробнее'
+        children: 'Подробнее',
+        handlerOptions: {
+          handler: 'navigate',
+          url: 'https://sovcombank.ru',
+          target: '_blank',
+          rel: 'noreferrer noopener'
+        }
       }
     },
     subtitle: 'Подзаголовок',
