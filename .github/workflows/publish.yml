@@ -73,7 +73,7 @@ jobs:
   #       run: npx cypress run --component --browser chrome
 
   publish:
-    needs: run-ui-cypress
+    needs: run-unit-vitest
     name: Publish to npm
     runs-on: ubuntu-22.04
     permissions:
