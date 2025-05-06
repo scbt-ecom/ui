@@ -1,41 +1,38 @@
 import * as React from 'react'
-import { SPRITES_META, type SpritesMap } from './sprite.gen'
-import { cn } from '$/shared/utils'
+import { type AllowedIcons } from './allowedIcons'
 
-export type IconName<Key extends keyof SpritesMap> = `${Key}/${SpritesMap[Key]}`
-export type AllowedIcons = { [Key in keyof SpritesMap]: IconName<Key> }[keyof SpritesMap]
-
-export interface IconProps extends React.SVGProps<SVGSVGElement> {
+type IconProps = React.SVGProps<SVGSVGElement> & {
   name: AllowedIcons
 }
 
-const getIconMeta = <Key extends keyof SpritesMap>(name: IconName<Key>) => {
-  const [spriteName, iconName] = name.split('/') as [Key, SpritesMap[Key]]
-  const {
-    filePath,
-    items: {
-      [iconName]: { viewBox, width, height }
+function memoize<T, R>(fn: (...args: T[]) => R) {
+  const cache: Record<string, R> = {}
+
+  return function (...args: T[]) {
+    const key = args.toString()
+
+    if (!cache[key]) {
+      cache[key] = fn(...args)
+      return cache[key]
     }
-  } = SPRITES_META[spriteName]
 
-  const axis = width === height ? 'xy' : width > height ? 'x' : 'y'
-
-  return { filePath, iconName, viewBox, axis }
+    return cache[key]
+  }
 }
 
-export const Icon = ({ name, className, ...props }: IconProps) => {
-  const { viewBox, filePath, iconName, axis } = getIconMeta(name)
+const memoizedIcon = memoize((name: string) => {
+  const filepath = name.slice(0, name.lastIndexOf('/'))
+  const filename = name.slice(name.lastIndexOf('/') + 1)
+
+  return React.lazy(() => import(`../../../../static/${filepath}/${filename}.svg?react`))
+})
+
+export const Icon = ({ name, ...props }: IconProps) => {
+  const IconComponent = memoizedIcon(name)
 
   return (
-    <svg
-      className={cn('text-inherit size-6 select-none fill-current', className)}
-      focusable='false'
-      viewBox={viewBox}
-      aria-hidden
-      data-axis={axis}
-      {...props}
-    >
-      <use href={`/sprites/${filePath}#${iconName}`} />
-    </svg>
+    <div>
+      <IconComponent {...props} />
+    </div>
   )
 }

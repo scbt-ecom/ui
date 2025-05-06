@@ -5,11 +5,11 @@
       fill='none'
       xmlns='http://www.w3.org/2000/svg'
     >
-      <rect x='0.5' y='31.5' width='31' height='31' rx='15.5' transform='rotate(-90 0.5 31.5)' stroke='#5A6E85' />
+      <rect x='0.5' y='31.5' width='31' height='31' rx='15.5' transform='rotate(-90 0.5 31.5)' stroke='currentColor' />
       <path
         d='M22.7071 18.7071C22.3166 19.0976 21.6834 19.0976 21.2929 18.7071L16 13.4142L10.7071 18.7071C10.3166 19.0976 9.68342 19.0976 9.29289 18.7071C8.90237 18.3166 8.90237 17.6834 9.29289 17.2929L15.2929 11.2929C15.6834 10.9024 16.3166 10.9024 16.7071 11.2929L22.7071 17.2929C23.0976 17.6834 23.0976 18.3166 22.7071 18.7071Z'
-        fill='#5A6E85'
-        stroke='#F3F4F7'
+        fill='currentColor'
+        stroke='currentColor'
         strokeWidth='0.5'
         strokeMiterlimit='10'
         strokeLinecap='round'

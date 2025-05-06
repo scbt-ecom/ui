@@ -37,3 +37,4 @@ export * from './slot'
 
 // # CONTROLLED FORM UI
 export * from './formElements'
+export * from './icon'
