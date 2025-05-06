@@ -2,7 +2,7 @@ import path from 'path'
 import process from 'process'
 import type { Plugin } from 'vite'
 import { Logger } from '../utils'
-import { generateFile } from './utils'
+import { generateFileAssets, generateFileMap } from './utils'
 
 const STATIC_DIR = 'static'
 const OUTPUT_DIR = 'lib/shared/ui/icon'
@@ -27,21 +27,24 @@ export const viteAllowedIconsPlugin = (options?: AllowedIconsPluginOptions): Plu
       server.watcher.on('ready', () => {
         logger.info('Generate allowed icons')
 
-        generateFile(staticDir, outputDir)
+        generateFileAssets(staticDir, outputDir)
+        generateFileMap(staticDir, outputDir)
       })
 
       server.watcher.on('change', (path) => {
         if (path.match(staticDir)) {
           logger.info('Static file changed')
 
-          generateFile(staticDir, outputDir)
+          generateFileAssets(staticDir, outputDir)
+          generateFileMap(staticDir, outputDir)
         }
       })
     },
     buildStart: () => {
       logger.info('Generate allowed icons for build')
 
-      generateFile(staticDir, outputDir)
+      generateFileAssets(staticDir, outputDir)
+      generateFileMap(staticDir, outputDir)
     }
   }
 }

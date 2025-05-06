@@ -3,11 +3,11 @@ import { writeFileSync } from 'fs'
 import { relative, sep } from 'path'
 import { findIcon } from './findIcon'
 
-export const generateFile = (staticPath: string, outputDir: string) => {
+export const generateFileAssets = (staticPath: string, outputDir: string) => {
   const icons: Record<string, string[]> = {}
   const iconsFlatten: string[] = []
 
-  findIcon(staticPath, (filename) => {
+  findIcon(staticPath, /\.svg/, (filename) => {
     const [root, icon] = relative(staticPath, filename).split(sep)
     // TODO: допилить для вложенных директорий
 
