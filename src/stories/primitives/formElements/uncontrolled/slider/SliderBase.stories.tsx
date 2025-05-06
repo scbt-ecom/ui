@@ -21,7 +21,7 @@ const meta = {
     label: 'Test selector',
     min: 30_000,
     max: 5_000_000,
-    variant: 'credit',
+    suffix: 'currency',
     leftText: '30 тыс.',
     rightText: '5 млн.'
   }
@@ -36,7 +36,7 @@ export const WithState: Story = {
     label: 'Сумма кредита'
   },
   render: (props) => {
-    const [value, setValue] = useState<number>()
+    const [value, setValue] = useState<number | undefined>(props.value)
 
     return (
       <>
@@ -49,12 +49,67 @@ export const WithState: Story = {
 export const YearsVariant: Story = {
   render: WithState.render,
   args: {
-    label: 'Сумма кредита',
+    label: 'Срок кредита',
+    marks: [1, 3, 6, 12, 18],
+    value: 6,
+    componentType: 'marks',
+    suffix: 'year',
+    leftText: '1 год.',
+    rightText: '18 лет.'
+  }
+}
+
+export const MonthsVariant: Story = {
+  render: WithState.render,
+  args: {
+    label: 'Срок кредита',
     min: 1,
     max: 12,
-    variant: 'years',
+    value: 6,
+    suffix: 'month',
+    leftText: '1 месяц.',
+    rightText: '12 месяцев.'
+  }
+}
+
+export const PercentVariantWithAdditionalSuffix: Story = {
+  render: WithState.render,
+  args: {
+    componentType: 'step',
+    label: 'Первоначальный взнос',
+    min: 1,
+    max: 100,
+    suffix: 'percent',
+    leftText: '1 %',
+    rightText: '100 %',
+    additionalSuffix: `/ ${400_000}`
+  }
+}
+
+export const ReadOnly: Story = {
+  render: WithState.render,
+  args: {
+    label: 'Сумма кредита',
+    min: 1,
+    max: 100,
+    suffix: 'percent',
     leftText: '1 год.',
-    rightText: '12 лет.'
+    rightText: '12 лет.',
+    additionalSuffix: `/ ${400_000}`,
+    readOnly: true
+  }
+}
+
+export const WithMarks: Story = {
+  render: WithState.render,
+  args: {
+    label: 'Срок кредита',
+    suffix: 'year',
+    componentType: 'marks',
+    marks: [1, 2, 3, 6, 12, 24, 36],
+    leftText: '1 год.',
+    rightText: '36 лет',
+    readOnly: true
   }
 }
 
@@ -62,11 +117,11 @@ export const Disabled: Story = {
   render: WithState.render,
   args: {
     disabled: true,
-    label: 'Сумма кредита',
+    label: 'Срок кредита',
     min: 1,
     max: 12,
-    variant: 'years',
-    leftText: '1 год.',
-    rightText: '12 лет.'
+    suffix: 'month',
+    leftText: '1 месяц.',
+    rightText: '12 месяцев.'
   }
 }
