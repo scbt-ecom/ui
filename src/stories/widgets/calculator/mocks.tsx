@@ -35,8 +35,8 @@ const firstCalculator: CalculatorViewProps = {
       text: 'Ваш вклад застрахован',
       hint: 'Текст хинта - Ваш вклад застрахован'
     },
-    buttonsConfig: {
-      primaryBtn: {
+    buttonsConfig: [
+      {
         children: 'Оставить заявку',
         handlerOptions: {
           handler: 'navigate',
@@ -45,7 +45,7 @@ const firstCalculator: CalculatorViewProps = {
           rel: 'noreferrer noopener'
         }
       },
-      secondaryBtn: {
+      {
         children: 'Подробнее',
         handlerOptions: {
           handler: 'navigate',
@@ -54,7 +54,7 @@ const firstCalculator: CalculatorViewProps = {
           rel: 'noreferrer noopener'
         }
       }
-    },
+    ],
     subtitle: 'Подзаголовок',
     title: 'Заголовок',
     bottomDescription:
@@ -390,8 +390,8 @@ const secondCalculator: CalculatorViewProps = {
       text: 'Ваш вклад застрахован',
       hint: 'Текст хинта - Ваш вклад застрахован'
     },
-    buttonsConfig: {
-      primaryBtn: {
+    buttonsConfig: [
+      {
         children: 'Оставить заявку',
         handlerOptions: {
           handler: 'navigate',
@@ -400,7 +400,7 @@ const secondCalculator: CalculatorViewProps = {
           rel: 'noreferrer noopener'
         }
       },
-      secondaryBtn: {
+      {
         children: 'Подробнее',
         handlerOptions: {
           handler: 'navigate',
@@ -409,7 +409,7 @@ const secondCalculator: CalculatorViewProps = {
           rel: 'noreferrer noopener'
         }
       }
-    },
+    ],
     subtitle: 'Подзаголовок',
     title: 'Заголовок',
     rootDescription: 'Ежемесячный платеж с НДС',

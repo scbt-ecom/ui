@@ -5,10 +5,7 @@ import { cn } from '$/shared/utils'
 
 export interface CalculatorInfoFooterProps {
   assistHint?: AssistHintProps
-  buttonsConfig: {
-    primaryBtn: ButtonProps & { handlerOptions: ButtonHandlerOptions }
-    secondaryBtn?: ButtonProps & { handlerOptions: ButtonHandlerOptions }
-  }
+  buttonsConfig: Array<ButtonProps & { handlerOptions: ButtonHandlerOptions }>
   bottomDescription?: string
 }
 
@@ -18,8 +15,7 @@ export const CalculatorInfoFooter = ({ assistHint, buttonsConfig, bottomDescript
       {assistHint && <AssistHint {...assistHint} />}
 
       <div className={cn('flex items-center gap-4 mobile:flex-col')}>
-        <ButtonWithHandlers className='w-full' {...buttonsConfig.primaryBtn} />
-        {buttonsConfig?.secondaryBtn && <ButtonWithHandlers className='w-full' {...buttonsConfig.secondaryBtn} />}
+        {buttonsConfig?.map((button, index) => <ButtonWithHandlers key={index} className='w-full' {...button} />)}
       </div>
       {bottomDescription && <p className='desk-body-regular-m mt-4 text-color-secondary'>{bottomDescription}</p>}
     </div>
