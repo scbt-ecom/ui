@@ -9,15 +9,15 @@ type SliderProps = React.ComponentPropsWithoutRef<typeof Controlled.SliderContro
 export const baseSchema = object({
   field: zodValidators.base.getNumberSchema({
     min: 30_000,
-    max: 5_000_000
+    max: 5_000_000,
+    defaultValue: 30_000
   })
 })
 
 export const sliderDefaultProps: Omit<SliderProps, 'control'> = {
   name: 'Slider',
   sliderProps: {
-    componentType: 'step',
-    step: 1,
+    componentType: 'algoritmic',
     label: 'Slider',
     min: 30_000,
     max: 5_000_000,

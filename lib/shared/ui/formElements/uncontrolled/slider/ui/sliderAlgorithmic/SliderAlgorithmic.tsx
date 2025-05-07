@@ -95,6 +95,7 @@ export const SliderAlgorithmic = forwardRef<HTMLInputElement, SliderAlgorithmicP
                     externalHandlers?.onInputChange?.(floatValue)
                   }
                 }}
+                data-test-id='slider'
                 className={cn(
                   'group/slider desk-title-bold-s w-full bg-color-transparent text-color-dark outline-none transition-all',
 

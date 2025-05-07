@@ -97,6 +97,7 @@ export const SliderStep = forwardRef<HTMLInputElement, SliderStepProps>(
                     }
                   }
                 }}
+                data-test-id='slider'
                 className={cn(
                   'group/slider desk-title-bold-s w-full bg-color-transparent text-color-dark outline-none transition-all',
 

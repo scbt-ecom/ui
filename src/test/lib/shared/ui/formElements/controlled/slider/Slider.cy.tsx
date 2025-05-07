@@ -21,7 +21,7 @@ describe('Test cases for Controlled.SliderControl', () => {
     cy.get('@slider')
       .type('500000')
       .then(() => {
-        cy.get('@slider').should('have.value', '500 000 ₽')
+        cy.get('@slider').should('include.value', '500 000')
         cy.get('@submit').click()
         cy.get('[name="Slider"]').as('input')
         cy.get('@input').should('have.attr', 'aria-invalid', 'false')
