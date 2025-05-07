@@ -28,6 +28,8 @@ export const formatWithIntl = (suffix: CalculatorSuffix, value: number) => {
       options.maximumFractionDigits = 1
       calculationValue = calculationValue / 100
       break
+    default:
+      return null
   }
 
   const formatter = new Intl.NumberFormat('ru-RU', options)
