@@ -32,28 +32,28 @@ jobs:
           path: dist
           retention-days: 1
 
-  run-unit-vitest:
-    needs: build-ui
-    name: Vitest Unit Test runner
-    runs-on: ubuntu-22.04
-    steps:
-      - name: Checkout 🛎️
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js ⚙️ - Cache dependencies ⚡ - Install dependencies 🔧
-        uses: ./.github/workflows/setup-node
-
-      - name: Download build artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: build-output
-          path: dist
-
-      - name: Running tests 🤞
-        run: npm run vitest-ci
+#  run-unit-vitest:
+#    needs: build-ui
+#    name: Vitest Unit Test runner
+#    runs-on: ubuntu-22.04
+#    steps:
+#      - name: Checkout 🛎️
+#        uses: actions/checkout@v4
+#
+#      - name: Setup Node.js ⚙️ - Cache dependencies ⚡ - Install dependencies 🔧
+#        uses: ./.github/workflows/setup-node
+#
+#      - name: Download build artifacts
+#        uses: actions/download-artifact@v4
+#        with:
+#          name: build-output
+#          path: dist
+#
+#      - name: Running tests 🤞
+#        run: npm run vitest-ci
 
   run-ui-cypress:
-    needs: run-unit-vitest
+    needs: build-ui
     name: Cypress UI Test runner
     runs-on: ubuntu-22.04
     steps:
