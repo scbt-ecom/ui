@@ -15,11 +15,15 @@ export const baseSchema = object({
 
 export const sliderDefaultProps: Omit<SliderProps, 'control'> = {
   name: 'Slider',
-  label: 'Slider',
-  min: 30_000,
-  max: 5_000_000,
-  variant: 'credit',
-  leftText: 'Text',
-  rightText: 'Text',
+  sliderProps: {
+    componentType: 'step',
+    step: 1,
+    label: 'Slider',
+    min: 30_000,
+    max: 5_000_000,
+    suffix: 'currency',
+    leftText: 'Text',
+    rightText: 'Text'
+  },
   'data-test-id': 'slider'
 }

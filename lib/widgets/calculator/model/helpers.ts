@@ -1,4 +1,4 @@
-import type { InfoListItemDto, InfoListItemProps } from '../ui'
+import type { InfoListItemDTO, InfoListItemProps } from '../ui'
 import type { CalculatorVariables } from './types'
 import { isFormula } from './utils'
 
@@ -33,7 +33,7 @@ export const evaluateFormula = (formula: string, variables: CalculatorVariables)
   return replaceResult.toString()
 }
 
-export const formatInfoList = (list: InfoListItemDto[], variables: CalculatorVariables): InfoListItemProps[] => {
+export const formatInfoList = (list: InfoListItemDTO[], variables: CalculatorVariables): InfoListItemProps[] => {
   return list.map((item) => {
     return {
       ...item,

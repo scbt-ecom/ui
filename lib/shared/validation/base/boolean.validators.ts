@@ -1,8 +1,15 @@
 import z from 'zod'
 
 export type BooleanValidationOptions<Required extends boolean> = {
-  defaultValue?: boolean
+  /**
+   * указывает что поле обязательное
+   */
   required?: Required
+  /**
+   * значение по умолчанию
+   * @default undefined
+   */
+  defaultValue?: boolean
   message?: Partial<Record<keyof Omit<BooleanValidationOptions<Required>, 'message'>, string>>
 }
 

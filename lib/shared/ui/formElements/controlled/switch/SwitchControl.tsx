@@ -73,7 +73,7 @@ export const SwitchControl = <TFieldValues extends FieldValues = FieldValues>({
 
   return (
     <div className={cn('flex flex-col', { 'pointer-events-none': disabled }, className, container)}>
-      <div className='flex gap-2'>
+      <div className='flex items-center gap-2'>
         <Uncontrolled.SwitchBase
           {...props}
           {...restField}
@@ -123,12 +123,7 @@ export const SwitchControl = <TFieldValues extends FieldValues = FieldValues>({
           </Popover>
         )}
       </div>
-      <MessageView
-        text={error ? error.message : helperText}
-        className={message}
-        intent={error ? 'error' : 'simple'}
-        disabled={disabled}
-      />
+      {error && <MessageView text={error.message} className={message} intent='error' disabled={disabled} />}
     </div>
   )
 }

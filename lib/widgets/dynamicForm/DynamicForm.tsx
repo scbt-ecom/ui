@@ -97,10 +97,11 @@ export const DynamicForm = <AType extends ApprovementType, CType extends ChipsTy
   const [checked, onCheckedChange] = useState<CheckedState>(false)
 
   const schema = getDynamicSchema(fields)
+  const defaultValues = ZodUtils.getZodDefaults(schema)
 
   const { control, handleSubmit } = useControlledForm({
     schema,
-    defaultValues: ZodUtils.getZodDefaults(schema),
+    defaultValues,
     mode: 'onBlur'
   })
 

@@ -20,12 +20,6 @@ export const useButtonHandler = (handlerOptions: ButtonHandlerOptions) => {
         scrollToElement({ widgetId })
         break
       }
-      case 'submit': {
-        //TODO: Реализовать позже
-        break
-      }
-      default:
-        break
     }
   }, [handlerOptions])
 

@@ -6,23 +6,28 @@ const firstCalculator: CalculatorViewProps = {
   label: 'Для ИП',
   calculatorInfoConfig: {
     rootValue: {
-      formula: 'sum * term / 3'
+      formula: 'sum * loanTerm / 3'
     },
     rootDescription: 'Ежемесячный платеж с НДС',
     suffix: 'percent',
     infoList: [
       {
         value: {
-          formula: 'sum - term'
+          formula: 'sum / loanTerm'
         },
         label: 'Экономия',
         hint: 'С хинтом',
-        suffix: 'currency'
+        mode: 'currency'
       },
       {
         value: '15',
         label: 'Общая сумма',
-        suffix: 'percent'
+        mode: 'percent'
+      },
+      {
+        value: 'паспорт РФ',
+        label: 'Вам понадобится',
+        mode: 'text'
       }
     ],
     assistHint: {
@@ -32,10 +37,22 @@ const firstCalculator: CalculatorViewProps = {
     },
     buttonsConfig: {
       primaryBtn: {
-        children: 'Оставить заявку'
+        children: 'Оставить заявку',
+        handlerOptions: {
+          handler: 'navigate',
+          url: 'https://sovcombank.ru',
+          target: '_blank',
+          rel: 'noreferrer noopener'
+        }
       },
       secondaryBtn: {
-        children: 'Подробнее'
+        children: 'Подробнее',
+        handlerOptions: {
+          handler: 'navigate',
+          url: 'https://sovcombank.ru',
+          target: '_blank',
+          rel: 'noreferrer noopener'
+        }
       }
     },
     subtitle: 'Подзаголовок',
@@ -105,12 +122,15 @@ const firstCalculator: CalculatorViewProps = {
                 type: 'getStringSchema',
                 args: {}
               },
-              leftText: '30 тыс.',
-              rightText: '5 млн.',
-              min: 30_000,
-              max: 5_000_000,
-              variant: 'credit',
-              label: 'Сумма кредита',
+              sliderProps: {
+                componentType: 'algoritmic',
+                leftText: '30 тыс.',
+                rightText: '5 млн.',
+                min: 30_000,
+                max: 5_000_000,
+                suffix: 'currency',
+                label: 'Сумма кредита'
+              },
               name: 'sum'
             }
           },
@@ -121,13 +141,17 @@ const firstCalculator: CalculatorViewProps = {
                 type: 'getStringSchema',
                 args: {}
               },
-              variant: 'years',
-              name: 'term',
-              leftText: '1 год',
-              rightText: '5 лет',
-              min: 1,
-              max: 5,
-              label: 'Срок кредита'
+              sliderProps: {
+                componentType: 'step',
+                step: 1,
+                suffix: 'year',
+                leftText: '1 год',
+                rightText: '5 лет',
+                min: 1,
+                max: 5,
+                label: 'Срок кредита'
+              },
+              name: 'loanTerm'
             }
           }
         ]
@@ -353,12 +377,12 @@ const secondCalculator: CalculatorViewProps = {
         },
         label: 'Экономия',
         hint: 'С хинтом',
-        suffix: 'currency'
+        mode: 'currency'
       },
       {
         value: '15',
         label: 'Общая сумма',
-        suffix: 'percent'
+        mode: 'percent'
       }
     ],
     assistHint: {
@@ -368,10 +392,22 @@ const secondCalculator: CalculatorViewProps = {
     },
     buttonsConfig: {
       primaryBtn: {
-        children: 'Оставить заявку'
+        children: 'Оставить заявку',
+        handlerOptions: {
+          handler: 'navigate',
+          url: 'https://sovcombank.ru',
+          target: '_blank',
+          rel: 'noreferrer noopener'
+        }
       },
       secondaryBtn: {
-        children: 'Подробнее'
+        children: 'Подробнее',
+        handlerOptions: {
+          handler: 'navigate',
+          url: 'https://sovcombank.ru',
+          target: '_blank',
+          rel: 'noreferrer noopener'
+        }
       }
     },
     subtitle: 'Подзаголовок',
@@ -421,12 +457,15 @@ const secondCalculator: CalculatorViewProps = {
                 type: 'getStringSchema',
                 args: {}
               },
-              leftText: '30 тыс.',
-              rightText: '5 млн.',
-              min: 30_000,
-              max: 5_000_000,
-              variant: 'credit',
-              label: 'Сумма кредита',
+              sliderProps: {
+                componentType: 'algoritmic',
+                leftText: '30 тыс.',
+                rightText: '5 млн.',
+                min: 30_000,
+                max: 5_000_000,
+                suffix: 'currency',
+                label: 'Сумма кредита'
+              },
               name: 'sum'
             }
           },
@@ -437,13 +476,18 @@ const secondCalculator: CalculatorViewProps = {
                 type: 'getStringSchema',
                 args: {}
               },
-              variant: 'years',
-              name: 'term',
-              leftText: '1 год',
-              rightText: '5 лет',
-              min: 1,
-              max: 5,
-              label: 'Срок кредита'
+              sliderProps: {
+                componentType: 'step',
+                step: 1,
+                suffix: 'year',
+                name: 'term',
+                leftText: '1 год',
+                rightText: '5 лет',
+                min: 1,
+                max: 5,
+                label: 'Срок кредита'
+              },
+              name: 'loanTerm'
             }
           }
         ]

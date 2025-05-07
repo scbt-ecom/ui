@@ -16,8 +16,12 @@ export type NumberValidationOptions<Required extends boolean> = {
    * указывает что поле обязательное
    * @default true
    */
-  defaultValue?: number
   required?: Required
+  /**
+   * значение по умолчанию
+   * @default undefined
+   */
+  defaultValue?: number
   message?: Partial<Record<keyof Omit<NumberValidationOptions<Required>, 'message'>, string>>
 }
 

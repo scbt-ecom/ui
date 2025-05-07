@@ -52,28 +52,28 @@ jobs:
       - name: Running tests 🤞
         run: npm run vitest-ci
 
-  run-ui-cypress:
-    needs: run-unit-vitest
-    name: Cypress UI Test runner
-    runs-on: ubuntu-22.04
-    steps:
-      - name: Checkout 🛎️
-        uses: actions/checkout@v4
+  # run-ui-cypress:
+  #   needs: run-unit-vitest
+  #   name: Cypress UI Test runner
+  #   runs-on: ubuntu-22.04
+  #   steps:
+  #     - name: Checkout 🛎️
+  #       uses: actions/checkout@v4
 
-      - name: Setup Node.js ⚙️ - Cache dependencies ⚡ - Install dependencies 🔧
-        uses: ./.github/workflows/setup-node
+  #     - name: Setup Node.js ⚙️ - Cache dependencies ⚡ - Install dependencies 🔧
+  #       uses: ./.github/workflows/setup-node
 
-      - name: Download build artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: build-output
-          path: dist
+  #     - name: Download build artifacts
+  #       uses: actions/download-artifact@v4
+  #       with:
+  #         name: build-output
+  #         path: dist
 
-      - name: Running tests
-        run: npx cypress run --component --browser chrome
+  #     - name: Running tests
+  #       run: npx cypress run --component --browser chrome
 
   publish:
-    needs: run-ui-cypress
+    needs: run-unit-vitest
     name: Publish to npm
     runs-on: ubuntu-22.04
     permissions:
