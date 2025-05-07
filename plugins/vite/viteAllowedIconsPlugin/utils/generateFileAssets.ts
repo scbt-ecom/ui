@@ -3,12 +3,13 @@ import { writeFileSync } from 'fs'
 import { relative, sep } from 'path'
 import { findIcon } from './findIcon'
 
-export const generateFile = (staticPath: string, outputDir: string) => {
+export const generateFileAssets = (staticPath: string, outputDir: string) => {
   const icons: Record<string, string[]> = {}
   const iconsFlatten: string[] = []
 
-  findIcon(staticPath, (filename) => {
+  findIcon(staticPath, /\.svg/, (filename) => {
     const [root, icon] = relative(staticPath, filename).split(sep)
+    // TODO: допилить для вложенных директорий
 
     if (!icons[root]) {
       icons[root] = []
@@ -21,15 +22,12 @@ export const generateFile = (staticPath: string, outputDir: string) => {
   })
 
   const content = `
-import type { AllowedIcons } from '$/shared/ui/icon'
+export type AllowedIcons = (typeof allowedIcons.flatten)[number]
 
-export const allowedIcons: {
-  group: Record<string, AllowedIcons[]>,
-  flatten: AllowedIcons[]
-} = {
+export const allowedIcons = {
   group: ${JSON.stringify(icons, null, 2)},
   flatten: ${JSON.stringify(iconsFlatten, null, 2)}
-}
+} as const
   `
   writeFileSync(`${outputDir}/allowedIcons.ts`, content.trim(), 'utf-8')
   // format generated file using prettier

@@ -6,6 +6,7 @@ import typeChecker from 'vite-plugin-checker'
 import dts from 'vite-plugin-dts'
 import { dependencies } from './package.json'
 import { viteStaticCopy } from 'vite-plugin-static-copy'
+import svgr from 'vite-plugin-svgr'
 // import { viteStorybookMdxGenerationPlugin } from './plugins'
 import { viteAllowedIconsPlugin } from './plugins'
 
@@ -13,6 +14,7 @@ export default defineConfig({
   plugins: [
     // viteStorybookMdxGenerationPlugin(),
     react(),
+    svgr(),
     viteAllowedIconsPlugin(),
     dts({ include: ['lib'], insertTypesEntry: true }),
     typeChecker({ typescript: true }),
@@ -37,6 +39,10 @@ export default defineConfig({
         {
           src: 'lib/shared/utils-tailwind.css',
           dest: '.'
+        },
+        {
+          src: 'static',
+          dest: 'static'
         }
       ]
     })

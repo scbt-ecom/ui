@@ -226,8 +226,8 @@ export const SPRITES_META: {
       },
       check: {
         viewBox: '0 0 24 24',
-        width: 800,
-        height: 800
+        width: 24,
+        height: 24
       },
       close: {
         viewBox: '0 0 24 24',

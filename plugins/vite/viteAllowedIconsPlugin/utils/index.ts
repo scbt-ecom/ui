@@ -1,1 +1,2 @@
-export { generateFile } from './generateFile'
+export { generateFileAssets } from './generateFileAssets'
+export { generateFileMap } from './generateFileMap'

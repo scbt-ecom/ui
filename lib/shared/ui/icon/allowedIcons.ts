@@ -1,9 +1,6 @@
-import type { AllowedIcons } from '$/shared/ui/icon'
+export type AllowedIcons = (typeof allowedIcons.flatten)[number]
 
-export const allowedIcons: {
-  group: Record<string, AllowedIcons[]>,
-  flatten: AllowedIcons[]
-} = {
+export const allowedIcons = {
   group: {
   "arrows": [
     "arrows/arrowCircle",
@@ -134,4 +131,4 @@ export const allowedIcons: {
   "status/iconRetry",
   "status/iconUser"
 ]
-}
+} as const
