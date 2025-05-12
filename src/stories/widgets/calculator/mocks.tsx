@@ -122,15 +122,11 @@ const firstCalculator: CalculatorViewProps = {
                 type: 'getStringSchema',
                 args: {}
               },
-              sliderProps: {
-                componentType: 'algoritmic',
-                leftText: '30 тыс.',
-                rightText: '5 млн.',
-                min: 30_000,
-                max: 5_000_000,
-                suffix: 'currency',
-                label: 'Сумма кредита'
-              },
+              componentType: 'algorithmic',
+              min: 30_000,
+              max: 5_000_000,
+              suffix: 'currency',
+              label: 'Сумма кредита',
               name: 'sum'
             }
           },
@@ -141,16 +137,12 @@ const firstCalculator: CalculatorViewProps = {
                 type: 'getStringSchema',
                 args: {}
               },
-              sliderProps: {
-                componentType: 'step',
-                step: 1,
-                suffix: 'year',
-                leftText: '1 год',
-                rightText: '5 лет',
-                min: 1,
-                max: 5,
-                label: 'Срок кредита'
-              },
+              componentType: 'step',
+              step: 1,
+              suffix: 'year',
+              min: 1,
+              max: 5,
+              label: 'Срок кредита',
               name: 'loanTerm'
             }
           }
@@ -457,15 +449,11 @@ const secondCalculator: CalculatorViewProps = {
                 type: 'getStringSchema',
                 args: {}
               },
-              sliderProps: {
-                componentType: 'algoritmic',
-                leftText: '30 тыс.',
-                rightText: '5 млн.',
-                min: 30_000,
-                max: 5_000_000,
-                suffix: 'currency',
-                label: 'Сумма кредита'
-              },
+              componentType: 'algorithmic',
+              min: 30_000,
+              max: 5_000_000,
+              suffix: 'currency',
+              label: 'Сумма кредита',
               name: 'sum'
             }
           },
@@ -476,18 +464,13 @@ const secondCalculator: CalculatorViewProps = {
                 type: 'getStringSchema',
                 args: {}
               },
-              sliderProps: {
-                componentType: 'step',
-                step: 1,
-                suffix: 'year',
-                name: 'term',
-                leftText: '1 год',
-                rightText: '5 лет',
-                min: 1,
-                max: 5,
-                label: 'Срок кредита'
-              },
-              name: 'loanTerm'
+              componentType: 'step',
+              step: 1,
+              suffix: 'year',
+              name: 'term',
+              min: 1,
+              max: 5,
+              label: 'Срок кредита'
             }
           }
         ]

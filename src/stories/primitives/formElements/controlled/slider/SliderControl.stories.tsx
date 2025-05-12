@@ -10,6 +10,7 @@ const sliderSchema = z.object({
 })
 
 type Schema = z.TypeOf<typeof sliderSchema>
+
 type SliderControlProps = React.ComponentPropsWithoutRef<typeof Controlled.SliderControl>
 
 const meta = {
@@ -28,7 +29,7 @@ const meta = {
         slider: 1
       }}
       schema={sliderSchema}
-      renderComponent={(componentProps: SliderControlProps) => <Controlled.SliderControl {...componentProps} />}
+      renderComponent={(componentProps) => <Controlled.SliderControl {...(componentProps as SliderControlProps)} />}
     />
   )
 } satisfies Meta<typeof Controlled.SliderControl>
@@ -51,27 +52,19 @@ type Story = StoryObj<typeof Controlled.SliderControl>
 
 export const Base: Story = {
   args: {
-    sliderProps: {
-      componentType: 'algoritmic',
-      min: 30_000,
-      max: 5_000_000,
-      suffix: 'currency',
-      leftText: '30 тыс.',
-      rightText: '5 млн.',
-      label: 'Slider'
-    }
+    componentType: 'algorithmic',
+    min: 30_000,
+    max: 5_000_000,
+    suffix: 'currency',
+    label: 'Slider'
   }
 }
 
 export const Term: Story = {
   args: {
-    sliderProps: {
-      componentType: 'marks',
-      marks: [1, 2, 3, 6, 12, 24, 36],
-      suffix: 'year',
-      leftText: '1 год',
-      rightText: '36 лет',
-      label: 'Slider'
-    }
+    componentType: 'marks',
+    marks: [1, 2, 3, 6, 12, 24, 36],
+    suffix: 'year',
+    label: 'Slider'
   }
 }

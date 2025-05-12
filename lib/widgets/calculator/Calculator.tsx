@@ -17,7 +17,7 @@ export const Calculator = ({ calculators, headline }: CalculatorProps) => {
   const calculatorsTabs = useMemo(() => calculators?.map(({ name, label }) => ({ name, label })), [calculators])
 
   const currentCalculatorIndex = shouldShowTabs
-    ? calculatorsTabs?.findIndex((tab) => tab.name === activeCalculator) //Активный калькулятор по значению таба
+    ? calculatorsTabs?.findIndex((tab) => tab.name === activeCalculator) // Активный калькулятор по значению таба
     : 0 // Берем первый калькулятор если табов нет
 
   const currentCalculator = calculators[currentCalculatorIndex]
