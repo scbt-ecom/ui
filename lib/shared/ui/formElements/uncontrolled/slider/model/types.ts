@@ -1,3 +1,4 @@
+import { type FieldValues, type Path } from 'react-hook-form'
 import type { InputBaseProps } from '../../input'
 import { type InputBaseClasses } from '../../input/Input'
 import { type SliderClasses } from '../ui'
@@ -9,6 +10,7 @@ export type ExternalHandlers = {
   onBlur?: (event: React.FocusEvent<HTMLElement>) => void
   onFocus?: (event: React.FocusEvent<HTMLElement>) => void
   onInputChange?: (value?: number) => void
+  onChange?: (value: number) => void
 }
 
 export type SliderBaseClasses = {
@@ -102,6 +104,15 @@ export type SliderAlgorithmicProps = SliderCommonProps & {
    * Максимальное значение инпута
    */
   max: number
+}
+
+export type SliderAdditionalProps<T extends FieldValues> = SliderAlgorithmicProps & {
+  enabled: boolean
+  label: string
+  readOnly?: boolean
+  min: string
+  name: Path<T>
+  disabled?: boolean
 }
 
 export type SliderGatewayProps = SliderAlgorithmicProps | SliderStepProps | SliderMarksProps

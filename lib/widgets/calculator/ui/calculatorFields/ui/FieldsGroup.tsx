@@ -1,8 +1,9 @@
 import { type FieldValues, useFormContext } from 'react-hook-form'
 import { type FieldElementWithoutControl, FieldMapper } from '../../../../fieldMapper'
 import type { FieldValidation } from '../../../../model'
+import { type SliderAdditionalProps } from '$/shared/ui/formElements/uncontrolled/slider'
 
-type ValidationField = { validation: FieldValidation }
+export type ValidationField = { validation: FieldValidation }
 
 export interface SelectGroupProps<T extends FieldValues> {
   fields: FieldElementWithoutControl<T, 'SelectControl', ValidationField>[]
@@ -28,6 +29,11 @@ export interface SlidersGroupProps<T extends FieldValues> {
 
 export interface SwitchGroupProps<T extends FieldValues> {
   fields: FieldElementWithoutControl<T, 'SwitchControl', ValidationField>[]
+}
+
+export interface AdditionalSliderGroupConfig<T extends FieldValues> {
+  args: SliderAdditionalProps<T>
+  type: 'SliderControl'
 }
 
 export type FieldsGroupProps<T extends FieldValues> =
