@@ -56,7 +56,7 @@ export const Desktop = <TData extends {}>({ mode, enableHeaders, table, classes,
         )}
         <TableBody>
           {table.getRowModel().rows.length ? (
-            table.getRowModel().rows.map((row) => (
+            table.getRowModel().rows.map((row, rowIndex) => (
               <TableRow
                 key={row.id}
                 className={cn(
@@ -80,7 +80,7 @@ export const Desktop = <TData extends {}>({ mode, enableHeaders, table, classes,
                       classes?.tableCell
                     )}
                   >
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                    {flexRender(cell.column.columnDef.cell, { ...cell.getContext(), rowIndex })}
                   </TableCell>
                 ))}
               </TableRow>
