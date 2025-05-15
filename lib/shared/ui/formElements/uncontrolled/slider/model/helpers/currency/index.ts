@@ -1,0 +1,1 @@
+export { getFormattedCurrency } from './getFormattedCurrency'

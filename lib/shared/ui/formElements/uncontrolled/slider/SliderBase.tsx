@@ -1,21 +1,17 @@
 import { forwardRef } from 'react'
-import { type ComponentType, type SliderGatewayProps } from './model/types'
+import { type SliderGatewayProps } from './model/types'
 import { SliderAlgorithmic } from './ui/sliderAlgorithmic'
 import { SliderMarks } from './ui/sliderMarks'
 import { SliderStep } from './ui/sliderStep'
 
-const Slider = <Type extends ComponentType>(props: SliderGatewayProps<Type>, ref: React.Ref<HTMLInputElement>) => {
+export const SliderBase = forwardRef<HTMLInputElement, SliderGatewayProps>((props, ref) => {
   switch (props.componentType) {
     case 'marks':
-      return <SliderMarks {...props} componentType='marks' ref={ref} />
-    case 'algoritmic':
-      return <SliderAlgorithmic {...props} componentType='algoritmic' ref={ref} />
+      return <SliderMarks {...props} ref={ref} componentType='marks' />
+    case 'algorithmic':
+      return <SliderAlgorithmic {...props} ref={ref} componentType='algorithmic' />
     case 'step':
     default:
-      return <SliderStep {...props} componentType='step' ref={ref} />
+      return <SliderStep {...props} ref={ref} componentType='step' />
   }
-}
-
-export const SliderBase = forwardRef(Slider) as <Type extends ComponentType>(
-  props: SliderGatewayProps<Type> & { ref?: React.Ref<HTMLInputElement> }
-) => React.ReactElement
+})

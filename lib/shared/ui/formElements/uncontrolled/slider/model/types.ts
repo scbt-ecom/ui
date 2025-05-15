@@ -23,7 +23,7 @@ export type SliderBaseClasses = {
   inputRoot?: InputBaseClasses
 }
 
-export type ComponentType = 'marks' | 'step' | 'algoritmic'
+export type ComponentType = 'marks' | 'step' | 'algorithmic'
 
 export interface SliderCommonProps
   extends Omit<InputBaseProps, 'externalHandlers' | 'onChange' | 'value' | 'defaultValue' | 'type'> {
@@ -31,14 +31,6 @@ export interface SliderCommonProps
    * Объект classes с помощью которого можно поменять стили у компонента
    */
   classes?: SliderBaseClasses
-  /**
-   * Левый текст под слайдером
-   */
-  leftText: string | React.ReactElement
-  /**
-   * Правый текст под слайдером
-   */
-  rightText: string | React.ReactElement
   /**
    * Значение
    */
@@ -101,7 +93,7 @@ export type SliderStepProps = SliderCommonProps & {
 }
 
 export type SliderAlgorithmicProps = SliderCommonProps & {
-  componentType: 'algoritmic'
+  componentType: 'algorithmic'
   /**
    * Минимальное значение инпута
    */
@@ -112,8 +104,4 @@ export type SliderAlgorithmicProps = SliderCommonProps & {
   max: number
 }
 
-export type SliderGatewayProps<Type extends ComponentType> = Type extends 'marks'
-  ? SliderMarksProps
-  : Type extends 'algoritmic'
-    ? SliderAlgorithmicProps
-    : SliderStepProps
+export type SliderGatewayProps = SliderAlgorithmicProps | SliderStepProps | SliderMarksProps

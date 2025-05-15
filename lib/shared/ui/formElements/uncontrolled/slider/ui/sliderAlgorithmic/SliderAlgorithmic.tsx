@@ -21,8 +21,6 @@ export const SliderAlgorithmic = forwardRef<HTMLInputElement, SliderAlgorithmicP
       classes,
       invalid,
       externalHandlers,
-      leftText,
-      rightText,
       disabled,
       value,
       onChange,
@@ -33,6 +31,7 @@ export const SliderAlgorithmic = forwardRef<HTMLInputElement, SliderAlgorithmicP
       attachmentProps,
       additionalSuffix,
       readOnly,
+      componentType,
       ...props
     },
     ref
@@ -56,7 +55,7 @@ export const SliderAlgorithmic = forwardRef<HTMLInputElement, SliderAlgorithmicP
     const { root, slider, textLeft, textRight, inputRoot, textContainer, input, field } = classes || {}
 
     return (
-      <div className={cn('flex w-full flex-col gap-1', root)}>
+      <div aria-label={componentType} className={cn('flex w-full flex-col gap-1', root)}>
         <div className={cn('relative w-full select-none', { ['select-none']: readOnly }, field)}>
           <Uncontrolled.InputBase
             label={label}
@@ -110,14 +109,22 @@ export const SliderAlgorithmic = forwardRef<HTMLInputElement, SliderAlgorithmicP
             step={sliderStep}
             value={sliderValue}
             disabled={disabled}
-            min={sliderMin}
-            max={sliderMax}
+            min={Number(sliderMin)}
+            max={Number(sliderMax)}
             onChange={handleChangeSlider}
           />
         </div>
         <div className={cn('flex justify-between', textContainer)}>
-          <span className={cn('desk-body-regular-m text-color-tetriary', textLeft)}>{leftText}</span>
-          <span className={cn('desk-body-regular-m text-color-tetriary', textRight)}>{rightText}</span>
+          {min && (
+            <span className={cn('desk-body-regular-m text-color-tetriary', textLeft)}>
+              {getInputSliderSuffix(suffix, min, false)}
+            </span>
+          )}
+          {max && (
+            <span className={cn('desk-body-regular-m text-color-tetriary', textRight)}>
+              {getInputSliderSuffix(suffix, max, false)}
+            </span>
+          )}
         </div>
       </div>
     )

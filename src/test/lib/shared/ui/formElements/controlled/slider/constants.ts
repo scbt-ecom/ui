@@ -16,14 +16,10 @@ export const baseSchema = object({
 
 export const sliderDefaultProps: Omit<SliderProps, 'control'> = {
   name: 'Slider',
-  sliderProps: {
-    componentType: 'algoritmic',
-    label: 'Slider',
-    min: 30_000,
-    max: 5_000_000,
-    suffix: 'currency',
-    leftText: 'Text',
-    rightText: 'Text'
-  },
+  componentType: 'algorithmic',
+  label: 'Slider',
+  min: 30_000,
+  max: 5_000_000,
+  suffix: 'currency',
   'data-test-id': 'slider'
 }

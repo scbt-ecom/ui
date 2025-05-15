@@ -21,9 +21,7 @@ const meta = {
     label: 'Test selector',
     min: 30_000,
     max: 5_000_000,
-    suffix: 'currency',
-    leftText: '30 тыс.',
-    rightText: '5 млн.'
+    suffix: 'currency'
   }
 } satisfies Meta<typeof Uncontrolled.SliderBase>
 
@@ -53,9 +51,7 @@ export const YearsVariant: Story = {
     marks: [1, 3, 6, 12, 18],
     value: 6,
     componentType: 'marks',
-    suffix: 'year',
-    leftText: '1 год.',
-    rightText: '18 лет.'
+    suffix: 'year'
   }
 }
 
@@ -66,9 +62,7 @@ export const MonthsVariant: Story = {
     min: 1,
     max: 12,
     value: 6,
-    suffix: 'month',
-    leftText: '1 месяц.',
-    rightText: '12 месяцев.'
+    suffix: 'month'
   }
 }
 
@@ -80,8 +74,6 @@ export const PercentVariantWithAdditionalSuffix: Story = {
     min: 1,
     max: 100,
     suffix: 'percent',
-    leftText: '1 %',
-    rightText: '100 %',
     additionalSuffix: `/ ${400_000}`
   }
 }
@@ -93,8 +85,6 @@ export const ReadOnly: Story = {
     min: 1,
     max: 100,
     suffix: 'percent',
-    leftText: '1 год.',
-    rightText: '12 лет.',
     additionalSuffix: `/ ${400_000}`,
     readOnly: true
   }
@@ -107,8 +97,6 @@ export const WithMarks: Story = {
     suffix: 'year',
     componentType: 'marks',
     marks: [1, 2, 3, 6, 12, 24, 36],
-    leftText: '1 год.',
-    rightText: '36 лет',
     readOnly: true
   }
 }
@@ -120,8 +108,6 @@ export const Disabled: Story = {
     label: 'Срок кредита',
     min: 1,
     max: 12,
-    suffix: 'month',
-    leftText: '1 месяц.',
-    rightText: '12 месяцев.'
+    suffix: 'month'
   }
 }
