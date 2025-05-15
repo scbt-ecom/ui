@@ -87,7 +87,9 @@ export const Desktop = <TData extends {}>({ mode, enableHeaders, table, classes,
             ))
           ) : (
             <TableRow>
-              <TableCell colSpan={table.getRowCount()}>Not found</TableCell>
+              <TableCell className='py-4 text-center' colSpan={table.getAllColumns().length}>
+                Not found
+              </TableCell>
             </TableRow>
           )}
         </TableBody>
