@@ -61,4 +61,8 @@ export type DataTableProps<TData extends {}> = {
    * количество элементов на странице
    */
   pageSize?: number
+  /**
+   * для переопределения пустой таблицы
+   */
+  empty?: React.ReactNode
 }

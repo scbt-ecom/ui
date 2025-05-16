@@ -23,6 +23,7 @@ export const DataTable = <TData extends {}>({
   mode = 'solid',
   classes,
   pagination = true,
+  empty,
   pageSize = 10
 }: DataTableProps<TData>) => {
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
@@ -51,8 +52,8 @@ export const DataTable = <TData extends {}>({
   const { isMobile } = useDevice()
 
   return isMobile ? (
-    <Mobile table={table} enableHeaders={enableHeaders} mode={mode} classes={classes} />
+    <Mobile table={table} enableHeaders={enableHeaders} empty={empty} mode={mode} classes={classes} />
   ) : (
-    <Desktop table={table} enableHeaders={enableHeaders} mode={mode} pagination={pagination} classes={classes} />
+    <Desktop table={table} enableHeaders={enableHeaders} empty={empty} mode={mode} pagination={pagination} classes={classes} />
   )
 }

@@ -4,11 +4,21 @@ import { TablePagination } from './TablePagination'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from './ui'
 import { cn } from '$/shared/utils'
 
-type DesktopTableProps<TData extends {}> = Pick<DataTableProps<TData>, 'enableHeaders' | 'classes' | 'mode' | 'pagination'> & {
+type DesktopTableProps<TData extends {}> = Pick<
+  DataTableProps<TData>,
+  'enableHeaders' | 'classes' | 'mode' | 'pagination' | 'empty'
+> & {
   table: TTable<TData>
 }
 
-export const Desktop = <TData extends {}>({ mode, enableHeaders, table, classes, pagination }: DesktopTableProps<TData>) => {
+export const Desktop = <TData extends {}>({
+  mode,
+  enableHeaders,
+  table,
+  classes,
+  pagination,
+  empty = 'Not found'
+}: DesktopTableProps<TData>) => {
   const paginationEnabled = pagination !== false && table.getPageCount() > 1
 
   const paginationProps = {
@@ -88,7 +98,7 @@ export const Desktop = <TData extends {}>({ mode, enableHeaders, table, classes,
           ) : (
             <TableRow>
               <TableCell className='py-4 text-center' colSpan={table.getAllColumns().length}>
-                Not found
+                {empty}
               </TableCell>
             </TableRow>
           )}

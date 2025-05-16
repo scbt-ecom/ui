@@ -52,6 +52,7 @@ export const allowedIcons = {
     "general/menu",
     "general/plus",
     "general/reorder",
+    "general/search",
     "general/shield",
     "general/showEye"
   ],
@@ -116,6 +117,7 @@ export const allowedIcons = {
   "general/menu",
   "general/plus",
   "general/reorder",
+  "general/search",
   "general/shield",
   "general/showEye",
   "info/helpCircle",
