@@ -66,11 +66,11 @@ const createDadataFieldSchema = <Type extends DadataValidationKey>(
 }
 
 export const getDynamicSchema = <TFieldValues extends FieldValues>(
-  fields: FieldElement<TFieldValues, any, { validation: FieldValidation }>[]
+  fields: FieldElement<TFieldValues, any, { validation: FieldValidation }>[] | undefined
 ): ZodObject<ZodRawShape> => {
-  const fieldValidation = fields.map((field) => ({ name: field.args.name, validation: field.args.validation }))
+  const fieldValidation = fields?.map((field) => ({ name: field.args.name, validation: field.args.validation }))
 
-  const shape = fieldValidation.reduce<ZodRawShape>((acc, field) => {
+  const shape = fieldValidation?.reduce<ZodRawShape>((acc, field) => {
     const validation = existDadataSchemas.includes(field.validation.type)
       ? createDadataFieldSchema(
           field.validation.type as DadataValidationKey,
@@ -86,5 +86,5 @@ export const getDynamicSchema = <TFieldValues extends FieldValues>(
     return acc
   }, {})
 
-  return object(shape)
+  return object(shape || {})
 }

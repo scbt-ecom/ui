@@ -1,4 +1,5 @@
 import Slider from 'rc-slider'
+import { type ExternalHandlers } from '../model'
 import { cn } from '$/shared/utils'
 
 export type SliderClasses = {
@@ -17,14 +18,27 @@ export interface SliderInnerProps {
   max?: number
   step?: number | null
   marks?: number[]
+  externalHandlers?: ExternalHandlers
 }
 
-export const SliderInner = ({ classes, min, max, value, step, marks, disabled, onChange, ...props }: SliderInnerProps) => {
+export const SliderInner = ({
+  classes,
+  min,
+  max,
+  value,
+  step,
+  marks,
+  disabled,
+  onChange,
+  externalHandlers,
+  ...props
+}: SliderInnerProps) => {
   const { track, rail, handle } = classes || {}
 
   const handleChangeSlider = (value: number | number[]) => {
     const newValue = Array.isArray(value) ? value[0] : value
     onChange(newValue)
+    if (externalHandlers?.onChange) externalHandlers.onChange(newValue)
   }
 
   const convertedMarks = marks?.reduce(

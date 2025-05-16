@@ -112,6 +112,7 @@ export const SliderAlgorithmic = forwardRef<HTMLInputElement, SliderAlgorithmicP
             min={Number(sliderMin)}
             max={Number(sliderMax)}
             onChange={handleChangeSlider}
+            externalHandlers={externalHandlers}
           />
         </div>
         <div className={cn('flex justify-between', textContainer)}>

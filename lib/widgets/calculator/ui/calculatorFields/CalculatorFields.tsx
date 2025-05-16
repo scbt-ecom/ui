@@ -1,5 +1,8 @@
-import type { FieldValues } from 'react-hook-form'
+import { type FieldValues } from 'react-hook-form'
+import { useAdditionalSlider } from './hooks'
 import {
+  AdditionalSlider,
+  type AdditionalSliderGroupConfig,
   CalculatorModal,
   type CalculatorModalProps,
   type CheckboxGroupProps,
@@ -20,13 +23,20 @@ export interface CalculatorFieldsProps<T extends FieldValues> {
     radioGroupConfig?: RadioGroupProps<T>
     radioGroupCardConfig?: RadioGroupProps<T>
     switchGroupConfig?: SwitchGroupProps<T>
+    additionalSliderGroupConfig?: AdditionalSliderGroupConfig<T> & { fields: any[] }
   }
 }
 
 export const CalculatorFields = <T extends FieldValues>({ modalConfig, fieldsGroup }: CalculatorFieldsProps<T>) => {
+  const { sliderSumExist, sliderSumCorrectType } = useAdditionalSlider({
+    slidersGroupConfig: fieldsGroup.slidersGroupConfig,
+    additionalSliderGroupConfig: fieldsGroup.additionalSliderGroupConfig
+  })
+
   return (
     <div className='flex flex-1 flex-col gap-8'>
       {modalConfig && <CalculatorModal {...modalConfig} />}
+
       {fieldsGroup?.selectGroupConfig && (
         <div className='flex flex-col gap-4'>
           <FieldsGroup {...fieldsGroup?.selectGroupConfig} />
@@ -46,6 +56,16 @@ export const CalculatorFields = <T extends FieldValues>({ modalConfig, fieldsGro
           <FieldsGroup {...fieldsGroup?.switchGroupConfig} />
         </div>
       )}
+      {fieldsGroup.additionalSliderGroupConfig?.args.enabled &&
+        fieldsGroup.slidersGroupConfig &&
+        fieldsGroup.additionalSliderGroupConfig &&
+        sliderSumExist &&
+        sliderSumCorrectType && (
+          <AdditionalSlider
+            slidersGroupConfig={fieldsGroup.slidersGroupConfig}
+            additionalSliderGroupConfig={fieldsGroup.additionalSliderGroupConfig}
+          />
+        )}
     </div>
   )
 }

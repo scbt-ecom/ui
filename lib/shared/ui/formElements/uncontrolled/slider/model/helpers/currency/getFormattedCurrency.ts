@@ -3,7 +3,9 @@ export const getFormattedCurrency = (value: number) => {
     style: 'currency',
     currency: 'RUB',
     minimumFractionDigits: 0,
-    notation: 'compact'
+    notation: 'compact',
+    roundingMode: 'floor',
+    maximumSignificantDigits: 2
   })
 
   return formatter.format(value)
