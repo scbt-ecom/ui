@@ -1,3 +1,6 @@
+/**
+ * @deprecated use baseDefaultMessages instead
+ */
 export const VALIDATION_MESSAGES = {
   REQUIRED: 'Поле обязательно к заполнению',
   MIN_LENGTH: 'Минимальная длина символов должна быть не менее',
