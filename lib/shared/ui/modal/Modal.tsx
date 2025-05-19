@@ -7,6 +7,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { modalContentAnimation, modalOverlayAnimation } from './model/helpers'
 import { IframeModalContent } from './ui/IframeModalContent'
 import { ModalHeader, type TModalHeaderClasses } from './ui/ModalHeader'
+import { useClickOutside } from '$/shared/hooks'
 import { cn } from '$/shared/utils'
 
 type ModalClasses = {
@@ -43,14 +44,16 @@ export const Modal = ({
     document.body.style.overflow = 'visible'
   }
 
+  const contentRef = useRef<HTMLDivElement>(null)
   const iframeRef = useRef<HTMLIFrameElement>(null)
+
+  useClickOutside(contentRef, closeModal)
 
   const modalBody = (
     <AnimatePresence>
       {isModalOpen && (
         <motion.div
           tabIndex={-1}
-          onClick={closeModal}
           className={cn(
             'fixed inset-0 flex h-screen w-screen items-center justify-center bg-color-overlay',
             { 'z-1000': !isPortal },
@@ -65,6 +68,7 @@ export const Modal = ({
           {...modalOverlayAnimation}
         >
           <motion.div
+            ref={contentRef}
             onClick={(event) => event.stopPropagation()}
             className={cn(
               'w-full max-w-[600px] rounded-md bg-color-white px-4 py-6 shadow-sm desktop:px-6 desktop:py-8',
