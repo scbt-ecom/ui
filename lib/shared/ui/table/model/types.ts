@@ -57,4 +57,12 @@ export type DataTableProps<TData extends {}> = {
    * пагинация
    */
   pagination: ((props: TablePaginationProps) => React.JSX.Element) | boolean
+  /**
+   * количество элементов на странице
+   */
+  pageSize?: number
+  /**
+   * для переопределения пустой таблицы
+   */
+  empty?: React.ReactNode
 }

@@ -37,6 +37,7 @@ import Hiddeneye from '../../../../static/general/hiddenEye.svg?react'
 import Menu from '../../../../static/general/menu.svg?react'
 import Plus from '../../../../static/general/plus.svg?react'
 import Reorder from '../../../../static/general/reorder.svg?react'
+import Search from '../../../../static/general/search.svg?react'
 import Shield from '../../../../static/general/shield.svg?react'
 import Showeye from '../../../../static/general/showEye.svg?react'
 import Helpcircle from '../../../../static/info/helpCircle.svg?react'
@@ -92,6 +93,7 @@ export const iconsMap = {
   'general/menu': Menu,
   'general/plus': Plus,
   'general/reorder': Reorder,
+  'general/search': Search,
   'general/shield': Shield,
   'general/showEye': Showeye,
   'info/helpCircle': Helpcircle,

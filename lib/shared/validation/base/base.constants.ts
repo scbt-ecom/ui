@@ -30,5 +30,6 @@ export const baseDefaultMessages = {
 
     return `Выбранная дата должна быть не позже ${formatDateToLocaleString(date)}`
   },
+  INVALID_REGEX_STRING: () => 'Поле не соответствует требованиям',
   INVALID_URL: () => 'Ссылка введена некорректно. Пример: https://example.com, example.com'
 }

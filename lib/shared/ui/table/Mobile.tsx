@@ -6,8 +6,9 @@ export const Mobile = <TData extends {}>({
   mode,
   enableHeaders,
   table,
-  classes
-}: Pick<DataTableProps<TData>, 'enableHeaders' | 'classes' | 'mode'> & { table: Table<TData> }) => {
+  classes,
+  empty = 'Not found'
+}: Pick<DataTableProps<TData>, 'enableHeaders' | 'classes' | 'mode' | 'empty'> & { table: Table<TData> }) => {
   return (
     <div className={cn('w-full', classes?.table)}>
       {table.getRowModel().rows.length ? (
@@ -47,7 +48,7 @@ export const Mobile = <TData extends {}>({
           </div>
         ))
       ) : (
-        <div>Not found</div>
+        <div>{empty}</div>
       )}
     </div>
   )
