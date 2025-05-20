@@ -90,7 +90,7 @@ export const SliderAlgorithmic = forwardRef<HTMLInputElement, SliderAlgorithmicP
                 getInputRef={mergeRefs(inputRef, ref)}
                 onValueChange={({ floatValue }) => {
                   if (floatValue !== undefined) {
-                    if (onChange) onChange(value)
+                    if (onChange) onChange(floatValue)
                     externalHandlers?.onInputChange?.(floatValue)
                   }
                 }}
