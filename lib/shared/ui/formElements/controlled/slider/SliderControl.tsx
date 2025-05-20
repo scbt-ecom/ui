@@ -7,10 +7,10 @@ type SliderControlClasses = SliderBaseClasses & {
   container?: string
 }
 
-export type SliderControlProps<TFieldValues extends FieldValues, TName extends Path<TFieldValues>> = UseControllerProps<
-  TFieldValues,
-  TName
-> &
+export type SliderControlProps<
+  TFieldValues extends FieldValues,
+  TName extends Path<TFieldValues> = Path<TFieldValues>
+> = UseControllerProps<TFieldValues, TName> &
   SliderGatewayProps & {
     control: Control<TFieldValues>
     classes?: SliderControlClasses
