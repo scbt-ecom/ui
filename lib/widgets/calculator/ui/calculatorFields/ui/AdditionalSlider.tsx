@@ -20,7 +20,7 @@ export const AdditionalSlider = <T extends FieldValues>({
     additionalSliderGroupConfig: additionalSliderGroupConfig
   })
 
-  if (TypeGuards.isNil(additionalSliderGroupConfig?.args) || !additionalSliderGroupConfig?.args) return
+  if (TypeGuards.isNil(additionalSliderGroupConfig?.args) || !additionalSliderGroupConfig?.args) return null
 
   return (
     <div className='flex flex-col gap-4'>
