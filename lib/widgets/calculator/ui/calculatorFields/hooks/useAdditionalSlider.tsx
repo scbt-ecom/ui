@@ -42,6 +42,10 @@ export const useAdditionalSlider = <T extends FieldValues>({
   const onCheckedChange = () => {
     setSliderVisible((prevValue) => !prevValue)
 
+    if (additionalSliderValue <= 0) {
+      setValue(additionalSliderName as Path<T>, additionalSliderMin as PathValue<T, Path<T>>)
+    }
+
     if (Number(sumMax) === sumValue) {
       setValue((sumName ?? '') as Path<T>, (sumValue - ADDITIONAL_MONEY_MINIMUM) as PathValue<T, Path<T>>)
       setValue(additionalSliderName as Path<T>, additionalSliderMin as PathValue<T, Path<T>>)
