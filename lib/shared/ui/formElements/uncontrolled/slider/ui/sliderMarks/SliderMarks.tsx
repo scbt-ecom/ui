@@ -31,9 +31,10 @@ export const SliderMarks = forwardRef<HTMLInputElement, SliderMarksProps>(
 
     const inputRef = React.useRef<HTMLInputElement>(null)
 
-    const { sliderMin, sliderMax, handleChangeSlider } = useSliderMarks({
+    const { sliderMin, sliderMax, handleChangeSlider, handleBlur } = useSliderMarks({
       marks,
-      onChange
+      onChange,
+      value
     })
 
     const { root, slider, textLeft, textRight, inputRoot, textContainer, input, field } = classes || {}
@@ -52,6 +53,12 @@ export const SliderMarks = forwardRef<HTMLInputElement, SliderMarksProps>(
             }}
             onClick={externalHandlers?.onClick}
             onFocus={externalHandlers?.onBlur}
+            onBlur={(e) => {
+              if (externalHandlers?.onBlur) {
+                externalHandlers?.onBlur(e)
+              }
+              handleBlur()
+            }}
             renderValues={() => (
               <NumericFormat
                 id={inputId}
