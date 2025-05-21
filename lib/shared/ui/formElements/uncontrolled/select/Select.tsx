@@ -194,7 +194,7 @@ export const SelectBase = forwardRef<HTMLInputElement, SelectBaseProps<boolean>>
                   label={label}
                   disabled={disabled}
                   readOnly={!isSearchable}
-                  value={externalInputValue || getDisplayValue() || ''}
+                  value={externalInputValue || getDisplayValue()}
                   autoComplete='off'
                   onKeyDown={(event) => {
                     event.stopPropagation()
