@@ -7,10 +7,10 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 build-storybook.log*
-
 node_modules
 lib/shared/ui/icon/allowedIcons.ts
 lib/shared/ui/icon/sprite.gen.ts
+lib/shared/ui/icon/iconsMap.ts
 package-lock.json
 pnpm-lock.yaml
 dist

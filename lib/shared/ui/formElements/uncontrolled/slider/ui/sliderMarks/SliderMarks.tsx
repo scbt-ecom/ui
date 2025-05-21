@@ -16,7 +16,6 @@ export const SliderMarks = forwardRef<HTMLInputElement, SliderMarksProps>(
       externalHandlers,
       disabled,
       value,
-      readOnly = true,
       onChange,
       suffix,
       label,
@@ -56,7 +55,7 @@ export const SliderMarks = forwardRef<HTMLInputElement, SliderMarksProps>(
             renderValues={() => (
               <NumericFormat
                 id={inputId}
-                readOnly={readOnly}
+                readOnly
                 aria-invalid={invalid ? 'true' : 'false'}
                 value={value}
                 disabled={disabled}
