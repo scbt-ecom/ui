@@ -7,7 +7,7 @@ type SwitchBaseClasses = {
   thumb?: string
 }
 
-type ExternalHandlers = {
+export type ExternalHandlers = {
   onChange?: (value: boolean) => void
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void
   onFocus?: (event: React.FocusEvent<HTMLButtonElement>) => void
