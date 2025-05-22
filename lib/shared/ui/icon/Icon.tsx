@@ -9,9 +9,5 @@ type IconProps = React.SVGProps<SVGSVGElement> & {
 export const Icon = ({ name, ...props }: IconProps) => {
   const IconComponent = iconsMap[name]
 
-  return (
-    <div>
-      <IconComponent {...props} />
-    </div>
-  )
+  return <IconComponent {...props} />
 }

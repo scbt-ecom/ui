@@ -35,8 +35,7 @@ export const CalculatorFields = <T extends FieldValues>({ modalConfig, fieldsGro
 
   return (
     <div className='flex flex-1 flex-col gap-8'>
-      {modalConfig && <CalculatorModal {...modalConfig} />}
-
+      {modalConfig?.triggerText && modalConfig?.contentVariant && <CalculatorModal {...modalConfig} />}
       {fieldsGroup?.selectGroupConfig && (
         <div className='flex flex-col gap-4'>
           <FieldsGroup {...fieldsGroup?.selectGroupConfig} />

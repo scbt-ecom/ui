@@ -1,9 +1,9 @@
 import type { FieldValues } from 'react-hook-form'
 import { z } from 'zod'
-import { getDynamicSchema } from '../../model'
 import type { CalculatorViewProps } from '../CalculatorView'
 import type { InfoListItemMode } from '../ui'
 import type { CalculatorSuffix, ValueWithFormula } from './types'
+import { getDynamicSchema } from '@/shared/utils'
 
 export const isFormula = (value: ValueWithFormula | string): value is ValueWithFormula => {
   return typeof value !== 'string' && 'formula' in value
