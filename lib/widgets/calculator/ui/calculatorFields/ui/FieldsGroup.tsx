@@ -1,6 +1,6 @@
 import { type FieldValues, useFormContext } from 'react-hook-form'
 import { type FieldElementWithoutControl, FieldMapper } from '../../../../fieldMapper'
-import type { FieldValidation } from '../../../../model'
+import type { FieldValidation } from '@/shared/utils'
 import { type SliderAdditionalProps } from '$/shared/ui/formElements/uncontrolled/slider'
 
 export type ValidationField = { validation: FieldValidation }

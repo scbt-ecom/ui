@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { type Control, type FieldValues, type SubmitHandler } from 'react-hook-form'
 import { type TypeOf } from 'zod'
 import { HTMLRenderer } from '../htmlParser'
-import { type FieldValidation, getDynamicSchema, widgetIds } from '../model'
+import { widgetIds } from '../model'
 import {
   type Approvement,
   type ApprovementType,
@@ -15,6 +15,7 @@ import {
   type ProgressField,
   type ProgressType
 } from './model'
+import { type FieldValidation, getDynamicSchema } from '@/shared/utils'
 import { useControlledForm, useFieldsProgress } from '$/shared/hooks'
 import { Button, type CheckedState, Heading, Icon, ProgressBar, Uncontrolled } from '$/shared/ui'
 import { cn } from '$/shared/utils'
