@@ -122,7 +122,7 @@ export const DynamicForm = <AType extends ApprovementType, CType extends ChipsTy
         data-test-id={widgetIds.form}
         className={cn(
           'border-warm-grey-200 px-4 desktop:gap-8 desktop:p-14',
-          'relative flex flex-col gap-6 rounded-sm border py-8',
+          'relative mx-auto flex w-max flex-col gap-6 rounded-sm border py-8',
           classes?.root
         )}
       >
