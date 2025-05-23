@@ -13,16 +13,16 @@ import type { AllowedWidgets } from './types'
 
 export const WIDGET_LIST_MAP = {
   header: Header,
-  footer: Footer,
-  interLinking: InterLinking,
-  stepper: Stepper,
-  usefulInfo: UsefulInfo,
-  longBanner: LongBanner,
-  banner: Banner,
-  benefit: Benefit,
-  form: DynamicForm,
   seoHeader: SeoHeader,
-  calculator: Calculator
+  banner: Banner,
+  calculator: Calculator,
+  form: DynamicForm,
+  stepper: Stepper,
+  benefit: Benefit,
+  longBanner: LongBanner,
+  usefulInfo: UsefulInfo,
+  interLinking: InterLinking,
+  footer: Footer
 } as const
 
 export const KEYS_OF_WIDGET_LIST = Object.keys(WIDGET_LIST_MAP) as readonly AllowedWidgets[]
