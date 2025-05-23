@@ -1,3 +1,4 @@
+import { TypeGuards } from '../../../shared/utils'
 import type { InfoListItemDTO, InfoListItemProps } from '../ui'
 import type { CalculatorVariables } from './types'
 import { isFormula } from './utils'
@@ -15,7 +16,7 @@ const validateFormula = (formula: string, variables: CalculatorVariables) => {
 }
 
 export const evaluateFormula = (formula: string, variables: CalculatorVariables): string => {
-  const entries = Object.entries(variables).map(([key, value]) => [key, value !== null ? value : '1'])
+  const entries = Object.entries(variables).map(([key, value]) => [key, !TypeGuards.isNil(value) ? value : '1'])
 
   const variablesKeys = entries.map(([key]) => key)
   const variablesValues = entries.map(([, value]) => value)
