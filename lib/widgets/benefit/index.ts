@@ -1,1 +1,1 @@
-export { Benefit, type BenefitProps } from '$/widgets/benefit/Benefit.tsx'
+export { Benefit, type BenefitProps } from './Benefit'
