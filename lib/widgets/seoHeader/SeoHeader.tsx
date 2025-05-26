@@ -28,3 +28,6 @@ export const SeoHeader = ({ categories, helpers, phone }: SeoHeaderProps) => {
     </div>
   )
 }
+
+// eslint-disable-next-line import/no-default-export
+export default SeoHeader

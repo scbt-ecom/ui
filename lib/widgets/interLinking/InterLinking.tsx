@@ -74,3 +74,6 @@ export const InterLinking = ({
     </section>
   )
 }
+
+// eslint-disable-next-line import/no-default-export
+export default InterLinking

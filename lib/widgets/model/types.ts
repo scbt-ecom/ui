@@ -1,7 +1,6 @@
 import type { ComponentPropsWithoutRef } from 'react'
-import { type WIDGET_LIST_MAP } from './helpers'
+import { type AllowedWidgets, type WIDGET_LIST_MAP } from './helpers'
 
-export type AllowedWidgets = keyof typeof WIDGET_LIST_MAP
 export type WidgetExternalProps = {
   _id: string
   internalName: string
@@ -13,7 +12,7 @@ export type WidgetExternalProps = {
  * export type HeaderWidget = ReturnWidgetType['header']
  */
 export type ReturnWidgetType = {
-  [K in keyof typeof WIDGET_LIST_MAP]: ComponentPropsWithoutRef<(typeof WIDGET_LIST_MAP)[K]> & WidgetExternalProps
+  [K in AllowedWidgets]: ComponentPropsWithoutRef<(typeof WIDGET_LIST_MAP)[K]> & WidgetExternalProps
 }
 
 /**
@@ -25,8 +24,8 @@ export type ReturnWidgetType = {
  * ]
  */
 export type WidgetsListDTO = {
-  [K in keyof typeof WIDGET_LIST_MAP]: [K, ReturnWidgetType[K]]
-}[keyof typeof WIDGET_LIST_MAP][]
+  [K in AllowedWidgets]: [K, ReturnWidgetType[K]]
+}[AllowedWidgets][]
 
 /**
  * Массив кортежей из id виджетов или null (значение по умолчанию или сброс значения)
@@ -37,5 +36,5 @@ export type WidgetsListDTO = {
  * ]
  */
 export type WidgetsListDTOIds = {
-  [K in keyof typeof WIDGET_LIST_MAP]: [K, string | null]
-}[keyof typeof WIDGET_LIST_MAP][]
+  [K in AllowedWidgets]: [K, string | null]
+}[AllowedWidgets][]

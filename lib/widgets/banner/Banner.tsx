@@ -30,3 +30,6 @@ export const Banner = ({ variant, ...props }: BannerProps) => {
       return <BannerWithSeparateImg {...props} />
   }
 }
+
+// eslint-disable-next-line import/no-default-export
+export default Banner

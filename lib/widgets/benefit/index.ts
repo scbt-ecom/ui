@@ -1,1 +1,1 @@
-export { Benefit, type BenefitProps } from './Benefit'
+export * from './Benefit'

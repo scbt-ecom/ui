@@ -47,3 +47,6 @@ export const UsefulInfo = ({ headline, tabs, classes, accordionsConfig }: Useful
     </section>
   )
 }
+
+// eslint-disable-next-line import/no-default-export
+export default UsefulInfo

@@ -1,15 +1,17 @@
-import { Banner } from '../banner'
-import { Benefit } from '../benefit'
-import { Calculator } from '../calculator'
-import { DynamicForm } from '../dynamicForm'
-import { Footer } from '../footer'
-import { Header } from '../header'
-import { InterLinking } from '../interLinking'
-import { LongBanner } from '../longBanner'
-import { SeoHeader } from '../seoHeader'
-import { Stepper } from '../stepper'
-import { UsefulInfo } from '../usefulInfo'
-import type { AllowedWidgets } from './types'
+import { lazy } from 'react'
+const Banner = lazy(() => import('../banner/Banner'))
+const Calculator = lazy(() => import('../calculator/Calculator'))
+const DynamicForm = lazy(() => import('../dynamicForm/DynamicForm'))
+const Footer = lazy(() => import('../footer/Footer'))
+const Header = lazy(() => import('../header/Header'))
+const InterLinking = lazy(() => import('../interLinking/InterLinking'))
+const LongBanner = lazy(() => import('../longBanner/LongBanner'))
+const SeoHeader = lazy(() => import('../seoHeader/SeoHeader'))
+const Stepper = lazy(() => import('../stepper/Stepper'))
+const UsefulInfo = lazy(() => import('../usefulInfo/UsefulInfo'))
+const Benefit = lazy(() => import('../benefit/Benefit'))
+
+export type AllowedWidgets = keyof typeof WIDGET_LIST_MAP
 
 export const WIDGET_LIST_MAP = {
   header: Header,

@@ -44,3 +44,6 @@ export const Stepper = ({ headline, details, variant, classes }: StepperProps) =
     </section>
   )
 }
+
+// eslint-disable-next-line import/no-default-export
+export default Stepper
