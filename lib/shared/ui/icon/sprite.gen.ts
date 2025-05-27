@@ -20,6 +20,7 @@ export interface SpritesMap {
   general: 'calendar' | 'check' | 'close' | 'edit' | 'hiddenEye' | 'menu' | 'plus' | 'reorder' | 'search' | 'shield' | 'showEye'
   info: 'helpCircle' | 'warningCircle'
   logos: 'beeline' | 'megafon' | 'mts'
+  media: 'desktop' | 'mobile'
   social: 'classmates' | 'telegram' | 'vk'
   status: 'badSmile' | 'iconMark' | 'iconRetry' | 'iconUser'
 }
@@ -308,6 +309,21 @@ export const SPRITES_META: {
         viewBox: '0 0 32 32',
         width: 32,
         height: 32
+      }
+    }
+  },
+  media: {
+    filePath: 'media.svg',
+    items: {
+      desktop: {
+        viewBox: '0 0 24 24',
+        width: 24,
+        height: 24
+      },
+      mobile: {
+        viewBox: '0 0 24 24',
+        width: 24,
+        height: 24
       }
     }
   },

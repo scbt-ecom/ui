@@ -45,6 +45,8 @@ import Warningcircle from '../../../../static/info/warningCircle.svg?react'
 import Beeline from '../../../../static/logos/beeline.svg?react'
 import Megafon from '../../../../static/logos/megafon.svg?react'
 import Mts from '../../../../static/logos/mts.svg?react'
+import Desktop from '../../../../static/media/desktop.svg?react'
+import Mobile from '../../../../static/media/mobile.svg?react'
 import Classmates from '../../../../static/social/classmates.svg?react'
 import Telegram from '../../../../static/social/telegram.svg?react'
 import Vk from '../../../../static/social/vk.svg?react'
@@ -101,6 +103,8 @@ export const iconsMap = {
   'logos/beeline': Beeline,
   'logos/megafon': Megafon,
   'logos/mts': Mts,
+  'media/desktop': Desktop,
+  'media/mobile': Mobile,
   'social/classmates': Classmates,
   'social/telegram': Telegram,
   'social/vk': Vk,

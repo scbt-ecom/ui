@@ -50,6 +50,7 @@ export const allowedIcons = {
     ],
     info: ['info/helpCircle', 'info/warningCircle'],
     logos: ['logos/beeline', 'logos/megafon', 'logos/mts'],
+    media: ['media/desktop', 'media/mobile'],
     social: ['social/classmates', 'social/telegram', 'social/vk'],
     status: ['status/badSmile', 'status/iconMark', 'status/iconRetry', 'status/iconUser']
   },
@@ -101,6 +102,8 @@ export const allowedIcons = {
     'logos/beeline',
     'logos/megafon',
     'logos/mts',
+    'media/desktop',
+    'media/mobile',
     'social/classmates',
     'social/telegram',
     'social/vk',
