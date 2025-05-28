@@ -20,6 +20,7 @@ export * from './notification'
 export * from './table'
 export * from './pagination'
 export * from './carousel'
+export * from './dialog'
 
 // # PROVIDERS
 export * from './providers'
