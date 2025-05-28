@@ -9,7 +9,7 @@ const meta = {
   tags: ['autodocs'],
   args: {
     id: DIALOG_ID,
-    title: 'Рустем гей'
+    title: 'Рустем?'
   }
 } satisfies Meta<typeof Dialog>
 
