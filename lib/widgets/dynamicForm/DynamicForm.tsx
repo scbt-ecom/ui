@@ -122,8 +122,6 @@ export const DynamicForm = <AType extends ApprovementType, CType extends ChipsTy
 
   const onSubmit: SubmitHandler<TypeOf<typeof schema>> = (values) => {
     if (submitCallback) submitCallback({ ...values, agree: checked })
-
-    console.warn(values)
   }
 
   return (
