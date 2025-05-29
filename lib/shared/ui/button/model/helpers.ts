@@ -29,6 +29,11 @@ export const buttonPrimitiveTextFormat = {
   initial: 'initial'
 } as const
 
+export const buttonPrimitiveType = {
+  submit: 'submit',
+  button: 'button'
+} as const
+
 export const buttonPrimitiveIntent = {
   primary:
     'bg-color-primary-default text-color-white outline-offset-[3px] hover:bg-color-primary-hover  active:bg-color-primary-hover  focus:bg-color-primary-default focus:outline-primary-focus  disabled:bg-color-primary-disabled',
