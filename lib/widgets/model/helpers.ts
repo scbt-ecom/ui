@@ -2,6 +2,7 @@ import { lazy } from 'react'
 const Banner = lazy(() => import('../banner/Banner'))
 const Calculator = lazy(() => import('../calculator/Calculator'))
 const DynamicForm = lazy(() => import('../dynamicForm/DynamicForm'))
+const DynamicFormDialog = lazy(() => import('../dynamicFormDialog/DynamicFormDialog'))
 const Footer = lazy(() => import('../footer/Footer'))
 const Header = lazy(() => import('../header/Header'))
 const InterLinking = lazy(() => import('../interLinking/InterLinking'))
@@ -19,6 +20,7 @@ export const WIDGET_LIST_MAP = {
   banner: Banner,
   calculator: Calculator,
   form: DynamicForm,
+  formDialog: DynamicFormDialog,
   stepper: Stepper,
   benefit: Benefit,
   longBanner: LongBanner,

@@ -16,4 +16,9 @@ export type SubmitHandler = {
   handler: 'submit'
 }
 
-export type ButtonHandlerOptions = NavigateHandler | ScrollHandler | SubmitHandler
+export type DialogHandler = {
+  handler: 'dialog'
+  dialogId: string
+}
+
+export type ButtonHandlerOptions = NavigateHandler | ScrollHandler | SubmitHandler | DialogHandler

@@ -1,6 +1,6 @@
 {
   "name": "@scbt-ecom/ui",
-  "version": "0.77.2",
+  "version": "0.78.0",
   "type": "module",
   "exports": {
     ".": {
