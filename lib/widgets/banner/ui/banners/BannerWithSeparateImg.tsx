@@ -29,7 +29,7 @@ export const BannerWithSeparateImg = ({
       data-test-id={widgetIds.banner}
       className={cn('', classes?.root)}
     >
-      <ResponsiveContainer className={cn('relative bg-banner-skyblue-300 desktop:h-[456px]', classes?.container)}>
+      <ResponsiveContainer className={cn('relative desktop:h-[456px]', classes?.container)}>
         <div className={cn('flex flex-col desktop:flex-row desktop:justify-between', classes?.wrapper)}>
           <div className='flex flex-col desktop:gap-10 desktop:pt-20'>
             <div className={cn('flex flex-col gap-4 pt-6 desktop:pt-0', classes?.textBlock)}>
