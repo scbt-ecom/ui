@@ -36,7 +36,6 @@ export const Base: Story = {
       }
     ],
     submitProps: {
-      children: 'Далее',
       submitCallback: () => {}
     },
     title: 'Оформите заявку на кредит',
@@ -49,7 +48,18 @@ export const Base: Story = {
     approvement: {
       type: 'text',
       message: '<p>some text</p>'
-    }
+    },
+    buttonGroup: [
+      {
+        children: 'Получить консультацию',
+        type: 'button',
+        intent: 'secondary'
+      },
+      {
+        children: 'Отправить форму',
+        type: 'submit'
+      }
+    ]
   }
 }
 

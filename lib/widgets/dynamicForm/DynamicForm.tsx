@@ -17,15 +17,23 @@ import {
 } from './model'
 import { type FieldValidation, getDynamicSchema } from '@/shared/utils'
 import { useControlledForm, useFieldsProgress } from '$/shared/hooks'
-import { Button, type CheckedState, Heading, Icon, ProgressBar, Uncontrolled } from '$/shared/ui'
+import {
+  Button,
+  type ButtonProps,
+  type CheckedState,
+  Heading,
+  Icon,
+  ProgressBar,
+  ResponsiveContainer,
+  Uncontrolled
+} from '$/shared/ui'
 import { cn } from '$/shared/utils'
 import { ZodUtils } from '$/shared/validation'
 import { type FieldElement, FieldMapper } from '$/widgets/fieldMapper'
 import { QueryClientProvider } from '$/widgets/queryClientProvider'
 
-type SubmitProps = Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'children'> & {
+type SubmitProps = {
   submitCallback: <T extends FieldValues>(values: T) => void
-  children: string
 }
 
 type ChipsClasses = {
@@ -56,6 +64,7 @@ export type DynamicFormProps<AType extends ApprovementType, CType extends ChipsT
   chips: Chips<CType>
   submitProps?: SubmitProps
   classes?: DynamicFormClasses
+  buttonGroup: ButtonProps[]
 }
 
 const withApprovement = <Type extends ApprovementType>(
@@ -91,9 +100,10 @@ export const DynamicForm = <AType extends ApprovementType, CType extends ChipsTy
   approvement,
   chips,
   submitProps,
-  classes
+  classes,
+  buttonGroup
 }: DynamicFormProps<AType, CType, PType>) => {
-  const { submitCallback, ...buttonProps } = submitProps || {}
+  const { submitCallback } = submitProps || {}
 
   const [checked, onCheckedChange] = useState<CheckedState>(false)
 
@@ -118,64 +128,69 @@ export const DynamicForm = <AType extends ApprovementType, CType extends ChipsTy
 
   return (
     <QueryClientProvider>
-      <div
-        id={widgetIds.form}
-        data-test-id={widgetIds.form}
-        className={cn(
-          'border-warm-grey-200 px-4 desktop:gap-8 desktop:p-14',
-          'relative mx-auto flex w-max flex-col gap-6 rounded-sm border py-8',
-          classes?.root
-        )}
-      >
-        {chips.enabled && (
-          <div
-            className={cn(
-              'desk-body-regular-l flex items-center gap-x-2 rounded-sm desktop:absolute',
-              'bg-color-blue-grey-100 px-2 py-1 text-color-tetriary',
-              'right-4 top-4 w-max',
-              classes?.chips?.root
-            )}
-          >
-            {chips.image && <Icon name={chips.image} className={cn('size-4', classes?.chips?.icon)} />}
-            {chips.content}
-          </div>
-        )}
-        <Heading as='h3' className={classes?.title}>
-          {title}
-        </Heading>
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          className={cn('flex w-[328px] flex-col gap-y-6', 'desktop:w-[524px] desktop:gap-y-8', classes?.form)}
-        >
-          {progress.enabled && (
-            <ProgressBar
-              progress={formattedProgress}
-              topContent={<HTMLRenderer html={progress.title} />}
-              bottomContent={<HTMLRenderer html={progress.subtitle} />}
-              maxPercent={progress.maxPercent}
-              classes={classes?.progressBar}
-            />
+      <section id={widgetIds.form} data-test-id={widgetIds.form} className={cn('w-full', classes?.root)}>
+        <ResponsiveContainer
+          className={cn(
+            'border-warm-grey-200 px-4 desktop:gap-8 desktop:p-14',
+            'relative mx-auto flex flex-col gap-6 rounded-sm py-8 desktop:border'
           )}
-          <FieldMapper control={control as unknown as Control} fields={fields} />
-          <div className='mob-body-regular-m flex flex-col items-center justify-center gap-4 desktop:flex-row desktop:justify-between'>
-            {withApprovement(approvement, checked, onCheckedChange, classes?.approvement)}
-            <Button
-              {...buttonProps}
-              type='submit'
-              disabled={approvement.type === 'checkbox' ? !checked : false}
+        >
+          {chips.enabled && (
+            <div
               className={cn(
-                'w-full whitespace-nowrap',
-                {
-                  'w-full desktop:w-[216px]': Boolean(approvement)
-                },
-                classes?.submit
+                'desk-body-regular-l flex items-center gap-x-2 rounded-sm desktop:absolute',
+                'bg-color-blue-grey-100 px-2 py-1 text-color-tetriary',
+                'right-4 top-4 w-max',
+                classes?.chips?.root
               )}
             >
-              Отправить форму
-            </Button>
-          </div>
-        </form>
-      </div>
+              {chips.image && <Icon name={chips.image} className={cn('size-4', classes?.chips?.icon)} />}
+              {chips.content}
+            </div>
+          )}
+          <Heading as='h3' className={classes?.title}>
+            {title}
+          </Heading>
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className={cn('flex w-full flex-col gap-y-6', 'desktop:gap-y-8', classes?.form)}
+          >
+            {progress.enabled && (
+              <ProgressBar
+                progress={formattedProgress}
+                topContent={<HTMLRenderer html={progress.title} />}
+                bottomContent={<HTMLRenderer html={progress.subtitle} />}
+                maxPercent={progress.maxPercent}
+                classes={classes?.progressBar}
+              />
+            )}
+            <FieldMapper control={control as unknown as Control} fields={fields} />
+            <div className='mob-body-regular-m flex flex-col items-start justify-center gap-4'>
+              {withApprovement(approvement, checked, onCheckedChange, classes?.approvement)}
+              <div className='flex w-full flex-col items-center justify-center gap-4 desktop:flex-row'>
+                {buttonGroup.map((button, index) => {
+                  const disabled = button.type === 'submit' && approvement.type === 'checkbox' ? !checked : false
+
+                  return (
+                    <Button
+                      {...button}
+                      key={index}
+                      disabled={disabled}
+                      className={cn(
+                        'w-full whitespace-nowrap',
+                        {
+                          'w-full': Boolean(approvement)
+                        },
+                        classes?.submit
+                      )}
+                    />
+                  )
+                })}
+              </div>
+            </div>
+          </form>
+        </ResponsiveContainer>
+      </section>
     </QueryClientProvider>
   )
 }
