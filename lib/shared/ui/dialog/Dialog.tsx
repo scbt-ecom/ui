@@ -1,5 +1,4 @@
 import { useRef } from 'react'
-import * as React from 'react'
 import { createPortal } from 'react-dom'
 import { useClickOutside } from '$/shared/hooks'
 import { Heading, Icon } from '$/shared/ui'
@@ -26,7 +25,7 @@ export const Dialog = ({ className, children, title, portal = globalThis?.docume
     <dialog
       ref={dialogRef}
       {...props}
-      className='border-none'
+      className='group z-10 border-none'
       onKeyDown={(event) => {
         if (event.key === 'Escape') {
           onClose()
