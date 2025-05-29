@@ -25,7 +25,12 @@ export interface BannerProps {
   classes?: BannerClasses & {
     advantages?: AdvantageClasses
   }
-  renderImage?: (props: React.ComponentProps<'img'>) => ReactElement
+  /**
+   *
+   * @param props
+   * React.ComponentProps<'img'>
+   */
+  renderImage?: (props: any) => ReactElement
 }
 
 export const Banner = ({ variant, ...props }: BannerProps) => {
