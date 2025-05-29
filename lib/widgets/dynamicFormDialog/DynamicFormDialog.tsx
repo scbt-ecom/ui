@@ -90,8 +90,6 @@ export const DynamicFormDialog = <AType extends ApprovementType>({
 
   const onSubmit: SubmitHandler<TypeOf<typeof schema>> = (values) => {
     if (submitCallback) submitCallback({ ...values, agree: checked })
-
-    console.warn(values)
   }
 
   return (
