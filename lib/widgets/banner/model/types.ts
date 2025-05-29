@@ -1,4 +1,3 @@
-import type { ReactElement } from 'react'
 import type { ButtonHandlerOptions } from '../../buttonWithHandlers'
 import { type ButtonProps } from '$/shared/ui'
 
@@ -28,10 +27,3 @@ export type ButtonsConfig = {
     enabled: boolean
   }
 }
-
-export type ImgBanner =
-  | ReactElement
-  | {
-      url: string
-      alt: string
-    }

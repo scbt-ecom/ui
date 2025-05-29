@@ -1,6 +1,6 @@
 import { useDevice } from '$/shared/hooks'
 import { ResponsiveContainer } from '$/shared/ui'
-import { cn, TypeGuards } from '$/shared/utils'
+import { cn } from '$/shared/utils'
 import { Advantages, type BannerProps, ButtonWithHandlers, widgetIds } from '$/widgets'
 
 export const BannerWithSeparateImg = ({
@@ -11,28 +11,16 @@ export const BannerWithSeparateImg = ({
   classes,
   imgMobile,
   imgDesktop,
-  color
+  imgAlt,
+  color,
+  renderImage
 }: Omit<BannerProps, 'bannerVariant'>) => {
   const { isMobile } = useDevice()
   const { primary, secondary } = buttonsConfig || {}
 
-  /**
-   * Если imgMobile это объект с полем url, то присваиваем обычный <img>
-   * Если это не объект значит мы присваиваем JSX.Element (для Next компонент <Image>)
-   */
-  const imgMob =
-    imgMobile && 'url' in imgMobile && TypeGuards.isObject(imgMobile) ? (
-      <img className='w-full object-contain' alt={imgMobile.alt} src={imgMobile.url} />
-    ) : (
-      imgMobile
-    )
-
-  const imgDesk =
-    imgDesktop && 'url' in imgDesktop && TypeGuards.isObject(imgDesktop) ? (
-      <img className='w-full object-contain' alt={imgDesktop.alt} src={imgDesktop.url} />
-    ) : (
-      imgDesktop
-    )
+  const image = (args: React.ComponentProps<'img'>) => {
+    return renderImage ? renderImage(args) : <img {...args} />
+  }
 
   return (
     <>
@@ -87,7 +75,13 @@ export const BannerWithSeparateImg = ({
                 classes?.imageContainer
               )}
             >
-              {isMobile ? imgMob : imgDesk}
+              {isMobile
+                ? image({ src: imgMobile.src, alt: imgAlt, className: cn('h-full object-cover') })
+                : image({
+                    src: imgDesktop.src,
+                    alt: imgAlt,
+                    className: cn('h-full object-cover')
+                  })}
             </div>
           </div>
 

@@ -2,7 +2,6 @@ import bezrykovDesk from './assets/bezrukov_desk.png'
 import bezrykovMob from './assets/bezrukov_mob.png'
 import saifDesktop from './assets/saif.jpg'
 import saifMob from './assets/saifMob.jpg'
-import { cn } from '$/shared/utils'
 import { type AdvantagesProps } from '$/widgets'
 import { type BannerProps } from '$/widgets/banner/Banner.tsx'
 
@@ -21,8 +20,12 @@ const defaultMockAdvantageProps: AdvantagesProps = {
 export const mockBannerBase: BannerProps = {
   headTitle: 'Кредит на любые цели',
   subtitle: 'до 5 млн рублей',
-  imgMobile: <img src={bezrykovMob} alt='Картинка баннера' className={cn('h-full object-cover')} />,
-  imgDesktop: <img src={bezrykovDesk} alt='Картинка баннера' className={cn('h-full object-cover')} />,
+  imgMobile: {
+    src: bezrykovMob
+  },
+  imgDesktop: {
+    src: bezrykovDesk
+  },
   buttonsConfig: {
     primary: {
       enabled: true,
@@ -50,8 +53,12 @@ export const mockBannerBase: BannerProps = {
 export const mockBannerOnlyPrimaryButton: BannerProps = {
   headTitle: 'Кредит на любые цели',
   subtitle: 'до 5 млн рублей',
-  imgMobile: <img src={bezrykovMob} alt='Картинка баннера' className={cn('h-full object-cover')} />,
-  imgDesktop: <img src={bezrykovDesk} alt='Картинка баннера' className={cn('h-full object-cover')} />,
+  imgDesktop: {
+    src: bezrykovDesk
+  },
+  imgMobile: {
+    src: bezrykovMob
+  },
   buttonsConfig: {
     primary: {
       enabled: true,
@@ -69,8 +76,12 @@ export const mockBannerOnlyPrimaryButton: BannerProps = {
 export const mockWithAdvantages: BannerProps = {
   headTitle: 'Кредит на любые цели',
   subtitle: 'до 5 млн рублей',
-  imgMobile: <img src={bezrykovMob} alt='Картинка баннера' className={cn('h-full object-cover')} />,
-  imgDesktop: <img src={bezrykovDesk} alt='Картинка баннера' className={cn('h-full object-cover')} />,
+  imgMobile: {
+    src: bezrykovMob
+  },
+  imgDesktop: {
+    src: bezrykovDesk
+  },
 
   buttonsConfig: {
     primary: {
@@ -90,8 +101,12 @@ export const mockWithAdvantages: BannerProps = {
 export const mockBannerBaseFullImage: BannerProps = {
   headTitle: 'Кредит на любые цели',
   subtitle: 'до 5 млн рублей',
-  imgDesktop: <img src={saifDesktop} alt='Картинка баннера' className={cn('h-full w-full object-cover object-center')} />,
-  imgMobile: <img src={saifMob} alt='Картинка баннера' className={cn('h-full w-full object-cover object-center')} />,
+  imgDesktop: {
+    src: saifDesktop
+  },
+  imgMobile: {
+    src: saifMob
+  },
   buttonsConfig: {
     primary: {
       enabled: true,
@@ -124,8 +139,12 @@ export const mockBannerBaseFullImage: BannerProps = {
 export const mockBannerFullImageOnlyPrimaryButton: BannerProps = {
   headTitle: 'Кредит на любые цели',
   subtitle: 'до 5 млн рублей',
-  imgDesktop: <img src={saifDesktop} alt='Картинка баннера' className={cn('h-full w-full object-cover object-center')} />,
-  imgMobile: <img src={saifMob} alt='Картинка баннера' className={cn('h-full w-full object-cover object-center')} />,
+  imgDesktop: {
+    src: saifDesktop
+  },
+  imgMobile: {
+    src: saifMob
+  },
   buttonsConfig: {
     primary: {
       enabled: true,
@@ -148,8 +167,12 @@ export const mockBannerFullImageOnlyPrimaryButton: BannerProps = {
 export const mockBannerFullImageWithAdvantages: BannerProps = {
   headTitle: 'Кредит на любые цели',
   subtitle: 'до 5 млн рублей',
-  imgDesktop: <img src={saifDesktop} alt='Картинка баннера' className={cn('h-full w-full object-cover object-center')} />,
-  imgMobile: <img src={saifMob} alt='Картинка баннера' className={cn('h-full w-full object-cover object-center')} />,
+  imgDesktop: {
+    src: saifDesktop
+  },
+  imgMobile: {
+    src: saifMob
+  },
   buttonsConfig: {
     primary: {
       enabled: true,
@@ -183,8 +206,12 @@ export const mockBannerFullImageWithAdvantages: BannerProps = {
 export const mockBannerBaseGradient: BannerProps = {
   headTitle: 'Кредит на любые цели',
   subtitle: 'до 5 млн рублей',
-  imgMobile: <img src={bezrykovMob} alt='Картинка баннера' className={cn('h-full object-cover')} />,
-  imgDesktop: <img src={bezrykovDesk} alt='Картинка баннера' className={cn('h-full object-cover')} />,
+  imgMobile: {
+    src: bezrykovMob
+  },
+  imgDesktop: {
+    src: bezrykovDesk
+  },
   buttonsConfig: {
     primary: {
       enabled: true,
@@ -215,8 +242,12 @@ export const mockBannerBaseGradient: BannerProps = {
 export const mockBannerBaseGradientAdvantages: BannerProps = {
   headTitle: 'Кредит на любые цели',
   subtitle: 'до 5 млн рублей',
-  imgMobile: <img src={bezrykovMob} alt='Картинка баннера' className={cn('h-full object-cover')} />,
-  imgDesktop: <img src={bezrykovDesk} alt='Картинка баннера' className={cn('h-full object-cover')} />,
+  imgMobile: {
+    src: bezrykovMob
+  },
+  imgDesktop: {
+    src: bezrykovDesk
+  },
   buttonsConfig: {
     primary: {
       enabled: true,

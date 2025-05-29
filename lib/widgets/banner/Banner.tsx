@@ -3,14 +3,21 @@
 import { type ReactElement } from 'react'
 import { type AdvantageClasses, type AdvantagesProps } from '../advantages/Advantages'
 import { type BackgroundBannerColorsValues } from './model/constants'
-import { type BannerClasses, type ButtonsConfig, type ImgBanner } from './model/types'
+import { type BannerClasses, type ButtonsConfig } from './model/types'
 import { BannerImageFull, BannerWithSeparateImg } from './ui'
 
 export interface BannerProps {
   headTitle: string | ReactElement
   subtitle: string | ReactElement
-  imgDesktop: ImgBanner
-  imgMobile: ImgBanner
+  imgMobile: {
+    src: string
+    base64?: string
+  }
+  imgDesktop: {
+    src: string
+    base64?: string
+  }
+  imgAlt?: string
   buttonsConfig: ButtonsConfig
   advantages?: AdvantagesProps
   variant?: 'separateImg' | 'fullImg'
@@ -18,6 +25,7 @@ export interface BannerProps {
   classes?: BannerClasses & {
     advantages?: AdvantageClasses
   }
+  renderImage?: (props: React.ComponentProps<'img'>) => ReactElement
 }
 
 export const Banner = ({ variant, ...props }: BannerProps) => {

@@ -2,7 +2,7 @@
 
 import { useDevice } from '$/shared/hooks'
 import { ResponsiveContainer } from '$/shared/ui'
-import { cn, TypeGuards } from '$/shared/utils'
+import { cn } from '$/shared/utils'
 import { Advantages, type BannerProps, ButtonWithHandlers, widgetIds } from '$/widgets'
 
 export const BannerImageFull = ({
@@ -13,24 +13,16 @@ export const BannerImageFull = ({
   classes,
   imgMobile,
   imgDesktop,
-  color
+  imgAlt,
+  color,
+  renderImage
 }: Omit<BannerProps, 'bannerVariant'>) => {
   const { isDesktop, isMobile } = useDevice()
   const { primary, secondary } = buttonsConfig || {}
 
-  const imgMob =
-    imgMobile && 'url' in imgMobile && TypeGuards.isObject(imgMobile) ? (
-      <img className='h-full w-full object-cover object-center' alt='Картинка баннера' src={imgMobile.url} />
-    ) : (
-      imgMobile
-    )
-
-  const imgDesk =
-    imgDesktop && 'url' in imgDesktop && TypeGuards.isObject(imgDesktop) ? (
-      <img className='h-full w-full object-cover object-center' alt='Картинка баннера' src={imgDesktop.url} />
-    ) : (
-      imgDesktop
-    )
+  const image = (args: React.ComponentProps<'img'>) => {
+    return renderImage ? renderImage(args) : <img {...args} />
+  }
 
   const advantage = (
     <div
@@ -52,7 +44,13 @@ export const BannerImageFull = ({
         className={cn('relative h-[552px] desktop:h-[456px]', classes?.root)}
       >
         <div className='absolute bottom-0 left-0 right-0 top-0 mx-auto h-full max-w-[1920px] desktop:h-[456px]'>
-          {isMobile ? imgMob : imgDesk}
+          {isMobile
+            ? image({ src: imgMobile.src, alt: imgAlt, className: cn('h-full w-full object-cover object-center') })
+            : image({
+                src: imgDesktop.src,
+                alt: imgAlt,
+                className: cn('h-full w-full object-cover object-center')
+              })}
         </div>
 
         <ResponsiveContainer className={cn('h-full', classes?.container)}>
