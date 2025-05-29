@@ -23,11 +23,13 @@ export const BannerWithSeparateImg = ({
   }
 
   return (
-    <section id={widgetIds.banner} data-test-id={widgetIds.banner} className={cn('', classes?.root)}>
-      <ResponsiveContainer
-        style={{ backgroundColor: color ?? '#d9edff' }}
-        className={cn('relative bg-banner-skyblue-300 desktop:h-[456px]', classes?.container)}
-      >
+    <section
+      id={widgetIds.banner}
+      style={{ backgroundColor: color ?? '#d9edff' }}
+      data-test-id={widgetIds.banner}
+      className={cn('', classes?.root)}
+    >
+      <ResponsiveContainer className={cn('relative bg-banner-skyblue-300 desktop:h-[456px]', classes?.container)}>
         <div className={cn('flex flex-col desktop:flex-row desktop:justify-between', classes?.wrapper)}>
           <div className='flex flex-col desktop:gap-10 desktop:pt-20'>
             <div className={cn('flex flex-col gap-4 pt-6 desktop:pt-0', classes?.textBlock)}>
@@ -93,7 +95,7 @@ export const BannerWithSeparateImg = ({
       {advantages?.enabled && (
         <div
           className={cn(
-            'flex items-center justify-center rounded-md px-4 pb-8 pt-4 desktop:absolute desktop:bottom-[-50px] desktop:right-1/2 desktop:hidden desktop:translate-x-1/2 desktop:p-0',
+            'flex items-center justify-center bg-color-white px-4 pb-8 pt-4 desktop:absolute desktop:bottom-[-50px] desktop:right-1/2 desktop:hidden desktop:translate-x-1/2 desktop:p-0',
             classes?.advantageContainer
           )}
         >
