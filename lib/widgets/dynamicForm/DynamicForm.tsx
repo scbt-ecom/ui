@@ -166,7 +166,7 @@ export const DynamicForm = <AType extends ApprovementType, CType extends ChipsTy
             <div className='mob-body-regular-m flex flex-col items-start justify-center gap-4'>
               {withApprovement(approvement, checked, onCheckedChange, classes?.approvement)}
               <div className='flex w-full flex-col items-center justify-center gap-4 desktop:flex-row'>
-                {buttonGroup.map((button, index) => {
+                {buttonGroup?.map((button, index) => {
                   const disabled = button.type === 'submit' && approvement.type === 'checkbox' ? !checked : false
 
                   return (

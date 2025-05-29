@@ -15,7 +15,7 @@ export const CategoriesDesktop = ({ categories, helpers, phone }: DesktopCategor
   const [store, dispatch] = useCategoryReducer({ root: categories[0].children[0], current: categories[0].children[0] })
 
   return (
-    <>
+    <div className='mobile:hidden'>
       <div className='flex w-full items-center justify-between gap-x-4 border-b border-b-[rgba(234,237,241)] py-4'>
         <Icon name='brandLogos/logoMain' className='mr-auto w-[130px]' />
         {categories.map((category) => {
@@ -52,6 +52,6 @@ export const CategoriesDesktop = ({ categories, helpers, phone }: DesktopCategor
         </a>
       </div>
       <CategoryTabs categories={store.current.children} />
-    </>
+    </div>
   )
 }

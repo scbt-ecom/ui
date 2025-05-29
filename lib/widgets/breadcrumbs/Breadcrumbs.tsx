@@ -1,6 +1,6 @@
 import { useMemo, useRef, useState } from 'react'
 import { Breadcrumb } from './Breadcrumb'
-import { type Breadcrumb as BreadcrumbType, useBreadcrumbs, type UseBreadcrumbsOptions } from './hooks'
+import { type Breadcrumb as BreadcrumbType, defaultBreadcrumbs, type UseBreadcrumbsOptions } from './hooks'
 import { useClickOutside } from '$/shared/hooks'
 import { Icon } from '$/shared/ui'
 import { cn } from '$/shared/utils'
@@ -24,6 +24,10 @@ type BreadcrumbsProps = UseBreadcrumbsOptions & {
    * дополнительные стили компонента
    */
   classes?: BreadcrumbsClasses
+  /**
+   * Массив хлебных крошек
+   */
+  breadcrumbs: BreadcrumbType[]
 }
 
 const renderBreadcrumbs = (
@@ -36,11 +40,12 @@ const renderBreadcrumbs = (
     const isLast = index === lastIndex
 
     return (
-      <div key={breadcrumb.id} className='flex items-center gap-x-2'>
+      <div key={breadcrumb.label} className='flex items-center gap-x-2'>
         <Breadcrumb
           breadcrumb={breadcrumb}
           className={cn(classes, {
-            'pointer-events-none text-color-primary-disabled': isLast
+            'pointer-events-none text-color-primary-disabled': isLast,
+            'text-color-blue-grey-600': breadcrumb.disabled
           })}
         />
         {index !== breadcrumbs.length - 1 && separator}
@@ -49,14 +54,12 @@ const renderBreadcrumbs = (
   })
 }
 
-export const Breadcrumbs = ({ separator, ellipsis, classes, ...props }: BreadcrumbsProps) => {
+export const Breadcrumbs = ({ separator, ellipsis, classes, breadcrumbs = defaultBreadcrumbs }: BreadcrumbsProps) => {
   const [hiddenCrumbsOpen, setHiddenCrumbsOpen] = useState<boolean>(false)
 
   const hiddenCrumbsRef = useRef<HTMLUListElement>(null)
 
   useClickOutside(hiddenCrumbsRef, () => setHiddenCrumbsOpen(false))
-
-  const breadcrumbs = useBreadcrumbs(props)
 
   // separated crumbs while ellipsis provided
   const { first, middle, last } = useMemo(() => {
@@ -108,7 +111,7 @@ export const Breadcrumbs = ({ separator, ellipsis, classes, ...props }: Breadcru
                       )}
                     >
                       {middle.map((breadcrumb) => (
-                        <li key={breadcrumb.id}>
+                        <li key={breadcrumb.label}>
                           <Breadcrumb
                             breadcrumb={breadcrumb}
                             className={cn(

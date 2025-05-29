@@ -1,8 +1,7 @@
 export type Breadcrumb = {
-  id: string
-  index: number
-  path: string
+  path?: string
   label: string
+  disabled?: boolean
 }
 
 type PathMatcher = (breadcrumb: Breadcrumb) => Partial<Breadcrumb>

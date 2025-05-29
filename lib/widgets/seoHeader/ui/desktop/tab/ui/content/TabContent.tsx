@@ -15,9 +15,9 @@ export const TabContent = ({ categories, ...props }: TabContentProps) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.2 }}
-      className='absolute bg-color-white'
+      className='absolute w-full bg-color-white'
     >
-      <div className='flex w-[1140px] gap-x-[56px] py-10'>
+      <div className='mx-auto flex w-full max-w-[1140px] gap-x-[56px] py-10'>
         {categories.map((category) => {
           const CategoryTitle = category.link ? 'a' : 'p'
 

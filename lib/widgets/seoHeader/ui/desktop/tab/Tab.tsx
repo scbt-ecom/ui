@@ -41,9 +41,7 @@ const InnerComponent = forwardRef<HTMLDivElement, TabProps>(({ category, active,
         <TabContent
           categories={category.children}
           style={{
-            top: triggerClientRect ? triggerClientRect.top + triggerClientRect.height : 0,
-            left: triggerClientRect ? triggerClientRect.left : 0,
-            width: window.innerWidth
+            top: triggerClientRect ? triggerClientRect.top + triggerClientRect.height : 0
           }}
         />
       )}

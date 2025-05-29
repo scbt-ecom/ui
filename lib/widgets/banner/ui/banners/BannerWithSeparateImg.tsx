@@ -45,7 +45,7 @@ export const BannerWithSeparateImg = ({
 
             <div
               className={cn(
-                'grid-buttons-apply absolute bottom-6 left-1/2 z-10 flex w-full -translate-x-1/2 flex-col justify-self-center px-4 desktop:static desktop:left-auto desktop:max-w-full desktop:translate-x-0 desktop:flex-row desktop:justify-normal desktop:px-0',
+                'grid-buttons-apply absolute bottom-6 left-1/2 flex w-full -translate-x-1/2 flex-col justify-self-center px-4 desktop:static desktop:left-auto desktop:max-w-full desktop:translate-x-0 desktop:flex-row desktop:justify-normal desktop:px-0',
                 { 'flex items-center gap-4': secondary?.enabled },
                 classes?.group
               )}
