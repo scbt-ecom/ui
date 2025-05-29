@@ -88,7 +88,7 @@ export const BannerWithSeparateImg = ({
           {advantages?.enabled && (
             <div
               className={cn(
-                'items-center justify-center rounded-md bg-color-blue-grey-100 p-4 pb-8 mobile:hidden desktop:absolute desktop:bottom-[-50px] desktop:right-1/2 desktop:flex desktop:translate-x-1/2 desktop:p-0',
+                'items-center justify-center rounded-md p-4 pb-8 mobile:hidden desktop:absolute desktop:bottom-[-50px] desktop:right-1/2 desktop:flex desktop:translate-x-1/2 desktop:p-0',
                 classes?.advantageContainer
               )}
             >
@@ -100,7 +100,7 @@ export const BannerWithSeparateImg = ({
       {advantages?.enabled && (
         <div
           className={cn(
-            'flex items-center justify-center rounded-md bg-color-blue-grey-100 p-4 pb-8 desktop:absolute desktop:bottom-[-50px] desktop:right-1/2 desktop:hidden desktop:translate-x-1/2 desktop:p-0',
+            'flex items-center justify-center rounded-md p-4 pb-8 desktop:absolute desktop:bottom-[-50px] desktop:right-1/2 desktop:hidden desktop:translate-x-1/2 desktop:p-0',
             classes?.advantageContainer
           )}
         >
