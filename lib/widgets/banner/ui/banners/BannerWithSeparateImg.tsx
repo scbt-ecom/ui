@@ -76,11 +76,11 @@ export const BannerWithSeparateImg = ({
               )}
             >
               {isMobile
-                ? image({ src: imgMobile.src, alt: imgAlt, className: cn('h-full object-cover') })
+                ? image({ src: imgMobile.src, alt: imgAlt, className: cn('h-full object-contain') })
                 : image({
                     src: imgDesktop.src,
                     alt: imgAlt,
-                    className: cn('h-full object-cover')
+                    className: cn('h-full object-contain')
                   })}
             </div>
           </div>
