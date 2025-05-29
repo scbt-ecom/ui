@@ -20,6 +20,21 @@ export const useButtonHandler = (handlerOptions: ButtonHandlerOptions) => {
         scrollToElement({ widgetId })
         break
       }
+
+      case 'dialog': {
+        if (!isClient) return
+
+        const { dialogId } = handlerOptions ?? {}
+
+        const dialog = document.getElementById(dialogId) as HTMLDialogElement | null
+
+        if (!dialog) {
+          console.error('Такого элемента в DOM не существует', dialogId)
+          break
+        }
+
+        dialog.show()
+      }
     }
   }, [handlerOptions])
 
