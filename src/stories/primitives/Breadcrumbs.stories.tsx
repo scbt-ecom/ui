@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { Breadcrumbs } from '$/shared/ui'
-import type { LinksList } from '$/shared/ui/breadcrumbs/Breadcrumbs'
+import { type Breadcrumb, Breadcrumbs } from '$/widgets'
 
 const meta = {
   title: 'Navigation/Breadcrumbs',
@@ -16,7 +15,7 @@ export default meta
 
 type Story = StoryObj<typeof meta>
 
-const linksList: LinksList = [
+const breadcrumbs: Breadcrumb[] = [
   { label: 'Главная', path: 'https://sovcombank.ru/' },
   { label: 'Займы', path: 'https://sovcombank.ru/apply/credit/zajm-online/' },
   { label: 'Главная' }
@@ -24,6 +23,6 @@ const linksList: LinksList = [
 
 export const Base: Story = {
   args: {
-    linksList
+    breadcrumbs
   }
 }
