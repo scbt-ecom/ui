@@ -111,7 +111,7 @@ export const InputBase = forwardRef<HTMLInputElement, InputBaseProps>(
         <label
           htmlFor={id}
           className={cn(
-            'desk-body-regular-l pointer-events-none absolute left-4 w-[80%] truncate',
+            'desk-body-regular-l pointer-events-none absolute left-4 w-[80%] truncate text-start',
             'top-1/2 -translate-y-1/2 text-color-blue-grey-600 duration-100',
             {
               'desk-body-regular-s top-[9px] translate-y-0 text-color-tetriary': Boolean(value),
