@@ -18,8 +18,7 @@ export const SetCoreCommands = ({ editor }: ISetCoreCommandsProps) => {
             content: 'w-max border border-warm-grey-200 desk-body-regular-s py-1 px-3'
           }}
           triggerElement={
-            <button
-              type='button'
+            <span
               onClick={onClick}
               className={cn(
                 'flex size-7 cursor-pointer items-center justify-center rounded-sm text-color-secondary outline-none transition-colors hover:bg-color-primary-hover hover:text-color-white focus:bg-color-primary-focus focus:text-color-white',
@@ -27,7 +26,7 @@ export const SetCoreCommands = ({ editor }: ISetCoreCommandsProps) => {
               )}
             >
               {icon}
-            </button>
+            </span>
           }
         >
           {label}

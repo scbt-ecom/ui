@@ -129,7 +129,7 @@ export const DynamicForm = <AType extends ApprovementType, CType extends ChipsTy
       <section id={widgetIds.form} data-test-id={widgetIds.form} className={cn('w-full', classes?.root)}>
         <ResponsiveContainer
           className={cn(
-            'border-warm-grey-200 px-4 desktop:gap-8 desktop:p-14',
+            '!max-w-[636px] border-warm-grey-200 px-4 desktop:gap-8 desktop:p-14',
             'relative mx-auto flex flex-col gap-6 rounded-sm py-8 desktop:border'
           )}
         >

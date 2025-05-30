@@ -46,7 +46,9 @@ export const Hint = ({
     <TooltipPrimitive.Provider>
       <TooltipPrimitive.Root open={open} onOpenChange={setOpen} defaultOpen={defaultOpen} delayDuration={delayDuration}>
         <div className={cn(classes?.wrapper)} onClick={() => setOpen(isMobile)}>
-          <TooltipPrimitive.Trigger className={cn('cursor-pointer', classes?.trigger)}>{triggerElement}</TooltipPrimitive.Trigger>
+          <TooltipPrimitive.Trigger type='button' className={cn('cursor-pointer', classes?.trigger)}>
+            {triggerElement}
+          </TooltipPrimitive.Trigger>
           <TooltipPrimitive.Content
             onPointerDownOutside={(event) => event.preventDefault()}
             className={cn(
