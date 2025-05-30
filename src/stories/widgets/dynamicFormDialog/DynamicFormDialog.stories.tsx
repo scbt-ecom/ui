@@ -36,9 +36,19 @@ const meta = {
     ],
     dialogId: 'dialog_id',
     submitProps: {
-      children: 'Далее',
       submitCallback: () => {}
     },
+    buttonGroup: [
+      {
+        children: 'Получить консультацию',
+        type: 'button',
+        intent: 'secondary'
+      },
+      {
+        children: 'Отправить форму',
+        type: 'submit'
+      }
+    ],
     title: 'Мы поможем вам открыть вклад всего за 5 минут'
   },
   render: (props) => {

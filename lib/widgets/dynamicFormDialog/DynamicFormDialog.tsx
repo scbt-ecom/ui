@@ -6,15 +6,14 @@ import { HTMLRenderer } from '../htmlParser'
 import type { Approvement, ApprovementType } from './model'
 import { type FieldValidation, getDynamicSchema } from '@/shared/utils'
 import { useControlledForm } from '$/shared/hooks'
-import { Button, type CheckedState, Dialog, Uncontrolled } from '$/shared/ui'
+import { Button, type ButtonProps, type CheckedState, Dialog, Uncontrolled } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 import { ZodUtils } from '$/shared/validation'
 import { type FieldElement, FieldMapper } from '$/widgets/fieldMapper'
 import { QueryClientProvider } from '$/widgets/queryClientProvider'
 
-type SubmitProps = Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'children'> & {
+type SubmitProps = {
   submitCallback: <T extends FieldValues>(values: T) => void
-  children: string
 }
 
 type ApprovementClasses = {
@@ -38,6 +37,7 @@ export type DynamicFormDialogProps<AType extends ApprovementType> = React.Dialog
   dialogId: string
   submitProps?: SubmitProps
   classes?: DynamicFormDialogClasses
+  buttonGroup: ButtonProps[]
 }
 
 const withApprovement = <Type extends ApprovementType>(
@@ -73,9 +73,10 @@ export const DynamicFormDialog = <AType extends ApprovementType>({
   submitProps,
   dialogId,
   classes,
+  buttonGroup,
   ...props
 }: DynamicFormDialogProps<AType>) => {
-  const { submitCallback, children, ...buttonProps } = submitProps ?? {}
+  const { submitCallback } = submitProps ?? {}
 
   const [checked, onCheckedChange] = useState<CheckedState>(false)
 
@@ -98,9 +99,27 @@ export const DynamicFormDialog = <AType extends ApprovementType>({
         <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-6'>
           <FieldMapper control={control as unknown as Control} fields={fields} />
           {withApprovement(approvement, checked, onCheckedChange, classes?.approvement)}
-          <Button {...buttonProps} type='submit' disabled={approvement.type === 'checkbox' ? !checked : false} className='w-full'>
-            {children ?? 'Отправить форму'}
-          </Button>
+          {buttonGroup?.map((button, index) => {
+            const disabled = button.type === 'submit' && approvement.type === 'checkbox' ? !checked : false
+
+            return (
+              <Button
+                {...button}
+                key={index}
+                disabled={disabled}
+                className={cn(
+                  'w-full whitespace-nowrap',
+                  {
+                    'w-full': Boolean(approvement)
+                  },
+                  classes?.submit
+                )}
+              />
+            )
+          })}
+          {/*<Button {...buttonProps} type='submit' disabled={approvement.type === 'checkbox' ? !checked : false} className='w-full'>*/}
+          {/*  {children ?? 'Отправить форму'}*/}
+          {/*</Button>*/}
         </form>
       </Dialog>
     </QueryClientProvider>
