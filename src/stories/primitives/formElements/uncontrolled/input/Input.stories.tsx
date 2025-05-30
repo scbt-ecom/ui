@@ -14,7 +14,7 @@ const meta = {
   },
   decorators: [
     (Story) => (
-      <div className='mx-auto w-[600px]'>
+      <div className='mx-auto max-w-[600px]'>
         <Story />
       </div>
     )
@@ -59,6 +59,13 @@ export const WithValue: Story = {
   }
 }
 
+export const WithLongLabel: Story = {
+  args: {
+    ...Base.args,
+    label: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit'
+  }
+}
+
 export const Controlled: Story = {
   args: Base.args,
   render: (props) => {
@@ -91,6 +98,13 @@ export const WithAttachmentIcon: Story = {
       icon: <Icon name='general/calendar' className='text-icon-blue-grey-600' />,
       onClickIcon: fn()
     }
+  }
+}
+
+export const WithAttachmentIconAndLongLabel: Story = {
+  args: {
+    ...WithAttachmentIcon.args,
+    label: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit'
   }
 }
 
