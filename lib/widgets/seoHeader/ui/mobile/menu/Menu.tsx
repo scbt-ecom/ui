@@ -38,7 +38,7 @@ export const Menu = ({ categories, helpers, phone, ...props }: MenuProps) => {
     <motion.div
       {...props}
       className={cn(
-        'absolute w-full max-w-[calc(636px-32px)]',
+        'absolute z-20 w-full max-w-[calc(636px-32px)]',
         'absolute left-1/2 top-full bg-color-white p-4',
         '-translate-x-1/2 overflow-x-hidden',
         'flex flex-col items-center justify-center gap-y-4'
