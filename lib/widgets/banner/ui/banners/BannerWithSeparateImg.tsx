@@ -1,4 +1,3 @@
-import { useDevice } from '$/shared/hooks'
 import { ResponsiveContainer } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 import { Advantages, type BannerProps, ButtonWithHandlers, widgetIds } from '$/widgets'
@@ -15,7 +14,6 @@ export const BannerWithSeparateImg = ({
   color,
   renderImage
 }: Omit<BannerProps, 'bannerVariant'>) => {
-  const { isMobile } = useDevice()
   const { primary, secondary } = buttonsConfig || {}
 
   const image = (args: React.ComponentProps<'img'>) => {
@@ -69,15 +67,25 @@ export const BannerWithSeparateImg = ({
           </div>
 
           <div
-            className={cn('relative flex h-[356px] justify-center desktop:h-[456px] desktop:w-[550px]', classes?.imageContainer)}
+            className={cn(
+              'relative flex h-[356px] justify-center desktop:hidden desktop:h-[456px] desktop:w-[550px]',
+              classes?.imageContainer
+            )}
           >
-            {isMobile
-              ? image({ src: imgMobile.src, alt: imgAlt, className: cn('h-full object-contain') })
-              : image({
-                  src: imgDesktop.src,
-                  alt: imgAlt,
-                  className: cn('h-full object-contain')
-                })}
+            {image({ src: imgMobile.src, alt: imgAlt, className: cn('h-full object-contain') })}
+          </div>
+
+          <div
+            className={cn(
+              'relative flex h-[356px] justify-center mobile:hidden desktop:h-[456px] desktop:w-[550px]',
+              classes?.imageContainer
+            )}
+          >
+            {image({
+              src: imgDesktop.src,
+              alt: imgAlt,
+              className: cn('h-full object-contain')
+            })}
           </div>
         </div>
 
