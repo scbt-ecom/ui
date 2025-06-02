@@ -116,7 +116,7 @@ const getPhoneOptional = (props?: Omit<PhoneValidationOptions<false>, 'required'
     schema = schema.transform((value) => value.replace(mask, '')) as unknown as typeof schema
   }
 
-  return schema.transform((value) => (!value ? undefined : value))
+  return schema.optional().transform((value) => (!value ? undefined : value))
 }
 type PhoneOptionalSchema = ReturnType<typeof getPhoneOptional>
 
