@@ -28,7 +28,7 @@ export type PhoneValidationOptions<Required extends boolean> = {
   }
   /**
    * указываем валидные коды оператор
-   * @default ['3', '4', '5', '6', '7', '9']
+   * @default ['3', '4', '5', '6', '9']
    * @param string[]
    */
   validOperatorCodes?: string[]
@@ -43,7 +43,7 @@ const getPhoneRequired = (props?: Omit<PhoneValidationOptions<true>, 'required'>
     maskSymbols = /[()+_ -]/g,
     message,
     defaultValue,
-    validOperatorCodes = ['3', '4', '5', '6', '7', '9']
+    validOperatorCodes = ['3', '4', '5', '6', '9']
   } = props || {}
 
   const mask = TypeGuards.isString(maskSymbols) ? new RegExp(maskSymbols) : maskSymbols
@@ -84,12 +84,7 @@ type PhoneRequiredSchema = ReturnType<typeof getPhoneRequired>
  * Схема валидации опционального поля номера телефона
  */
 const getPhoneOptional = (props?: Omit<PhoneValidationOptions<false>, 'required'>) => {
-  const {
-    ignoreMask = true,
-    maskSymbols = /[()+_ -]/g,
-    message,
-    validOperatorCodes = ['3', '4', '5', '6', '7', '9']
-  } = props || {}
+  const { ignoreMask = true, maskSymbols = /[()+_ -]/g, message, validOperatorCodes = ['3', '4', '5', '6', '9'] } = props || {}
 
   const mask = TypeGuards.isString(maskSymbols) ? new RegExp(maskSymbols) : maskSymbols
 
