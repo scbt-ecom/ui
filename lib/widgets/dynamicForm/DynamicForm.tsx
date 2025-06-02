@@ -142,11 +142,14 @@ export const DynamicForm = <AType extends ApprovementType, CType extends ChipsTy
                 classes?.chips?.root
               )}
             >
-              {chips.image && <Icon name={chips.image} className={cn('size-4', classes?.chips?.icon)} />}
+              {chips.image && <Icon name={chips.image} className={cn('size-6', classes?.chips?.icon)} />}
               {chips.content}
             </div>
           )}
-          <Heading as='h3' className={classes?.title}>
+          <Heading as='h2' className={cn('desktop:hidden', classes?.title)}>
+            {title}
+          </Heading>
+          <Heading as='h3' className={cn('mobile:hidden', classes?.title)}>
             {title}
           </Heading>
           <form
