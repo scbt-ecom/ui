@@ -40,7 +40,7 @@ const renderBreadcrumbs = (
     const isLast = index === lastIndex
 
     return (
-      <div key={breadcrumb.label} className='flex items-center gap-x-2'>
+      <div key={breadcrumb.label} className='flex items-center gap-x-1'>
         <Breadcrumb
           breadcrumb={breadcrumb}
           className={cn(classes, {

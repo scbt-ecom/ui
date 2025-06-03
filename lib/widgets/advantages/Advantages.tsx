@@ -27,7 +27,7 @@ export const Advantages = ({ details, classes }: AdvantagesProps) => {
     <div
       id='advantages'
       className={cn(
-        'm-auto flex w-full min-w-[328px] max-w-[636px] flex-col gap-8 rounded-md bg-color-white p-6 shadow-sm desktop:w-full desktop:flex-row desktop:items-start desktop:gap-0 desktop:p-0 desktop:py-6',
+        'z-10 m-auto flex w-full min-w-[328px] max-w-[636px] flex-col gap-8 rounded-md bg-color-white p-6 shadow-sm desktop:w-full desktop:flex-row desktop:items-start desktop:gap-0 desktop:p-0 desktop:py-6',
         { 'desktop:max-w-[860px]': variant === 'threeCards' },
         { 'desktop:max-w-[1140px]': variant === 'fourCards' },
         classes?.root

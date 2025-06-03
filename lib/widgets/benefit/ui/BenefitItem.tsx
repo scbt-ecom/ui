@@ -2,10 +2,9 @@ import { type ReactElement } from 'react'
 import { cva } from 'class-variance-authority'
 import { type BackgroundBenefitColorsValues } from '../model/constants'
 import { useDevice } from '$/shared/hooks'
-import { type ButtonProps } from '$/shared/ui'
 import { cn, TypeGuards } from '$/shared/utils'
 import { type Img } from '$/widgets/benefit/model/types'
-import { type ButtonHandlerOptions, ButtonWithHandlers } from '$/widgets/buttonWithHandlers'
+import { ButtonWithHandlers, type ButtonWithHandlersProps } from '$/widgets/buttonWithHandlers'
 
 export type BenefitItemClasses = {
   root?: string
@@ -38,7 +37,7 @@ export interface BenefitItemProps {
   mobileImg?: boolean
   classes?: BenefitItemClasses
   withButton?: boolean
-  button?: ButtonProps & { handlerOptions: ButtonHandlerOptions }
+  button?: ButtonWithHandlersProps
   variant?: 'twoCards' | 'threeCards' | 'fourCards'
   color?: BackgroundBenefitColorsValues
 }

@@ -1,8 +1,8 @@
-import type { ButtonHandlerOptions } from '../../buttonWithHandlers'
-import { type BrandLogoVariant, type ButtonProps, type PhoneViewProps } from '$/shared/ui'
+import type { ButtonWithHandlersProps } from '../../buttonWithHandlers'
+import { type BrandLogoVariant, type PhoneViewProps } from '$/shared/ui'
 
 type HeaderClasses = {
-  header?: string
+  root?: string
   container?: string
   wrapper?: string
   logo?: string
@@ -28,7 +28,7 @@ export interface HeaderWithPhone {
 
 export interface HeaderWithButton {
   variant: 'withButton'
-  details: ButtonProps & { handlerOptions: ButtonHandlerOptions }
+  details: ButtonWithHandlersProps
 }
 
 export type HeaderVariant<Type extends HeaderVariantType> = Type extends 'withButton'

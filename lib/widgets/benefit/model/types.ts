@@ -1,6 +1,5 @@
 import { type ReactElement } from 'react'
-import type { ButtonProps } from '../../../shared/ui'
-import type { ButtonHandlerOptions } from '../../buttonWithHandlers'
+import type { ButtonWithHandlersProps } from '../../buttonWithHandlers'
 import { type allowedBannersBackgroundColors } from '$/shared/constants'
 import { type backgroundBenefitColors, type BackgroundBenefitColorsValues } from '$/widgets/benefit/model/constants'
 
@@ -14,7 +13,7 @@ export type Img = {
 }
 
 export type Details = {
-  button?: ButtonProps & { handlerOptions: ButtonHandlerOptions }
+  button?: ButtonWithHandlersProps
   img?: ReactElement | Img
   title: string
   subtitle: string

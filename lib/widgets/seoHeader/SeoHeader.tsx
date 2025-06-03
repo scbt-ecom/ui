@@ -1,24 +1,28 @@
 import { ResponsiveContainer } from '../../shared/ui'
-import { Breadcrumbs } from '../breadcrumbs'
-import { type Breadcrumb } from '../breadcrumbs/hooks'
+import { type Breadcrumb, Breadcrumbs } from '../breadcrumbs'
 import { widgetIds } from '../model'
 import type { Category, SeoHeaderHelpers } from './model'
 import { CategoriesDesktop, CategoriesMobile } from './ui'
 import { useDevice } from '$/shared/hooks'
-import { capitalize } from '$/shared/utils'
+import { capitalize, cn } from '$/shared/utils'
+
+export type SeoHeaderClasses = {
+  root?: string
+}
 
 export type SeoHeaderProps = {
   categories: Category[]
   helpers: SeoHeaderHelpers[]
   breadcrumbs: Breadcrumb[]
   phone: string
+  classes?: SeoHeaderClasses
 }
 
-export const SeoHeader = ({ categories, helpers, phone, breadcrumbs }: SeoHeaderProps) => {
+export const SeoHeader = ({ categories, helpers, phone, breadcrumbs, classes }: SeoHeaderProps) => {
   const { isMobile } = useDevice()
 
   return (
-    <div id={widgetIds.seoHeader} data-test-id={widgetIds.seoHeader} className='w-full bg-color-white'>
+    <div id={widgetIds.seoHeader} data-test-id={widgetIds.seoHeader} className={cn('w-full bg-color-white', classes?.root)}>
       <ResponsiveContainer className='mx-auto w-full'>
         <CategoriesMobile categories={categories.map((category) => category.children).flat()} helpers={helpers} phone={phone} />
         <CategoriesDesktop categories={categories} helpers={helpers} phone={phone} />
@@ -32,5 +36,6 @@ export const SeoHeader = ({ categories, helpers, phone, breadcrumbs }: SeoHeader
   )
 }
 
+//TODO: Добавить в исключение импорт для папки виджетов
 // eslint-disable-next-line import/no-default-export
 export default SeoHeader

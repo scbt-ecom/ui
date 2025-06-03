@@ -11,7 +11,7 @@ export const Header = <Type extends HeaderVariantType>(props: HeaderProps<Type>)
     <header
       id={widgetIds.header}
       data-test-id={widgetIds.header}
-      className={cn('flex h-[64px] items-center justify-center bg-color-white desktop:h-[72px]', classes?.header)}
+      className={cn('flex h-[64px] items-center justify-center bg-color-white desktop:h-[72px]', classes?.root)}
     >
       <ResponsiveContainer className={cn(classes?.container)}>
         <div className={cn('flex items-center justify-between gap-5', classes?.wrapper)}>
