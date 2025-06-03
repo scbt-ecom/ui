@@ -1,22 +1,36 @@
-import { type AllowedIcons, Icon, Popover } from '$/shared/ui'
+import { type AllowedIcons, Icon, Popover, type PopoverProps } from '$/shared/ui'
+import { cn } from '$/shared/utils'
+
+export type AssistHintClasses = {
+  wrapper?: string
+  block?: string
+  icon?: string
+  description?: string
+}
 
 export interface AssistHintProps {
   iconName: AllowedIcons
   text: string
   hint?: string
+  classes?: AssistHintClasses
+  popoverProps?: PopoverProps
 }
 
-export const AssistHint = ({ iconName, text, hint }: AssistHintProps) => {
+export const AssistHint = ({ iconName, text, hint, classes, popoverProps }: AssistHintProps) => {
   return (
-    <div className='mb-6 flex items-center gap-2'>
-      <div className='flex items-center gap-1'>
-        <Icon name={iconName} className='size-6 text-icon-blue-grey-800' />
-        <p className='desk-body-regular-l text-color-tetriary'>{text}</p>
+    <div className={cn('mb-6 flex items-center gap-2', classes?.wrapper)}>
+      <div className={cn('flex items-center gap-1', classes?.block)}>
+        <Icon name={iconName} className={cn('size-6 text-icon-blue-grey-800', classes?.icon)} />
+        <p className={cn('desk-body-regular-l text-color-tetriary', classes?.description)}>{text}</p>
       </div>
 
       {hint && (
-        <Popover withCloseBtn={false} triggerElement={<Icon name='info/helpCircle' className='size-5 text-icon-blue-grey-600' />}>
-          <p>{hint}</p>
+        <Popover
+          withCloseBtn={false}
+          triggerElement={<Icon name='info/helpCircle' className='size-5 text-icon-blue-grey-600' />}
+          {...popoverProps}
+        >
+          {hint}
         </Popover>
       )}
     </div>

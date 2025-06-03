@@ -1,5 +1,4 @@
-import type { ButtonHandlerOptions } from '../../buttonWithHandlers'
-import { type ButtonProps } from '$/shared/ui'
+import type { ButtonWithHandlersProps } from '../../buttonWithHandlers'
 
 export interface BannerClasses {
   root?: string
@@ -19,11 +18,11 @@ export interface BannerClasses {
 
 export type ButtonsConfig = {
   primary: {
-    buttonContent: ButtonProps & { handlerOptions: ButtonHandlerOptions }
+    buttonContent: ButtonWithHandlersProps
     enabled: boolean
   }
   secondary?: {
-    buttonContent: ButtonProps & { handlerOptions: ButtonHandlerOptions }
+    buttonContent: ButtonWithHandlersProps
     enabled: boolean
   }
 }

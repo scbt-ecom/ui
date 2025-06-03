@@ -4,6 +4,7 @@ import {
   AdditionalSlider,
   type AdditionalSliderGroupConfig,
   CalculatorModal,
+  type CalculatorModalClasses,
   type CalculatorModalProps,
   type CheckboxGroupProps,
   type RadioGroupProps,
@@ -12,8 +13,18 @@ import {
   type SwitchGroupProps
 } from './ui'
 import { FieldsGroup } from './ui'
+import { cn } from '$/shared/utils'
+
+export type CalculatorFieldsClasses = {
+  rootFieldsWrapper?: string
+  selectFieldsWrapper?: string
+  checkboxFieldsWrapper?: string
+  switchFieldsWrapper?: string
+  modalClasses?: CalculatorModalClasses
+}
 
 export interface CalculatorFieldsProps<T extends FieldValues> {
+  classes?: CalculatorFieldsClasses
   modalConfig?: CalculatorModalProps
   fieldsGroup: {
     selectGroupConfig?: SelectGroupProps<T>
@@ -27,31 +38,33 @@ export interface CalculatorFieldsProps<T extends FieldValues> {
   }
 }
 
-export const CalculatorFields = <T extends FieldValues>({ modalConfig, fieldsGroup }: CalculatorFieldsProps<T>) => {
+export const CalculatorFields = <T extends FieldValues>({ modalConfig, fieldsGroup, classes }: CalculatorFieldsProps<T>) => {
   const { sliderSumExist, sliderSumCorrectType } = useAdditionalSlider({
     slidersGroupConfig: fieldsGroup.slidersGroupConfig,
     additionalSliderGroupConfig: fieldsGroup.additionalSliderGroupConfig
   })
 
   return (
-    <div className='flex flex-1 flex-col gap-8'>
-      {modalConfig?.triggerText && modalConfig?.contentVariant && <CalculatorModal {...modalConfig} />}
+    <div className={cn('flex flex-1 flex-col gap-8', classes?.rootFieldsWrapper)}>
+      {modalConfig?.triggerText && modalConfig?.contentVariant && (
+        <CalculatorModal classes={classes?.modalClasses} {...modalConfig} />
+      )}
       {fieldsGroup?.selectGroupConfig && (
-        <div className='flex flex-col gap-4'>
+        <div className={cn('flex flex-col gap-4', classes?.selectFieldsWrapper)}>
           <FieldsGroup {...fieldsGroup?.selectGroupConfig} />
         </div>
       )}
       {fieldsGroup?.slidersGroupConfig && <FieldsGroup {...fieldsGroup?.slidersGroupConfig} />}
       {fieldsGroup?.radioGroupTabConfig && <FieldsGroup {...fieldsGroup?.radioGroupTabConfig} />}
       {fieldsGroup?.checkboxGroupConfig && (
-        <div className='flex flex-col gap-4'>
+        <div className={cn('flex flex-col gap-4', classes?.checkboxFieldsWrapper)}>
           <FieldsGroup {...fieldsGroup?.checkboxGroupConfig} />
         </div>
       )}
       {fieldsGroup?.radioGroupConfig && <FieldsGroup {...fieldsGroup?.radioGroupConfig} />}
       {fieldsGroup?.radioGroupCardConfig && <FieldsGroup {...fieldsGroup?.radioGroupCardConfig} />}
       {fieldsGroup?.switchGroupConfig && (
-        <div className='flex flex-col gap-4'>
+        <div className={cn('flex flex-col gap-4', classes?.switchFieldsWrapper)}>
           <FieldsGroup {...fieldsGroup?.switchGroupConfig} />
         </div>
       )}
