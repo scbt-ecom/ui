@@ -91,6 +91,8 @@ const getPhoneOptional = (props?: Omit<PhoneValidationOptions<false>, 'required'
   let schema = z.string().superRefine((value, context) => {
     const cleanValue = value.replace(mask, '')
 
+    if (!cleanValue.length) return
+
     const operatorCode = cleanValue.charAt(1)
 
     if (!validOperatorCodes.includes(operatorCode)) {
@@ -116,14 +118,14 @@ const getPhoneOptional = (props?: Omit<PhoneValidationOptions<false>, 'required'
     schema = schema.transform((value) => value.replace(mask, '')) as unknown as typeof schema
   }
 
-  return schema.optional().transform((value) => (!value ? undefined : value))
+  return schema.optional().transform((value) => (!value || value?.replace(mask, '').length !== 0 ? undefined : value))
 }
 type PhoneOptionalSchema = ReturnType<typeof getPhoneOptional>
 
 /**
  * Схема валидации опционального поля номера телефона
  * @param {PhoneValidationOptions} props настройки схемы
- @typeParam `required` - `boolean`
+ * @typeParam `required` - `boolean`
  * @typeParam `ignoreSeparators` - `boolean | undefined` `default: false`
  * @typeParam `maskSymbols` - `RegExp | undefined` `default: /[()+_ -]/g`
  * @typeParam `message` - `{ [min | invalidOperator]: string }`
