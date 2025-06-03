@@ -1,15 +1,26 @@
 import { useMemo, useState } from 'react'
+import { cn } from '../../shared/utils'
 import { widgetIds } from '../model'
-import { CalculatorView, type CalculatorViewProps } from './CalculatorView'
-import { CalculatorTabs, type CalculatorTabValue } from './ui'
+import { CalculatorView, type CalculatorViewClasses, type CalculatorViewProps } from './CalculatorView'
+import { CalculatorTabs, type CalculatorTabsClasses, type CalculatorTabValue } from './ui'
 import { Heading, ResponsiveContainer } from '$/shared/ui'
+
+export type CalculatorClasses = {
+  root?: string
+  container?: string
+  headline?: string
+  wrapper?: string
+  calculatorView?: CalculatorViewClasses
+  calculatorTabs?: CalculatorTabsClasses
+}
 
 export interface CalculatorProps {
   headline: string
   calculators: CalculatorViewProps[]
+  classes?: CalculatorClasses
 }
 
-export const Calculator = ({ calculators, headline }: CalculatorProps) => {
+export const Calculator = ({ calculators, headline, classes }: CalculatorProps) => {
   const shouldShowTabs = calculators.length > 1
 
   const [activeCalculator, setActiveCalculator] = useState<CalculatorTabValue>(shouldShowTabs ? calculators[0]?.name : '')
@@ -23,10 +34,10 @@ export const Calculator = ({ calculators, headline }: CalculatorProps) => {
   const currentCalculator = calculators[currentCalculatorIndex]
 
   return (
-    <section id={widgetIds.calculator}>
-      <ResponsiveContainer>
-        <div className='rounded-md bg-color-white px-10 py-12 shadow-md'>
-          <Heading className='mb-12' as='h2'>
+    <section id={widgetIds.calculator} data-test-id={widgetIds.calculator} className={cn(classes?.root)}>
+      <ResponsiveContainer className={cn(classes?.container)}>
+        <div className={cn(classes?.wrapper)}>
+          <Heading className={cn('mb-12', classes?.headline)} as='h2'>
             {headline}
           </Heading>
           {shouldShowTabs && (
@@ -34,6 +45,7 @@ export const Calculator = ({ calculators, headline }: CalculatorProps) => {
               calculatorTabs={calculatorsTabs}
               activeCalculator={activeCalculator}
               setActiveCalculator={setActiveCalculator}
+              classes={classes?.calculatorTabs}
             />
           )}
 
@@ -42,6 +54,7 @@ export const Calculator = ({ calculators, headline }: CalculatorProps) => {
             label={currentCalculator.label}
             calculatorInfoConfig={currentCalculator.calculatorInfoConfig}
             calculatorFieldsConfig={currentCalculator.calculatorFieldsConfig}
+            classes={classes?.calculatorView}
           />
         </div>
       </ResponsiveContainer>

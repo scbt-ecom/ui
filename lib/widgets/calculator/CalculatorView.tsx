@@ -14,8 +14,8 @@ import { useControlledForm } from '$/shared/hooks'
 import { cn, localStorageActions } from '$/shared/utils'
 import { ZodUtils } from '$/shared/validation'
 
-type CalculatorViewClasses = {
-  root?: string
+export type CalculatorViewClasses = {
+  wrapper?: string
   calculatorFields?: CalculatorFieldsClasses
   calculatorInfo?: CalculatorInfoClasses
 }
@@ -53,7 +53,7 @@ export const CalculatorView = <T extends FieldValues>({
 
   return (
     <FormProvider {...formMethods}>
-      <div className={cn('flex items-start gap-16', classes?.root)}>
+      <div className={cn('flex items-start gap-16', classes?.wrapper)}>
         <CalculatorFields {...calculatorFieldsConfig} classes={classes?.calculatorFields} />
         <CalculatorInfo {...mergedCalcInfoConfig} classes={classes?.calculatorInfo} />
       </div>
