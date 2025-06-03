@@ -61,7 +61,6 @@
     "cypress:open": "cypress open --component --browser chrome",
     "cypress-ci": "cypress run --component --browser chrome",
     "pre-commit": "npm run lint",
-    "prepare": "lefthook install",
     "chromatic": "npx chromatic --project-token=chpt_9468dafcf1bf3e3 --only-changed --files='src/stories/**/*.stories.@(tsx)'",
     "pre-deploy": "npm run lint ",
     "ts-check": "pnpm exec tsc"
