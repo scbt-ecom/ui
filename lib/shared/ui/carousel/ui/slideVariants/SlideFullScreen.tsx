@@ -16,11 +16,11 @@ export interface SlideFullScreenProps {
   slideIndex: number
   title?: string
   description?: string
-  imgProps?: ImageProps
+  image?: ImageProps
   slideClasses?: SlideFullScreenClasses
 }
 
-export const SlideFullScreen = ({ slideIndex, title, imgProps, description, slideClasses }: SlideFullScreenProps) => {
+export const SlideFullScreen = ({ slideIndex, title, image, description, slideClasses }: SlideFullScreenProps) => {
   return (
     <div className={cn('flex h-full w-full flex-col gap-6', slideClasses?.root)}>
       <div className={cn('flex items-center gap-4', slideClasses?.wrapper)}>
@@ -44,12 +44,8 @@ export const SlideFullScreen = ({ slideIndex, title, imgProps, description, slid
           )}
         </div>
       </div>
-      {imgProps && imgProps?.src && (
-        <img
-          className={cn('w-full object-contain mobile:h-[320px]', slideClasses?.image)}
-          src={imgProps?.src}
-          alt={imgProps?.alt}
-        />
+      {image && image?.src && (
+        <img className={cn('w-full object-contain mobile:h-[320px]', slideClasses?.image)} src={image?.src} alt={image?.alt} />
       )}
     </div>
   )

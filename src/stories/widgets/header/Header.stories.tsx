@@ -58,12 +58,19 @@ export const WithButtonHandlerScroll: Story = {
           Контент
         </div>
         <Stepper
-          headline='Как получить кредит'
-          variant='withTitleAndDescription'
-          details={[
-            { title: 'Заполните онлайн-заявку', description: 'Это займет несколько минут' },
-            { title: 'Дождитесь одобрения', description: 'Рассмотрим заявку за 5 минут' },
-            { title: 'Заберите деньги', description: 'Или закажите бесплатную доставку' }
+          steppers={[
+            {
+              headline: 'Как получить кредит',
+              stepperVariant: 'withTitleAndDescription',
+              details: [
+                { title: 'Заполните онлайн-заявку', description: 'Это займет несколько минут' },
+                { title: 'Дождитесь одобрения', description: 'Рассмотрим заявку за 5 минут' },
+                { title: 'Заберите деньги', description: 'Или закажите бесплатную доставку' }
+              ],
+              carousel: {
+                enabled: false
+              }
+            }
           ]}
         />
         <div className='desk-title-bold-l flex h-screen items-center justify-center bg-color-blue-grey-500 text-center'>

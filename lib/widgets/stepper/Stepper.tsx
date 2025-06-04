@@ -1,7 +1,9 @@
-import { type HTMLAttributes } from 'react'
+import { type HTMLAttributes, useMemo, useState } from 'react'
 import { widgetIds } from '../model'
-import type { SingleStepItem, StepperVariant } from './model/types'
+import { type SingleStepper } from './model/types'
+import { StepperCarousel } from './ui'
 import { SingleStep, type SingleStepClasses } from './ui/SingleStep'
+import { StepperTabs, type StepperTabsClasses, type StepperTabValue } from './ui/StepperTabs'
 import { Heading, ResponsiveContainer } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
@@ -12,32 +14,60 @@ export type StepperClasses = {
   headline?: string
   stepsWrapper?: string
   step?: SingleStepClasses
+  stepperTabs?: StepperTabsClasses
 }
 
-export interface StepperProps extends HTMLAttributes<HTMLDivElement> {
-  headline: string
-  variant: StepperVariant
-  details: SingleStepItem[]
+export interface StepperProps<Enabled extends boolean> extends HTMLAttributes<HTMLDivElement> {
+  steppers: SingleStepper<Enabled>[]
   classes?: StepperClasses
 }
 
-export const Stepper = ({ headline, details, variant, classes }: StepperProps) => {
+export const Stepper = <Enabled extends boolean>({ steppers, classes }: StepperProps<Enabled>) => {
+  const shouldShowTabs = steppers.length > 1
+  const [activeStepper, setActiveStepper] = useState<StepperTabValue>(shouldShowTabs ? steppers[0]?.headline : '')
+
+  const steppersTabs = useMemo(() => steppers?.map(({ headline }) => ({ headline })), [steppers])
+
+  const currentStepperIndex = shouldShowTabs ? steppersTabs?.findIndex((tab) => tab.headline === activeStepper) : 0
+  const currentStepper = steppers[currentStepperIndex]
+
   return (
-    <section id={widgetIds.stepper} data-test-id={widgetIds.stepper} className={classes?.root}>
-      <ResponsiveContainer className={classes?.container}>
+    <section key={currentStepper.headline} id={widgetIds.stepper} data-test-id={widgetIds.stepper} className={classes?.root}>
+      <ResponsiveContainer className={cn(classes?.container, 'mobile:max-w-[360px]')}>
         <div className={cn('flex flex-col gap-6 desktop:items-start desktop:gap-12', classes?.wrapper)}>
           <Heading as='h2' className={cn('text-color-dark', classes?.headline)}>
-            {headline}
+            {currentStepper.headline}
           </Heading>
-          <div
-            className={cn(
-              'flex w-full flex-col items-start gap-6 desktop:flex-row desktop:items-start desktop:gap-12',
-              classes?.stepsWrapper
+
+          <div className='flex flex-col gap-10'>
+            {shouldShowTabs && (
+              <StepperTabs
+                stepperTabs={steppersTabs}
+                activeStepper={activeStepper}
+                setActiveStepper={setActiveStepper}
+                classes={classes?.stepperTabs}
+              />
             )}
-          >
-            {details?.map((step, index) => (
-              <SingleStep variant={variant} key={step.description} {...step} index={index + 1} classes={classes?.step} />
-            ))}
+
+            {currentStepper.carousel.enabled && <StepperCarousel currentStepper={currentStepper} />}
+
+            <div
+              className={cn(
+                'flex w-full flex-col items-start gap-6 desktop:flex-row desktop:items-start desktop:gap-12',
+                classes?.stepsWrapper,
+                { ['mobile:hidden']: currentStepper.carousel.enabled }
+              )}
+            >
+              {currentStepper.details?.map((step, index) => (
+                <SingleStep
+                  {...step}
+                  stepperVariant={currentStepper.stepperVariant}
+                  key={step.description}
+                  index={index + 1}
+                  classes={classes?.step}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </ResponsiveContainer>

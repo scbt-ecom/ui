@@ -88,7 +88,7 @@ export const fullScreenSlides: Omit<SlideFullScreenProps, 'slideIndex'>[] = [
   {
     title: 'Первая карточка -  «Халва»',
     description: 'Покупки с кешбэком и рассрочка в несколько кликов',
-    imgProps: {
+    image: {
       alt: 'FullScreen img',
       src: FullScreen
     }
@@ -96,7 +96,7 @@ export const fullScreenSlides: Omit<SlideFullScreenProps, 'slideIndex'>[] = [
   {
     title: 'Вклады',
     description: 'Ставка до 25%, дистанционное управление счётом',
-    imgProps: {
+    image: {
       alt: 'FullScreen img',
       src: FullScreen
     }
@@ -104,7 +104,7 @@ export const fullScreenSlides: Omit<SlideFullScreenProps, 'slideIndex'>[] = [
   {
     title: 'Кредит под залог авто',
     description: 'Умный кешбэк, снятие и переводы без комиссии',
-    imgProps: {
+    image: {
       alt: 'FullScreen img',
       src: FullScreen
     }
