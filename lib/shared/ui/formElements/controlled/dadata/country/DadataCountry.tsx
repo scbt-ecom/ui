@@ -1,4 +1,5 @@
 import { type FieldValues } from 'react-hook-form'
+import { type QueryClient } from '@tanstack/react-query'
 import { type AutocompleteControlProps } from '../../autocomplete'
 import { type IDadataCountryOption } from '../types'
 import { useDadataQueryCountry } from './query'
@@ -15,6 +16,7 @@ export type DadataCountryProps<TFieldValues extends FieldValues> = Omit<
 > & {
   dadataBaseUrl: string
   formatter?: (item: IDadataCountryOption) => SelectItemOption
+  queryClient?: QueryClient
 }
 
 /**
@@ -23,9 +25,16 @@ export type DadataCountryProps<TFieldValues extends FieldValues> = Omit<
 export const DadataCountry = <TFieldValues extends FieldValues>({
   formatter = countryFormatter,
   dadataBaseUrl,
+  queryClient,
   ...props
 }: DadataCountryProps<TFieldValues>) => {
   const queryFn = useDadataQueryCountry
 
-  return <Controlled.AutocompleteControl query={(query) => queryFn(query, dadataBaseUrl)} formatter={formatter} {...props} />
+  return (
+    <Controlled.AutocompleteControl
+      query={(query) => queryFn(query, dadataBaseUrl, {}, queryClient)}
+      formatter={formatter}
+      {...props}
+    />
+  )
 }

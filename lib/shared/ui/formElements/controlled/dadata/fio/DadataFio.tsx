@@ -1,4 +1,5 @@
 import { type FieldValues } from 'react-hook-form'
+import { type QueryClient } from '@tanstack/react-query'
 import { type AutocompleteControlProps } from '../../autocomplete'
 import { type IDadataCacheOption } from '../types'
 import { useDadataQueryFio } from './query'
@@ -15,6 +16,7 @@ export type DadataFioProps<TFieldValues extends FieldValues> = Omit<
 > & {
   dadataBaseUrl: string
   formatter?: (item: IDadataCacheOption<unknown>) => SelectItemOption
+  queryClient?: QueryClient
 }
 
 /**
@@ -23,9 +25,16 @@ export type DadataFioProps<TFieldValues extends FieldValues> = Omit<
 export const DadataFio = <TFieldValues extends FieldValues>({
   formatter = fioFormatter,
   dadataBaseUrl,
+  queryClient,
   ...props
 }: DadataFioProps<TFieldValues>) => {
   const queryFn = useDadataQueryFio
 
-  return <Controlled.AutocompleteControl query={(query) => queryFn(query, dadataBaseUrl)} formatter={formatter} {...props} />
+  return (
+    <Controlled.AutocompleteControl
+      query={(query) => queryFn(query, dadataBaseUrl, {}, queryClient)}
+      formatter={formatter}
+      {...props}
+    />
+  )
 }
