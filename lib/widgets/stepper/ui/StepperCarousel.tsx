@@ -1,16 +1,25 @@
 import { useState } from 'react'
 import { type SingleStepper } from '../model/types'
-import { CarouselBase, CarouselSlide } from '$/shared/ui'
+import { CarouselBase, type CarouselClasses, CarouselSlide, type CarouselSlideClasses } from '$/shared/ui'
 
 interface SingleStepMobileProps<Enabled extends boolean> {
   currentStepper: SingleStepper<Enabled>
+  classes?: {
+    carouselClasses?: CarouselClasses
+    carouselSlideClasses?: CarouselSlideClasses
+  }
 }
 
-export const StepperCarousel = <Enabled extends boolean>({ currentStepper }: SingleStepMobileProps<Enabled>) => {
+export const StepperCarousel = <Enabled extends boolean>({ currentStepper, classes }: SingleStepMobileProps<Enabled>) => {
   const [visibleIndex, setVisibleIndex] = useState(0)
+
+  const { carouselClasses, carouselSlideClasses } = classes || {}
 
   return (
     <CarouselBase
+      carouselOptions={{
+        dragFree: false
+      }}
       visibleIndex={visibleIndex}
       setVisibleIndex={setVisibleIndex}
       autoPlayOptions={{
@@ -23,7 +32,8 @@ export const StepperCarousel = <Enabled extends boolean>({ currentStepper }: Sin
         root: 'desktop:hidden',
         carouselContentClasses: {
           slidesOverlay: 'max-w-full w-full'
-        }
+        },
+        ...carouselClasses
       }}
     >
       {currentStepper.details.map((slide, slideIndex) => (
@@ -33,7 +43,8 @@ export const StepperCarousel = <Enabled extends boolean>({ currentStepper }: Sin
           slideIndex={slideIndex}
           {...slide}
           classes={{
-            slide: 'mobile:w-[328px]  desktop:w-[1140px]'
+            slide: 'mobile:w-[328px]  desktop:w-[1140px]',
+            ...carouselSlideClasses
           }}
         />
       ))}

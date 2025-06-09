@@ -21,7 +21,7 @@ export interface StepperTabsProps {
 
 export const StepperTabs = memo(({ stepperTabs, activeStepper, setActiveStepper, classes }: StepperTabsProps) => {
   return (
-    <div className={cn('flex items-center gap-4', classes?.wrapper)}>
+    <div className={cn('customScrollbar-y scrollHidden flex items-center gap-4 overflow-x-auto', classes?.wrapper)}>
       {stepperTabs?.map(({ headline }) => (
         <button
           key={headline}

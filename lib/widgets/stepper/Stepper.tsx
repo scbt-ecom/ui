@@ -17,12 +17,12 @@ export type StepperClasses = {
   stepperTabs?: StepperTabsClasses
 }
 
-export interface StepperProps<Enabled extends boolean> extends HTMLAttributes<HTMLDivElement> {
-  steppers: SingleStepper<Enabled>[]
+export interface StepperProps<WithImages extends boolean> extends HTMLAttributes<HTMLDivElement> {
+  steppers: SingleStepper<WithImages>[]
   classes?: StepperClasses
 }
 
-export const Stepper = <Enabled extends boolean>({ steppers, classes }: StepperProps<Enabled>) => {
+export const Stepper = <WithImages extends boolean>({ steppers, classes }: StepperProps<WithImages>) => {
   const shouldShowTabs = steppers.length > 1
   const [activeStepper, setActiveStepper] = useState<StepperTabValue>(shouldShowTabs ? steppers[0]?.headline : '')
 
@@ -39,7 +39,7 @@ export const Stepper = <Enabled extends boolean>({ steppers, classes }: StepperP
             {currentStepper.headline}
           </Heading>
 
-          <div className='flex flex-col gap-10'>
+          <div className='flex flex-col gap-6 desktop:gap-10'>
             {shouldShowTabs && (
               <StepperTabs
                 stepperTabs={steppersTabs}
@@ -49,23 +49,17 @@ export const Stepper = <Enabled extends boolean>({ steppers, classes }: StepperP
               />
             )}
 
-            {currentStepper.carousel.enabled && <StepperCarousel currentStepper={currentStepper} />}
+            {currentStepper.withImages && <StepperCarousel currentStepper={currentStepper} />}
 
             <div
               className={cn(
                 'flex w-full flex-col items-start gap-6 desktop:flex-row desktop:items-start desktop:gap-12',
                 classes?.stepsWrapper,
-                { ['mobile:hidden']: currentStepper.carousel.enabled }
+                { ['mobile:hidden']: currentStepper.withImages }
               )}
             >
               {currentStepper.details?.map((step, index) => (
-                <SingleStep
-                  {...step}
-                  stepperVariant={currentStepper.stepperVariant}
-                  key={step.description}
-                  index={index + 1}
-                  classes={classes?.step}
-                />
+                <SingleStep {...step} key={step.description} index={index + 1} classes={classes?.step} />
               ))}
             </div>
           </div>

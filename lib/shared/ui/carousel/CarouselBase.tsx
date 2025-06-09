@@ -18,7 +18,7 @@ import { ArrowNavigationButton, type ArrowNavigationButtonClasses, CarouselConte
 import { ContainerWithNavigation, type ContainerWithNavigationClasses } from './ui/ContainerWithNavigation'
 import { cn } from '$/shared/utils'
 
-type CarouselClasses = {
+export type CarouselClasses = {
   root?: string
   header?: string
   heading?: string

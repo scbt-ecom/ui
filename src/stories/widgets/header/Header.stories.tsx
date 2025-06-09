@@ -61,15 +61,12 @@ export const WithButtonHandlerScroll: Story = {
           steppers={[
             {
               headline: 'Как получить кредит',
-              stepperVariant: 'withTitleAndDescription',
               details: [
                 { title: 'Заполните онлайн-заявку', description: 'Это займет несколько минут' },
                 { title: 'Дождитесь одобрения', description: 'Рассмотрим заявку за 5 минут' },
                 { title: 'Заберите деньги', description: 'Или закажите бесплатную доставку' }
               ],
-              carousel: {
-                enabled: false
-              }
+              withImages: false
             }
           ]}
         />

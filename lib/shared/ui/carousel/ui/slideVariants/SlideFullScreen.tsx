@@ -1,4 +1,3 @@
-import { Heading } from '../../../heading'
 import type { ImageProps } from '../../model'
 import { cn } from '$/shared/utils'
 
@@ -26,7 +25,7 @@ export const SlideFullScreen = ({ slideIndex, title, image, description, slideCl
       <div className={cn('flex items-center gap-4', slideClasses?.wrapper)}>
         <span
           className={cn(
-            'desk-title-bold-l flex size-12 items-center justify-center rounded-sm bg-color-blue-grey-500 text-color-white',
+            'mob-headline-bold-s flex size-10 items-center justify-center rounded-sm bg-color-blue-grey-500 text-color-white desktop:desk-title-bold-l desktop:size-12',
             slideClasses?.numeric
           )}
         >
@@ -35,17 +34,23 @@ export const SlideFullScreen = ({ slideIndex, title, image, description, slideCl
 
         <div className={cn('flex flex-1 flex-col gap-2', slideClasses?.textWrapper)}>
           {title && (
-            <Heading as='h4' className={cn(slideClasses?.title)}>
-              {title}
-            </Heading>
+            <div
+              dangerouslySetInnerHTML={{ __html: title }}
+              className={cn(slideClasses?.title, 'mob-title-bold-m desktop:desk-title-bold-s')}
+            />
           )}
           {description && (
-            <p className={cn('desk-body-regular-l text-color-secondary', slideClasses?.description)}>{description}</p>
+            <div
+              dangerouslySetInnerHTML={{ __html: description }}
+              className={cn('desk-body-regular-l text-color-secondary', slideClasses?.description)}
+            />
           )}
         </div>
       </div>
       {image && image?.src && (
-        <img className={cn('w-full object-contain mobile:h-[320px]', slideClasses?.image)} src={image?.src} alt={image?.alt} />
+        <div className={cn('mobile:h-[320px] mobile:w-[328px]')}>
+          <img className={cn('w-full object-cover mobile:h-[320px]', slideClasses?.image)} src={image?.src} alt={image?.alt} />
+        </div>
       )}
     </div>
   )

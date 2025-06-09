@@ -18,49 +18,39 @@ export const Base: Story = {
     steppers: [
       {
         headline: 'Как получить кредит',
-        stepperVariant: 'withTitleAndDescription',
+        withImages: false,
         details: [
           {
             title: 'Заполните онлайн-заявку',
-            description: 'Это займет несколько минут',
-            image: {
-              src: DraftImage,
-              alt: 'Draft'
-            }
+            description: 'Это займет несколько минут'
           },
           {
             title: 'Дождитесь одобрения',
-            description: 'Рассмотрим заявку за 5 минут',
-            image: {
-              src: DraftImage,
-              alt: 'Draft'
-            }
+            description: 'Рассмотрим заявку за 5 минут'
           },
           {
             title: 'Заберите деньги',
-            description: 'Или закажите бесплатную доставку',
-            image: {
-              src: DraftImage,
-              alt: 'Draft'
-            }
+            description: 'Или закажите бесплатную доставку'
           }
-        ],
-        carousel: {
-          enabled: true,
-          images: [DraftImage, DraftImage, DraftImage]
-        }
+        ]
       },
       {
         headline: 'Заберите деньги',
-        stepperVariant: 'withTitleAndDescription',
+        withImages: false,
         details: [
-          { title: 'Дождитесь одобрения', description: 'Это займет несколько минут' },
-          { title: 'Дождитесь одобрения', description: 'Рассмотрим заявку за 5 минут' },
-          { title: 'Заберите деньги', description: 'Или закажите бесплатную доставку' }
-        ],
-        carousel: {
-          enabled: false
-        }
+          {
+            title: 'Дождитесь одобрения',
+            description: 'Это займет несколько минут'
+          },
+          {
+            title: 'Дождитесь одобрения',
+            description: 'Рассмотрим заявку за 5 минут'
+          },
+          {
+            title: 'Заберите деньги',
+            description: 'Или закажите бесплатную доставку'
+          }
+        ]
       }
     ]
   }
@@ -71,7 +61,7 @@ export const ParsedHTML: Story = {
     steppers: [
       {
         headline: 'Как получить кредит',
-        stepperVariant: 'withTitleAndDescription',
+        withImages: false,
         details: [
           {
             title: 'Получить кредит за 5 минут',
@@ -87,10 +77,7 @@ export const ParsedHTML: Story = {
             title: 'Получить ',
             description: '<p class="text-dark"><span>Lorem ipsum dolor sit amet, </span></p>'
           }
-        ],
-        carousel: {
-          enabled: false
-        }
+        ]
       }
     ]
   }
@@ -101,7 +88,7 @@ export const OnlyDescription: Story = {
     steppers: [
       {
         headline: 'Как получить кредит',
-        stepperVariant: 'onlyDescription',
+        withImages: false,
         details: [
           {
             description:
@@ -114,10 +101,65 @@ export const OnlyDescription: Story = {
           {
             description: '<p class="text-dark"><span>Lorem ipsum dolor sit amet, </span></p>'
           }
-        ],
-        carousel: {
-          enabled: false
-        }
+        ]
+      }
+    ]
+  }
+}
+
+export const WithImages: Story = {
+  args: {
+    steppers: [
+      {
+        headline: 'Как получить кредит',
+        withImages: false,
+        details: [
+          {
+            title: 'Заполните онлайн-заявку',
+            description: 'Это займет несколько минут'
+          },
+          {
+            title: 'Дождитесь одобрения',
+            description: 'Рассмотрим заявку за 5 минут'
+          },
+          {
+            title: 'Заберите деньги',
+            description: 'Или закажите бесплатную доставку'
+          }
+        ]
+      },
+      {
+        headline: 'Заберите деньги',
+        withImages: true,
+        details: [
+          {
+            type: 'withImage',
+            title: 'Дождитесь одобрения',
+            description: 'Это займет несколько минут',
+            image: {
+              src: DraftImage,
+              alt: 'k'
+            }
+          },
+          {
+            type: 'withImage',
+            title: 'Дождитесь одобрения',
+            description: 'Рассмотрим заявку за 5 минут',
+            image: {
+              src: DraftImage,
+              alt: 'k'
+            }
+          },
+          {
+            type: 'withImage',
+            title: 'Заберите деньги',
+            description: 'Или закажите бесплатную доставку',
+            image: {
+              src: DraftImage,
+              alt: 'k'
+            }
+          }
+        ]
       }
     ]
   }
