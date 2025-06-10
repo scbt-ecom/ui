@@ -190,10 +190,16 @@ export default tseslint.config(
     }
   },
   {
-    files: ['**/*.stories.@(ts|tsx)'],
+    files: ['**/*.stories.@(ts|tsx)', 'lib/widgets/**/*.(ts|tsx)'],
     rules: {
       'import/no-default-export': 'off',
       'react-hooks/rules-of-hooks': 'off'
+    }
+  },
+  {
+    files: ['lib/widgets/**/*.{tsx,ts}'],
+    rules: {
+      'import/no-default-export': 'off'
     }
   }
 )

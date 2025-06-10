@@ -34,5 +34,4 @@ export const Header = <Type extends HeaderVariantType>(props: HeaderProps<Type>)
   )
 }
 
-// eslint-disable-next-line import/no-default-export
 export default Header

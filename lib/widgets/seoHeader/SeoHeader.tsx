@@ -36,6 +36,4 @@ export const SeoHeader = ({ categories, helpers, phone, breadcrumbs, classes }: 
   )
 }
 
-//TODO: Добавить в исключение импорт для папки виджетов
-// eslint-disable-next-line import/no-default-export
 export default SeoHeader

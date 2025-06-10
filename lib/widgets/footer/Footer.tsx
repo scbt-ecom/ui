@@ -72,5 +72,4 @@ export const Footer = <Enabled extends boolean>({
   )
 }
 
-// eslint-disable-next-line import/no-default-export
 export default Footer
