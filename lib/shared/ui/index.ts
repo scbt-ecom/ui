@@ -1,4 +1,3 @@
-// # BASE
 export * from './responsiveContainer'
 export * from './button'
 export * from './buttonIcon'
@@ -8,8 +7,6 @@ export * from './loader'
 export * from './skeleton'
 export * from './floatButton'
 export * from './calendar'
-
-// # INTERACTIVE
 export * from './accordion'
 export * from './hint'
 export * from './popover'
@@ -21,20 +18,12 @@ export * from './table'
 export * from './pagination'
 export * from './carousel'
 export * from './dialog'
-
-// # PROVIDERS
 export * from './providers'
-
 export * from './heading'
 export * from './icon'
 export * from './brandLogos'
-
 export * from './customLink'
-
-// # OTHERS
 export * from './keyboardShortcuts'
 export * from './slot'
-
-// # CONTROLLED FORM UI
 export * from './formElements'
 export * from './icon'
