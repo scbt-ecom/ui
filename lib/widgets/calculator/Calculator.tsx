@@ -62,5 +62,4 @@ export const Calculator = ({ calculators, headline, classes }: CalculatorProps) 
   )
 }
 
-// eslint-disable-next-line import/no-default-export
 export default Calculator

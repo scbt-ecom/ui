@@ -195,5 +195,11 @@ export default tseslint.config(
       'import/no-default-export': 'off',
       'react-hooks/rules-of-hooks': 'off'
     }
+  },
+  {
+    files: ['lib/widgets/**/*.{tsx,ts}'],
+    rules: {
+      'import/no-default-export': 'off'
+    }
   }
 )

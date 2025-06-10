@@ -126,5 +126,4 @@ export const DynamicFormDialog = <AType extends ApprovementType>({
   )
 }
 
-// eslint-disable-next-line import/no-default-export
 export default DynamicFormDialog

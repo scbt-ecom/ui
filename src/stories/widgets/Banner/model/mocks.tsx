@@ -2,8 +2,8 @@ import bezrykovDesk from './assets/bezrukov_desk.png'
 import bezrykovMob from './assets/bezrukov_mob.png'
 import saifDesktop from './assets/saif.jpg'
 import saifMob from './assets/saifMob.jpg'
-import { type AdvantagesProps } from '$/widgets'
 import { type BannerProps } from '$/widgets/banner/Banner.tsx'
+import { type AdvantagesProps } from '$/widgets/banner/ui/banners/ui'
 
 const defaultMockAdvantageProps: AdvantagesProps = {
   details: {
@@ -20,10 +20,10 @@ const defaultMockAdvantageProps: AdvantagesProps = {
 export const mockBannerBase: BannerProps = {
   headTitle: 'Кредит на любые цели',
   subtitle: 'до 5 млн рублей',
-  imgMobile: {
+  imageMobile: {
     src: bezrykovMob
   },
-  imgDesktop: {
+  imageDesktop: {
     src: bezrykovDesk
   },
   buttonsConfig: {
@@ -53,10 +53,10 @@ export const mockBannerBase: BannerProps = {
 export const mockBannerOnlyPrimaryButton: BannerProps = {
   headTitle: 'Кредит на любые цели',
   subtitle: 'до 5 млн рублей',
-  imgDesktop: {
+  imageDesktop: {
     src: bezrykovDesk
   },
-  imgMobile: {
+  imageMobile: {
     src: bezrykovMob
   },
   buttonsConfig: {
@@ -76,10 +76,10 @@ export const mockBannerOnlyPrimaryButton: BannerProps = {
 export const mockWithAdvantages: BannerProps = {
   headTitle: 'Кредит на любые цели',
   subtitle: 'до 5 млн рублей',
-  imgMobile: {
+  imageMobile: {
     src: bezrykovMob
   },
-  imgDesktop: {
+  imageDesktop: {
     src: bezrykovDesk
   },
 
@@ -101,10 +101,10 @@ export const mockWithAdvantages: BannerProps = {
 export const mockBannerBaseFullImage: BannerProps = {
   headTitle: 'Кредит на любые цели',
   subtitle: 'до 5 млн рублей',
-  imgDesktop: {
+  imageDesktop: {
     src: saifDesktop
   },
-  imgMobile: {
+  imageMobile: {
     src: saifMob
   },
   buttonsConfig: {
@@ -139,10 +139,10 @@ export const mockBannerBaseFullImage: BannerProps = {
 export const mockBannerFullImageOnlyPrimaryButton: BannerProps = {
   headTitle: 'Кредит на любые цели',
   subtitle: 'до 5 млн рублей',
-  imgDesktop: {
+  imageDesktop: {
     src: saifDesktop
   },
-  imgMobile: {
+  imageMobile: {
     src: saifMob
   },
   buttonsConfig: {
@@ -167,10 +167,10 @@ export const mockBannerFullImageOnlyPrimaryButton: BannerProps = {
 export const mockBannerFullImageWithAdvantages: BannerProps = {
   headTitle: 'Кредит на любые цели',
   subtitle: 'до 5 млн рублей',
-  imgDesktop: {
+  imageDesktop: {
     src: saifDesktop
   },
-  imgMobile: {
+  imageMobile: {
     src: saifMob
   },
   buttonsConfig: {
@@ -183,16 +183,6 @@ export const mockBannerFullImageWithAdvantages: BannerProps = {
           widgetId: 'stepper'
         }
       }
-    },
-    secondary: {
-      enabled: true,
-      buttonContent: {
-        children: 'Secondary',
-        handlerOptions: {
-          handler: 'scroll',
-          widgetId: 'stepper'
-        }
-      }
     }
   },
   classes: {
@@ -200,16 +190,16 @@ export const mockBannerFullImageWithAdvantages: BannerProps = {
     subtitle: 'text-color-white'
   },
   variant: 'fullImg',
-  advantages: defaultMockAdvantageProps
+  advantages: { details: { items: defaultMockAdvantageProps.details?.items ?? [], variant: 'fourCards' }, enabled: true }
 }
 
 export const mockBannerBaseGradient: BannerProps = {
   headTitle: 'Кредит на любые цели',
   subtitle: 'до 5 млн рублей',
-  imgMobile: {
+  imageMobile: {
     src: bezrykovMob
   },
-  imgDesktop: {
+  imageDesktop: {
     src: bezrykovDesk
   },
   buttonsConfig: {
@@ -242,10 +232,10 @@ export const mockBannerBaseGradient: BannerProps = {
 export const mockBannerBaseGradientAdvantages: BannerProps = {
   headTitle: 'Кредит на любые цели',
   subtitle: 'до 5 млн рублей',
-  imgMobile: {
+  imageMobile: {
     src: bezrykovMob
   },
-  imgDesktop: {
+  imageDesktop: {
     src: bezrykovDesk
   },
   buttonsConfig: {
@@ -273,5 +263,5 @@ export const mockBannerBaseGradientAdvantages: BannerProps = {
   classes: {
     root: 'bg-color-transparent gradient-apply'
   },
-  advantages: defaultMockAdvantageProps
+  advantages: { details: { items: defaultMockAdvantageProps.details?.items ?? [], variant: 'fourCards' }, enabled: true }
 }

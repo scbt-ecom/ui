@@ -48,5 +48,4 @@ export const Benefit = ({ headline, details, variant, classes }: BenefitProps) =
   )
 }
 
-// eslint-disable-next-line import/no-default-export
 export default Benefit

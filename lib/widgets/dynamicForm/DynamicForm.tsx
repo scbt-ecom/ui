@@ -196,5 +196,4 @@ export const DynamicForm = <AType extends ApprovementType, CType extends ChipsTy
   )
 }
 
-// eslint-disable-next-line import/no-default-export
 export default DynamicForm
