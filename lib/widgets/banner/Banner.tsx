@@ -2,9 +2,9 @@
 
 import { type ReactElement } from 'react'
 import type { RenderImage } from '../../shared/utils'
-import { type AdvantageClasses, type AdvantagesProps } from '../advantages/Advantages'
 import { type BannerClasses, type ButtonsConfig } from './model'
 import { BannerImageFull, BannerWithSeparateImg } from './ui'
+import { type AdvantageClasses, type AdvantagesProps } from './ui/banners/ui'
 import type { BackgroundBannerColors } from '$/shared/constants'
 
 export interface BannerProps {

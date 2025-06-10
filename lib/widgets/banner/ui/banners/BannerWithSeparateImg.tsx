@@ -1,7 +1,7 @@
-import { Buttons } from './ui'
+import { Advantages, Buttons } from './ui'
 import { ResponsiveContainer } from '$/shared/ui'
 import { cn, renderImage } from '$/shared/utils'
-import { Advantages, type BannerProps, widgetIds } from '$/widgets'
+import { type BannerProps, widgetIds } from '$/widgets'
 
 export const BannerWithSeparateImg = ({
   headTitle,

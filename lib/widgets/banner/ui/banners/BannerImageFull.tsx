@@ -1,10 +1,10 @@
 'use client'
 
-import { Buttons } from './ui'
+import { Advantages, Buttons } from './ui'
 import { useDevice } from '$/shared/hooks'
 import { ResponsiveContainer } from '$/shared/ui'
 import { cn, renderImage } from '$/shared/utils'
-import { Advantages, type BannerProps, widgetIds } from '$/widgets'
+import { type BannerProps, widgetIds } from '$/widgets'
 
 export const BannerImageFull = ({
   headTitle,

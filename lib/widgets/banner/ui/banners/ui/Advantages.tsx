@@ -1,6 +1,3 @@
-'use client'
-
-import type { AdvantageItem } from './model'
 import { Heading } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
@@ -10,6 +7,11 @@ export interface AdvantageClasses {
   item?: string
   title?: string
   description?: string
+}
+
+export interface AdvantageItem {
+  title: string
+  description: string | React.ReactElement
 }
 
 export interface AdvantagesProps {

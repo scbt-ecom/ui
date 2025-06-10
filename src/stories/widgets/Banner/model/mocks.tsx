@@ -2,8 +2,8 @@ import bezrykovDesk from './assets/bezrukov_desk.png'
 import bezrykovMob from './assets/bezrukov_mob.png'
 import saifDesktop from './assets/saif.jpg'
 import saifMob from './assets/saifMob.jpg'
-import { type AdvantagesProps } from '$/widgets'
 import { type BannerProps } from '$/widgets/banner/Banner.tsx'
+import { type AdvantagesProps } from '$/widgets/banner/ui/banners/ui'
 
 const defaultMockAdvantageProps: AdvantagesProps = {
   details: {
