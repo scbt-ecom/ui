@@ -2,13 +2,25 @@
 
 import { type ReactElement } from 'react'
 import { type AdvantageClasses, type AdvantagesProps } from '../advantages/Advantages'
-import { type BackgroundBannerColorsValues } from './model/constants'
-import { type BannerClasses, type ButtonsConfig } from './model/types'
+import { type BannerClasses, type ButtonsConfig } from './model'
 import { BannerImageFull, BannerWithSeparateImg } from './ui'
+import type { BackgroundBannerColors } from '$/shared/constants'
 
 export interface BannerProps {
   headTitle: string | ReactElement
   subtitle: string | ReactElement
+  buttonsConfig: ButtonsConfig
+  advantages?: AdvantagesProps
+  variant?: 'separateImg' | 'fullImg'
+  classes?: BannerClasses & {
+    advantages?: AdvantageClasses
+  }
+  //TODO:
+  // 1. Изменить тип картинок по примеру InfoBlockProps
+  // 2. Изменить color на backgroundColor
+  // 3. Изменить renderImage
+  // 4. switchCase
+  // 5. // eslint-disable-next-line import/no-default-export по возможности и желанию добавить исключения для папки виджетов для экспорта по дефолту
   imgMobile: {
     src: string
     base64?: string
@@ -18,18 +30,7 @@ export interface BannerProps {
     base64?: string
   }
   imgAlt?: string
-  buttonsConfig: ButtonsConfig
-  advantages?: AdvantagesProps
-  variant?: 'separateImg' | 'fullImg'
-  color?: BackgroundBannerColorsValues
-  classes?: BannerClasses & {
-    advantages?: AdvantageClasses
-  }
-  /**
-   *
-   * @param props
-   * React.ComponentProps<'img'>
-   */
+  color?: BackgroundBannerColors
   renderImage?: (props: any) => ReactElement
 }
 

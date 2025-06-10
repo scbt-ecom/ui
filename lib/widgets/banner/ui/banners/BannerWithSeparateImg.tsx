@@ -16,6 +16,7 @@ export const BannerWithSeparateImg = ({
 }: Omit<BannerProps, 'bannerVariant'>) => {
   const { primary, secondary } = buttonsConfig || {}
 
+  //TODO: взять пере используемую фн renderImage и переименовать пропс renderImage в renderImageCb
   const image = (args: React.ComponentProps<'img'>) => {
     return renderImage ? renderImage(args) : <img {...args} />
   }
@@ -23,6 +24,7 @@ export const BannerWithSeparateImg = ({
   return (
     <section
       id={widgetIds.banner}
+      //TODO: CHANGE COLOR TO BG-COLOR NE PONANYTNO PO SMYSLY
       style={{ backgroundColor: color ?? '#d9edff' }}
       data-test-id={widgetIds.banner}
       className={cn('', classes?.root)}
@@ -96,6 +98,7 @@ export const BannerWithSeparateImg = ({
               classes?.advantageContainer
             )}
           >
+            {/*//TODO: Можно вынести проверку дублируется и убрать advantageContainer внутрь компонента Advantages?*/}
             {advantages?.details && advantages?.details?.items.length > 0 && <Advantages {...advantages} />}
           </div>
         )}

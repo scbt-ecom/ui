@@ -1,7 +1,7 @@
 import { cva } from 'class-variance-authority'
 
 export const customLinkConfig = cva(
-  'group outline-none transition-all duration-100 p-[2px] rounded-sm border border-solid border-transparent hover:underline underline-offset-4',
+  'group outline-none flex items-center gap-1 transition-all duration-100 p-[2px] rounded-sm border border-solid border-transparent hover:underline underline-offset-4',
   {
     variants: {
       intent: {
