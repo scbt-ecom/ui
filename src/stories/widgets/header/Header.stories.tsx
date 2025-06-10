@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { Header, Stepper } from '$/widgets'
+import { Header } from '$/widgets'
 
 const meta = {
   title: 'WIDGETS/Header',
@@ -53,18 +53,6 @@ export const WithButtonHandlerScroll: Story = {
               widgetId: 'stepper'
             }
           }}
-        />
-        <div className='desk-title-bold-l flex h-screen items-center justify-center bg-color-blue-grey-500 text-center'>
-          Контент
-        </div>
-        <Stepper
-          headline='Как получить кредит'
-          variant='withTitleAndDescription'
-          details={[
-            { title: 'Заполните онлайн-заявку', description: 'Это займет несколько минут' },
-            { title: 'Дождитесь одобрения', description: 'Рассмотрим заявку за 5 минут' },
-            { title: 'Заберите деньги', description: 'Или закажите бесплатную доставку' }
-          ]}
         />
         <div className='desk-title-bold-l flex h-screen items-center justify-center bg-color-blue-grey-500 text-center'>
           Контент
