@@ -4,7 +4,7 @@ import { Dialog } from '$/shared/ui'
 const DIALOG_ID = 'dialog_id'
 
 const meta = {
-  title: 'INTERACTIVE/Dialog',
+  title: 'Interactive/Dialog',
   component: Dialog,
   tags: ['autodocs'],
   args: {

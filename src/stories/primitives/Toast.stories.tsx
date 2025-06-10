@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { Icon, Notification } from '$/shared/ui'
 
 const meta = {
-  title: 'Base/Toast',
+  title: 'Interactive/Toast',
   component: Notification,
   tags: ['autodocs'],
   parameters: {

@@ -13,7 +13,7 @@ type Schema = z.TypeOf<typeof schema>
 type CheckboxControlProps = React.ComponentPropsWithoutRef<typeof Controlled.CheckboxControl>
 
 const meta = {
-  title: 'CONTROLLED/CheckboxControl',
+  title: 'Form elements/controlled/CheckboxControl',
   component: Controlled.CheckboxControl,
   parameters: {
     layout: 'centered'

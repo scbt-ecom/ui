@@ -5,7 +5,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { Uncontrolled } from '$/shared/ui'
 
 const meta = {
-  title: 'BASE/InputOtpBase',
+  title: 'Form elements/uncontrolled/InputOtpBase',
   component: Uncontrolled.InputOtpBase,
   parameters: {
     layout: 'centered'

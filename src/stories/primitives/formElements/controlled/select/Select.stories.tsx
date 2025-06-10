@@ -20,7 +20,7 @@ const schema = object({
 type SelectControlProps = React.ComponentPropsWithoutRef<typeof Controlled.SelectControl>
 
 const meta = {
-  title: 'CONTROLLED/SelectControl',
+  title: 'Form elements/controlled/SelectControl',
   component: Controlled.SelectControl,
   parameters: {
     layout: 'centered'

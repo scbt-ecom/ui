@@ -6,7 +6,7 @@ import { CarouselBase, ResponsiveContainer } from '$/shared/ui'
 import { CarouselSlide } from '$/shared/ui/carousel/ui'
 
 const meta = {
-  title: 'INTERACTIVE/Carousel',
+  title: 'Interactive/Carousel',
   component: CarouselBase,
   tags: ['autodocs'],
   parameters: {

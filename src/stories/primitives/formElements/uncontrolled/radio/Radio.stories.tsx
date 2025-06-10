@@ -6,7 +6,6 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { fn } from '@storybook/test'
 import { type RadioOption, Uncontrolled } from '$/shared/ui'
 
-// TODO: заменить на пере используемую функцию
 const options: RadioOption[] = [
   {
     id: 0,
@@ -47,7 +46,7 @@ const options: RadioOption[] = [
 ]
 
 const meta = {
-  title: 'BASE/RadioGroupBase',
+  title: 'Form elements/uncontrolled/RadioGroupBase',
   component: Uncontrolled.RadioGroupBase,
   parameters: {
     layout: 'centered'

@@ -14,7 +14,7 @@ type Schema = z.TypeOf<typeof uploaderSchema>
 type UploaderControlProps = React.ComponentPropsWithoutRef<typeof Controlled.UploaderControl>
 
 const meta = {
-  title: 'CONTROLLED/UploaderControl',
+  title: 'Form elements/controlled/UploaderControl',
   component: Controlled.UploaderControl,
   parameters: {
     layout: 'centered'

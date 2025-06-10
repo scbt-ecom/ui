@@ -7,7 +7,7 @@ import { fn } from '@storybook/test'
 import { Icon, Uncontrolled } from '$/shared/ui'
 
 const meta = {
-  title: 'BASE/TextareaBase',
+  title: 'Form elements/uncontrolled/TextareaBase',
   component: Uncontrolled.TextareaBase,
   parameters: {
     layout: 'centered'

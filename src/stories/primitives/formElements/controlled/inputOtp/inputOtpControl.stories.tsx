@@ -16,7 +16,7 @@ const schema = z.object({
 type Schema = z.TypeOf<typeof schema>
 
 const meta = {
-  title: 'CONTROLLED/InputOtpControl',
+  title: 'Form elements/controlled/InputOtpControl',
   component: Controlled.InputOtpControl,
   parameters: {
     layout: 'centered'

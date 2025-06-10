@@ -5,7 +5,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { Uncontrolled } from '$/shared/ui'
 
 const meta = {
-  title: 'BASE/SliderBase',
+  title: 'Form elements/uncontrolled/SliderBase',
   component: Uncontrolled.SliderBase,
   parameters: {
     layout: 'centered'

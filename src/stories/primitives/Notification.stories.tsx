@@ -2,7 +2,7 @@ import { type Meta, type StoryObj } from '@storybook/react'
 import { Button, Icon, Notification } from '$/shared/ui'
 
 const meta = {
-  title: 'INTERACTIVE/Notification',
+  title: 'Interactive/Notification',
   component: Notification,
   tags: ['autodocs']
 } satisfies Meta<typeof Notification>

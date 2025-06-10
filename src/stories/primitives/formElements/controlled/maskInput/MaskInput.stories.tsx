@@ -11,7 +11,7 @@ import { Controlled } from '$/shared/ui'
 type MaskInputControlProps = React.ComponentPropsWithoutRef<typeof Controlled.MaskInputControl>
 
 const meta = {
-  title: 'CONTROLLED/MaskInputControl',
+  title: 'Form elements/controlled/MaskInputControl',
   component: Controlled.MaskInputControl,
   parameters: {
     layout: 'centered'

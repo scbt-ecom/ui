@@ -1,12 +1,12 @@
 'use docs'
 
 import type { Meta, StoryObj } from '@storybook/react'
-import { HookForm } from '../../primitives/formElements/controlled/utils'
+import { HookForm } from '../formElements/controlled/utils'
 import { defaultValues, fields, type Schema, schema } from './constants'
 import { FieldMapper } from '$/widgets'
 
 const meta = {
-  title: 'WIDGETS/FieldMapper',
+  title: 'Form elements/widgets/FieldMapper',
   component: FieldMapper,
   parameters: {
     layout: 'centered'

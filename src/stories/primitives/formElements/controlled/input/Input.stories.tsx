@@ -21,7 +21,7 @@ type NumberSchema = z.TypeOf<typeof numberSchema>
 type InputControlProps = React.ComponentPropsWithoutRef<typeof Controlled.InputControl>
 
 const meta = {
-  title: 'CONTROLLED/InputControl',
+  title: 'Form elements/controlled/InputControl',
   component: Controlled.InputControl,
   parameters: {
     layout: 'centered'

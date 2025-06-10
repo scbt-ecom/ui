@@ -1,5 +1,5 @@
 import z from 'zod'
-import { DADATA_BASE_CACHE_URL } from '@/configs/api'
+import { DADATA_BASE_CACHE_URL } from '../../../configs/api'
 import { ZodUtils, zodValidators } from '$/shared/validation'
 import type { FieldElement } from '$/widgets'
 

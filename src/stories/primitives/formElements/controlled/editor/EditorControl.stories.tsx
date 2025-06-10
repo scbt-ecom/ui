@@ -14,7 +14,7 @@ type Schema = z.TypeOf<typeof schema>
 type EditorControlProps = React.ComponentPropsWithoutRef<typeof Controlled.EditorControl>
 
 const meta = {
-  title: 'CONTROLLED/EditorControl',
+  title: 'Form elements/controlled/EditorControl',
   component: Controlled.EditorControl,
   parameters: {
     layout: 'centered'

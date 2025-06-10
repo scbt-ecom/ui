@@ -14,7 +14,7 @@ type Schema = z.TypeOf<typeof sliderSchema>
 type SliderControlProps = React.ComponentPropsWithoutRef<typeof Controlled.SliderControl>
 
 const meta = {
-  title: 'CONTROLLED/SliderControl',
+  title: 'Form elements/controlled/SliderControl',
   component: Controlled.SliderControl,
   parameters: {
     layout: 'centered'

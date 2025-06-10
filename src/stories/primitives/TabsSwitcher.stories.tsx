@@ -3,7 +3,7 @@ import { type Meta, type StoryObj } from '@storybook/react'
 import { Button, type TabRenderContent, TabsSwitcher } from '$/shared/ui'
 
 const meta = {
-  title: 'Base/TabsSwitcher',
+  title: 'Interactive/TabsSwitcher',
   component: TabsSwitcher,
   parameters: {
     layout: 'centered'
