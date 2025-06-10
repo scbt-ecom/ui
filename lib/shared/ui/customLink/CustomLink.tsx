@@ -13,8 +13,9 @@ type CustomLinkClasses = {
 
 type CustomLinkConfig = VariantProps<typeof customLinkConfig>
 
-export interface CustomLinkProps extends CustomLinkConfig, Omit<ComponentProps<'a'>, 'className'> {
+export interface CustomLinkProps extends CustomLinkConfig, Omit<ComponentProps<'a'>, 'className' | 'href'> {
   icon?: AllowedIcons
+  href: string
   classes?: CustomLinkClasses
 }
 

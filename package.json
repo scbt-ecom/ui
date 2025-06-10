@@ -29,6 +29,10 @@
       "import": "./dist/types.js",
       "require": "./dist/types.js"
     },
+    "./constants": {
+      "import": "./dist/constants.js",
+      "require": "./dist/constants.js"
+    },
     "./api": {
       "import": "./dist/api.js",
       "require": "./dist/api.js"
