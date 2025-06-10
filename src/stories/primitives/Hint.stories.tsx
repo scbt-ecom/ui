@@ -3,7 +3,7 @@ import { setTextWithElementSB } from '@/storybookHelpers'
 import { Hint } from '$/shared/ui'
 
 const meta = {
-  title: 'INTERACTIVE/Hint',
+  title: 'Interactive/Hint',
   component: Hint,
   parameters: {
     layout: 'centered'

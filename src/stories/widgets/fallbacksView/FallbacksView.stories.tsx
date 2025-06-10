@@ -4,7 +4,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { FallbacksView } from '$/widgets'
 
 const meta = {
-  title: 'WIDGETS/FallbacksView',
+  title: 'Pages/FallbacksView',
   component: FallbacksView,
   parameters: {
     layout: 'centered'

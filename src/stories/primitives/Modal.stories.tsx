@@ -7,7 +7,7 @@ import { Controlled } from '$/shared/ui'
 import { VALIDATION_MESSAGES } from '$/shared/validation'
 
 const meta = {
-  title: 'INTERACTIVE/Modal',
+  title: 'Interactive/Modal',
   component: Modal,
   tags: ['autodocs']
 } satisfies Meta<typeof Modal>

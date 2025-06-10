@@ -15,7 +15,7 @@ type Schema = z.TypeOf<typeof schema>
 type InputCurrencyControlProps = React.ComponentPropsWithoutRef<typeof Controlled.InputCurrencyControl>
 
 const meta = {
-  title: 'CONTROLLED/InputCurrencyControl',
+  title: 'Form elements/controlled/InputCurrencyControl',
   component: Controlled.InputCurrencyControl,
   parameters: {
     layout: 'centered'

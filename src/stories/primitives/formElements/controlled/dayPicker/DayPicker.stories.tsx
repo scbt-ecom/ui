@@ -15,7 +15,7 @@ type Schema = z.TypeOf<typeof schema>
 type DayPickerControlProps = React.ComponentPropsWithoutRef<typeof Controlled.DayPickerControl>
 
 const meta = {
-  title: 'CONTROLLED/DayPickerControl',
+  title: 'Form elements/controlled/DayPickerControl',
   component: Controlled.DayPickerControl,
   parameters: {
     layout: 'centered'

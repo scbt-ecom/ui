@@ -28,7 +28,7 @@ const useQueryFn = (search: string, options?: Partial<UseQueryOptions<string[]>>
   })
 
 const meta = {
-  title: 'CONTROLLED/AutocompleteControl',
+  title: 'Form elements/controlled/AutocompleteControl',
   component: Controlled.AutocompleteControl<Schema, string>,
   parameters: {
     layout: 'centered'

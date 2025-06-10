@@ -7,7 +7,7 @@ import { fn } from '@storybook/test'
 import { formatDateToLocaleString, Uncontrolled } from '$/shared/ui'
 
 const meta = {
-  title: 'BASE/DayPickerBase',
+  title: 'Form elements/uncontrolled/DayPickerBase',
   component: Uncontrolled.DayPickerBase,
   parameters: {
     layout: 'centered'

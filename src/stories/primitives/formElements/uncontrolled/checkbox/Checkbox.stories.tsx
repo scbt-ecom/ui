@@ -5,7 +5,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { type CheckedState, Uncontrolled } from '$/shared/ui'
 
 const meta = {
-  title: 'BASE/CheckboxBase',
+  title: 'Form elements/uncontrolled/CheckboxBase',
   component: Uncontrolled.CheckboxBase,
   parameters: {
     layout: 'centered'

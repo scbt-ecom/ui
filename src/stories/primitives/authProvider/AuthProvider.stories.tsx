@@ -3,7 +3,7 @@ import { mockDataCombine, mockDataEsia, mockDataMobileId } from './mocks'
 import { AuthProvider } from '$/widgets'
 
 const meta = {
-  title: 'WIDGETS/AuthProvider',
+  title: 'Form elements/widgets/AuthProvider',
   component: AuthProvider,
   tags: ['autodocs'],
   decorators: [

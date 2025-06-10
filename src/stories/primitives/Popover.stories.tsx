@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { Popover } from '$/shared/ui'
 
 const meta = {
-  title: 'INTERACTIVE/Popover',
+  title: 'Interactive/Popover',
   component: Popover,
   parameters: {
     layout: 'centered'

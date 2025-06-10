@@ -16,7 +16,7 @@ const useQueryFn = (search: string, options?: Partial<UseQueryOptions<string[]>>
   })
 
 const meta = {
-  title: 'BASE/AutocompleteBase',
+  title: 'Form elements/uncontrolled/AutocompleteBase',
   component: Uncontrolled.AutocompleteBase,
   parameters: {
     layout: 'centered'

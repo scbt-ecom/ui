@@ -15,7 +15,7 @@ type Schema = z.TypeOf<typeof schema>
 type SwitchControlProps = React.ComponentPropsWithoutRef<typeof Controlled.SwitchControl>
 
 const meta = {
-  title: 'CONTROLLED/SwitchControl',
+  title: 'Form elements/controlled/SwitchControl',
   component: Controlled.SwitchControl,
   parameters: {
     layout: 'centered'

@@ -7,7 +7,7 @@ import { fn } from '@storybook/test'
 import { Uncontrolled } from '$/shared/ui'
 
 const meta = {
-  title: 'BASE/SwitchBase',
+  title: 'Form elements/uncontrolled/SwitchBase',
   component: Uncontrolled.SwitchBase,
   parameters: {
     layout: 'centered'

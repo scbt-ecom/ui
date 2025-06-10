@@ -54,7 +54,7 @@ type Schema = z.TypeOf<typeof schema>
 type RadioGroupControlProps = React.ComponentPropsWithoutRef<typeof Controlled.RadioGroupControl>
 
 const meta = {
-  title: 'CONTROLLED/RadioGroupControl',
+  title: 'Form elements/controlled/RadioGroupControl',
   component: Controlled.RadioGroupControl<Schema>,
   parameters: {
     layout: 'centered'

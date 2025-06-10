@@ -11,7 +11,7 @@ const generateOptions = (length: number): SelectItemOption[] =>
   }))
 
 const meta = {
-  title: 'BASE/SelectBase',
+  title: 'Form elements/uncontrolled/SelectBase',
   component: Uncontrolled.SelectBase,
   parameters: {
     layout: 'centered'

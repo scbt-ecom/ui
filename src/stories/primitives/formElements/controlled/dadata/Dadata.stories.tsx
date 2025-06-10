@@ -67,7 +67,7 @@ const Form = () => {
 }
 
 const meta = {
-  title: 'CONTROLLED/Dadata',
+  title: 'Form elements/controlled/Dadata',
   component: Controlled.DadataFio,
   parameters: {
     layout: 'centered'

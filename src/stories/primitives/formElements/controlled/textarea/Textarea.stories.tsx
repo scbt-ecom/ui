@@ -15,7 +15,7 @@ type Schema = z.TypeOf<typeof textareaSchema>
 type TextareaControlProps = React.ComponentPropsWithoutRef<typeof Controlled.TextareaControl>
 
 const meta = {
-  title: 'CONTROLLED/TextareaControl',
+  title: 'Form elements/controlled/TextareaControl',
   component: Controlled.TextareaControl,
   parameters: {
     layout: 'centered'
