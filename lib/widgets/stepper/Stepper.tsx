@@ -3,6 +3,7 @@ import { widgetIds } from '../model'
 import { type SingleStepper } from './model/types'
 import { StepperCarousel } from './ui'
 import { SingleStep, type SingleStepClasses } from './ui/SingleStep'
+import { type StepperCarouselClasses } from './ui/StepperCarousel'
 import { StepperTabs, type StepperTabsClasses, type StepperTabValue } from './ui/StepperTabs'
 import { Heading, ResponsiveContainer } from '$/shared/ui'
 import { cn } from '$/shared/utils'
@@ -15,6 +16,7 @@ export type StepperClasses = {
   stepsWrapper?: string
   step?: SingleStepClasses
   stepperTabs?: StepperTabsClasses
+  stepperCarousel?: StepperCarouselClasses
 }
 
 export interface StepperProps<WithImages extends boolean> extends HTMLAttributes<HTMLDivElement> {
@@ -49,7 +51,7 @@ export const Stepper = <WithImages extends boolean>({ steppers, classes }: Stepp
               />
             )}
 
-            {currentStepper.withImages && <StepperCarousel currentStepper={currentStepper} />}
+            {currentStepper.withImages && <StepperCarousel classes={classes?.stepperCarousel} currentStepper={currentStepper} />}
 
             <div
               className={cn(

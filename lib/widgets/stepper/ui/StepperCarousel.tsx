@@ -2,12 +2,14 @@ import { useState } from 'react'
 import { type SingleStepper } from '../model/types'
 import { CarouselBase, type CarouselClasses, CarouselSlide, type CarouselSlideClasses } from '$/shared/ui'
 
+export type StepperCarouselClasses = {
+  carouselClasses?: CarouselClasses
+  carouselSlideClasses?: CarouselSlideClasses
+}
+
 interface SingleStepMobileProps<Enabled extends boolean> {
   currentStepper: SingleStepper<Enabled>
-  classes?: {
-    carouselClasses?: CarouselClasses
-    carouselSlideClasses?: CarouselSlideClasses
-  }
+  classes?: StepperCarouselClasses
 }
 
 export const StepperCarousel = <Enabled extends boolean>({ currentStepper, classes }: SingleStepMobileProps<Enabled>) => {

@@ -7,6 +7,9 @@ export type SingleStepClasses = {
   textBlock?: string
   title?: string
   description?: string
+  stepContainer?: string
+  imageContainer?: string
+  image?: string
 }
 
 export const SingleStep = (props: SingleStepType) => {
@@ -28,7 +31,7 @@ export const SingleStep = (props: SingleStepType) => {
         {index}
       </div>
 
-      <div className='flex flex-col gap-6'>
+      <div className={cn('flex flex-col gap-6', classes?.stepContainer)}>
         <div className={cn('flex flex-col gap-2')}>
           {title && (
             <div
@@ -43,8 +46,8 @@ export const SingleStep = (props: SingleStepType) => {
         </div>
 
         {props.type === 'withImage' && Object.keys(props?.image ?? {}).length > 0 && (
-          <div className='h-[368px] w-[348px] mobile:hidden'>
-            <img className='h-full w-full object-contain' src={props?.image?.src} alt={props?.image?.alt} />
+          <div className={cn('h-[368px] w-[348px] mobile:hidden', classes?.imageContainer)}>
+            <img className={cn('h-full w-full object-contain', classes?.image)} src={props?.image?.src} alt={props?.image?.alt} />
           </div>
         )}
       </div>
