@@ -1,5 +1,6 @@
+import { ButtonWithHandlers, type ButtonWithHandlersProps } from '../../buttonWithHandlers'
 import { LinksList, type LinksListClasses, type LinksListProps } from './LinksList'
-import { Button, type ButtonProps, Heading } from '$/shared/ui'
+import { Heading } from '$/shared/ui'
 import { cn, type RenderImage, renderImage } from '$/shared/utils'
 
 export type RootContentClasses = {
@@ -16,7 +17,7 @@ export type RootContentClasses = {
 export interface RootContentProps extends Omit<LinksListProps, 'classes'> {
   heading: string
   description?: string
-  buttonsGroup?: ButtonProps[]
+  buttonsGroup?: ButtonWithHandlersProps[]
   imageMobile: RenderImage['imgProps']
   renderImageCb?: RenderImage['renderImageCb']
   classes?: RootContentClasses
@@ -40,7 +41,12 @@ export const RootContent = ({
         <Heading as='h2' className={cn(classes?.heading)}>
           {heading}
         </Heading>
-        {description && <p className={cn('desk-body-regular-l text-color-dark', classes?.description)}>{description}</p>}
+        {description && (
+          <p
+            dangerouslySetInnerHTML={{ __html: description }}
+            className={cn('desk-body-regular-l text-color-dark', classes?.description)}
+          />
+        )}
       </div>
 
       <div className={cn('h-full w-full desktop:hidden', classes?.imageMobileWrapper)}>
@@ -55,7 +61,9 @@ export const RootContent = ({
 
       {withButtons && (
         <div className={cn('mt-2 flex items-center gap-3 mobile:flex-col desktop:mt-8 desktop:gap-8', classes?.buttonsGroup)}>
-          {buttonsGroup?.map((button, index) => <Button key={index} className='w-full desktop:w-[216px]' {...button} />)}
+          {buttonsGroup?.map((button, index) => (
+            <ButtonWithHandlers key={index} className='w-full desktop:w-[216px]' {...button} />
+          ))}
         </div>
       )}
 

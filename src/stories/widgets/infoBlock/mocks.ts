@@ -1,8 +1,28 @@
-import desktopImage from './desktopImage.png'
-import mobileImage from './mobileImage.png'
+import desktopImage from './desktop.png'
+import mobileImage from './mobile.png'
 import type { InfoBlockProps } from '$/widgets'
 
-const buttonsGroup: InfoBlockProps['buttonsGroup'] = [{ children: 'Primary' }, { children: 'Secondary', intent: 'secondary' }]
+const buttonsGroup: InfoBlockProps['buttonsGroup'] = [
+  {
+    children: 'Primary',
+    handlerOptions: {
+      handler: 'navigate',
+      url: 'https://sovcombank.ru',
+      target: '_blank',
+      rel: 'noreferrer noopener'
+    }
+  },
+  {
+    children: 'Secondary',
+    intent: 'secondary',
+    handlerOptions: {
+      handler: 'navigate',
+      url: 'https://sovcombank.ru',
+      target: '_blank',
+      rel: 'noreferrer noopener'
+    }
+  }
+]
 const linksList: InfoBlockProps['linksList'] = [
   { icon: 'arrows/arrowRight', children: 'text-1', href: 'https://sovcombank.ru', target: '_blank', rel: 'noreferrer' },
   { icon: 'arrows/arrowRight', children: 'text-2', href: 'https://sovcombank.ru', target: '_blank', rel: 'noreferrer' },
