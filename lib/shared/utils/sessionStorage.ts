@@ -1,7 +1,8 @@
 import { TypeGuards } from './typeGuards'
+import { isClient } from '$/shared/utils/isClient'
 
 export const setSessionStorage = <T>(key: string, value: T) => {
-  if (!sessionStorage) {
+  if (!isClient) {
     return console.warn('Session storage can be used only in client side')
   }
 
@@ -13,7 +14,7 @@ export const setSessionStorage = <T>(key: string, value: T) => {
 }
 
 export const getSessionStorage = <T>(key: string): T | null => {
-  if (!sessionStorage) {
+  if (!isClient) {
     console.warn('Session storage can be used only in client side')
     return null
   }
