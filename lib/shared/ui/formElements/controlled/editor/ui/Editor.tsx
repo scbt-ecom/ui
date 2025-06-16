@@ -18,6 +18,9 @@ interface EditorProps extends Partial<UseEditorOptions> {
   error?: FieldError
   classes?: EditorControlClasses
   externalHandlers?: ExternalHandlers
+  /**
+   * Заголовок
+   */
   label?: string
   helperText?: string | ReactElement
   limit?: number
