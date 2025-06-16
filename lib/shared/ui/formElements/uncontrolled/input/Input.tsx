@@ -14,9 +14,9 @@ type FieldAttachmentProps = React.ComponentPropsWithoutRef<typeof FieldAttachmen
 
 type ExternalHandlers = {
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
-  onClick?: (event: React.MouseEvent<HTMLDivElement>) => void
-  onFocus?: (event: React.FocusEvent<HTMLDivElement>) => void
-  onBlur?: (event: React.FocusEvent<HTMLDivElement>) => void
+  onClick?: (event: React.MouseEvent<HTMLInputElement>) => void
+  onFocus?: (event: React.FocusEvent<HTMLInputElement>) => void
+  onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void
 }
 
 export type InputBaseProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'placeholder' | 'size'> & {

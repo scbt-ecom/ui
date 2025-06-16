@@ -16,7 +16,7 @@ const InnerComponent = forwardRef<HTMLDivElement, TabProps>(({ category, active,
 
   const contentShouldRender = active && !TypeGuards.isArrayEmpty(category.children)
 
-  const Button = !TypeGuards.isArrayEmpty(category.children) ? 'span' : 'a'
+  const Button = !category.link ? 'span' : TypeGuards.isStringEmpty(category.link.href) ? 'span' : 'a'
 
   return (
     <motion.div
