@@ -11,6 +11,7 @@ import { type SpritesMap } from '$/shared/ui'
 export interface FooterSocialLinks {
   iconName: `social/${SpritesMap['social']}`
   href: string
+  target?: string
 }
 
 export interface Details {
@@ -25,6 +26,7 @@ export interface Column {
 export interface Link {
   label: string
   path: string
+  target?: string
 }
 
 export interface FooterPhones {

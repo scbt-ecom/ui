@@ -3,6 +3,7 @@ import type { AllowedIcons } from '$/shared/ui'
 export type Link<Icon = boolean> = {
   href: string
   icon?: Icon
+  target?: React.HTMLAttributeAnchorTarget
 }
 
 export type Category = {

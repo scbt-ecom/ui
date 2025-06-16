@@ -36,7 +36,7 @@ export const TabContent = ({ categories, ...props }: TabContentProps) => {
               <ul className='w-[328px]'>
                 {category.children.map((child) => (
                   <li key={child.title} className='w-full [&:not(:last-child)]:mb-4'>
-                    <a href={child.link?.href} className='w-full text-16'>
+                    <a href={child.link?.href} target={child.link?.target} className='w-full text-16'>
                       {child.title}
                     </a>
                   </li>

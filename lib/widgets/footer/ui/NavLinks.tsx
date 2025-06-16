@@ -29,7 +29,7 @@ export const NavLinks = ({ classes, details }: NavLinksProps) => {
           <div key={groupLabel} className={cn('flex flex-col gap-4', classes?.navGroup)}>
             <div className={cn('desk-body-medium-l text-color-white', classes?.navLabel)}>{groupLabel}</div>
             <div className={cn('flex flex-col gap-1', classes?.navLinks)}>
-              {links?.map(({ path, label }) => (
+              {links?.map(({ path, label, ...rest }) => (
                 <CustomLink
                   key={label}
                   href={path}
@@ -39,6 +39,7 @@ export const NavLinks = ({ classes, details }: NavLinksProps) => {
                     link: classes?.navLink,
                     icon: classes?.navLinkIcon
                   }}
+                  {...rest}
                 >
                   {label}
                 </CustomLink>

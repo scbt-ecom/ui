@@ -16,7 +16,7 @@ export interface LinksListProps {
 export const LinksList = ({ links, classes }: LinksListProps) => {
   return (
     <nav className={cn('flex flex-col gap-1', classes?.linksWrapper)}>
-      {links?.map(({ path, label }) => (
+      {links?.map(({ path, label, ...rest }) => (
         <CustomLink
           classes={{
             link: cn('w-max', classes?.linkText),
@@ -25,6 +25,7 @@ export const LinksList = ({ links, classes }: LinksListProps) => {
           intent='dark'
           key={path}
           href={path}
+          {...rest}
         >
           {label}
         </CustomLink>
