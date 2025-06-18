@@ -1,2 +1,2 @@
 export * from './CustomLink'
-export { linkPrimitiveArrowIntent, linkPrimitiveIntent, linkPrimitiveSize } from './model/helpers'
+export { linkPrimitiveIconIntent, linkPrimitiveIntent, linkPrimitiveSize } from './model/helpers'

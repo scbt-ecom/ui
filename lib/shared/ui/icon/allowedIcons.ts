@@ -40,6 +40,7 @@ export const allowedIcons = {
       'general/check',
       'general/close',
       'general/edit',
+      'general/heart',
       'general/hiddenEye',
       'general/menu',
       'general/plus',
@@ -52,7 +53,7 @@ export const allowedIcons = {
     logos: ['logos/beeline', 'logos/megafon', 'logos/mts'],
     media: ['media/desktop', 'media/mobile'],
     social: ['social/classmates', 'social/telegram', 'social/vk'],
-    status: ['status/badSmile', 'status/iconMark', 'status/iconRetry', 'status/iconUser']
+    status: ['status/badSmile', 'status/iconMark', 'status/iconRetry', 'status/iconUser', 'status/succesCircle']
   },
   flatten: [
     'arrows/arrowCircle',
@@ -90,6 +91,7 @@ export const allowedIcons = {
     'general/check',
     'general/close',
     'general/edit',
+    'general/heart',
     'general/hiddenEye',
     'general/menu',
     'general/plus',
@@ -110,6 +112,7 @@ export const allowedIcons = {
     'status/badSmile',
     'status/iconMark',
     'status/iconRetry',
-    'status/iconUser'
+    'status/iconUser',
+    'status/succesCircle'
   ]
 } as const

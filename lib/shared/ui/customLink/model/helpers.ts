@@ -11,7 +11,7 @@ export const linkPrimitiveSize = {
   md: 'desk-body-regular-l'
 } as const
 
-export const linkPrimitiveArrowIntent = {
+export const linkPrimitiveIconIntent = {
   blue: 'text-icon-primary-default group-hover:text-icon-primary-hover group-focus:text-icon-primary-default ',
   white: 'text-icon-white group-hover:text-icon-footer group-focus:text-icon-white',
   dark: 'text-icon-dark-default'
@@ -41,9 +41,9 @@ export const customLinkConfig = cva(
   }
 )
 
-export const linkArrowConfig = cva('size-6', {
+export const linkIconConfig = cva('size-6', {
   variants: {
-    intent: linkPrimitiveArrowIntent,
+    intent: linkPrimitiveIconIntent,
     disabled: {
       true: '!text-icon-primary-disabled pointer-events-none',
       false: ''
