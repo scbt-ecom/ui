@@ -1,7 +1,5 @@
 import { Icon } from '$/shared/ui'
 
-export interface SuccessProps {}
-
 export const Success = () => {
   return (
     <div className='flex flex-col items-center gap-4 text-center'>

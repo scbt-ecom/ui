@@ -49,3 +49,5 @@ export const UserFeedback = ({ submitCallback }: UserFeedbackProps) => {
     </div>
   )
 }
+
+export default UserFeedback
