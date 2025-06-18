@@ -23,6 +23,7 @@ interface PopoverContentProps extends PopoverContentPropsBase {
   defaultOpen?: boolean
   avoidCollisions?: boolean
   withCloseBtn?: boolean
+  withArrow?: boolean
 }
 
 export interface PopoverProps extends PopoverContentProps {
@@ -45,6 +46,7 @@ export const Popover = ({
   arrowPadding,
   portalContainer,
   withCloseBtn = true,
+  withArrow = true,
   ...contentProps
 }: PopoverProps) => {
   return (
@@ -87,7 +89,7 @@ export const Popover = ({
               />
             </PopoverPrimitive.Close>
           )}
-          <PopoverPrimitive.Arrow width={12} height={6} className={cn('fill-white', classes?.arrowIcon)} />
+          {withArrow && <PopoverPrimitive.Arrow width={12} height={6} className={cn('fill-white', classes?.arrowIcon)} />}
         </PopoverPrimitive.Content>
       </PopoverPrimitive.Portal>
     </PopoverPrimitive.Root>

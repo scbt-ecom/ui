@@ -33,6 +33,7 @@ import Calendar from '../../../../static/general/calendar.svg?react'
 import Check from '../../../../static/general/check.svg?react'
 import Close from '../../../../static/general/close.svg?react'
 import Edit from '../../../../static/general/edit.svg?react'
+import Heart from '../../../../static/general/heart.svg?react'
 import Hiddeneye from '../../../../static/general/hiddenEye.svg?react'
 import Menu from '../../../../static/general/menu.svg?react'
 import Plus from '../../../../static/general/plus.svg?react'
@@ -54,6 +55,7 @@ import Badsmile from '../../../../static/status/badSmile.svg?react'
 import Iconmark from '../../../../static/status/iconMark.svg?react'
 import Iconretry from '../../../../static/status/iconRetry.svg?react'
 import Iconuser from '../../../../static/status/iconUser.svg?react'
+import Succescircle from '../../../../static/status/succesCircle.svg?react'
 
 export const iconsMap = {
   'arrows/arrowCircle': Arrowcircle,
@@ -91,6 +93,7 @@ export const iconsMap = {
   'general/check': Check,
   'general/close': Close,
   'general/edit': Edit,
+  'general/heart': Heart,
   'general/hiddenEye': Hiddeneye,
   'general/menu': Menu,
   'general/plus': Plus,
@@ -111,5 +114,6 @@ export const iconsMap = {
   'status/badSmile': Badsmile,
   'status/iconMark': Iconmark,
   'status/iconRetry': Iconretry,
-  'status/iconUser': Iconuser
+  'status/iconUser': Iconuser,
+  'status/succesCircle': Succescircle
 }
