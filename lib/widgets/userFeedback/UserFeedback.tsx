@@ -1,33 +1,51 @@
 import { useState } from 'react'
 import { type FormStep, type FormStepSetter, type SubmitCallback, useRating, type UseRatingReturn } from './model'
-import { FeedbackTrigger, SelectRating, Success, UserReviewForm } from './ui'
+import {
+  FeedbackTrigger,
+  SelectRating,
+  type SelectRatingProps,
+  Success,
+  type SuccessProps,
+  UserReviewForm,
+  type UserReviewFormProps
+} from './ui'
 import { Popover } from '$/shared/ui'
 
-export type RenderFormStep = {
+export type RenderFormStep = UserFeedbackProps & {
   formStep: FormStep
   setFormStep: FormStepSetter
   ratingProps: UseRatingReturn
   submitCallback: SubmitCallback
 }
 
-const renderFormStep = ({ formStep, setFormStep, ratingProps, submitCallback }: RenderFormStep) => {
+const renderFormStep = ({ formStep, setFormStep, ratingProps, ...props }: RenderFormStep) => {
   switch (formStep) {
     case 'rating':
-      return <SelectRating {...ratingProps} />
+      return <SelectRating {...ratingProps} {...props.selectRatingStepProps} />
 
     case 'review':
-      return <UserReviewForm submitCallback={submitCallback} setFormStep={setFormStep} rating={ratingProps.selectedRating} />
+      return (
+        <UserReviewForm
+          submitCallback={props.submitCallback}
+          setFormStep={setFormStep}
+          rating={ratingProps.selectedRating}
+          {...props.userReviewStepProps}
+        />
+      )
 
     case 'finally':
-      return <Success />
+      return <Success {...props.successStepProps} />
   }
 }
 
 export type UserFeedbackProps = {
   submitCallback: SubmitCallback
+  selectRatingStepProps?: SelectRatingProps
+  userReviewStepProps?: Pick<UserReviewFormProps, 'title' | 'subtitle'>
+  successStepProps?: SuccessProps
 }
 
-export const UserFeedback = ({ submitCallback }: UserFeedbackProps) => {
+export const UserFeedback = (props: UserFeedbackProps) => {
   const [formStep, setFormStep] = useState<FormStep>('rating')
   const ratingProps = useRating(setFormStep)
 
@@ -44,7 +62,7 @@ export const UserFeedback = ({ submitCallback }: UserFeedbackProps) => {
         }}
         triggerElement={<FeedbackTrigger />}
       >
-        <div className='w-full'>{renderFormStep({ formStep, setFormStep, ratingProps, submitCallback })}</div>
+        <div className='w-full'>{renderFormStep({ formStep, setFormStep, ratingProps, ...props })}</div>
       </Popover>
     </div>
   )

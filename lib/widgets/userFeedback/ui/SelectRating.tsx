@@ -2,22 +2,29 @@ import type { UseRatingReturn } from '../model'
 import { Icon } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
-export interface SelectRatingProps extends UseRatingReturn {}
+export interface SelectRatingProps {
+  title?: string
+  subtitle?: string
+}
 
 const ratings = Array(5).fill(0)
+const defaultTitle = 'Ваше мнение важно для нас!'
+const defaultSubtitle = 'Пожалуйста, оцените работу сайта, чтобы мы сделали его еще удобнее'
 
 export const SelectRating = ({
   handleMouseLeave,
   hoveredRatings,
   selectedRating,
   handleSelectRating,
-  handleMouseEnter
-}: SelectRatingProps) => {
+  handleMouseEnter,
+  title = defaultTitle,
+  subtitle = defaultSubtitle
+}: SelectRatingProps & UseRatingReturn) => {
   return (
     <div className='flex flex-col items-center gap-4'>
       <div className='flex flex-col gap-2 text-center'>
-        <p className='desk-body-medium-l'>Ваше мнение важно для нас!</p>
-        <p className='desk-body-regular-l'>Пожалуйста, оцените работу сайта, чтобы мы сделали его еще удобнее</p>
+        <p className='desk-body-medium-l'>{title}</p>
+        <p className='desk-body-regular-l'>{subtitle}</p>
       </div>
 
       <div className='flex items-center gap-2'>
