@@ -1,4 +1,4 @@
 export * from './FeedbackTrigger'
-export * from './Success'
-export * from './UserReviewForm'
+export * from './Finally'
+export * from './UserReview'
 export * from './SelectRating'
