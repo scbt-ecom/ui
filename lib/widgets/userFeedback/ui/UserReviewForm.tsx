@@ -7,9 +7,19 @@ export interface UserReviewFormProps {
   submitCallback: SubmitCallback
   setFormStep: FormStepSetter
   rating: number
+  title?: string
+  subtitle?: string
 }
+const defaultTitle = 'Расскажите о впечатлениях'
+const defaultSubtitle = 'Вам нравится сайт банка? <br /> У вас есть предложения по его улучшению?'
 
-export const UserReviewForm = ({ submitCallback, rating, setFormStep }: UserReviewFormProps) => {
+export const UserReviewForm = ({
+  submitCallback,
+  rating,
+  setFormStep,
+  title = defaultTitle,
+  subtitle = defaultSubtitle
+}: UserReviewFormProps) => {
   const { control, handleSubmit } = useControlledForm({
     mode: 'onBlur',
     schema: userReviewSchema,
@@ -30,11 +40,8 @@ export const UserReviewForm = ({ submitCallback, rating, setFormStep }: UserRevi
   return (
     <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-4'>
       <div className='flex flex-col gap-2 text-center'>
-        <p className='desk-body-medium-l'>Расскажите о впечатлениях</p>
-        <p className='desk-body-regular-l'>
-          Вам нравится сайт банка?
-          <br /> У вас есть предложения по его улучшению?
-        </p>
+        <p className='desk-body-medium-l'>{title}</p>
+        <p className='desk-body-regular-l'>{subtitle}</p>
       </div>
       <Controlled.TextareaControl control={control} name='review' label='Поделитесь вашим мнением' />
       <Button type='submit' size='sm' intent='negative' className='w-full'>
