@@ -62,6 +62,9 @@ export default defineConfig({
         if (warning.code === 'SOURCEMAP_ERROR') {
           return
         }
+        if (warning.message.includes('dynamic import will not move module into another chunk.')) {
+          return
+        }
         defaultHandler(warning)
       },
       output: {

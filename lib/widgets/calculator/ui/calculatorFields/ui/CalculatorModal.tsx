@@ -1,6 +1,6 @@
 import type { ModalContentVariant } from '../../../model'
 import { useBoolean } from '$/shared/hooks'
-import { Modal, type ModalProps } from '$/shared/ui'
+import { Modal, type ModalProps } from '$/shared/ui/modal/Modal'
 import { cn } from '$/shared/utils'
 
 export type CalculatorModalClasses = {
