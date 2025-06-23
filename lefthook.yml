@@ -3,9 +3,9 @@ pre-commit:
   commands:
     lint:
       stage_fixed: true
-      glob: "**/*.{ts,tsx}"
+      glob: '**/*.{ts,tsx}'
       run: pnpm eslint --fix {staged_files} --quiet
       exclude:
-        - "**/*.config.{ts,js,mjs,cjs}"
+        - '**/*.config.{ts,js,mjs,cjs}'
     tsc:
       run: pnpm exec tsc
