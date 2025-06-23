@@ -20,13 +20,13 @@ jobs:
         uses: ./.github/workflows/setup-node
 
       - name: Fix prettier
-        run: npm run prettier
+        run: pnpm prettier
 
       - name: Lint Code
-        run: npm run lint
+        run: pnpm lint
 
       - name: Build 🏗️
-        run: npm run build
+        run: pnpm build
 
       - name: Archive build artifacts
         uses: actions/upload-artifact@v4
