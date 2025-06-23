@@ -46,9 +46,9 @@ const renderFormStep = ({ formStep, setFormStep, ratingProps, ...props }: Render
 type UserFeedbackClasses = {
   root?: string
   wrapper?: string
-  selectRating: SelectRatingClasses
+  selectRating?: SelectRatingClasses
   userReview?: UserReviewClasses
-  finally: FinallyClasses
+  finally?: FinallyClasses
 }
 
 export type UserFeedbackProps = {
