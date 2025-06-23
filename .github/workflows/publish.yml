@@ -19,6 +19,9 @@ jobs:
       - name: Setup Node.js ⚙️ - Cache dependencies ⚡ - Install dependencies 🔧
         uses: ./.github/workflows/setup-node
 
+      - name: Fix prettier
+        run: npm run prettier
+
       - name: Lint Code
         run: npm run lint
 
