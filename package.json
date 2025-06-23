@@ -68,7 +68,8 @@
     "pre-commit": "npm run lint",
     "chromatic": "npx chromatic --project-token=chpt_9468dafcf1bf3e3 --only-changed --files='src/stories/**/*.stories.@(tsx)'",
     "pre-deploy": "npm run lint ",
-    "ts-check": "pnpm exec tsc"
+    "ts-check": "pnpm exec tsc",
+    "prebuild": "pnpm prettier --log-level=error"
   },
   "peerDependecies": {
     "react": "^18.3.1",
