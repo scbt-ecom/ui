@@ -34,7 +34,7 @@ runs:
     - name: Install dependencies 🔧 (without package-lock)
       shell: bash
       if: steps.cache_dependencies.outputs.cache-hit != 'true'
-      run: pnpm install --frozen-lockfile
+      run: pnpm install --no-lockfile
 
     - name: Verify Cypress installation ✅
       shell: bash
