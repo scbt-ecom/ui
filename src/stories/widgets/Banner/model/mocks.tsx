@@ -1,4 +1,3 @@
-import bezrykovDesk from './assets/bezrukov_desk.png'
 import bezrykovMob from './assets/bezrukov_mob.png'
 import saifDesktop from './assets/saif.jpg'
 import saifMob from './assets/saifMob.jpg'
@@ -20,11 +19,10 @@ const defaultMockAdvantageProps: AdvantagesProps = {
 export const mockBannerBase: BannerProps = {
   headTitle: 'Кредит на любые цели',
   subtitle: 'до 5 млн рублей',
-  imageMobile: {
-    src: bezrykovMob
-  },
-  imageDesktop: {
-    src: bezrykovDesk
+  images: {
+    mobile: bezrykovMob,
+    desktop: saifDesktop,
+    alt: 'alt'
   },
   buttonsConfig: {
     primary: {
@@ -53,11 +51,10 @@ export const mockBannerBase: BannerProps = {
 export const mockBannerOnlyPrimaryButton: BannerProps = {
   headTitle: 'Кредит на любые цели',
   subtitle: 'до 5 млн рублей',
-  imageDesktop: {
-    src: bezrykovDesk
-  },
-  imageMobile: {
-    src: bezrykovMob
+  images: {
+    mobile: bezrykovMob,
+    desktop: saifDesktop,
+    alt: 'alt'
   },
   buttonsConfig: {
     primary: {
@@ -76,11 +73,10 @@ export const mockBannerOnlyPrimaryButton: BannerProps = {
 export const mockWithAdvantages: BannerProps = {
   headTitle: 'Кредит на любые цели',
   subtitle: 'до 5 млн рублей',
-  imageMobile: {
-    src: bezrykovMob
-  },
-  imageDesktop: {
-    src: bezrykovDesk
+  images: {
+    mobile: bezrykovMob,
+    desktop: saifDesktop,
+    alt: 'alt'
   },
 
   buttonsConfig: {
@@ -101,11 +97,10 @@ export const mockWithAdvantages: BannerProps = {
 export const mockBannerBaseFullImage: BannerProps = {
   headTitle: 'Кредит на любые цели',
   subtitle: 'до 5 млн рублей',
-  imageDesktop: {
-    src: saifDesktop
-  },
-  imageMobile: {
-    src: saifMob
+  images: {
+    mobile: saifMob,
+    desktop: saifDesktop,
+    alt: 'alt'
   },
   buttonsConfig: {
     primary: {
@@ -139,11 +134,10 @@ export const mockBannerBaseFullImage: BannerProps = {
 export const mockBannerFullImageOnlyPrimaryButton: BannerProps = {
   headTitle: 'Кредит на любые цели',
   subtitle: 'до 5 млн рублей',
-  imageDesktop: {
-    src: saifDesktop
-  },
-  imageMobile: {
-    src: saifMob
+  images: {
+    mobile: saifMob,
+    desktop: saifDesktop,
+    alt: 'alt'
   },
   buttonsConfig: {
     primary: {
@@ -167,11 +161,10 @@ export const mockBannerFullImageOnlyPrimaryButton: BannerProps = {
 export const mockBannerFullImageWithAdvantages: BannerProps = {
   headTitle: 'Кредит на любые цели',
   subtitle: 'до 5 млн рублей',
-  imageDesktop: {
-    src: saifDesktop
-  },
-  imageMobile: {
-    src: saifMob
+  images: {
+    mobile: saifMob,
+    desktop: saifDesktop,
+    alt: 'alt'
   },
   buttonsConfig: {
     primary: {
@@ -196,11 +189,10 @@ export const mockBannerFullImageWithAdvantages: BannerProps = {
 export const mockBannerBaseGradient: BannerProps = {
   headTitle: 'Кредит на любые цели',
   subtitle: 'до 5 млн рублей',
-  imageMobile: {
-    src: bezrykovMob
-  },
-  imageDesktop: {
-    src: bezrykovDesk
+  images: {
+    mobile: bezrykovMob,
+    desktop: saifDesktop,
+    alt: 'alt'
   },
   buttonsConfig: {
     primary: {
@@ -232,11 +224,10 @@ export const mockBannerBaseGradient: BannerProps = {
 export const mockBannerBaseGradientAdvantages: BannerProps = {
   headTitle: 'Кредит на любые цели',
   subtitle: 'до 5 млн рублей',
-  imageMobile: {
-    src: bezrykovMob
-  },
-  imageDesktop: {
-    src: bezrykovDesk
+  images: {
+    mobile: bezrykovMob,
+    desktop: saifDesktop,
+    alt: 'alt'
   },
   buttonsConfig: {
     primary: {

@@ -3,7 +3,7 @@
 import { Advantages, Buttons } from './ui'
 import { useDevice } from '$/shared/hooks'
 import { ResponsiveContainer } from '$/shared/ui'
-import { cn, renderImage } from '$/shared/utils'
+import { cn } from '$/shared/utils'
 import { type BannerProps, widgetIds } from '$/widgets'
 
 export const BannerImageFull = ({
@@ -12,9 +12,7 @@ export const BannerImageFull = ({
   buttonsConfig,
   advantages,
   classes,
-  imageDesktop,
-  imageMobile,
-  renderImageCb,
+  images,
   backgroundColor
 }: Omit<BannerProps, 'bannerVariant'>) => {
   const { isMobile } = useDevice()
@@ -30,21 +28,11 @@ export const BannerImageFull = ({
         className={cn('relative h-[552px] desktop:h-[456px]', classes?.root)}
       >
         <div className='absolute bottom-0 left-0 right-0 top-0 mx-auto h-full max-w-[1920px] desktop:h-[456px]'>
-          {isMobile
-            ? renderImage({
-                imgProps: {
-                  className: 'h-full w-full object-cover object-center',
-                  ...imageMobile
-                },
-                renderImageCb
-              })
-            : renderImage({
-                imgProps: {
-                  className: 'h-full w-full object-cover object-center',
-                  ...imageDesktop
-                },
-                renderImageCb
-              })}
+          {isMobile ? (
+            <img src={images.mobile} className='h-full w-full object-cover object-center' alt={images.alt} />
+          ) : (
+            <img src={images.desktop} alt={images.alt} className='h-full w-full object-cover object-center' />
+          )}
         </div>
 
         <ResponsiveContainer className={cn('h-full', classes?.container)}>

@@ -1,6 +1,6 @@
 import { Advantages, Buttons } from './ui'
 import { ResponsiveContainer } from '$/shared/ui'
-import { cn, renderImage } from '$/shared/utils'
+import { cn } from '$/shared/utils'
 import { type BannerProps, widgetIds } from '$/widgets'
 
 export const BannerWithSeparateImg = ({
@@ -9,9 +9,7 @@ export const BannerWithSeparateImg = ({
   buttonsConfig,
   advantages,
   classes,
-  renderImageCb,
-  imageDesktop,
-  imageMobile,
+  images,
   backgroundColor
 }: Omit<BannerProps, 'bannerVariant'>) => {
   const advantagesExist = advantages?.details && advantages?.details?.items.length > 0
@@ -51,13 +49,7 @@ export const BannerWithSeparateImg = ({
               classes?.imageContainer
             )}
           >
-            {renderImage({
-              imgProps: {
-                className: 'h-full object-contain',
-                ...imageMobile
-              },
-              renderImageCb
-            })}
+            <img src={images.mobile} alt={images.alt} className='h-full object-contain' />
           </div>
 
           <div
@@ -66,13 +58,7 @@ export const BannerWithSeparateImg = ({
               classes?.imageContainer
             )}
           >
-            {renderImage({
-              imgProps: {
-                className: 'h-full object-contain',
-                ...imageDesktop
-              },
-              renderImageCb
-            })}
+            <img src={images.desktop} alt={images.alt} className='h-full object-contain' />
           </div>
         </div>
 

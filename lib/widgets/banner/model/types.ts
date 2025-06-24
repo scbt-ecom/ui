@@ -26,3 +26,9 @@ export type ButtonsConfig = {
     enabled: boolean
   }
 }
+
+export type Images = {
+  desktop: string
+  mobile: string
+  alt: string
+}
