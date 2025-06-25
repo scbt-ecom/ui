@@ -20,7 +20,6 @@ const meta = {
     layout: 'centered'
   },
   args: {
-    multiple: true,
     item: options[0]
   },
   tags: ['autodocs']
@@ -32,6 +31,15 @@ type Story = StoryObj<typeof meta>
 
 export const Base: Story = {
   args: {
-    onPick: () => {}
-  }
+    onPick: (item) => {
+      console.log('selected item', item)
+    }
+  },
+  render: (props) => (
+    <>
+      {options.map((option, index) => (
+        <DropdownItem {...props} key={index} item={option} />
+      ))}
+    </>
+  )
 }

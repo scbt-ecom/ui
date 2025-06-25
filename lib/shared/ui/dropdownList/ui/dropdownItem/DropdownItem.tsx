@@ -3,29 +3,32 @@ import type { DropdownItemOption } from './model'
 import { CheckboxBase } from '$/shared/ui/formElements/uncontrolled/checkbox'
 import { cn } from '$/shared/utils'
 
-export interface DropdownItemProps<Multi extends boolean> extends Omit<React.HTMLAttributes<HTMLLIElement>, 'children'> {
+export interface DropdownItemProps extends Omit<React.HTMLAttributes<HTMLLIElement>, 'children'> {
   item: DropdownItemOption
-  onPick: (value: DropdownItemOption) => void
-  multiple?: Multi
+  onPick?: (value: DropdownItemOption, event: React.MouseEvent<HTMLLIElement, MouseEvent>) => void
+  multiple?: boolean
   active?: boolean
   focused?: boolean
   disabled?: boolean
 }
 
-export const DropdownItem = <Multi extends boolean>({
+export const DropdownItem = ({
   item,
   className,
-  multiple,
+  onPick,
+  multiple = false,
   active = false,
   focused = false,
   ...props
-}: DropdownItemProps<Multi>) => {
+}: DropdownItemProps) => {
   const { label, helperText, disabled, attachment } = item
   const ContentWrapper = multiple || attachment || helperText ? 'div' : Fragment
 
   return (
     <li
       {...props}
+      role='listitem'
+      onClick={(event) => onPick?.(item, event)}
       data-focused={focused}
       data-active={active}
       className={cn(
