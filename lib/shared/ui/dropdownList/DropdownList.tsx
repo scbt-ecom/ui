@@ -81,7 +81,7 @@ export const DropdownList = <Multi extends boolean>({
     return () => {
       abortController.abort()
     }
-  }, [focusedIndex])
+  }, [focusedIndex, options])
 
   return (
     <ul

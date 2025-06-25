@@ -47,7 +47,7 @@ const options: DropdownItemOption[] = [
   },
   {
     value: 'value_11',
-    label: 'Value_11'
+    label: 'Value 11'
   }
 ]
 
@@ -65,7 +65,7 @@ const meta = {
     )
   ],
   args: {
-    multiple: false,
+    multiple: true,
     options
   },
   tags: ['autodocs']
