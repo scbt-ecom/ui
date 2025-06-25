@@ -38,7 +38,7 @@ export const InfoBlock = (props: InfoBlockProps) => {
               'h-[238px]': size === 'md'
             })}
           >
-            <img src={images.desktop} alt={images.alt} className={cn('h-full w-full object-contain', classes?.imageDesktop)} />
+            <img src={images?.desktop} alt={images?.alt} className={cn('h-full w-full object-contain', classes?.imageDesktop)} />
           </div>
         </div>
       </ResponsiveContainer>

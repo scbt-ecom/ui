@@ -1,5 +1,5 @@
 export type Images = {
-  desktop: string
-  mobile: string
-  alt: string
+  desktop?: string
+  mobile?: string
+  alt?: string
 }
