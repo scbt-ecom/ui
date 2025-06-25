@@ -20,6 +20,9 @@ const defaultLigal = `Кредит на бизнес цели, срок 3, 6, 9,
         заявки может составлять до 3 рабочих дней. Полный электронный документооборот при наличии открытого р/с в ПАО «Совкомбанк»
         и действующей ЭЦП. Условия рекламы действительны на 20.02.2024г.`
 
+const text = ` <p className="text-dark">ПАО «Совкомбанк». Все права
+        защищены. Генеральная лицензия Банка России №963 от 5 декабря 2014 г.</p>`
+
 export const Base: Story = {
   args: {
     phones: {
@@ -78,7 +81,8 @@ export const Seo: Story = {
     ligal: { text: defaultLigal, enabled: true },
     details: defaultNavigationLinks,
     copyright: {
-      enabled: false
+      enabled: true,
+      text: text
     },
     socialsLinks: {
       enabled: false

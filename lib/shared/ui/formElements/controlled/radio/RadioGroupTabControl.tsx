@@ -19,7 +19,9 @@ export const RadioGroupTabControl = <TFieldValues extends FieldValues = FieldVal
       renderComponent={({ options, ...props }) => {
         return (
           <div className='flex list-none flex-row flex-wrap gap-x-3 gap-y-4'>
-            {options?.map((option) => <RadioItemTab key={option.value} item={option} {...props} />)}
+            {options?.map((option) => (
+              <RadioItemTab key={option.value} item={option} {...props} />
+            ))}
           </div>
         )
       }}

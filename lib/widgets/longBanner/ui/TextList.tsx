@@ -12,7 +12,9 @@ interface ListItemsProps<Enabled extends boolean> {
 export const TextList = <Enabled extends boolean>({ details, intent, withButton }: ListItemsProps<Enabled>) => {
   return (
     <ul className={cn(listItemConfig({ intent, withButton }))}>
-      {details?.map((element, index) => <TextItem intent={intent} data={element} key={index} />)}
+      {details?.map((element, index) => (
+        <TextItem intent={intent} data={element} key={index} />
+      ))}
     </ul>
   )
 }
