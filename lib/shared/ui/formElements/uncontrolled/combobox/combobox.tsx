@@ -49,9 +49,17 @@ export interface ComboboxProps<Multi extends boolean> extends Omit<DropdownListP
    * Отображаемый лейбл
    */
   label: string
+  /**
+   * Выключено поле
+   */
+  disabled?: boolean
+  /**
+   * Только для чтения
+   */
+  readOnly?: boolean
 }
 
-export const Combobox = <Multi extends boolean>({
+export const Combobox = <Multi extends boolean = false>({
   options: initialOptions,
   multiple,
   value,
@@ -62,6 +70,8 @@ export const Combobox = <Multi extends boolean>({
   invalid,
   displayValue,
   label,
+  disabled,
+  readOnly,
   className
 }: ComboboxProps<Multi>) => {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -103,12 +113,17 @@ export const Combobox = <Multi extends boolean>({
         ref={mergeRefs(refs.setReference)}
         label={label}
         invalid={invalid}
-        readOnly={!searchable}
+        readOnly={readOnly || !searchable}
         value={search}
         onChange={onInputChange}
+        disabled={disabled}
         onClick={() => setOpen(true)}
         classes={{
-          input: !searchable ? 'cursor-pointer' : undefined
+          input: cn({
+            'cursor-pointer': !searchable,
+            'cursor-default': disabled,
+            'pointer-events-none': disabled || readOnly
+          })
         }}
         autoComplete='off'
         attachmentProps={{

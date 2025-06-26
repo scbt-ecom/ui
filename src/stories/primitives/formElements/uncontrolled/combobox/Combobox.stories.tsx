@@ -4,28 +4,6 @@ import { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import { type ComboboxItemOption, Uncontrolled } from '$/shared/ui'
 
-const meta = {
-  title: 'Form elements/uncontrolled/Combobox',
-  component: Uncontrolled.Combobox,
-  parameters: {
-    layout: 'centered'
-  },
-  decorators: [
-    (Story) => (
-      <div className='mx-auto w-[600px]'>
-        <Story />
-      </div>
-    )
-  ],
-  args: {
-    multiple: false
-  }
-} satisfies Meta<typeof Uncontrolled.Combobox>
-
-export default meta
-
-type Story = StoryObj<typeof Uncontrolled.Combobox>
-
 const options: ComboboxItemOption[] = [
   {
     value: 'value_1',
@@ -76,6 +54,29 @@ const options: ComboboxItemOption[] = [
   }
 ]
 
+const meta = {
+  title: 'Form elements/uncontrolled/Combobox',
+  component: Uncontrolled.Combobox,
+  parameters: {
+    layout: 'centered'
+  },
+  decorators: [
+    (Story) => (
+      <div className='mx-auto w-[600px]'>
+        <Story />
+      </div>
+    )
+  ],
+  args: {
+    options,
+    label: 'Select'
+  }
+} satisfies Meta<typeof Uncontrolled.Combobox>
+
+export default meta
+
+type Story = StoryObj<typeof Uncontrolled.Combobox>
+
 /**
  * \`Input\` компонент для ввода информации\n
  *
@@ -90,11 +91,29 @@ const options: ComboboxItemOption[] = [
  * Остальные свойства наследуются от [HTMLInputElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement)\n
  */
 export const Controlled: Story = {
+  args: {},
+  render: (props) => {
+    const [value, setValue] = useState<ComboboxItemOption | null>(null)
+
+    return (
+      <>
+        <pre>{value && JSON.stringify(value, null, 2)}</pre>
+        <Uncontrolled.Combobox {...props} multiple={false} value={value} onChange={setValue} />
+      </>
+    )
+  }
+}
+
+export const Searchable: Story = {
   args: {
-    options,
-    searchable: false,
-    label: 'Select'
+    ...Controlled.args,
+    searchable: true
   },
+  render: Controlled.render
+}
+
+export const Multiple: Story = {
+  args: {},
   render: (props) => {
     const [value, setValue] = useState<ComboboxItemOption[]>([])
 
@@ -105,4 +124,28 @@ export const Controlled: Story = {
       </>
     )
   }
+}
+
+export const Disabled: Story = {
+  args: {
+    ...Controlled.args,
+    disabled: true
+  },
+  render: Controlled.render
+}
+
+export const ReadOnly: Story = {
+  args: {
+    ...Controlled.args,
+    readOnly: true
+  },
+  render: Controlled.render
+}
+
+export const Invalid: Story = {
+  args: {
+    ...Controlled.args,
+    invalid: true
+  },
+  render: Controlled.render
 }

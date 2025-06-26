@@ -53,7 +53,7 @@ export const useCombobox = <Multi extends boolean>(props: UseComboboxOptions<Mul
 
       onChange?.(updated)
 
-      const label = displayValue && updated ? displayValue(updated as ComboboxItemOption) : (updated as ComboboxItemOption).label
+      const label = displayValue && updated ? displayValue(updated as ComboboxItemOption) : (updated as ComboboxItemOption)?.label
       setSearch(label ?? '')
       setOpen(false)
 
