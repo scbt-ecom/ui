@@ -6,9 +6,23 @@ import { cn } from '$/shared/utils'
 
 export interface DropdownListProps<Multi extends boolean> extends React.HTMLAttributes<HTMLUListElement> {
   options: DropdownItemOption[]
-  value?: Multi extends true ? DropdownItemOption[] : DropdownItemOption
+  /**
+   * Значения выбранные по умолчанию
+   */
+  value?: Multi extends true ? DropdownItemOption[] : DropdownItemOption | null
+  /**
+   * Функция при выборе значения из списка
+   * @param item
+   */
   onPick?: (item: DropdownItemOption) => void
+  /**
+   * Поддержка множественного выбора
+   */
   multiple?: Multi
+  /**
+   * Функция для управления отображаемым значением
+   */
+  displayValue?: (option: DropdownItemOption) => string
 }
 
 export const DropdownList = <Multi extends boolean>({
@@ -17,6 +31,7 @@ export const DropdownList = <Multi extends boolean>({
   onPick,
   value,
   className,
+  displayValue,
   ...props
 }: DropdownListProps<Multi>) => {
   const ref = useRef<HTMLUListElement>(null)
@@ -108,6 +123,7 @@ export const DropdownList = <Multi extends boolean>({
             focused={focusedIndex === index}
             multiple={multiple}
             onPick={onPick}
+            displayValue={displayValue}
             onMouseEnter={() => setFocusedIndex(index)}
             onMouseLeave={() => setFocusedIndex(-1)}
           />

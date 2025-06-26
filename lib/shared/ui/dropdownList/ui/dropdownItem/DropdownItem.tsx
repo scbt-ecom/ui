@@ -10,10 +10,11 @@ export interface DropdownItemProps extends Omit<React.HTMLAttributes<HTMLLIEleme
   active?: boolean
   focused?: boolean
   disabled?: boolean
+  displayValue?: (option: DropdownItemOption) => string
 }
 
 const InnerComponent = forwardRef<HTMLLIElement, DropdownItemProps>(
-  ({ item, className, onPick, multiple = false, active = false, focused = false, ...props }, ref) => {
+  ({ item, className, onPick, multiple = false, active = false, focused = false, displayValue, ...props }, ref) => {
     const { label, helperText, disabled, attachment } = item
     const ContentWrapper = multiple || attachment || helperText ? 'div' : Fragment
 
@@ -41,7 +42,7 @@ const InnerComponent = forwardRef<HTMLLIElement, DropdownItemProps>(
       >
         {multiple ? <CheckboxBase checked={active} disabled={disabled} /> : attachment && attachment.left}
         <ContentWrapper>
-          {label}
+          {displayValue ? displayValue(item) : label}
           {helperText && (
             <p
               className={cn('desk-body-regular-s text-color-tetriary', {

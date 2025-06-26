@@ -1,7 +1,7 @@
 import type { DropdownItemOption } from '../ui'
 import { TypeGuards } from '$/shared/utils/typeGuards'
 
-export const isOptionActive = (item: DropdownItemOption, value?: DropdownItemOption | DropdownItemOption[]) => {
+export const isOptionActive = (item: DropdownItemOption, value?: DropdownItemOption | DropdownItemOption[] | null) => {
   if (!value) return false
 
   if (TypeGuards.isArray(value)) {

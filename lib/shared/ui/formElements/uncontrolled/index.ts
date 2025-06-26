@@ -21,6 +21,8 @@ export type { TextareaBaseProps } from './textarea'
 export { isSingleOption } from './select'
 import { InputOtpBase } from './inputOtp'
 export type { InputOtpBaseProps } from './inputOtp'
+import { Combobox } from './combobox'
+export type { ComboboxProps, ComboboxItemOption } from './combobox'
 
 export const Uncontrolled = {
   InputBase,
@@ -34,5 +36,6 @@ export const Uncontrolled = {
   RadioGroupBase,
   TextareaBase,
   InputOtpBase,
-  UploaderBase
+  UploaderBase,
+  Combobox
 }
