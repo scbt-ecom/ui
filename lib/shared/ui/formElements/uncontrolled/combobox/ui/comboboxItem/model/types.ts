@@ -1,3 +1,12 @@
-import type { DropdownItemOption } from '$/shared/ui/dropdownList'
+import type { ReactElement } from 'react'
 
-export type ComboboxItemOption = DropdownItemOption
+export type ComboboxItemOption = {
+  value: string | null
+  label: string
+  helperText?: string
+  disabled?: boolean
+  attachment?: {
+    left?: ReactElement
+    right?: ReactElement
+  }
+}
