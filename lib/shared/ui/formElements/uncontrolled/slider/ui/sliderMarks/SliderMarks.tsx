@@ -5,7 +5,7 @@ import { getInputSliderSuffix } from '../../model/helpers'
 import { type SliderMarksProps } from '../../model/types'
 import { SliderInner } from '../../ui/Slider'
 import { useSliderMarks } from './hooks/useSliderMarks'
-import { Uncontrolled } from '$/shared/ui'
+import { InputBase } from '$/shared/ui'
 import { cn, mergeRefs } from '$/shared/utils'
 
 export const SliderMarks = forwardRef<HTMLInputElement, SliderMarksProps>(
@@ -41,7 +41,7 @@ export const SliderMarks = forwardRef<HTMLInputElement, SliderMarksProps>(
     return (
       <div aria-label={componentType} className={cn('flex w-full flex-col gap-1', root)}>
         <div className={cn('relative w-full select-none', field)}>
-          <Uncontrolled.InputBase
+          <InputBase
             label={label}
             value={value}
             attachmentProps={{

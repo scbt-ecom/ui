@@ -2,7 +2,7 @@
 
 import type { Meta, StoryObj } from '@storybook/react'
 import { QueryClient, QueryClientProvider, useQuery, type UseQueryOptions } from '@tanstack/react-query'
-import { Uncontrolled } from '$/shared/ui'
+import { AutocompleteBase } from '$/shared/ui'
 
 const queryClient = new QueryClient()
 
@@ -17,7 +17,7 @@ const useQueryFn = (search: string, options?: Partial<UseQueryOptions<string[]>>
 
 const meta = {
   title: 'Form elements/uncontrolled/AutocompleteBase',
-  component: Uncontrolled.AutocompleteBase,
+  component: AutocompleteBase,
   parameters: {
     layout: 'centered'
   },
@@ -33,11 +33,11 @@ const meta = {
   args: {
     label: 'Test selector'
   }
-} satisfies Meta<typeof Uncontrolled.AutocompleteBase>
+} satisfies Meta<typeof AutocompleteBase>
 
 export default meta
 
-type Story = StoryObj<typeof Uncontrolled.AutocompleteBase>
+type Story = StoryObj<typeof AutocompleteBase>
 
 /**
  * \`Autocomplete\` компонент для выбора значений из выпадающего списка\n
@@ -57,7 +57,7 @@ export const Base: Story = {
   render: (props) => {
     return (
       <div className='flex flex-col gap-4 rounded-lg border border-blue-grey-700 p-5'>
-        <Uncontrolled.AutocompleteBase
+        <AutocompleteBase
           {...props}
           label='Autocomplete Base'
           formatter={(item) => ({

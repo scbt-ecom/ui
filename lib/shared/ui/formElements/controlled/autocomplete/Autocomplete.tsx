@@ -1,6 +1,6 @@
 import { type Control, type FieldValues, type Path, useController, type UseControllerProps } from 'react-hook-form'
 import { MessageView } from '../../ui'
-import { type AutocompleteBaseProps, Uncontrolled } from '$/shared/ui'
+import { AutocompleteBase, type AutocompleteBaseProps } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
 export type AutocompleteControlProps<
@@ -43,7 +43,7 @@ export const AutocompleteControl = <TFieldValues extends FieldValues, T>({
 
   return (
     <div className={cn('w-full', container)}>
-      <Uncontrolled.AutocompleteBase {...props} {...field} immediate={immediate} invalid={invalid} />
+      <AutocompleteBase {...props} {...field} immediate={immediate} invalid={invalid} />
       <MessageView className={message} text={error?.message || helperText} intent={error ? 'error' : 'simple'} />
     </div>
   )

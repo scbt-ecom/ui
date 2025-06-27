@@ -5,9 +5,9 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { fn } from '@storybook/test'
 import z from 'zod'
 import { HookForm } from '../utils'
-import { Controlled } from '$/shared/ui'
+import { InputOtpControl } from '$/shared/ui'
 
-export type InputOtpControlProps = React.ComponentPropsWithoutRef<typeof Controlled.InputOtpControl>
+export type InputOtpControlProps = React.ComponentPropsWithoutRef<typeof InputOtpControl>
 
 const schema = z.object({
   test: z.string().min(4, 'Name error')
@@ -17,7 +17,7 @@ type Schema = z.TypeOf<typeof schema>
 
 const meta = {
   title: 'Form elements/controlled/InputOtpControl',
-  component: Controlled.InputOtpControl,
+  component: InputOtpControl,
   parameters: {
     layout: 'centered'
   },
@@ -31,14 +31,14 @@ const meta = {
       defaultValues={{
         test: ''
       }}
-      renderComponent={(componentProps: InputOtpControlProps) => <Controlled.InputOtpControl {...componentProps} />}
+      renderComponent={(componentProps: InputOtpControlProps) => <InputOtpControl {...componentProps} />}
     />
   )
-} satisfies Meta<typeof Controlled.InputOtpControl>
+} satisfies Meta<typeof InputOtpControl>
 
 export default meta
 
-type Story = StoryObj<typeof Controlled.InputOtpControl>
+type Story = StoryObj<typeof InputOtpControl>
 
 /**
  * \`InputOtpControl\` компонент, управляемый библиотекой \`react-hook-form\`\n

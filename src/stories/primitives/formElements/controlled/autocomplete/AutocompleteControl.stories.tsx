@@ -6,7 +6,7 @@ import { fn } from '@storybook/test'
 import { useQuery, type UseQueryOptions } from '@tanstack/react-query'
 import z from 'zod'
 import { HookForm } from '@/stories/primitives/formElements/controlled/utils'
-import { Controlled } from '$/shared/ui'
+import { AutocompleteControl } from '$/shared/ui'
 
 const schema = z.object({
   test: z.string().nullable().refine(Boolean)
@@ -14,7 +14,7 @@ const schema = z.object({
 
 type Schema = z.TypeOf<typeof schema>
 
-type AutocompleteControlProps = React.ComponentPropsWithoutRef<typeof Controlled.AutocompleteControl<Schema, string>>
+type AutocompleteControlProps = React.ComponentPropsWithoutRef<typeof AutocompleteControl<Schema, string>>
 
 const useQueryFn = (search: string, options?: Partial<UseQueryOptions<string[]>>) =>
   useQuery<string[]>({
@@ -29,7 +29,7 @@ const useQueryFn = (search: string, options?: Partial<UseQueryOptions<string[]>>
 
 const meta = {
   title: 'Form elements/controlled/AutocompleteControl',
-  component: Controlled.AutocompleteControl<Schema, string>,
+  component: AutocompleteControl<Schema, string>,
   parameters: {
     layout: 'centered'
   },
@@ -44,14 +44,14 @@ const meta = {
       defaultValues={{
         test: ''
       }}
-      renderComponent={(componentProps: AutocompleteControlProps) => <Controlled.AutocompleteControl {...componentProps} />}
+      renderComponent={(componentProps: AutocompleteControlProps) => <AutocompleteControl {...componentProps} />}
     />
   )
-} satisfies Meta<typeof Controlled.AutocompleteControl<Schema, string>>
+} satisfies Meta<typeof AutocompleteControl<Schema, string>>
 
 export default meta
 
-type Story = StoryObj<typeof Controlled.AutocompleteControl<Schema, string>>
+type Story = StoryObj<typeof AutocompleteControl<Schema, string>>
 
 /**
  * \`AutocompleteControl\` компонент, управляемый библиотекой \`react-hook-form\`\n

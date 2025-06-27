@@ -1,9 +1,9 @@
 import { inputDefaultProps, optionalSchema } from './constants'
 import { ComponentFactory } from '@/test/utils'
-import { Controlled } from '$/shared/ui'
+import { InputControl } from '$/shared/ui'
 
-describe('Test cases for Controlled.InputControl', () => {
-  const factory = new ComponentFactory(Controlled.InputControl)
+describe('Test cases for InputControl', () => {
+  const factory = new ComponentFactory(InputControl)
 
   it('Should render and pass value correctly', () => {
     // mount component before test case runs

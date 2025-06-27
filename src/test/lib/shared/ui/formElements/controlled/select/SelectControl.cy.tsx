@@ -1,9 +1,9 @@
 import * as constants from './constants'
 import { ComponentFactory } from '@/test/utils'
-import { Controlled } from '$/shared/ui'
+import { SelectControl } from '$/shared/ui'
 
-describe('Test cases for Controlled.SelectControl', () => {
-  const factory = new ComponentFactory(Controlled.SelectControl)
+describe('Test cases for SelectControl', () => {
+  const factory = new ComponentFactory(SelectControl)
 
   it('Should render and select value correctly', () => {
     // mount component before test case runs

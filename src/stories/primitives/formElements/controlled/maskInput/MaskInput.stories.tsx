@@ -6,13 +6,13 @@ import { fn } from '@storybook/test'
 import type { TypeOf } from 'zod'
 import { HookForm } from '../utils'
 import { baseDefaultValues, baseSchema, dateDefaultValues, dateSchema, phoneDefaultValues, phoneSchema } from './schemas'
-import { Controlled } from '$/shared/ui'
+import { MaskInputControl } from '$/shared/ui'
 
-type MaskInputControlProps = React.ComponentPropsWithoutRef<typeof Controlled.MaskInputControl>
+type MaskInputControlProps = React.ComponentPropsWithoutRef<typeof MaskInputControl>
 
 const meta = {
   title: 'Form elements/controlled/MaskInputControl',
-  component: Controlled.MaskInputControl,
+  component: MaskInputControl,
   parameters: {
     layout: 'centered'
   },
@@ -26,14 +26,14 @@ const meta = {
       {...props}
       schema={baseSchema}
       defaultValues={baseDefaultValues}
-      renderComponent={(componentProps: MaskInputControlProps) => <Controlled.MaskInputControl {...componentProps} />}
+      renderComponent={(componentProps: MaskInputControlProps) => <MaskInputControl {...componentProps} />}
     />
   )
-} satisfies Meta<typeof Controlled.MaskInputControl>
+} satisfies Meta<typeof MaskInputControl>
 
 export default meta
 
-type Story = StoryObj<typeof Controlled.MaskInputControl>
+type Story = StoryObj<typeof MaskInputControl>
 
 /**
  * \`MaskInputControl\` компонент, управляемый библиотекой \`react-hook-form\`\n
@@ -59,7 +59,7 @@ export const WithPhoneMask: Story = {
       {...props}
       schema={phoneSchema}
       defaultValues={phoneDefaultValues}
-      renderComponent={(componentProps: MaskInputControlProps) => <Controlled.MaskInputControl {...componentProps} />}
+      renderComponent={(componentProps: MaskInputControlProps) => <MaskInputControl {...componentProps} />}
     />
   )
 }
@@ -74,7 +74,7 @@ export const WithDateMask: Story = {
       {...props}
       schema={dateSchema}
       defaultValues={dateDefaultValues}
-      renderComponent={(componentProps: MaskInputControlProps) => <Controlled.MaskInputControl {...componentProps} />}
+      renderComponent={(componentProps: MaskInputControlProps) => <MaskInputControl {...componentProps} />}
     />
   )
 }

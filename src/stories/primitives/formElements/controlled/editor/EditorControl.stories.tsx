@@ -3,7 +3,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import z from 'zod'
 import { HookForm } from '../utils'
-import { Controlled } from '$/shared/ui'
+import { EditorControl } from '$/shared/ui'
 import { VALIDATION_MESSAGES } from '$/shared/validation'
 
 const schema = z.object({
@@ -11,11 +11,11 @@ const schema = z.object({
 })
 
 type Schema = z.TypeOf<typeof schema>
-type EditorControlProps = React.ComponentPropsWithoutRef<typeof Controlled.EditorControl>
+type EditorControlProps = React.ComponentPropsWithoutRef<typeof EditorControl>
 
 const meta = {
   title: 'Form elements/controlled/EditorControl',
-  component: Controlled.EditorControl,
+  component: EditorControl,
   parameters: {
     layout: 'centered'
   },
@@ -38,14 +38,14 @@ const meta = {
       defaultValues={{
         test: ''
       }}
-      renderComponent={(componentProps: EditorControlProps) => <Controlled.EditorControl {...componentProps} />}
+      renderComponent={(componentProps: EditorControlProps) => <EditorControl {...componentProps} />}
     />
   )
-} satisfies Meta<typeof Controlled.EditorControl>
+} satisfies Meta<typeof EditorControl>
 
 export default meta
 
-type Story = StoryObj<typeof Controlled.EditorControl>
+type Story = StoryObj<typeof EditorControl>
 
 /**
  * \`EditorControl\` компонент, контролируемый библиотекой \`react-hook-form\`\n

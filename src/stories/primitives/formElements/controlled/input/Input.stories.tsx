@@ -5,7 +5,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { fn } from '@storybook/test'
 import z from 'zod'
 import { HookForm } from '../utils'
-import { Controlled } from '$/shared/ui'
+import { InputControl } from '$/shared/ui'
 import { ZodUtils, zodValidators } from '$/shared/validation'
 
 const schema = z.object({
@@ -18,11 +18,11 @@ const numberSchema = z.object({
 
 type Schema = z.TypeOf<typeof schema>
 type NumberSchema = z.TypeOf<typeof numberSchema>
-type InputControlProps = React.ComponentPropsWithoutRef<typeof Controlled.InputControl>
+type InputControlProps = React.ComponentPropsWithoutRef<typeof InputControl>
 
 const meta = {
   title: 'Form elements/controlled/InputControl',
-  component: Controlled.InputControl,
+  component: InputControl,
   parameters: {
     layout: 'centered'
   },
@@ -37,14 +37,14 @@ const meta = {
       defaultValues={{
         field: ''
       }}
-      renderComponent={(componentProps: InputControlProps) => <Controlled.InputControl {...componentProps} />}
+      renderComponent={(componentProps: InputControlProps) => <InputControl {...componentProps} />}
     />
   )
-} satisfies Meta<typeof Controlled.InputControl>
+} satisfies Meta<typeof InputControl>
 
 export default meta
 
-type Story = StoryObj<typeof Controlled.InputControl>
+type Story = StoryObj<typeof InputControl>
 
 /**
  * \`InputControl\` компонент, контролируемый библиотекой \`react-hook-form\`\n
@@ -102,7 +102,7 @@ export const WithTypeNumber: Story = {
       {...props}
       schema={numberSchema}
       defaultValues={ZodUtils.getZodDefaults(numberSchema)}
-      renderComponent={(componentProps: InputControlProps) => <Controlled.InputControl {...componentProps} />}
+      renderComponent={(componentProps: InputControlProps) => <InputControl {...componentProps} />}
     />
   )
 }

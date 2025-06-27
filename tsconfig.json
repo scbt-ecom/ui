@@ -31,6 +31,6 @@
     }
   },
   "include": ["vite-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.jsx", ".next/types/**/*.ts", "src", "lib"],
-  "exclude": ["node_modules", "coverage"],
+  "exclude": ["node_modules", "coverage", "**/*.config*"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
