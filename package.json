@@ -4,45 +4,54 @@
   "type": "module",
   "exports": {
     ".": {
+      "types": "./dist/types/lib/shared/ui/index.d.ts",
       "import": "./dist/lib/shared/ui/index.js",
       "require": "./dist/lib/shared/ui/index.js"
     },
     "./utils-tailwind.css": "./dist/lib/shared/utils-tailwind.css",
     "./style.css": "./dist/lib/shared/style.css",
     "./hooks": {
+      "types": "./dist/types/lib/shared/hooks/index.d.ts",
       "import": "./dist/lib/shared/hooks/index.js",
       "require": "./dist/lib/shared/hooks/index.js"
     },
     "./utils": {
+      "types": "./dist/types/lib/shared/utils/index.d.ts",
       "import": "./dist/lib/shared/utils/index.js",
       "require": "./dist/lib/shared/utils/index.js"
     },
     "./validation": {
+      "types": "./dist/types/lib/shared/validation/index.d.ts",
       "import": "./dist/lib/shared/validation/index.js",
       "require": "./dist/lib/shared/validation/index.js"
     },
     "./widgets": {
+      "types": "./dist/types/lib/widgets/index.d.ts",
       "import": "./dist/lib/widgets/index.js",
       "require": "./dist/lib/widgets/index.js"
     },
     "./types": {
-      "types": "./dist/lib/shared/types/index.d.js",
+      "types": "./dist/types/lib/shared/types/index.d.ts",
       "import": "./dist/lib/shared/types/index.js",
       "require": "./dist/lib/shared/types/index.js"
     },
     "./constants": {
+      "types": "./dist/types/lib/shared/constants/index.d.ts",
       "import": "./dist/lib/shared/constants/index.js",
       "require": "./dist/lib/shared/constants/index.js"
     },
     "./api": {
+      "types": "./dist/types/lib/shared/api/index.d.ts",
       "import": "./dist/lib/shared/api/index.js",
       "require": "./dist/lib/shared/api/index.js"
     },
     "./configs": {
+      "types": "./dist/types/lib/configs/index.d.ts",
       "import": "./dist/lib/configs/index.js",
       "require": "./dist/lib/configs/index.js"
     },
     "./next": {
+      "types": "./dist/types/lib/next/index.d.ts",
       "import": "./dist/lib/next/index.js",
       "require": "./dist/lib/next/index.js"
     }
