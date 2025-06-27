@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react'
 import { motion } from 'framer-motion'
 import type { Category, SeoHeaderHelpers } from '../../../model'
 import { MenuItem } from './MenuItem'
-import { Icon, type SelectItemOption, Uncontrolled } from '$/shared/ui'
+import { Icon, SelectBase, type SelectItemOption } from '$/shared/ui'
 import { cn, createPhoneNumber, TypeGuards } from '$/shared/utils'
 
 export type MenuProps = React.ComponentProps<typeof motion.div> & {
@@ -46,7 +46,7 @@ export const Menu = ({ categories, helpers, phone, ...props }: MenuProps) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
     >
-      <Uncontrolled.SelectBase label='Категория' options={selectCategories} value={selected} onChange={onCategoryChange} />
+      <SelectBase label='Категория' options={selectCategories} value={selected} onChange={onCategoryChange} />
       <div className='flex w-full flex-col items-center justify-center gap-y-1'>
         {selectedSubCategories.map((subCategory) => {
           if (TypeGuards.isArrayEmpty(subCategory.children)) {

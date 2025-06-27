@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
-import { type ComboboxItemOption, Uncontrolled } from '$/shared/ui'
+import { Combobox, type ComboboxItemOption } from '$/shared/ui'
 
 const options: ComboboxItemOption[] = [
   {
@@ -56,7 +56,7 @@ const options: ComboboxItemOption[] = [
 
 const meta = {
   title: 'Form elements/uncontrolled/Combobox',
-  component: Uncontrolled.Combobox,
+  component: Combobox,
   parameters: {
     layout: 'centered'
   },
@@ -71,11 +71,11 @@ const meta = {
     options,
     label: 'Select'
   }
-} satisfies Meta<typeof Uncontrolled.Combobox>
+} satisfies Meta<typeof Combobox>
 
 export default meta
 
-type Story = StoryObj<typeof Uncontrolled.Combobox>
+type Story = StoryObj<typeof Combobox>
 
 /**
  * \`Input\` компонент для ввода информации\n
@@ -98,7 +98,7 @@ export const Controlled: Story = {
     return (
       <>
         <pre>{value && JSON.stringify(value, null, 2)}</pre>
-        <Uncontrolled.Combobox {...props} multiple={false} value={value} onChange={setValue} />
+        <Combobox {...props} multiple={false} value={value} onChange={setValue} />
       </>
     )
   }
@@ -120,7 +120,7 @@ export const Multiple: Story = {
     return (
       <>
         <pre>{value && JSON.stringify(value, null, 2)}</pre>
-        <Uncontrolled.Combobox {...props} multiple value={value} onChange={setValue} />
+        <Combobox {...props} multiple value={value} onChange={setValue} />
       </>
     )
   }

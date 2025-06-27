@@ -1,9 +1,9 @@
 import { baseSchema, sliderDefaultProps } from '@/test/lib/shared/ui/formElements/controlled/slider/constants'
 import { ComponentFactory } from '@/test/utils'
-import { Controlled } from '$/shared/ui'
+import { SliderControl } from '$/shared/ui'
 
-describe('Test cases for Controlled.SliderControl', () => {
-  const factory = new ComponentFactory(Controlled.SliderControl)
+describe('Test cases for SliderControl', () => {
+  const factory = new ComponentFactory(SliderControl)
 
   it('Should render and pass value correctly', () => {
     cy.mount(

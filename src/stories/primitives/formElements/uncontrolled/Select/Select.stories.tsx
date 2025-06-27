@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
-import { type SelectItemOption, Uncontrolled } from '$/shared/ui'
+import { SelectBase, type SelectItemOption } from '$/shared/ui'
 
 const generateOptions = (length: number): SelectItemOption[] =>
   Array.from({ length }).map((_, index) => ({
@@ -12,7 +12,7 @@ const generateOptions = (length: number): SelectItemOption[] =>
 
 const meta = {
   title: 'Form elements/uncontrolled/SelectBase',
-  component: Uncontrolled.SelectBase,
+  component: SelectBase,
   parameters: {
     layout: 'centered'
   },
@@ -54,11 +54,11 @@ const meta = {
     label: 'Test selector',
     options: generateOptions(10)
   }
-} satisfies Meta<typeof Uncontrolled.SelectBase>
+} satisfies Meta<typeof SelectBase>
 
 export default meta
 
-type Story = StoryObj<typeof Uncontrolled.SelectBase>
+type Story = StoryObj<typeof SelectBase>
 
 /**
  * \`Select\` компонент для выбора значений из выпадающего списка\n
@@ -92,7 +92,7 @@ export const WithState: Story = {
         {value ? (props.displayValue ? props.displayValue(value) : value.label) : 'Выберите значение'}
         {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
         {/* @ts-expect-error */}
-        <Uncontrolled.SelectBase {...props} value={value} onChange={setValue} />
+        <SelectBase {...props} value={value} onChange={setValue} />
       </>
     )
   }
@@ -110,7 +110,7 @@ export const WithReset: Story = {
         {value ? (props.displayValue ? props.displayValue(value) : value.label) : 'Выберите значение'}
         {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
         {/* @ts-expect-error */}
-        <Uncontrolled.SelectBase {...props} value={value} onChange={setValue} />
+        <SelectBase {...props} value={value} onChange={setValue} />
       </>
     )
   }
@@ -127,7 +127,7 @@ export const WithMulti: Story = {
       <>
         {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
         {/* @ts-expect-error */}
-        <Uncontrolled.SelectBase {...props} options={generateOptions(10)} value={value} onChange={setValue} />
+        <SelectBase {...props} options={generateOptions(10)} value={value} onChange={setValue} />
       </>
     )
   }
@@ -159,7 +159,7 @@ export const WithSearchState: Story = {
     return (
       <>
         <p>Custom value: {inputValue}</p>
-        <Uncontrolled.SelectBase {...props} inputValue={inputValue} onInputChange={setInputValue} />
+        <SelectBase {...props} inputValue={inputValue} onInputChange={setInputValue} />
       </>
     )
   }

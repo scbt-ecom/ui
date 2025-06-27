@@ -1,7 +1,7 @@
 import type { Editor } from '@tiptap/react'
 import { z } from 'zod'
 import { useControlledForm } from '$/shared/hooks'
-import { Button, Controlled, Icon, Popover } from '$/shared/ui'
+import { Button, Icon, InputControl, Popover, SwitchControl } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
 interface ISetCustomLinkProps {
@@ -63,10 +63,10 @@ export const SetCustomLink = ({ editor }: ISetCustomLinkProps) => {
             }}
             className='flex flex-1 flex-col gap-4'
           >
-            <Controlled.InputControl control={control} name='href' label='Введите ссылку' />
-            <Controlled.SwitchControl control={control} name='underline'>
+            <InputControl control={control} name='href' label='Введите ссылку' />
+            <SwitchControl control={control} name='underline'>
               С подчеркиванием
-            </Controlled.SwitchControl>
+            </SwitchControl>
             <Button type='submit' size='sm'>
               Сохранить
             </Button>
