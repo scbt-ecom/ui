@@ -3,10 +3,13 @@ import { resolve } from 'path'
 import { defineConfig } from 'vite'
 import typeChecker from 'vite-plugin-checker'
 import dts from 'vite-plugin-dts'
-import { dependencies } from './package.json'
+import { dependencies, peerDependencies } from './package.json'
 import { viteStaticCopy } from 'vite-plugin-static-copy'
 import svgr from 'vite-plugin-svgr'
 import { viteAllowedIconsPlugin } from './plugins'
+import { bundleStats } from 'rollup-plugin-bundle-stats'
+
+const deps = [...Object.keys(dependencies ?? {}), ...Object.keys(peerDependencies ?? {})]
 
 export default defineConfig({
   plugins: [
@@ -48,7 +51,8 @@ export default defineConfig({
         resolve(__dirname, './lib/exports/api.ts'),
         resolve(__dirname, './lib/exports/config.ts'),
         resolve(__dirname, './lib/exports/constants.ts'),
-        resolve(__dirname, './lib/exports/next.ts')
+        resolve(__dirname, './lib/exports/next.ts'),
+        resolve(__dirname, './lib/exports/editor.ts')
       ],
       formats: ['es'],
       fileName: (_, name) => {
@@ -57,7 +61,24 @@ export default defineConfig({
     },
     minify: true,
     rollupOptions: {
-      external: [...Object.keys(dependencies), 'jsdom'],
+      external: deps,
+
+      output: {
+        // assetFileNames: 'assets/[name].[hash][extname]',
+        // chunkFileNames: 'assets/[name].[hash].js',
+        // entryFileNames: 'assets/[name].[hash].js',
+        preserveModules: true,
+        globals: {
+          react: 'React',
+          'react-dom': 'ReactDOM',
+          'class-variance-authority': 'classVarianceAuthority'
+        },
+        plugins: [
+          bundleStats({
+            html: true
+          })
+        ]
+      },
       onwarn(warning, defaultHandler) {
         if (warning.code === 'SOURCEMAP_ERROR') {
           return
@@ -66,13 +87,6 @@ export default defineConfig({
           return
         }
         defaultHandler(warning)
-      },
-      output: {
-        globals: {
-          react: 'React',
-          'react-dom': 'ReactDOM',
-          'class-variance-authority': 'classVarianceAuthority'
-        }
       }
     },
     chunkSizeWarningLimit: 2000

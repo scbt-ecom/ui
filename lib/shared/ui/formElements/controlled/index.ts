@@ -6,7 +6,6 @@ import { DadataAddress, DadataAuto, DadataCountry, DadataFio, DadataOrganization
 export type { DadataFioProps, DadataCountryProps, DadataOrganizationProps, DadataAutoProps, DadataAddressProps } from './dadata'
 import { DayPickerControl } from './dayPickerControl'
 export type { DayPickerControlProps } from './dayPickerControl'
-import { EditorControl } from './editor'
 export type { EditorControlProps, EditorControlClasses } from './editor'
 import { InputControl, MaskInputControl } from './input'
 export type { InputControlProps, MaskInputControlProps } from './input'
@@ -47,6 +46,5 @@ export const Controlled = {
   TextareaControl,
   UploaderControl,
   InputOtpControl,
-  EditorControl,
   InputCurrencyControl
 }
