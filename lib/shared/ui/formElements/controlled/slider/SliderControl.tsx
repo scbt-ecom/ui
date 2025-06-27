@@ -1,6 +1,6 @@
 import { type Control, type FieldValues, type Path, useController, type UseControllerProps } from 'react-hook-form'
 import type { SliderBaseClasses, SliderGatewayProps } from '../../uncontrolled/slider/model/types'
-import { Uncontrolled } from '$/shared/ui'
+import { SliderBase } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
 type SliderControlClasses = SliderBaseClasses & {
@@ -36,7 +36,7 @@ export const SliderControl = <TFieldValues extends FieldValues, TName extends Pa
 
   return (
     <div className={cn('w-full', container)}>
-      <Uncontrolled.SliderBase {...restProps} {...field} classes={restClasses} invalid={invalid} />
+      <SliderBase {...restProps} {...field} classes={restClasses} invalid={invalid} />
     </div>
   )
 }

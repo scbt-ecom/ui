@@ -7,7 +7,7 @@ import { format, isValid, parse } from 'date-fns'
 import { type ExternalHandlers } from './dayPickerControl'
 import { getCurrentDate, getInitialValue, SINGLE_MASK, SINGLE_VALIDATION_REGEX } from './model'
 import { useClickOutside } from '$/shared/hooks'
-import { Calendar, DATE_VISIBLE_PATTERN, Icon, type MaskInputProps, Uncontrolled } from '$/shared/ui'
+import { Calendar, DATE_VISIBLE_PATTERN, Icon, MaskInput, type MaskInputProps } from '$/shared/ui'
 import { cn, mergeRefs, TypeGuards } from '$/shared/utils'
 
 type CalendarProps = React.ComponentPropsWithoutRef<typeof Calendar>
@@ -125,7 +125,7 @@ export const SingleDayPicker = ({
 
   return (
     <div ref={refs.setReference} className={cn('relative w-full', classes?.container)}>
-      <Uncontrolled.MaskInput
+      <MaskInput
         mask={SINGLE_MASK}
         {...inputProps}
         {...restHandlers}

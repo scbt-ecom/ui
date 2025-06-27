@@ -6,7 +6,7 @@ import { currencyOptionsList, getDelimiterForCurrency } from './model/helpers'
 import { useInputCurrency } from './model/useInputCurrency'
 import { MenuTrigger, OptionList } from './ui'
 import { useClickOutside } from '$/shared/hooks'
-import { type InputBaseProps, Uncontrolled } from '$/shared/ui'
+import { InputBase, type InputBaseProps } from '$/shared/ui'
 import { MessageView } from '$/shared/ui/formElements/ui'
 import { cn } from '$/shared/utils'
 
@@ -63,7 +63,7 @@ export const InputCurrencyControl = <T extends FieldValues>({
 
   return (
     <div ref={containerRef} className={cn('relative flex w-full flex-col', classes?.container)}>
-      <Uncontrolled.InputBase
+      <InputBase
         label={label}
         value={field.value}
         invalid={invalid}

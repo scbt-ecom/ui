@@ -2,11 +2,11 @@
 
 import { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
-import { Uncontrolled } from '$/shared/ui'
+import { SliderBase } from '$/shared/ui'
 
 const meta = {
   title: 'Form elements/uncontrolled/SliderBase',
-  component: Uncontrolled.SliderBase,
+  component: SliderBase,
   parameters: {
     layout: 'centered'
   },
@@ -23,11 +23,11 @@ const meta = {
     max: 5_000_000,
     suffix: 'currency'
   }
-} satisfies Meta<typeof Uncontrolled.SliderBase>
+} satisfies Meta<typeof SliderBase>
 
 export default meta
 
-type Story = StoryObj<typeof Uncontrolled.SliderBase>
+type Story = StoryObj<typeof SliderBase>
 
 export const WithState: Story = {
   args: {
@@ -38,7 +38,7 @@ export const WithState: Story = {
 
     return (
       <>
-        <Uncontrolled.SliderBase {...props} value={value} onChange={setValue} />
+        <SliderBase {...props} value={value} onChange={setValue} />
       </>
     )
   }

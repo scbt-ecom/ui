@@ -1,5 +1,5 @@
 import { type FieldValues, type Path, useController, type UseControllerProps } from 'react-hook-form'
-import { type InputOtpBaseProps, Uncontrolled } from '$/shared/ui'
+import { InputOtpBase, type InputOtpBaseProps } from '$/shared/ui'
 import { MessageView } from '$/shared/ui/formElements/ui'
 import { cn } from '$/shared/utils'
 
@@ -36,7 +36,7 @@ export const InputOtpControl = <TFieldValues extends FieldValues = FieldValues>(
 
   return (
     <div className={cn('w-full', container)}>
-      <Uncontrolled.InputOtpBase {...field} {...props} invalid={invalid} classes={restClasses} />
+      <InputOtpBase {...field} {...props} invalid={invalid} classes={restClasses} />
       <MessageView
         text={error?.message || helperText}
         className={message}

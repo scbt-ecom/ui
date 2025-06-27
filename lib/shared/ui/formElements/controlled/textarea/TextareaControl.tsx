@@ -1,5 +1,5 @@
 import { type Control, type FieldPath, type FieldValues, useController, type UseControllerProps } from 'react-hook-form'
-import { type TextareaBaseProps, Uncontrolled } from '$/shared/ui'
+import { TextareaBase, type TextareaBaseProps } from '$/shared/ui'
 import { MessageView } from '$/shared/ui/formElements/ui'
 import { cn } from '$/shared/utils'
 
@@ -52,7 +52,7 @@ export const TextareaControl = <TFieldValues extends FieldValues = FieldValues>(
 
   return (
     <div className={cn('w-full', root)}>
-      <Uncontrolled.TextareaBase
+      <TextareaBase
         {...props}
         {...field}
         aria-invalid={invalid}

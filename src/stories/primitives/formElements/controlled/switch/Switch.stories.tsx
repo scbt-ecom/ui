@@ -5,18 +5,18 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { fn } from '@storybook/test'
 import z from 'zod'
 import { HookForm } from '../utils'
-import { Controlled } from '$/shared/ui'
+import { SwitchControl } from '$/shared/ui'
 
 const schema = z.object({
   test: z.boolean()
 })
 
 type Schema = z.TypeOf<typeof schema>
-type SwitchControlProps = React.ComponentPropsWithoutRef<typeof Controlled.SwitchControl>
+type SwitchControlProps = React.ComponentPropsWithoutRef<typeof SwitchControl>
 
 const meta = {
   title: 'Form elements/controlled/SwitchControl',
-  component: Controlled.SwitchControl,
+  component: SwitchControl,
   parameters: {
     layout: 'centered'
   },
@@ -32,15 +32,15 @@ const meta = {
       }}
       schema={schema}
       renderComponent={(componentProps: SwitchControlProps) => (
-        <Controlled.SwitchControl {...componentProps}>Primary text</Controlled.SwitchControl>
+        <SwitchControl {...componentProps}>Primary textSwitchControl</SwitchControl>
       )}
     />
   )
-} satisfies Meta<typeof Controlled.SwitchControl>
+} satisfies Meta<typeof SwitchControl>
 
 export default meta
 
-type Story = StoryObj<typeof Controlled.SwitchControl>
+type Story = StoryObj<typeof SwitchControl>
 
 /**
  * \`SelectControl\` компонент, управляемый библиотекой \`react-hook-form\`\n

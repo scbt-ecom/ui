@@ -1,9 +1,9 @@
 import { baseSchema, dayPickerBaseProps } from './constants'
 import { ComponentFactory } from '@/test/utils'
-import { Controlled } from '$/shared/ui'
+import { DayPickerControl } from '$/shared/ui'
 
-describe('Test cases for Controlled.DayPicker', () => {
-  const factory = new ComponentFactory(Controlled.DayPickerControl)
+describe('Test cases for DayPicker', () => {
+  const factory = new ComponentFactory(DayPickerControl)
 
   it('Should render and pick value correctly', () => {
     cy.mount(

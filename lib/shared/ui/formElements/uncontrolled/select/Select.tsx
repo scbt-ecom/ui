@@ -5,7 +5,7 @@ import { useSelectController } from './hooks'
 import { type SelectItemOption } from './model'
 import { SelectItem, type SelectItemProps } from './ui'
 import { type DeepPartial } from '$/shared/types'
-import { Icon, Uncontrolled } from '$/shared/ui'
+import { Icon, InputBase } from '$/shared/ui'
 import type { FieldAttachment } from '$/shared/ui/formElements/ui'
 import { cn, mergeRefs } from '$/shared/utils'
 
@@ -190,7 +190,7 @@ export const SelectBase = forwardRef<HTMLInputElement, SelectBaseProps<boolean>>
                   // @ts-expect-error asdf
                   ref={mergeRefs(ref, refs.setReference)}
                   data-test-id='select-input'
-                  as={Uncontrolled.InputBase}
+                  as={InputBase}
                   label={label}
                   disabled={disabled}
                   readOnly={!isSearchable}

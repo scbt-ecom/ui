@@ -1,9 +1,9 @@
 import { baseSchema, checkboxDefaultProps, optionalSchema } from './constants'
 import { ComponentFactory } from '@/test/utils'
-import { Controlled } from '$/shared/ui'
+import { CheckboxControl } from '$/shared/ui'
 
-describe('Test cases for Controlled.CheckboxControl', () => {
-  const factory = new ComponentFactory(Controlled.CheckboxControl)
+describe('Test cases for CheckboxControl', () => {
+  const factory = new ComponentFactory(CheckboxControl)
 
   it('Should render and pass value correctly', () => {
     cy.mount(

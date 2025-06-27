@@ -20,12 +20,12 @@ import { useControlledForm, useFieldsProgress } from '$/shared/hooks'
 import {
   Button,
   type ButtonProps,
+  CheckboxBase,
   type CheckedState,
   Heading,
   Icon,
   ProgressBar,
-  ResponsiveContainer,
-  Uncontrolled
+  ResponsiveContainer
 } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 import { ZodUtils } from '$/shared/validation'
@@ -41,7 +41,7 @@ type ChipsClasses = {
   icon?: string
 }
 type ApprovementClasses = {
-  checkbox?: React.ComponentProps<typeof Uncontrolled.CheckboxBase>['classes']
+  checkbox?: React.ComponentProps<typeof CheckboxBase>['classes']
   content?: string
 }
 
@@ -87,7 +87,7 @@ const withApprovement = <Type extends ApprovementType>(
         'flex items-center justify-items-start gap-x-3'
       )}
     >
-      <Uncontrolled.CheckboxBase classes={classes?.checkbox} checked={checked} onCheckedChange={onCheckedChange} />
+      <CheckboxBase classes={classes?.checkbox} checked={checked} onCheckedChange={onCheckedChange} />
       <HTMLRenderer html={approvement.content} as='div' className={classes?.content} />
     </label>
   )

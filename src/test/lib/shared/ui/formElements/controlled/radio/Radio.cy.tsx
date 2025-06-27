@@ -1,9 +1,9 @@
 import { baseSchema, optionalSchema, radioDefaultProps, radioPropsWithDisabledOption } from './constants'
 import { ComponentFactory } from '@/test/utils'
-import { Controlled } from '$/shared/ui'
+import { RadioGroupControl } from '$/shared/ui'
 
-describe('Test cases for Controlled.RadioGroupControl', () => {
-  const factory = new ComponentFactory(Controlled.RadioGroupControl)
+describe('Test cases for RadioGroupControl', () => {
+  const factory = new ComponentFactory(RadioGroupControl)
 
   it('Should render and pass value correctly', () => {
     cy.mount(

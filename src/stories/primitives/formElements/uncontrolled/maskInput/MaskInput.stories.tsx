@@ -4,11 +4,11 @@ import { useState } from 'react'
 import toast from 'react-hot-toast'
 import type { Meta, StoryObj } from '@storybook/react'
 import { fn } from '@storybook/test'
-import { Icon, Uncontrolled } from '$/shared/ui'
+import { Icon, MaskInput } from '$/shared/ui'
 
 const meta = {
   title: 'Form elements/uncontrolled/MaskInput',
-  component: Uncontrolled.MaskInput,
+  component: MaskInput,
   parameters: {
     layout: 'centered'
   },
@@ -22,11 +22,11 @@ const meta = {
   args: {
     label: 'Input'
   }
-} satisfies Meta<typeof Uncontrolled.MaskInput>
+} satisfies Meta<typeof MaskInput>
 
 export default meta
 
-type Story = StoryObj<typeof Uncontrolled.MaskInput>
+type Story = StoryObj<typeof MaskInput>
 
 /**
  * Компонент маски очень умный, умеет обрабатывать специальные символы в том порядке, который определён маской\n
@@ -70,7 +70,7 @@ export const Controlled: Story = {
   render: (props) => {
     const [value, setValue] = useState<string>('')
 
-    return <Uncontrolled.MaskInput {...props} value={value} onChange={(e) => setValue(e.target.value)} />
+    return <MaskInput {...props} value={value} onChange={(e) => setValue(e.target.value)} />
   }
 }
 
@@ -108,7 +108,7 @@ export const WithPhoneMask: Story = {
   render: (props) => {
     const [value, setValue] = useState<string>('')
 
-    return <Uncontrolled.MaskInput {...props} value={value} onChange={(e) => setValue(e.target.value)} />
+    return <MaskInput {...props} value={value} onChange={(e) => setValue(e.target.value)} />
   }
 }
 
@@ -120,7 +120,7 @@ export const WithPassportMask: Story = {
   render: (props) => {
     const [value, setValue] = useState<string>('')
 
-    return <Uncontrolled.MaskInput {...props} value={value} onChange={(e) => setValue(e.target.value)} />
+    return <MaskInput {...props} value={value} onChange={(e) => setValue(e.target.value)} />
   }
 }
 
@@ -132,7 +132,7 @@ export const WithPartitionCodeMask: Story = {
   render: (props) => {
     const [value, setValue] = useState<string>('')
 
-    return <Uncontrolled.MaskInput {...props} value={value} onChange={(e) => setValue(e.target.value)} />
+    return <MaskInput {...props} value={value} onChange={(e) => setValue(e.target.value)} />
   }
 }
 
@@ -144,7 +144,7 @@ export const WithSnilsCodeMask: Story = {
   render: (props) => {
     const [value, setValue] = useState<string>('')
 
-    return <Uncontrolled.MaskInput {...props} value={value} onChange={(e) => setValue(e.target.value)} />
+    return <MaskInput {...props} value={value} onChange={(e) => setValue(e.target.value)} />
   }
 }
 
@@ -156,7 +156,7 @@ export const WithCardMask: Story = {
   render: (props) => {
     const [value, setValue] = useState<string>('')
 
-    return <Uncontrolled.MaskInput {...props} value={value} onChange={(e) => setValue(e.target.value)} />
+    return <MaskInput {...props} value={value} onChange={(e) => setValue(e.target.value)} />
   }
 }
 
@@ -165,7 +165,7 @@ export const WithCarSignMask: Story = {
   render: (props) => {
     const [value, setValue] = useState<string>('')
 
-    return <Uncontrolled.MaskInput {...props} value={value} onChange={(e) => setValue(e.target.value)} />
+    return <MaskInput {...props} value={value} onChange={(e) => setValue(e.target.value)} />
   }
 }
 

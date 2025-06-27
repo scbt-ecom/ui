@@ -2,11 +2,11 @@
 
 import { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
-import { Uncontrolled } from '$/shared/ui'
+import { UploaderBase } from '$/shared/ui'
 
 const meta = {
   title: 'Form elements/uncontrolled/UploaderBase',
-  component: Uncontrolled.UploaderBase,
+  component: UploaderBase,
   parameters: {
     layout: 'centered'
   },
@@ -18,11 +18,11 @@ const meta = {
     )
   ],
   args: {}
-} satisfies Meta<typeof Uncontrolled.UploaderBase>
+} satisfies Meta<typeof UploaderBase>
 
 export default meta
 
-type Story = StoryObj<typeof Uncontrolled.UploaderBase>
+type Story = StoryObj<typeof UploaderBase>
 
 export const Base: Story = {
   args: {
@@ -54,7 +54,7 @@ export const Controlled: Story = {
     const [files, setFiles] = useState<File[]>([])
 
     return (
-      <Uncontrolled.UploaderBase
+      <UploaderBase
         {...props}
         value={files}
         onChange={(value) => {

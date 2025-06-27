@@ -3,7 +3,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import z from 'zod'
 import { HookForm } from '../utils'
-import { Controlled } from '$/shared/ui'
+import { SliderControl } from '$/shared/ui'
 
 const sliderSchema = z.object({
   slider: z.number().min(1)
@@ -11,11 +11,11 @@ const sliderSchema = z.object({
 
 type Schema = z.TypeOf<typeof sliderSchema>
 
-type SliderControlProps = React.ComponentPropsWithoutRef<typeof Controlled.SliderControl>
+type SliderControlProps = React.ComponentPropsWithoutRef<typeof SliderControl>
 
 const meta = {
   title: 'Form elements/controlled/SliderControl',
-  component: Controlled.SliderControl,
+  component: SliderControl,
   parameters: {
     layout: 'centered'
   },
@@ -29,14 +29,14 @@ const meta = {
         slider: 1
       }}
       schema={sliderSchema}
-      renderComponent={(componentProps) => <Controlled.SliderControl {...(componentProps as SliderControlProps)} />}
+      renderComponent={(componentProps) => <SliderControl {...(componentProps as SliderControlProps)} />}
     />
   )
-} satisfies Meta<typeof Controlled.SliderControl>
+} satisfies Meta<typeof SliderControl>
 
 export default meta
 
-type Story = StoryObj<typeof Controlled.SliderControl>
+type Story = StoryObj<typeof SliderControl>
 
 /**
  * \`SliderControl\` компонент, контролируемый библиотекой \`react-hook-form\`\n

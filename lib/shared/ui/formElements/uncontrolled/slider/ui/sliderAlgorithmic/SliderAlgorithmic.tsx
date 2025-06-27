@@ -5,7 +5,7 @@ import { getInputSliderSuffix } from '../../model/helpers'
 import { type SliderAlgorithmicProps } from '../../model/types'
 import { SliderInner } from '../Slider'
 import { useSliderAlgorithmic } from './hooks'
-import { Icon, Uncontrolled } from '$/shared/ui'
+import { Icon, InputBase } from '$/shared/ui'
 import { cn, mergeRefs } from '$/shared/utils'
 
 const defaultIcon = (
@@ -57,7 +57,7 @@ export const SliderAlgorithmic = forwardRef<HTMLInputElement, SliderAlgorithmicP
     return (
       <div aria-label={componentType} className={cn('flex w-full flex-col gap-1', root)}>
         <div className={cn('relative w-full select-none', { ['select-none']: readOnly }, field)}>
-          <Uncontrolled.InputBase
+          <InputBase
             label={label}
             value={value}
             attachmentProps={{

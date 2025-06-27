@@ -4,7 +4,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { fn } from '@storybook/test'
 import z from 'zod'
 import { HookForm } from '../utils'
-import { Controlled, type RadioOption } from '$/shared/ui'
+import { RadioGroupControl, type RadioOption } from '$/shared/ui'
 
 const schema = z.object({
   test: z.string().nullable().refine(Boolean)
@@ -51,11 +51,11 @@ const options: RadioOption[] = [
 ]
 
 type Schema = z.TypeOf<typeof schema>
-type RadioGroupControlProps = React.ComponentPropsWithoutRef<typeof Controlled.RadioGroupControl>
+type RadioGroupControlProps = React.ComponentPropsWithoutRef<typeof RadioGroupControl>
 
 const meta = {
   title: 'Form elements/controlled/RadioGroupControl',
-  component: Controlled.RadioGroupControl<Schema>,
+  component: RadioGroupControl<Schema>,
   parameters: {
     layout: 'centered'
   },
@@ -72,14 +72,14 @@ const meta = {
         test: null
       }}
       // @ts-expect-error bug
-      renderComponent={(componentProps: RadioGroupControlProps) => <Controlled.RadioGroupControl {...componentProps} />}
+      renderComponent={(componentProps: RadioGroupControlProps) => <RadioGroupControl {...componentProps} />}
     />
   )
-} satisfies Meta<typeof Controlled.RadioGroupControl<Schema>>
+} satisfies Meta<typeof RadioGroupControl<Schema>>
 
 export default meta
 
-type Story = StoryObj<typeof Controlled.RadioGroupControl>
+type Story = StoryObj<typeof RadioGroupControl>
 
 /**
  * \`RadioGroupControl\` компонент, управляемый библиотекой \`react-hook-form\`\n

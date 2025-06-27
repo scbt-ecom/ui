@@ -1,9 +1,9 @@
 import { type FieldValues } from 'react-hook-form'
 import { type QueryClient } from '@tanstack/react-query'
-import { type AutocompleteControlProps } from '../../autocomplete'
+import { AutocompleteControl, type AutocompleteControlProps } from '../../autocomplete'
 import { type IDadataAutoOption } from '../types'
 import { useDadataQueryAuto } from './query'
-import { Controlled, type SelectItemOption } from '$/shared/ui'
+import { type SelectItemOption } from '$/shared/ui'
 
 const autoFormatter = (item: IDadataAutoOption): SelectItemOption => ({
   value: item?.model_mark || '',
@@ -31,10 +31,6 @@ export const DadataAuto = <TFieldValues extends FieldValues>({
   const queryFn = useDadataQueryAuto
 
   return (
-    <Controlled.AutocompleteControl
-      query={(query) => queryFn(query, dadataBaseUrl, {}, queryClient)}
-      formatter={formatter}
-      {...props}
-    />
+    <AutocompleteControl query={(query) => queryFn(query, dadataBaseUrl, {}, queryClient)} formatter={formatter} {...props} />
   )
 }

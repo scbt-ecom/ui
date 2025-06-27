@@ -1,8 +1,8 @@
 import { object } from 'zod'
 import { type DataAttributes } from '@/test/utils/types'
-import { type Controlled, type RadioOption } from '$/shared/ui'
+import { type RadioGroupControl, type RadioOption } from '$/shared/ui'
 import { zodValidators } from '$/shared/validation'
-type RadioProps = React.ComponentPropsWithoutRef<typeof Controlled.RadioGroupControl> & DataAttributes
+type RadioProps = React.ComponentPropsWithoutRef<typeof RadioGroupControl> & DataAttributes
 
 export const baseSchema = object({
   field: zodValidators.base.getSelectSchema()
