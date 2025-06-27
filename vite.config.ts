@@ -25,10 +25,10 @@ export default defineConfig({
     typeChecker({ typescript: true }),
     viteStaticCopy({
       targets: [
-        {
-          src: 'lib/shared/utils-tailwind.css',
-          dest: '.'
-        },
+        // {
+        //   src: 'lib/shared/utils-tailwind.css',
+        //   dest: '.'
+        // },
         {
           src: 'static',
           dest: 'static'

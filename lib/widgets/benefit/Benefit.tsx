@@ -41,7 +41,9 @@ export const Benefit = ({ headline, details, variant, classes }: BenefitProps) =
           className={cn('mob-headline-bold-s mb-8 desktop:desk-headline-bold-m', classes?.heading)}
         />
         <ul className={cn(gridConfig({ variant }), classes?.grid)}>
-          {details?.map((card) => <BenefitItem variant={variant} key={card.title} classes={classes?.item} {...card} />)}
+          {details?.map((card) => (
+            <BenefitItem variant={variant} key={card.title} classes={classes?.item} {...card} />
+          ))}
         </ul>
       </ResponsiveContainer>
     </section>
