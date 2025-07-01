@@ -60,26 +60,6 @@ export const Base: Story = {
   }
 }
 
-export const WithPortalContent: Story = {
-  args: {
-    iframe: true
-  },
-  render: (props) => {
-    const [isModalOpen, setterModal] = useBoolean(false)
-
-    return (
-      <div className='flex h-screen w-screen items-center justify-center'>
-        <Button onClick={() => setterModal(true)}>Получить кредит</Button>
-        <Modal {...props} title='Подписка на рассылку' isModalOpen={isModalOpen} closeModal={() => setterModal(false)}>
-          <div className='w-screen bg-color-negative'>
-            <p>Hello im inside iframe</p>
-          </div>
-        </Modal>
-      </div>
-    )
-  }
-}
-
 export const ModalWithForm: Story = {
   render: () => {
     const { control, handleSubmit, reset } = useControlledForm({

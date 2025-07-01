@@ -47,6 +47,7 @@ const firstCalculator: CalculatorViewProps = {
       },
       {
         children: 'Подробнее',
+        intent: 'secondary',
         handlerOptions: {
           handler: 'navigate',
           url: 'https://sovcombank.ru',
@@ -394,6 +395,7 @@ const secondCalculator: CalculatorViewProps = {
       },
       {
         children: 'Подробнее',
+        intent: 'secondary',
         handlerOptions: {
           handler: 'navigate',
           url: 'https://sovcombank.ru',
@@ -487,4 +489,126 @@ export const multipleCalculator: CalculatorProps = {
 export const singleCalculator: CalculatorProps = {
   headline: 'Калькулятор лизинга',
   calculators: [firstCalculator]
+}
+
+export const baseCalculator: CalculatorProps = {
+  headline: 'Рассчитайте условия по кредиту',
+  calculators: [
+    {
+      name: 'calculatorBase',
+      label: 'Для ИП',
+      calculatorInfoConfig: {
+        assistHint: undefined,
+        bottomDescription: 'Предварительный расчет. Не является публичной офертой',
+        buttonsConfig: [
+          {
+            handlerOptions: {
+              handler: 'scroll',
+              widgetId: 'form'
+            },
+            children: 'Оформить заявку',
+            intent: 'primary',
+            size: 'md',
+            type: 'button',
+            textFormat: 'initial'
+          },
+          {
+            type: 'button',
+            textFormat: 'initial',
+            handlerOptions: {
+              handler: 'scroll',
+              widgetId: 'header'
+            },
+            children: 'Подробнее',
+            intent: 'secondary',
+            size: 'md'
+          }
+        ],
+        rootValue: {
+          formula:
+            '(sum * (((14.9) / 100 / (12)) * (1 + ((14.9) / 100 / (12))) ** (term * (12)))) / ((1 + ((14.9) / 100 / (12))) ** (term * (12)) - 1)'
+        },
+        rootDescription: 'Ежемесячный платеж',
+        suffix: 'currency',
+        infoList: [
+          {
+            value: {
+              formula: 'sum * term'
+            },
+            label: 'ПСК',
+            mode: 'text',
+            hint: 'ПСК',
+            withFormula: true,
+            color: 'dark'
+          },
+          {
+            value: '14',
+            label: 'Ставка',
+            mode: 'percent',
+            withFormula: false,
+            color: 'dark'
+          },
+          {
+            color: 'dark',
+            value: 'паспорт РФ',
+            label: 'Вам понадобится',
+            mode: 'text',
+            hint: 'Вам понадобится',
+            withFormula: false
+          }
+        ]
+      },
+      calculatorFieldsConfig: {
+        fieldsGroup: {
+          slidersGroupConfig: {
+            fields: [
+              {
+                args: {
+                  readOnly: false,
+                  min: '30000',
+                  max: '5000000',
+                  name: 'sum',
+                  componentType: 'step',
+                  disabled: false,
+                  suffix: 'currency',
+                  label: 'Сумма кредита',
+                  validation: {
+                    type: 'getStringSchema',
+                    args: {
+                      defaultValue: '500000',
+                      required: true
+                    }
+                  }
+                },
+                type: 'SliderControl'
+              },
+              {
+                type: 'SliderControl',
+                args: {
+                  validation: {
+                    type: 'getStringSchema',
+                    args: {
+                      defaultValue: '2',
+                      required: true
+                    }
+                  },
+                  min: '1',
+                  suffix: 'year',
+                  disabled: false,
+                  name: 'term',
+                  label: 'Срок кредита',
+                  readOnly: false,
+                  componentType: 'step',
+                  max: '5'
+                }
+              }
+            ]
+          },
+          checkboxGroupConfig: {
+            fields: []
+          }
+        }
+      }
+    }
+  ]
 }

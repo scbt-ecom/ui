@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { multipleCalculator, singleCalculator } from './mocks'
+import { baseCalculator, multipleCalculator, singleCalculator } from './mocks'
 import { Calculator } from '$/widgets'
 
 const meta = {
@@ -18,4 +18,8 @@ export const MultipleCalculator: Story = {
 
 export const SingleCalculator: Story = {
   args: singleCalculator
+}
+
+export const BaseCalculator: Story = {
+  args: baseCalculator
 }

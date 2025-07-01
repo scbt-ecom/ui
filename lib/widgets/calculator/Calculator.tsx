@@ -37,7 +37,7 @@ export const Calculator = ({ calculators, headline, classes }: CalculatorProps) 
     <section id={widgetIds.calculator} data-test-id={widgetIds.calculator} className={cn(classes?.root)}>
       <ResponsiveContainer className={cn(classes?.container)}>
         <div className={cn(classes?.wrapper)}>
-          <Heading className={cn('mb-12', classes?.headline)} as='h2'>
+          <Heading className={cn('mb-8 desktop:mb-12', classes?.headline)} as='h2'>
             {headline}
           </Heading>
           {shouldShowTabs && (

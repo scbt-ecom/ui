@@ -87,7 +87,12 @@ const withApprovement = <Type extends ApprovementType>(
         'flex items-center justify-items-start gap-x-3'
       )}
     >
-      <Uncontrolled.CheckboxBase classes={classes?.checkbox} checked={checked} onCheckedChange={onCheckedChange} />
+      <Uncontrolled.CheckboxBase
+        aria-label='Согласие на обработку персональных данных'
+        classes={classes?.checkbox}
+        checked={checked}
+        onCheckedChange={onCheckedChange}
+      />
       <HTMLRenderer html={approvement.content} as='div' className={classes?.content} />
     </label>
   )

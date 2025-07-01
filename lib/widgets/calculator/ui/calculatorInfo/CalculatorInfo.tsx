@@ -43,7 +43,7 @@ export const CalculatorInfo = ({
   classes
 }: CalculatorInfoProps) => {
   return (
-    <div className={cn('w-[456px] rounded-md bg-color-blue-grey-100 p-8', classes?.wrapper)}>
+    <div className={cn('w-full max-w-[456px] rounded-md bg-color-blue-grey-100 p-8 mobile:px-4 mobile:py-8', classes?.wrapper)}>
       <CalculatedBlock
         suffix={suffix}
         rootValue={rootValue}
