@@ -43,6 +43,11 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
       [classNames]
     )
 
+    const startYear =
+      selectOptions?.year && 'startFrom' in selectOptions.year && selectOptions.year.startFrom
+        ? new Date(selectOptions.year.startFrom, 0)
+        : undefined
+
     return (
       <div
         ref={ref}
@@ -60,6 +65,7 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
           showOutsideDays={showOutsideDays}
           locale={ru}
           classNames={cls}
+          startMonth={startYear}
           components={{
             Day: (props) => <Day {...props} disabledAfterToday={disabledAfterToday} />,
             DayButton: (props) => <DayButton {...props} />,

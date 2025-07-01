@@ -35,7 +35,7 @@ export const SelectList = ({ dates, selected, onSelect, className, mode, ...prop
         const label = mode === 'year' ? formatDateToYearString(d) : formatDateToMonthString(d)
 
         return (
-          <motion.li key={index} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: index / 22 }}>
+          <motion.li key={index} initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
             <button
               type='button'
               onClick={() => {

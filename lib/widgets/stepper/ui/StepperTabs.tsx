@@ -10,7 +10,7 @@ export interface StepperTab {
   headline: string
 }
 
-export type StepperTabValue = string
+export type StepperTabValue = string | undefined
 
 export interface StepperTabsProps {
   stepperTabs?: StepperTab[]

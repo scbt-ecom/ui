@@ -12,6 +12,7 @@ const Stepper = lazy(() => import('../stepper/Stepper'))
 const UsefulInfo = lazy(() => import('../usefulInfo/UsefulInfo'))
 const Benefit = lazy(() => import('../benefit/Benefit'))
 const InfoBlock = lazy(() => import('../infoBlock/InfoBlock'))
+const UserFeedback = lazy(() => import('../userFeedback/UserFeedback'))
 
 export type AllowedWidgets = keyof typeof WIDGET_LIST_MAP
 
@@ -28,7 +29,8 @@ export const WIDGET_LIST_MAP = {
   usefulInfo: UsefulInfo,
   interLinking: InterLinking,
   footer: Footer,
-  infoBlock: InfoBlock
+  infoBlock: InfoBlock,
+  userFeedback: UserFeedback
 } as const
 
 export const KEYS_OF_WIDGET_LIST = Object.keys(WIDGET_LIST_MAP) as readonly AllowedWidgets[]

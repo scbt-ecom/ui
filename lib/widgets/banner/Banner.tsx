@@ -1,8 +1,8 @@
 'use client'
 
 import { type ReactElement } from 'react'
-import type { RenderImage } from '../../shared/utils'
 import { type BannerClasses, type ButtonsConfig } from './model'
+import { type Images } from './model/types'
 import { BannerImageFull, BannerWithSeparateImg } from './ui'
 import { type AdvantageClasses, type AdvantagesProps } from './ui/banners/ui'
 import type { BackgroundBannerColors } from '$/shared/constants'
@@ -13,9 +13,7 @@ export interface BannerProps {
   buttonsConfig: ButtonsConfig
   advantages?: AdvantagesProps
   variant?: 'separateImg' | 'fullImg'
-  imageDesktop: RenderImage['imgProps']
-  imageMobile: RenderImage['imgProps']
-  renderImageCb?: RenderImage['renderImageCb']
+  images: Images
   backgroundColor?: BackgroundBannerColors
   classes?: BannerClasses & {
     advantages?: AdvantageClasses

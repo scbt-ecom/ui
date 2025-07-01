@@ -1,6 +1,6 @@
 {
   "name": "@scbt-ecom/ui",
-  "version": "0.88.0",
+  "version": "0.91.3",
   "type": "module",
   "exports": {
     ".": {
@@ -60,6 +60,7 @@
     "preview": "vite preview",
     "start:sb": "storybook dev -p 6006 --no-open",
     "build-storybook": "storybook build --quiet",
+    "preview:sb": "vite preview --outDir storybook-static",
     "start": "npm run start:sb",
     "test-storybook": "test-storybook",
     "cypress:open": "cypress open --component --browser chrome",
@@ -67,7 +68,8 @@
     "pre-commit": "npm run lint",
     "chromatic": "npx chromatic --project-token=chpt_9468dafcf1bf3e3 --only-changed --files='src/stories/**/*.stories.@(tsx)'",
     "pre-deploy": "npm run lint ",
-    "ts-check": "pnpm exec tsc"
+    "ts-check": "pnpm exec tsc",
+    "prebuild": "pnpm prettier --log-level=error"
   },
   "peerDependecies": {
     "react": "^18.3.1",
@@ -109,10 +111,10 @@
     "@storybook/addon-links": "^8.2.6",
     "@storybook/addon-onboarding": "^8.2.6",
     "@storybook/addon-viewport": "^8.2.9",
-    "@storybook/blocks": "^8.2.6",
     "@storybook/react": "^8.2.6",
     "@storybook/react-vite": "^8.2.6",
     "@storybook/test": "^8.5.3",
+    "@storybook/addon-actions": "^8.2.10",
     "@tanstack/react-query": "^5.62.2",
     "@tanstack/react-table": "^8.21.2",
     "@tiptap/extension-character-count": "^2.11.5",

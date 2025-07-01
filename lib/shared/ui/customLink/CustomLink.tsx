@@ -3,7 +3,7 @@
 import { type ComponentProps } from 'react'
 import { type VariantProps } from 'class-variance-authority'
 import { type AllowedIcons, Icon } from '../icon'
-import { customLinkConfig, linkArrowConfig } from './model/helpers'
+import { customLinkConfig, linkIconConfig } from './model/helpers'
 import { cn } from '$/shared/utils'
 
 type CustomLinkClasses = {
@@ -23,7 +23,7 @@ export const CustomLink = ({ intent, children, disabled, size, icon, classes, wi
   return (
     <a className={cn(customLinkConfig({ intent, withUnderline, disabled, size }), classes?.link)} {...props}>
       {children}
-      {icon && <Icon name={icon} className={cn(linkArrowConfig({ intent, disabled }), classes?.icon)} />}
+      {icon && <Icon name={icon} className={cn(linkIconConfig({ intent, disabled }), classes?.icon)} />}
     </a>
   )
 }

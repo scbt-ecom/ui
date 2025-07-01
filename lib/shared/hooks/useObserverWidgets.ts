@@ -1,13 +1,20 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import type { AllowedWidgets } from '$/widgets'
 
-export const useObserveElements = (ids: string[], options?: IntersectionObserverInit, initialState = false): boolean => {
+export type UseObserverWidgets = {
+  ids: AllowedWidgets[]
+  options?: IntersectionObserverInit
+  initialState?: boolean
+}
+
+export const useObserverWidgets = ({ ids, options, initialState = false }: UseObserverWidgets) => {
   const [isVisible, setIsVisible] = useState(initialState)
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
-      const visibleIds = entries.filter((entry) => entry.isIntersecting).map((entry) => entry.target.id)
+      const visibleIds = entries.filter((entry) => entry.isIntersecting).map((entry) => entry.target.id) as AllowedWidgets[]
       setIsVisible(visibleIds.some((id) => ids.includes(id)))
     }, options)
 

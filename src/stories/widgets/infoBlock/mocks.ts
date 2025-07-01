@@ -35,42 +35,34 @@ const text = {
   description: 'Description'
 }
 
-const imageDesktop: InfoBlockProps['imageDesktop'] = {
+const images: InfoBlockProps['images'] = {
   alt: 'image alt',
-  src: desktopImage
-}
-
-const imageMobile: InfoBlockProps['imageMobile'] = {
-  alt: 'image alt',
-  src: mobileImage
+  desktop: desktopImage,
+  mobile: mobileImage
 }
 
 export const fullMocks: InfoBlockProps = {
-  imageDesktop,
-  imageMobile,
+  images,
   buttonsGroup,
   linksList,
   ...text
 }
 
 export const withoutButtons: InfoBlockProps = {
-  imageDesktop,
-  imageMobile,
+  images,
   linksList,
   ...text
 }
 
 export const withoutItemList: InfoBlockProps = {
-  imageDesktop,
-  imageMobile,
+  images,
   buttonsGroup,
   size: 'sm',
   ...text
 }
 
 export const withoutButtonsAndItemList: InfoBlockProps = {
-  imageDesktop,
-  imageMobile,
+  images,
   size: 'sm',
   ...text
 }

@@ -1,7 +1,8 @@
 import { ButtonWithHandlers, type ButtonWithHandlersProps } from '../../buttonWithHandlers'
+import { type Images } from '../model/types'
 import { LinksList, type LinksListClasses, type LinksListProps } from './LinksList'
 import { Heading } from '$/shared/ui'
-import { cn, type RenderImage, renderImage } from '$/shared/utils'
+import { cn } from '$/shared/utils'
 
 export type RootContentClasses = {
   wrapper?: string
@@ -18,20 +19,11 @@ export interface RootContentProps extends Omit<LinksListProps, 'classes'> {
   heading: string
   description?: string
   buttonsGroup?: ButtonWithHandlersProps[]
-  imageMobile: RenderImage['imgProps']
-  renderImageCb?: RenderImage['renderImageCb']
+  images: Images
   classes?: RootContentClasses
 }
 
-export const RootContent = ({
-  heading,
-  buttonsGroup,
-  imageMobile,
-  renderImageCb,
-  description,
-  linksList,
-  classes
-}: RootContentProps) => {
+export const RootContent = ({ heading, buttonsGroup, description, images, linksList, classes }: RootContentProps) => {
   const withButtons = buttonsGroup && buttonsGroup?.length > 0
   const withLinks = linksList && linksList?.length > 0
 
@@ -50,13 +42,7 @@ export const RootContent = ({
       </div>
 
       <div className={cn('h-full w-full desktop:hidden', classes?.imageMobileWrapper)}>
-        {renderImage({
-          imgProps: {
-            className: cn('object-contain w-full h-full', classes?.imageMobile),
-            ...imageMobile
-          },
-          renderImageCb
-        })}
+        <img src={images?.mobile} alt={images?.alt} className={cn('h-full w-full object-contain', classes?.imageMobile)} />
       </div>
 
       {withButtons && (
