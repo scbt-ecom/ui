@@ -3,18 +3,18 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import z from 'zod'
 import { HookForm } from '../utils'
-import { Controlled } from '$/shared/ui'
+import { CheckboxControl } from '$/shared/ui'
 
 const schema = z.object({
   test: z.boolean()
 })
 
 type Schema = z.TypeOf<typeof schema>
-type CheckboxControlProps = React.ComponentPropsWithoutRef<typeof Controlled.CheckboxControl>
+type CheckboxControlProps = React.ComponentPropsWithoutRef<typeof CheckboxControl>
 
 const meta = {
   title: 'Form elements/controlled/CheckboxControl',
-  component: Controlled.CheckboxControl,
+  component: CheckboxControl,
   parameters: {
     layout: 'centered'
   },
@@ -29,17 +29,17 @@ const meta = {
         test: false
       }}
       renderComponent={(componentProps: CheckboxControlProps) => (
-        <Controlled.CheckboxControl {...componentProps} name='test'>
+        <CheckboxControl {...componentProps} name='test'>
           Input
-        </Controlled.CheckboxControl>
+        </CheckboxControl>
       )}
     />
   )
-} satisfies Meta<typeof Controlled.CheckboxControl>
+} satisfies Meta<typeof CheckboxControl>
 
 export default meta
 
-type Story = StoryObj<typeof Controlled.CheckboxControl>
+type Story = StoryObj<typeof CheckboxControl>
 
 /**
  * \`CheckboxControl\` компонент, управляемый библиотекой \`react-hook-form\`\n

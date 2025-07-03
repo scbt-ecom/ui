@@ -4,20 +4,20 @@ import { useState } from 'react'
 import toast from 'react-hot-toast'
 import type { Meta, StoryObj } from '@storybook/react'
 import { fn } from '@storybook/test'
-import { Uncontrolled } from '$/shared/ui'
+import { SwitchBase } from '$/shared/ui'
 
 const meta = {
   title: 'Form elements/uncontrolled/SwitchBase',
-  component: Uncontrolled.SwitchBase,
+  component: SwitchBase,
   parameters: {
     layout: 'centered'
   },
   args: {}
-} satisfies Meta<typeof Uncontrolled.SwitchBase>
+} satisfies Meta<typeof SwitchBase>
 
 export default meta
 
-type Story = StoryObj<typeof Uncontrolled.SwitchBase>
+type Story = StoryObj<typeof SwitchBase>
 
 /**
  * Checkbox компонент для управления \`boolean\` значением\n
@@ -49,7 +49,7 @@ export const WithState: Story = {
   render: (props) => {
     const [value, setValue] = useState<boolean>(false)
 
-    return <Uncontrolled.SwitchBase {...props} checked={value} onCheckedChange={setValue} />
+    return <SwitchBase {...props} checked={value} onCheckedChange={setValue} />
   }
 }
 

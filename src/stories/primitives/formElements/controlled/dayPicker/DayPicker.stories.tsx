@@ -3,7 +3,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import z from 'zod'
 import { HookForm } from '../utils'
-import { Controlled } from '$/shared/ui'
+import { DayPickerControl } from '$/shared/ui'
 import { ZodUtils, zodValidators } from '$/shared/validation'
 
 const schema = z.object({
@@ -12,11 +12,11 @@ const schema = z.object({
 })
 
 type Schema = z.TypeOf<typeof schema>
-type DayPickerControlProps = React.ComponentPropsWithoutRef<typeof Controlled.DayPickerControl>
+type DayPickerControlProps = React.ComponentPropsWithoutRef<typeof DayPickerControl>
 
 const meta = {
   title: 'Form elements/controlled/DayPickerControl',
-  component: Controlled.DayPickerControl,
+  component: DayPickerControl,
   parameters: {
     layout: 'centered'
   },
@@ -32,17 +32,17 @@ const meta = {
       defaultValues={ZodUtils.getZodDefaults(schema)}
       renderComponent={(componentProps: DayPickerControlProps) => (
         <>
-          <Controlled.DayPickerControl {...componentProps} name='from' inputProps={{ label: 'Pick the date' }} />
-          <Controlled.DayPickerControl {...componentProps} name='to' inputProps={{ label: 'Pick the date' }} />
+          <DayPickerControl {...componentProps} name='from' inputProps={{ label: 'Pick the date' }} />
+          <DayPickerControl {...componentProps} name='to' inputProps={{ label: 'Pick the date' }} />
         </>
       )}
     />
   )
-} satisfies Meta<typeof Controlled.DayPickerControl>
+} satisfies Meta<typeof DayPickerControl>
 
 export default meta
 
-type Story = StoryObj<typeof Controlled.DayPickerControl>
+type Story = StoryObj<typeof DayPickerControl>
 
 /**
  * \`DayPickerControl\` компонент, управляемый библиотекой \`react-hook-form\`\n

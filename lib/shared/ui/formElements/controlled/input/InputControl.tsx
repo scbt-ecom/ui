@@ -1,7 +1,7 @@
 'use client'
 
 import { type Control, type FieldValues, type Path, useController, type UseControllerProps } from 'react-hook-form'
-import { type InputBaseProps, Uncontrolled } from '../../uncontrolled'
+import { InputBase, type InputBaseProps } from '../../uncontrolled/input'
 import { MessageView } from '$/shared/ui/formElements/ui'
 import { cn } from '$/shared/utils'
 
@@ -54,7 +54,7 @@ export const InputControl = <TFieldValues extends FieldValues = FieldValues>({
 
   return (
     <div className={cn('w-full', root)}>
-      <Uncontrolled.InputBase
+      <InputBase
         {...props}
         {...field}
         classes={restClasses}

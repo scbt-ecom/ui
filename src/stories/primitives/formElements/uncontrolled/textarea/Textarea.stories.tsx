@@ -4,11 +4,11 @@ import { useState } from 'react'
 import toast from 'react-hot-toast'
 import type { Meta, StoryObj } from '@storybook/react'
 import { fn } from '@storybook/test'
-import { Icon, Uncontrolled } from '$/shared/ui'
+import { Icon, TextareaBase } from '$/shared/ui'
 
 const meta = {
   title: 'Form elements/uncontrolled/TextareaBase',
-  component: Uncontrolled.TextareaBase,
+  component: TextareaBase,
   parameters: {
     layout: 'centered'
   },
@@ -23,11 +23,11 @@ const meta = {
     label: 'Some label',
     placeholder: 'Placeholder'
   }
-} satisfies Meta<typeof Uncontrolled.TextareaBase>
+} satisfies Meta<typeof TextareaBase>
 
 export default meta
 
-type Story = StoryObj<typeof Uncontrolled.TextareaBase>
+type Story = StoryObj<typeof TextareaBase>
 
 /**
  * \`Textarea\` компонент для ввода информации\n
@@ -64,7 +64,7 @@ export const Controlled: Story = {
   render: (props) => {
     const [value, setValue] = useState<string>('')
 
-    return <Uncontrolled.TextareaBase {...props} value={value} onChange={(e) => setValue(e.target.value)} />
+    return <TextareaBase {...props} value={value} onChange={(e) => setValue(e.target.value)} />
   }
 }
 

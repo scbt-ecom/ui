@@ -1,5 +1,5 @@
 import { type Control, type FieldPath, type FieldValues, useController, type UseControllerProps } from 'react-hook-form'
-import { type RadioGroupBaseProps, Uncontrolled } from '$/shared/ui'
+import { RadioGroupBase, type RadioGroupBaseProps } from '$/shared/ui'
 import { MessageView } from '$/shared/ui/formElements/ui'
 import { cn } from '$/shared/utils'
 
@@ -61,7 +61,7 @@ export const RadioGroupControl = <TFieldValues extends FieldValues = FieldValues
   return (
     <div className={container}>
       <p className={cn('desk-body-regular-l w-full pb-4 text-color-dark', labelClass)}>{label}</p>
-      <Uncontrolled.RadioGroupBase
+      <RadioGroupBase
         {...props}
         {...restField}
         onValueChange={onChange}

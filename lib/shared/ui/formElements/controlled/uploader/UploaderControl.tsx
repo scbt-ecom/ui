@@ -1,6 +1,5 @@
 import { type Control, type FieldValues, type Path, useController, type UseControllerProps } from 'react-hook-form'
-import { type UploaderBaseProps } from '../../uncontrolled/uploader'
-import { Uncontrolled } from '$/shared/ui'
+import { UploaderBase, type UploaderBaseProps } from '../../uncontrolled/uploader'
 import { MessageView } from '$/shared/ui/formElements/ui'
 import { cn } from '$/shared/utils'
 
@@ -43,7 +42,7 @@ export const UploaderControl = <TFieldValues extends FieldValues>({
 
   return (
     <div className={cn('w-full', container)}>
-      <Uncontrolled.UploaderBase {...props} {...field} invalid={invalid} disabled={disabled} classes={restClasses} />
+      <UploaderBase {...props} {...field} invalid={invalid} disabled={disabled} classes={restClasses} />
       <MessageView
         text={error?.message || helperText}
         className={message}

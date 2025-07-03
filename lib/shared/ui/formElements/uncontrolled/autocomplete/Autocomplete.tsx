@@ -1,7 +1,7 @@
 import { forwardRef } from 'react'
-import { type SelectBaseProps, type SelectItemOption, Uncontrolled } from '..'
 import { type UseQueryResult } from '@tanstack/react-query'
 import { useDebounceValue } from '$/shared/hooks'
+import { SelectBase, type SelectBaseProps, type SelectItemOption } from '$/shared/ui'
 
 export interface AutocompleteBaseProps<TData>
   extends Omit<
@@ -44,7 +44,7 @@ export const AutocompleteBase = forwardRef(
     }
 
     return (
-      <Uncontrolled.SelectBase
+      <SelectBase
         {...props}
         ref={ref}
         options={options}

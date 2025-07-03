@@ -1,7 +1,7 @@
 import { useId } from 'react'
 import { type Control, type FieldPath, type FieldValues, useController, type UseControllerProps } from 'react-hook-form'
 import { MessageView } from '../../ui'
-import { Icon, Popover, type SwitchBaseProps, Uncontrolled } from '$/shared/ui'
+import { Icon, Popover, SwitchBase, type SwitchBaseProps } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
 type SwitchControlClasses = SwitchBaseProps['classes'] & {
@@ -74,7 +74,7 @@ export const SwitchControl = <TFieldValues extends FieldValues = FieldValues>({
   return (
     <div className={cn('flex flex-col', { 'pointer-events-none': disabled }, className, container)}>
       <div className='flex items-center gap-2'>
-        <Uncontrolled.SwitchBase
+        <SwitchBase
           {...props}
           {...restField}
           invalid={invalid}

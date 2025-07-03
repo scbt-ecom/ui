@@ -29,6 +29,17 @@ export type { UploaderControlProps } from './uploader'
 import { ComboboxControl } from './combobox'
 export type { ComboboxControlProps } from './combobox'
 
+/**
+ * @example
+ * ```ts
+ * It's ok
+ * import { UploaderControl } from '@scbt-ecom/ui'
+ *
+ * Not ok (tree shaking doesn't work)
+ * import { Controlled } from '@scbt-ecom/ui'
+ * ```
+ * @deprecated use ComponentControl instead
+ */
 export const Controlled = {
   InputControl,
   MaskInputControl,

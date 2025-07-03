@@ -1,8 +1,8 @@
 import type { ReactNode } from 'react'
-import { cn } from '../../../shared/utils'
 import { type FormStepSetter, type SubmitCallback, type UserReviewSchema, userReviewSchema } from '../model'
 import { useControlledForm } from '$/shared/hooks'
-import { Button, Controlled, type TextareaControlProps } from '$/shared/ui'
+import { Button, TextareaControl, type TextareaControlProps } from '$/shared/ui'
+import { cn } from '$/shared/utils'
 import { ZodUtils } from '$/shared/validation'
 
 const defaultTitle = 'Расскажите о впечатлениях'
@@ -61,12 +61,7 @@ export const UserReview = ({
         <p className={cn('desk-body-medium-l', classes?.title)}>{title}</p>
         <p className={cn('desk-body-regular-l', classes?.subtitle)}>{subtitle}</p>
       </div>
-      <Controlled.TextareaControl
-        control={control}
-        name='review'
-        label='Поделитесь вашим мнением'
-        classes={classes?.textareaClasses}
-      />
+      <TextareaControl control={control} name='review' label='Поделитесь вашим мнением' classes={classes?.textareaClasses} />
       <Button type='submit' size='sm' intent='negative' className={cn('w-full', classes?.button)}>
         Отправить
       </Button>

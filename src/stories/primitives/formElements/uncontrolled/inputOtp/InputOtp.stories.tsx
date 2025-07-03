@@ -2,11 +2,11 @@
 
 import { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
-import { Uncontrolled } from '$/shared/ui'
+import { InputOtpBase } from '$/shared/ui'
 
 const meta = {
   title: 'Form elements/uncontrolled/InputOtpBase',
-  component: Uncontrolled.InputOtpBase,
+  component: InputOtpBase,
   parameters: {
     layout: 'centered'
   },
@@ -20,11 +20,11 @@ const meta = {
     }
   ],
   args: {}
-} satisfies Meta<typeof Uncontrolled.InputOtpBase>
+} satisfies Meta<typeof InputOtpBase>
 
 export default meta
 
-type Story = StoryObj<typeof Uncontrolled.InputOtpBase>
+type Story = StoryObj<typeof InputOtpBase>
 
 export const Base: Story = {
   args: {}
@@ -43,7 +43,7 @@ export const WithState: Story = {
 
     return (
       <>
-        <Uncontrolled.InputOtpBase {...props} value={value} onChange={setValue} />
+        <InputOtpBase {...props} value={value} onChange={setValue} />
       </>
     )
   }
