@@ -14,9 +14,9 @@ export const Copyright = ({ text, classes }: CopyrightProps) => {
 
   return (
     <div
-      className={cn('desk-body-regular-m text-color-footer', classes?.copyRight)}
+      className={cn('desk-body-regular-m text-color-footer [&_>p]:inline', classes?.copyRight)}
       dangerouslySetInnerHTML={{
-        __html: `<div style="display: inline-flex; gap: 4px"><span>© 2004-${currentYear}</span> ${text}</div>`
+        __html: `© 2004-${currentYear} ${text}`
       }}
     />
   )

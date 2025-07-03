@@ -18,7 +18,7 @@ export const CalculatedBlock = ({ rootDescription, rootValue, suffix, classes }:
   return (
     <div className={cn('mb-6 flex items-center justify-between gap-6', classes?.wrapper)}>
       <p className={cn('desk-body-regular-l text-color-dark', classes?.description)}>{rootDescription}</p>
-      <div className={cn('desk-title-bold-l flex items-center gap-1 text-color-dark', classes?.value)}>
+      <div className={cn('desk-title-bold-l flex items-center gap-1 text-color-dark mobile:mob-title-bold-l', classes?.value)}>
         {formatWithIntl(suffix, Number(rootValue))}
       </div>
     </div>

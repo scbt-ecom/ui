@@ -13,7 +13,7 @@ import {
   type SwitchGroupProps
 } from './ui'
 import { FieldsGroup } from './ui'
-import { cn } from '$/shared/utils'
+import { cn, TypeGuards } from '$/shared/utils'
 
 export type CalculatorFieldsClasses = {
   rootFieldsWrapper?: string
@@ -38,6 +38,12 @@ export interface CalculatorFieldsProps<T extends FieldValues> {
   }
 }
 
+//TODO: Переписать лаконично убрать дубляж
+// type BaseFieldsGroup<Fields> = {
+//   fields: Fields
+// }
+// const hasFields = <T extends BaseFieldsGroup<T>>(groupConfig: T) => groupConfig && !TypeGuards.isArrayEmpty(groupConfig?.fields)
+
 export const CalculatorFields = <T extends FieldValues>({ modalConfig, fieldsGroup, classes }: CalculatorFieldsProps<T>) => {
   const { sliderSumExist, sliderSumCorrectType } = useAdditionalSlider({
     slidersGroupConfig: fieldsGroup.slidersGroupConfig,
@@ -45,25 +51,33 @@ export const CalculatorFields = <T extends FieldValues>({ modalConfig, fieldsGro
   })
 
   return (
-    <div className={cn('flex flex-1 flex-col gap-8', classes?.rootFieldsWrapper)}>
+    <div className={cn('flex flex-1 flex-col gap-6 mobile:w-full desktop:gap-8', classes?.rootFieldsWrapper)}>
       {modalConfig?.triggerText && modalConfig?.contentVariant && (
         <CalculatorModal classes={classes?.modalClasses} {...modalConfig} />
       )}
-      {fieldsGroup?.selectGroupConfig && (
+      {fieldsGroup?.selectGroupConfig && !TypeGuards.isArrayEmpty(fieldsGroup?.selectGroupConfig?.fields) && (
         <div className={cn('flex flex-col gap-4', classes?.selectFieldsWrapper)}>
           <FieldsGroup {...fieldsGroup?.selectGroupConfig} />
         </div>
       )}
-      {fieldsGroup?.slidersGroupConfig && <FieldsGroup {...fieldsGroup?.slidersGroupConfig} />}
-      {fieldsGroup?.radioGroupTabConfig && <FieldsGroup {...fieldsGroup?.radioGroupTabConfig} />}
-      {fieldsGroup?.checkboxGroupConfig && (
+      {fieldsGroup?.slidersGroupConfig && !TypeGuards.isArrayEmpty(fieldsGroup?.slidersGroupConfig?.fields) && (
+        <FieldsGroup {...fieldsGroup?.slidersGroupConfig} />
+      )}
+      {fieldsGroup?.radioGroupTabConfig && !TypeGuards.isArrayEmpty(fieldsGroup?.radioGroupTabConfig?.fields) && (
+        <FieldsGroup {...fieldsGroup?.radioGroupTabConfig} />
+      )}
+      {fieldsGroup?.checkboxGroupConfig && !TypeGuards.isArrayEmpty(fieldsGroup?.checkboxGroupConfig?.fields) && (
         <div className={cn('flex flex-col gap-4', classes?.checkboxFieldsWrapper)}>
           <FieldsGroup {...fieldsGroup?.checkboxGroupConfig} />
         </div>
       )}
-      {fieldsGroup?.radioGroupConfig && <FieldsGroup {...fieldsGroup?.radioGroupConfig} />}
-      {fieldsGroup?.radioGroupCardConfig && <FieldsGroup {...fieldsGroup?.radioGroupCardConfig} />}
-      {fieldsGroup?.switchGroupConfig && (
+      {fieldsGroup?.radioGroupConfig && !TypeGuards.isArrayEmpty(fieldsGroup?.radioGroupConfig?.fields) && (
+        <FieldsGroup {...fieldsGroup?.radioGroupConfig} />
+      )}
+      {fieldsGroup?.radioGroupCardConfig && !TypeGuards.isArrayEmpty(fieldsGroup?.radioGroupCardConfig?.fields) && (
+        <FieldsGroup {...fieldsGroup?.radioGroupCardConfig} />
+      )}
+      {fieldsGroup?.switchGroupConfig && !TypeGuards.isArrayEmpty(fieldsGroup?.switchGroupConfig?.fields) && (
         <div className={cn('flex flex-col gap-4', classes?.switchFieldsWrapper)}>
           <FieldsGroup {...fieldsGroup?.switchGroupConfig} />
         </div>

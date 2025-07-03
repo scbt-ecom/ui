@@ -1,5 +1,5 @@
 import { type Meta, type StoryObj } from '@storybook/react'
-import { Dialog } from '$/shared/ui'
+import { Button, Dialog } from '$/shared/ui'
 
 const DIALOG_ID = 'dialog_id'
 
@@ -9,7 +9,7 @@ const meta = {
   tags: ['autodocs'],
   args: {
     id: DIALOG_ID,
-    title: 'Рустем?'
+    title: 'Условия по кредиту'
   }
 } satisfies Meta<typeof Dialog>
 
@@ -29,11 +29,11 @@ export const Base: Story = {
     }
 
     return (
-      <div className='flex h-max items-center justify-center'>
-        <Dialog {...props}>Test dialog</Dialog>
-        <button type='button' onClick={handleClick}>
-          Open
-        </button>
+      <div className='flex h-screen w-screen items-center justify-center'>
+        <Dialog {...props}>Подробнее о кредите</Dialog>
+        <Button type='button' onClick={handleClick}>
+          Посмотреть
+        </Button>
       </div>
     )
   }

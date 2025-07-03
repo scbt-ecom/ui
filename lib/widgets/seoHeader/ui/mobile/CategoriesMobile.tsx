@@ -24,7 +24,7 @@ export const CategoriesMobile = ({ categories, helpers, phone }: CategoriesMobil
       className='relative flex w-full items-center justify-between border-b border-b-blue-grey-500 py-4 desktop:hidden'
     >
       <Icon name='brandLogos/logoMain' className='w-[130px]' />
-      <button type='button' onClick={onOpenToggle} className='h-max w-max'>
+      <button aria-label='Open menu' type='button' onClick={onOpenToggle} className='h-max w-max'>
         <Icon name={open ? 'general/close' : 'general/menu'} className='size-6 text-color-primary-default' />
       </button>
 

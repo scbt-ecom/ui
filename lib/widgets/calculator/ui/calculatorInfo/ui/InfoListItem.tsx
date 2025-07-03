@@ -11,6 +11,7 @@ export interface InfoListItemCommon {
   hint?: string
   accent?: boolean
   color?: InfoListItemColor
+  withFormula?: boolean
 }
 
 export interface InfoListItemDTO extends InfoListItemCommon {
