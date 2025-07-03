@@ -1,2 +1,2 @@
 export * from './ui'
-export { DropdownList, type DropdownListProps } from './DropdownList'
+export { DropdownList, type DropdownListProps, type DropdownListClasses } from './DropdownList'

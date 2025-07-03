@@ -8,6 +8,8 @@ export type UseKeyboardNavigationProps = {
   onPick?: (option: DropdownItemOption) => void
 }
 
+const ELEMENT_OFFSET = 4
+
 export const useKeyboardNavigation = <Container extends HTMLElement, Element extends HTMLElement>({
   options,
   multiple,
@@ -70,7 +72,7 @@ export const useKeyboardNavigation = <Container extends HTMLElement, Element ext
         const containerBottom = container.scrollTop + container.clientHeight
 
         if (scrollElement.offsetTop < containerTop || scrollElement.offsetTop > containerBottom) {
-          const scrollTop = scrollElement.offsetTop - container.offsetTop - 4
+          const scrollTop = scrollElement.offsetTop - container.offsetTop - ELEMENT_OFFSET
 
           container.scrollTo({
             top: scrollTop,

@@ -1,9 +1,14 @@
 import { useRef } from 'react'
 import { useKeyboardNavigation } from './hooks'
 import { isOptionActive } from './model'
-import { DropdownItem, type DropdownItemOption } from './ui'
+import { DropdownItem, type DropdownItemClasses, type DropdownItemOption } from './ui'
 import { useClickOutside } from '$/shared/hooks'
 import { cn } from '$/shared/utils'
+
+export type DropdownListClasses = {
+  root?: string
+  item?: DropdownItemClasses
+}
 
 export interface DropdownListProps<Multi extends boolean> extends React.HTMLAttributes<HTMLUListElement> {
   options: DropdownItemOption[]
@@ -24,6 +29,10 @@ export interface DropdownListProps<Multi extends boolean> extends React.HTMLAttr
    * Функция для управления отображаемым значением
    */
   displayValue?: (option: DropdownItemOption) => string
+  /**
+   * Дополнительные стили
+   */
+  classes?: DropdownListClasses
 }
 
 export const DropdownList = <Multi extends boolean>({
@@ -33,6 +42,7 @@ export const DropdownList = <Multi extends boolean>({
   value,
   className,
   displayValue,
+  classes,
   ...props
 }: DropdownListProps<Multi>) => {
   const ref = useRef<HTMLUListElement>(null)
@@ -50,7 +60,8 @@ export const DropdownList = <Multi extends boolean>({
       {...props}
       ref={refs.setRoot()}
       className={cn(
-        'customScrollbar-y z-10 mt-1 max-h-[264px] w-full overflow-y-auto scroll-smooth rounded-md bg-color-white p-1 shadow-[0_8px_20px_0px_rgba(41,41,41,0.08)]',
+        'customScrollbar-y mt-1 max-h-[264px] w-full overflow-y-auto scroll-smooth rounded-md bg-color-white p-1 shadow-[0_8px_20px_0px_rgba(41,41,41,0.08)]',
+        classes?.root,
         className
       )}
     >
@@ -69,6 +80,7 @@ export const DropdownList = <Multi extends boolean>({
             displayValue={displayValue}
             onMouseEnter={() => setFocusedIndex(index)}
             onMouseLeave={() => setFocusedIndex(-1)}
+            classes={classes?.item}
           />
         )
       })}

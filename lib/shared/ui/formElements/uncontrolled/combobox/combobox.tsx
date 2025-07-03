@@ -7,10 +7,16 @@ import type { ComboboxItemOption } from './ui'
 import { useClickOutside } from '$/shared/hooks'
 import { type DeepPartial } from '$/shared/types'
 import { Icon } from '$/shared/ui'
-import { DropdownList, type DropdownListProps } from '$/shared/ui/dropdownList'
+import { DropdownList, type DropdownListClasses, type DropdownListProps } from '$/shared/ui/dropdownList'
 import { type IFieldAttachmentProps } from '$/shared/ui/formElements/ui'
-import { InputBase } from '$/shared/ui/formElements/uncontrolled/input'
+import { InputBase, type InputBaseProps } from '$/shared/ui/formElements/uncontrolled/input'
 import { cn, mergeRefs } from '$/shared/utils'
+
+export type ComboboxClasses = {
+  root?: string
+  list?: { floating?: string } & DropdownListClasses
+  input?: InputBaseProps['classes']
+}
 
 export interface ComboboxProps<Multi extends boolean> extends Omit<DropdownListProps<Multi>, 'options' | 'value' | 'onChange'> {
   /**
@@ -57,6 +63,10 @@ export interface ComboboxProps<Multi extends boolean> extends Omit<DropdownListP
    * Только для чтения
    */
   readOnly?: boolean
+  /**
+   * Дополнительные стили
+   */
+  classes?: ComboboxClasses
 }
 
 export const Combobox = <Multi extends boolean = false>({
@@ -72,8 +82,11 @@ export const Combobox = <Multi extends boolean = false>({
   label,
   disabled,
   readOnly,
-  className
+  className,
+  classes
 }: ComboboxProps<Multi>) => {
+  const { floating, ...dropdownClasses } = classes?.list ?? {}
+
   const containerRef = useRef<HTMLDivElement>(null)
 
   const { refs, floatingStyles } = useFloating<HTMLInputElement>({
@@ -108,7 +121,7 @@ export const Combobox = <Multi extends boolean = false>({
   useClickOutside(containerRef, () => setOpen(false))
 
   return (
-    <div ref={containerRef} className={cn('relative w-full', className)}>
+    <div ref={containerRef} className={cn('relative w-full', classes?.root, className)}>
       <InputBase
         ref={mergeRefs(refs.setReference)}
         label={label}
@@ -117,13 +130,14 @@ export const Combobox = <Multi extends boolean = false>({
         value={search}
         onChange={onInputChange}
         disabled={disabled}
-        onClick={() => setOpen(true)}
+        onClick={() => setOpen((prev) => !prev)}
         classes={{
           input: cn({
             'cursor-pointer': !searchable,
             'cursor-default': disabled,
             'pointer-events-none': disabled || readOnly
-          })
+          }),
+          ...classes?.input
         }}
         autoComplete='off'
         attachmentProps={{
@@ -146,6 +160,7 @@ export const Combobox = <Multi extends boolean = false>({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.1 }}
+            className={cn('z-[1000]', floating)}
             style={{ ...floatingStyles, width: containerRef.current?.getBoundingClientRect().width }}
           >
             <DropdownList
@@ -154,6 +169,7 @@ export const Combobox = <Multi extends boolean = false>({
               onPick={changeHandler}
               value={state}
               displayValue={displayValue}
+              classes={dropdownClasses}
             />
           </motion.div>
         )}

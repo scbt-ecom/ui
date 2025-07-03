@@ -3,6 +3,10 @@ import type { DropdownItemOption } from './model'
 import { CheckboxBase } from '$/shared/ui/formElements/uncontrolled/checkbox'
 import { cn } from '$/shared/utils'
 
+export type DropdownItemClasses = {
+  root?: string
+}
+
 export interface DropdownItemProps extends Omit<React.HTMLAttributes<HTMLLIElement>, 'children'> {
   item: DropdownItemOption
   onPick?: (value: DropdownItemOption, event: React.MouseEvent<HTMLLIElement, MouseEvent>) => void
@@ -11,10 +15,11 @@ export interface DropdownItemProps extends Omit<React.HTMLAttributes<HTMLLIEleme
   focused?: boolean
   disabled?: boolean
   displayValue?: (option: DropdownItemOption) => string
+  classes?: DropdownItemClasses
 }
 
 const InnerComponent = forwardRef<HTMLLIElement, DropdownItemProps>(
-  ({ item, className, onPick, multiple = false, active = false, focused = false, displayValue, ...props }, ref) => {
+  ({ item, className, onPick, multiple = false, active = false, focused = false, displayValue, classes, ...props }, ref) => {
     const { label, helperText, disabled, attachment } = item
     const ContentWrapper = multiple || attachment || helperText ? 'div' : Fragment
 
@@ -37,6 +42,7 @@ const InnerComponent = forwardRef<HTMLLIElement, DropdownItemProps>(
             'flex items-center gap-x-4': multiple,
             'gap-x-3': attachment && attachment.left
           },
+          classes?.root,
           className
         )}
       >

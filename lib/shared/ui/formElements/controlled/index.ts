@@ -26,6 +26,8 @@ import { TextareaControl } from './textarea'
 export type { TextareaControlProps } from './textarea'
 import { UploaderControl } from './uploader'
 export type { UploaderControlProps } from './uploader'
+import { ComboboxControl } from './combobox'
+export type { ComboboxControlProps } from './combobox'
 
 export const Controlled = {
   InputControl,
@@ -48,5 +50,6 @@ export const Controlled = {
   UploaderControl,
   InputOtpControl,
   EditorControl,
-  InputCurrencyControl
+  InputCurrencyControl,
+  ComboboxControl
 }
