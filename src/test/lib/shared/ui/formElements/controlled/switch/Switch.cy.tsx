@@ -1,9 +1,9 @@
 import { baseSchema, switchDefaultProps } from './constants'
 import { ComponentFactory } from '@/test/utils'
-import { Controlled } from '$/shared/ui'
+import { SwitchControl } from '$/shared/ui'
 
-describe('Test cases for Controlled.SwitchControl', () => {
-  const factory = new ComponentFactory(Controlled.SwitchControl)
+describe('Test cases for SwitchControl', () => {
+  const factory = new ComponentFactory(SwitchControl)
 
   it('Should render and pass value correctly', () => {
     cy.mount(

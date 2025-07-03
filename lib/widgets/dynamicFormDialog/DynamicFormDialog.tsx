@@ -6,7 +6,7 @@ import { HTMLRenderer } from '../htmlParser'
 import type { Approvement, ApprovementType } from './model'
 import { type FieldValidation, getDynamicSchema } from '@/shared/utils'
 import { useControlledForm } from '$/shared/hooks'
-import { Button, type ButtonProps, type CheckedState, Dialog, Uncontrolled } from '$/shared/ui'
+import { Button, type ButtonProps, CheckboxBase, type CheckedState, Dialog } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 import { ZodUtils } from '$/shared/validation'
 import { type FieldElement, FieldMapper } from '$/widgets/fieldMapper'
@@ -17,7 +17,7 @@ type SubmitProps = {
 }
 
 type ApprovementClasses = {
-  checkbox?: React.ComponentProps<typeof Uncontrolled.CheckboxBase>['classes']
+  checkbox?: React.ComponentProps<typeof CheckboxBase>['classes']
   content?: string
 }
 
@@ -60,12 +60,7 @@ const withApprovement = <Type extends ApprovementType>(
         'flex items-center justify-items-start gap-x-3'
       )}
     >
-      <Uncontrolled.CheckboxBase
-        aria-label='Согласие на обработку персональных данных'
-        classes={classes?.checkbox}
-        checked={checked}
-        onCheckedChange={onCheckedChange}
-      />
+      <CheckboxBase classes={classes?.checkbox} checked={checked} onCheckedChange={onCheckedChange} />
       <HTMLRenderer html={approvement.content} as='div' className={classes?.content} />
     </label>
   )

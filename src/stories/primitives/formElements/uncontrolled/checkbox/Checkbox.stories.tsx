@@ -2,20 +2,20 @@
 
 import { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
-import { type CheckedState, Uncontrolled } from '$/shared/ui'
+import { CheckboxBase, type CheckedState } from '$/shared/ui'
 
 const meta = {
   title: 'Form elements/uncontrolled/CheckboxBase',
-  component: Uncontrolled.CheckboxBase,
+  component: CheckboxBase,
   parameters: {
     layout: 'centered'
   },
   args: {}
-} satisfies Meta<typeof Uncontrolled.CheckboxBase>
+} satisfies Meta<typeof CheckboxBase>
 
 export default meta
 
-type Story = StoryObj<typeof Uncontrolled.CheckboxBase>
+type Story = StoryObj<typeof CheckboxBase>
 
 /**
  * Checkbox компонент для управления \`boolean\` значением\n
@@ -49,7 +49,7 @@ export const WithState: Story = {
   render: (props) => {
     const [value, setValue] = useState<CheckedState>(false)
 
-    return <Uncontrolled.CheckboxBase {...props} checked={value} onCheckedChange={setValue} />
+    return <CheckboxBase {...props} checked={value} onCheckedChange={setValue} />
   }
 }
 

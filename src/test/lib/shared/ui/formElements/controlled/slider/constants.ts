@@ -1,8 +1,8 @@
 import { object } from 'zod'
-import { type Controlled } from '$/shared/ui'
+import { type SliderControl } from '$/shared/ui'
 import { zodValidators } from '$/shared/validation'
 
-type SliderProps = React.ComponentPropsWithoutRef<typeof Controlled.SliderControl> & {
+type SliderProps = React.ComponentPropsWithoutRef<typeof SliderControl> & {
   'data-test-id'?: string
 }
 

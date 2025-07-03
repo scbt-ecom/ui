@@ -26,7 +26,20 @@ import { TextareaControl } from './textarea'
 export type { TextareaControlProps } from './textarea'
 import { UploaderControl } from './uploader'
 export type { UploaderControlProps } from './uploader'
+import { ComboboxControl } from './combobox'
+export type { ComboboxControlProps } from './combobox'
 
+/**
+ * @example
+ * ```ts
+ * It's ok
+ * import { UploaderControl } from '@scbt-ecom/ui'
+ *
+ * Not ok (tree shaking doesn't work)
+ * import { Controlled } from '@scbt-ecom/ui'
+ * ```
+ * @deprecated use ComponentControl instead
+ */
 export const Controlled = {
   InputControl,
   MaskInputControl,
@@ -48,5 +61,6 @@ export const Controlled = {
   UploaderControl,
   InputOtpControl,
   EditorControl,
-  InputCurrencyControl
+  InputCurrencyControl,
+  ComboboxControl
 }

@@ -2,7 +2,7 @@
 
 import { useMemo } from 'react'
 import { type Control, type FieldPath, type FieldValues, useController, type UseControllerProps } from 'react-hook-form'
-import { isSingleOption, type SelectBaseProps, type SelectItemOption, Uncontrolled } from '$/shared/ui'
+import { isSingleOption, SelectBase, type SelectBaseProps, type SelectItemOption } from '$/shared/ui'
 import { MessageView } from '$/shared/ui/formElements/ui'
 import { cn } from '$/shared/utils'
 
@@ -82,7 +82,7 @@ export const SelectControl = <TFieldValues extends FieldValues = FieldValues>({
 
   return (
     <div className={cn('w-full items-start gap-y-2', container)}>
-      <Uncontrolled.SelectBase
+      <SelectBase
         {...props}
         {...restField}
         {...restClasses}

@@ -5,18 +5,18 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { fn } from '@storybook/test'
 import z from 'zod'
 import { HookForm } from '../utils'
-import { Controlled } from '$/shared/ui'
+import { InputCurrencyControl } from '$/shared/ui'
 
 const schema = z.object({
   test: z.string().min(3, 'Name error')
 })
 
 type Schema = z.TypeOf<typeof schema>
-type InputCurrencyControlProps = React.ComponentPropsWithoutRef<typeof Controlled.InputCurrencyControl>
+type InputCurrencyControlProps = React.ComponentPropsWithoutRef<typeof InputCurrencyControl>
 
 const meta = {
   title: 'Form elements/controlled/InputCurrencyControl',
-  component: Controlled.InputCurrencyControl,
+  component: InputCurrencyControl,
   parameters: {
     layout: 'centered'
   },
@@ -31,14 +31,14 @@ const meta = {
       defaultValues={{
         test: ''
       }}
-      renderComponent={(componentProps: InputCurrencyControlProps) => <Controlled.InputCurrencyControl {...componentProps} />}
+      renderComponent={(componentProps: InputCurrencyControlProps) => <InputCurrencyControl {...componentProps} />}
     />
   )
-} satisfies Meta<typeof Controlled.InputCurrencyControl>
+} satisfies Meta<typeof InputCurrencyControl>
 
 export default meta
 
-type Story = StoryObj<typeof Controlled.InputCurrencyControl>
+type Story = StoryObj<typeof InputCurrencyControl>
 
 /**
  * \`InputCurrencyControl\` компонент, контролируемый библиотекой \`react-hook-form\`\n

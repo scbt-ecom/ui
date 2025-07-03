@@ -4,7 +4,7 @@ import { useState } from 'react'
 import toast from 'react-hot-toast'
 import type { Meta, StoryObj } from '@storybook/react'
 import { fn } from '@storybook/test'
-import { type RadioOption, Uncontrolled } from '$/shared/ui'
+import { RadioGroupBase, type RadioOption } from '$/shared/ui'
 
 const options: RadioOption[] = [
   {
@@ -47,18 +47,18 @@ const options: RadioOption[] = [
 
 const meta = {
   title: 'Form elements/uncontrolled/RadioGroupBase',
-  component: Uncontrolled.RadioGroupBase,
+  component: RadioGroupBase,
   parameters: {
     layout: 'centered'
   },
   args: {
     options
   }
-} satisfies Meta<typeof Uncontrolled.RadioGroupBase>
+} satisfies Meta<typeof RadioGroupBase>
 
 export default meta
 
-type Story = StoryObj<typeof Uncontrolled.RadioGroupBase>
+type Story = StoryObj<typeof RadioGroupBase>
 
 /**
  * Checkbox компонент для управления \`boolean\` значением\n
@@ -96,7 +96,7 @@ export const WithState: Story = {
 
     return (
       <>
-        <Uncontrolled.RadioGroupBase {...props} value={value} onValueChange={setValue} />
+        <RadioGroupBase {...props} value={value} onValueChange={setValue} />
         <p>{value.length > 0 ? value : 'Выберите значение'}</p>
       </>
     )
