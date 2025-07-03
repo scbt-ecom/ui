@@ -19,9 +19,7 @@ export const CalculatorInfoBody = ({ infoList, classes }: CalculatedInfoBodyProp
 
   return (
     <div className={cn('my-4 flex flex-col gap-3 border-t border-solid border-blue-grey-500 pt-4', classes?.wrapper)}>
-      {formattedInfoList?.map((listItem) => (
-        <InfoListItem key={listItem.label} {...listItem} />
-      ))}
+      {formattedInfoList?.map((listItem) => <InfoListItem key={listItem.label} {...listItem} />)}
     </div>
   )
 }
