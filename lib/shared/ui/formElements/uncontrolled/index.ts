@@ -21,7 +21,20 @@ export type { TextareaBaseProps } from './textarea'
 export { isSingleOption } from './select'
 import { InputOtpBase } from './inputOtp'
 export type { InputOtpBaseProps } from './inputOtp'
+import { Combobox } from './combobox'
+export type { ComboboxProps, ComboboxItemOption } from './combobox'
 
+/**
+ * @example
+ * ```ts
+ * It's ok
+ * import { InputBase } from '@scbt-ecom/ui'
+ *
+ * Not ok (tree shaking doesn't work)
+ * import { Uncontrolled } from '@scbt-ecom/ui'
+ * ```
+ * @deprecated use Select instead
+ */
 export const Uncontrolled = {
   InputBase,
   SliderBase,
@@ -34,5 +47,6 @@ export const Uncontrolled = {
   RadioGroupBase,
   TextareaBase,
   InputOtpBase,
-  UploaderBase
+  UploaderBase,
+  Combobox
 }

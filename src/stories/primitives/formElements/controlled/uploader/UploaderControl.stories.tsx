@@ -3,7 +3,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import z from 'zod'
 import { HookForm } from '../utils'
-import { Controlled } from '$/shared/ui'
+import { UploaderControl } from '$/shared/ui'
 import { megabytesToBytes } from '$/shared/ui/formElements/uncontrolled/uploader'
 
 const uploaderSchema = z.object({
@@ -11,11 +11,11 @@ const uploaderSchema = z.object({
 })
 
 type Schema = z.TypeOf<typeof uploaderSchema>
-type UploaderControlProps = React.ComponentPropsWithoutRef<typeof Controlled.UploaderControl>
+type UploaderControlProps = React.ComponentPropsWithoutRef<typeof UploaderControl>
 
 const meta = {
   title: 'Form elements/controlled/UploaderControl',
-  component: Controlled.UploaderControl,
+  component: UploaderControl,
   parameters: {
     layout: 'centered'
   },
@@ -30,15 +30,15 @@ const meta = {
           file: []
         }}
         schema={uploaderSchema}
-        renderComponent={(componentProps: UploaderControlProps) => <Controlled.UploaderControl {...componentProps} />}
+        renderComponent={(componentProps: UploaderControlProps) => <UploaderControl {...componentProps} />}
       />
     </>
   )
-} satisfies Meta<typeof Controlled.UploaderControl>
+} satisfies Meta<typeof UploaderControl>
 
 export default meta
 
-type Story = StoryObj<typeof Controlled.UploaderControl>
+type Story = StoryObj<typeof UploaderControl>
 
 /**
  * \`UploaderControl\` компонент, контролируемый библиотекой \`react-hook-form\`\n

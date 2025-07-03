@@ -53,7 +53,7 @@ export const CalculatorView = <T extends FieldValues>({
 
   return (
     <FormProvider {...formMethods}>
-      <div className={cn('flex items-start gap-16', classes?.wrapper)}>
+      <div className={cn('flex items-start gap-16 mobile:flex-col mobile:items-center mobile:gap-8', classes?.wrapper)}>
         <CalculatorFields {...calculatorFieldsConfig} classes={classes?.calculatorFields} />
         <CalculatorInfo {...mergedCalcInfoConfig} classes={classes?.calculatorInfo} />
       </div>

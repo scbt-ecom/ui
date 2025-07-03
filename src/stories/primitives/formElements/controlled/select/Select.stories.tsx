@@ -4,7 +4,7 @@ import { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import { object, type TypeOf } from 'zod'
 import { HookForm } from '../utils'
-import { Controlled, type SelectItemOption } from '$/shared/ui'
+import { SelectControl, type SelectItemOption } from '$/shared/ui'
 import { zodValidators } from '$/shared/validation'
 
 const generateOptions = (length: number): SelectItemOption[] =>
@@ -17,11 +17,11 @@ const schema = object({
   test: zodValidators.base.getSelectSchema()
 })
 
-type SelectControlProps = React.ComponentPropsWithoutRef<typeof Controlled.SelectControl>
+type SelectControlProps = React.ComponentPropsWithoutRef<typeof SelectControl>
 
 const meta = {
   title: 'Form elements/controlled/SelectControl',
-  component: Controlled.SelectControl,
+  component: SelectControl,
   parameters: {
     layout: 'centered'
   },
@@ -68,14 +68,14 @@ const meta = {
       {...props}
       schema={schema}
       defaultValues={{ test: null }}
-      renderComponent={(componentProps: SelectControlProps) => <Controlled.SelectControl {...componentProps} />}
+      renderComponent={(componentProps: SelectControlProps) => <SelectControl {...componentProps} />}
     />
   )
-} satisfies Meta<typeof Controlled.SelectControl>
+} satisfies Meta<typeof SelectControl>
 
 export default meta
 
-type Story = StoryObj<typeof Controlled.SelectControl>
+type Story = StoryObj<typeof SelectControl>
 
 /**
  * \`SelectControl\` компонент, управляемый библиотекой \`react-hook-form\`\n
@@ -114,7 +114,7 @@ export const WithMulti: Story = {
       {...props}
       schema={multiSchema}
       defaultValues={{ test: [] }}
-      renderComponent={(componentProps: SelectControlProps) => <Controlled.SelectControl {...componentProps} />}
+      renderComponent={(componentProps: SelectControlProps) => <SelectControl {...componentProps} />}
     />
   )
 }

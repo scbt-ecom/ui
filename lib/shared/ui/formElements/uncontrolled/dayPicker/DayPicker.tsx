@@ -4,7 +4,7 @@ import { format, isValid, parse } from 'date-fns'
 import { AnimatePresence } from 'framer-motion'
 import { type InputBaseClasses } from '../input/Input'
 import { useClickOutside } from '$/shared/hooks'
-import { Calendar, DATE_VISIBLE_PATTERN, Icon, type MaskInputProps, Uncontrolled } from '$/shared/ui'
+import { Calendar, DATE_VISIBLE_PATTERN, Icon, MaskInput, type MaskInputProps } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
 type ExternalHandlers = {
@@ -97,7 +97,7 @@ export const DayPickerBase = forwardRef<HTMLInputElement, DayPickerProps>(
     return (
       <div ref={containerRef} className={cn('relative w-full', root)}>
         <AnimatePresence mode='sync'>
-          <Uncontrolled.MaskInput
+          <MaskInput
             ref={ref}
             {...props}
             {...restHandlers}

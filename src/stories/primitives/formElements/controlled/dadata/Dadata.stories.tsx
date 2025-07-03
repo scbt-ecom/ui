@@ -6,7 +6,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import z from 'zod'
 import { DADATA_BASE_CACHE_URL, DADATA_BASE_CONSTANTS_URL } from '@/configs/api'
 import { useControlledForm } from '$/shared/hooks'
-import { Controlled } from '$/shared/ui'
+import { DadataAddress, DadataAuto, DadataCountry, DadataFio, DadataOrganization } from '$/shared/ui'
 import { zodValidators } from '$/shared/validation'
 
 const schema = z.object({
@@ -41,26 +41,16 @@ const Form = () => {
 
   return (
     <form className='mx-auto flex w-[500px] flex-col gap-4' onSubmit={handleSubmit(onSubmit, onError)}>
-      <Controlled.DadataOrganization
+      <DadataOrganization
         control={control}
         dadataBaseUrl={DADATA_BASE_CACHE_URL as string}
         label='Organization'
         name='organization'
       />
-      <Controlled.DadataAddress
-        control={control}
-        dadataBaseUrl={DADATA_BASE_CACHE_URL as string}
-        label='Address'
-        name='address'
-      />
-      <Controlled.DadataAuto control={control} dadataBaseUrl={DADATA_BASE_CONSTANTS_URL as string} label='Auto' name='auto' />
-      <Controlled.DadataFio control={control} dadataBaseUrl={DADATA_BASE_CACHE_URL as string} label='ФИО' name='fio' />
-      <Controlled.DadataCountry
-        control={control}
-        dadataBaseUrl={DADATA_BASE_CONSTANTS_URL as string}
-        label='Страна'
-        name='country'
-      />
+      <DadataAddress control={control} dadataBaseUrl={DADATA_BASE_CACHE_URL as string} label='Address' name='address' />
+      <DadataAuto control={control} dadataBaseUrl={DADATA_BASE_CONSTANTS_URL as string} label='Auto' name='auto' />
+      <DadataFio control={control} dadataBaseUrl={DADATA_BASE_CACHE_URL as string} label='ФИО' name='fio' />
+      <DadataCountry control={control} dadataBaseUrl={DADATA_BASE_CONSTANTS_URL as string} label='Страна' name='country' />
       <button>Submit</button>
     </form>
   )
@@ -68,18 +58,18 @@ const Form = () => {
 
 const meta = {
   title: 'Form elements/controlled/Dadata',
-  component: Controlled.DadataFio,
+  component: DadataFio,
   parameters: {
     layout: 'centered'
   },
   args: {
     label: 'Dadata'
   }
-} satisfies Meta<typeof Controlled.DadataFio>
+} satisfies Meta<typeof DadataFio>
 
 export default meta
 
-type Story = StoryObj<typeof Controlled.DadataFio>
+type Story = StoryObj<typeof DadataFio>
 
 export const Base: Story = {
   render: () => <Form />

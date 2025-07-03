@@ -4,11 +4,11 @@ import { useState } from 'react'
 import toast from 'react-hot-toast'
 import type { Meta, StoryObj } from '@storybook/react'
 import { fn } from '@storybook/test'
-import { formatDateToLocaleString, Uncontrolled } from '$/shared/ui'
+import { DayPickerBase, formatDateToLocaleString } from '$/shared/ui'
 
 const meta = {
   title: 'Form elements/uncontrolled/DayPickerBase',
-  component: Uncontrolled.DayPickerBase,
+  component: DayPickerBase,
   parameters: {
     layout: 'centered'
   },
@@ -22,11 +22,11 @@ const meta = {
   args: {
     label: 'Pick the date'
   }
-} satisfies Meta<typeof Uncontrolled.DayPickerBase>
+} satisfies Meta<typeof DayPickerBase>
 
 export default meta
 
-type Story = StoryObj<typeof Uncontrolled.DayPickerBase>
+type Story = StoryObj<typeof DayPickerBase>
 
 /**
  * \`DayPicker\` компонент для выбора даты\n
@@ -51,7 +51,7 @@ export const WithState: Story = {
     return (
       <>
         {value.length > 0 && <p>{formatDateToLocaleString(new Date(value))}</p>}
-        <Uncontrolled.DayPickerBase {...props} value={value} onChange={setValue} />
+        <DayPickerBase {...props} value={value} onChange={setValue} />
       </>
     )
   }

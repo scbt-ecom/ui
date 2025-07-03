@@ -1,9 +1,9 @@
 import * as constants from './constants'
 import { ComponentFactory } from '@/test/utils'
-import { Controlled } from '$/shared/ui'
+import { AutocompleteControl } from '$/shared/ui'
 
-describe('Test cases for Controlled.AutocompleteControl', () => {
-  const factory = new ComponentFactory(Controlled.AutocompleteControl)
+describe('Test cases for AutocompleteControl', () => {
+  const factory = new ComponentFactory(AutocompleteControl)
 
   it('Should render and autocomplete value correctly', () => {
     // mount component before test case runs

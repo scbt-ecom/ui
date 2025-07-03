@@ -4,11 +4,11 @@ import { useState } from 'react'
 import toast from 'react-hot-toast'
 import type { Meta, StoryObj } from '@storybook/react'
 import { fn } from '@storybook/test'
-import { Icon, Uncontrolled } from '$/shared/ui'
+import { Icon, InputBase } from '$/shared/ui'
 
 const meta = {
   title: 'Form elements/uncontrolled/InputBase',
-  component: Uncontrolled.InputBase,
+  component: InputBase,
   parameters: {
     layout: 'centered'
   },
@@ -22,11 +22,11 @@ const meta = {
   args: {
     label: 'Input'
   }
-} satisfies Meta<typeof Uncontrolled.InputBase>
+} satisfies Meta<typeof InputBase>
 
 export default meta
 
-type Story = StoryObj<typeof Uncontrolled.InputBase>
+type Story = StoryObj<typeof InputBase>
 
 /**
  * \`Input\` компонент для ввода информации\n
@@ -71,7 +71,7 @@ export const Controlled: Story = {
   render: (props) => {
     const [value, setValue] = useState<string>('')
 
-    return <Uncontrolled.InputBase {...props} value={value} onChange={(e) => setValue(e.target.value)} />
+    return <InputBase {...props} value={value} onChange={(e) => setValue(e.target.value)} />
   }
 }
 
@@ -137,6 +137,6 @@ export const WithTypeNumber: Story = {
   render: (props) => {
     const [value, setValue] = useState<number>()
 
-    return <Uncontrolled.InputBase {...props} value={value} onChange={(e) => setValue(Number(e.target.value))} />
+    return <InputBase {...props} value={value} onChange={(e) => setValue(Number(e.target.value))} />
   }
 }

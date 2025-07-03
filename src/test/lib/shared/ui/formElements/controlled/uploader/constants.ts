@@ -1,8 +1,8 @@
 import type React from 'react'
 import { z } from 'zod'
-import { type Controlled } from '$/shared/ui'
+import { type UploaderControl } from '$/shared/ui'
 
-type UploaderProps = React.ComponentPropsWithoutRef<typeof Controlled.UploaderControl> & {
+type UploaderProps = React.ComponentPropsWithoutRef<typeof UploaderControl> & {
   'data-test-id': string
 }
 

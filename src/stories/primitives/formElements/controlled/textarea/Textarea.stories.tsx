@@ -5,18 +5,18 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { fn } from '@storybook/test'
 import z from 'zod'
 import { HookForm } from '../utils'
-import { Controlled } from '$/shared/ui'
+import { TextareaControl } from '$/shared/ui'
 
 const textareaSchema = z.object({
   test: z.string().min(3, 'Name error')
 })
 
 type Schema = z.TypeOf<typeof textareaSchema>
-type TextareaControlProps = React.ComponentPropsWithoutRef<typeof Controlled.TextareaControl>
+type TextareaControlProps = React.ComponentPropsWithoutRef<typeof TextareaControl>
 
 const meta = {
   title: 'Form elements/controlled/TextareaControl',
-  component: Controlled.TextareaControl,
+  component: TextareaControl,
   parameters: {
     layout: 'centered'
   },
@@ -32,14 +32,14 @@ const meta = {
         test: ''
       }}
       schema={textareaSchema}
-      renderComponent={(componentProps: TextareaControlProps) => <Controlled.TextareaControl {...componentProps} />}
+      renderComponent={(componentProps: TextareaControlProps) => <TextareaControl {...componentProps} />}
     />
   )
-} satisfies Meta<typeof Controlled.TextareaControl>
+} satisfies Meta<typeof TextareaControl>
 
 export default meta
 
-type Story = StoryObj<typeof Controlled.TextareaControl>
+type Story = StoryObj<typeof TextareaControl>
 
 /**
  * \`TextareaControl\` компонент, контролируемый библиотекой \`react-hook-form\`\n

@@ -2,7 +2,7 @@
 
 import { memo } from 'react'
 import { type Control, type FieldPath, type FieldValues, useController, type UseControllerProps } from 'react-hook-form'
-import { type MaskInputProps, Uncontrolled } from '../../uncontrolled'
+import { MaskInput, type MaskInputProps } from '../../uncontrolled/maskInput'
 import { MessageView } from '$/shared/ui/formElements/ui'
 import { cn } from '$/shared/utils'
 
@@ -54,7 +54,7 @@ const InnerComponent = <TFieldValues extends FieldValues = FieldValues>({
 
   return (
     <div className={cn('w-full', container)}>
-      <Uncontrolled.MaskInput
+      <MaskInput
         {...props}
         {...field}
         invalid={invalid}

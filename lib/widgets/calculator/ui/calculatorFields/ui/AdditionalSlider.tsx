@@ -1,7 +1,7 @@
 import { type FieldValues, useFormContext } from 'react-hook-form'
 import { useAdditionalSlider } from '../hooks'
 import type { AdditionalSliderGroupConfig, SlidersGroupProps } from './FieldsGroup'
-import { Controlled, Uncontrolled } from '$/shared/ui'
+import { SliderControl, SwitchBase } from '$/shared/ui'
 import { cn, TypeGuards } from '$/shared/utils'
 
 export type AdditionalSliderClasses = {
@@ -35,11 +35,11 @@ export const AdditionalSlider = <T extends FieldValues>({
   return (
     <div className={cn('flex flex-col gap-4', classes?.wrapper)}>
       <div className={cn('inline-flex items-center gap-2', classes?.block)}>
-        <Uncontrolled.SwitchBase checked={sliderVisible} onCheckedChange={onCheckedChange} />
+        <SwitchBase checked={sliderVisible} onCheckedChange={onCheckedChange} />
         <p className='desk-body-regular-l'>Хочу получить деньги дополнительно</p>
       </div>
       {sliderVisible && (
-        <Controlled.SliderControl
+        <SliderControl
           {...additionalSliderGroupConfig.args}
           control={control}
           componentType='algorithmic'

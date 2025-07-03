@@ -1,9 +1,9 @@
 import { optionalSchema, textareaDefaultProps } from './constants'
 import { ComponentFactory } from '@/test/utils'
-import { Controlled } from '$/shared/ui'
+import { TextareaControl } from '$/shared/ui'
 
-describe('Test cases for Controlled.TextareaControl', () => {
-  const factory = new ComponentFactory(Controlled.TextareaControl)
+describe('Test cases for TextareaControl', () => {
+  const factory = new ComponentFactory(TextareaControl)
 
   it('Should render and pass value correctly', () => {
     // mount component before test case runs

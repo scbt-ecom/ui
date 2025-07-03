@@ -42,7 +42,7 @@ export const RootContent = ({ heading, buttonsGroup, description, images, linksL
       </div>
 
       <div className={cn('h-full w-full desktop:hidden', classes?.imageMobileWrapper)}>
-        <img src={images.mobile} alt={images.alt} className={cn('h-full w-full object-contain', classes?.imageMobile)} />
+        <img src={images?.mobile} alt={images?.alt} className={cn('h-full w-full object-contain', classes?.imageMobile)} />
       </div>
 
       {withButtons && (
