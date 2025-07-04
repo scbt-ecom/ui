@@ -75,7 +75,7 @@ const meta = {
 
 export default meta
 
-type Story = StoryObj<typeof Combobox>
+type Story<Multi extends boolean = false> = StoryObj<typeof Combobox<Multi>>
 
 /**
  * \`Input\` компонент для ввода информации\n
@@ -112,7 +112,7 @@ export const Searchable: Story = {
   render: Controlled.render
 }
 
-export const Multiple: Story = {
+export const Multiple: Story<true> = {
   args: {},
   render: (props) => {
     const [value, setValue] = useState<ComboboxItemOption[]>([])

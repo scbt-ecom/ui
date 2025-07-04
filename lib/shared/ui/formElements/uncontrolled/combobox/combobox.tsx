@@ -18,6 +18,14 @@ export type ComboboxClasses = {
   input?: InputBaseProps['classes']
 }
 
+export type ExternalHandlers<Multi extends boolean> = {
+  changeHandler?: ChangeHandler<Multi>
+  clickHandler?: (event: React.MouseEvent<HTMLElement>) => void
+  blurHandler?: (event: React.FocusEvent<HTMLElement>) => void
+  focusHandler?: (event: React.FocusEvent<HTMLElement>) => void
+  inputChangeHandler?: (value: string) => void
+}
+
 export interface ComboboxProps<Multi extends boolean> extends Omit<DropdownListProps<Multi>, 'options' | 'value' | 'onChange'> {
   /**
    * Список опций
@@ -67,9 +75,13 @@ export interface ComboboxProps<Multi extends boolean> extends Omit<DropdownListP
    * Дополнительные стили
    */
   classes?: ComboboxClasses
+  /**
+   * Дополнительные события
+   */
+  externalHandlers?: ExternalHandlers<Multi>
 }
 
-export const Combobox = <Multi extends boolean = false>({
+export const Combobox = <Multi extends boolean>({
   options: initialOptions,
   multiple,
   value,
@@ -83,6 +95,7 @@ export const Combobox = <Multi extends boolean = false>({
   disabled,
   readOnly,
   className,
+  externalHandlers,
   classes
 }: ComboboxProps<Multi>) => {
   const { floating, ...dropdownClasses } = classes?.list ?? {}
@@ -109,7 +122,8 @@ export const Combobox = <Multi extends boolean = false>({
     defaultOpen,
     searchable,
     displayValue,
-    initialOptions
+    initialOptions,
+    externalHandlers
   })
 
   if (open) {
@@ -130,7 +144,12 @@ export const Combobox = <Multi extends boolean = false>({
         value={search}
         onChange={onInputChange}
         disabled={disabled}
-        onClick={() => setOpen((prev) => !prev)}
+        onClick={(event) => {
+          setOpen((prev) => !prev)
+          externalHandlers?.clickHandler?.(event)
+        }}
+        onBlur={externalHandlers?.blurHandler}
+        onFocus={externalHandlers?.focusHandler}
         classes={{
           input: cn({
             'cursor-pointer': !searchable,

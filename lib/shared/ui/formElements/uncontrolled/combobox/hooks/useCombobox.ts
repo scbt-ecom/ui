@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import type { ExternalHandlers } from '../combobox'
 import { type ChangeHandler, type ComboboxValue } from '../model'
 import type { ComboboxItemOption } from '../ui'
 
@@ -10,10 +11,12 @@ type UseComboboxOptions<Multi extends boolean> = {
   onChange?: ChangeHandler<Multi>
   displayValue?: (option: ComboboxItemOption) => string
   defaultOpen?: boolean
+  externalHandlers?: ExternalHandlers<Multi>
 }
 
 export const useCombobox = <Multi extends boolean>(props: UseComboboxOptions<Multi>) => {
-  const { multiple, defaultOpen, value, onChange, initialOptions, searchable, displayValue } = props
+  const { multiple, defaultOpen, value, onChange, initialOptions, searchable, displayValue, externalHandlers } = props
+  const { changeHandler: externalChangeHandler, inputChangeHandler: externalInputChangeHandler } = externalHandlers ?? {}
 
   const [search, setSearch] = useState<string>('')
   const [open, setOpen] = useState<boolean>(defaultOpen ?? false)
@@ -29,6 +32,7 @@ export const useCombobox = <Multi extends boolean>(props: UseComboboxOptions<Mul
 
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value)
+    externalInputChangeHandler?.(e.target.value)
   }
 
   const changeHandler = (value: ComboboxItemOption) => {
@@ -42,6 +46,8 @@ export const useCombobox = <Multi extends boolean>(props: UseComboboxOptions<Mul
         ) as ComboboxValue<Multi>
 
         onChange?.(updated)
+        externalChangeHandler?.(updated)
+
         setSearch(
           (updated as ComboboxItemOption[]).map((option) => (displayValue ? displayValue(option) : option.label)).join(', ')
         )
@@ -52,6 +58,7 @@ export const useCombobox = <Multi extends boolean>(props: UseComboboxOptions<Mul
       const updated = ((prevState as ComboboxItemOption)?.value === value.value ? null : value) as ComboboxValue<Multi>
 
       onChange?.(updated)
+      externalChangeHandler?.(updated)
 
       const label = displayValue && updated ? displayValue(updated as ComboboxItemOption) : (updated as ComboboxItemOption)?.label
       setSearch(label ?? '')

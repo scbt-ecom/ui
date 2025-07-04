@@ -24,7 +24,7 @@ export interface DropdownListProps<Multi extends boolean> extends React.HTMLAttr
   /**
    * Поддержка множественного выбора
    */
-  multiple?: Multi
+  multiple: Multi
   /**
    * Функция для управления отображаемым значением
    */
