@@ -42,9 +42,9 @@ const renderBreadcrumbs = (
     return (
       <div key={breadcrumb.label} className='flex items-center gap-x-1'>
         <Breadcrumb
+          isLast={isLast}
           breadcrumb={breadcrumb}
           className={cn(classes, {
-            'pointer-events-none text-color-primary-disabled': isLast,
             'text-color-blue-grey-600': breadcrumb.disabled
           })}
         />
