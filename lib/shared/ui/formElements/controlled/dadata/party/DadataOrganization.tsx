@@ -3,9 +3,9 @@ import { type QueryClient } from '@tanstack/react-query'
 import { AutocompleteControl, type AutocompleteControlProps } from '../../autocomplete'
 import { type IDadataOrganizationOption } from '../types'
 import { useDadataQueryParty } from './query'
-import { type SelectItemOption } from '$/shared/ui'
+import { type AutocompleteItemOption } from '$/shared/ui'
 
-const organizationFormatter = (item: IDadataOrganizationOption): SelectItemOption => ({
+const organizationFormatter = (item: IDadataOrganizationOption): AutocompleteItemOption<typeof item> => ({
   value: item?.value || '',
   label: item?.value || ''
 })
@@ -15,7 +15,7 @@ export type DadataOrganizationProps<TFieldValues extends FieldValues> = Omit<
   'query' | 'formatter'
 > & {
   dadataBaseUrl: string
-  formatter?: (item: IDadataOrganizationOption) => SelectItemOption
+  formatter?: (item: IDadataOrganizationOption) => AutocompleteItemOption<typeof item>
   queryClient?: QueryClient
 }
 

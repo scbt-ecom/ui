@@ -3,11 +3,12 @@ import { type QueryClient } from '@tanstack/react-query'
 import { AutocompleteControl, type AutocompleteControlProps } from '../../autocomplete'
 import { type IDadataCacheOption } from '../types'
 import { useDadataQueryAddress } from './query'
-import { type SelectItemOption } from '$/shared/ui'
+import { type AutocompleteItemOption } from '$/shared/ui'
 
-const addressFormatter = (item: IDadataCacheOption<unknown>): SelectItemOption => ({
+const addressFormatter = (item: IDadataCacheOption<unknown>): AutocompleteItemOption<typeof item> => ({
   value: item?.value || '',
-  label: item?.value || ''
+  label: item?.value || '',
+  data: item
 })
 
 export type DadataAddressProps<TFieldValues extends FieldValues> = Omit<
@@ -15,7 +16,7 @@ export type DadataAddressProps<TFieldValues extends FieldValues> = Omit<
   'query' | 'formatter'
 > & {
   dadataBaseUrl: string
-  formatter?: (item: IDadataCacheOption<unknown>) => SelectItemOption
+  formatter?: (item: IDadataCacheOption<unknown>) => AutocompleteItemOption<typeof item>
   queryClient?: QueryClient
 }
 

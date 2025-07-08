@@ -1,7 +1,8 @@
 import { forwardRef } from 'react'
 import { type UseQueryResult } from '@tanstack/react-query'
+import type { AutocompleteItemOption } from './types'
 import { useDebounceValue } from '$/shared/hooks'
-import { SelectBase, type SelectBaseProps, type SelectItemOption } from '$/shared/ui'
+import { SelectBase, type SelectBaseProps } from '$/shared/ui'
 
 export interface AutocompleteBaseProps<TData>
   extends Omit<
@@ -15,7 +16,7 @@ export interface AutocompleteBaseProps<TData>
   /**
    * Позволяет форматировать данные
    */
-  formatter: (item: TData, index: number, array: TData[]) => SelectItemOption
+  formatter: (item: TData, index: number, array: TData[]) => AutocompleteItemOption<TData>
   /**
    * Значение инпута
    */
@@ -37,7 +38,7 @@ export const AutocompleteBase = forwardRef(
 
     const options = data ? data.map(formatter) : []
 
-    const onValueChange = (value?: SelectItemOption | SelectItemOption[]) => {
+    const onValueChange = (value?: AutocompleteItemOption<TData> | AutocompleteItemOption<TData>[]) => {
       if (!value || Array.isArray(value)) return
 
       if (onChange) onChange(displayValue ? displayValue(value) : value.label)

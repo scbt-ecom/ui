@@ -46,11 +46,46 @@ const Form = () => {
         dadataBaseUrl={DADATA_BASE_CACHE_URL as string}
         label='Organization'
         name='organization'
+        externalHandlers={{
+          onChange: console.log
+        }}
       />
-      <DadataAddress control={control} dadataBaseUrl={DADATA_BASE_CACHE_URL as string} label='Address' name='address' />
-      <DadataAuto control={control} dadataBaseUrl={DADATA_BASE_CONSTANTS_URL as string} label='Auto' name='auto' />
-      <DadataFio control={control} dadataBaseUrl={DADATA_BASE_CACHE_URL as string} label='ФИО' name='fio' />
-      <DadataCountry control={control} dadataBaseUrl={DADATA_BASE_CONSTANTS_URL as string} label='Страна' name='country' />
+      <DadataAddress
+        control={control}
+        dadataBaseUrl={DADATA_BASE_CACHE_URL as string}
+        label='Address'
+        name='address'
+        externalHandlers={{
+          onChange: console.log
+        }}
+      />
+      <DadataAuto
+        control={control}
+        dadataBaseUrl={DADATA_BASE_CONSTANTS_URL as string}
+        label='Auto'
+        name='auto'
+        externalHandlers={{
+          onChange: console.log
+        }}
+      />
+      <DadataFio
+        control={control}
+        dadataBaseUrl={DADATA_BASE_CACHE_URL as string}
+        label='ФИО'
+        name='fio'
+        externalHandlers={{
+          onChange: console.log
+        }}
+      />
+      <DadataCountry
+        control={control}
+        dadataBaseUrl={DADATA_BASE_CONSTANTS_URL as string}
+        label='Страна'
+        name='country'
+        externalHandlers={{
+          onChange: console.log
+        }}
+      />
       <button>Submit</button>
     </form>
   )
