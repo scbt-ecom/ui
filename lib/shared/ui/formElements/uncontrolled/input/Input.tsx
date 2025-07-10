@@ -63,7 +63,7 @@ export const InputBase = forwardRef<HTMLInputElement, InputBaseProps>(
           'relative flex w-full gap-x-4 rounded-sm bg-color-blue-grey-100',
           '[&_label]:focus-within:top-[9px] [&_label]:focus-within:translate-y-0',
           '[&_label]:focus-within:desk-body-regular-s',
-          '[&_label]:focus-within:text-color-tetriary',
+          // '[&_label]:focus-within:text-color-tetriary',
           'hover:bg-color-blue-grey-200',
           'border-[1px] border-transparent focus-within:border-blue-grey-800',
           {
@@ -112,9 +112,9 @@ export const InputBase = forwardRef<HTMLInputElement, InputBaseProps>(
           htmlFor={id}
           className={cn(
             'desk-body-regular-l pointer-events-none absolute left-4 w-[80%] truncate text-start',
-            'top-1/2 -translate-y-1/2 text-color-blue-grey-600 duration-100',
+            'top-1/2 -translate-y-1/2 text-color-tetriary duration-100',
             {
-              'desk-body-regular-s top-[9px] translate-y-0 text-color-tetriary': Boolean(value),
+              'desk-body-regular-s top-[9px] translate-y-0': Boolean(value),
               'text-color-disabled': disabled
             },
             classes?.label

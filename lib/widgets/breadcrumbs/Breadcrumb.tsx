@@ -10,7 +10,7 @@ export const Breadcrumb = ({ breadcrumb, className, isLast, ...props }: Breadcru
   return (
     <>
       {isLast ? (
-        <p className={cn('desk-body-regular-m pointer-events-none text-color-primary-disabled', className)} {...props}>
+        <p className={cn('desk-body-regular-m pointer-events-none text-color-tetriary', className)} {...props}>
           {breadcrumb.label}
         </p>
       ) : (

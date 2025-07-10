@@ -24,7 +24,7 @@ export const RootTab = ({
         onCurrentCategoryChange(category.children[0])
         onRootCategoryChange(category)
       }}
-      className={cn('group/category relative cursor-default text-color-blue-grey-600 duration-100 hover:text-color-dark', {
+      className={cn('group/category relative cursor-default text-color-tetriary duration-100 hover:text-color-dark', {
         'text-color-dark': active
       })}
     >

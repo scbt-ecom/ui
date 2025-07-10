@@ -45,7 +45,7 @@ const renderBreadcrumbs = (
           isLast={isLast}
           breadcrumb={breadcrumb}
           className={cn(classes, {
-            'text-color-blue-grey-600': breadcrumb.disabled
+            'text-color-tetriary': breadcrumb.disabled
           })}
         />
         {index !== breadcrumbs.length - 1 && separator}

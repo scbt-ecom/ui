@@ -37,7 +37,7 @@ export const CategoriesDesktop = ({ categories, helpers, phone }: DesktopCategor
           <a
             key={helper.title}
             href={helper.link.href}
-            className='desk-body-regular-m flex items-center gap-x-1 text-color-blue-grey-600 duration-100 hover:text-color-dark'
+            className='desk-body-regular-m flex items-center gap-x-1 text-color-tetriary duration-100 hover:text-color-dark'
           >
             {helper.link.icon && <Icon name={helper.link.icon} className='size-4' />}
             {helper.title}
@@ -46,7 +46,7 @@ export const CategoriesDesktop = ({ categories, helpers, phone }: DesktopCategor
         <div className='h-3.5 w-[1px] rounded-sm bg-color-blue-grey-500' />
         <a
           href={`tel:${phone}`}
-          className='desk-body-regular-m flex items-center gap-x-1 text-color-blue-grey-600 duration-100 hover:text-color-dark'
+          className='desk-body-regular-m flex items-center gap-x-1 text-color-tetriary duration-100 hover:text-color-dark'
         >
           {createPhoneNumber(phone, 'x xxx xxx xx xx')}
         </a>
