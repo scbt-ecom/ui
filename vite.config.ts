@@ -66,7 +66,14 @@ export default defineConfig({
           }
         }
       ],
-      external: [...Object.keys(devDependencies), ...Object.keys(peerDependecies), 'react', 'react-dom', 'react/jsx-runtime'],
+      external: [
+        ...Object.keys(devDependencies),
+        ...Object.keys(peerDependecies),
+        'react',
+        'react-dom',
+        'react/jsx-runtime',
+        '@headlessui/react'
+      ],
       onwarn(warning, defaultHandler) {
         if (warning.code === 'SOURCEMAP_ERROR') {
           return

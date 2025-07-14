@@ -83,7 +83,8 @@
   },
   "peerDependecies": {
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "@headlessui/react": "^2.1.2"
   },
   "overrides": {
     "esbuild": "0.24.0"
