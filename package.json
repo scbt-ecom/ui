@@ -125,6 +125,10 @@
     "react-number-format": "^5.4.0",
     "uuid": "^11.1.0",
     "vite-plugin-svgr": "^4.3.0",
+    "@hookform/resolvers": "^3.9.0",
+    "tailwind-merge": "^2.4.0",
+    "tailwindcss": "^3.4.7",
+    "tailwindcss-animate": "^1.0.7",
     "zod": "^3.23.8"
   },
   "devDependencies": {
@@ -132,7 +136,6 @@
     "@eslint/compat": "^1.2.1",
     "@eslint/eslintrc": "^3.1.0",
     "@eslint/js": "^9.13.0",
-    "@hookform/resolvers": "^3.9.0",
     "@semantic-release/git": "^10.0.1",
     "@semantic-release/github": "^11.0.1",
     "@semantic-release/npm": "^12.0.1",
@@ -184,9 +187,6 @@
     "rollup-plugin-visualizer": "^6.0.3",
     "semantic-release": "^24.2.0",
     "storybook": "^8.2.6",
-    "tailwind-merge": "^2.4.0",
-    "tailwindcss": "^3.4.7",
-    "tailwindcss-animate": "^1.0.7",
     "ts-node": "^10.9.2",
     "typescript": "^5.2.2",
     "typescript-eslint": "^8.11.0",
