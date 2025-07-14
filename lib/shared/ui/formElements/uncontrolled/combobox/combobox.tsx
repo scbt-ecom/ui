@@ -126,10 +126,12 @@ export const Combobox = <Multi extends boolean>({
     externalHandlers
   })
 
-  if (open) {
-    document.body.style.overflow = 'hidden'
-  } else {
-    document.body.style.overflow = 'initial'
+  if (document) {
+    if (open) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'initial'
+    }
   }
 
   useClickOutside(containerRef, () => setOpen(false))
