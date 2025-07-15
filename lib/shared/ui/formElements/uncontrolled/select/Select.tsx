@@ -192,8 +192,8 @@ export const SelectBase = forwardRef<HTMLInputElement, SelectBaseProps<boolean>>
                   data-test-id='select-input'
                   as={InputBase}
                   label={label}
-                  aria-haspopup='listbox'
-                  ariaAutocomplete='inline'
+                  ariaAutocomplete='list'
+                  aria-controls='list-options'
                   aria-expanded={open}
                   disabled={disabled}
                   readOnly={!isSearchable}
@@ -232,7 +232,7 @@ export const SelectBase = forwardRef<HTMLInputElement, SelectBaseProps<boolean>>
                   // }
                   attachmentProps={{
                     icon: (
-                      <ComboboxButton as='span'>
+                      <ComboboxButton as='span' aria-label='Открыть список'>
                         <Icon
                           name='arrows/arrowRight'
                           className={cn('size-6 rotate-90 text-color-blue-grey-600 duration-100', {
@@ -247,6 +247,7 @@ export const SelectBase = forwardRef<HTMLInputElement, SelectBaseProps<boolean>>
               </ComboboxButton>
               <ComboboxOptions
                 portal
+                id='list-options'
                 data-test-id='select-list'
                 ref={refs.setFloating}
                 as='ul'
