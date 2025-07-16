@@ -147,14 +147,6 @@ const InnerComponent = <Multi extends boolean>(
     externalOnInputChange: externalInputChangeHandler
   })
 
-  if (document) {
-    if (open) {
-      document.body.style.overflow = 'hidden'
-    } else {
-      document.body.style.overflow = 'initial'
-    }
-  }
-
   useClickOutside(containerRef, () => setOpen(false))
 
   return (
