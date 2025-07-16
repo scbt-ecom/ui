@@ -70,11 +70,3 @@ export const Base: Story = {
     )
   }
 }
-
-export const WithCustomEmptyList: Story = {
-  args: {
-    ...Base.args,
-    emptyList: (query) => (query?.length ? <p className='py-4 text-center align-middle'>Я Лупа, а ты Пупа</p> : null)
-  },
-  render: Base.render
-}

@@ -47,7 +47,7 @@ const Form = () => {
         label='Organization'
         name='organization'
         externalHandlers={{
-          onChange: console.log
+          changeHandler: console.log
         }}
       />
       <DadataAddress
@@ -56,7 +56,7 @@ const Form = () => {
         label='Address'
         name='address'
         externalHandlers={{
-          onChange: console.log
+          changeHandler: console.log
         }}
       />
       <DadataAuto
@@ -65,7 +65,7 @@ const Form = () => {
         label='Auto'
         name='auto'
         externalHandlers={{
-          onChange: console.log
+          changeHandler: console.log
         }}
       />
       <DadataFio
@@ -74,7 +74,7 @@ const Form = () => {
         label='ФИО'
         name='fio'
         externalHandlers={{
-          onChange: console.log
+          changeHandler: console.log
         }}
       />
       <DadataCountry
@@ -83,7 +83,7 @@ const Form = () => {
         label='Страна'
         name='country'
         externalHandlers={{
-          onChange: console.log
+          changeHandler: console.log
         }}
       />
       <button>Submit</button>

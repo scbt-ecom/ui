@@ -12,10 +12,25 @@ type UseComboboxOptions<Multi extends boolean> = {
   displayValue?: (option: ComboboxItemOption) => string
   defaultOpen?: boolean
   externalHandlers?: ExternalHandlers<Multi>
+  externalInputValue?: string
+  externalOnInputChange?: (value: string) => void
+  filterDisabled?: boolean
 }
 
 export const useCombobox = <Multi extends boolean>(props: UseComboboxOptions<Multi>) => {
-  const { multiple, defaultOpen, value, onChange, initialOptions, searchable, displayValue, externalHandlers } = props
+  const {
+    multiple,
+    defaultOpen,
+    value,
+    onChange,
+    initialOptions,
+    searchable,
+    filterDisabled,
+    displayValue,
+    externalHandlers,
+    externalInputValue,
+    externalOnInputChange
+  } = props
   const { changeHandler: externalChangeHandler, inputChangeHandler: externalInputChangeHandler } = externalHandlers ?? {}
 
   const [search, setSearch] = useState<string>('')
@@ -23,16 +38,23 @@ export const useCombobox = <Multi extends boolean>(props: UseComboboxOptions<Mul
   const [state, setState] = useState<ComboboxValue<Multi>>(value ?? ((multiple ? [] : null) as ComboboxValue<Multi>))
 
   const options = useMemo<ComboboxItemOption[]>(() => {
+    if (filterDisabled) {
+      return initialOptions
+    }
+
     if (!search.length || !searchable) {
       return initialOptions
     }
 
-    return initialOptions.filter((option) => option.label.toLowerCase().includes(search.toLowerCase()))
-  }, [search])
+    return initialOptions.filter((option) =>
+      option.label.toLowerCase().includes(externalInputValue ? externalInputValue.toLowerCase() : search.toLowerCase())
+    )
+  }, [externalInputValue, filterDisabled, initialOptions, search, searchable])
 
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value)
     externalInputChangeHandler?.(e.target.value)
+    externalOnInputChange?.(e.target.value)
   }
 
   const changeHandler = (value: ComboboxItemOption) => {
@@ -48,9 +70,11 @@ export const useCombobox = <Multi extends boolean>(props: UseComboboxOptions<Mul
         onChange?.(updated)
         externalChangeHandler?.(updated)
 
-        setSearch(
-          (updated as ComboboxItemOption[]).map((option) => (displayValue ? displayValue(option) : option.label)).join(', ')
-        )
+        const searchValue = (updated as ComboboxItemOption[])
+          .map((option) => (displayValue ? displayValue(option) : option.label))
+          .join(', ')
+        setSearch(searchValue)
+        externalOnInputChange?.(searchValue)
 
         return updated
       }
@@ -62,6 +86,7 @@ export const useCombobox = <Multi extends boolean>(props: UseComboboxOptions<Mul
 
       const label = displayValue && updated ? displayValue(updated as ComboboxItemOption) : (updated as ComboboxItemOption)?.label
       setSearch(label ?? '')
+      externalOnInputChange?.(label ?? '')
       setOpen(false)
 
       return updated

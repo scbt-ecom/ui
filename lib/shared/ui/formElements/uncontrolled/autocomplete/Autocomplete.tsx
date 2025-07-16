@@ -2,12 +2,12 @@ import { forwardRef } from 'react'
 import { type UseQueryResult } from '@tanstack/react-query'
 import type { AutocompleteItemOption } from './types'
 import { useDebounceValue } from '$/shared/hooks'
-import { SelectBase, type SelectBaseProps } from '$/shared/ui'
+import { Combobox, type ComboboxProps, type ComboboxValue } from '$/shared/ui'
 
 export interface AutocompleteBaseProps<TData>
   extends Omit<
-    SelectBaseProps<boolean>,
-    'options' | 'inputValue' | 'onInputChange' | 'isSearchable' | 'isMulti' | 'value' | 'onChange'
+    ComboboxProps<false>,
+    'options' | 'inputValue' | 'onInputChange' | 'searchable' | 'multiple' | 'value' | 'onChange'
   > {
   /**
    * Функция для запроса основанная на [@tanstack/query](https://tanstack.com/query/latest/docs/framework/react/overview)
@@ -38,27 +38,27 @@ export const AutocompleteBase = forwardRef(
 
     const options = data ? data.map(formatter) : []
 
-    const onValueChange = (value?: AutocompleteItemOption<TData> | AutocompleteItemOption<TData>[]) => {
-      if (!value || Array.isArray(value)) return
+    const onValueChange = (value: ComboboxValue<false>) => {
+      if (!value) return
 
       if (onChange) onChange(displayValue ? displayValue(value) : value.label)
     }
 
     return (
-      <SelectBase
+      <Combobox
         {...props}
         ref={ref}
         options={options}
+        searchable
         filterDisabled
         inputValue={value}
         onInputChange={onChange}
-        isSearchable
-        isMulti={false}
+        multiple={false}
         displayValue={displayValue}
         externalHandlers={{
-          onChange: (value) => {
+          changeHandler: (value) => {
             onValueChange(value)
-            if (externalHandlers?.onChange) externalHandlers?.onChange(value)
+            externalHandlers?.changeHandler?.(value)
           },
           ...externalHandlers
         }}

@@ -66,5 +66,5 @@ const InnerComponent = forwardRef<HTMLLIElement, DropdownItemProps>(
 )
 
 export const DropdownItem = memo(InnerComponent, (prevProps, nextProps) => {
-  return prevProps.focused === nextProps.focused && prevProps.active === nextProps.active
+  return JSON.stringify(prevProps) === JSON.stringify(nextProps)
 })

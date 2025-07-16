@@ -79,16 +79,16 @@ export const WithExternalHandlers: Story = {
   args: {
     ...Base.args,
     externalHandlers: {
-      onClick: fn(() => {
+      clickHandler: fn(() => {
         toast('handled external onClick')
       }),
-      onChange: fn(() => {
+      changeHandler: fn(() => {
         toast('handled external onChange')
       }),
-      onBlur: fn(() => {
+      blurHandler: fn(() => {
         toast('handled external onBlur')
       }),
-      onFocus: fn(() => {
+      focusHandler: fn(() => {
         toast('handled external onFocus')
       })
     }

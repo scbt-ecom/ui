@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { type ForwardedRef, forwardRef, useRef } from 'react'
 import { autoUpdate, flip, offset, useFloating } from '@floating-ui/react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useCombobox } from './hooks'
@@ -79,25 +79,43 @@ export interface ComboboxProps<Multi extends boolean> extends Omit<DropdownListP
    * Дополнительные события
    */
   externalHandlers?: ExternalHandlers<Multi>
+  /**
+   * Функция для изменения значения поиска
+   */
+  onInputChange?: (value: string) => void
+  /**
+   * Значение инпута
+   */
+  inputValue?: string
+  /**
+   * Выключить фильтрацию списка
+   */
+  filterDisabled?: boolean
 }
 
-export const Combobox = <Multi extends boolean>({
-  options: initialOptions,
-  multiple,
-  value,
-  onChange,
-  defaultOpen,
-  attachmentProps,
-  searchable,
-  invalid,
-  displayValue,
-  label,
-  disabled,
-  readOnly,
-  className,
-  externalHandlers,
-  classes
-}: ComboboxProps<Multi>) => {
+const InnerComponent = <Multi extends boolean>(
+  {
+    options: initialOptions,
+    multiple,
+    value,
+    onChange,
+    defaultOpen,
+    attachmentProps,
+    searchable,
+    invalid,
+    displayValue,
+    label,
+    disabled,
+    readOnly,
+    className,
+    externalHandlers,
+    inputValue,
+    filterDisabled,
+    onInputChange: externalInputChangeHandler,
+    classes
+  }: ComboboxProps<Multi>,
+  ref: ForwardedRef<HTMLInputElement>
+) => {
   const { floating, ...dropdownClasses } = classes?.list ?? {}
 
   const containerRef = useRef<HTMLDivElement>(null)
@@ -119,11 +137,14 @@ export const Combobox = <Multi extends boolean>({
     multiple,
     value,
     onChange,
-    defaultOpen,
     searchable,
+    defaultOpen,
     displayValue,
     initialOptions,
-    externalHandlers
+    filterDisabled,
+    externalHandlers,
+    externalInputValue: inputValue,
+    externalOnInputChange: externalInputChangeHandler
   })
 
   if (document) {
@@ -139,7 +160,7 @@ export const Combobox = <Multi extends boolean>({
   return (
     <div ref={containerRef} className={cn('relative w-full', classes?.root, className)}>
       <InputBase
-        ref={mergeRefs(refs.setReference)}
+        ref={mergeRefs(ref, refs.setReference)}
         label={label}
         invalid={invalid}
         readOnly={readOnly || !searchable}
@@ -198,3 +219,7 @@ export const Combobox = <Multi extends boolean>({
     </div>
   )
 }
+
+export const Combobox = forwardRef(InnerComponent) as <Multi extends boolean>(
+  props: ComboboxProps<Multi> & { ref?: ForwardedRef<HTMLInputElement> }
+) => React.JSX.Element
