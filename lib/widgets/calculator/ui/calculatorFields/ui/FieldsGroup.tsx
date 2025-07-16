@@ -46,5 +46,6 @@ export type FieldsGroupProps<T extends FieldValues> =
 export const FieldsGroup = <T extends FieldValues>({ fields }: FieldsGroupProps<T>) => {
   const { control } = useFormContext<T>()
 
-  return <FieldMapper control={control} fields={fields} />
+  // @ts-expect-error fields
+  return <FieldMapper fields={fields} control={control} />
 }
