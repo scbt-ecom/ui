@@ -61,7 +61,15 @@ export const UserReview = ({
         <p className={cn('desk-body-medium-l', classes?.title)}>{title}</p>
         <p className={cn('desk-body-regular-l', classes?.subtitle)}>{subtitle}</p>
       </div>
-      <TextareaControl control={control} name='review' label='Поделитесь вашим мнением' classes={classes?.textareaClasses} />
+      <TextareaControl
+        attachmentProps={{
+          withValidateIcons: false
+        }}
+        control={control}
+        name='review'
+        label='Поделитесь вашим мнением'
+        classes={classes?.textareaClasses}
+      />
       <Button type='submit' size='sm' intent='negative' className={cn('w-full', classes?.button)}>
         Отправить
       </Button>
