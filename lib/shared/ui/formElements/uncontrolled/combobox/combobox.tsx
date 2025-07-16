@@ -168,7 +168,7 @@ const InnerComponent = <Multi extends boolean>(
         onChange={onInputChange}
         disabled={disabled}
         onClick={(event) => {
-          setOpen((prev) => !prev)
+          setOpen(true)
           externalHandlers?.clickHandler?.(event)
         }}
         onBlur={externalHandlers?.blurHandler}
@@ -191,6 +191,7 @@ const InnerComponent = <Multi extends boolean>(
               })}
             />
           ),
+          onClickIcon: () => setOpen((prev) => !prev),
           ...attachmentProps
         }}
       />
