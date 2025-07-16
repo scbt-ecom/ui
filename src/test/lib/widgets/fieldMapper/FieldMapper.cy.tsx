@@ -9,7 +9,6 @@ describe('Test cases for FieldMapper', () => {
     cy.mount(
       factory.getFormProvider({
         args: {
-          // @ts-expect-error fields
           fields
         },
         schema,

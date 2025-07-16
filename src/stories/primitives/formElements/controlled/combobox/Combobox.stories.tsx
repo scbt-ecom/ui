@@ -4,7 +4,7 @@ import { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
 import { object, type TypeOf } from 'zod'
 import { HookForm } from '../utils'
-import { ComboboxControl, type ComboboxControlProps, type ComboboxItemOption } from '$/shared/ui'
+import { type ComboboxControlProps, type ComboboxItemOption, Controlled } from '$/shared/ui'
 import { zodValidators } from '$/shared/validation'
 
 const generateOptions = (length: number): ComboboxItemOption[] =>
@@ -19,7 +19,7 @@ const schema = object({
 
 const meta = {
   title: 'Form elements/controlled/ComboboxControl',
-  component: ComboboxControl,
+  component: Controlled.ComboboxControl,
   parameters: {
     layout: 'centered'
   },
@@ -66,14 +66,14 @@ const meta = {
       {...props}
       schema={schema}
       defaultValues={{ test: null }}
-      renderComponent={(componentProps: ComboboxControlProps) => <ComboboxControl {...componentProps} />}
+      renderComponent={(componentProps: ComboboxControlProps) => <Controlled.ComboboxControl {...componentProps} />}
     />
   )
-} satisfies Meta<typeof ComboboxControl>
+} satisfies Meta<typeof Controlled.ComboboxControl>
 
 export default meta
 
-type Story = StoryObj<typeof ComboboxControl>
+type Story = StoryObj<typeof Controlled.ComboboxControl>
 
 /**
  * \`SelectControl\` компонент, управляемый библиотекой \`react-hook-form\`\n
