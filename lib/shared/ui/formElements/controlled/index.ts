@@ -16,8 +16,6 @@ import { InputOtpControl } from './inputOtp'
 export type { InputOtpControlProps } from './inputOtp'
 import { RadioGroupCardControl, RadioGroupControl, RadioGroupTabControl } from './radio'
 export type { RadioGroupControlProps } from './radio'
-import { SelectControl } from './select'
-export type { SelectControlProps } from './select'
 import { SliderControl } from './slider'
 export type { SliderControlProps } from './slider'
 import { SwitchControl } from './switch'
@@ -45,7 +43,6 @@ export const Controlled = {
   MaskInputControl,
   DayPickerControl,
   CheckboxControl,
-  SelectControl,
   SwitchControl,
   RadioGroupControl,
   RadioGroupTabControl,

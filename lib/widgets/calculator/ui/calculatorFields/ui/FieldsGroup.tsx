@@ -6,7 +6,7 @@ import { type SliderAdditionalProps } from '$/shared/ui/formElements/uncontrolle
 export type ValidationField = { validation: FieldValidation }
 
 export interface SelectGroupProps<T extends FieldValues> {
-  fields: FieldElementWithoutControl<T, 'SelectControl', ValidationField>[]
+  fields: FieldElementWithoutControl<T, 'ComboboxControl', ValidationField>[]
 }
 
 export interface CheckboxGroupProps<T extends FieldValues> {

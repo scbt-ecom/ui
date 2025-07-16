@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react'
 import { motion } from 'framer-motion'
 import type { Category, SeoHeaderHelpers } from '../../../model'
 import { MenuItem } from './MenuItem'
-import { Icon, SelectBase, type SelectItemOption } from '$/shared/ui'
+import { Combobox, type ComboboxItemOption, type ComboboxValue, Icon } from '$/shared/ui'
 import { cn, createPhoneNumber, TypeGuards } from '$/shared/utils'
 
 export type MenuProps = React.ComponentProps<typeof motion.div> & {
@@ -11,7 +11,7 @@ export type MenuProps = React.ComponentProps<typeof motion.div> & {
   phone: string
 }
 
-const getSelectCategories = (categories: Category[]): SelectItemOption[] =>
+const getSelectCategories = (categories: Category[]): ComboboxItemOption[] =>
   categories.map((category) => ({
     value: category.title ?? '',
     label: category.title ?? ''
@@ -20,16 +20,16 @@ const getSelectCategories = (categories: Category[]): SelectItemOption[] =>
 export const Menu = ({ categories, helpers, phone, ...props }: MenuProps) => {
   const selectCategories = getSelectCategories(categories)
 
-  const [selected, setSelected] = useState<SelectItemOption | SelectItemOption[] | undefined>(selectCategories[0])
+  const [selected, setSelected] = useState<ComboboxValue<false>>(selectCategories[0])
 
-  const onCategoryChange = (option?: SelectItemOption | SelectItemOption[]) => {
+  const onCategoryChange = (option?: ComboboxValue<false>) => {
     if (TypeGuards.isUndefined(option) || TypeGuards.isArray(option)) return
 
     setSelected(option)
   }
 
   const selectedSubCategories = useMemo<Category[]>(() => {
-    if (TypeGuards.isUndefined(selected) || TypeGuards.isArray(selected)) return []
+    if (!selected) return []
 
     return categories.find((category) => category.title === selected.value)?.children ?? []
   }, [selected, categories])
@@ -46,7 +46,7 @@ export const Menu = ({ categories, helpers, phone, ...props }: MenuProps) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
     >
-      <SelectBase label='Категория' options={selectCategories} value={selected} onChange={onCategoryChange} />
+      <Combobox multiple={false} label='Категория' options={selectCategories} value={selected} onChange={onCategoryChange} />
       <div className='flex w-full flex-col items-center justify-center gap-y-1'>
         {selectedSubCategories.map((subCategory) => {
           if (TypeGuards.isArrayEmpty(subCategory.children)) {

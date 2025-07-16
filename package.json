@@ -83,14 +83,12 @@
   },
   "peerDependecies": {
     "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "@headlessui/react": "^2.1.2"
+    "react-dom": "^18.3.1"
   },
   "overrides": {
     "esbuild": "0.24.0"
   },
   "dependencies": {
-    "@floating-ui/react": "^0.27.4",
     "@headlessui/react": "^2.1.2",
     "@radix-ui/react-checkbox": "^1.1.1",
     "@radix-ui/react-popover": "^1.1.1",

@@ -2,8 +2,6 @@ import { InputBase } from './input'
 export type { InputBaseProps } from './input'
 import { MaskInput } from './maskInput'
 export type { MaskInputProps } from './maskInput'
-import { SelectBase } from './select'
-export type { SelectBaseProps, SelectItemOption } from './select'
 import { CheckboxBase } from './checkbox'
 export type { CheckboxBaseProps, CheckedState } from './checkbox'
 import { DayPickerBase } from './dayPicker'
@@ -18,7 +16,6 @@ export type { RadioGroupBaseProps, RadioOption } from './radio'
 import { TextareaBase } from './textarea'
 import { UploaderBase } from './uploader'
 export type { TextareaBaseProps } from './textarea'
-export { isSingleOption } from './select'
 import { InputOtpBase } from './inputOtp'
 export type { InputOtpBaseProps } from './inputOtp'
 import { Combobox } from './combobox'
@@ -40,7 +37,6 @@ export const Uncontrolled = {
   SliderBase,
   AutocompleteBase,
   MaskInput,
-  SelectBase,
   CheckboxBase,
   DayPickerBase,
   SwitchBase,

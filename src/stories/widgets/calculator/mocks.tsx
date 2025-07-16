@@ -71,8 +71,9 @@ const firstCalculator: CalculatorViewProps = {
       selectGroupConfig: {
         fields: [
           {
-            type: 'SelectControl',
+            type: 'ComboboxControl',
             args: {
+              multiple: false,
               label: 'Описания селекта 1',
               validation: {
                 type: 'getStringSchema',
@@ -92,8 +93,9 @@ const firstCalculator: CalculatorViewProps = {
             }
           },
           {
-            type: 'SelectControl',
+            type: 'ComboboxControl',
             args: {
+              multiple: false,
               label: 'Описания селекта 2',
               validation: {
                 type: 'getStringSchema',
