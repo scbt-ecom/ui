@@ -31,7 +31,7 @@ export const editorConfig = [
   TextStyle,
   Color,
   Heading.configure({
-    levels: [3, 4]
+    levels: [1, 2, 3, 4]
   }).extend({
     renderHTML({ node, HTMLAttributes }) {
       const hasLevel = this.options.levels.includes(node.attrs.level)
