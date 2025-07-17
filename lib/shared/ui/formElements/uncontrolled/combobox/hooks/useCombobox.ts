@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import type { ExternalHandlers } from '../combobox'
 import { type ChangeHandler, type ComboboxValue } from '../model'
 import type { ComboboxItemOption } from '../ui'
+import { TypeGuards } from '$/shared/utils'
 
 type UseComboboxOptions<Multi extends boolean> = {
   initialOptions: ComboboxItemOption[]
@@ -93,6 +94,16 @@ export const useCombobox = <Multi extends boolean>(props: UseComboboxOptions<Mul
     })
   }
 
+  const comboboxDisplayValue = (value: ComboboxValue<Multi>) => {
+    if (!value) return
+
+    if (TypeGuards.isArray(value)) {
+      return value.map((item) => (displayValue ? displayValue(item) : item.label)).join(', ')
+    }
+
+    return displayValue ? displayValue(value) : value.label
+  }
+
   return {
     open,
     setOpen,
@@ -100,6 +111,7 @@ export const useCombobox = <Multi extends boolean>(props: UseComboboxOptions<Mul
     options,
     search,
     onInputChange,
-    state
+    state,
+    comboboxDisplayValue
   }
 }

@@ -133,7 +133,7 @@ const InnerComponent = <Multi extends boolean>(
     whileElementsMounted: autoUpdate
   })
 
-  const { open, setOpen, state, changeHandler, options, search, onInputChange } = useCombobox({
+  const { open, setOpen, state, changeHandler, options, search, onInputChange, comboboxDisplayValue } = useCombobox({
     multiple,
     value,
     onChange,
@@ -147,6 +147,18 @@ const InnerComponent = <Multi extends boolean>(
     externalOnInputChange: externalInputChangeHandler
   })
 
+  const getLabel = () => {
+    if (!value) return ''
+
+    if (multiple && searchable) {
+      return comboboxDisplayValue(value)
+    } else if (searchable) {
+      return search
+    } else {
+      return comboboxDisplayValue(value)
+    }
+  }
+
   useClickOutside(containerRef, () => setOpen(false))
 
   return (
@@ -156,7 +168,7 @@ const InnerComponent = <Multi extends boolean>(
         label={label}
         invalid={invalid}
         readOnly={readOnly || !searchable}
-        value={search}
+        value={inputValue || getLabel()}
         onChange={onInputChange}
         disabled={disabled}
         onClick={(event) => {

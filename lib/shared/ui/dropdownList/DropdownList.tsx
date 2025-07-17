@@ -10,7 +10,7 @@ export type DropdownListClasses = {
   item?: DropdownItemClasses
 }
 
-export interface DropdownListProps<Multi extends boolean> extends React.HTMLAttributes<HTMLUListElement> {
+export interface DropdownListProps<Multi extends boolean = false> extends React.HTMLAttributes<HTMLUListElement> {
   options: DropdownItemOption[]
   /**
    * Значения выбранные по умолчанию
@@ -24,7 +24,7 @@ export interface DropdownListProps<Multi extends boolean> extends React.HTMLAttr
   /**
    * Поддержка множественного выбора
    */
-  multiple: Multi
+  multiple?: Multi
   /**
    * Функция для управления отображаемым значением
    */
