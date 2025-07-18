@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { columns } from './columns'
+import { columns, columnsDeposits } from './columns'
 import data from './data.json'
+import dataDeposits from './dataDeposits.json'
 import { DataTable } from '$/shared/ui/table'
 import { TablePagination } from '$/shared/ui/table/TablePagination'
 
@@ -57,6 +58,14 @@ export const WithOddWithoutPagination: Story = {
     ...WithOdd.args,
     pagination: false
   }
+}
+
+export const WithHorizontalOrientation: Story = {
+  args: {
+    ...WithOdd.args,
+    pagination: false
+  },
+  render: (props) => <DataTable {...props} data={dataDeposits} columns={columnsDeposits} horizontal />
 }
 
 export const PaginationAsRenderProp: Story = {
