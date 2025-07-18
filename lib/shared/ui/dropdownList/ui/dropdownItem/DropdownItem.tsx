@@ -35,11 +35,10 @@ const InnerComponent = forwardRef<HTMLLIElement, DropdownItemProps>(
           'desk-body-regular-l w-full cursor-pointer list-none truncate rounded-sm bg-color-white px-2',
           'flex h-12 items-center gap-x-4 text-color-dark',
           '[&:not(:disabled)]:cursor-pointer [&:not(:last-child)]:mb-1 [&>p]:hover:text-color-secondary',
-          'data-[active="true"]:bg-color-primary-tr-hover data-[active="true"]:text-color-primary-hover',
-          'data-[focused="true"]:bg-color-primary-tr-hover data-[focused="true"]:text-color-primary-hover',
           {
             'pointer-events-none text-color-disabled': disabled,
             'flex items-center gap-x-4': multiple,
+            'bg-color-primary-tr-hover text-color-primary-hover': active || focused,
             'gap-x-3': attachment && attachment.left
           },
           classes?.root,
