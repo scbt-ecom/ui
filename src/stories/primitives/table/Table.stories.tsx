@@ -60,12 +60,25 @@ export const WithOddWithoutPagination: Story = {
   }
 }
 
+export const WithEmptyTable: Story = {
+  args: Base.args,
+  render: (props) => <DataTable {...props} data={[]} columns={columns} />
+}
+
 export const WithHorizontalOrientation: Story = {
   args: {
     ...WithOdd.args,
     pagination: false
   },
   render: (props) => <DataTable {...props} data={dataDeposits} columns={columnsDeposits} horizontal />
+}
+
+export const WithHorizontalOrientationAndEmptyTable: Story = {
+  args: {
+    ...WithHorizontalOrientation,
+    horizontal: true
+  },
+  render: (props) => <DataTable {...props} data={[]} columns={columnsDeposits} />
 }
 
 export const PaginationAsRenderProp: Story = {

@@ -18,7 +18,7 @@ export const Horizontal = <TData extends {}>({
   table,
   classes,
   pagination,
-  empty = 'Not found'
+  empty = 'Ничего не найдено'
 }: DesktopTableProps<TData>) => {
   const containerRef = useRef<HTMLDivElement>(null)
   const [hasLeftOffset, setLeftOffset] = useState<boolean>(false)
