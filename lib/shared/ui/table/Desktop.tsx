@@ -17,7 +17,7 @@ export const Desktop = <TData extends {}>({
   table,
   classes,
   pagination,
-  empty = 'Not found'
+  empty = 'Ничего не найдено'
 }: DesktopTableProps<TData>) => {
   const paginationEnabled = pagination !== false && table.getPageCount() > 1
 

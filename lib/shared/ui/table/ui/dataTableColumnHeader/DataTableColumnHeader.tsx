@@ -35,7 +35,7 @@ export const DataTableColumnHeader = ({
   return (
     <button
       type='button'
-      className={cn('desk-body-regular-l flex items-center justify-center gap-x-2 text-color-secondary', root)}
+      className={cn('desk-body-regular-l flex items-center justify-center gap-x-2 text-start', root)}
       onClick={() => toggleSorting(!isSorted)}
       disabled={!isSortable}
     >

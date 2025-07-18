@@ -65,4 +65,8 @@ export type DataTableProps<TData extends {}> = {
    * для переопределения пустой таблицы
    */
   empty?: React.ReactNode
+  /**
+   * для горизонтальной ориентации таблицы
+   */
+  horizontal?: boolean
 }
