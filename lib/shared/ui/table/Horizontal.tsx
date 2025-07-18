@@ -1,3 +1,4 @@
+import { useLayoutEffect, useRef, useState } from 'react'
 import { flexRender, type Header, type Table as TTable } from '@tanstack/react-table'
 import type { DataTableProps } from './model'
 import { TablePagination } from './TablePagination'
@@ -19,6 +20,29 @@ export const Horizontal = <TData extends {}>({
   pagination,
   empty = 'Not found'
 }: DesktopTableProps<TData>) => {
+  const containerRef = useRef<HTMLDivElement>(null)
+  const [hasLeftOffset, setLeftOffset] = useState<boolean>(false)
+
+  useLayoutEffect(() => {
+    if (!containerRef.current) return
+    const container = containerRef.current
+
+    const abortController = new AbortController()
+
+    containerRef.current.addEventListener(
+      'scroll',
+      () => {
+        const offset = container.scrollLeft
+        setLeftOffset(offset !== 0)
+      },
+      { signal: abortController.signal }
+    )
+
+    return () => {
+      abortController.abort()
+    }
+  }, [])
+
   const paginationEnabled = pagination !== false && table.getPageCount() > 1
 
   const paginationProps = {
@@ -43,7 +67,7 @@ export const Horizontal = <TData extends {}>({
 
   return (
     <div className={cn('flex w-full flex-col gap-y-4', classes?.root)}>
-      <div className='overflow-x-auto'>
+      <div ref={containerRef} className='relative overflow-x-auto'>
         <Table className={cn('min-w-full', classes?.table)}>
           <TableBody>
             {columns.length && rows.length ? (
@@ -56,8 +80,7 @@ export const Horizontal = <TData extends {}>({
                     className={cn(
                       'w-full',
                       {
-                        '[&:not(:last-child)]:border-b [&:not(:last-child)]:border-b-[rgba(234,237,241,1)]': mode === 'solid',
-                        'bg-color-primary-light-default': mode === 'odd' && index % 2 === 0
+                        '[&:not(:last-child)]:border-b': mode === 'solid'
                       },
                       classes?.tableRow
                     )}
@@ -65,9 +88,12 @@ export const Horizontal = <TData extends {}>({
                     {enableHeaders && (
                       <TableHead
                         className={cn(
-                          'py-3 text-left text-color-tetriary desktop:whitespace-nowrap',
+                          'sticky left-0 bg-color-white py-3 text-left text-color-tetriary desktop:whitespace-nowrap',
                           {
-                            'px-2': mode === 'odd'
+                            'px-3': mode === 'odd',
+                            'bg-color-primary-light-default': mode === 'odd' && index % 2 === 0,
+                            '[&:not(:last-child)]:border-b-[rgba(234,237,241,1)]': mode === 'solid',
+                            'drop-shadow-xl': hasLeftOffset
                           },
                           classes?.tableHead
                         )}
@@ -86,7 +112,8 @@ export const Horizontal = <TData extends {}>({
                           className={cn(
                             'whitespace-nowrap py-3',
                             {
-                              'px-2': mode === 'odd'
+                              'bg-color-primary-light-default': mode === 'odd' && index % 2 === 0,
+                              'px-3': mode === 'odd'
                             },
                             classes?.tableCell
                           )}
