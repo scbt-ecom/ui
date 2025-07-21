@@ -53,6 +53,8 @@ export const useCombobox = <Multi extends boolean>(props: UseComboboxOptions<Mul
   }, [externalInputValue, filterDisabled, initialOptions, search, searchable])
 
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setOpen(true)
+
     setSearch(e.target.value)
     externalInputChangeHandler?.(e.target.value)
     externalOnInputChange?.(e.target.value)
