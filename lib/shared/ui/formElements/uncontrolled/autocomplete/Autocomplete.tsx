@@ -25,6 +25,12 @@ export interface AutocompleteBaseProps<TData>
    * Handler инпута
    */
   onChange?: (value: string) => void
+  /**
+   * Стратегия управления полем
+   * @variation `input-first` - источником правды является инпут
+   * @variation `select-first` - источником правды является список
+   * @default input-first
+   */
   strategy?: 'input-first' | 'select-first'
 }
 
