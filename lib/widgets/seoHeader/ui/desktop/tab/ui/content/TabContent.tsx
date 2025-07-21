@@ -2,6 +2,7 @@ import { createPortal } from 'react-dom'
 import { motion } from 'framer-motion'
 import type { Category } from '../../../../../model'
 import { Icon } from '$/shared/ui'
+import { cn } from '$/shared/utils'
 
 type TabContentProps = React.ComponentProps<typeof motion.div> & {
   categories: Category[]
@@ -15,7 +16,10 @@ export const TabContent = ({ categories, ...props }: TabContentProps) => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.2 }}
-      className='absolute z-20 w-full bg-color-white after:absolute after:left-1/2 after:top-[-1px] after:h-[1px] after:w-full after:max-w-[636px] after:-translate-x-1/2 after:bg-color-blue-grey-200 after:content-[""] after:desktop:max-w-[1140px]'
+      className={cn(
+        'absolute z-20 w-full bg-color-white',
+        'after:absolute after:left-1/2 after:top-[-1px] after:h-[1px] after:w-full after:max-w-[636px] after:-translate-x-1/2 after:bg-color-blue-grey-200 after:content-[""] after:desktop:max-w-[1140px]'
+      )}
     >
       <div className='mx-auto flex w-full max-w-[1140px] gap-x-[56px] py-10'>
         {categories.map((category) => {

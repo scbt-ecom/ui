@@ -100,14 +100,21 @@ export const WithApprovementCheckbox: Story = {
     ...Base.args,
     approvement: {
       type: 'checkbox',
-      content: '<p>Нажимая на кнопку, вы даете согласие на обработку персональных данных</p>'
-    }
+      content: '<p>Выражаю согласие на обработку персональных данных</p>'
+    },
+    buttonGroup: [
+      {
+        children: 'Получить консультацию',
+        type: 'button',
+        intent: 'secondary'
+      }
+    ]
   }
 }
 
 export const WithApprovementCheckboxAndBadge: Story = {
   args: {
-    ...WithApprovementCheckbox.args,
+    ...Base.args,
     chips: {
       enabled: true,
       content: 'Безопасно и надёжно',

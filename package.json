@@ -76,7 +76,6 @@
     "cypress:open": "cypress open --component --browser chrome",
     "cypress-ci": "cypress run --component --browser chrome",
     "pre-commit": "npm run lint",
-    "chromatic": "npx chromatic --project-token=chpt_9468dafcf1bf3e3 --only-changed --files='src/stories/**/*.stories.@(tsx)'",
     "pre-deploy": "npm run lint ",
     "ts-check": "pnpm exec tsc",
     "prebuild": "pnpm prettier --log-level=error"
@@ -132,7 +131,6 @@
     "use-mask-input": "^3.4.2"
   },
   "devDependencies": {
-    "@chromatic-com/storybook": "^1.6.1",
     "@eslint/compat": "^1.2.1",
     "@eslint/eslintrc": "^3.1.0",
     "@eslint/js": "^9.13.0",
@@ -141,7 +139,6 @@
     "@semantic-release/npm": "^12.0.1",
     "@storybook/addon-actions": "^8.2.10",
     "@storybook/addon-console": "^3.0.0",
-    "@storybook/addon-coverage": "^1.0.4",
     "@storybook/addon-docs": "^8.4.7",
     "@storybook/addon-essentials": "^8.2.6",
     "@storybook/addon-interactions": "^8.2.6",
@@ -161,7 +158,6 @@
     "@vitejs/plugin-react": "^4.3.1",
     "@vitest/coverage-v8": "^3.0.4",
     "autoprefixer": "^10.4.19",
-    "chromatic": "^11.7.1",
     "cypress": "14.0.0",
     "eslint": "^9.13.0",
     "eslint-plugin-import": "^2.31.0",

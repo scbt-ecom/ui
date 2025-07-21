@@ -129,7 +129,7 @@ export const DynamicForm = <AType extends ApprovementType, CType extends ChipsTy
       <section id={widgetIds.form} data-test-id={widgetIds.form} className={cn('w-full', classes?.root)}>
         <ResponsiveContainer
           className={cn(
-            '!max-w-[636px] border-warm-grey-200 px-4 desktop:gap-8 desktop:p-14',
+            'border-warm-grey-200 px-4 desktop:w-[636px] desktop:gap-8 desktop:p-14',
             'relative mx-auto flex flex-col gap-6 rounded-sm py-8 desktop:border'
           )}
         >
@@ -166,19 +166,31 @@ export const DynamicForm = <AType extends ApprovementType, CType extends ChipsTy
               />
             )}
             <FieldMapper control={control as unknown as Control} fields={fields} />
-            <div className='mob-body-regular-m flex flex-col items-start justify-center gap-4'>
+            <div
+              className={cn('mob-body-regular-m flex flex-col items-start justify-center gap-4', {
+                ['desktop:flex-row desktop:items-center']: buttonGroup.length === 1
+              })}
+            >
               {withApprovement(approvement, checked, onCheckedChange, classes?.approvement)}
-              <div className='flex w-full flex-col items-center justify-center gap-4 desktop:flex-row'>
+              <div
+                className={cn('flex w-full flex-col items-center justify-center gap-4 desktop:flex-row', {
+                  'desktop:w-fit': buttonGroup.length === 1
+                })}
+              >
                 {buttonGroup?.map((button, index) => {
                   const disabled = button.type === 'submit' && approvement.type === 'checkbox' ? !checked : false
 
                   return (
                     <Button
                       {...button}
+                      size='lg'
                       key={index}
                       disabled={disabled}
                       className={cn(
                         'w-full whitespace-nowrap',
+                        {
+                          ['desktop:!w-fit']: buttonGroup.length === 1
+                        },
                         {
                           'w-full': Boolean(approvement)
                         },
