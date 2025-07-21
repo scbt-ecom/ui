@@ -43,6 +43,7 @@ const Form = () => {
     <form className='mx-auto flex w-[500px] flex-col gap-4' onSubmit={handleSubmit(onSubmit, onError)}>
       <DadataOrganization
         control={control}
+        strategy='select-first'
         dadataBaseUrl={DADATA_BASE_CACHE_URL as string}
         label='Organization'
         name='organization'

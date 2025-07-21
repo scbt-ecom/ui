@@ -38,10 +38,10 @@ export const useKeyboardNavigation = <Container extends HTMLElement, Element ext
 
     window.addEventListener(
       'keydown',
-      ({ key }) => {
+      (event) => {
         let direction: 1 | -1 = -1
 
-        switch (key) {
+        switch (event.key) {
           case 'ArrowUp':
             direction = -1
             break
@@ -49,7 +49,10 @@ export const useKeyboardNavigation = <Container extends HTMLElement, Element ext
             direction = 1
             break
           case ' ':
+          case 'Enter':
             if (focusedIndex < 0) return
+
+            event.preventDefault()
 
             const selectedItem = options[focusedIndex]
             onPick?.(selectedItem)
@@ -74,9 +77,15 @@ export const useKeyboardNavigation = <Container extends HTMLElement, Element ext
         if (scrollElement.offsetTop < containerTop || scrollElement.offsetTop > containerBottom) {
           const scrollTop = scrollElement.offsetTop - container.offsetTop - ELEMENT_OFFSET
 
+          const behavior =
+            (focusedIndex === 0 && currentIndex === options.length - 1) ||
+            (focusedIndex === options.length - 1 && currentIndex === 0)
+              ? 'instant'
+              : 'smooth'
+
           container.scrollTo({
             top: scrollTop,
-            behavior: 'smooth'
+            behavior
           })
         }
 

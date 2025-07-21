@@ -1,4 +1,4 @@
-import { forwardRef } from 'react'
+import { forwardRef, useState } from 'react'
 import { type UseQueryResult } from '@tanstack/react-query'
 import type { AutocompleteItemOption } from './types'
 import { useDebounceValue } from '$/shared/hooks'
@@ -25,14 +25,26 @@ export interface AutocompleteBaseProps<TData>
    * Handler инпута
    */
   onChange?: (value: string) => void
+  /**
+   * Стратегия управления полем
+   * @variation `input-first` - источником правды является инпут
+   * @variation `select-first` - источником правды является список
+   * @default input-first
+   */
+  strategy?: 'input-first' | 'select-first'
 }
 
 export const AutocompleteBase = forwardRef(
   <TData,>(
-    { formatter, query, value, displayValue, onChange, externalHandlers, ...props }: AutocompleteBaseProps<TData>,
+    { formatter, query, value, displayValue, onChange, strategy = 'input-first', ...props }: AutocompleteBaseProps<TData>,
     ref: React.ForwardedRef<HTMLInputElement>
   ) => {
-    const debounceSearch = useDebounceValue(value || '', 100)
+    const [search, setSearch] = useState<string>(value ?? '')
+
+    const inputValue = strategy === 'input-first' ? (value ?? '') : search
+    const onInputChange = strategy === 'input-first' ? onChange : setSearch
+
+    const debounceSearch = useDebounceValue(inputValue, 100)
 
     const { data } = query(debounceSearch)
 
@@ -51,17 +63,11 @@ export const AutocompleteBase = forwardRef(
         options={options}
         searchable
         filterDisabled
-        inputValue={value}
-        onInputChange={onChange}
+        inputValue={inputValue}
+        onInputChange={onInputChange}
         multiple={false}
         displayValue={displayValue}
-        externalHandlers={{
-          changeHandler: (value) => {
-            onValueChange(value)
-            externalHandlers?.changeHandler?.(value)
-          },
-          ...externalHandlers
-        }}
+        onChange={onValueChange}
       />
     )
   }
