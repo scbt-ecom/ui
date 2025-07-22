@@ -1,21 +1,23 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { listNavigate } from '../model'
+import { isOptionActive, listNavigate } from '../model'
 import { type DropdownItemOption } from '../ui/dropdownItem'
 
-export type UseKeyboardNavigationProps = {
+export type UseKeyboardNavigationProps<Multi extends boolean> = {
   options: DropdownItemOption[]
-  multiple?: boolean
+  multiple?: Multi
   onPick?: (option: DropdownItemOption) => void
+  value?: Multi extends true ? DropdownItemOption[] : DropdownItemOption | null
 }
 
 const ELEMENT_OFFSET = 4
 
-export const useKeyboardNavigation = <Container extends HTMLElement, Element extends HTMLElement>({
+export const useKeyboardNavigation = <Container extends HTMLElement, Element extends HTMLElement, Multi extends boolean = false>({
   options,
   multiple,
-  onPick
-}: UseKeyboardNavigationProps) => {
-  const [focusedIndex, setFocusedIndex] = useState<number>(-1)
+  onPick,
+  value
+}: UseKeyboardNavigationProps<Multi>) => {
+  const [focusedIndex, setFocusedIndex] = useState<number>(0)
 
   const containerRef = useRef<Container>(null)
   const itemRefs = useRef<Element[]>([])
@@ -30,6 +32,33 @@ export const useKeyboardNavigation = <Container extends HTMLElement, Element ext
     []
   )
 
+  // find and scroll to active element if exists
+  useEffect(() => {
+    if (!containerRef.current) return
+
+    const container = containerRef.current
+    let activeIndex = -1
+
+    for (let i = 0; i < options.length; i += 1) {
+      if (isOptionActive(options[i], value)) {
+        setFocusedIndex(i)
+        activeIndex = i
+        break
+      }
+    }
+
+    const scrollElement = itemRefs.current[activeIndex]
+
+    if (scrollElement) {
+      const scrollTop = scrollElement.offsetTop - container.offsetTop - ELEMENT_OFFSET
+
+      container.scrollTo({
+        top: scrollTop,
+        behavior: 'instant'
+      })
+    }
+  }, [options])
+
   useEffect(() => {
     if (!containerRef.current) return
 
@@ -39,6 +68,8 @@ export const useKeyboardNavigation = <Container extends HTMLElement, Element ext
     window.addEventListener(
       'keydown',
       (event) => {
+        event.preventDefault()
+
         let direction: 1 | -1 = -1
 
         switch (event.key) {
@@ -52,11 +83,9 @@ export const useKeyboardNavigation = <Container extends HTMLElement, Element ext
           case 'Enter':
             if (focusedIndex < 0) return
 
-            event.preventDefault()
-
             const selectedItem = options[focusedIndex]
             onPick?.(selectedItem)
-            if (!multiple) setFocusedIndex(-1)
+            if (!multiple) setFocusedIndex(0)
 
             return
           default:

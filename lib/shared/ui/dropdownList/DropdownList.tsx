@@ -47,10 +47,11 @@ export const DropdownList = <Multi extends boolean>({
 }: DropdownListProps<Multi>) => {
   const ref = useRef<HTMLUListElement>(null)
 
-  const { refs, focusedIndex, setFocusedIndex } = useKeyboardNavigation<HTMLUListElement, HTMLLIElement>({
+  const { refs, focusedIndex, setFocusedIndex } = useKeyboardNavigation<HTMLUListElement, HTMLLIElement, Multi>({
     options,
     multiple,
-    onPick
+    onPick,
+    value
   })
 
   useClickOutside(ref, () => setFocusedIndex(-1))
