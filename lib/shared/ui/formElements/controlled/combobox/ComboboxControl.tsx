@@ -1,15 +1,8 @@
-import { useMemo } from 'react'
 import { type Control, type FieldPath, type FieldValues, useController, type UseControllerProps } from 'react-hook-form'
-import {
-  type ChangeHandler,
-  Combobox,
-  type ComboboxClasses,
-  type ComboboxItemOption,
-  type ComboboxProps,
-  type ComboboxValue
-} from '../../uncontrolled/combobox'
+import { Combobox, type ComboboxClasses, type ComboboxItemOption, type ComboboxProps } from '../../uncontrolled/combobox'
+import { useComboboxControl } from './hooks'
 import { MessageView } from '$/shared/ui/formElements/ui'
-import { cn, TypeGuards } from '$/shared/utils'
+import { cn } from '$/shared/utils'
 
 export type ComboboxControlClasses = {
   root?: string
@@ -40,6 +33,7 @@ export const ComboboxControl = <TFieldValues extends FieldValues>({
   helperText,
   returnValue,
   classes,
+  multiple,
   ...props
 }: ComboboxControlProps<TFieldValues>) => {
   const { field, fieldState } = useController({
@@ -56,17 +50,13 @@ export const ComboboxControl = <TFieldValues extends FieldValues>({
 
   const { root, combobox, message } = classes ?? {}
 
-  const onValueChange: ChangeHandler<false> = (value) => {
-    if (TypeGuards.isArray(value)) return
-
-    onChange(returnValue && value ? returnValue(value) : (value?.value ?? null))
-  }
-
-  const selected = useMemo<ComboboxValue<false>>(() => {
-    if (TypeGuards.isArray(value)) return null
-
-    return options.find((option) => (returnValue ? returnValue(option) : option.value) === value) ?? null
-  }, [options, value])
+  const { selected, changeHandler } = useComboboxControl({
+    value,
+    onChange,
+    multiple,
+    returnValue,
+    options
+  })
 
   return (
     <div className={cn('w-full items-start gap-y-2', root, className)}>
@@ -75,7 +65,7 @@ export const ComboboxControl = <TFieldValues extends FieldValues>({
         {...restField}
         options={options}
         value={selected}
-        onChange={onValueChange}
+        onChange={changeHandler}
         invalid={invalid}
         disabled={disabled}
         multiple={false}
