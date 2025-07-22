@@ -28,23 +28,49 @@ export const useComboboxControl = <Multi extends boolean>({
     }
 
     return map
-  }, [options, returnValue])
+  }, [options])
 
-  const changeHandler = useCallback<ChangeHandler<Multi>>(
-    (value) => {
-      if (multiple || TypeGuards.isArray(value)) return
-      if (!value) return
+  const changeHandler = useCallback<ChangeHandler<Multi>>((selected) => {
+    if (!selected) {
+      return
+    }
 
-      onChange(returnValue ? returnValue(value) : value.value)
-    },
-    [multiple, onChange, returnValue]
-  )
+    if (multiple) {
+      if (!TypeGuards.isArray(selected)) {
+        return
+      }
+
+      const stringValues = selected.map((option) => (returnValue ? returnValue(option) : option.value))
+
+      onChange(stringValues as string[])
+    } else {
+      const singleOption = selected as ComboboxItemOption
+      const stringValue = returnValue ? returnValue(singleOption) : singleOption.value
+
+      onChange(stringValue as string)
+    }
+  }, [])
 
   const selected = useMemo<ComboboxValue<Multi>>(() => {
-    if (multiple || TypeGuards.isArray(value)) return [] as unknown as ComboboxValue<Multi>
-    if (!value) return null as ComboboxValue<Multi>
+    if (!value) {
+      return (multiple ? [] : null) as ComboboxValue<Multi>
+    }
 
-    return (optionsMap.get(value) ?? null) as ComboboxValue<Multi>
+    if (multiple) {
+      if (!TypeGuards.isArray(value)) {
+        return [] as unknown as ComboboxValue<Multi>
+      }
+
+      const selectedOptionsArray = value
+        .map((stringValue: string) => optionsMap.get(stringValue))
+        .filter((option): option is ComboboxItemOption => option !== undefined)
+
+      return selectedOptionsArray as ComboboxValue<Multi>
+    }
+
+    const selectedOption = optionsMap.get(value as string)
+
+    return (selectedOption ?? null) as ComboboxValue<Multi>
   }, [multiple, optionsMap, value])
 
   return {

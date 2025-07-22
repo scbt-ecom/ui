@@ -95,6 +95,8 @@ export const Controlled: Story = {
   render: (props) => {
     const [value, setValue] = useState<ComboboxItemOption | null>(null)
 
+    console.log('value changed', value)
+
     return (
       <>
         <pre>{value && JSON.stringify(value, null, 2)}</pre>

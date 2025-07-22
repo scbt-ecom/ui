@@ -68,19 +68,23 @@ export const useKeyboardNavigation = <Container extends HTMLElement, Element ext
     window.addEventListener(
       'keydown',
       (event) => {
-        event.preventDefault()
-
         let direction: 1 | -1 = -1
 
         switch (event.key) {
           case 'ArrowUp':
+            event.preventDefault()
+
             direction = -1
             break
           case 'ArrowDown':
+            event.preventDefault()
+
             direction = 1
             break
           case ' ':
           case 'Enter':
+            event.preventDefault()
+
             if (focusedIndex < 0) return
 
             const selectedItem = options[focusedIndex]

@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useMemo, useRef, useState } from 'react'
 import type { ExternalHandlers } from '../combobox'
 import { type ChangeHandler, type ComboboxValue } from '../model'
 import type { ComboboxItemOption } from '../ui'
@@ -36,7 +36,8 @@ export const useCombobox = <Multi extends boolean>(props: UseComboboxOptions<Mul
 
   const [search, setSearch] = useState<string>('')
   const [open, setOpen] = useState<boolean>(defaultOpen ?? false)
-  const [state, setState] = useState<ComboboxValue<Multi>>(value ?? ((multiple ? [] : null) as ComboboxValue<Multi>))
+
+  const isUpdatingRef = useRef<boolean>(false)
 
   const options = useMemo<ComboboxItemOption[]>(() => {
     if (filterDisabled) {
@@ -60,29 +61,37 @@ export const useCombobox = <Multi extends boolean>(props: UseComboboxOptions<Mul
     externalOnInputChange?.(e.target.value)
   }
 
-  const changeHandler = (value: ComboboxItemOption) => {
-    setState((prevState) => {
-      if (multiple) {
-        const prev = prevState as ComboboxItemOption[]
-        const exists = prev.some((option) => option.value === value.value)
+  const changeHandler = (newValue: ComboboxItemOption) => {
+    if (isUpdatingRef.current) return
 
-        const updated = (
-          exists ? prev.filter((option) => option.value !== value.value) : [...prev, value]
-        ) as ComboboxValue<Multi>
+    isUpdatingRef.current = true
 
-        onChange?.(updated)
-        externalChangeHandler?.(updated)
+    if (multiple) {
+      const prev = (value as ComboboxItemOption[]) || []
+      const exists = prev.some((option) => option.value === newValue.value)
 
-        const searchValue = (updated as ComboboxItemOption[])
-          .map((option) => (displayValue ? displayValue(option) : option.label))
-          .join(', ')
-        setSearch(searchValue)
-        externalOnInputChange?.(searchValue)
+      let updatedValue: ComboboxItemOption[]
 
-        return updated
+      if (exists) {
+        updatedValue = prev.filter((option) => option.value !== newValue.value)
+      } else {
+        updatedValue = [...prev, newValue]
       }
 
-      const updated = ((prevState as ComboboxItemOption)?.value === value.value ? null : value) as ComboboxValue<Multi>
+      onChange?.(updatedValue as ComboboxValue<Multi>)
+      externalChangeHandler?.(updatedValue as ComboboxValue<Multi>)
+
+      const searchValue = prev.map((option) => (displayValue ? displayValue(option) : option.label)).join(', ')
+      setSearch(searchValue)
+      externalOnInputChange?.(searchValue)
+    } else {
+      let updated: ComboboxValue<Multi>
+
+      if ((value as ComboboxItemOption)?.value === newValue.value) {
+        updated = null as ComboboxValue<Multi>
+      } else {
+        updated = newValue as ComboboxValue<Multi>
+      }
 
       onChange?.(updated)
       externalChangeHandler?.(updated)
@@ -91,9 +100,11 @@ export const useCombobox = <Multi extends boolean>(props: UseComboboxOptions<Mul
       setSearch(label ?? '')
       externalOnInputChange?.(label ?? '')
       setOpen(false)
+    }
 
-      return updated
-    })
+    setTimeout(() => {
+      isUpdatingRef.current = false
+    }, 0)
   }
 
   const comboboxDisplayValue = (value: ComboboxValue<Multi>) => {
@@ -113,7 +124,7 @@ export const useCombobox = <Multi extends boolean>(props: UseComboboxOptions<Mul
     options,
     search,
     onInputChange,
-    state,
+    state: value,
     comboboxDisplayValue
   }
 }

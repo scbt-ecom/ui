@@ -2,8 +2,8 @@
 
 import { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
-import { object, type TypeOf } from 'zod'
-import { HookForm } from '../utils'
+import { any, array, object, type TypeOf } from 'zod'
+import { HookForm } from '@/stories/primitives/formElements/controlled/utils'
 import { ComboboxControl, type ComboboxControlProps, type ComboboxItemOption } from '$/shared/ui'
 import { zodValidators } from '$/shared/validation'
 
@@ -60,20 +60,12 @@ const meta = {
   args: {
     label: 'Input',
     name: 'test'
-  },
-  render: (props) => (
-    <HookForm<ComboboxControlProps, TypeOf<typeof schema>>
-      {...props}
-      schema={schema}
-      defaultValues={{ test: null }}
-      renderComponent={(componentProps: ComboboxControlProps) => <ComboboxControl {...componentProps} />}
-    />
-  )
+  }
 } satisfies Meta<typeof ComboboxControl>
 
 export default meta
 
-type Story = StoryObj<typeof ComboboxControl>
+type Story<Multi extends boolean = false> = StoryObj<typeof ComboboxControl<Multi>>
 
 /**
  * \`SelectControl\` компонент, управляемый библиотекой \`react-hook-form\`\n
@@ -88,23 +80,52 @@ type Story = StoryObj<typeof ComboboxControl>
  * Остальные свойства наследуются от [Select](?path=/docs/base-selectbase--docs)\n
  */
 export const Base: Story = {
-  args: {}
+  args: {},
+  render: (props) => (
+    <HookForm<ComboboxControlProps, TypeOf<typeof schema>>
+      {...props}
+      schema={schema}
+      defaultValues={{ test: null }}
+      renderComponent={(componentProps: ComboboxControlProps) => <ComboboxControl {...componentProps} />}
+    />
+  )
 }
 
 export const WithDisabled: Story = {
   args: {
     disabled: true
-  }
+  },
+  render: Base.render
 }
 
 export const WithSearchable: Story = {
   args: {
     searchable: true
-  }
+  },
+  render: Base.render
 }
 
 export const WithCustomReturnValue: Story = {
   args: {
     returnValue: (option) => option.label
-  }
+  },
+  render: Base.render
+}
+
+const multiSchema = object({
+  test: array(any())
+})
+
+export const WithMulti: Story<true> = {
+  args: {
+    multiple: true
+  },
+  render: (props) => (
+    <HookForm<ComboboxControlProps<true>, TypeOf<typeof schema>>
+      {...props}
+      schema={multiSchema}
+      defaultValues={{ test: ['value_1', 'value_2'] }}
+      renderComponent={(componentProps: ComboboxControlProps<true>) => <ComboboxControl {...componentProps} />}
+    />
+  )
 }

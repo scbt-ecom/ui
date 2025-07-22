@@ -11,17 +11,18 @@ export type ComboboxControlClasses = {
 }
 
 export type ComboboxControlProps<
+  Multi extends boolean = false,
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
 > = UseControllerProps<TFieldValues, TName> &
-  ComboboxProps<false> & {
+  ComboboxProps<Multi> & {
     control: Control<TFieldValues>
     helperText?: string
     returnValue?: (option: ComboboxItemOption) => string | null
     classes?: ComboboxControlClasses
   }
 
-export const ComboboxControl = <TFieldValues extends FieldValues>({
+export const ComboboxControl = <Multi extends boolean = false, TFieldValues extends FieldValues = FieldValues>({
   control,
   className,
   name,
@@ -35,7 +36,7 @@ export const ComboboxControl = <TFieldValues extends FieldValues>({
   classes,
   multiple,
   ...props
-}: ComboboxControlProps<TFieldValues>) => {
+}: ComboboxControlProps<Multi, TFieldValues>) => {
   const { field, fieldState } = useController({
     control,
     name,
@@ -68,7 +69,7 @@ export const ComboboxControl = <TFieldValues extends FieldValues>({
         onChange={changeHandler}
         invalid={invalid}
         disabled={disabled}
-        multiple={false}
+        multiple={multiple}
         classes={combobox}
       />
       <MessageView
