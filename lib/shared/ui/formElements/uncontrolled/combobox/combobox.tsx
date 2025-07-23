@@ -1,4 +1,4 @@
-import { type ForwardedRef, forwardRef, useRef } from 'react'
+import { type ForwardedRef, forwardRef, useEffect, useRef } from 'react'
 import { autoUpdate, flip, offset, useFloating } from '@floating-ui/react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useCombobox } from './hooks'
@@ -119,7 +119,6 @@ const InnerComponent = <Multi extends boolean>(
   const { floating, ...dropdownClasses } = classes?.list ?? {}
 
   const containerRef = useRef<HTMLDivElement>(null)
-  const inputRef = useRef<HTMLInputElement>(null)
 
   const { refs, floatingStyles } = useFloating<HTMLInputElement>({
     placement: 'bottom-start',
@@ -148,6 +147,29 @@ const InnerComponent = <Multi extends boolean>(
     externalOnInputChange: externalInputChangeHandler
   })
 
+  useEffect(() => {
+    if (!refs.domReference.current) return
+
+    const input = refs.domReference.current
+
+    const abortController = new AbortController()
+
+    input.addEventListener(
+      'keydown',
+      (event) => {
+        switch (event.key) {
+          case ' ':
+            if (!open) setOpen(true)
+        }
+      },
+      { signal: abortController.signal }
+    )
+
+    return () => {
+      abortController.abort()
+    }
+  }, [])
+
   const getLabel = () => {
     if (!value) return ''
 
@@ -165,7 +187,7 @@ const InnerComponent = <Multi extends boolean>(
   return (
     <div ref={containerRef} className={cn('relative w-full', classes?.root, className)}>
       <InputBase
-        ref={mergeRefs(ref, inputRef, refs.setReference)}
+        ref={mergeRefs(ref, refs.setReference)}
         label={label}
         invalid={invalid}
         readOnly={readOnly || !searchable}
@@ -218,7 +240,7 @@ const InnerComponent = <Multi extends boolean>(
               value={state}
               displayValue={displayValue}
               classes={dropdownClasses}
-              target={inputRef}
+              target={refs.domReference}
             />
           </motion.div>
         )}
