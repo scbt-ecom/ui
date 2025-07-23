@@ -119,6 +119,7 @@ const InnerComponent = <Multi extends boolean>(
   const { floating, ...dropdownClasses } = classes?.list ?? {}
 
   const containerRef = useRef<HTMLDivElement>(null)
+  const inputRef = useRef<HTMLInputElement>(null)
 
   const { refs, floatingStyles } = useFloating<HTMLInputElement>({
     placement: 'bottom-start',
@@ -164,7 +165,7 @@ const InnerComponent = <Multi extends boolean>(
   return (
     <div ref={containerRef} className={cn('relative w-full', classes?.root, className)}>
       <InputBase
-        ref={mergeRefs(ref, refs.setReference)}
+        ref={mergeRefs(ref, inputRef, refs.setReference)}
         label={label}
         invalid={invalid}
         readOnly={readOnly || !searchable}
@@ -217,6 +218,7 @@ const InnerComponent = <Multi extends boolean>(
               value={state}
               displayValue={displayValue}
               classes={dropdownClasses}
+              target={inputRef}
             />
           </motion.div>
         )}

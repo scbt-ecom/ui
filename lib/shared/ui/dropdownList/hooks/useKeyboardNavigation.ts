@@ -81,7 +81,6 @@ export const useKeyboardNavigation = <Container extends HTMLElement, Element ext
 
             direction = 1
             break
-          case ' ':
           case 'Enter':
             event.preventDefault()
 

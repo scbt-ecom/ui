@@ -33,6 +33,7 @@ export interface DropdownListProps<Multi extends boolean = false> extends React.
    * Дополнительные стили
    */
   classes?: DropdownListClasses
+  target?: React.RefObject<HTMLElement>
 }
 
 export const DropdownList = <Multi extends boolean>({
@@ -43,6 +44,7 @@ export const DropdownList = <Multi extends boolean>({
   className,
   displayValue,
   classes,
+  target,
   ...props
 }: DropdownListProps<Multi>) => {
   const ref = useRef<HTMLUListElement>(null)
@@ -53,6 +55,14 @@ export const DropdownList = <Multi extends boolean>({
     onPick,
     value
   })
+
+  const elementPickHandler = (item: DropdownItemOption) => {
+    onPick?.(item)
+
+    if (target && target.current) {
+      target.current.focus()
+    }
+  }
 
   useClickOutside(ref, () => setFocusedIndex(-1))
 
@@ -77,7 +87,7 @@ export const DropdownList = <Multi extends boolean>({
             active={active}
             focused={focusedIndex === index}
             multiple={multiple}
-            onPick={onPick}
+            onPick={elementPickHandler}
             displayValue={displayValue}
             onMouseEnter={() => setFocusedIndex(index)}
             onMouseLeave={() => setFocusedIndex(-1)}
