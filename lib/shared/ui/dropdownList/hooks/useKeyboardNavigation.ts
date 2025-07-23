@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { isOptionActive, listNavigate } from '../model'
+import { isOptionActive } from '../model'
 import { type DropdownItemOption } from '../ui/dropdownItem'
+import { scrollTo } from './model'
 
 export type UseKeyboardNavigationProps<Multi extends boolean> = {
   options: DropdownItemOption[]
@@ -8,8 +9,6 @@ export type UseKeyboardNavigationProps<Multi extends boolean> = {
   onPick?: (option: DropdownItemOption) => void
   value?: Multi extends true ? DropdownItemOption[] : DropdownItemOption | null
 }
-
-const ELEMENT_OFFSET = 4
 
 export const useKeyboardNavigation = <Container extends HTMLElement, Element extends HTMLElement, Multi extends boolean = false>({
   options,
@@ -50,7 +49,7 @@ export const useKeyboardNavigation = <Container extends HTMLElement, Element ext
     const scrollElement = itemRefs.current[activeIndex]
 
     if (scrollElement) {
-      const scrollTop = scrollElement.offsetTop - container.offsetTop - ELEMENT_OFFSET
+      const scrollTop = scrollElement.offsetTop - container.offsetTop - 4
 
       container.scrollTo({
         top: scrollTop,
@@ -68,19 +67,23 @@ export const useKeyboardNavigation = <Container extends HTMLElement, Element ext
     window.addEventListener(
       'keydown',
       (event) => {
-        let direction: 1 | -1 = -1
-
         switch (event.key) {
-          case 'ArrowUp':
+          case 'ArrowUp': {
             event.preventDefault()
 
-            direction = -1
+            const nextIndex = scrollTo(-1, { options, focusedIndex, container, elements: itemRefs.current })
+            setFocusedIndex(nextIndex)
+
             break
-          case 'ArrowDown':
+          }
+          case 'ArrowDown': {
             event.preventDefault()
 
-            direction = 1
+            const nextIndex = scrollTo(1, { options, focusedIndex, container, elements: itemRefs.current })
+            setFocusedIndex(nextIndex)
+
             break
+          }
           case 'Enter':
             event.preventDefault()
 
@@ -90,38 +93,8 @@ export const useKeyboardNavigation = <Container extends HTMLElement, Element ext
             onPick?.(selectedItem)
             if (!multiple) setFocusedIndex(0)
 
-            return
-          default:
-            return
+            break
         }
-
-        let currentIndex = listNavigate(focusedIndex, direction, options.length)
-
-        while (options[currentIndex].disabled) {
-          currentIndex = listNavigate(currentIndex, direction, options.length)
-        }
-
-        const scrollElement = itemRefs.current[currentIndex]
-
-        const containerTop = container.scrollTop
-        const containerBottom = container.scrollTop + container.clientHeight
-
-        if (scrollElement.offsetTop < containerTop || scrollElement.offsetTop > containerBottom) {
-          const scrollTop = scrollElement.offsetTop - container.offsetTop - ELEMENT_OFFSET
-
-          const behavior =
-            (focusedIndex === 0 && currentIndex === options.length - 1) ||
-            (focusedIndex === options.length - 1 && currentIndex === 0)
-              ? 'instant'
-              : 'smooth'
-
-          container.scrollTo({
-            top: scrollTop,
-            behavior
-          })
-        }
-
-        setFocusedIndex(currentIndex)
       },
       { signal: abortController.signal }
     )
