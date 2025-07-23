@@ -31,9 +31,9 @@ export const viteAllowedIconsPlugin = (options?: AllowedIconsPluginOptions): Plu
         generateFileMap(staticDir, outputDir)
       })
 
-      server.watcher.on('change', (path) => {
-        if (path.match(staticDir)) {
-          logger.info('Static file changed')
+      server.watcher.on('all', (event, filePath) => {
+        if (['add', 'change', 'unlink'].includes(event) && filePath.endsWith('.svg')) {
+          logger.info(`SVG file ${event}: ${filePath}`)
 
           generateFileAssets(staticDir, outputDir)
           generateFileMap(staticDir, outputDir)

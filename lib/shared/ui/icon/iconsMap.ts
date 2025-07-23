@@ -35,6 +35,7 @@ import Close from '../../../../static/general/close.svg?react'
 import Edit from '../../../../static/general/edit.svg?react'
 import Heart from '../../../../static/general/heart.svg?react'
 import Hiddeneye from '../../../../static/general/hiddenEye.svg?react'
+import Loginfilled from '../../../../static/general/loginFilled.svg?react'
 import Menu from '../../../../static/general/menu.svg?react'
 import Plus from '../../../../static/general/plus.svg?react'
 import Reorder from '../../../../static/general/reorder.svg?react'
@@ -95,6 +96,7 @@ export const iconsMap = {
   'general/edit': Edit,
   'general/heart': Heart,
   'general/hiddenEye': Hiddeneye,
+  'general/loginFilled': Loginfilled,
   'general/menu': Menu,
   'general/plus': Plus,
   'general/reorder': Reorder,

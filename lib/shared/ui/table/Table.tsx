@@ -12,6 +12,7 @@ import {
   useReactTable
 } from '@tanstack/react-table'
 import { Desktop } from './Desktop'
+import { Horizontal } from './Horizontal'
 import { Mobile } from './Mobile'
 import { type DataTableProps } from './model'
 import { useDevice } from '$/shared/hooks'
@@ -24,7 +25,8 @@ export const DataTable = <TData extends {}>({
   classes,
   pagination = true,
   empty,
-  pageSize = 10
+  pageSize = 10,
+  horizontal
 }: DataTableProps<TData>) => {
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
   const [sorting, setSorting] = useState<SortingState>([])
@@ -50,6 +52,19 @@ export const DataTable = <TData extends {}>({
   })
 
   const { isMobile } = useDevice()
+
+  if (horizontal) {
+    return (
+      <Horizontal
+        table={table}
+        enableHeaders={enableHeaders}
+        empty={empty}
+        mode={mode}
+        pagination={pagination}
+        classes={classes}
+      />
+    )
+  }
 
   return isMobile ? (
     <Mobile table={table} enableHeaders={enableHeaders} empty={empty} mode={mode} classes={classes} />

@@ -18,8 +18,8 @@ type DesktopRowProps = {
 const desktopRowConfig = cva('desktop:grid mobile:hidden items-center', {
   variants: {
     columnsVariant: {
-      twoCols: 'grid-cols-2 gap-16',
-      threeCols: 'grid-cols-3 gap-12'
+      twoCols: 'grid-cols-[248px_1fr] gap-16',
+      threeCols: 'grid-cols-[248px_1fr_1fr] gap-12'
     },
     tableVariant: {
       filled: 'px-4 py-3 even:bg-color-primary-light-default',

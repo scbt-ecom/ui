@@ -1,5 +1,6 @@
 import { memo, useCallback, useRef, useState } from 'react'
 import { AnimatePresence } from 'framer-motion'
+import { CustomLink } from '../../../../shared/ui'
 import type { Category } from '../../model'
 import { Tab } from './tab'
 
@@ -32,7 +33,17 @@ const InnerComponent = ({ categories }: CategoryTabsProps) => {
             onActiveTabChange={onActiveTabChange}
           />
         ))}
-        <div className='ml-auto'>Личный кабинет</div>
+        <CustomLink
+          icon='general/loginFilled'
+          href='https://halvacard.ru/lk2/'
+          target='_blank'
+          classes={{
+            link: 'ml-auto cursor-pointer desk-body-regular-m gap-2 hover:no-underline'
+          }}
+          rel='noreferrer'
+        >
+          Войти
+        </CustomLink>
       </div>
     </AnimatePresence>
   )

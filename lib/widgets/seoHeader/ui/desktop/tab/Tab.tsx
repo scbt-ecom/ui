@@ -22,7 +22,7 @@ const InnerComponent = forwardRef<HTMLDivElement, TabProps>(({ category, active,
     <motion.div
       ref={ref}
       className={cn(
-        'relative flex cursor-default items-center justify-center py-4 text-color-dark',
+        'relative flex cursor-default items-center justify-center py-4 text-color-dark after:z-30',
         'after:content="" after:absolute after:bottom-0 after:left-1/2 after:h-[1px]',
         'after:w-0 after:-translate-x-1/2 after:bg-color-primary-default after:duration-100',
         {

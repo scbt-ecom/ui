@@ -49,7 +49,7 @@ export const BannerWithSeparateImg = ({
               classes?.imageContainer
             )}
           >
-            <img loading='eager' src={images?.mobile} alt={images?.alt} className='h-full object-contain' />
+            <img loading='eager' fetchPriority='high' src={images?.mobile} alt={images?.alt} className='h-full object-contain' />
           </div>
 
           <div
@@ -58,7 +58,7 @@ export const BannerWithSeparateImg = ({
               classes?.imageContainer
             )}
           >
-            <img loading='eager' src={images?.desktop} alt={images?.alt} className='h-full object-contain' />
+            <img loading='eager' fetchPriority='high' src={images?.desktop} alt={images?.alt} className='h-full object-contain' />
           </div>
         </div>
 

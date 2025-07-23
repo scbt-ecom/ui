@@ -15,7 +15,7 @@ export interface TabsProps {
 
 export const Tabs = ({ tabsNames, activeTab, setActiveTab, classes }: TabsProps) => {
   return (
-    <div className={cn('hidden-scroll flex items-center gap-4 overflow-x-auto p-[6px]', classes?.tabs)}>
+    <div className={cn('hidden-scroll flex items-center gap-4 overflow-x-auto', classes?.tabs)}>
       {tabsNames &&
         tabsNames.map((tabName, tabIndex) => (
           <button

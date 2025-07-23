@@ -29,9 +29,21 @@ export const BannerImageFull = ({
       >
         <div className='absolute bottom-0 left-0 right-0 top-0 mx-auto h-full max-w-[1920px] desktop:h-[456px]'>
           {isMobile ? (
-            <img loading='eager' src={images?.mobile} className='h-full w-full object-cover object-center' alt={images?.alt} />
+            <img
+              loading='eager'
+              fetchPriority='high'
+              src={images?.mobile}
+              className='h-full w-full object-cover object-center'
+              alt={images?.alt}
+            />
           ) : (
-            <img loading='eager' src={images?.desktop} alt={images?.alt} className='h-full w-full object-cover object-center' />
+            <img
+              loading='eager'
+              fetchPriority='high'
+              src={images?.desktop}
+              alt={images?.alt}
+              className='h-full w-full object-cover object-center'
+            />
           )}
         </div>
 

@@ -5,8 +5,8 @@ import { cn } from '$/shared/utils'
 const headingsConfig = cva('desktop:grid mobile:hidden px-4 mb-4', {
   variants: {
     columnsVariant: {
-      twoCols: 'grid-cols-2 gap-16',
-      threeCols: 'grid-cols-3 gap-12'
+      twoCols: 'grid-cols-[248px_1fr] gap-16',
+      threeCols: 'grid-cols-[248px_1fr_1fr] gap-12'
     }
   }
 })
