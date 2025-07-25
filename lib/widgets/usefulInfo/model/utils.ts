@@ -11,3 +11,7 @@ export const isDocuments = (entity: Entity): entity is Entity<'DOCUMENTS'> => {
 export const isTable = (entity: Entity): entity is Entity<'TABLE'> => {
   return entity.variant === 'TABLE'
 }
+
+export const isExperts = (entity: Entity): entity is Entity<'EXPERTS'> => {
+  return entity.variant === 'EXPERTS'
+}
