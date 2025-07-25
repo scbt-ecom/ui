@@ -28,7 +28,10 @@ export const ExpertCard = ({ name, position, avatar, description, classes }: Exp
           <span className={cn('desk-body-regular-m text-color-tetriary', classes?.position)}>{position}</span>
         </div>
       </div>
-      <p className={cn('desk-body-regular-l text-color-dark', classes?.description)}>{description}</p>
+      <div
+        className={cn('desk-body-regular-l text-color-dark', classes?.description)}
+        dangerouslySetInnerHTML={{ __html: description ?? '' }}
+      />
     </div>
   )
 }
