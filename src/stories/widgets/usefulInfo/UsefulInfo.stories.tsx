@@ -3,6 +3,8 @@ import {
   documentsBase,
   documentsFilledIconsWithLinks,
   documentsOutlineIconsWithLinks,
+  expertsBase,
+  expertsMulti,
   htmlBase,
   htmlBaseWrapInAccordion,
   htmlWithLinksAndBullets,
@@ -42,7 +44,7 @@ export const MultiVariantsOnTab: Story = {
       {
         tabId: getUuid(),
         tabName: 'Условия',
-        contents: [htmlBase, documentsBase]
+        contents: [htmlBase, documentsBase, expertsBase]
       },
       {
         tabId: getUuid(),
@@ -137,6 +139,23 @@ export const DocumentsVariations: Story = {
         tabId: getUuid(),
         tabName: 'Документы с дополнительными текстом,заголовком и типом иконок filled',
         contents: [documentsFilledIconsWithLinks]
+      }
+    ]
+  }
+}
+
+export const ExpertsVariations: Story = {
+  args: {
+    tabs: [
+      {
+        tabId: getUuid(),
+        tabName: 'Эксперты базовые',
+        contents: [expertsBase]
+      },
+      {
+        tabId: getUuid(),
+        tabName: 'Эксперты несколько карточек',
+        contents: [expertsMulti]
       }
     ]
   }

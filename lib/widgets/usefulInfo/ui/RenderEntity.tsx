@@ -1,9 +1,11 @@
-import { type EntitiesAccordionsConfig, type Entity, isDocuments, isHtml, isTable } from '../model'
+import { type EntitiesAccordionsConfig, type Entity, isDocuments, isExperts, isHtml, isTable } from '../model'
 import {
   Documents,
   type EntityDocumentsClasses,
+  type EntityExpertsClasses,
   type EntityHtmlClasses,
   type EntityTableClasses,
+  Experts,
   Html,
   Table
 } from './subEntities'
@@ -15,6 +17,7 @@ export type EntityClasses = {
     html?: EntityHtmlClasses
     documents?: EntityDocumentsClasses
     table?: EntityTableClasses
+    experts?: EntityExpertsClasses
   }
 }
 
@@ -48,6 +51,16 @@ const renderEntity = ({ entity, classes, accordionsConfig }: RenderEntityProps) 
           accordionConfig={accordionsConfig?.tableAccordion}
           {...tableDetails}
           classes={classes?.entities?.table}
+        />
+      ))
+
+    case isExperts(entity):
+      return entity.details?.map((expertsDetails, index) => (
+        <Experts
+          key={index}
+          accordionConfig={accordionsConfig?.expertsAccordion}
+          {...expertsDetails}
+          classes={classes?.entities?.experts}
         />
       ))
 
