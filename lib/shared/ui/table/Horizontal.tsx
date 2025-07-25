@@ -67,7 +67,7 @@ export const Horizontal = <TData extends {}>({
 
   return (
     <div className={cn('flex w-full flex-col gap-y-4', classes?.root)}>
-      <div ref={containerRef} className='relative overflow-x-auto'>
+      <div ref={containerRef} className='customScrollbar-y relative overflow-x-auto pb-2'>
         <Table className={cn('min-w-full', classes?.table)}>
           <TableBody>
             {columns.length && rows.length ? (
@@ -88,7 +88,7 @@ export const Horizontal = <TData extends {}>({
                     {enableHeaders && (
                       <TableHead
                         className={cn(
-                          'sticky left-0 bg-color-white py-3 text-left text-color-tetriary desktop:whitespace-nowrap',
+                          'sticky left-0 bg-color-white py-3 text-left text-color-tetriary desktop:whitespace-nowrap desktop:px-4 desktop:py-[17px]',
                           {
                             'px-3': mode === 'odd',
                             'bg-color-primary-light-default': mode === 'odd' && index % 2 === 0,
@@ -113,7 +113,8 @@ export const Horizontal = <TData extends {}>({
                             'whitespace-nowrap py-3',
                             {
                               'bg-color-primary-light-default': mode === 'odd' && index % 2 === 0,
-                              'px-3': mode === 'odd'
+                              'font-medium': index !== 0,
+                              'px-3 desktop:p-4 desktop:pl-5': mode === 'odd'
                             },
                             classes?.tableCell
                           )}

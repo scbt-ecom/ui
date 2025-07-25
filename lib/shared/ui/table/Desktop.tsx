@@ -78,21 +78,27 @@ export const Desktop = <TData extends {}>({
                   classes?.tableRow
                 )}
               >
-                {row.getVisibleCells().map((cell, cellIndex) => (
-                  <TableCell
-                    key={cell.id}
-                    className={cn(
-                      'py-3',
-                      {
-                        'px-2': mode === 'odd',
-                        'font-medium': cellIndex !== 0
-                      },
-                      classes?.tableCell
-                    )}
-                  >
-                    {flexRender(cell.column.columnDef.cell, { ...cell.getContext(), rowIndex })}
-                  </TableCell>
-                ))}
+                {row.getVisibleCells().map((cell, cellIndex) => {
+                  const cellContext = cell.getContext()
+                  const size = cellContext.column.getSize()
+
+                  return (
+                    <TableCell
+                      key={cell.id}
+                      style={{ width: size }}
+                      className={cn(
+                        'py-3',
+                        {
+                          'px-3': mode === 'odd',
+                          'font-medium': cellIndex !== 0
+                        },
+                        classes?.tableCell
+                      )}
+                    >
+                      {flexRender(cell.column.columnDef.cell, { ...cellContext, rowIndex })}
+                    </TableCell>
+                  )
+                })}
               </TableRow>
             ))
           ) : (

@@ -3,14 +3,23 @@ import {
   type ColumnDef,
   type ColumnHelper,
   createColumnHelper,
-  type HeaderContext
+  type HeaderContext,
+  type SortingFnOption
 } from '@tanstack/react-table'
 import { DataTableColumnHeader } from '../ui'
 import { TypeGuards } from '$/shared/utils'
 
+type SizeOptions = {
+  size?: number
+  minSize?: number
+  maxSize?: number
+}
+
 type ColumnDefOptions<TData, TValue> = {
   enableSorting?: (keyof TData)[] | boolean
+  sortingFn?: SortingFnOption<TData> | Partial<Record<keyof TData, SortingFnOption<TData>>>
   enableColumnFilter?: (keyof TData)[] | boolean
+  size?: Partial<Record<keyof TData, SizeOptions>>
   helper?: ColumnHelper<TData>
   cellAccessor?: Partial<Record<keyof TData, (cellContext: CellContext<TData, TValue>) => React.ReactNode>>
   headerAccessor?: Partial<
@@ -32,7 +41,9 @@ export class TableUtils {
       enableColumnFilter = false,
       enableSorting = false,
       cellAccessor,
-      headerAccessor
+      headerAccessor,
+      sortingFn,
+      size
     } = options || {}
 
     const keys = Object.keys(template) as (keyof TData)[]
@@ -60,7 +71,9 @@ export class TableUtils {
           return accessor ? accessor(cell) : cell.getValue()
         },
         enableColumnFilter: TypeGuards.isBoolean(enableColumnFilter) ? enableColumnFilter : enableColumnFilter.includes(key),
-        enableSorting: TypeGuards.isBoolean(enableSorting) ? enableSorting : enableSorting.includes(key)
+        enableSorting: TypeGuards.isBoolean(enableSorting) ? enableSorting : enableSorting.includes(key),
+        sortingFn: typeof sortingFn === 'object' ? sortingFn[key] : sortingFn,
+        ...size?.[key]
       })
     }) as ColumnDef<TData>[]
   }

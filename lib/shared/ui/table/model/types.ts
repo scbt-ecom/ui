@@ -1,7 +1,7 @@
 import type { ColumnDef } from '@tanstack/react-table'
 import { type TablePaginationProps } from '../TablePagination'
 
-type DataTableClasses = {
+export type DataTableClasses = {
   /**
    * Стили родителя
    */
