@@ -32,6 +32,8 @@ export const baseDefaultMessages = {
   },
   INVALID_REGEX_STRING: () => 'Поле не соответствует требованиям',
   INVALID_URL: () => 'Ссылка введена некорректно. Пример: https://example.com, example.com',
+  PASSPORT_INVALID_TYPE: () => 'Паспортные данные введены некорректно',
+  PASSPORT_NON_EMPTY: () => 'Паспортные данные не могут быть пустыми',
   PASSPORT_PART_OR_NUMBER_NON_EMPTY: () => 'Серия или номер паспорта не могут быть пустыми',
   INVALID_PASSPORT_PART: () => 'Серия паспорта введена некорректно',
   INVALID_PASSPORT_NUMBER: () => 'Номер паспорта введен некорректно'

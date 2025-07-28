@@ -109,7 +109,7 @@ export type PassportValidationOptions = {
    * @default undefined
    */
   defaultValue?: string
-  message?: Partial<Record<keyof Omit<PassportValidationOptions, 'message'> | 'root', string>>
+  message?: Partial<Record<'empty' | 'root' | 'invalidPart' | 'invalidNumber', string>>
 }
 
 /**
@@ -117,18 +117,19 @@ export type PassportValidationOptions = {
  */
 const getPassportRequired = (props?: Omit<PassportValidationOptions, 'required'>) => {
   const { defaultValue, message } = props || {}
+  const { root, empty, invalidPart, invalidNumber } = message || {}
 
   const schema = z
-    .string({ message: message?.root })
-    .nonempty()
+    .string({ message: root ?? baseDefaultMessages.PASSPORT_INVALID_TYPE() })
+    .nonempty(empty ?? baseDefaultMessages.PASSPORT_NON_EMPTY())
     .superRefine((value, context) => {
-      const [part, number] = value.split(' ')
+      const [part, number] = value.replace('_', '').split(' ')
 
       // паспорт должен содержать серию и номер
       if (!part.length || !number.length) {
         return context.addIssue({
           code: ZodIssueCode.custom,
-          message: baseDefaultMessages.PASSPORT_PART_OR_NUMBER_NON_EMPTY()
+          message: empty ?? baseDefaultMessages.PASSPORT_PART_OR_NUMBER_NON_EMPTY()
         })
       }
 
@@ -136,7 +137,17 @@ const getPassportRequired = (props?: Omit<PassportValidationOptions, 'required'>
       if (/^0{2,4}/.test(part)) {
         return context.addIssue({
           code: ZodIssueCode.custom,
-          message: baseDefaultMessages.INVALID_PASSPORT_PART()
+          message: invalidPart ?? baseDefaultMessages.INVALID_PASSPORT_PART()
+        })
+      }
+
+      // Проверка года выпуска
+      const year = parseInt(part.slice(2, 4), 10)
+      const date = new Date().getFullYear().toString().slice(2, 4)
+      if (!(year >= 97 && year <= 99) && !(year >= 0 && year <= Number(date))) {
+        return context.addIssue({
+          code: ZodIssueCode.custom,
+          message: invalidPart ?? baseDefaultMessages.INVALID_PASSPORT_PART()
         })
       }
 
@@ -144,7 +155,7 @@ const getPassportRequired = (props?: Omit<PassportValidationOptions, 'required'>
       if (!okato.includes(part.slice(0, 2))) {
         return context.addIssue({
           code: ZodIssueCode.custom,
-          message: baseDefaultMessages.INVALID_PASSPORT_PART()
+          message: invalidPart ?? baseDefaultMessages.INVALID_PASSPORT_PART()
         })
       }
 
@@ -152,7 +163,7 @@ const getPassportRequired = (props?: Omit<PassportValidationOptions, 'required'>
       if (Number(number.replace(/^0+/g, '')) < 101) {
         return context.addIssue({
           code: ZodIssueCode.custom,
-          message: baseDefaultMessages.INVALID_PASSPORT_NUMBER()
+          message: invalidNumber ?? baseDefaultMessages.INVALID_PASSPORT_NUMBER()
         })
       }
     })
