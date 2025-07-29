@@ -11,6 +11,8 @@ import {
   dateDefaultValues,
   dateSchema,
   passportDefaultValues,
+  passportDepartmentDefaultValues,
+  passportDepartmentSchema,
   passportSchema,
   phoneDefaultValues,
   phoneSchema
@@ -98,6 +100,21 @@ export const WithPassportMask: Story = {
       {...props}
       schema={passportSchema}
       defaultValues={passportDefaultValues}
+      renderComponent={(componentProps: MaskInputControlProps) => <MaskInputControl {...componentProps} />}
+    />
+  )
+}
+
+export const WithPassportDepartmentMask: Story = {
+  args: {
+    ...Base.args,
+    mask: '###-###'
+  },
+  render: (props) => (
+    <HookForm<MaskInputControlProps, TypeOf<typeof passportSchema>>
+      {...props}
+      schema={passportDepartmentSchema}
+      defaultValues={passportDepartmentDefaultValues}
       renderComponent={(componentProps: MaskInputControlProps) => <MaskInputControl {...componentProps} />}
     />
   )
