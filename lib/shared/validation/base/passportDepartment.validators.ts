@@ -20,8 +20,8 @@ const getPassportDepartmentRequired = (props?: PassportDepartmentValidationOptio
   const { root, empty, invalidDepartment } = message || {}
 
   const schema = z
-    .string({ message: root ?? baseDefaultMessages.PASSPORT_INVALID_TYPE() })
-    .nonempty(empty ?? baseDefaultMessages.PASSPORT_NON_EMPTY())
+    .string({ message: root ?? baseDefaultMessages.DEPARTMENT_NON_EMPTY() })
+    .nonempty(empty ?? baseDefaultMessages.DEPARTMENT_NON_EMPTY())
     .superRefine((value, context) => {
       const [left, right] = value.replace(/_/g, '').split('-')
 
