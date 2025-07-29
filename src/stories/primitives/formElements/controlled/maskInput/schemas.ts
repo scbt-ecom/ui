@@ -17,3 +17,8 @@ export const phoneSchema = z.object({
   field: zodValidators.base.getPhoneSchema()
 })
 export const phoneDefaultValues = ZodUtils.getZodDefaults(phoneSchema)
+
+export const passportSchema = z.object({
+  field: zodValidators.base.getPassportSchema()
+})
+export const passportDefaultValues = ZodUtils.getZodDefaults(passportSchema)

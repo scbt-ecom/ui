@@ -5,7 +5,16 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { fn } from '@storybook/test'
 import type { TypeOf } from 'zod'
 import { HookForm } from '../utils'
-import { baseDefaultValues, baseSchema, dateDefaultValues, dateSchema, phoneDefaultValues, phoneSchema } from './schemas'
+import {
+  baseDefaultValues,
+  baseSchema,
+  dateDefaultValues,
+  dateSchema,
+  passportDefaultValues,
+  passportSchema,
+  phoneDefaultValues,
+  phoneSchema
+} from './schemas'
 import { MaskInputControl } from '$/shared/ui'
 
 type MaskInputControlProps = React.ComponentPropsWithoutRef<typeof MaskInputControl>
@@ -74,6 +83,21 @@ export const WithDateMask: Story = {
       {...props}
       schema={dateSchema}
       defaultValues={dateDefaultValues}
+      renderComponent={(componentProps: MaskInputControlProps) => <MaskInputControl {...componentProps} />}
+    />
+  )
+}
+
+export const WithPassportMask: Story = {
+  args: {
+    ...Base.args,
+    mask: '#### ######'
+  },
+  render: (props) => (
+    <HookForm<MaskInputControlProps, TypeOf<typeof passportSchema>>
+      {...props}
+      schema={passportSchema}
+      defaultValues={passportDefaultValues}
       renderComponent={(componentProps: MaskInputControlProps) => <MaskInputControl {...componentProps} />}
     />
   )
