@@ -115,15 +115,17 @@ export type PassportValidationOptions = {
 /**
  * Схема валидации обязательного поля паспорта
  */
-const getPassportRequired = (props?: Omit<PassportValidationOptions, 'required'>) => {
+const getPassportRequired = (props?: PassportValidationOptions) => {
   const { defaultValue, message } = props || {}
   const { root, empty, invalidPart, invalidNumber } = message || {}
+
+  const currentDate = new Date()
 
   const schema = z
     .string({ message: root ?? baseDefaultMessages.PASSPORT_INVALID_TYPE() })
     .nonempty(empty ?? baseDefaultMessages.PASSPORT_NON_EMPTY())
     .superRefine((value, context) => {
-      const [part, number] = value.replace('_', '').split(' ')
+      const [part, number] = value.replace(/_/g, '').split(' ')
 
       // паспорт должен содержать серию и номер
       if (!part.length || !number.length) {
@@ -141,10 +143,10 @@ const getPassportRequired = (props?: Omit<PassportValidationOptions, 'required'>
         })
       }
 
-      // Проверка года выпуска
+      // год выпуска паспорта должен быть в диапазоне 97-99 или 00 по настоящий год
       const year = parseInt(part.slice(2, 4), 10)
-      const date = new Date().getFullYear().toString().slice(2, 4)
-      if (!(year >= 97 && year <= 99) && !(year >= 0 && year <= Number(date))) {
+      const currentYear = currentDate.getFullYear().toString().slice(2, 4)
+      if (!(year >= 97 && year <= 99) && !(year >= 0 && year <= Number(currentYear))) {
         return context.addIssue({
           code: ZodIssueCode.custom,
           message: invalidPart ?? baseDefaultMessages.INVALID_PASSPORT_PART()
