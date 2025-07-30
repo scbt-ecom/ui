@@ -22,3 +22,8 @@ export const passportSchema = z.object({
   field: zodValidators.base.getPassportSchema()
 })
 export const passportDefaultValues = ZodUtils.getZodDefaults(passportSchema)
+
+export const passportDepartmentSchema = z.object({
+  field: zodValidators.base.getPassportDepartmentSchema()
+})
+export const passportDepartmentDefaultValues = ZodUtils.getZodDefaults(passportDepartmentSchema)
