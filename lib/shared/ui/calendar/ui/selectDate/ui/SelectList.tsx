@@ -25,6 +25,7 @@ export const SelectList = ({ dates, selected, onSelect, className, mode, ...prop
     >
       {dates.map((date, index) => {
         const d = new Date()
+        d.setDate(1)
 
         if (mode === 'year') {
           d.setFullYear(date)
