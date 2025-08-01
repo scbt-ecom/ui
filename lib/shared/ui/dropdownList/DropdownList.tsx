@@ -33,11 +33,7 @@ export interface DropdownListProps<Multi extends boolean = false> extends React.
    * Дополнительные стили
    */
   classes?: DropdownListClasses
-  /**
-   * Кастомный текст сообщения, если ничего не найдено
-   */
-  emptyList?: (query: string) => React.ReactNode
-  target?: React.RefObject<HTMLInputElement>
+  target?: React.RefObject<HTMLElement>
 }
 
 export const DropdownList = <Multi extends boolean>({
@@ -49,7 +45,6 @@ export const DropdownList = <Multi extends boolean>({
   displayValue,
   classes,
   target,
-  emptyList,
   ...props
 }: DropdownListProps<Multi>) => {
   const ref = useRef<HTMLUListElement>(null)
@@ -81,31 +76,25 @@ export const DropdownList = <Multi extends boolean>({
         className
       )}
     >
-      {options.length > 0 ? (
-        options.map((option, index) => {
-          const active = isOptionActive(option, value)
+      {options.map((option, index) => {
+        const active = isOptionActive(option, value)
 
-          return (
-            <DropdownItem
-              ref={refs.setReference}
-              key={index}
-              item={option}
-              active={active}
-              focused={focusedIndex === index}
-              multiple={multiple}
-              onPick={elementPickHandler}
-              displayValue={displayValue}
-              onMouseEnter={() => setFocusedIndex(index)}
-              onMouseLeave={() => setFocusedIndex(-1)}
-              classes={classes?.item}
-            />
-          )
-        })
-      ) : emptyList ? (
-        <p>{emptyList(target?.current?.value || '')}</p>
-      ) : (
-        <p className='py-4 text-center align-middle'>Ничего не найдено</p>
-      )}
+        return (
+          <DropdownItem
+            ref={refs.setReference}
+            key={index}
+            item={option}
+            active={active}
+            focused={focusedIndex === index}
+            multiple={multiple}
+            onPick={elementPickHandler}
+            displayValue={displayValue}
+            onMouseEnter={() => setFocusedIndex(index)}
+            onMouseLeave={() => setFocusedIndex(-1)}
+            classes={classes?.item}
+          />
+        )
+      })}
     </ul>
   )
 }
