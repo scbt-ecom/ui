@@ -55,6 +55,13 @@ const Form = () => {
         control={control}
         dadataBaseUrl={DADATA_BASE_CACHE_URL as string}
         label='Address'
+        emptyList={(query: string) =>
+          query?.length > 3 ? (
+            <p className='py-4 text-center align-middle'> Ничего не найдено</p>
+          ) : (
+            <p className='py-4 text-center align-middle'>Введите больше 3 символов</p>
+          )
+        }
         name='address'
         externalHandlers={{
           changeHandler: console.log
