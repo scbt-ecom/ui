@@ -12,7 +12,8 @@ export const SlotClone = forwardRef<any, SlotCloneProps>(({ children, ...props }
 
     return cloneElement(children, {
       ...mergeProps(props, children.props),
-      // @ts-expect-error fixed pipe
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-expect-error
       ref: ref ? mergeRefs(ref, childrenRef) : childrenRef
     })
   }
