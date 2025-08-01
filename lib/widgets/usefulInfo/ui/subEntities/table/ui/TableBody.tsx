@@ -30,7 +30,6 @@ export const TableBody = ({ tableVariant, rows, headings, columnsVariant, classe
       {rows?.map((row, rowIndex) => (
         <DesktopRow
           key={rowIndex}
-          rowIndex={rowIndex}
           tableVariant={tableVariant}
           columnsVariant={columnsVariant}
           classes={classes?.desktopRow}

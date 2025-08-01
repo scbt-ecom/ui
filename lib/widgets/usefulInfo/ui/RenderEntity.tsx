@@ -71,6 +71,6 @@ const renderEntity = ({ entity, classes, accordionsConfig }: RenderEntityProps) 
 
 export const RenderEntity = ({ entity, classes, accordionsConfig }: RenderEntityProps) => {
   return (
-    <div className={cn('flex flex-col gap-6', classes?.entityWrapper)}>{renderEntity({ entity, classes, accordionsConfig })}</div>
+    <div className={cn('flex flex-col gap-8', classes?.entityWrapper)}>{renderEntity({ entity, classes, accordionsConfig })}</div>
   )
 }

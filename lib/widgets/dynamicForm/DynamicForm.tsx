@@ -83,7 +83,7 @@ const withApprovement = <Type extends ApprovementType>(
     <label
       className={cn(
         'mob-body-regular-s text-color-dark',
-        'desktop:desk-body-regular-m desktop:gap-x-4',
+        'desktop:desk-body-regular-s desktop:gap-x-4',
         'flex items-center justify-items-start gap-x-3'
       )}
     >
@@ -167,7 +167,7 @@ export const DynamicForm = <AType extends ApprovementType, CType extends ChipsTy
             )}
             <FieldMapper control={control as unknown as Control} fields={fields} />
             <div
-              className={cn('mob-body-regular-m flex flex-col items-start justify-center gap-4', {
+              className={cn('mob-body-regular-s flex flex-col items-start justify-center gap-4', {
                 ['desktop:flex-row desktop:items-center']: buttonGroup.length === 1
               })}
             >

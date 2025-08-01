@@ -35,7 +35,7 @@ export const customLinkConfig = cva(
     defaultVariants: {
       intent: 'blue',
       disabled: false,
-      size: 'sm',
+      size: 'md',
       withUnderline: false
     }
   }

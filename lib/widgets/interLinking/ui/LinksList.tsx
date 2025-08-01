@@ -19,7 +19,7 @@ export const LinksList = ({ links, classes }: LinksListProps) => {
       {links?.map(({ path, label, ...rest }) => (
         <CustomLink
           classes={{
-            link: cn('w-max', classes?.linkText),
+            link: cn(classes?.linkText),
             icon: cn(classes?.linkIcon)
           }}
           intent='dark'

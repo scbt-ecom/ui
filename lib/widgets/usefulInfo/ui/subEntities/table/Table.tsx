@@ -61,7 +61,7 @@ export const Table = ({
 
       {description && (
         <div
-          className={cn('mt-2 [&&]:desk-body-regular-m desktop:mt-2', classes?.description)}
+          className={cn('mt-4 [&&]:desk-body-regular-m desktop:mt-6', classes?.description)}
           dangerouslySetInnerHTML={{ __html: description ?? '' }}
         />
       )}
