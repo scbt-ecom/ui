@@ -29,7 +29,7 @@ export const Documents = ({ docs, config, title, iconType, description, classes,
   const content = (
     <div className={cn('flex max-w-[680px] flex-col', classes?.wrapper)}>
       {title && (
-        <Heading as='h3' className='mb-4'>
+        <Heading as='h4' className='mb-4'>
           {title}
         </Heading>
       )}

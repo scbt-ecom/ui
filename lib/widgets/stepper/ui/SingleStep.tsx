@@ -41,7 +41,7 @@ export const SingleStep = (props: SingleStepType) => {
           )}
           <div
             dangerouslySetInnerHTML={{ __html: description ?? '' }}
-            className={cn('desk-body-regular-l text-color-tetriary', classes?.description)}
+            className={cn('desk-body-regular-l text-color-secondary', classes?.description)}
           />
         </div>
 

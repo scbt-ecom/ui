@@ -14,7 +14,7 @@ export type EntityHtmlProps = {
 }
 
 export const Html = ({ html, config, classes, accordionConfig }: EntityHtmlProps) => {
-  const content = <div className={cn(classes?.html)} dangerouslySetInnerHTML={{ __html: html ?? '' }} />
+  const content = <div className={cn('max-w-[656px]', classes?.html)} dangerouslySetInnerHTML={{ __html: html ?? '' }} />
 
   return (
     <>

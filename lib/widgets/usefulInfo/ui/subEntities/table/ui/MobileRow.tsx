@@ -26,7 +26,7 @@ const mobileRowConfig = cva('mobile:flex desktop:hidden flex-col gap-2', {
   variants: {
     tableVariant: {
       filled: 'px-4 py-4 odd:bg-color-primary-light-default',
-      separator: 'py-4 border-t border-solid border-warm-grey-200 first:border-none'
+      separator: 'py-4 border-b border-solid border-warm-grey-200 first:border-none'
     }
   }
 })

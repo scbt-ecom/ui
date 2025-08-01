@@ -44,7 +44,7 @@ export const CalculatorView = <T extends FieldValues>({
   const { rootValue } = calculatorInfoConfig
 
   useEffect(() => {
-    localStorageActions.setItem('calculatorData', JSON.stringify(watchedFields))
+    localStorageActions.setItem('calculatorData', watchedFields)
   }, [watchedFields])
 
   const calculatedValue = isFormula(rootValue) ? evaluateFormula(rootValue.formula, watchedFields) : rootValue

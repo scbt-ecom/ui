@@ -38,7 +38,7 @@ export const UsefulInfo = ({ headline, tabs, classes, accordionsConfig }: Useful
         <div className={cn('mt-6 flex flex-col gap-2 desktop:mt-12', classes?.tabsWrapper)}>
           <Tabs tabsNames={tabsNames} activeTab={activeTab} setActiveTab={setActiveTab} classes={classes?.tabs} />
         </div>
-        <div className={cn('mt-6 flex flex-col gap-6', classes?.contentWrapper)}>
+        <div className={cn('mt-6 flex flex-col gap-12', classes?.contentWrapper)}>
           {tabs?.[activeTab]?.contents?.map((entity, index) => (
             <RenderEntity accordionsConfig={accordionsConfig} key={index} {...entity} classes={classes?.entityClasses} />
           ))}
