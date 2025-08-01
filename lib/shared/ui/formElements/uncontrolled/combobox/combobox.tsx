@@ -91,6 +91,10 @@ export interface ComboboxProps<Multi extends boolean> extends Omit<DropdownListP
    * Выключить фильтрацию списка
    */
   filterDisabled?: boolean
+  /**
+   * Кастомный текст сообщения, если ничего не найдено
+   */
+  emptyList?: (query: string) => React.ReactNode
 }
 
 const InnerComponent = <Multi extends boolean>(
@@ -112,7 +116,8 @@ const InnerComponent = <Multi extends boolean>(
     inputValue,
     filterDisabled,
     onInputChange: externalInputChangeHandler,
-    classes
+    classes,
+    emptyList
   }: ComboboxProps<Multi>,
   ref: ForwardedRef<HTMLInputElement>
 ) => {
@@ -241,6 +246,7 @@ const InnerComponent = <Multi extends boolean>(
               displayValue={displayValue}
               classes={dropdownClasses}
               target={refs.domReference}
+              emptyList={emptyList}
             />
           </motion.div>
         )}
