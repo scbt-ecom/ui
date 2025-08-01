@@ -95,8 +95,6 @@ export const Controlled: Story = {
   render: (props) => {
     const [value, setValue] = useState<ComboboxItemOption | null>(null)
 
-    console.log('value changed', value)
-
     return (
       <>
         <pre>{value && JSON.stringify(value, null, 2)}</pre>
@@ -126,6 +124,22 @@ export const Multiple: Story<true> = {
       </>
     )
   }
+}
+
+export const WithEmptyList: Story = {
+  args: {
+    ...Controlled.args,
+    options: []
+  },
+  render: Controlled.render
+}
+
+export const WithCustomEmptyMessage: Story = {
+  args: {
+    ...WithEmptyList.args,
+    empty: 'Ничо нет'
+  },
+  render: Controlled.render
 }
 
 export const Disabled: Story = {

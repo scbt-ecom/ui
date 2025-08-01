@@ -1,7 +1,7 @@
-import { type ForwardedRef, forwardRef, useEffect, useRef } from 'react'
+import { type ForwardedRef, forwardRef, useRef } from 'react'
 import { autoUpdate, flip, offset, useFloating } from '@floating-ui/react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { useCombobox } from './hooks'
+import { useCombobox, useKeyboardNavigation } from './hooks'
 import type { ChangeHandler, ComboboxValue } from './model'
 import type { ComboboxItemOption } from './ui'
 import { useClickOutside } from '$/shared/hooks'
@@ -148,28 +148,7 @@ const InnerComponent = <Multi extends boolean>(
     externalOnInputChange: externalInputChangeHandler
   })
 
-  useEffect(() => {
-    if (!refs.domReference.current) return
-
-    const input = refs.domReference.current
-
-    const abortController = new AbortController()
-
-    input.addEventListener(
-      'keydown',
-      (event) => {
-        switch (event.key) {
-          case ' ':
-            if (!open) setOpen(true)
-        }
-      },
-      { signal: abortController.signal }
-    )
-
-    return () => {
-      abortController.abort()
-    }
-  }, [])
+  useKeyboardNavigation({ ref: refs.domReference, openChangeHandler: setOpen })
 
   const getLabel = () => {
     if (!value) return ''
