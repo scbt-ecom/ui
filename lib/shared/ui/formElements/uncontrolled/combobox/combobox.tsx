@@ -112,6 +112,7 @@ const InnerComponent = <Multi extends boolean>(
     inputValue,
     filterDisabled,
     onInputChange: externalInputChangeHandler,
+    empty,
     classes
   }: ComboboxProps<Multi>,
   ref: ForwardedRef<HTMLInputElement>
@@ -234,6 +235,7 @@ const InnerComponent = <Multi extends boolean>(
             style={{ ...floatingStyles, width: containerRef.current?.getBoundingClientRect().width }}
           >
             <DropdownList
+              empty={empty}
               options={options}
               multiple={multiple}
               onPick={changeHandler}

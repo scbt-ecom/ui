@@ -1,7 +1,7 @@
 import { useRef } from 'react'
 import { useKeyboardNavigation } from './hooks'
 import { isOptionActive } from './model'
-import { DropdownItem, type DropdownItemClasses, type DropdownItemOption } from './ui'
+import { DropdownItem, type DropdownItemClasses, type DropdownItemOption, EmptyList } from './ui'
 import { useClickOutside } from '$/shared/hooks'
 import { cn } from '$/shared/utils'
 
@@ -33,7 +33,14 @@ export interface DropdownListProps<Multi extends boolean = false> extends React.
    * Дополнительные стили
    */
   classes?: DropdownListClasses
+  /**
+   * Целевая нода, с которой будет взаимодействовать список
+   */
   target?: React.RefObject<HTMLElement>
+  /**
+   * Отображаемое содержимое при пустом списке
+   */
+  empty?: React.ReactNode
 }
 
 export const DropdownList = <Multi extends boolean>({
@@ -45,6 +52,7 @@ export const DropdownList = <Multi extends boolean>({
   displayValue,
   classes,
   target,
+  empty = 'Список пуст',
   ...props
 }: DropdownListProps<Multi>) => {
   const ref = useRef<HTMLUListElement>(null)
@@ -76,25 +84,29 @@ export const DropdownList = <Multi extends boolean>({
         className
       )}
     >
-      {options.map((option, index) => {
-        const active = isOptionActive(option, value)
+      {options.length > 0 ? (
+        options.map((option, index) => {
+          const active = isOptionActive(option, value)
 
-        return (
-          <DropdownItem
-            ref={refs.setReference}
-            key={index}
-            item={option}
-            active={active}
-            focused={focusedIndex === index}
-            multiple={multiple}
-            onPick={elementPickHandler}
-            displayValue={displayValue}
-            onMouseEnter={() => setFocusedIndex(index)}
-            onMouseLeave={() => setFocusedIndex(-1)}
-            classes={classes?.item}
-          />
-        )
-      })}
+          return (
+            <DropdownItem
+              ref={refs.setReference}
+              key={index}
+              item={option}
+              active={active}
+              focused={focusedIndex === index}
+              multiple={multiple}
+              onPick={elementPickHandler}
+              displayValue={displayValue}
+              onMouseEnter={() => setFocusedIndex(index)}
+              onMouseLeave={() => setFocusedIndex(-1)}
+              classes={classes?.item}
+            />
+          )
+        })
+      ) : (
+        <EmptyList>{empty}</EmptyList>
+      )}
     </ul>
   )
 }
