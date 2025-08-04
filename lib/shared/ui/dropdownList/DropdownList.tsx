@@ -36,11 +36,11 @@ export interface DropdownListProps<Multi extends boolean = false> extends React.
   /**
    * Целевая нода, с которой будет взаимодействовать список
    */
-  target?: React.RefObject<HTMLElement>
+  target?: React.RefObject<HTMLInputElement>
   /**
    * Отображаемое содержимое при пустом списке
    */
-  empty?: React.ReactNode
+  empty?: (query: string) => React.ReactNode
 }
 
 export const DropdownList = <Multi extends boolean>({
@@ -52,7 +52,7 @@ export const DropdownList = <Multi extends boolean>({
   displayValue,
   classes,
   target,
-  empty = 'Список пуст',
+  empty = () => 'Список пуст',
   ...props
 }: DropdownListProps<Multi>) => {
   const ref = useRef<HTMLUListElement>(null)
@@ -105,7 +105,7 @@ export const DropdownList = <Multi extends boolean>({
           )
         })
       ) : (
-        <EmptyList>{empty}</EmptyList>
+        <EmptyList>{empty(target?.current?.value || '')}</EmptyList>
       )}
     </ul>
   )
