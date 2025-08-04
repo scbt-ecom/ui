@@ -33,7 +33,7 @@ export const DadataFio = <TFieldValues extends FieldValues>({
 
   return (
     <AutocompleteControl
-      query={(query, option) => queryFn(query, dadataBaseUrl, option, queryClient)}
+      query={(query, options) => queryFn(query, dadataBaseUrl, options, queryClient)}
       formatter={formatter}
       {...props}
     />
