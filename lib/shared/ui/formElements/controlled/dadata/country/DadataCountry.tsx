@@ -32,6 +32,10 @@ export const DadataCountry = <TFieldValues extends FieldValues>({
   const queryFn = useDadataQueryCountry
 
   return (
-    <AutocompleteControl query={(query) => queryFn(query, dadataBaseUrl, {}, queryClient)} formatter={formatter} {...props} />
+    <AutocompleteControl
+      query={(query, option) => queryFn(query, dadataBaseUrl, option, queryClient)}
+      formatter={formatter}
+      {...props}
+    />
   )
 }
