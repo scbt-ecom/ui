@@ -1,3 +1,6 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
+
 import * as constants from './constants'
 import { ComponentFactory } from '@/test/utils'
 import { AutocompleteControl } from '$/shared/ui'

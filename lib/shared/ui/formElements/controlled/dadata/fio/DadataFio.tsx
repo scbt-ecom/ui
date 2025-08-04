@@ -32,6 +32,10 @@ export const DadataFio = <TFieldValues extends FieldValues>({
   const queryFn = useDadataQueryFio
 
   return (
-    <AutocompleteControl query={(query) => queryFn(query, dadataBaseUrl, {}, queryClient)} formatter={formatter} {...props} />
+    <AutocompleteControl
+      query={(query, options) => queryFn(query, dadataBaseUrl, options, queryClient)}
+      formatter={formatter}
+      {...props}
+    />
   )
 }

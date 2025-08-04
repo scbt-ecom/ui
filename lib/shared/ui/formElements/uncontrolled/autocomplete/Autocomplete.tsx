@@ -1,5 +1,5 @@
 import { forwardRef, useState } from 'react'
-import { type UseQueryResult } from '@tanstack/react-query'
+import { type UseQueryOptions, type UseQueryResult } from '@tanstack/react-query'
 import type { AutocompleteItemOption } from './types'
 import { useDebounceValue } from '$/shared/hooks'
 import { Combobox, type ComboboxProps, type ComboboxValue } from '$/shared/ui'
@@ -12,7 +12,11 @@ export interface AutocompleteBaseProps<TData>
   /**
    * Функция для запроса основанная на [@tanstack/query](https://tanstack.com/query/latest/docs/framework/react/overview)
    */
-  query: (query: string) => UseQueryResult<TData[]>
+  query: (query: string, options?: Partial<UseQueryOptions<TData[]>>) => UseQueryResult<TData[]>
+  /**
+   * Параметры запроса
+   */
+  queryOptions?: Partial<UseQueryOptions<TData[]>>
   /**
    * Позволяет форматировать данные
    */
@@ -32,11 +36,22 @@ export interface AutocompleteBaseProps<TData>
    * @default input-first
    */
   strategy?: 'input-first' | 'select-first'
+  limit?: number
 }
 
 export const AutocompleteBase = forwardRef(
   <TData,>(
-    { formatter, query, value, displayValue, onChange, strategy = 'input-first', ...props }: AutocompleteBaseProps<TData>,
+    {
+      formatter,
+      query,
+      queryOptions: initialQueryOptions,
+      value,
+      displayValue,
+      limit = 0,
+      onChange,
+      strategy = 'input-first',
+      ...props
+    }: AutocompleteBaseProps<TData>,
     ref: React.ForwardedRef<HTMLInputElement>
   ) => {
     const [search, setSearch] = useState<string>(value ?? '')
@@ -46,7 +61,12 @@ export const AutocompleteBase = forwardRef(
 
     const debounceSearch = useDebounceValue(inputValue, 100)
 
-    const { data } = query(debounceSearch)
+    const queryOptions: Partial<UseQueryOptions<TData[]>> = {
+      enabled: limit > 0 ? debounceSearch.length >= limit : true,
+      ...initialQueryOptions
+    }
+
+    const { data } = query(debounceSearch, queryOptions)
 
     const options = data ? data.map(formatter) : []
 
@@ -68,6 +88,7 @@ export const AutocompleteBase = forwardRef(
         multiple={false}
         displayValue={displayValue}
         onChange={onValueChange}
+        empty={debounceSearch.length < limit ? `Введите более ${limit} символов для поиска` : undefined}
       />
     )
   }

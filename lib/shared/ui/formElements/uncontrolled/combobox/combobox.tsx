@@ -26,7 +26,9 @@ export type ExternalHandlers<Multi extends boolean> = {
   inputChangeHandler?: (value: string) => void
 }
 
-export interface ComboboxProps<Multi extends boolean> extends Omit<DropdownListProps<Multi>, 'options' | 'value' | 'onChange'> {
+export interface ComboboxProps<Multi extends boolean>
+  extends Omit<DropdownListProps<Multi>, 'options' | 'value' | 'onChange'>,
+    Record<`data-${string}`, unknown> {
   /**
    * Список опций
    */

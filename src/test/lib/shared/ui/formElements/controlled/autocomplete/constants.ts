@@ -1,7 +1,6 @@
 import { useQuery, type UseQueryOptions } from '@tanstack/react-query'
-import { object } from 'zod'
-import type { DataAttributes } from '@/test/utils/types'
-import { type AutocompleteControl } from '$/shared/ui'
+import { object, type TypeOf } from 'zod'
+import { type AutocompleteControlProps } from '$/shared/ui'
 import { zodValidators } from '$/shared/validation'
 
 export const baseSchema = object({
@@ -11,8 +10,6 @@ export const baseSchema = object({
 export const optionalSchema = object({
   field: zodValidators.base.getSelectSchema({ required: false })
 })
-
-type AutocompleteProps = React.ComponentPropsWithoutRef<typeof AutocompleteControl> & DataAttributes
 
 const useQueryFn = (search: string, options?: Partial<UseQueryOptions<string[]>>) =>
   useQuery<string[]>({
@@ -25,7 +22,7 @@ const useQueryFn = (search: string, options?: Partial<UseQueryOptions<string[]>>
     ...options
   })
 
-export const autocompleteBaseProps: Omit<AutocompleteProps, 'control'> = {
+export const autocompleteBaseProps: Omit<AutocompleteControlProps<TypeOf<typeof baseSchema>, string>, 'control'> = {
   label: 'Pick a value',
   name: 'field',
   query: useQueryFn,

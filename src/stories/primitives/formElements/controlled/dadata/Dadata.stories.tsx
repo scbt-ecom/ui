@@ -56,6 +56,7 @@ const Form = () => {
         dadataBaseUrl={DADATA_BASE_CACHE_URL as string}
         label='Address'
         name='address'
+        limit={3}
         externalHandlers={{
           changeHandler: console.log
         }}
