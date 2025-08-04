@@ -37,7 +37,7 @@ const meta = {
 
 export default meta
 
-type Story = StoryObj<typeof AutocompleteBase>
+type Story = StoryObj<typeof AutocompleteBase<string>>
 
 /**
  * \`Autocomplete\` компонент для выбора значений из выпадающего списка\n

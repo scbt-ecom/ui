@@ -19,6 +19,7 @@ export class ComponentFactory<Props extends {}> {
     props: Omit<FormProviderProps<Props, TFieldValues>, 'renderComponent'>
   ): React.JSX.Element {
     const { args, ...restProps } = props
+
     return (
       <QueryClientProvider client={queryClient}>
         <FormProvider<Props, TFieldValues>

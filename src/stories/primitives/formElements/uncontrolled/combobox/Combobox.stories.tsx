@@ -137,7 +137,7 @@ export const WithEmptyList: Story = {
 export const WithCustomEmptyMessage: Story = {
   args: {
     ...WithEmptyList.args,
-    empty: () => 'Ничо нет'
+    empty: 'Ничо нет'
   },
   render: Controlled.render
 }
