@@ -222,6 +222,7 @@ const InnerComponent = <Multi extends boolean>(
               displayValue={displayValue}
               classes={dropdownClasses}
               target={refs.domReference}
+              inputValue={inputValue}
             />
           </motion.div>
         )}
