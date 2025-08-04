@@ -19,6 +19,10 @@ export type EditorControlProps<
   helperText?: string | ReactElement
   label?: string
   limit?: number
+  /**
+   * Сделать текстовый редактор маленьким
+   */
+  small?: boolean
 }
 
 export const EditorControl = <T extends FieldValues>({

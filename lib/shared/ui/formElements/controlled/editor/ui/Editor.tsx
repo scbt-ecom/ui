@@ -23,7 +23,14 @@ interface EditorProps extends Partial<UseEditorOptions> {
    */
   label?: string
   helperText?: string | ReactElement
+  /**
+   * Лимит символов
+   */
   limit?: number
+  /**
+   * Сделать текстовый редактор маленьким
+   */
+  small?: boolean
 }
 
 type EditorRef = React.ElementRef<typeof EditorContent>
@@ -43,6 +50,7 @@ export const Editor = forwardRef<EditorRef, EditorProps>(
       helperText,
       shouldRerenderOnTransaction = true,
       externalHandlers,
+      small,
       ...props
     },
     ref
@@ -78,7 +86,8 @@ export const Editor = forwardRef<EditorRef, EditorProps>(
           spellcheck: 'false',
           class: cn(
             'p-4 outline-none bg-color-blue-grey-100 min-h-[240px] max-h-[500px] customScrollbar-y overflow-y-auto break-keep',
-            classes?.editor
+            classes?.editor,
+            { 'max-h-[80px] min-h-full': small }
           )
         }
       },

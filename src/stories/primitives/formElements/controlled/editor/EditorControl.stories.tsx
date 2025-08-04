@@ -68,3 +68,9 @@ export const WithLimit: Story = {
     limit: 1000
   }
 }
+
+export const SmallEditor: Story = {
+  args: {
+    small: true
+  }
+}
