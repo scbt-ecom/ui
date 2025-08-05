@@ -17,7 +17,7 @@ type DesktopRowProps = {
 const desktopRowConfig = cva('desktop:grid mobile:hidden items-center', {
   variants: {
     columnsVariant: {
-      twoCols: 'grid-cols-[248px_1fr] gap-16',
+      twoCols: 'grid-cols-[248px_1fr] gap-16 ',
       threeCols: 'grid-cols-[248px_1fr_1fr] gap-12'
     },
     tableVariant: {
@@ -34,9 +34,8 @@ export const DesktopRow = ({ row, tableVariant, columnsVariant, classes }: Deskt
         <div
           key={cellIndex}
           className={cn('desk-body-regular-l text-color-dark', { 'font-medium': cellIndex !== 0 }, classes?.cell)}
-        >
-          {cell && cell}
-        </div>
+          dangerouslySetInnerHTML={{ __html: cell }}
+        />
       ))}
     </div>
   )

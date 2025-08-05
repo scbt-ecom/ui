@@ -48,9 +48,8 @@ export const MobileRow = ({ row, tableVariant, columnsVariant, headingsExist, cl
               },
               classes?.cell
             )}
-          >
-            {cell}
-          </div>
+            dangerouslySetInnerHTML={{ __html: cell }}
+          />
         </div>
       ))}
     </div>
