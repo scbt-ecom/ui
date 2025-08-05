@@ -25,6 +25,13 @@ const getPassportDepartmentRequired = (props?: PassportDepartmentValidationOptio
     .superRefine((value, context) => {
       const [left, right] = value.replace(/_/g, '').split('-')
 
+      if (value.replace(/_/g, '').length !== 7) {
+        return context.addIssue({
+          code: ZodIssueCode.custom,
+          message: empty ?? baseDefaultMessages.INVALID_DEPARTMENT()
+        })
+      }
+
       if (!left.length || !right.length) {
         return context.addIssue({
           code: ZodIssueCode.custom,
