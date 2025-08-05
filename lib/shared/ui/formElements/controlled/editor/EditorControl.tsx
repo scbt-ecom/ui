@@ -1,7 +1,7 @@
 import { type ReactElement, useState } from 'react'
 import { type FieldValues, type Path, useController, type UseControllerProps } from 'react-hook-form'
 import { Editor } from './ui/Editor'
-import { InputBase, Modal } from '$/shared/ui'
+import { Icon, InputBase, Modal } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
 export type EditorControlClasses = {
@@ -54,7 +54,7 @@ export const EditorControl = <T extends FieldValues>({
 
   if (small) {
     return (
-      <div className={classes?.root}>
+      <>
         <InputBase
           readOnly
           label={label}
@@ -65,6 +65,9 @@ export const EditorControl = <T extends FieldValues>({
               dangerouslySetInnerHTML={{ __html: field.value }}
             />
           )}
+          attachmentProps={{
+            icon: <Icon name='general/edit' className='size-5 text-color-tetriary' />
+          }}
           onClick={() => editable && setIsModalOpen(true)}
         />
 
@@ -87,7 +90,7 @@ export const EditorControl = <T extends FieldValues>({
             {...props}
           />
         </Modal>
-      </div>
+      </>
     )
   }
   return (
