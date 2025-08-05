@@ -127,6 +127,13 @@ const getPassportRequired = (props?: PassportValidationOptions) => {
     .superRefine((value, context) => {
       const [part, number] = value.replace(/_/g, '').split(' ')
 
+      if (part?.length + number?.length !== 10) {
+        return context.addIssue({
+          code: ZodIssueCode.custom,
+          message: invalidPart ?? baseDefaultMessages.PASSPORT_INVALID_TYPE()
+        })
+      }
+
       // паспорт должен содержать серию и номер
       if (!part.length || !number.length) {
         return context.addIssue({
