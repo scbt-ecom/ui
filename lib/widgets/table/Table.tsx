@@ -1,18 +1,20 @@
 import { TableUtils } from '../../shared/ui/table/model'
 import { cn } from '../../shared/utils'
-import { getHeaderAccessors, type TableProps } from './model'
+import { getHeaderAccessors, isHorizontalTable, type TableProps } from './model'
 import { DataTable, ResponsiveContainer } from '$/shared/ui'
 
 export const Table = <Key extends string, TData extends Record<Key, unknown>>(props: TableProps<Key, TData>) => {
-  const { title, subtitle, helperText, pagination = false, columns, data, ...restTableProps } = props
+  const { title, subtitle, helperText, pagination = false, columns, data, horizontal, ...restTableProps } = props
 
-  const { accessors, sortingColumns } = getHeaderAccessors(columns)
+  const { accessors, sortingColumns, sortingFn } = getHeaderAccessors(columns)
 
   const cols = TableUtils.getColumns(data[0], {
-    // @ts-expect-error test
     headerAccessor: accessors,
-    enableSorting: sortingColumns
+    enableSorting: sortingColumns,
+    sortingFn
   })
+
+  const isHorizontal = isHorizontalTable(horizontal)
 
   return (
     <section className='w-full'>
@@ -23,7 +25,14 @@ export const Table = <Key extends string, TData extends Record<Key, unknown>>(pr
         </div>
 
         <div className='flex flex-col gap-4'>
-          <DataTable {...restTableProps} data={data} columns={cols} mode='odd' pagination={pagination} />
+          <DataTable
+            {...restTableProps}
+            horizontal={isHorizontal}
+            data={data}
+            columns={cols}
+            mode='odd'
+            pagination={pagination}
+          />
           {helperText && (
             <div className='desk-body-regular-m text-color-tetriary' dangerouslySetInnerHTML={{ __html: helperText }} />
           )}

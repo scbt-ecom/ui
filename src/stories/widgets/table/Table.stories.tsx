@@ -1,6 +1,6 @@
 import { type Meta, type StoryObj } from '@storybook/react'
 import data from './data.json'
-import { Table } from '$/widgets'
+import { Table, type TableProps } from '$/widgets/table'
 
 const meta = {
   title: 'WIDGETS/Table',
@@ -20,6 +20,8 @@ export default meta
 type Story = StoryObj<typeof Table>
 
 export const Base: Story = {
-  args: {},
-  render: (props) => <Table {...props} {...data} mode={data.mode as 'solid' | 'odd'} />
+  args: {
+    ...(data as TableProps<keyof (typeof data.data)[0], (typeof data.data)[0]>)
+  },
+  render: (props) => <Table {...props} mode={data.mode as 'solid' | 'odd'} />
 }

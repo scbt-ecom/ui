@@ -64,6 +64,8 @@ export const DropdownList = <Multi extends boolean>({
     value
   })
 
+  console.log('huesos')
+
   const elementPickHandler = (item: DropdownItemOption) => {
     onPick?.(item)
 

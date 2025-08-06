@@ -213,7 +213,10 @@ const InnerComponent = <Multi extends boolean>(
             animate={{ opacity: 1 }}
             transition={{ duration: 0.1 }}
             className={cn('z-[1000]', floating)}
-            style={{ ...floatingStyles, width: containerRef.current?.getBoundingClientRect().width }}
+            style={{
+              ...floatingStyles,
+              width: containerRef.current?.getBoundingClientRect().width
+            }}
           >
             <DropdownList
               empty={empty}

@@ -1,2 +1,2 @@
 export type { TableProps } from './types'
-export { getHeaderAccessors } from './utils'
+export { getHeaderAccessors, isHorizontalTable } from './utils'
