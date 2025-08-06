@@ -27,9 +27,7 @@ export const Experts = ({ expertsList, classes, accordionConfig, config, headlin
         </Heading>
       )}
       <div className={cn('flex flex-col gap-6', classes?.wrapper)}>
-        {expertsList?.map((card) => (
-          <ExpertCard key={card.name} classes={classes?.singleCard} {...card} />
-        ))}
+        {expertsList?.map((card) => <ExpertCard key={card.name} classes={classes?.singleCard} {...card} />)}
       </div>
     </div>
   )

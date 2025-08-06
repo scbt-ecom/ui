@@ -34,9 +34,7 @@ export const Documents = ({ docs, config, title, iconType, description, classes,
         </Heading>
       )}
       <div className={cn('flex flex-col gap-4', classes?.documentsWrapper)}>
-        {docs?.map((doc) => (
-          <Document iconType={iconType} key={doc.label} {...doc} classes={classes?.singleDocument} />
-        ))}
+        {docs?.map((doc) => <Document iconType={iconType} key={doc.label} {...doc} classes={classes?.singleDocument} />)}
       </div>
 
       {description && (

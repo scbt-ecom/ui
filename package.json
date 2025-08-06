@@ -88,6 +88,7 @@
     "esbuild": "0.24.0"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.9.0",
     "@headlessui/react": "^2.1.2",
     "@radix-ui/react-checkbox": "^1.1.1",
     "@radix-ui/react-popover": "^1.1.1",
