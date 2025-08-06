@@ -21,6 +21,7 @@ export const allowedIcons = {
     communication: ['communication/phone'],
     editor: [
       'editor/bold',
+      'editor/fonts',
       'editor/heading',
       'editor/italic',
       'editor/link',
@@ -71,6 +72,7 @@ export const allowedIcons = {
     'brandLogos/logoWhite',
     'communication/phone',
     'editor/bold',
+    'editor/fonts',
     'editor/heading',
     'editor/italic',
     'editor/link',

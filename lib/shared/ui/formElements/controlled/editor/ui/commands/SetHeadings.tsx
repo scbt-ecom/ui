@@ -1,7 +1,6 @@
 import type { Editor } from '@tiptap/react'
 import { headingsOptions } from '../../model/helper'
 import { Icon } from '$/shared/ui/icon'
-import { KeyboardShortcuts } from '$/shared/ui/keyboardShortcuts'
 import { Popover } from '$/shared/ui/popover'
 import { cn } from '$/shared/utils'
 
@@ -12,7 +11,7 @@ interface ISetHeadingsProps {
 export const SetHeadings = ({ editor }: ISetHeadingsProps) => {
   return (
     <Popover
-      classes={{ content: 'w-full ' }}
+      classes={{ content: 'w-full' }}
       triggerElement={
         <span
           title='Добавить заголовок'
@@ -22,9 +21,9 @@ export const SetHeadings = ({ editor }: ISetHeadingsProps) => {
         </span>
       }
     >
-      <div className='flex w-full flex-1 flex-col gap-2'>
-        {headingsOptions.map(({ level, shortcuts }) => (
-          <div key={level} className='flex items-center gap-4 border-b border-solid border-warm-grey-200 pb-4 last:border-none'>
+      <div className='flex flex-1 gap-2'>
+        {headingsOptions.map((level) => (
+          <div key={level} className='flex items-center gap-4'>
             <button
               type='button'
               onClick={() => editor.chain().focus().toggleHeading({ level }).run()}
@@ -35,8 +34,6 @@ export const SetHeadings = ({ editor }: ISetHeadingsProps) => {
             >
               {`H${level}`}
             </button>
-
-            <KeyboardShortcuts keyList={shortcuts} />
           </div>
         ))}
       </div>

@@ -1,13 +1,8 @@
 import type { Editor } from '@tiptap/react'
-import type { ColorOption, HeadingOptions } from './types'
+import { type ColorOption, type HeadingLevel } from './types'
 import { Icon } from '$/shared/ui'
 
-export const headingsOptions: HeadingOptions[] = [
-  { shortcuts: ['ctrl', 'alt', '1'], level: 1 },
-  { shortcuts: ['ctrl', 'alt', '2'], level: 2 },
-  { shortcuts: ['ctrl', 'alt', '3'], level: 3 },
-  { shortcuts: ['ctrl', 'alt', '4'], level: 4 }
-]
+export const headingsOptions: HeadingLevel[] = [1, 2, 3, 4]
 
 export const editorHeadingClasses: Record<number, string> = {
   1: 'mob-headline-bold-m desktop:desk-headline-bold-l',
@@ -15,6 +10,15 @@ export const editorHeadingClasses: Record<number, string> = {
   3: 'mob-title-bold-l desktop:desk-title-bold-l',
   4: 'mob-title-bold-m desktop:desk-title-bold-s'
 }
+
+export const fontSizesOptions = [
+  { label: '12px', value: '12px' },
+  { label: '14px', value: '14px' },
+  { label: '16px', value: '16px' },
+  { label: '18px', value: '18px' },
+  { label: '20px', value: '20px' },
+  { label: '24px', value: '24px' }
+]
 
 export const editorAllowedColors: ColorOption[] = [
   '#292929',
@@ -69,10 +73,9 @@ export const renderEditorPanel = (editor: Editor) => [
   },
   {
     label: 'Перенос строки',
-    icon: <Icon name='arrows/arrowDownRight' className='size-4' />,
+    icon: <Icon name='editor/space' className='size-4' />,
     onClick: () => editor.chain().focus().setHardBreak().run()
   },
-
   {
     label: 'Отменить',
     icon: <Icon name='editor/undo' className='size-4' />,

@@ -2,12 +2,11 @@ import { forwardRef, type ReactElement, useEffect } from 'react'
 import { type FieldError } from 'react-hook-form'
 import CharacterCount from '@tiptap/extension-character-count'
 import { EditorContent, type EditorEvents, useEditor, type UseEditorOptions } from '@tiptap/react'
+import { MessageView } from '../../../ui'
 import { type EditorControlClasses } from '../EditorControl'
-import { editorConfig } from '../model/config'
+import { editorConfig } from '../model'
 import { Toolbar } from './Toolbar'
-import { MessageView } from '$/shared/ui/formElements/ui'
 import { cn } from '$/shared/utils'
-
 type ExternalHandlers = {
   onUpdate?: (editor: EditorEvents['update']) => void
 }
@@ -18,9 +17,6 @@ interface EditorProps extends Partial<UseEditorOptions> {
   error?: FieldError
   classes?: EditorControlClasses
   externalHandlers?: ExternalHandlers
-  /**
-   * Заголовок
-   */
   label?: string
   helperText?: string | ReactElement
   /**

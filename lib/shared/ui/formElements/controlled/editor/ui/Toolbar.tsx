@@ -1,5 +1,5 @@
 import { type Editor } from '@tiptap/react'
-import { SetColor, SetCoreCommands, SetCustomLink, SetHeadings } from './commands'
+import { SetColor, SetCoreCommands, SetCustomLink, SetFontSize, SetHeadings } from './commands'
 
 interface ToolbarProps {
   editor: Editor
@@ -11,6 +11,7 @@ export const Toolbar = ({ editor }: ToolbarProps) => {
       <SetColor editor={editor} />
       <SetHeadings editor={editor} />
       <SetCustomLink editor={editor} />
+      <SetFontSize editor={editor} />
     </div>
   )
 }

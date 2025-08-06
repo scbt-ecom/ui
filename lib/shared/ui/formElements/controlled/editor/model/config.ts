@@ -1,12 +1,13 @@
 import Color from '@tiptap/extension-color'
-import Heading from '@tiptap/extension-heading'
+import { Heading } from '@tiptap/extension-heading'
 import Link from '@tiptap/extension-link'
-import TextStyle from '@tiptap/extension-text-style'
+import { TextStyle } from '@tiptap/extension-text-style'
 import Underline from '@tiptap/extension-underline'
 import { mergeAttributes } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
+import { FontSizeExtension } from './extensions'
 import { editorHeadingClasses } from './helper'
-import { type THeadingLevel } from './types'
+import { type HeadingLevel } from './types'
 
 export const editorConfig = [
   StarterKit.configure({
@@ -27,6 +28,7 @@ export const editorConfig = [
       }
     }
   }),
+  FontSizeExtension,
   Underline,
   TextStyle,
   Color,
@@ -35,7 +37,7 @@ export const editorConfig = [
   }).extend({
     renderHTML({ node, HTMLAttributes }) {
       const hasLevel = this.options.levels.includes(node.attrs.level)
-      const level: THeadingLevel = hasLevel ? node.attrs.level : this.options.levels[0]
+      const level: HeadingLevel = hasLevel ? node.attrs.level : this.options.levels[0]
       return [
         `h${level}`,
         mergeAttributes(this.options.HTMLAttributes, HTMLAttributes, {

@@ -1,5 +1,5 @@
 import { type Editor } from '@tiptap/react'
-import { renderEditorPanel } from '../../model/helper'
+import { renderEditorPanel } from '../../model'
 import { Hint } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 

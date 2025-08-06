@@ -12,6 +12,7 @@ import Logomain from '../../../../static/brandLogos/logoMain.svg?react'
 import Logowhite from '../../../../static/brandLogos/logoWhite.svg?react'
 import Phone from '../../../../static/communication/phone.svg?react'
 import Bold from '../../../../static/editor/bold.svg?react'
+import Fonts from '../../../../static/editor/fonts.svg?react'
 import Heading from '../../../../static/editor/heading.svg?react'
 import Italic from '../../../../static/editor/italic.svg?react'
 import Link from '../../../../static/editor/link.svg?react'
@@ -73,6 +74,7 @@ export const iconsMap = {
   'brandLogos/logoWhite': Logowhite,
   'communication/phone': Phone,
   'editor/bold': Bold,
+  'editor/fonts': Fonts,
   'editor/heading': Heading,
   'editor/italic': Italic,
   'editor/link': Link,

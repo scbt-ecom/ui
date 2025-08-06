@@ -13,7 +13,7 @@ const linkSchema = z.object({
   underline: z.boolean().optional().default(true)
 })
 
-type TLinkSchema = z.infer<typeof linkSchema>
+type LinkSchema = z.infer<typeof linkSchema>
 
 export const SetCustomLink = ({ editor }: ISetCustomLinkProps) => {
   const { control, handleSubmit } = useControlledForm({
@@ -24,7 +24,7 @@ export const SetCustomLink = ({ editor }: ISetCustomLinkProps) => {
     }
   })
 
-  const onSubmit = (values: TLinkSchema) => {
+  const onSubmit = (values: LinkSchema) => {
     editor
       ?.chain()
       .focus()
