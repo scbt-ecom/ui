@@ -1,5 +1,5 @@
 import type { Editor } from '@tiptap/react'
-import { editorAllowedColors } from '../../model/helper'
+import { editorAllowedColors } from '../../model'
 import { Icon, Popover } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
