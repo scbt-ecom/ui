@@ -32,6 +32,7 @@ export const useComboboxControl = <Multi extends boolean>({
 
   const changeHandler = useCallback<ChangeHandler<Multi>>((selected) => {
     if (!selected) {
+      if (!multiple) onChange(null)
       return
     }
 
