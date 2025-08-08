@@ -1,59 +1,32 @@
 {
-  "internalName": "фывафыва",
-  "title": "<p class=\"text-dark\">фывафыавфы</p>",
-  "subtitle": "<p class=\"text-dark\">фывафыафыва</p>",
+  "internalName": "testovaya_forma",
+  "title": "<p class=\"text-dark\">title</p>",
+  "subtitle": "<p class=\"text-dark\">subtitle</p>",
   "columns": [
     {
-      "title": "Срок",
-      "visibleTitle": "Пупа",
+      "title": "pisya",
+      "visibleTitle": "Срок",
       "enableSorting": true,
       "sortingFn": "alphanumeric"
     },
     {
-      "title": "Процент",
-      "enableSorting": false,
-      "sortingFn": "basic"
-    },
-    {
-      "title": "Пися",
-      "enableSorting": false,
-      "sortingFn": "basic"
-    },
-    {
-      "title": "Попа",
+      "title": "popa",
+      "visibleTitle": "Процент",
       "enableSorting": false,
       "sortingFn": "basic"
     }
   ],
   "enableHeaders": true,
   "mode": "solid",
-  "pagination": false,
+  "pagination": true,
+  "pageSize": 10,
   "horizontal": {
-    "type": "condition",
-    "condition": "<",
-    "operand": {
-      "left": "1",
-      "right": "3"
-    }
+    "type": "false"
   },
   "data": [
     {
-      "Срок": "10",
-      "Процент": "10",
-      "Пися": "10",
-      "Попа": "10"
-    },
-    {
-      "Срок": "12",
-      "Процент": "73",
-      "Пися": "1234",
-      "Попа": "534"
-    },
-    {
-      "Срок": "18",
-      "Процент": "123",
-      "Пися": "4325",
-      "Попа": "876"
+      "pisya": "10",
+      "popa": "14"
     }
   ]
 }
