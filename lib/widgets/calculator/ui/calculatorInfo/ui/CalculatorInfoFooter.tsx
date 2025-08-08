@@ -21,7 +21,9 @@ export const CalculatorInfoFooter = ({ assistHint, buttonsConfig, bottomDescript
       {assistHint && <AssistHint {...assistHint} classes={classes?.assistHint} />}
 
       <div className={cn('flex items-center gap-4 mobile:flex-col', classes?.buttonsWrapper)}>
-        {buttonsConfig?.map((button, index) => <ButtonWithHandlers key={index} className='w-full' {...button} />)}
+        {buttonsConfig?.map((button, index) => (
+          <ButtonWithHandlers key={index} className='w-full' {...button} />
+        ))}
       </div>
       {bottomDescription && (
         <p className={cn('desk-body-regular-m mt-4 text-color-secondary', classes?.bottomDescription)}>{bottomDescription}</p>

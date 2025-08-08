@@ -21,8 +21,11 @@ export const generateFileAssets = (staticPath: string, outputDir: string) => {
     iconsFlatten.push(iconName)
   })
 
+  const generic = '<T extends keyof typeof allowedIcons.group>'
   const content = `
 export type AllowedIcons = (typeof allowedIcons.flatten)[number]
+
+export type AllowedIconsGroup${generic} = (typeof allowedIcons.group)[T][number]
 
 export const allowedIcons = {
   group: ${JSON.stringify(icons, null, 2)},

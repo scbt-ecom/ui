@@ -26,7 +26,7 @@ export const Document = ({ label, size, url, iconType, classes }: DocumentProps)
       rel='noreferrer'
       tabIndex={0}
       className={cn(
-        'group flex w-full cursor-pointer items-center gap-2 rounded-sm p-1 outline outline-2 outline-transparent transition-colors focus-within:outline-primary-focus',
+        'group flex w-full cursor-pointer items-center gap-2 rounded-sm p-1 outline outline-2 outline-transparent transition-colors',
         classes?.link
       )}
     >

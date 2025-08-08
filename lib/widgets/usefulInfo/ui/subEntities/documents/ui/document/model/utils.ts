@@ -1,7 +1,6 @@
 import { cva } from 'class-variance-authority'
-import type { SpritesMap } from '$/shared/ui'
 
-export type IconNames = Extract<SpritesMap['files'], 'documentFilled' | 'documentOutline'>
+export type IconNames = 'documentFilled' | 'documentOutline'
 
 export const iconsMap: Record<IconNames, `files/${IconNames}`> = {
   documentFilled: 'files/documentFilled',

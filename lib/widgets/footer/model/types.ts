@@ -6,10 +6,10 @@ import type {
   SiteMapClasses,
   SocialLinksClasses
 } from '../ui'
-import { type SpritesMap } from '$/shared/ui'
+import { type AllowedIconsGroup } from '$/shared/ui/icon/allowedIcons'
 
 export interface FooterSocialLinks {
-  iconName: `social/${SpritesMap['social']}`
+  iconName: AllowedIconsGroup<'social'>
   href: string
   target?: string
 }
