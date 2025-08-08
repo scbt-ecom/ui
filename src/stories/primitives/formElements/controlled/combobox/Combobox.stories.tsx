@@ -129,3 +129,10 @@ export const WithMulti: Story<true> = {
     />
   )
 }
+
+export const WithPortal: Story = {
+  args: {
+    portal: document.body
+  },
+  render: Base.render
+}

@@ -1,4 +1,4 @@
-import { type ForwardedRef, forwardRef, useRef } from 'react'
+import { type ForwardedRef, forwardRef } from 'react'
 import { autoUpdate, flip, offset, useFloating } from '@floating-ui/react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useCombobox, useKeyboardNavigation } from './hooks'
@@ -6,11 +6,11 @@ import type { ChangeHandler, ComboboxValue } from './model'
 import type { ComboboxItemOption } from './ui'
 import { useClickOutside } from '$/shared/hooks'
 import { type DeepPartial } from '$/shared/types'
-import { Icon } from '$/shared/ui'
-import { DropdownList, type DropdownListClasses, type DropdownListProps } from '$/shared/ui/dropdownList'
+import { DropdownList, Icon, Portal } from '$/shared/ui'
+import { type DropdownListClasses, type DropdownListProps } from '$/shared/ui/dropdownList'
 import { type IFieldAttachmentProps } from '$/shared/ui/formElements/ui'
 import { InputBase, type InputBaseProps } from '$/shared/ui/formElements/uncontrolled/input'
-import { cn, mergeRefs } from '$/shared/utils'
+import { cn } from '$/shared/utils'
 
 export type ComboboxClasses = {
   root?: string
@@ -93,6 +93,11 @@ export interface ComboboxProps<Multi extends boolean>
    * Выключить фильтрацию списка
    */
   filterDisabled?: boolean
+  /**
+   * Включить рендеринг в портале
+   * @param portal document.body
+   */
+  portal?: false | HTMLElement
 }
 
 const InnerComponent = <Multi extends boolean>(
@@ -115,15 +120,14 @@ const InnerComponent = <Multi extends boolean>(
     filterDisabled,
     onInputChange: externalInputChangeHandler,
     empty,
-    classes
+    classes,
+    portal = document.body
   }: ComboboxProps<Multi>,
   ref: ForwardedRef<HTMLInputElement>
 ) => {
   const { floating, ...dropdownClasses } = classes?.list ?? {}
 
-  const containerRef = useRef<HTMLDivElement>(null)
-
-  const { refs, floatingStyles } = useFloating<HTMLInputElement>({
+  const { refs, floatingStyles } = useFloating<HTMLDivElement>({
     placement: 'bottom-start',
     strategy: 'absolute',
     middleware: [
@@ -164,12 +168,12 @@ const InnerComponent = <Multi extends boolean>(
     }
   }
 
-  useClickOutside(containerRef, () => setOpen(false))
+  useClickOutside(refs.floating, () => setOpen(false))
 
   return (
-    <div ref={containerRef} className={cn('relative w-full', classes?.root, className)}>
+    <div ref={refs.setReference} className={cn('relative w-full', classes?.root, className)}>
       <InputBase
-        ref={mergeRefs(ref, refs.setReference)}
+        ref={ref}
         label={label}
         invalid={invalid}
         readOnly={readOnly || !searchable}
@@ -205,32 +209,34 @@ const InnerComponent = <Multi extends boolean>(
         }}
       />
 
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            ref={refs.setFloating}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.1 }}
-            className={cn('z-[1000]', floating)}
-            style={{
-              ...floatingStyles,
-              width: containerRef.current?.getBoundingClientRect().width
-            }}
-          >
-            <DropdownList
-              empty={empty}
-              options={options}
-              multiple={multiple}
-              onPick={changeHandler}
-              value={state}
-              displayValue={displayValue}
-              classes={dropdownClasses}
-              target={refs.domReference}
-            />
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <Portal root={portal}>
+        <AnimatePresence>
+          {open && (
+            <motion.div
+              ref={refs.setFloating}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.1 }}
+              className={cn('z-[1000]', floating)}
+              style={{
+                ...floatingStyles,
+                width: refs.reference.current?.getBoundingClientRect().width
+              }}
+            >
+              <DropdownList
+                empty={empty}
+                options={options}
+                multiple={multiple}
+                onPick={changeHandler}
+                value={state}
+                displayValue={displayValue}
+                classes={dropdownClasses}
+                target={refs.domReference}
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </Portal>
     </div>
   )
 }
