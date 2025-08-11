@@ -71,6 +71,10 @@ export const ComboboxControl = <Multi extends boolean = false, TFieldValues exte
         disabled={disabled}
         multiple={multiple}
         classes={combobox}
+        attachmentProps={{
+          withValidateIcons: false,
+          ...props.attachmentProps
+        }}
       />
       <MessageView
         text={error ? error.message : helperText}

@@ -36,20 +36,13 @@ export const FieldAttachment = ({
   disabled
 }: IFieldAttachmentProps) => {
   const isValid = !invalid && isTouched
-  const isInvalid = invalid && isTouched
 
   return (
     <div className={cn('mr-4 flex items-center gap-4', classes?.fieldAttachmentRoot)}>
       {icon && (
         <IconSlot disabled={disabled} icon={icon} onClickIcon={onClickIcon} onKeyDownIcon={onKeyDownIcon} classes={classes} />
       )}
-      <ValidateSlot
-        badge={badge}
-        isInvalid={isInvalid}
-        isValid={isValid}
-        withValidateIcons={withValidateIcons}
-        classes={classes}
-      />
+      <ValidateSlot badge={badge} isInvalid={invalid} isValid={isValid} withValidateIcons={withValidateIcons} classes={classes} />
     </div>
   )
 }
