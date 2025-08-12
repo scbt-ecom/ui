@@ -2,12 +2,12 @@ import { execSync } from 'child_process'
 import { writeFileSync } from 'fs'
 import { relative, sep } from 'path'
 import { capitalize } from '../../../../lib/shared/utils/capitalize'
-import { findIcon } from './findIcon'
+import { find } from '../../utils'
 
 export const generateFileMap = (staticPath: string, outputDir: string) => {
   const components: [string, string][] = []
 
-  findIcon(staticPath, /\.svg/, (filepath) => {
+  find(staticPath, /\.svg/, (filepath) => {
     const [root, icon] = relative(staticPath, filepath).split(sep)
 
     const filename = icon.split('.')[0]

@@ -1,15 +1,14 @@
 import { readFileSync, writeFileSync } from 'fs'
 import { join } from 'path'
 import { cwd } from 'process'
-import { type Logger } from '../../utils'
+import { find, type Logger } from '../../utils'
 import type { MDXOptions } from '../viteStorybookMdxGenerationPlugin'
-import { findStories } from './findStories'
 import { getDocsContent } from './getDocsContent'
 
 /**
  * Функция для генерации файлов документации компонентов
  *
- * Функция рекурсивно ищет файлы `*.stories.(ts|tsx)`в корневой
+ * Функция ищет файлы `*.stories.(ts|tsx)`в корневой
  * директории историй и генерирует на основе каждого файла
  * документацию в формате `.mdx`
  *
@@ -22,7 +21,7 @@ export const generateDocs = (storiesPath: string | string[], options?: MDXOption
 
   const storiesDir = join(cwd(), ...storiesBaseDir)
 
-  findStories(storiesDir, (filepath) => {
+  find(storiesDir, /\.stories\.(ts|tsx)$/, (filepath) => {
     const code = readFileSync(filepath).toString()
 
     const fileUsedForAutoDocs = code.match(/^(?:[\s\n]*)(["']use docs["'];?)/m)

@@ -1,13 +1,13 @@
 import { execSync } from 'child_process'
 import { writeFileSync } from 'fs'
 import { relative, sep } from 'path'
-import { findIcon } from './findIcon'
+import { find } from '../../utils'
 
 export const generateFileAssets = (staticPath: string, outputDir: string) => {
   const icons: Record<string, string[]> = {}
   const iconsFlatten: string[] = []
 
-  findIcon(staticPath, /\.svg/, (filename) => {
+  find(staticPath, /\.svg/, (filename) => {
     const [root, icon] = relative(staticPath, filename).split(sep)
     // TODO: допилить для вложенных директорий
 
