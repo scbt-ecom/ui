@@ -37,12 +37,17 @@ export const AutocompleteControl = <TFieldValues extends FieldValues, T>({
     shouldUnregister
   })
 
-  const { error, invalid } = fieldState
+  const { error, invalid, isTouched } = fieldState
   const { container, message } = classes || {}
 
   return (
     <div className={cn('w-full', container)}>
-      <AutocompleteBase {...props} {...field} invalid={invalid} />
+      <AutocompleteBase
+        {...props}
+        {...field}
+        invalid={invalid}
+        attachmentProps={{ ...props?.attachmentProps, icon: undefined, invalid, isTouched, withValidateIcons: true }}
+      />
       <MessageView className={message} text={error?.message || helperText} intent={error ? 'error' : 'simple'} />
     </div>
   )

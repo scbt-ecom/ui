@@ -95,7 +95,7 @@ export interface ComboboxProps<Multi extends boolean>
   filterDisabled?: boolean
   /**
    * Включить рендеринг в портале
-   * @param portal document.body
+   * @property {false | HTMLElement} portal document.body
    */
   portal?: false | HTMLElement
 }
@@ -200,7 +200,8 @@ const InnerComponent = <Multi extends boolean>(
             <Icon
               name='arrows/arrowRight'
               className={cn('size-6 rotate-90 text-color-blue-grey-600 duration-100', {
-                '-rotate-90': open
+                '-rotate-90': open,
+                'text-color-negative': invalid
               })}
             />
           ),
