@@ -47,7 +47,7 @@ type Story = StoryObj<typeof MaskInput>
  */
 export const Base: Story = {
   args: {
-    mask: ['C###CC ##', 'C###CC ###']
+    mask: 'car'
   }
 }
 
@@ -103,7 +103,7 @@ export const WithAttachmentIcon: Story = {
 export const WithPhoneMask: Story = {
   args: {
     ...Base.args,
-    mask: '+7 (###) ###-##-##'
+    mask: 'phone'
   },
   render: (props) => {
     const [value, setValue] = useState<string>('')

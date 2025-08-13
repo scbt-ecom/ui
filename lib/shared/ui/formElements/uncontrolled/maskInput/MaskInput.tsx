@@ -1,7 +1,8 @@
 import { forwardRef } from 'react'
 import { useInputMask } from 'use-mask-input'
 import { InputBase, type InputBaseProps } from '../input'
-import { defaultDefinitions } from './model/mask'
+import { defaultDefinitions, defaultMask, type Mask } from './model'
+import type { NonNullable } from '$/shared/types'
 import { mergeRefs } from '$/shared/utils'
 
 type Validator = (char: string) => boolean
@@ -18,24 +19,7 @@ export type MaskInputProps = InputBaseProps & {
   /**
    * маска, по которой будет определяться валидация символов
    */
-  mask:
-    | 'datetime'
-    | 'email'
-    | 'numeric'
-    | 'currency'
-    | 'decimal'
-    | 'integer'
-    | 'percentage'
-    | 'url'
-    | 'ip'
-    | 'mac'
-    | 'ssn'
-    | 'brl-currency'
-    | 'cpf'
-    | 'cnpj'
-    | (string & {})
-    | (string[] & {})
-    | null
+  mask: NonNullable<Mask>
   /**
    * дополнительные валидаторы спец символов в маске
    */
@@ -50,8 +34,12 @@ export type MaskInputProps = InputBaseProps & {
  * @typeParam `C` позволяет вводить любые буквы, которые определены для использования в гос номерах автомобилей (regexp: `/([АВЕКМНОРСТУХавекмнорстух])/`)
  */
 export const MaskInput = forwardRef<HTMLInputElement, MaskInputProps>(({ mask, externalMaskDefinitions, ...props }, ref) => {
+  const regularMask = defaultMask.get(mask)
+
+  console.log({ mask, regularMask })
+
   const maskedRef = useInputMask({
-    mask,
+    mask: regularMask ?? mask,
     options: {
       jitMasking: false,
       definitions: {
