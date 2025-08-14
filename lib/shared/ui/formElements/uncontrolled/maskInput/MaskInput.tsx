@@ -36,8 +36,6 @@ export type MaskInputProps = InputBaseProps & {
 export const MaskInput = forwardRef<HTMLInputElement, MaskInputProps>(({ mask, externalMaskDefinitions, ...props }, ref) => {
   const regularMask = defaultMask.get(mask)
 
-  console.log({ mask, regularMask })
-
   const maskedRef = useInputMask({
     mask: regularMask ?? mask,
     options: {
