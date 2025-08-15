@@ -38,6 +38,8 @@ import Heart from '../../../../static/general/heart.svg?react'
 import Hiddeneye from '../../../../static/general/hiddenEye.svg?react'
 import Loginfilled from '../../../../static/general/loginFilled.svg?react'
 import Menu from '../../../../static/general/menu.svg?react'
+import Optionshorizontal from '../../../../static/general/optionsHorizontal.svg?react'
+import Optionsvertical from '../../../../static/general/optionsVertical.svg?react'
 import Plus from '../../../../static/general/plus.svg?react'
 import Reorder from '../../../../static/general/reorder.svg?react'
 import Search from '../../../../static/general/search.svg?react'
@@ -83,6 +85,8 @@ export const iconsMap = {
   'general/hiddenEye': Hiddeneye,
   'general/loginFilled': Loginfilled,
   'general/menu': Menu,
+  'general/optionsHorizontal': Optionshorizontal,
+  'general/optionsVertical': Optionsvertical,
   'general/plus': Plus,
   'general/reorder': Reorder,
   'general/search': Search,
