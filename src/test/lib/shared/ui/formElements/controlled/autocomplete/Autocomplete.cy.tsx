@@ -19,22 +19,22 @@ describe('Test cases for AutocompleteControl', () => {
 
     // create alias for testing component
     cy.get('[data-test-id="autocomplete"]').as('autocomplete')
-    cy.get('[data-test-id="select-input"]').as('input')
+    cy.get('[data-test-id="combobox-input"]').as('input')
     cy.get('[data-test-id="submit"]').as('submit')
     // it should be visible
     cy.get('@autocomplete').should('be.visible')
     // try to pick some value
-    cy.get('@autocomplete')
+    cy.get('@input')
       .click()
       .then(() => {
-        cy.get('[data-test-id="select-item-0"]').click()
+        cy.get('[data-test-id="list-item-0"]').click()
         cy.get('@input').should('have.value', 'Value 0')
       })
     // submit form
     cy.get('@submit').click()
 
     // check that autocomplete is not invalid
-    cy.get('@autocomplete', { timeout: 5000 }).should('have.attr', 'aria-invalid', 'false')
+    cy.get('@input', { timeout: 5000 }).should('have.attr', 'aria-invalid', 'false')
   })
 
   it('Should render and not submitted empty values', () => {
@@ -49,7 +49,7 @@ describe('Test cases for AutocompleteControl', () => {
     )
 
     // create alias for testing component
-    cy.get('[data-test-id="autocomplete"]').as('autocomplete')
+    cy.get('[data-test-id="combobox-input"]').as('input')
     cy.get('[data-test-id="submit"]').as('submit')
     // it should be visible
     cy.get('@submit').should('be.visible')
@@ -57,7 +57,7 @@ describe('Test cases for AutocompleteControl', () => {
     cy.get('@submit').click()
 
     // check that autocomplete is invalid
-    cy.get('@autocomplete', { timeout: 5000 }).should('have.attr', 'aria-invalid', 'true')
+    cy.get('@input', { timeout: 5000 }).should('have.attr', 'aria-invalid', 'true')
   })
 
   it('Should be disabled', () => {
@@ -73,12 +73,12 @@ describe('Test cases for AutocompleteControl', () => {
     )
 
     // create alias for testing component
-    cy.get('[data-test-id="autocomplete"]').as('autocomplete')
+    cy.get('[data-test-id="combobox-input"]').as('input')
     // it should be visible
-    cy.get('@autocomplete').should('be.visible')
+    cy.get('@input').should('be.visible')
 
     // check that autocomplete have data-disabled attribute
-    cy.get('@autocomplete').should('have.attr', 'data-headlessui-state', 'disabled')
+    cy.get('@input').should('have.attr', 'disabled', 'disabled')
   })
 
   it('Should be invalid', () => {
@@ -91,7 +91,7 @@ describe('Test cases for AutocompleteControl', () => {
     )
 
     // create alias for testing component
-    cy.get('[data-test-id="autocomplete"]').as('autocomplete')
+    cy.get('[data-test-id="combobox-input"]').as('input')
     cy.get('[data-test-id="submit"]').as('submit')
     cy.get('[data-test-id="form"]').as('form')
     // submit form
@@ -101,7 +101,7 @@ describe('Test cases for AutocompleteControl', () => {
       // check that error message is visible
       cy.get('@form').get('.desk-body-regular-m').should('be.visible')
       // and the field is invalid
-      cy.get('@autocomplete').should('have.attr', 'aria-invalid', 'true')
+      cy.get('@input').should('have.attr', 'aria-invalid', 'true')
     })
   })
 
@@ -115,11 +115,11 @@ describe('Test cases for AutocompleteControl', () => {
     )
 
     // create alias for testing component
-    cy.get('[data-test-id="autocomplete"]').as('autocomplete')
+    cy.get('[data-test-id="combobox-input"]').as('input')
     cy.get('[data-test-id="submit"]').as('submit')
     // try to submit form
     cy.get('@submit').click()
     // check that autocomplete is not invalid
-    cy.get('@autocomplete').should('have.attr', 'aria-invalid', 'false')
+    cy.get('@input').should('have.attr', 'aria-invalid', 'false')
   })
 })
