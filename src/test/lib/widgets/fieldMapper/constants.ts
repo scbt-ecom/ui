@@ -39,7 +39,7 @@ export const fields: FieldElement<Schema, any>[] = [
     }
   },
   {
-    type: 'SelectControl',
+    type: 'ComboboxControl',
     args: {
       name: 'gender',
       options: [

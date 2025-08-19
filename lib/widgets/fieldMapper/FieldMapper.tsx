@@ -11,6 +11,11 @@ export const FieldMapper = <TFieldValues extends FieldValues>({ fields, control 
   return fields.map(({ type, args }) => {
     const Component = Controlled[type] as React.ComponentType<typeof args>
 
+    if (!Component) {
+      console.warn(`Cannot find component for type ${type}, skip.`)
+      return null
+    }
+
     return <Component {...args} key={args.name} control={control as Control} />
   })
 }
