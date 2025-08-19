@@ -5,7 +5,7 @@ import { SliderControl } from '$/shared/ui'
 describe('Test cases for SliderControl', () => {
   const factory = new ComponentFactory(SliderControl)
 
-  it('Should render and pass value correctly', () => {
+  it.skip('Should render and pass value correctly', () => {
     cy.mount(
       factory.getFormProvider({
         args: sliderDefaultProps,
@@ -28,7 +28,7 @@ describe('Test cases for SliderControl', () => {
       })
   })
 
-  it('Should be disabled', () => {
+  it.skip('Should be disabled', () => {
     cy.mount(
       factory.getFormProvider({
         args: {

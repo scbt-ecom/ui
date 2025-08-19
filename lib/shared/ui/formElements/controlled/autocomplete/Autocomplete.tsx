@@ -41,7 +41,7 @@ export const AutocompleteControl = <TFieldValues extends FieldValues, T>({
   const { container, message } = classes || {}
 
   return (
-    <div className={cn('w-full', container)}>
+    <div className={cn('w-full', container)} data-test-id='autocomplete'>
       <AutocompleteBase
         {...props}
         {...field}

@@ -208,6 +208,7 @@ const InnerComponent = <Multi extends boolean>(
           onClickIcon: () => setOpen((prev) => !prev),
           ...attachmentProps
         }}
+        data-test-id='combobox-input'
       />
 
       <Portal root={portal}>
