@@ -1,5 +1,5 @@
 import { forwardRef } from 'react'
-import { useInputMask } from 'use-mask-input'
+import { type Options, useInputMask } from 'use-mask-input'
 import { InputBase, type InputBaseProps } from '../input'
 import { defaultDefinitions, defaultMask, type Mask } from './model'
 import type { NonNullable } from '$/shared/types'
@@ -24,6 +24,7 @@ export type MaskInputProps = InputBaseProps & {
    * дополнительные валидаторы спец символов в маске
    */
   externalMaskDefinitions?: Record<string, Definition>
+  options?: Options
 }
 
 /**
@@ -33,20 +34,23 @@ export type MaskInputProps = InputBaseProps & {
  * @typeParam `A` позволяет вводить любые буквы русского и английского алфавита (regexp: `/[A-Za-zА-Яа-я]/g`)
  * @typeParam `C` позволяет вводить любые буквы, которые определены для использования в гос номерах автомобилей (regexp: `/([АВЕКМНОРСТУХавекмнорстух])/`)
  */
-export const MaskInput = forwardRef<HTMLInputElement, MaskInputProps>(({ mask, externalMaskDefinitions, ...props }, ref) => {
-  const regularMask = defaultMask.get(mask)
+export const MaskInput = forwardRef<HTMLInputElement, MaskInputProps>(
+  ({ mask, externalMaskDefinitions, options, ...props }, ref) => {
+    const regularMask = defaultMask.get(mask)
 
-  const maskedRef = useInputMask({
-    mask: regularMask ?? mask,
-    options: {
-      jitMasking: false,
-      definitions: {
-        ...defaultDefinitions,
-        ...externalMaskDefinitions
+    const maskedRef = useInputMask({
+      mask: regularMask ?? mask,
+      options: {
+        jitMasking: false,
+        definitions: {
+          ...defaultDefinitions,
+          ...externalMaskDefinitions
+        },
+        ...options
       }
-    }
-  })
+    })
 
-  return <InputBase ref={mergeRefs(maskedRef, ref)} {...props} />
-})
+    return <InputBase ref={mergeRefs(maskedRef, ref)} {...props} />
+  }
+)
 MaskInput.displayName = 'MaskInput'
