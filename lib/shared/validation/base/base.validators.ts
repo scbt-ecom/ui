@@ -1,4 +1,5 @@
 import { getBooleanSchema } from './boolean.validators'
+import { getCurrencySchema } from './currency.validators'
 import { getDateSchema } from './date.validators'
 import { getEmailSchema } from './email.validators'
 import { getNumberSchema } from './number.validators'
@@ -23,5 +24,6 @@ export const baseValidationSchemas = {
   getRegexSchema,
   getBooleanSchema,
   getPassportDepartmentSchema,
-  getPassportSchema
+  getPassportSchema,
+  getCurrencySchema
 }

@@ -10,6 +10,7 @@ export * from './uncontrolled/slider'
 export * from './uncontrolled/switch'
 export * from './uncontrolled/textarea'
 export * from './uncontrolled/uploader'
+export * from './uncontrolled/inputCurrency'
 export { Uncontrolled } from './uncontrolled'
 
 export * from './controlled/autocomplete'

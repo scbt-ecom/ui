@@ -47,5 +47,7 @@ export const baseDefaultMessages = {
   INVALID_PASSPORT_NUMBER: () => 'Номер паспорта введен некорректно',
 
   DEPARTMENT_NON_EMPTY: () => 'Поле обязательно для заполнения',
-  INVALID_DEPARTMENT: () => 'Код подразделения введён некорректно'
+  INVALID_DEPARTMENT: () => 'Код подразделения введён некорректно',
+
+  CURRENCY_NON_EMPTY: () => 'Не выбрана валюта'
 }
