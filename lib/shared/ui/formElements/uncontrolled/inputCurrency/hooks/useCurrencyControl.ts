@@ -29,7 +29,7 @@ export const useCurrencyControl = ({ value, currencies, onChange }: UseCurrencyC
   const onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const v = event.target.value
 
-    if (!/^-?\d*([.,]\d+)?([eE][-+]?\d+)?$/.test(v)) return
+    if (/[^0-9\-.eE]/g.test(v)) return
 
     onChange({ ...value, value: v })
   }

@@ -1,6 +1,1 @@
-export {
-  InputCurrencyControl,
-  type InputCurrencyControlProps,
-  type ICurrencyOption,
-  type TCurrencyVariant
-} from './InputCurrencyControl'
+export { InputCurrencyControl, type InputCurrencyControlProps } from './InputCurrencyControl'

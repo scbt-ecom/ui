@@ -2,7 +2,8 @@ import { useEffect, useRef } from 'react'
 
 const formatter = new Intl.NumberFormat('ru-RU', {
   style: 'decimal',
-  maximumFractionDigits: 2
+  maximumFractionDigits: 2,
+  minimumFractionDigits: 2
 })
 
 export const useCurrencyFormat = (value: string) => {
