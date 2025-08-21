@@ -4,8 +4,8 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { type DropdownItemOption, DropdownList, type DropdownListProps } from '../../../dropdownList'
 import { InputBase, type InputBaseProps } from '../input'
 import { useCurrencyControl, useCurrencyFormat } from './hooks'
+import { CurrencyIcon } from './ui'
 import { useClickOutside } from '$/shared/hooks'
-import { Icon } from '$/shared/ui/icon'
 import { Portal } from '$/shared/ui/portal'
 import { cn, mergeRefs } from '$/shared/utils'
 
@@ -93,21 +93,7 @@ export const InputCurrencyBase = forwardRef<HTMLInputElement, InputCurrencyBaseP
             classes: {
               icon: 'flex items-center gap-2 w-max'
             },
-            icon: (
-              <>
-                <div className='h-4 w-[1px] bg-color-blue-grey-500' />
-                <div className='desk-body-regular-l flex items-center gap-1 text-color-tetriary'>
-                  {currency?.attachment?.left}
-                  <span>{currency ? currency.label : 'CUR'}</span>
-                  <Icon
-                    name='arrows/arrowRight'
-                    className={cn('size-6 rotate-90 duration-100', {
-                      '-rotate-90': open
-                    })}
-                  />
-                </div>
-              </>
-            ),
+            icon: <CurrencyIcon currency={currency} open={open} />,
             onClickIcon: () => setOpen((prev) => !prev),
             ...attachmentProps
           }}
