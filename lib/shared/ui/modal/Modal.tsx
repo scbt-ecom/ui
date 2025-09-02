@@ -1,7 +1,7 @@
 'use client'
 
 import * as React from 'react'
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { createPortal } from 'react-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import { modalContentAnimation, modalOverlayAnimation } from './model/helpers'
@@ -37,20 +37,23 @@ export const Modal = ({
   classes,
   iframe
 }: ModalProps) => {
-  if (isModalOpen) {
-    document.body.style.overflow = 'hidden'
-  } else {
-    document.body.style.overflow = 'visible'
-  }
-
+  useEffect(() => {
+    if (isModalOpen) {
+      document.body.style.overflow = 'hidden'
+    }
+    return () => {
+      document.body.style.overflow = 'visible'
+    }
+  }, [isModalOpen])
   const iframeRef = useRef<HTMLIFrameElement>(null)
 
   const modalBody = (
     <AnimatePresence>
       {isModalOpen && (
         <motion.div
+          ref={(node) => node?.focus()}
           tabIndex={-1}
-          onClick={closeModal}
+          onMouseDown={closeModal}
           className={cn(
             'fixed inset-0 flex h-screen w-screen items-center justify-center bg-color-overlay',
             { 'z-1000': !isPortal },
@@ -66,6 +69,7 @@ export const Modal = ({
         >
           <motion.div
             onClick={(event) => event.stopPropagation()}
+            onMouseDown={(event) => event.stopPropagation()}
             className={cn(
               'w-full max-w-[600px] rounded-md bg-color-white px-4 py-6 shadow-sm desktop:px-6 desktop:py-8',
               classes?.modal
