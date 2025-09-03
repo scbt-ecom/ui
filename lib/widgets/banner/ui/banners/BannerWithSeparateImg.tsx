@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unknown-property */
 import { Advantages, Buttons } from './ui'
 import { ResponsiveContainer } from '$/shared/ui'
 import { cn } from '$/shared/utils'
@@ -49,7 +50,8 @@ export const BannerWithSeparateImg = ({
               classes?.imageContainer
             )}
           >
-            <img loading='eager' fetchPriority='high' src={images?.mobile} alt={images?.alt} className='h-full object-contain' />
+            {/* @ts-expect-error fetchpriority */}
+            <img loading='eager' fetchpriority='high' src={images?.mobile} alt={images?.alt} className='h-full object-contain' />
           </div>
 
           <div
@@ -58,7 +60,8 @@ export const BannerWithSeparateImg = ({
               classes?.imageContainer
             )}
           >
-            <img loading='eager' fetchPriority='high' src={images?.desktop} alt={images?.alt} className='h-full object-contain' />
+            {/* @ts-expect-error fetchpriority */}
+            <img loading='eager' fetchpriority='high' src={images?.desktop} alt={images?.alt} className='h-full object-contain' />
           </div>
         </div>
 
