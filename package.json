@@ -1,6 +1,6 @@
 {
   "name": "@scbt-ecom/ui",
-  "version": "0.111.1",
+  "version": "0.115.0",
   "type": "module",
   "exports": {
     ".": {
@@ -88,6 +88,7 @@
     "esbuild": "0.24.0"
   },
   "dependencies": {
+    "@floating-ui/react": "^0.26.16",
     "@hookform/resolvers": "^3.9.0",
     "@radix-ui/react-checkbox": "^1.1.1",
     "@radix-ui/react-popover": "^1.1.1",
@@ -106,7 +107,7 @@
     "@tiptap/react": "^2.9.1",
     "@tiptap/starter-kit": "^2.9.1",
     "class-variance-authority": "^0.7.0",
-    "clsx": "2.1.1",
+    "classnames": "^2.5.1",
     "date-fns": "^4.1.0",
     "ejs": "^3.1.10",
     "embla-carousel": "^8.5.2",
@@ -116,6 +117,7 @@
     "html-react-parser": "^5.2.2",
     "input-otp": "^1.4.1",
     "rc-slider": "^11.1.8",
+    "react-country-flag": "^3.1.0",
     "react-day-picker": "^9.4.1",
     "react-dropzone": "^14.2.3",
     "react-hook-form": "^7.53.1",
@@ -127,8 +129,7 @@
     "use-mask-input": "^3.4.2",
     "uuid": "^11.1.0",
     "vite-plugin-svgr": "^4.3.0",
-    "zod": "^3.23.8",
-    "@floating-ui/react": "^0.26.16"
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@eslint/compat": "^1.2.1",

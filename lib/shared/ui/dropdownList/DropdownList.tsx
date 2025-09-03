@@ -101,6 +101,7 @@ export const DropdownList = <Multi extends boolean>({
               onMouseEnter={() => setFocusedIndex(index)}
               onMouseLeave={() => setFocusedIndex(-1)}
               classes={classes?.item}
+              data-test-id={`list-item-${index}`}
             />
           )
         })

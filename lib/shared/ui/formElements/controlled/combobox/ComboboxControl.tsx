@@ -60,7 +60,7 @@ export const ComboboxControl = <Multi extends boolean = false, TFieldValues exte
   })
 
   return (
-    <div className={cn('w-full items-start gap-y-2', root, className)}>
+    <div className={cn('w-full items-start gap-y-2', root, className)} data-test-id='combobox'>
       <Combobox
         {...props}
         {...restField}

@@ -49,11 +49,15 @@ export const Base: Story = {
     const [isModalOpen, setterModal] = useBoolean(false)
 
     return (
-      <div className='flex h-screen w-screen items-center justify-center'>
-        <Button onClick={() => setterModal(true)}>Получить кредит</Button>
-        <Modal title='Подписка на рассылку' isModalOpen={isModalOpen} closeModal={() => setterModal(false)}>
-          <p>Укажите ваш адрес электронной почты, чтобы узнавать обо всех новостях и изменения вовремя</p>
-        </Modal>
+      <div className='flex flex-col'>
+        <div className='flex h-screen w-screen items-center justify-center'>
+          <Button onClick={() => setterModal(true)}>Получить кредит</Button>
+          <Modal title='Подписка на рассылку' isModalOpen={isModalOpen} closeModal={() => setterModal(false)}>
+            <p>Укажите ваш адрес электронной почты, чтобы узнавать обо всех новостях и изменения вовремя</p>
+          </Modal>
+        </div>
+        <div className='h-screen'>1</div>
+        <div className='h-screen'>1</div>
       </div>
     )
   }
