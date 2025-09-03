@@ -19,7 +19,7 @@ export const Esia = ({ mainLink, subLink, isLoading, badge, loaderProps, classes
         <div className={cn('flex items-center gap-1 desktop:gap-4', classes?.textContent)}>
           <EsiaLogo className={cn('size-7 desktop:size-8', classes?.esiaLogo)} />
           <Links mainLink={mainLink} subLink={subLink} isMobile={isMobile} classes={classes?.links} />
-          <Icon name='arrows/arrowRight' className={cn('mobile:hidden', classes?.arrowIcon)} />
+          <Icon name='arrows/arrowRight' className={cn('size-6 mobile:hidden', classes?.arrowIcon)} />
         </div>
         {badge && <Badge className={cn('bg-color-positive', classes?.badge)}>{badge}</Badge>}
       </div>

@@ -121,7 +121,7 @@ const InnerComponent = <Multi extends boolean>(
     onInputChange: externalInputChangeHandler,
     empty,
     classes,
-    portal = document.body
+    portal = document ? document.body : undefined
   }: ComboboxProps<Multi>,
   ref: ForwardedRef<HTMLInputElement>
 ) => {
@@ -170,6 +170,8 @@ const InnerComponent = <Multi extends boolean>(
 
   useClickOutside(refs.floating, () => setOpen(false))
 
+  const portalContainer = portal ?? refs.domReference.current!
+
   return (
     <div ref={refs.setReference} className={cn('relative w-full', classes?.root, className)}>
       <InputBase
@@ -211,7 +213,7 @@ const InnerComponent = <Multi extends boolean>(
         data-test-id='combobox-input'
       />
 
-      <Portal root={portal}>
+      <Portal root={portalContainer}>
         <AnimatePresence>
           {open && (
             <motion.div
