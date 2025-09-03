@@ -20,11 +20,23 @@ export const ModalHeader = ({ title, closeModal, classes }: IModalHeaderProps) =
           {title}
         </Heading>
       )}
-      <Icon
+      <span
         onClick={closeModal}
-        name='general/close'
-        className={cn('ml-auto size-6 cursor-pointer text-icon-dark-hover', classes?.icon)}
-      />
+        onKeyDown={(event) => {
+          if (event.key === 'Enter') closeModal()
+        }}
+        role='button'
+        aria-label='Close modal'
+        tabIndex={0}
+        className={cn(
+          'rounded-sm p-0.5 outline-none transition-colors hover:bg-color-blue-grey-200 focus-visible:bg-color-blue-grey-200'
+        )}
+      >
+        <Icon
+          name='general/close'
+          className={cn('ml-auto size-6 cursor-pointer text-icon-dark-hover outline-0', classes?.icon)}
+        />
+      </span>
     </div>
   )
 }
