@@ -6,16 +6,18 @@ export type AuthWrapperClasses = {
   wrapper?: string
 }
 
-export interface AuthWrapperProps {
+export interface AuthWrapperProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactElement
   classes?: AuthWrapperClasses
   isLoading?: boolean
   loaderProps?: LoaderProps
 }
 
-export const AuthWrapper = ({ children, isLoading, classes, loaderProps }: AuthWrapperProps) => {
+export const AuthWrapper = ({ children, isLoading, classes, loaderProps, ...props }: AuthWrapperProps) => {
   return (
     <div
+      {...props}
+      role='button'
       tabIndex={0}
       className={cn(
         'relative flex h-[90px] w-full max-w-[328px] items-center justify-center rounded-sm p-2 desktop:max-w-[524px]',

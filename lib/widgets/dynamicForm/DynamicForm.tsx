@@ -3,11 +3,14 @@
 import { useState } from 'react'
 import { type Control, type FieldValues, type SubmitHandler } from 'react-hook-form'
 import { type TypeOf } from 'zod'
+import { AuthProvider } from '../authProvider'
 import { HTMLRenderer } from '../htmlParser'
 import { widgetIds } from '../model'
 import {
   type Approvement,
   type ApprovementType,
+  type Auth,
+  type AuthMode,
   type Chips,
   type ChipsType,
   getFieldsProgress,
@@ -56,7 +59,12 @@ type DynamicFormClasses = {
   submit?: string
 }
 
-export type DynamicFormProps<AType extends ApprovementType, CType extends ChipsType, PType extends ProgressType> = {
+export type DynamicFormProps<
+  AType extends ApprovementType,
+  CType extends ChipsType,
+  PType extends ProgressType,
+  AuthType extends AuthMode
+> = {
   fields: FieldElement<any, any, { validation: FieldValidation; progress: ProgressField }>[]
   title: string
   progress: Progress<PType>
@@ -65,6 +73,7 @@ export type DynamicFormProps<AType extends ApprovementType, CType extends ChipsT
   submitProps?: SubmitProps
   classes?: DynamicFormClasses
   buttonGroup: ButtonProps[]
+  auth: Auth<AuthType>
 }
 
 const withApprovement = <Type extends ApprovementType>(
@@ -93,16 +102,35 @@ const withApprovement = <Type extends ApprovementType>(
   )
 }
 
-export const DynamicForm = <AType extends ApprovementType, CType extends ChipsType, PType extends ProgressType>({
+const withAuthProvider = <Mode extends AuthMode>(auth: Auth<Mode>) => {
+  switch (auth.mode) {
+    case 'esia':
+      return <AuthProvider {...auth} mode={auth.mode} />
+    case 'mobileId':
+      return <AuthProvider {...auth} mode={auth.mode} />
+    case 'combine':
+      return <AuthProvider {...auth} mode={auth.mode} />
+    case 'off':
+      return null
+  }
+}
+
+export const DynamicForm = <
+  AType extends ApprovementType,
+  CType extends ChipsType,
+  PType extends ProgressType,
+  AuthType extends AuthMode
+>({
   fields,
   title,
   progress,
   approvement,
   chips,
   submitProps,
+  auth,
   classes,
   buttonGroup
-}: DynamicFormProps<AType, CType, PType>) => {
+}: DynamicFormProps<AType, CType, PType, AuthType>) => {
   const { submitCallback } = submitProps || {}
 
   const [checked, onCheckedChange] = useState<CheckedState>(false)
@@ -201,6 +229,7 @@ export const DynamicForm = <AType extends ApprovementType, CType extends ChipsTy
                 })}
               </div>
             </div>
+            {withAuthProvider(auth)}
           </form>
         </ResponsiveContainer>
       </section>
