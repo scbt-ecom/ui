@@ -48,7 +48,7 @@ export const mockDataCombine: TCombineProps = {
     },
     subLink: {
       href: 'https://mobileid.mts.ru/#order',
-      text: 'Подробнее'
+      text: 'Подробнее '
     }
   }
 }
