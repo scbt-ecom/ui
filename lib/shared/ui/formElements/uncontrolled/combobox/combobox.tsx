@@ -121,7 +121,7 @@ const InnerComponent = <Multi extends boolean>(
     onInputChange: externalInputChangeHandler,
     empty,
     classes,
-    portal = document ? document.body : undefined
+    portal = globalThis ? globalThis?.document?.body : undefined
   }: ComboboxProps<Multi>,
   ref: ForwardedRef<HTMLInputElement>
 ) => {
