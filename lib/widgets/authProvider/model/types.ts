@@ -36,7 +36,6 @@ export type SingleAuthSchema = {
   mainLink: {
     title: string
     mobileTitle: string
-    href: string
   }
   subLink?: {
     text: string
@@ -58,14 +57,17 @@ type CombineAuthSchema = {
 
 type EsiaMode = SingleAuthSchema & { classes?: EsiaClasses } & {
   mode: typeof AUTH_PROVIDER_MODE.ESIA
+  onClick?: React.MouseEventHandler<HTMLButtonElement>
 }
 
 type MobileIdMode = SingleAuthSchema & { classes?: MobileIdClasses } & {
   mode: typeof AUTH_PROVIDER_MODE.MOBILE_ID
+  onClick?: React.MouseEventHandler<HTMLButtonElement>
 }
 
 type CombineMode = CombineAuthSchema & {
   mode: typeof AUTH_PROVIDER_MODE.COMBINE
+  onClick?: React.MouseEventHandler<HTMLButtonElement>
 }
 
 export type TEsiaProps = Omit<EsiaMode, 'mode'>

@@ -4,7 +4,7 @@ import { useDevice } from '$/shared/hooks'
 import { Badge, Icon } from '$/shared/ui'
 import { cn } from '$/shared/utils'
 
-export const MobileId = ({ mainLink, subLink, isLoading, badge, loaderProps, classes }: TMobileIdProps) => {
+export const MobileId = ({ mainLink, subLink, isLoading, badge, loaderProps, classes, onClick }: TMobileIdProps) => {
   const { isMobile } = useDevice()
 
   return (
@@ -22,7 +22,7 @@ export const MobileId = ({ mainLink, subLink, isLoading, badge, loaderProps, cla
             <Icon name='logos/megafon' className={cn('z-[8] -ml-4 size-8', classes?.megafonLogo)} />
             <Icon name='logos/beeline' className={cn('z-[7] -ml-4 size-8', classes?.beelineLogo)} />
           </div>
-          <Links mainLink={mainLink} subLink={subLink} isMobile={isMobile} classes={classes?.links} />
+          <Links onClick={onClick} mainLink={mainLink} subLink={subLink} isMobile={isMobile} classes={classes?.links} />
           <Icon name='arrows/arrowRight' className={cn('size-6 mobile:hidden', classes?.arrowIcon)} />
         </div>
         {badge && <Badge className={cn('bg-color-positive', classes?.badge)}>{badge}</Badge>}

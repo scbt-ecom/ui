@@ -5,8 +5,7 @@ export const mockDataEsia: TEsiaProps = {
   badge: '+25%',
   mainLink: {
     title: 'Заполнить через Госуслуги',
-    mobileTitle: 'Госуслуги',
-    href: 'https://esia-portal1.test.gosuslugi.ru/login/'
+    mobileTitle: 'Госуслуги'
   },
   subLink: {
     href: 'https://www.gosuslugi.ru/',
@@ -19,8 +18,7 @@ export const mockDataMobileId: TEsiaProps = {
   badge: '+25%',
   mainLink: {
     title: 'Заполнить через Mobile ID',
-    mobileTitle: 'Mobile ID',
-    href: 'https://mobileid.mts.ru/'
+    mobileTitle: 'Mobile ID'
   },
   subLink: {
     href: 'https://mobileid.mts.ru/#order',
@@ -35,8 +33,7 @@ export const mockDataCombine: TCombineProps = {
     isLoading: false,
     mainLink: {
       title: 'Госуслуги',
-      mobileTitle: 'Госуслуги',
-      href: 'https://esia-portal1.test.gosuslugi.ru/login/'
+      mobileTitle: 'Госуслуги'
     },
     subLink: {
       href: 'https://www.gosuslugi.ru/',
@@ -47,8 +44,7 @@ export const mockDataCombine: TCombineProps = {
     isLoading: false,
     mainLink: {
       title: 'Mobile ID',
-      mobileTitle: 'Mobile ID',
-      href: 'https://mobileid.mts.ru/'
+      mobileTitle: 'Mobile ID'
     },
     subLink: {
       href: 'https://mobileid.mts.ru/#order',

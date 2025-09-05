@@ -45,6 +45,33 @@ export const Base: Story = {
     chips: {
       enabled: false
     },
+    auth: {
+      mode: 'combine',
+      esiaConfig: {
+        mainLink: {
+          title: 'Госуслуги',
+          mobileTitle: 'Госуслуги'
+        },
+        subLink: {
+          text: 'Подробнее',
+          href: 'https://example.com'
+        },
+        onClick: () => console.log('Esia click handled')
+      },
+      mobileIdConfig: {
+        mainLink: {
+          title: 'Mobile ID',
+          mobileTitle: 'Mobile ID'
+        },
+        subLink: {
+          text: 'Подробнее',
+          href: 'https://example.com'
+        },
+        onClick: () => console.log('Mobile ID click handled')
+      },
+      subtitle: 'Также вы можете заполнить заявку через:',
+      badge: '+25%'
+    },
     approvement: {
       type: 'text',
       message: '<p>some text</p>'
