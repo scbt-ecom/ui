@@ -45,12 +45,15 @@ export const mockBenefitDataThreeCards: BenefitProps = {
   details: [
     {
       title: 'Удобное внесение платежей',
+      enabledMobileButton: true,
+      enabledMobileImage: true,
       subtitle: `<p>
             Отсрочка платежа и возможность досрочного погашения через мобильное приложении 
             «ХАЛВА-Совкомбанк»
           </p>`,
       img: <img className={cn('h-[246px] object-cover')} src={percentMob} alt='test' />,
       button: {
+        children: 'Кнопка',
         handlerOptions: {
           handler: 'scroll',
           widgetId: 'benefit'

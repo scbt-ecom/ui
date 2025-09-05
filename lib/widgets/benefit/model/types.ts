@@ -18,6 +18,8 @@ export type Details = {
   title: string
   subtitle: string
   color?: BackgroundBenefitColorsValues
+  enabledMobileImage?: boolean
+  enabledMobileButton?: boolean
 }
 
 export type BenefitColors = keyof typeof backgroundBenefitColors

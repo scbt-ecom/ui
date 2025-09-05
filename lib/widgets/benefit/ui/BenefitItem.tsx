@@ -1,10 +1,8 @@
-import { type ReactElement } from 'react'
 import { cva } from 'class-variance-authority'
-import { type BackgroundBenefitColorsValues } from '../model/constants'
+import { type Details } from '../model/types'
 import { useDevice } from '$/shared/hooks'
 import { cn, TypeGuards } from '$/shared/utils'
-import { type Img } from '$/widgets/benefit/model/types'
-import { ButtonWithHandlers, type ButtonWithHandlersProps } from '$/widgets/buttonWithHandlers'
+import { ButtonWithHandlers } from '$/widgets/buttonWithHandlers'
 
 export type BenefitItemClasses = {
   root?: string
@@ -30,28 +28,21 @@ const itemConfig = cva(
   }
 )
 
-export interface BenefitItemProps {
-  title: string
-  subtitle: string
-  img?: ReactElement | Img
-  mobileImg?: boolean
+export interface BenefitItemProps extends Details {
   classes?: BenefitItemClasses
-  withButton?: boolean
-  button?: ButtonWithHandlersProps
   variant?: 'twoCards' | 'threeCards' | 'fourCards'
-  color?: BackgroundBenefitColorsValues
 }
 
 export const BenefitItem = ({
   subtitle,
   title,
   img,
-  mobileImg,
   classes,
-  withButton,
   button,
   variant,
-  color
+  color,
+  enabledMobileButton,
+  enabledMobileImage
 }: BenefitItemProps) => {
   const { isDesktop } = useDevice()
 
@@ -59,7 +50,7 @@ export const BenefitItem = ({
     <li
       key={title}
       style={{ backgroundColor: color ?? '#F3F4F7' }}
-      className={cn(itemConfig({ variant }), { 'pb-0': mobileImg }, { 'pb-12': !mobileImg }, classes?.root)}
+      className={cn(itemConfig({ variant }), { 'pb-0': enabledMobileImage }, { 'pb-12': !enabledMobileImage }, classes?.root)}
     >
       <div className={cn('flex flex-col items-start justify-between px-4 desktop:px-8 desktop:py-8', classes?.wrapper)}>
         <div className={cn('flex flex-col gap-4', classes?.textContainer)}>
@@ -70,12 +61,12 @@ export const BenefitItem = ({
           />
         </div>
 
-        {withButton && isDesktop && button?.handlerOptions && (
+        {enabledMobileButton && isDesktop && button?.handlerOptions && (
           <ButtonWithHandlers intent='primary' className={cn('desktop:w-[200px]', classes?.button)} size='lg' {...button} />
         )}
       </div>
 
-      {(mobileImg || isDesktop) && img && (
+      {(enabledMobileImage || isDesktop) && img && (
         <div className={cn('flex w-full justify-end', classes?.imgContainer)}>
           {img && 'url' in img && TypeGuards.isObject(img) ? (
             <img className={cn('h-[246px] object-cover', classes?.img)} src={img.url} alt={img.alt} />
