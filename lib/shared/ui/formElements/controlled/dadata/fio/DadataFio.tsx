@@ -3,6 +3,7 @@ import { type QueryClient } from '@tanstack/react-query'
 import { AutocompleteControl, type AutocompleteControlProps } from '../../autocomplete'
 import { type IDadataCacheOption } from '../types'
 import { useDadataQueryFio } from './query'
+import { VITE_DADATA_BASE_CACHE_URL } from '@/configs/api'
 import { type AutocompleteItemOption } from '$/shared/ui'
 
 const fioFormatter = (item: IDadataCacheOption<unknown>): AutocompleteItemOption<typeof item> => ({
@@ -25,7 +26,7 @@ export type DadataFioProps<TFieldValues extends FieldValues> = Omit<
  */
 export const DadataFio = <TFieldValues extends FieldValues>({
   formatter = fioFormatter,
-  dadataBaseUrl,
+  dadataBaseUrl = VITE_DADATA_BASE_CACHE_URL,
   queryClient,
   ...props
 }: DadataFioProps<TFieldValues>) => {

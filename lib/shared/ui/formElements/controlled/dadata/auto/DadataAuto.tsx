@@ -3,6 +3,7 @@ import { type QueryClient } from '@tanstack/react-query'
 import { AutocompleteControl, type AutocompleteControlProps } from '../../autocomplete'
 import { type IDadataAutoOption } from '../types'
 import { useDadataQueryAuto } from './query'
+import { VITE_DADATA_BASE_CONSTANTS_URL } from '@/configs/api'
 import { type AutocompleteItemOption } from '$/shared/ui'
 
 const autoFormatter = (item: IDadataAutoOption): AutocompleteItemOption<typeof item> => ({
@@ -25,7 +26,7 @@ export type DadataAutoProps<TFieldValues extends FieldValues> = Omit<
  */
 export const DadataAuto = <TFieldValues extends FieldValues>({
   formatter = autoFormatter,
-  dadataBaseUrl,
+  dadataBaseUrl = VITE_DADATA_BASE_CONSTANTS_URL,
   queryClient,
   ...props
 }: DadataAutoProps<TFieldValues>) => {

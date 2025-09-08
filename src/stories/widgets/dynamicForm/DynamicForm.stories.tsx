@@ -20,17 +20,42 @@ export const Base: Story = {
   args: {
     fields: [
       {
-        type: 'InputControl',
+        type: 'DadataFio',
         args: {
-          name: 'field',
-          label: 'Field',
+          label: 'Фамилия Имя Отчество',
           validation: {
-            type: 'getStringSchema',
-            args: {}
+            type: 'getFioSchema',
+            args: {
+              required: true
+            }
           },
+          name: 'fio',
+          disabled: false,
           progress: {
             progress: 0,
-            maxPercent: 0
+            maxPercent: 20
+          }
+        }
+      },
+      {
+        type: 'MaskInputControl',
+        args: {
+          label: 'Телефон',
+          mask: 'phone',
+          validation: {
+            type: 'getPhoneSchema',
+            args: {
+              required: true
+            }
+          },
+          attachmentProps: {
+            badge: '+25%'
+          },
+          name: 'phone',
+          disabled: false,
+          progress: {
+            progress: 0,
+            maxPercent: 25
           }
         }
       }

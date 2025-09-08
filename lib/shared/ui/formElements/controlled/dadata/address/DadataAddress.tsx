@@ -3,6 +3,7 @@ import { type QueryClient } from '@tanstack/react-query'
 import { AutocompleteControl, type AutocompleteControlProps } from '../../autocomplete'
 import { type IDadataCacheOption } from '../types'
 import { useDadataQueryAddress } from './query'
+import { VITE_DADATA_BASE_CACHE_URL } from '@/configs/api'
 import { type AutocompleteItemOption } from '$/shared/ui'
 
 const addressFormatter = (item: IDadataCacheOption<unknown>): AutocompleteItemOption<typeof item> => ({
@@ -25,7 +26,7 @@ export type DadataAddressProps<TFieldValues extends FieldValues> = Omit<
  */
 export const DadataAddress = <TFieldValues extends FieldValues>({
   formatter = addressFormatter,
-  dadataBaseUrl,
+  dadataBaseUrl = VITE_DADATA_BASE_CACHE_URL,
   queryClient,
   ...props
 }: DadataAddressProps<TFieldValues>) => {
