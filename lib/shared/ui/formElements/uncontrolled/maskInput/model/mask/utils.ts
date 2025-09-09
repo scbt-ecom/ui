@@ -1,4 +1,4 @@
-import type { Definition } from '../../MaskInput'
+import { type Definition } from '../types'
 
 export const defaultDefinitions: Record<string, Definition> = {
   '#': {
