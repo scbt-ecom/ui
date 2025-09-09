@@ -5,7 +5,7 @@ type BoundaryOptions = {
   fallback?: boolean | ReactElement | string | ((error: Error) => JSX.Element)
 }
 
-export const withBoundary = <P extends {} = {}>(Render: ComponentType<P>, options?: BoundaryOptions) => {
+export const withBoundary = <P extends {}>(Render: ComponentType<P>, options?: BoundaryOptions) => {
   return (props: P) => {
     return (
       <ErrorBoundary {...options}>
