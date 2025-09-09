@@ -1,0 +1,1 @@
+export { withBoundary } from './withBoundary'
