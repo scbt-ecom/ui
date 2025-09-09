@@ -1,3 +1,5 @@
+import { useEffect } from 'react'
+
 interface UseSliderMarks {
   marks: number[]
   onChange?: (value: number) => void
@@ -15,15 +17,14 @@ export const useSliderMarks = ({ marks, onChange, value }: UseSliderMarks) => {
     if (onChange) onChange(value)
   }
 
-  const handleBlur = () => {
+  useEffect(() => {
     if (value && value > sliderMax) {
       onChange?.(sliderMax)
     }
-  }
+  }, [onChange, sliderMax, value])
 
   return {
     handleChangeSlider,
-    handleBlur,
     sliderMin,
     sliderMax
   }

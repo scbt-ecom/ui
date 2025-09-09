@@ -9,6 +9,7 @@ import {
   type CheckboxGroupProps,
   type RadioGroupProps,
   type SelectGroupProps,
+  SliderFieldsGroup,
   type SlidersGroupProps,
   type SwitchGroupProps
 } from './ui'
@@ -61,7 +62,7 @@ export const CalculatorFields = <T extends FieldValues>({ modalConfig, fieldsGro
         </div>
       )}
       {fieldsGroup?.slidersGroupConfig && !TypeGuards.isArrayEmpty(fieldsGroup?.slidersGroupConfig?.fields) && (
-        <FieldsGroup {...fieldsGroup?.slidersGroupConfig} />
+        <SliderFieldsGroup {...fieldsGroup?.slidersGroupConfig} />
       )}
       {fieldsGroup?.radioGroupTabConfig && !TypeGuards.isArrayEmpty(fieldsGroup?.radioGroupTabConfig?.fields) && (
         <FieldsGroup {...fieldsGroup?.radioGroupTabConfig} />

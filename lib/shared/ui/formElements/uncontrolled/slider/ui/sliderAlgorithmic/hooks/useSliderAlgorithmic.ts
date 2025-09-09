@@ -1,4 +1,5 @@
-import { useLogarithmic } from '../../../model/useLogarithmic'
+import { useEffect } from 'react'
+import { useLogarithmic } from '../../../model'
 
 interface UseSliderAlgorithmic {
   min: number
@@ -18,7 +19,7 @@ export const useSliderAlgorithmic = ({ min, max, defaultValue, value, onChange }
   const sliderMin = toSlider(min)
   const sliderMax = toSlider(max)
 
-  const handleBlur = (value: number | undefined) => {
+  useEffect(() => {
     if (!value) return
 
     if (value > max) {
@@ -27,7 +28,7 @@ export const useSliderAlgorithmic = ({ min, max, defaultValue, value, onChange }
     if (value < min) {
       if (onChange) onChange(min)
     }
-  }
+  }, [value, onChange, max, min])
 
   const handleChangeSlider = (value?: number) => {
     if (!value) {
@@ -37,7 +38,6 @@ export const useSliderAlgorithmic = ({ min, max, defaultValue, value, onChange }
   }
 
   return {
-    handleBlur,
     handleChangeSlider,
     toSlider,
     fromSlider,

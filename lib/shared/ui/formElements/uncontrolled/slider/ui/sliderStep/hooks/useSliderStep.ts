@@ -1,17 +1,20 @@
+import { useEffect } from 'react'
+
 interface UseSliderStep {
   min: number
   max: number
   step: number
   onChange?: (value: number) => void
+  value?: number
 }
 
-export const useSliderStep = ({ min, max, step, onChange }: UseSliderStep) => {
+export const useSliderStep = ({ min, max, step, onChange, value }: UseSliderStep) => {
   const sliderStep = step ?? 1
 
   const sliderMin = min
   const sliderMax = max
 
-  const handleBlur = (value: number | undefined) => {
+  useEffect(() => {
     if (!value) return
 
     if (value > max) {
@@ -20,7 +23,7 @@ export const useSliderStep = ({ min, max, step, onChange }: UseSliderStep) => {
     if (value < min) {
       if (onChange) onChange(min)
     }
-  }
+  }, [max, min, onChange, value])
 
   const handleChangeSlider = (value?: number) => {
     if (!value) {
@@ -30,7 +33,6 @@ export const useSliderStep = ({ min, max, step, onChange }: UseSliderStep) => {
   }
 
   return {
-    handleBlur,
     handleChangeSlider,
     sliderStep,
     sliderMin,

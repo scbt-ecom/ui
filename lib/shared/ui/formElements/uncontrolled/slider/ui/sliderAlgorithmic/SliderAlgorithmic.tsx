@@ -1,8 +1,8 @@
 import * as React from 'react'
 import { forwardRef } from 'react'
 import { NumericFormat } from 'react-number-format'
+import { type SliderAlgorithmicProps } from '../../model'
 import { getInputSliderSuffix } from '../../model/helpers'
-import { type SliderAlgorithmicProps } from '../../model/types'
 import { SliderInner } from '../Slider'
 import { useSliderAlgorithmic } from './hooks'
 import { Icon, InputBase } from '$/shared/ui'
@@ -44,7 +44,7 @@ export const SliderAlgorithmic = forwardRef<HTMLInputElement, SliderAlgorithmicP
       inputRef?.current?.focus()
     }
 
-    const { handleBlur, sliderValue, sliderStep, sliderMin, sliderMax, handleChangeSlider } = useSliderAlgorithmic({
+    const { sliderValue, sliderStep, sliderMin, sliderMax, handleChangeSlider } = useSliderAlgorithmic({
       min,
       max,
       defaultValue: 0,
@@ -70,7 +70,6 @@ export const SliderAlgorithmic = forwardRef<HTMLInputElement, SliderAlgorithmicP
               ...inputRoot
             }}
             onBlur={(e) => {
-              handleBlur(value)
               if (props?.onBlur) props?.onBlur(e)
               if (externalHandlers?.onBlur) externalHandlers.onBlur(e)
             }}

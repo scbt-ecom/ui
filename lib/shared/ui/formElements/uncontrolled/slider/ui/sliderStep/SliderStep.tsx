@@ -1,8 +1,8 @@
 import * as React from 'react'
 import { forwardRef } from 'react'
 import { NumericFormat } from 'react-number-format'
+import { type SliderStepProps } from '../../model'
 import { getInputSliderSuffix } from '../../model/helpers'
-import { type SliderStepProps } from '../../model/types'
 import { SliderInner } from '../Slider'
 import { useSliderStep } from './hooks'
 import { Icon, InputBase } from '$/shared/ui'
@@ -45,11 +45,12 @@ export const SliderStep = forwardRef<HTMLInputElement, SliderStepProps>(
       inputRef?.current?.focus()
     }
 
-    const { handleBlur, sliderStep, sliderMin, sliderMax, handleChangeSlider } = useSliderStep({
+    const { sliderStep, sliderMin, sliderMax, handleChangeSlider } = useSliderStep({
       min,
       max,
       step,
-      onChange
+      onChange,
+      value
     })
 
     const { root, slider, textLeft, textRight, inputRoot, textContainer, input, field } = classes || {}
@@ -70,7 +71,6 @@ export const SliderStep = forwardRef<HTMLInputElement, SliderStepProps>(
               ...inputRoot
             }}
             onBlur={(e) => {
-              handleBlur(value)
               if (props?.onBlur) props?.onBlur(e)
               if (externalHandlers?.onBlur) externalHandlers.onBlur(e)
             }}

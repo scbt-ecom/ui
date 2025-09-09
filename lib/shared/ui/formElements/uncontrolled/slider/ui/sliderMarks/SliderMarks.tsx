@@ -1,10 +1,10 @@
 import * as React from 'react'
 import { forwardRef } from 'react'
 import { NumericFormat } from 'react-number-format'
+import { type SliderMarksProps } from '../../model'
 import { getInputSliderSuffix } from '../../model/helpers'
-import { type SliderMarksProps } from '../../model/types'
-import { SliderInner } from '../../ui/Slider'
-import { useSliderMarks } from './hooks/useSliderMarks'
+import { SliderInner } from '../Slider'
+import { useSliderMarks } from './hooks'
 import { InputBase } from '$/shared/ui'
 import { cn, mergeRefs } from '$/shared/utils'
 
@@ -31,7 +31,7 @@ export const SliderMarks = forwardRef<HTMLInputElement, SliderMarksProps>(
 
     const inputRef = React.useRef<HTMLInputElement>(null)
 
-    const { sliderMin, sliderMax, handleChangeSlider, handleBlur } = useSliderMarks({
+    const { sliderMin, sliderMax, handleChangeSlider } = useSliderMarks({
       marks,
       onChange,
       value
@@ -57,7 +57,6 @@ export const SliderMarks = forwardRef<HTMLInputElement, SliderMarksProps>(
               if (externalHandlers?.onBlur) {
                 externalHandlers?.onBlur(e)
               }
-              handleBlur()
             }}
             renderValues={() => (
               <NumericFormat
