@@ -23,6 +23,7 @@ type MobileIdClasses = {
 }
 
 type EsiaClasses = {
+  root?: string
   authWrapper?: AuthWrapperClasses
   innerWrapper?: string
   textContent?: string
