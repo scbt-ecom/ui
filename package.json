@@ -1,6 +1,6 @@
 {
   "name": "@scbt-ecom/ui",
-  "version": "0.117.0",
+  "version": "0.117.1",
   "type": "module",
   "exports": {
     ".": {
@@ -83,9 +83,6 @@
   "peerDependecies": {
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
-  },
-  "overrides": {
-    "esbuild": "0.24.0"
   },
   "dependencies": {
     "@floating-ui/react": "0.26.28",
