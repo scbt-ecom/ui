@@ -41,3 +41,5 @@ export const Table = <Key extends string, TData extends Record<Key, unknown>>(pr
     </section>
   )
 }
+
+export default Table
