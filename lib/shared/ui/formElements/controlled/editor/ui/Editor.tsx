@@ -81,7 +81,7 @@ export const Editor = forwardRef<EditorRef, EditorProps>(
         attributes: {
           spellcheck: 'false',
           class: cn(
-            'p-4 outline-none bg-color-blue-grey-100 min-h-[240px] max-h-[500px] customScrollbar-y overflow-y-auto break-keep',
+            'p-4 outline-none bg-color-blue-grey-100 min-h-[240px] !static max-h-[500px] customScrollbar-y overflow-y-auto break-keep',
             classes?.editor,
             { 'max-h-[80px] min-h-full': small }
           )
@@ -107,7 +107,7 @@ export const Editor = forwardRef<EditorRef, EditorProps>(
           className={cn('relative flex w-full flex-col rounded-md border border-solid border-warm-grey-200', classes?.wrapper)}
         >
           <Toolbar editor={editor} />
-          {!value && <p className={cn('absolute left-4 top-16 z-10 text-color-disabled', classes?.label)}>{label}</p>}
+          {!value && <p className={cn('absolute left-4 top-16 text-color-disabled', classes?.label)}>{label}</p>}
           <EditorContent ref={ref} editor={editor} />
           {limit && (
             <p className='absolute bottom-4 right-4 text-color-disabled'>
