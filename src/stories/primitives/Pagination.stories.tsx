@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import type { Meta, StoryObj } from '@storybook/react'
-import { Pagination } from '$/shared/ui'
+import { Pagination, usePagination } from '$/shared/ui'
 
 const meta = {
   title: 'Navigation/Pagination',
@@ -10,9 +10,45 @@ const meta = {
     layout: 'centered'
   },
   render: (props) => {
-    const [page, setPage] = useState<number>(1)
+    const [totalPages, setTotalPages] = useState<number>(props.totalPages)
+    const [cursorIndex, setCursorIndex] = useState<number>(0)
 
-    return <Pagination {...props} page={page + 1} changePage={setPage} />
+    const { page, setPage, setLast, setFirst } = usePagination({
+      totalPages
+    })
+
+    return (
+      <div className='flex flex-col gap-2'>
+        <p>Total pages: {totalPages}</p>
+        <button onClick={() => setTotalPages((prev) => prev + 1)}>Append</button>
+        <button
+          onClick={() => {
+            setTotalPages((prev) => prev + 1)
+            setLast()
+          }}
+        >
+          Append and move last
+        </button>
+        <button onClick={() => setTotalPages((prev) => prev - 1)}>Remove</button>
+        <button
+          onClick={() => {
+            setTotalPages((prev) => prev - 1)
+            setFirst()
+          }}
+        >
+          Remove and move start
+        </button>
+        <button onClick={() => setTotalPages((prev) => prev - 1)}>Remove at</button>
+        <button onClick={() => setPage(cursorIndex)}>Move at</button>
+        <input
+          className='border'
+          type='number'
+          value={cursorIndex}
+          onChange={(event) => setCursorIndex(event.target.valueAsNumber)}
+        />
+        <Pagination {...props} totalPages={totalPages} page={page + 1} changePage={setPage} />
+      </div>
+    )
   }
 } satisfies Meta<typeof Pagination>
 type Story = StoryObj<typeof Pagination>
