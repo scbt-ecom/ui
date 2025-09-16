@@ -27,7 +27,7 @@ export const usePagination = ({ totalPages, initialPage = 0 }: UsePaginationProp
   }
 
   const currentPage = useMemo<number>(() => {
-    if (page >= totalPages) return page - 1
+    if (page > totalPages) return page - 1
 
     return Math.min(page, totalPages)
   }, [page, totalPages])
