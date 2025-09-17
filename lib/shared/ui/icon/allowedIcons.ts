@@ -26,7 +26,14 @@ export const allowedIcons = {
       'general/shield',
       'general/showEye'
     ],
-    files: ['files/border', 'files/borderError', 'files/documentFilled', 'files/documentOutline', 'files/upload'],
+    files: [
+      'files/border',
+      'files/borderError',
+      'files/documentFilled',
+      'files/documentOutline',
+      'files/fileMultiple',
+      'files/upload'
+    ],
     editor: [
       'editor/bold',
       'editor/fonts',
@@ -96,6 +103,7 @@ export const allowedIcons = {
     'files/borderError',
     'files/documentFilled',
     'files/documentOutline',
+    'files/fileMultiple',
     'files/upload',
     'editor/bold',
     'editor/fonts',

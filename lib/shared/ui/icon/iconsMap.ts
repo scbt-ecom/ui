@@ -29,6 +29,7 @@ import Border from '../../../../static/files/border.svg?react'
 import Bordererror from '../../../../static/files/borderError.svg?react'
 import Documentfilled from '../../../../static/files/documentFilled.svg?react'
 import Documentoutline from '../../../../static/files/documentOutline.svg?react'
+import Filemultiple from '../../../../static/files/fileMultiple.svg?react'
 import Upload from '../../../../static/files/upload.svg?react'
 import Calendar from '../../../../static/general/calendar.svg?react'
 import Check from '../../../../static/general/check.svg?react'
@@ -96,6 +97,7 @@ export const iconsMap = {
   'files/borderError': Bordererror,
   'files/documentFilled': Documentfilled,
   'files/documentOutline': Documentoutline,
+  'files/fileMultiple': Filemultiple,
   'files/upload': Upload,
   'editor/bold': Bold,
   'editor/fonts': Fonts,
