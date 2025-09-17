@@ -4,7 +4,7 @@ import { getHeaderAccessors, isHorizontalTable, type TableProps } from './model'
 import { DataTable, ResponsiveContainer } from '$/shared/ui'
 
 export const InfoTable = <Key extends string, TData extends Record<Key, unknown>>(props: TableProps<Key, TData>) => {
-  const { title, subtitle, helperText, pagination = false, columns, data, horizontal, ...restTableProps } = props
+  const { title, subtitle, helperText, pagination = false, columns, data, horizontal, classes, ...restTableProps } = props
 
   const { accessors, sortingColumns, sortingFn } = getHeaderAccessors(columns)
 
@@ -17,24 +17,31 @@ export const InfoTable = <Key extends string, TData extends Record<Key, unknown>
   const isHorizontal = isHorizontalTable(horizontal)
 
   return (
-    <section className='w-full'>
-      <ResponsiveContainer className={cn('flex flex-col gap-12 mobile:max-w-[360px]')}>
-        <div className='flex flex-col gap-[16px]'>
-          <div className='mob-headline-bold-s desktop:desk-headline-bold-m' dangerouslySetInnerHTML={{ __html: title }} />
-          <div className='desktop:desk-body-regular-l' dangerouslySetInnerHTML={{ __html: subtitle }} />
+    <section className={cn('w-full', classes?.root)}>
+      <ResponsiveContainer className={cn('flex flex-col gap-12 mobile:max-w-[360px]', classes?.container)}>
+        <div className={cn('flex flex-col gap-[16px]', classes?.textContainer)}>
+          <div
+            className={cn('mob-headline-bold-s desktop:desk-headline-bold-m', classes?.title)}
+            dangerouslySetInnerHTML={{ __html: title }}
+          />
+          <div className={cn('desktop:desk-body-regular-l', classes?.subtitle)} dangerouslySetInnerHTML={{ __html: subtitle }} />
         </div>
 
-        <div className='flex flex-col gap-4'>
+        <div className={cn('flex flex-col gap-4', classes?.tableContainer)}>
           <DataTable
             {...restTableProps}
             horizontal={isHorizontal}
             data={data}
             columns={cols}
+            classes={classes?.baseTableClasses}
             mode='odd'
             pagination={pagination}
           />
           {helperText && (
-            <div className='desk-body-regular-m text-color-tetriary' dangerouslySetInnerHTML={{ __html: helperText }} />
+            <div
+              className={cn('desk-body-regular-m text-color-tetriary', classes?.helperText)}
+              dangerouslySetInnerHTML={{ __html: helperText }}
+            />
           )}
         </div>
       </ResponsiveContainer>

@@ -1,4 +1,5 @@
 import { type BuiltInSortingFn } from '@tanstack/react-table'
+import { type DataTableClasses } from '../../../shared/ui/table/model/types'
 
 export type ColumnDefinition<Key extends string> = {
   title: Key
@@ -35,4 +36,16 @@ export interface TableProps<Key extends string, TData extends Record<Key, unknow
   mode: 'solid' | 'odd'
   pagination: boolean
   pageSize?: number
+  classes?: InfoTableClasses
+}
+
+export type InfoTableClasses = {
+  root?: string
+  container?: string
+  textContainer?: string
+  title?: string
+  subtitle?: string
+  tableContainer?: string
+  helperText?: string
+  baseTableClasses?: DataTableClasses
 }
