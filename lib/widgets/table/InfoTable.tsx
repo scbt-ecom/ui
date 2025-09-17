@@ -3,7 +3,7 @@ import { cn } from '../../shared/utils'
 import { getHeaderAccessors, isHorizontalTable, type TableProps } from './model'
 import { DataTable, ResponsiveContainer } from '$/shared/ui'
 
-export const Table = <Key extends string, TData extends Record<Key, unknown>>(props: TableProps<Key, TData>) => {
+export const InfoTable = <Key extends string, TData extends Record<Key, unknown>>(props: TableProps<Key, TData>) => {
   const { title, subtitle, helperText, pagination = false, columns, data, horizontal, ...restTableProps } = props
 
   const { accessors, sortingColumns, sortingFn } = getHeaderAccessors(columns)
@@ -42,4 +42,4 @@ export const Table = <Key extends string, TData extends Record<Key, unknown>>(pr
   )
 }
 
-export default Table
+export default InfoTable

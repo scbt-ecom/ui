@@ -1,10 +1,10 @@
 import { type Meta, type StoryObj } from '@storybook/react'
 import data from './data.json'
-import { Table, type TableProps } from '$/widgets/table'
+import { InfoTable, type TableProps } from '$/widgets/table'
 
 const meta = {
   title: 'WIDGETS/Table',
-  component: Table,
+  component: InfoTable,
   tags: ['autodocs'],
   decorators: [
     (Story) => (
@@ -13,15 +13,15 @@ const meta = {
       </div>
     )
   ]
-} satisfies Meta<typeof Table>
+} satisfies Meta<typeof InfoTable>
 
 export default meta
 
-type Story = StoryObj<typeof Table>
+type Story = StoryObj<typeof InfoTable>
 
 export const Base: Story = {
   args: {
     ...(data as TableProps<keyof (typeof data.data)[0], (typeof data.data)[0]>)
   },
-  render: (props) => <Table {...props} mode={data.mode as 'solid' | 'odd'} />
+  render: (props) => <InfoTable {...props} mode={data.mode as 'solid' | 'odd'} />
 }

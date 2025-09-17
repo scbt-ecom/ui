@@ -13,7 +13,7 @@ const UsefulInfo = lazy(() => import('../usefulInfo/UsefulInfo'))
 const Benefit = lazy(() => import('../benefit/Benefit'))
 const InfoBlock = lazy(() => import('../infoBlock/InfoBlock'))
 const UserFeedback = lazy(() => import('../userFeedback/UserFeedback'))
-const Table = lazy(() => import('../table/Table'))
+const Table = lazy(() => import('../table/./InfoTable'))
 
 export type AllowedWidgets = keyof typeof WIDGET_LIST_MAP
 
