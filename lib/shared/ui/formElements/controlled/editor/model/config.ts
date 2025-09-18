@@ -14,7 +14,7 @@ export const editorConfig = [
     heading: false,
     bold: {
       HTMLAttributes: {
-        class: 'font-bold'
+        class: '!font-bold'
       }
     },
     bulletList: {

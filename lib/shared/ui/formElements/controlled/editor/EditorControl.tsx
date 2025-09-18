@@ -1,9 +1,7 @@
-import { type ReactElement, useState } from 'react'
+import { type ReactElement } from 'react'
 import { type FieldValues, type Path, useController, type UseControllerProps } from 'react-hook-form'
-import { MessageView } from '../../ui'
 import { Editor } from './ui/Editor'
-import { Icon, InputBase, Modal } from '$/shared/ui'
-import { cn } from '$/shared/utils'
+import { EditorModal } from './ui/EditorModal'
 
 export type EditorControlClasses = {
   root?: string
@@ -51,55 +49,8 @@ export const EditorControl = <T extends FieldValues>({
     name
   })
 
-  const [isModalOpen, setIsModalOpen] = useState(false)
-
   if (small) {
-    return (
-      <>
-        <div className='flex flex-1 flex-col'>
-          <InputBase
-            readOnly
-            label={label}
-            {...field}
-            renderValues={() => (
-              <div
-                className={cn('peer max-h-[50px] w-full overflow-y-hidden p-4 pb-[9px] pt-[27px]')}
-                dangerouslySetInnerHTML={{ __html: field.value }}
-              />
-            )}
-            attachmentProps={{
-              icon: <Icon name='general/edit' className='size-5 text-color-tetriary' />
-            }}
-            onClick={() => editable && setIsModalOpen(true)}
-          />
-          <MessageView
-            className={classes?.message}
-            intent={error?.message ? 'error' : 'simple'}
-            text={error?.message || helperText}
-            disabled={!editable}
-          />
-        </div>
-        <Modal
-          classes={{
-            modal: 'max-w-[700px]'
-          }}
-          isModalOpen={isModalOpen}
-          closeModal={() => setIsModalOpen(false)}
-        >
-          <Editor
-            {...field}
-            editable={editable}
-            error={error}
-            helperText={helperText}
-            classes={{
-              editor: 'min-h-[350px]',
-              ...classes
-            }}
-            {...props}
-          />
-        </Modal>
-      </>
-    )
+    return <EditorModal {...field} editable={editable} helperText={helperText} label={label} classes={classes} {...props} />
   }
   return (
     <Editor {...field} editable={editable} error={error} helperText={helperText} label={label} classes={classes} {...props} />
