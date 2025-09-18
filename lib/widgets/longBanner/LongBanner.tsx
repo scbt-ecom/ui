@@ -13,6 +13,7 @@ export interface LongBannerProps<Enabled extends boolean> extends LongBannerConf
   intent?: 'twoItems' | 'fourItems'
   buttonConfig?: ButtonConfig
   image: Image
+  backgroundColor?: string
   classes?: LongBannerClasses
 }
 
@@ -22,6 +23,7 @@ export const LongBanner = <Enabled extends boolean>({
   intent = 'twoItems',
   details,
   image,
+  backgroundColor,
   classes
 }: LongBannerProps<Enabled>) => {
   const isFourItems = intent === 'fourItems'
@@ -35,7 +37,12 @@ export const LongBanner = <Enabled extends boolean>({
     )
 
   return (
-    <section id={widgetIds.longBanner} data-test-id={widgetIds.longBanner} className={cn(classes?.root)}>
+    <section
+      style={{ backgroundColor: backgroundColor ?? '#d9edff' }}
+      id={widgetIds.longBanner}
+      data-test-id={widgetIds.longBanner}
+      className={cn(classes?.root)}
+    >
       <ResponsiveContainer className={cn(classes?.container)}>
         {isTwoItems && <Title intent={intent} headline={headline} />}
 

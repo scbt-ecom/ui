@@ -7,7 +7,7 @@ import type { Approvement, ApprovementType } from './model'
 import { type FieldValidation, getDynamicSchema } from '@/shared/utils'
 import { useControlledForm } from '$/shared/hooks'
 import { Button, type ButtonProps, CheckboxBase, type CheckedState, Dialog } from '$/shared/ui'
-import { cn } from '$/shared/utils'
+import { cn, TypeGuards } from '$/shared/utils'
 import { ZodUtils } from '$/shared/validation'
 import { type FieldElement, FieldMapper } from '$/widgets/fieldMapper'
 import { QueryClientProvider } from '$/widgets/queryClientProvider'
@@ -99,24 +99,29 @@ export const DynamicFormDialog = <AType extends ApprovementType>({
         <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-6'>
           <FieldMapper control={control as unknown as Control} fields={fields} />
           {withApprovement(approvement, checked, onCheckedChange, classes?.approvement)}
-          {buttonGroup?.map((button, index) => {
-            const disabled = button.type === 'submit' && approvement.type === 'checkbox' ? !checked : false
+          {TypeGuards.isArrayFilled(buttonGroup) && (
+            <div className='flex flex-col gap-4'>
+              {buttonGroup?.map((button, index) => {
+                const disabled = button.type === 'submit' && approvement.type === 'checkbox' ? !checked : false
 
-            return (
-              <Button
-                {...button}
-                key={index}
-                disabled={disabled}
-                className={cn(
-                  'w-full whitespace-nowrap',
-                  {
-                    'w-full': Boolean(approvement)
-                  },
-                  classes?.submit
-                )}
-              />
-            )
-          })}
+                return (
+                  <Button
+                    {...button}
+                    size='lg'
+                    key={index}
+                    disabled={disabled}
+                    className={cn(
+                      'w-full whitespace-nowrap',
+                      {
+                        'w-full': Boolean(approvement)
+                      },
+                      classes?.submit
+                    )}
+                  />
+                )
+              })}
+            </div>
+          )}
           {/*<Button {...buttonProps} type='submit' disabled={approvement.type === 'checkbox' ? !checked : false} className='w-full'>*/}
           {/*  {children ?? 'Отправить форму'}*/}
           {/*</Button>*/}

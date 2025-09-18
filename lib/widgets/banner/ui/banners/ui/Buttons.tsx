@@ -37,7 +37,7 @@ export const Buttons = ({ buttonConfig, classes }: ButtonsProps) => {
           intent='secondary'
           size='lg'
           className={cn('w-full desktop:max-w-[216px]', classes?.secondary)}
-          {...primary.buttonContent}
+          {...secondary.buttonContent}
         />
       )}
     </div>
