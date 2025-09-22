@@ -1,41 +1,29 @@
 import { useState } from 'react'
-import { type FieldValues, useController } from 'react-hook-form'
-import { cn } from '../../../../../utils'
+import { type ControllerRenderProps, type FieldError, type FieldValues } from 'react-hook-form'
 import { Icon } from '../../../../icon'
 import { Modal } from '../../../../modal'
 import { MessageView } from '../../../ui'
 import { InputBase } from '../../../uncontrolled/input'
 import { type EditorControlProps } from '../EditorControl'
 import { Editor } from './Editor'
+import { cn } from '$/shared/utils'
 
-export interface EditorModalProps<T extends FieldValues> extends EditorControlProps<T> {}
+export interface EditorModalProps<T extends FieldValues>
+  extends Pick<EditorControlProps<T>, 'label' | 'classes' | 'editable' | 'helperText'> {
+  field: ControllerRenderProps<T>
+  error?: FieldError
+}
 
 export const EditorModal = <T extends FieldValues>({
   label,
   classes,
   editable,
   helperText,
-  control,
-  defaultValue,
-  disabled,
-  rules,
-  shouldUnregister,
-  name,
+  field,
+  error,
   ...props
 }: EditorModalProps<T>) => {
   const [isModalOpen, setIsModalOpen] = useState(false)
-
-  const {
-    field,
-    fieldState: { error }
-  } = useController({
-    control,
-    defaultValue,
-    disabled,
-    rules,
-    shouldUnregister,
-    name
-  })
 
   return (
     <>

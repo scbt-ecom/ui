@@ -202,7 +202,7 @@ export const DynamicForm = <
             >
               {withApprovement(approvement, checked, onCheckedChange, classes?.approvement)}
               <div
-                className={cn('flex w-full flex-col items-center justify-center gap-4 desktop:flex-row', {
+                className={cn('flex w-full flex-col items-center justify-between gap-4 desktop:flex-row', {
                   'desktop:w-fit': buttonGroup.length === 1
                 })}
               >

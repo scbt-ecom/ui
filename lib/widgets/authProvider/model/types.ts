@@ -7,7 +7,7 @@ export type CombineClasses = {
   topContent?: string
   badge?: string
   subtitle?: string
-  authWrapper?: string
+  authWrapper?: AuthWrapperClasses
 }
 
 type MobileIdClasses = {

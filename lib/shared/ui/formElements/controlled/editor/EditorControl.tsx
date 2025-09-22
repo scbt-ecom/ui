@@ -50,7 +50,17 @@ export const EditorControl = <T extends FieldValues>({
   })
 
   if (small) {
-    return <EditorModal {...field} editable={editable} helperText={helperText} label={label} classes={classes} {...props} />
+    return (
+      <EditorModal
+        error={error}
+        field={field}
+        editable={editable}
+        helperText={helperText}
+        label={label}
+        classes={classes}
+        {...props}
+      />
+    )
   }
   return (
     <Editor {...field} editable={editable} error={error} helperText={helperText} label={label} classes={classes} {...props} />

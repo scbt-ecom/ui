@@ -7,7 +7,7 @@ export type StepperTabsClasses = {
 }
 
 export interface StepperTab {
-  headline: string
+  tabName: string
 }
 
 export type StepperTabValue = string | undefined
@@ -22,17 +22,17 @@ export interface StepperTabsProps {
 export const StepperTabs = memo(({ stepperTabs, activeStepper, setActiveStepper, classes }: StepperTabsProps) => {
   return (
     <div className={cn('customScrollbar-y scrollHidden flex items-center gap-4 overflow-x-auto', classes?.wrapper)}>
-      {stepperTabs?.map(({ headline }) => (
+      {stepperTabs?.map(({ tabName }) => (
         <button
-          key={headline}
-          onClick={() => setActiveStepper(headline)}
+          key={tabName}
+          onClick={() => setActiveStepper(tabName)}
           className={cn(
             'mob-body-regular-m text-nowrap rounded-sm bg-color-blue-grey-100 px-3 py-1.5 text-color-secondary outline-1 outline-offset-4 outline-transparent desktop:desk-body-regular-l focus:outline-primary-focus desktop:px-4 desktop:py-3',
-            { 'bg-icon-primary-default text-color-white': activeStepper === headline },
+            { 'bg-icon-primary-default text-color-white': activeStepper === tabName },
             classes?.tab
           )}
         >
-          {headline}
+          {tabName}
         </button>
       ))}
     </div>
