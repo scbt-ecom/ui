@@ -37,12 +37,7 @@ export const LongBanner = <Enabled extends boolean>({
     )
 
   return (
-    <section
-      style={{ backgroundColor: backgroundColor ?? '#d9edff' }}
-      id={widgetIds.longBanner}
-      data-test-id={widgetIds.longBanner}
-      className={cn(classes?.root)}
-    >
+    <section id={widgetIds.longBanner} data-test-id={widgetIds.longBanner} className={cn(classes?.root)}>
       <ResponsiveContainer className={cn(classes?.container)}>
         {isTwoItems && <Title intent={intent} headline={headline} />}
 
@@ -51,6 +46,7 @@ export const LongBanner = <Enabled extends boolean>({
             'bg-banner-skyblue-100 px-6 pb-8 pt-6 desktop:flex desktop:flex-row-reverse desktop:justify-between desktop:px-0 desktop:py-0 desktop:pl-12',
             classes?.contentContainer
           )}
+          style={{ backgroundColor: backgroundColor ?? '#f4f8fe' }}
         >
           {isFourItems && <Title intent={intent} headline={headline} desktopHidden={true} />}
           <div className={cn(containerImgConfig({ intent, withButton: buttonConfig?.enabled }), classes?.imgContainer)}>
