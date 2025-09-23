@@ -32,7 +32,9 @@ const renderProvider = (props: AuthProviderProps): React.ReactElement => {
             <Esia
               {...esiaConfig}
               classes={{
-                authWrapper: 'p-0 outline-0 h-[74px]',
+                authWrapper: {
+                  root: 'p-0 outline-0 h-[74px]'
+                },
                 root: 'p-0 outline-0 h-[74px]',
                 arrowIcon: 'hidden',
                 ...esiaConfig.classes
@@ -42,6 +44,9 @@ const renderProvider = (props: AuthProviderProps): React.ReactElement => {
               {...mobileIdConfig}
               classes={{
                 root: 'p-0 outline-0 h-[74px]',
+                authWrapper: {
+                  root: 'p-0 outline-0 h-[74px]'
+                },
                 arrowIcon: 'hidden',
                 ...mobileIdConfig.classes
               }}

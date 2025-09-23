@@ -1,3 +1,4 @@
+import { type HTMLAttributes } from 'react'
 import { cn } from '../../utils'
 import { Button } from '../button'
 import { Icon } from '../icon'
@@ -9,7 +10,7 @@ type PaginationClasses = {
   active?: string
 }
 
-export type PaginationProps = {
+export type PaginationProps = HTMLAttributes<HTMLDivElement> & {
   /**
    * активная страница
    */
@@ -48,7 +49,8 @@ export const Pagination = ({
   changePage,
   next = true,
   ellipsis = 0,
-  classes
+  classes,
+  ...props
 }: PaginationProps) => {
   // гарантирует что between никогда не будет меньше 1
   between = between < 1 ? 1 : between
@@ -82,7 +84,7 @@ export const Pagination = ({
   }
 
   return (
-    <div className={cn('flex', classes?.root)}>
+    <div {...props} className={cn('flex', classes?.root)}>
       {next && (
         <Button
           size='sm'

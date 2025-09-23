@@ -24,13 +24,13 @@ export type SingleStepItemWithoutImage = {
 
 type SingleStepperWithImages<WithImages extends true> = {
   withImages: WithImages
-  headline: string
+  tabName: string
   details: SingleStepItemWithImage[]
 }
 
 type SingleStepperWithoutImages<WithImages extends boolean> = {
   withImages: WithImages
-  headline: string
+  tabName: string
   details: SingleStepItemWithoutImage[]
 }
 

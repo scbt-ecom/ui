@@ -15,9 +15,10 @@ type Story = StoryObj<typeof Stepper>
 
 export const Base: Story = {
   args: {
+    headline: 'Как получить кредит',
     steppers: [
       {
-        headline: 'Как получить кредит',
+        tabName: 'Как получить кредит',
         withImages: false,
         details: [
           {
@@ -35,7 +36,7 @@ export const Base: Story = {
         ]
       },
       {
-        headline: 'Заберите деньги',
+        tabName: 'Заберите деньги',
         withImages: false,
         details: [
           {
@@ -58,9 +59,10 @@ export const Base: Story = {
 
 export const ParsedHTML: Story = {
   args: {
+    headline: 'Как получить кредит',
     steppers: [
       {
-        headline: 'Как получить кредит',
+        tabName: 'Как получить кредит',
         withImages: false,
         details: [
           {
@@ -85,9 +87,10 @@ export const ParsedHTML: Story = {
 
 export const OnlyDescription: Story = {
   args: {
+    headline: 'Как получить кредит',
     steppers: [
       {
-        headline: 'Как получить кредит',
+        tabName: 'Как получить кредит',
         withImages: false,
         details: [
           {
@@ -109,9 +112,10 @@ export const OnlyDescription: Story = {
 
 export const WithImages: Story = {
   args: {
+    headline: 'Как получить кредит',
     steppers: [
       {
-        headline: 'Как получить кредит',
+        tabName: 'Как получить кредит',
         withImages: false,
         details: [
           {
@@ -129,7 +133,7 @@ export const WithImages: Story = {
         ]
       },
       {
-        headline: 'Заберите деньги',
+        tabName: 'Заберите деньги',
         withImages: true,
         details: [
           {

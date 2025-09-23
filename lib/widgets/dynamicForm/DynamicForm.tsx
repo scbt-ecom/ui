@@ -103,14 +103,15 @@ const withApprovement = <Type extends ApprovementType>(
 }
 
 const withAuthProvider = <Mode extends AuthMode>(auth: Auth<Mode>) => {
-  switch (auth.mode) {
+  switch (auth?.mode) {
     case 'esia':
-      return <AuthProvider {...auth} mode={auth.mode} />
+      return <AuthProvider {...auth} mode={auth?.mode} />
     case 'mobileId':
-      return <AuthProvider {...auth} mode={auth.mode} />
+      return <AuthProvider {...auth} mode={auth?.mode} />
     case 'combine':
-      return <AuthProvider {...auth} mode={auth.mode} />
-    case 'off':
+      return <AuthProvider {...auth} mode={auth?.mode} />
+
+    default:
       return null
   }
 }
@@ -201,7 +202,7 @@ export const DynamicForm = <
             >
               {withApprovement(approvement, checked, onCheckedChange, classes?.approvement)}
               <div
-                className={cn('flex w-full flex-col items-center justify-center gap-4 desktop:flex-row', {
+                className={cn('flex w-full flex-col items-center justify-between gap-4 desktop:flex-row', {
                   'desktop:w-fit': buttonGroup.length === 1
                 })}
               >

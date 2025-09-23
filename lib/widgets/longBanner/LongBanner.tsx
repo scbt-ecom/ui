@@ -13,6 +13,7 @@ export interface LongBannerProps<Enabled extends boolean> extends LongBannerConf
   intent?: 'twoItems' | 'fourItems'
   buttonConfig?: ButtonConfig
   image: Image
+  backgroundColor?: string
   classes?: LongBannerClasses
 }
 
@@ -22,6 +23,7 @@ export const LongBanner = <Enabled extends boolean>({
   intent = 'twoItems',
   details,
   image,
+  backgroundColor,
   classes
 }: LongBannerProps<Enabled>) => {
   const isFourItems = intent === 'fourItems'
@@ -44,6 +46,7 @@ export const LongBanner = <Enabled extends boolean>({
             'bg-banner-skyblue-100 px-6 pb-8 pt-6 desktop:flex desktop:flex-row-reverse desktop:justify-between desktop:px-0 desktop:py-0 desktop:pl-12',
             classes?.contentContainer
           )}
+          style={{ backgroundColor: backgroundColor ?? '#f4f8fe' }}
         >
           {isFourItems && <Title intent={intent} headline={headline} desktopHidden={true} />}
           <div className={cn(containerImgConfig({ intent, withButton: buttonConfig?.enabled }), classes?.imgContainer)}>

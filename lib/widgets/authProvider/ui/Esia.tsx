@@ -8,7 +8,7 @@ export const Esia = ({ mainLink, subLink, isLoading, badge, loaderProps, classes
   const { isMobile } = useDevice()
 
   return (
-    <AuthWrapper isLoading={isLoading} loaderProps={loaderProps} classes={{ root: classes?.authWrapper }}>
+    <AuthWrapper isLoading={isLoading} loaderProps={loaderProps} classes={classes?.authWrapper}>
       <div
         className={cn(
           'flex flex-1 items-center justify-between gap-1',
