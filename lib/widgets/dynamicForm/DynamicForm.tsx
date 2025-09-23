@@ -196,7 +196,7 @@ export const DynamicForm = <
             )}
             <FieldMapper control={control as unknown as Control} fields={fields} />
             <div
-              className={cn('mob-body-regular-s flex flex-col items-start justify-center gap-4', {
+              className={cn('mob-body-regular-s flex flex-col items-start justify-between gap-4', {
                 ['desktop:flex-row desktop:items-center']: buttonGroup.length === 1
               })}
             >
