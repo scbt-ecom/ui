@@ -3,7 +3,7 @@ import { type CellContext } from '@tanstack/react-table'
 import { useClickOutside } from '$/shared/hooks'
 import { type AllowedIcons, Button, Icon } from '$/shared/ui'
 
-type Cell<TData, TValue> = CellContext<TData, TValue> & { rowIndex?: number }
+type Cell<TData, TValue> = CellContext<TData, TValue> & { rowIndex?: number; readOnly?: boolean }
 
 interface EditableCellProps<TData, TValue> extends Cell<TData, TValue> {
   target: keyof TData
@@ -20,7 +20,8 @@ export const EditableCell = <TData, TValue extends string | undefined>({
   update,
   target,
   rowIndex = -1,
-  attachment
+  attachment,
+  readOnly = false
 }: EditableCellProps<TData, TValue>) => {
   const [value, setValue] = useState<TValue | string>(getValue())
   const changed = useRef<boolean>(false)
@@ -52,6 +53,7 @@ export const EditableCell = <TData, TValue extends string | undefined>({
         ref={inputRef}
         className='mr-2 w-full outline-none'
         type='text'
+        readOnly={readOnly}
         value={value}
         onChange={onValueChange}
         onBlur={onInputBlur}
