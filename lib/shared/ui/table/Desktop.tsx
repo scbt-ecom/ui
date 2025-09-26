@@ -110,12 +110,10 @@ export const Desktop = <TData extends {}>({
           )}
         </TableBody>
       </Table>
-      {paginationEnabled ? (
-        typeof pagination === 'function' ? (
-          pagination(paginationProps)
-        ) : (
-          <TablePagination {...paginationProps} />
-        )
+      {typeof pagination === 'function' ? (
+        pagination(paginationProps)
+      ) : paginationEnabled ? (
+        <TablePagination {...paginationProps} />
       ) : null}
     </div>
   )
