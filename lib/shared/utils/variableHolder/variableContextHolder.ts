@@ -24,6 +24,32 @@ export interface IVariableContextHolder<Key, Value> {
   get: (key: Key) => Variable<Key, Value> | undefined
 }
 
+export interface VariableStore {
+  setItem: <T>(key: string, value: T) => void
+  getItem: <T>(key: string) => T | null
+  clearItems: (...keys: string[]) => void
+}
+
+class InMemoryVariableStore implements VariableStore {
+  private _store = new Map<string, unknown>()
+
+  constructor() {}
+
+  clearItems(...keys: string[]): void {
+    for (const key of keys) {
+      this._store.delete(key)
+    }
+  }
+
+  getItem<T>(key: string): T | null {
+    return (this._store.get(key) as T) ?? null
+  }
+
+  setItem<T>(key: string, value: T): void {
+    this._store.set(key, value)
+  }
+}
+
 /**
  * Класс для управления переменными
  */
@@ -31,13 +57,20 @@ export class VariableContextHolder<Key extends string = string, Value = string> 
   private _variables: Variable<Key, Value>[] = []
   private _listeners = new Map<symbol, (variables: Variable<Key, Value>[]) => void>()
   private _nextListenerId: number = 0
+  private _storeContext: VariableStore
 
   private static _VARIABLE_REGEX: RegExp = /\$\{([^}]+)}/g
   private static _VARIABLE_PATTERN: string = '${variable}'
   private static _instance = new Map<string, VariableContextHolder>()
 
   private constructor(private _store: string) {
-    this._variables = localStorageActions.getItem<Variable<Key, Value>[]>(this._store) ?? []
+    if (typeof window === 'undefined') {
+      this._storeContext = new InMemoryVariableStore()
+    } else {
+      this._storeContext = localStorageActions
+    }
+
+    this._variables = this._storeContext.getItem<Variable<Key, Value>[]>(this._store) ?? []
   }
 
   static unwrap(variable: string): string {
@@ -71,7 +104,7 @@ export class VariableContextHolder<Key extends string = string, Value = string> 
   }
 
   private collect() {
-    localStorageActions.setItem(this._store, this._variables)
+    this._storeContext.setItem(this._store, this._variables)
     this._listeners.forEach((listener) => listener(this._variables))
 
     return this._variables
