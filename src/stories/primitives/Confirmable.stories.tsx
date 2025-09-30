@@ -15,12 +15,12 @@ const meta = {
         <Icon name='general/close' className='size-4 text-color-negative' />
       </Button>
     ),
-    approve: () => (
+    approve: (
       <Button className='h-6 w-6 p-0' intent='ghost' onClick={() => toast.success('Удалено')}>
         <Icon className='size-4' name='general/check' />
       </Button>
     ),
-    reject: () => (
+    reject: (
       <Button className='h-6 w-6 p-0' intent='ghost' onClick={() => toast.success('Отменено')}>
         <Icon className='size-4' name='general/close' />
       </Button>
