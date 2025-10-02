@@ -8,13 +8,19 @@ export const DATE_VISIBLE_PATTERN = 'dd.MM.yyyy'
  * new Date() -> '10.10.2024'
  * @param {Date} date
  * @param {string} locale
+ * @param options
  * @returns Форматированная строка
  */
-export const formatDateToLocaleString = (date: Date, locale: string = 'ru-RU'): string => {
+export const formatDateToLocaleString = (date: Date, locale: string = 'ru-RU', options?: { time?: boolean }): string => {
+  const { time = false } = options ?? {}
+
   const formatter = new Intl.DateTimeFormat(locale, {
     day: '2-digit',
     month: '2-digit',
-    year: 'numeric'
+    year: 'numeric',
+    hour: time ? 'numeric' : undefined,
+    minute: time ? 'numeric' : undefined,
+    second: time ? 'numeric' : undefined
   })
 
   return formatter.format(date)

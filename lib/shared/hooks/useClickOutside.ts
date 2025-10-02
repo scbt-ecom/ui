@@ -12,7 +12,7 @@ export const useClickOutside = (ref: React.RefObject<HTMLElement>, callback: () 
 
   React.useEffect(() => {
     if (isClient) {
-      globalThis?.document?.addEventListener('mousedown', handleClickOutside)
+      globalThis?.document?.addEventListener('mousedown', handleClickOutside, true)
       return () => {
         globalThis?.document.removeEventListener('mousedown', handleClickOutside)
       }
