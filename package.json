@@ -82,7 +82,8 @@
   },
   "peerDependecies": {
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "react-hook-form": "7.62.0"
   },
   "dependencies": {
     "@floating-ui/react": "0.26.28",
