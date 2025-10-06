@@ -40,7 +40,7 @@ export const Accordion = forwardRef<HTMLDivElement, AccordionProps>(
                 ref={ref}
                 {...contentAnimation}
                 className={cn(
-                  'desk-body-regular-l max-w-[680px] overflow-hidden bg-color-transparent text-color-dark',
+                  'desk-body-regular-l w-full overflow-hidden bg-color-transparent text-color-dark',
                   classes?.content
                 )}
               >
