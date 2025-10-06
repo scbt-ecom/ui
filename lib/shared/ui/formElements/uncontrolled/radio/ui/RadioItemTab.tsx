@@ -33,7 +33,7 @@ export const RadioItemTab = ({
         <label
           htmlFor={id}
           className={cn(
-            'desk-body-regular-l cursor-pointer capitalize text-color-dark transition-colors group-data-[state=checked]:!text-color-white',
+            'desk-body-regular-l cursor-pointer text-color-dark transition-colors group-data-[state=checked]:!text-color-white',
             { 'text-color-disabled': disabled },
             classes?.label
           )}
