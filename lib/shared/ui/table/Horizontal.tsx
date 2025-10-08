@@ -93,7 +93,7 @@ export const Horizontal = <TData extends {}>({
                             'px-3': mode === 'odd',
                             'bg-color-primary-light-default': mode === 'odd' && index % 2 === 0,
                             '[&:not(:last-child)]:border-b-[rgba(234,237,241,1)]': mode === 'solid',
-                            'drop-shadow-xl': hasLeftOffset
+                            'drop-shadow-x': hasLeftOffset
                           },
                           classes?.tableHead
                         )}

@@ -64,7 +64,7 @@ export const Pagination = ({
   // количество отображаемых страниц (включая активную)
   const visiblePages = between * 2 + 1
 
-  let range
+  let range: number[]
 
   if (totalPages < visiblePages) {
     // если общее количество страниц меньше, чем нужно отобразить, то отображаем все страницы
@@ -128,7 +128,7 @@ export const Pagination = ({
             className={cn(
               'mob-body-regular-l w-[40px] p-0 text-color-dark',
               {
-                [`text-color-primary-default ${classes?.active}`]: active
+                [`pointer-events-none text-color-primary-default ${classes?.active}`]: active
               },
               classes?.button
             )}
