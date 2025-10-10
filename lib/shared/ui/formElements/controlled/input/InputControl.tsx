@@ -1,9 +1,10 @@
 'use client'
 
+import { useEffect, useRef } from 'react'
 import { type Control, type FieldValues, type Path, useController, type UseControllerProps } from 'react-hook-form'
 import { InputBase, type InputBaseProps } from '../../uncontrolled/input'
 import { MessageView } from '$/shared/ui/formElements/ui'
-import { cn } from '$/shared/utils'
+import { cn, mergeRefs } from '$/shared/utils'
 
 type InputControlClasses = InputBaseProps['classes'] & {
   message?: string
@@ -40,6 +41,7 @@ export const InputControl = <TFieldValues extends FieldValues = FieldValues>({
   classes,
   ...props
 }: InputControlProps<TFieldValues>) => {
+  const ref = useRef<HTMLInputElement>(null)
   const { field, fieldState } = useController({
     control,
     name,
@@ -52,11 +54,18 @@ export const InputControl = <TFieldValues extends FieldValues = FieldValues>({
   const { error, invalid, isTouched } = fieldState
   const { message, root, ...restClasses } = classes || {}
 
+  useEffect(() => {
+    if (ref.current && invalid) {
+      ref.current.dispatchEvent(new CustomEvent('field-invalid', { detail: error }))
+    }
+  }, [invalid])
+
   return (
     <div className={cn('w-full', root)}>
       <InputBase
         {...props}
         {...field}
+        ref={mergeRefs(ref, field.ref)}
         classes={restClasses}
         invalid={invalid}
         attachmentProps={{
