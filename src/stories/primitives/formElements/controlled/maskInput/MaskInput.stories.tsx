@@ -1,5 +1,6 @@
 'use docs'
 
+import { useEffect } from 'react'
 import toast from 'react-hot-toast'
 import type { Meta, StoryObj } from '@storybook/react'
 import { fn } from '@storybook/test'
@@ -73,6 +74,36 @@ export const WithPhoneMask: Story = {
       renderComponent={(componentProps: MaskInputControlProps) => <MaskInputControl {...componentProps} />}
     />
   )
+}
+
+export const TestEvent: Story = {
+  args: {
+    ...WithPhoneMask.args
+  },
+  render: (props) => {
+    useEffect(() => {
+      const el = document.querySelector('[data-layer-id="mask-input"]')
+      if (el) {
+        el.addEventListener('field-invalid', (e) => {
+          const event = e as CustomEvent
+          console.log('Event invalid handled', event)
+        })
+      }
+    }, [])
+
+    return (
+      <HookForm<MaskInputControlProps, TypeOf<typeof phoneSchema>>
+        {...props}
+        schema={phoneSchema}
+        defaultValues={{
+          field: ''
+        }}
+        renderComponent={(componentProps: MaskInputControlProps) => (
+          <MaskInputControl {...componentProps} data-layer-id='mask-input' />
+        )}
+      />
+    )
+  }
 }
 
 export const WithDateMask: Story = {

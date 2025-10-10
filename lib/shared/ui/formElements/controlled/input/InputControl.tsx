@@ -30,6 +30,12 @@ export type InputControlProps<
     classes?: InputControlClasses
   }
 
+class DLGAFieldEvent<T extends {}> extends CustomEvent<T> {
+  constructor(type: string, options: { bubbles?: boolean; cancelable?: boolean; detail?: T }) {
+    super(type, options)
+  }
+}
+
 export const InputControl = <TFieldValues extends FieldValues = FieldValues>({
   control,
   name,
@@ -55,8 +61,13 @@ export const InputControl = <TFieldValues extends FieldValues = FieldValues>({
   const { message, root, ...restClasses } = classes || {}
 
   useEffect(() => {
-    if (ref.current && invalid) {
-      ref.current.dispatchEvent(new CustomEvent('field-invalid', { detail: error }))
+    if (!ref.current) return
+
+    if (invalid) {
+      ref.current.dispatchEvent(new DLGAFieldEvent('invalidField', { detail: error }))
+    }
+    if (!invalid) {
+      ref.current.dispatchEvent(new DLGAFieldEvent('validateField', { detail: error }))
     }
   }, [invalid])
 
